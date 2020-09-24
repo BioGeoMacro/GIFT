@@ -1,12 +1,22 @@
-\name{hello}
-\alias{hello}
-\title{Hello, World!}
-\usage{
-hello()
-}
+\name{get_credentials}
+\alias{get_credentials}
+\title{Credentials to access GIFT server}
 \description{
-Prints 'Hello, world!'.
+Username and password so far needed.
 }
+\usage{
+get_credentials()
+}
+\arguments{
+}
+\details{
+}
+\value{
+A list with username and password.
+}
+\details{}
+\section{Note}{}
+
 \examples{
-hello()
+get_credentials()
 }
