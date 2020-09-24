@@ -6,13 +6,15 @@ Authors@R: c(
   person("Patrick", "Weigelt", email = "weigelt.patrick@gmail.com",
     role = c("aut" , "cre"), comment = c(ORCID = "0000-0002-2485-3708")),
   person("Pierre", "Denelle", email = "pierre.denelle@gmail.com",
-    role = c("aut" , "cre"), comment = c(ORCID = "0000-0001-5037-2281"))
-)
+    role = c("aut"), comment = c(ORCID = "0000-0001-5037-2281"))
+  )
 Description: Retrieving environmental, traits and distribution for species worldwide.
+Depends:
+  R (>= 3.5.3)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports:
-    dplyr,
-    jsonlite,
-    reshape2
+  dplyr,
+  jsonlite,
+  reshape2
