@@ -1,0 +1,72 @@
+---
+title: "GIFT tutorial"
+author: "Pierre Denelle & Patrick Weigelt"
+date: "`r Sys.Date()`"
+output: 
+  html_vignette:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+  word_vignette:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+vignette: >
+ %\VignetteIndexEntry{Tutorial for GIFT R package}
+ %\VignetteEncoding{UTF-8} 
+ %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+ chunk_output_type: console
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 8, fig.height = 8)
+# Packages --------------------------------------------------------------------
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library(dplyr)
+    library(jsonlite)
+  })
+})
+
+options(tinytex.verbose = TRUE)
+
+# devtools::load_all()
+
+```
+
+
+# 1. Overview
+
+See Weigelt et al. (2020)
+
+\newpage
+
+# 2. Main functions
+
+```{r env_raster}
+get_credentials()
+
+tmp <- env_raster()
+head(tmp)
+
+```
+
+\newpage
+
+# 3. References
+## 3.1. Articles
+
+[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
+
+\newpage
+
+## 3.2. R packages
+

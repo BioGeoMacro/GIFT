@@ -1,12 +1,22 @@
-\name{hello}
-\alias{hello}
-\title{Hello, World!}
-\usage{
-hello()
-}
+\name{DB_get_traits}
+\alias{DB_get_traits}
+\title{Retrieving traits}
 \description{
-Prints 'Hello, world!'.
+Retrieving traits.
 }
+\usage{
+DB_get_traits()
+}
+\arguments{
+}
+\details{
+}
+\value{
+A data frame with X columns.
+}
+\details{}
+\section{Note}{}
+
 \examples{
-hello()
+ex <- DB_get_traits()
 }

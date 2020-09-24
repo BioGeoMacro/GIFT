@@ -1,12 +1,22 @@
-\name{hello}
-\alias{hello}
-\title{Hello, World!}
-\usage{
-hello()
-}
+\name{env_misc}
+\alias{env_misc}
+\title{Miscellaneous information about environment}
 \description{
-Prints 'Hello, world!'.
+Returns metadata about environment.
 }
+\usage{
+traits_meta()
+}
+\arguments{
+}
+\details{
+}
+\value{
+A data frame with X columns.
+}
+\details{}
+\section{Note}{}
+
 \examples{
-hello()
+ex <- env_misc()
 }
