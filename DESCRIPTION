@@ -1,11 +1,18 @@
 Package: GIFT
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Access to the Global Inventory of Floras and Traits (GIFT)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+  person("Patrick", "Weigelt", email = "weigelt.patrick@gmail.com",
+    role = c("aut" , "cre"), comment = c(ORCID = "0000-0002-2485-3708")),
+  person("Pierre", "Denelle", email = "pierre.denelle@gmail.com",
+    role = c("aut" , "cre"), comment = c(ORCID = "0000-0001-5037-2281"))
+)
+Description: Retrieving environmental, traits and distribution for species worldwide.
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    jsonlite,
+    reshape2
