@@ -1,5 +1,5 @@
 
-species <- function(){
+species_names <- function(){
   require(jsonlite)
   require(dplyr)
   

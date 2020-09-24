@@ -2,8 +2,6 @@ DB_get_traits = function(trait_IDs = c(""), agreement = 0.66, bias_ref = FALSE, 
   require(dplyr)
 
   # make error message when no trait given
-  # decrease memory usage in php to reasonable amount: https://stackoverflow.com/questions/415801/allowed-memory-size-of-33554432-bytes-exhausted-tried-to-allocate-43148176-byte
-  
   trait_list <- list()
   
   if(restricted){
@@ -29,8 +27,10 @@ DB_get_traits = function(trait_IDs = c(""), agreement = 0.66, bias_ref = FALSE, 
   trait_list <- trait_list[which(trait_list$agreement >= agreement),]
   
   ### match species names
+  species <- species_names()
+  trait_list <- left_join(trait_list, species[,c("work_ID","species")], by="work_ID")
   
+  trait_list <- trait_list[,c("trait_ID","work_ID","species","trait_value","agreement","references")]        
   
-  #trait_list = reshape2::dcast(data = trait_list, formula = work_ID ~ trait_ID, value.var = "trait_value")
   return(trait_list)
 }
