@@ -73,7 +73,7 @@ DB_get_checklists_conditional = function(entity_class = c("Island","Island/Mainl
                              LEFT JOIN `references` ON `lists`.`ref_ID` = `references`.`ref_ID`
                              LEFT JOIN `geoentities` ON `lists`.`entity_ID` = `geoentities`.`entity_ID`
                              LEFT JOIN `reference_tax` ON `references`.`ref_ID` = `reference_tax`.`ref_ID`
-                             WHERE `references`.`processed` = 1") 
+                             WHERE `references`.`processed` = 1 AND `references`.`checklist`= 1") 
   
   # include only lists for taxonomic groups that cover the target taxonomic group or fall into the target taxonomic group
   included_taxa <- DBI::dbGetQuery(conn, paste("SELECT taxon_ID FROM taxonomy WHERE 
@@ -85,6 +85,7 @@ DB_get_checklists_conditional = function(entity_class = c("Island","Island/Mainl
   
   # Subset list_set 
   list_set = list_set[which(list_set$suit_list == 1),] # use only suitable lists
+  
   list_set = list_set[which(list_set$taxon_ID %in% included_taxa),] # tax_group
   list_set = list_set[which(list_set$included %in% ref_included),] # status
   list_set = list_set[which(list_set$type_ref %in% type_ref),] # type_ref
@@ -94,8 +95,12 @@ DB_get_checklists_conditional = function(entity_class = c("Island","Island/Mainl
   if(natural_indicated){list_set = list_set[which(list_set$natural_indicated == 1),]} # natural_indicated
   if(end_ref){list_set = list_set[which(list_set$end_ref == 1),]} # end_ref
   if(end_list){list_set = list_set[which(list_set$end_list == 1),]} # end_list
-  if(suit_geo){list_set = list_set[which(list_set$suit_geo == 1),]} # suit_geo
-  if(exclude_restricted){list_set = list_set[which(list_set$restricted == 0),]} # restricted
+  if(exclude_restricted){# restricted
+    list_set = list_set[which(list_set$restricted == 0),]
+    if(suit_geo){list_set = list_set[which(list_set$suit_geo == 1),]} # suit_geo
+  } else {
+    if(suit_geo){list_set = list_set[which(list_set$suit_geo_rst == 1),]} # suit_geo
+  }
   
   # exclude geoentities for which the taxonomic group is incompletely covered
   taxonomy <- DBI::dbGetQuery(conn, "SELECT * FROM taxonomy")

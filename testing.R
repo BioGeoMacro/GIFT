@@ -26,3 +26,17 @@ species <- species_names()
 names(traits)
 
 # decrease memory usage in php to reasonable amount: https://stackoverflow.com/questions/415801/allowed-memory-size-of-33554432-bytes-exhausted-tried-to-allocate-43148176-byte
+
+
+
+
+
+list_set_new_rst <- read_json(paste0(
+  "http://",credentials[[1]], ":",credentials[[2]],
+  "@gift.uni-goettingen.de/api/extended/index.php?query=lists&restricted=1"),
+  simplifyVector = TRUE)
+
+list_set_new <- read_json(paste0(
+  "http://",credentials[[1]], ":",credentials[[2]],
+  "@gift.uni-goettingen.de/api/extended/index.php?query=lists&restricted=0"),
+  simplifyVector = TRUE)
