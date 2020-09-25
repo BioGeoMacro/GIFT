@@ -55,11 +55,11 @@ get_credentials()
 ```
 
 ## 2.2. Trait extraction
-We here retrieve woodiness and life information for every species using `GIFT_get_traits()` function.
+We here retrieve woodiness and life information for every species using `GIFT_traits()` function.
 The output of this function is a long format data.frame. This implies that, when providing several traits, the species rows are replicated.
 
-```{r get_traits}
-ex_tra <- GIFT_get_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+```{r traits}
+ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
                      bias_ref = FALSE, bias_deriv = FALSE, restricted = FALSE)
 
 head(ex_tra)
@@ -67,6 +67,16 @@ head(ex_tra)
 table(ex_tra$trait_ID, ex_tra$trait_value)
 # Number of available species
 length(unique(ex_tra$species))
+```
+
+## 2.3. Lists
+Retrieve checklists.
+
+```{r lists}
+ex_list <- GIFT_lists(restricted = FALSE)
+
+head(ex_list)
+
 ```
 
 \newpage
