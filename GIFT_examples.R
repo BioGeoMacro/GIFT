@@ -22,24 +22,15 @@ dbGetQuery(conn, "DESCRIBE env_misc")
 
 ### Download metadata
 
-# Meta information on miscellaneous environmental information in GIFT
-env_misc <- dbGetQuery(conn, "SELECT * FROM env_misc")
-head(env_misc)
-
-# Meta information on environmental information from raster layers in GIFT
-env_raster <- dbGetQuery(conn, "SELECT * FROM env_raster")
-
-# Meta information on traits in GIFT
-traits_meta <- dbGetQuery(conn, "SELECT * FROM traits_meta")
 
 # Meta information on references in GIFT (<- )example for more complicated query; references needs to be put int ``)
-references <- dbGetQuery(conn, "SELECT `references`.ref_ID, reference_citavi.ref_short, `references`.geo_entity_ref, reference_type.type, 
-                         reference_included.subset,  taxonomy.taxon_name, `references`.native_indicated, `references`.end_ref, 
-                         `references`.traits, `references`.proc_date
-                         FROM (reference_type INNER JOIN (reference_included INNER JOIN ((reference_tax INNER JOIN `references` ON reference_tax.ref_ID = `references`.ref_ID) 
-                         INNER JOIN reference_citavi ON `references`.citavi_seq_no = reference_citavi.citavi_seq_no) ON reference_included.ID = `references`.included) 
-                         ON reference_type.ID = `references`.type_ref) INNER JOIN taxonomy ON reference_tax.taxon_ID = taxonomy.taxon_ID
-                         WHERE (((`references`.checklist)=1) AND ((`references`.processed)=1) AND ((`references`.restricted)=0))")
+references <- dbGetQuery(conn, "SELECT references.ref_ID, reference_citavi.ref_long, references.geo_entity_ref, reference_type.type, reference_included.subset, 
+                                reference_tax.taxon_ID, taxonomy.taxon_name, references.checklist, references.native_indicated, references.natural_indicated, 
+                                references.end_ref, references.traits, references.proc_date
+                                FROM (reference_type INNER JOIN (reference_included INNER JOIN ((reference_tax INNER JOIN `references` ON reference_tax.ref_ID = references.ref_ID) 
+                                INNER JOIN reference_citavi ON references.citavi_seq_no = reference_citavi.citavi_seq_no) ON reference_included.ID = references.included) ON 
+                                reference_type.ID = references.type_ref) INNER JOIN taxonomy ON reference_tax.taxon_ID = taxonomy.taxon_ID
+                                WHERE (references.checklist=1 OR references.traits=1) AND references.processed=1 AND references.restricted=0")
 
 
 ### Download richness and checklist data
