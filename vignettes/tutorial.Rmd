@@ -7,10 +7,6 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
-  word_vignette:
-    toc: true
-    toc_depth: 2
-    number_sections: true
 vignette: >
  %\VignetteIndexEntry{Tutorial for GIFT R package}
  %\VignetteEncoding{UTF-8} 
@@ -33,6 +29,7 @@ suppressPackageStartupMessages({
   suppressWarnings({
     library(dplyr)
     library(jsonlite)
+    library(kableExtra) # html table with scroll bar
   })
 })
 
@@ -50,23 +47,89 @@ See Weigelt et al. (2020)
 \newpage
 
 # 2. Main functions
+## 2.1. Credentials
+This feature is temporary.
+
+```{r credentials}
+get_credentials()
+```
+
+## 2.2. Trait extraction
+We here retrieve woodiness and life information for every species using `DB_get_traits()` function.
+The output of this function is a long format data.frame. This implies that, when providing several traits, the species rows are replicated.
+
+```{r get_traits}
+ex_tra <- DB_get_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+                     bias_ref = FALSE, bias_deriv = FALSE, restricted = FALSE)
+
+head(ex_tra)
+# Frequency of trait values for both traits asked
+table(ex_tra$trait_ID, ex_tra$trait_value)
+# Number of available species
+length(unique(ex_tra$species))
+```
+
+\newpage
+
+# 3. Metadata
+## 3.1. Environment
+The functions `env_raster()` and `env_misc()` allow the user to retrieve metadata about environmental variables.
 
 ```{r env_raster}
-get_credentials()
+env_meta <- env_raster()
+head(env_meta)
 
-tmp <- env_raster()
-head(tmp)
+kableExtra::kbl(env_meta) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+
+```{r env_misc}
+env_meta2 <- env_misc()
+head(env_meta2)
+
+kableExtra::kbl(env_meta2) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
 
 ```
 
 \newpage
 
-# 3. References
-## 3.1. Articles
+## 3.2. Traits
+The function `traits_meta()` allows the user to retrieve metadata about available traits.
+
+```{r traits_meta}
+tmp <- traits_meta()
+head(tmp)
+
+kableExtra::kbl(tmp) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+\newpage
+
+## 3.3. References
+The function `references()` allows the user to retrieve metadata about the references that were used to build GIFT database.
+
+```{r traits_meta}
+ref <- references(restricted = FALSE)
+head(ref)
+
+kableExtra::kbl(ref) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+\newpage
+
+# 4. References
+## 4.1. Articles
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
 \newpage
 
-## 3.2. R packages
+## 4.2. R packages
 
