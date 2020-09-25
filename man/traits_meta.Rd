@@ -12,7 +12,7 @@ traits_meta()
 \details{
 }
 \value{
-A data frame with X columns.
+A data frame with 11 columns.
 }
 \details{}
 \section{Note}{}

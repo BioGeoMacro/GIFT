@@ -5,15 +5,20 @@ DB_get_traits = function(trait_IDs = c(""), agreement = 0.66, bias_ref = FALSE,
   # Package dependencies
   require(dplyr)
   require(jsonlite)
-
+  
   # Arguments
   if(!is.character(trait_IDs)){
     stop("trait_IDs must be a character string indicating which trait you want to retrieve.")
   }
-  # add error message when given_trait is not in the available list
-  # if(!(trait_IDs %in% work_ID)){
-  #   stop("trait_IDs must belong to the available list of traits.")
-  # }
+  
+  # Load metadata for traits to check if the provided IDs are available
+  tmp <- traits_meta(restricted = restricted)
+  if(!(trait_IDs %in% tmp$Lvl3)){
+    stop("trait_IDs must belong to the available list of traits. To see which
+           traits are available, run 'traits_meta() and look at column
+           'Lvl3'.")
+  }
+  
   
   if(!is.numeric(agreement)){
     stop("'agreement' must be a numeric.")

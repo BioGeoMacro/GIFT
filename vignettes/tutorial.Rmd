@@ -110,12 +110,26 @@ kableExtra::kbl(tmp) %>%
 
 \newpage
 
-# 3. References
-## 3.1. Articles
+## 3.3. References
+The function `references()` allows the user to retrieve metadata about the references that were used to build GIFT database.
+
+```{r traits_meta}
+ref <- references(restricted = FALSE)
+head(ref)
+
+kableExtra::kbl(ref) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+\newpage
+
+# 4. References
+## 4.1. Articles
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
 \newpage
 
-## 3.2. R packages
+## 4.2. R packages
 
