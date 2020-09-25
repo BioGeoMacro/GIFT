@@ -10,7 +10,7 @@ test <- env_raster()
 
 
 
-traits <- DB_get_traits(c("1.2.1","2.1.1"), bias_deriv = FALSE, bias_ref = FALSE, restricted=FALSE)
+traits <- DB_get_traits(c("1.2.1","2.1"), bias_deriv = FALSE, bias_ref = FALSE, restricted=FALSE)
 
 traits_restricted <- DB_get_traits(c("1.2.1","2.1.1"), bias_deriv = FALSE, bias_ref = FALSE, restricted=TRUE)
 traits_restricted <- DB_get_traits(c("1.2.1","2.1.1"), bias_deriv = TRUE, bias_ref = FALSE, restricted=TRUE)
