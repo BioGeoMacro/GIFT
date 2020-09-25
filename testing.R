@@ -25,8 +25,24 @@ species <- species_names()
 
 names(traits)
 
+
+### TODO
+
 # decrease memory usage in php to reasonable amount: https://stackoverflow.com/questions/415801/allowed-memory-size-of-33554432-bytes-exhausted-tried-to-allocate-43148176-byte
 
+
+
+# continue with db_get_checklists_conditional
+
+# Two parts: 1) getting list_set and ") getting actual checklists (in individual function to be able to run it with broader conditions)
+
+# continue going through examples
+
+# ideas:
+
+# 1) checklist for coordinates/shape
+
+# 2) overlap/uncertainty (later)
 
 
 
