@@ -42,7 +42,7 @@ options(tinytex.verbose = TRUE)
 
 # 1. Overview
 
-See Weigelt et al. (2020)
+See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
 
 \newpage
 
@@ -96,7 +96,30 @@ kableExtra::kbl(env_meta2) %>%
 
 \newpage
 
-## 3.2. Traits
+## 3.2. Species
+The functions `GIFT_taxonomy()` and `GIFT_species()` return a data.frame with all the available taxa.
+
+```{r taxonomy}
+taxo <- GIFT_taxonomy()
+head(taxo)
+
+kableExtra::kbl(taxo) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+```{r species}
+species <- GIFT_species()
+head(species)
+
+kableExtra::kbl(species) %>%
+  kableExtra::scroll_box(width = "1000px", height = "600px")
+
+```
+
+\newpage
+
+## 3.3. Traits
 The function `GIFT_traits_meta()` allows the user to retrieve metadata about available traits.
 
 ```{r traits_meta}
@@ -110,7 +133,7 @@ kableExtra::kbl(tmp) %>%
 
 \newpage
 
-## 3.3. References
+## 3.4. References
 The function `GIFT_references()` allows the user to retrieve metadata about the references that were used to build GIFT database.
 
 ```{r references}
