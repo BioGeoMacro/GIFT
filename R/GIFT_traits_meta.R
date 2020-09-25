@@ -1,5 +1,5 @@
 
-traits_meta <- function(restricted = FALSE){
+GIFT_traits_meta <- function(restricted = FALSE){
   # 1. Controls ----
   # Package dependencies
   require(jsonlite)

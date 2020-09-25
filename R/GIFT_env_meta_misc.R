@@ -1,5 +1,5 @@
 
-env_misc <- function(){
+GIFT_env_meta_misc <- function(){
   require(jsonlite)
   require(dplyr)
 

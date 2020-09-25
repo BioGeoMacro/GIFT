@@ -1,5 +1,5 @@
 
-references <- function(restricted = FALSE){
+GIFT_references <- function(restricted = FALSE){
   # 1. Controls ----
   # Package dependencies
   require(jsonlite)

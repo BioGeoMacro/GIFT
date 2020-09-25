@@ -1,5 +1,5 @@
 
-env_raster <- function(){
+GIFT_env_meta_raster <- function(){
   require(jsonlite)
   require(dplyr)
   # Return the raster environmental information

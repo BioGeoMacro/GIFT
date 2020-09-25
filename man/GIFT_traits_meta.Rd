@@ -1,11 +1,11 @@
-\name{traits_meta}
-\alias{traits_meta}
+\name{GIFT_traits_meta}
+\alias{GIFT_traits_meta}
 \title{Trait metadata}
 \description{
 Returns the metadata for the selected traits.
 }
 \usage{
-traits_meta()
+GIFT_traits_meta()
 }
 \arguments{
 }
@@ -18,5 +18,5 @@ A data frame with 11 columns.
 \section{Note}{}
 
 \examples{
-ex <- traits_meta()
+ex <- GIFT_traits_meta()
 }

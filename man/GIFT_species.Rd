@@ -1,11 +1,11 @@
-\name{species}
-\alias{env_misc}
+\name{GIFT_species}
+\alias{GIFT_species}
 \title{Species names}
 \description{
 Return the species names.
 }
 \usage{
-species()
+GIFT_species()
 }
 \arguments{
 }
@@ -18,5 +18,5 @@ A data frame with X columns.
 \section{Note}{}
 
 \examples{
-ex <- species()
+ex <- GIFT_species()
 }

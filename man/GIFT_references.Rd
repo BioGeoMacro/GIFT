@@ -1,11 +1,11 @@
-\name{references}
-\alias{references}
+\name{GIFT_references}
+\alias{GIFT_references}
 \title{References metadata}
 \description{
 Returns metadata about the references used to build GIFT database.
 }
 \usage{
-references()
+GIFT_references()
 }
 \arguments{
 \item{restricted}{Boolean indicating whether you want access to restricted data.}
@@ -19,5 +19,5 @@ A data frame with 14 columns.
 \section{Note}{}
 
 \examples{
-ex <- references(restricted = FALSE)
+ex <- GIFT_references(restricted = FALSE)
 }

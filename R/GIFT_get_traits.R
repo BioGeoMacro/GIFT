@@ -1,5 +1,6 @@
-DB_get_traits = function(trait_IDs = c(""), agreement = 0.66, bias_ref = FALSE,
-                         bias_deriv = FALSE, restricted = FALSE){
+
+GIFT_get_traits <- function(trait_IDs = "", agreement = 0.66, bias_ref = FALSE,
+                            bias_deriv = FALSE, restricted = FALSE){
   
   # 1. Controls ----
   # Package dependencies

@@ -1,11 +1,11 @@
-\name{env_raster}
-\alias{env_raster}
+\name{GIFT_env_meta_misc}
+\alias{GIFT_env_meta_misc}
 \title{Miscellaneous information about environment}
 \description{
 Returns metadata about environment.
 }
 \usage{
-env_raster()
+GIFT_env_meta_misc()
 }
 \arguments{
 }
@@ -18,5 +18,5 @@ A data frame with X columns.
 \section{Note}{}
 
 \examples{
-ex <- env_raster()
+ex <- GIFT_env_meta_misc()
 }
