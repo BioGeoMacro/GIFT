@@ -20,17 +20,6 @@ dbGetQuery(conn, "SHOW TABLES")
 dbGetQuery(conn, "DESCRIBE env_misc")
 
 
-### Download metadata
-
-
-# Meta information on references in GIFT (<- )example for more complicated query; references needs to be put int ``)
-references <- dbGetQuery(conn, "SELECT references.ref_ID, reference_citavi.ref_long, references.geo_entity_ref, reference_type.type, reference_included.subset, 
-                                reference_tax.taxon_ID, taxonomy.taxon_name, references.checklist, references.native_indicated, references.natural_indicated, 
-                                references.end_ref, references.traits, references.proc_date
-                                FROM (reference_type INNER JOIN (reference_included INNER JOIN ((reference_tax INNER JOIN `references` ON reference_tax.ref_ID = references.ref_ID) 
-                                INNER JOIN reference_citavi ON references.citavi_seq_no = reference_citavi.citavi_seq_no) ON reference_included.ID = references.included) ON 
-                                reference_type.ID = references.type_ref) INNER JOIN taxonomy ON reference_tax.taxon_ID = taxonomy.taxon_ID
-                                WHERE (references.checklist=1 OR references.traits=1) AND references.processed=1 AND references.restricted=0")
 
 
 ### Download richness and checklist data
@@ -38,6 +27,12 @@ references <- dbGetQuery(conn, "SELECT references.ref_ID, reference_citavi.ref_l
 # check the tables taxonomy and ref_included for the settings below
 dbGetQuery(conn, "SELECT * FROM taxonomy")[1:10,]
 dbGetQuery(conn, "SELECT * FROM reference_included")
+
+
+
+
+### continue here:
+
 
 # Species richness
 richness <- dbGetQuery(conn, "SELECT entity_ID, native_proc, endemic_proc_min FROM geoentities_specs WHERE taxon_ID = 2")
@@ -48,6 +43,7 @@ checklists <- DB_get_checklists_conditional(entity_class = c("Island","Island/Ma
                                             native_indicated = TRUE, natural_indicated = F, end_ref = F, end_list = F, 
                                             type_ref = 1:11, ref_included = c(1,2,3,4), tax_group = 2, suit_geo = T, 
                                             exclude_restricted = T, include_names_unique = F, return_query_only = F, complete_taxonomy = TRUE)
+
 
 # Run the same thing with return_query_only = TRUE to get the entitity_ID's for which checklists data is available
 lists <- DB_get_checklists_conditional(entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
@@ -65,19 +61,12 @@ checklists$group <- assign_higher_taxa(work_IDs=checklists$work_ID, taxon_lvl=NA
 
 ### Download traits
 
-# Retrieve all entries for certain traits
-traits <- DB_get_traits(trait_IDs = c("1.1.1","1.2.1")) # woodiness and growth form 1: tree/shrub/herb
 
-
-# Get species names for traits
-working_names <- dbGetQuery(conn, "SELECT work_ID, species FROM names_work_unique")
-traits <- join(traits,working_names, by="work_ID", type="left")
-
-
-# Get all trees
+# Get all trees  ### no function needed
 trees <- dbGetQuery(conn, "SELECT names_work_unique.species, traits_final.trait_value, traits_final.`references`, traits_final.agreement
                     FROM traits_final INNER JOIN names_work_unique ON traits_final.work_ID = names_work_unique.work_ID
                     WHERE (traits_final.trait_ID='1.2.1' AND traits_final.restricted=0 AND ((traits_final.trait_value)='tree' Or (traits_final.trait_value)='shrub/tree' Or (traits_final.trait_value)='herb/tree'))")
+
 
 
 ### Download environmental information
@@ -87,6 +76,7 @@ geoentities_env_misc <- dbGetQuery(conn, "SELECT entity_ID, area, dist, biome FR
 
 # Raster layers
 geoentities_env_raster <- DB_get_env_raster(entity_IDs = NULL, layers = c("CHELSA_bio10_1", "CHELSA_bio10_12", "Crowther_Nature_Biome_Revision_01"), metrics = c("mean","med","n"))
+
 
 
 ### Spatial hierarchy
@@ -156,5 +146,11 @@ plot_geoentities(geoentities_simple, display = "env_raster", raster_layer = "mn3
                  args_legend_par = list(mar = c(4.5,10,0,10), mgp = c(2.5, 0.5, 0)), args_legend = list(xlab="Elevation a.s.l. (m)"))
 
 
+### ranges
 species_ranges <- range_finder(work_IDs = c(1,2,3,118,188))
+
+
+
+
+
 
