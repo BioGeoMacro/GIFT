@@ -8,11 +8,23 @@
 3. [Database](#Database)
 
 ## 1. Functions
-* get_checklists_raw
+* Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
+* Create GIFT_env() => two arguments 
+* GIFT_env() => message if selected values are not available for this entity_ID 
+
+* ~~get_checklists_raw~~
+    - ~~input: list of list_ID~~
+    - ~~output: associated list~~
+
 * get_checklists_conditional
+    - input: criteria
+    - output: lists matching the criteria
+
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
     - submit own coordinates or polygons or lines
+    - input: shape and criteria (calling get_checklists_conditional)
+    - output: lists falling within the area required
 
 * remove_overlapping_regions
 * plotting
@@ -23,9 +35,10 @@
 
 * range_finder
 
+* versions of GIFT => list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
 
 ## 2. Vignette
 
 
 ## 3. Database
-* spatial Database? 
+* spatial Database?
