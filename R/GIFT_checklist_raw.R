@@ -1,7 +1,7 @@
 
 GIFT_checklist_raw <- function(
-  list_ID, taxonid = 1, namesmatched = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  list_ID = NULL, taxonid = 1, namesmatched = FALSE,
+  api = "http://gift.uni-goettingen.de/api/extended/index.php"
   # potential arguments not implemented yet
   # endemic_ref = 0, endemic_list = 0, native = 0, naturalized = 0,
   # ref_ID
@@ -13,7 +13,7 @@ GIFT_checklist_raw <- function(
   require(jsonlite)
   
   # Arguments
-  if(length(list_ID) == 0){
+  if(is.null(list_ID)){
     stop("Please provide the ID numbers of the checklists you want to load.")
   }
   
@@ -30,14 +30,13 @@ GIFT_checklist_raw <- function(
   list_raw <- c()
   for(i in seq_along(list_ID)){
     tmp <- read_json(paste0(
-      "https://", credentials[[1]], ":",credentials[[2]],
-      "@gift.uni-goettingen.de/api/extended/index.php?query=checklists&listid=",
+      api, "?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
       "&namesmatched=", as.numeric(namesmatched)),
       simplifyVector = TRUE)
     
     list_raw <- bind_rows(list_raw, tmp)
   }
-
+  
   return(list_raw)
 }
