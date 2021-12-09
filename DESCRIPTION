@@ -18,3 +18,4 @@ Imports:
   dplyr,
   jsonlite,
   reshape2
+RoxygenNote: 7.1.2

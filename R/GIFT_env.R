@@ -1,3 +1,62 @@
+#' Environmental data for GIFT checklists
+#'
+#' Retrieve environmental data associated to each GIFT checklists.
+#' They can come as rasters or shapefiles (miscellaneous)
+#'
+#' @param entity_ID A vector defining the ID of the lists to retrieve.
+#' `NULL` by default, in that case, every list from GIFT is retrieved.
+#'
+#' @param miscellaneous character vector or list defining the miscellaneous
+#' data to retrieve.
+#' 
+#' @param rasterlayer character vector or list defining the raster
+#' data to retrieve..
+#' 
+#' @param sumstat Vector with the summary statistics to aggregate the
+#'  information coming from the raster layers.
+#' 
+#' @param api character string defining from which API the data will be retrieved.
+#' 
+#' @return
+#' data frame.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_checklist_raw()]
+#'
+#' @examples
+#' \dontrun{
+#' ex <- GIFT_env(miscellaneous = "perimeter")
+#' ex <- GIFT_env(entity_ID = c(1,5), miscellaneous = c("perimeter", "biome"))
+#' 
+#' ex <- GIFT_env(entity_ID = c(1,5),
+#'                miscellaneous = c("perimeter", "biome"),
+#'                rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+#'                sumstat = "mean")
+#' 
+#' ex <- GIFT_env(entity_ID = c(1,5),
+#'                miscellaneous = c("perimeter", "biome"),
+#'                rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+#'                sumstat = c("mean", "med"))
+#' 
+#' ex <- GIFT_env(entity_ID = c(1,5),
+#'                miscellaneous = c("perimeter", "biome"),
+#'                rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+#'                sumstat = list(c("mean", "med"), "max"))
+#' 
+#' }
+#' 
+#' @importFrom jsonlite read_json
+#' @importFrom tidyr pivot_wider
+#' @importFrom purrr reduce
+#' @importFrom dplyr left_join
+#' 
+#' @export
 
 GIFT_env <- function(
   entity_ID = NULL,
@@ -18,10 +77,6 @@ GIFT_env <- function(
   # default value => mean repeated to length of layername
   
   # 1. Controls ----
-  # Package dependencies
-  require(dplyr)
-  require(jsonlite)
-  
   # Arguments
   
   # check if sumstats are available
@@ -36,11 +91,11 @@ GIFT_env <- function(
   # 2. Query ----
   ## 2.1. Miscellaneous data ----
   if(is.null(miscellaneous) | length(miscellaneous) == 0){
-    tmp_misc <- read_json(paste0(
+    tmp_misc <- jsonlite::read_json(paste0(
       api, "?query=geoentities_env_misc"),
       simplifyVector = TRUE)
   } else{
-    tmp_misc <- read_json(paste0(
+    tmp_misc <- jsonlite::read_json(paste0(
       api, "?query=geoentities_env_misc&envvar=",
       paste(miscellaneous, collapse = ",")),
       simplifyVector = TRUE)
@@ -64,7 +119,7 @@ GIFT_env <- function(
     tmp_raster <- list()
     
     for(i in seq_along(rasterlayer)){
-      tmp_raster[[i]] <- read_json(paste0(
+      tmp_raster[[i]] <- jsonlite::read_json(paste0(
         api, "?query=geoentities_env_raster&layername=", rasterlayer[i],
         "&sumstat=", sumstat_collapse[[i]]),
         simplifyVector = TRUE)
@@ -75,14 +130,13 @@ GIFT_env <- function(
         names_from = "layer_name",
         values_from = sumstat[[i]],
         names_glue = "{.value}_{layer_name}")
-      
     }
     
     # Join list elements together
     tmp_raster <- purrr::reduce(tmp_raster, full_join, by = "entity_ID")
     
     # Combining with tmp_misc
-    tmp_misc <- left_join(tmp_misc, tmp_raster, by = "entity_ID")
+    tmp_misc <- dplyr::left_join(tmp_misc, tmp_raster, by = "entity_ID")
   }
   
   # Sub-setting the entity_ID
