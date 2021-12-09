@@ -62,7 +62,7 @@
 GIFT_env <- function(
   entity_ID = NULL,
   # envvar = "area", layername = "",
-  miscellaneous = "area", rasterlayer = "",
+  miscellaneous = "area", rasterlayer = NULL,
   sumstat = "mean",
   api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   
@@ -103,20 +103,20 @@ GIFT_env <- function(
   }
   
   ## 2.2. Raster data ----
-  # Preparing sumstat => list with sumstats repeated
-  if(is.vector(sumstat) & !is.list(sumstat)){
-    sumstat <- list(sumstat)
-    sumstat <- rep(sumstat, length(rasterlayer))
-  }
-  
-  # Collapsing summary statistics together
-  sumstat_collapse <- lapply(sumstat,
-                             function(x) paste(x, collapse = ","))
   
   # Query
   if(!(is.null(rasterlayer) | length(rasterlayer) == 0 |
        is.null(sumstat) | length(sumstat) == 0)){
     
+    # Preparing sumstat => list with sumstats repeated
+    if(is.vector(sumstat) & !is.list(sumstat)){
+      sumstat <- list(sumstat)
+      sumstat <- rep(sumstat, length(rasterlayer))
+    }
+    
+    # Collapsing summary statistics together
+    sumstat_collapse <- lapply(sumstat,
+                               function(x) paste(x, collapse = ","))
     tmp_raster <- list()
     
     for(i in seq_along(rasterlayer)){
