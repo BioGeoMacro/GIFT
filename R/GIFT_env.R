@@ -55,6 +55,7 @@
 #' @importFrom tidyr pivot_wider
 #' @importFrom purrr reduce
 #' @importFrom dplyr left_join
+#' @importFrom dplyr full_join
 #' 
 #' @export
 
@@ -133,7 +134,7 @@ GIFT_env <- function(
     }
     
     # Join list elements together
-    tmp_raster <- purrr::reduce(tmp_raster, full_join, by = "entity_ID")
+    tmp_raster <- purrr::reduce(tmp_raster, dplyr::full_join, by = "entity_ID")
     
     # Combining with tmp_misc
     tmp_misc <- dplyr::left_join(tmp_misc, tmp_raster, by = "entity_ID")
