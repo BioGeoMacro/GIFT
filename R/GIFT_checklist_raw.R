@@ -1,3 +1,37 @@
+#' GIFT checklists
+#'
+#' Raw checklist, to combine with other functions
+#'
+#' @param list_ID A vector defining the ID of the lists to retrieve.
+#' `NULL` by default, in that case, every list from GIFT is retrieved.
+#' 
+#' @param taxonid Integer.
+#' 
+#' @param namesmatched Boolean: do you want the full species name.
+#' 
+#' @param api character string defining from which API the data will be retrieved.
+#' 
+#' @return
+#' A data frame with 12 columns, if namesmatched = FALSE.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_checklist_raw()]
+#'
+#' @examples
+#' \dontrun{
+#' ex <- GIFT_checklist_raw(list_ID = c(1,5), api = api)
+#' }
+#' 
+#' @importFrom jsonlite read_json
+#' @importFrom dplyr bind_rows
+#' 
+#' @export
 
 GIFT_checklist_raw <- function(
   list_ID = NULL, taxonid = 1, namesmatched = FALSE,
@@ -8,10 +42,6 @@ GIFT_checklist_raw <- function(
 ){
   
   # 1. Controls ----
-  # Package dependencies
-  require(dplyr)
-  require(jsonlite)
-  
   # Arguments
   if(is.null(list_ID)){
     stop("Please provide the ID numbers of the checklists you want to load.")
@@ -29,13 +59,13 @@ GIFT_checklist_raw <- function(
   # 2. Query ----
   list_raw <- c()
   for(i in seq_along(list_ID)){
-    tmp <- read_json(paste0(
+    tmp <- jsonlite::read_json(paste0(
       api, "?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
       "&namesmatched=", as.numeric(namesmatched)),
       simplifyVector = TRUE)
     
-    list_raw <- bind_rows(list_raw, tmp)
+    list_raw <- dplyr::bind_rows(list_raw, tmp)
   }
   
   return(list_raw)
