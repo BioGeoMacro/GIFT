@@ -8,10 +8,16 @@
 3. [Database](#Database)
 
 ## 1. Functions
-* Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
-* Create GIFT_env() => two arguments 
-* GIFT_env() => message if selected values are not available for this entity_ID 
 
+* GIFT_env_meta
+    - Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
+        Create GIFT_env() => two arguments 
+
+* GIFT_env
+    - highlight GIFT_env_meta for getting overview and citations
+    - Controls for arguments
+    - GIFT_env() => message if selected NAs included
+    
 * ~~get_checklists_raw~~
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
