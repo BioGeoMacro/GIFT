@@ -49,3 +49,8 @@ poly_test <- st_polygon(list(matrix(c(extent[1],extent[3],
 
 str(poly_test)
 plot(poly_test)
+
+
+test <- st_read("http://gift.uni-goettingen.de/geojson/geojson_smaller/200.geojson")
+
+
