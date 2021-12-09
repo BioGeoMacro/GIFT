@@ -18,7 +18,7 @@
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
     
-* ~~get_checklists_raw~~
+* get_checklists_raw
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
 
