@@ -25,6 +25,11 @@
 * get_checklists_conditional
     - input: criteria
     - output: lists matching the criteria
+    - To be improved: * simplify the filtering in the wrapper
+                      * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list)
+
+* GIFT_checklist : wrapper for GIFT_checklist_conditional() and _spatial()
+    - needs to be simple!
 
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
