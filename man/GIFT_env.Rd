@@ -7,7 +7,7 @@
 GIFT_env(
   entity_ID = NULL,
   miscellaneous = "area",
-  rasterlayer = "",
+  rasterlayer = NULL,
   sumstat = "mean",
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )

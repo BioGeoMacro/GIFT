@@ -1,8 +1,43 @@
+#' Environmental data for GIFT checklists
+#'
+#' Retrieve environmental data associated to each GIFT checklists.
+#' They can come as rasters or shapefiles (miscellaneous)
+#'
+#' @param shp Shapefile provided by the user.
+#'
+#' @param extent Extent box provided by the user.
+#' 
+#' @param overlap character vector or list defining the raster
+#' data to retrieve..
+#' 
+#' @param api character string defining from which API the data will be retrieved.
+#' 
+#' @return
+#' data frame with list of entity_ID.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_checklists()]
+#'
+#' @examples
+#' \dontrun{
+#' data("med")
+#' ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
+#' 
+#' }
+#' 
+#' @importFrom sf st_polygon st_as_sf st_intersection st_geometry
+#' 
+#' @export
 
-# Help: order extent = xmin, xmax, ymin, ymax
-
-GIFT_spatial <- function(shp = NULL, extent = NULL,
-                         overlap = "centroid_inside"){
+GIFT_spatial <- function(
+  shp = NULL, extent = NULL, overlap = "centroid_inside",
+  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   
   # 1. Controls ----
   # shp is the shapefile provided by the user
@@ -30,7 +65,7 @@ GIFT_spatial <- function(shp = NULL, extent = NULL,
   
   # Making a shapefile out of provided extent
   if(!is.null(extent)){
-    extent_shp <- st_polygon(list(matrix(
+    extent_shp <- sf::st_polygon(list(matrix(
       c(extent[1], extent[3],
         extent[2], extent[3],
         extent[2], extent[4],
@@ -58,14 +93,14 @@ GIFT_spatial <- function(shp = NULL, extent = NULL,
     # tmp <- st_intersection(tmp, med)
     
     # Alternative
-    GIFT_centroids_sf <- st_as_sf(GIFT_centroids,
-                                  coords = c("longitude", "latitude"),
-                                  crs = 4326)
+    GIFT_centroids_sf <- sf::st_as_sf(GIFT_centroids,
+                                      coords = c("longitude", "latitude"),
+                                      crs = 4326)
     
-    tmp <- st_intersection(pnts_sf, med) # CONTROL for warning message
+    tmp <- sf::st_intersection(pnts_sf, med) # CONTROL for warning message
     
     gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
-    st_geometry(gift_overlap) <- NULL
+    sf::st_geometry(gift_overlap) <- NULL
     
   } else if(overlap == "shape_inside"){
     # Query the extent using GIFT_env()
