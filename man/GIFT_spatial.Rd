@@ -36,6 +36,13 @@ Blabla.
 data("med")
 ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
 
+ex_extent <- c(-15, 40, 30, 45)
+ex_extent <- c(120, 124, -13, -12)
+
+ex <- GIFT_spatial(shp = med, overlap = "extent_intersect")
+ex <- GIFT_spatial(shp = med, overlap = "shape_intersect")
+ex <- GIFT_spatial(shp = med, overlap = "shape_inside")
+
 }
 
 }
