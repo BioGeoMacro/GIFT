@@ -33,8 +33,8 @@
 #' ex_extent <- c(120, 124, -13, -12)
 #' 
 #' ex <- GIFT_spatial(shp = med, overlap = "extent_intersect")
-#' ex <- GIFT_spatial(shp = med, overlap = "shape_intersect")
-#' ex <- GIFT_spatial(shp = med, overlap = "shape_inside")
+#' ex2 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
+#' ex3 <- GIFT_spatial(shp = med, overlap = "shape_inside")
 #' 
 #' }
 #' 
@@ -183,7 +183,6 @@ GIFT_spatial <- function(
         
         # Control if sf geometry is not valid (i = 68 & 257)
         if(!(sf::st_is_valid(tmp_geo))){
-          print(i)
           tmp_geo <- sf::st_make_valid(sf::st_set_precision(
             tmp_geo, 1e2))
         }
@@ -196,8 +195,12 @@ GIFT_spatial <- function(
         # Calculate overlap
         tmp <- sf::st_intersection(tmp_geo, shp)
         
+        if(nrow(tmp) > 0){
         GIFT_extents[i, "coverage"] <- round(100*sf::st_area(tmp)/
                                                sf::st_area(tmp_geo), 2)
+        } else{
+          GIFT_extents[i, "coverage"] <- NA
+        }
       }
       
       if(overlap == "shape_intersect"){
