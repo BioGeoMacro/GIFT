@@ -7,7 +7,7 @@
 2. [Vignette](#vignette)
 3. [Database](#Database)
 
-## 1. Functions
+# 1. Functions
 
 * GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc 
@@ -30,6 +30,9 @@
     - output: lists matching the criteria
     - To be improved: * simplify the filtering in the wrapper
                       * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list)
+    - "translate" arguments for naive user
+    - some parameters come as characters instead of numeric (nativeness 1 0)
+    - Make the subsets more straightforward for users: for ex. nativeness, subset of $subset %in% native, native and naturalized etc AND $native_indicated==1 has to be done in the BACKGROUND
 
 * GIFT_checklist : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
@@ -51,8 +54,12 @@
 
 * versions of GIFT => list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
 
-## 2. Vignette
+# 2. Vignette
 
 
-## 3. Database
+# 3. Database
 * spatial Database?
+
+# 4. Queries
+* Make a dependency graph
+* In queries.php (WinSCP) => put as a comment in which R function queries are used
