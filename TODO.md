@@ -9,6 +9,9 @@
 
 ## 1. Functions
 
+* GIFT_spatial
+    - Check whether function works with POINT, MULTILINESTRING, etc 
+
 * GIFT_env_meta
     - Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
         Create GIFT_env() => two arguments 

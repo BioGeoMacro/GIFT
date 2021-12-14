@@ -60,6 +60,10 @@ GIFT_spatial <- function(
             If you want to use the shapefile instead, set 'extent=NULL'.")
   }
   
+  if(!is.null(shp) & !("sf" %in% class(shp))){
+    stop("The provided shape has to be an 'sf' object.")
+  }
+  
   # Making a shapefile out of provided extent
   make_box <- function(x){
     x_shp <- sf::st_polygon(list(matrix(
