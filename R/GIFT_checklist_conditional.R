@@ -1,3 +1,65 @@
+#' GIFT checklists
+#'
+#' Retrieve GIFT checklists that fulfill specific criteria.
+#'
+#' @param tax_group Numeric, corresponding to the taxonomic group of interest.
+#' 
+#' @param ref_included Character, options are 'all', 'native',
+#' 'native and naturalized', 'native and historically introduced',
+#' 'endangered', 'endemic', 'naturalized', 'other subset'
+#' 
+#' @param type_ref Character, options are 'Account', 'Catalogue', 'Checklist',
+#' 'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
+#' 'Species Database', 'Survey'
+#' 
+#' @param entity_class Character, options are 'Island', 'Island/Mainland',
+#' 'Mainland', 'Island Group', 'Island Part'
+#' 
+#' @param native_indicated Boolean.
+#' 
+#' @param natural_indicated Boolean.
+#' 
+#' @param end_ref Boolean.
+#' 
+#' @param end_list Boolean.
+#' 
+#' @param suit_geo Boolean.
+#' 
+#' @param complete_taxon Boolean, default TRUE.
+#'
+#' 
+#' @return
+#' data frame with list of entity_ID and the different criteria.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_checklist_raw()]
+#'
+#' @examples
+#' \dontrun{
+#' ex <- GIFT_checklist_conditional(tax_group = 1, 
+#' ref_included = c("all", "native", "native and naturalized",
+#' "native and historically introduced", "endangered",
+#' "endemic", "naturalized", "other subset")[1:4],
+#' type_ref = c("Account", "Catalogue", "Checklist","Flora",
+#' "Herbarium collection", "Key", "Red list", "Report", "Species Database",
+#'  "Survey"),
+#'  entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
+#'  "Island Part"),
+#'  native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
+#'  end_list = FALSE, suit_geo = TRUE, complete_taxon = TRUE)
+#' 
+#' }
+#' 
+#' @importFrom jsonlite read_json
+#' @importFrom dplyr left_join mutate group_by ungroup filter select
+#' 
+#' @export
 
 GIFT_checklist_conditional <- function(
   tax_group = 2, # control: length 1 (no several tax_groups)

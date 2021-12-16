@@ -38,6 +38,7 @@
 #' 
 #' }
 #' 
+#' @importFrom jsonlite read_json
 #' @importFrom sf st_polygon st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area
 #' 
 #' @export
