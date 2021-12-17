@@ -5,7 +5,8 @@
 #'
 #' @param shp Shapefile provided by the user.
 #'
-#' @param extent Extent box provided by the user.
+#' @param coordinates Coordinates (point, extent box or polygon) provided by
+#' the user.
 #' 
 #' @param overlap character vector or list defining the raster
 #' data to retrieve..
@@ -36,6 +37,10 @@
 #' ex2 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
 #' ex3 <- GIFT_spatial(shp = med, overlap = "shape_inside")
 #' 
+#' # Example with custom polygon: first and last row need to be repeated
+#' # Example with matrix(, byrow = TRUE) or own matrix with repeated x and y
+#' # Basically: matrix with two columns: first X, second Y
+#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -44,21 +49,22 @@
 #' @export
 
 GIFT_spatial <- function(
-  shp = NULL, extent = NULL, overlap = "centroid_inside",
+  shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   
   # 1. Controls ----
-  ## 1.1. shp, extent ----
+  ## 1.1. shp, coordinates ----
   # shp is the shapefile provided by the user
   # it has to be in WGS84 projection: st_crs() == "" EPSG: 4326
   
-  if(is.null(shp) & is.null(extent)){
-    stop("Please provide a shapefile or an extent box.")
+  if(is.null(shp) & is.null(coordinates)){
+    stop("Please provide a shapefile or a set of XY coordinates.")
   }
   
-  if(!is.null(shp) & !is.null(extent)){
-    warning("Both shapefile and extent box are provided. We use the extent box.
-            If you want to use the shapefile instead, set 'extent=NULL'.")
+  if(!is.null(shp) & !is.null(coordinates)){
+    warning("Both shapefile and coordinates are provided. We use the XY
+    coordinates. If you want to use the shapefile instead,
+            set 'coordinates = NULL'.")
   }
   
   if(!is.null(shp) & !("sf" %in% class(shp))){
@@ -76,9 +82,22 @@ GIFT_spatial <- function(
     return(x_shp)
   }
   
-  if(!is.null(extent)){
-    shp <- make_box(extent)
-    shp <- sf::st_sfc(shp, crs = 4326)
+  # Define shp as coordinates
+  if(!is.null(coordinates)){
+    if(length(coordinates) == 2){
+      shp <- sf::st_point(coordinates)
+      shp <- sf::st_sfc(shp, crs = 4326)
+    } else if(length(coordinates) == 4){
+      shp <- make_box(coordinates)
+      shp <- sf::st_sfc(shp, crs = 4326)
+    } else if(length(coordinates) > 4 &
+              coordinates %% 2 == 0){ # even nb of coordinates
+      shp <- sf::st_polygon(coordinates)
+      shp <- sf::st_sfc(shp, crs = 4326)
+    } else{
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
   }
   
   ## 1.2. overlap ----
@@ -201,8 +220,8 @@ GIFT_spatial <- function(
         tmp <- sf::st_intersection(tmp_geo, shp)
         
         if(nrow(tmp) > 0){
-        GIFT_extents[i, "coverage"] <- round(100*sf::st_area(tmp)/
-                                               sf::st_area(tmp_geo), 2)
+          GIFT_extents[i, "coverage"] <- round(100*sf::st_area(tmp)/
+                                                 sf::st_area(tmp_geo), 2)
         } else{
           GIFT_extents[i, "coverage"] <- NA
         }

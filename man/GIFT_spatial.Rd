@@ -6,7 +6,7 @@
 \usage{
 GIFT_spatial(
   shp = NULL,
-  extent = NULL,
+  coordinates = NULL,
   overlap = "centroid_inside",
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )
@@ -14,7 +14,8 @@ GIFT_spatial(
 \arguments{
 \item{shp}{Shapefile provided by the user.}
 
-\item{extent}{Extent box provided by the user.}
+\item{coordinates}{Coordinates (point, extent box or polygon) provided by
+the user.}
 
 \item{overlap}{character vector or list defining the raster
 data to retrieve..}
@@ -42,6 +43,10 @@ ex_extent <- c(120, 124, -13, -12)
 ex <- GIFT_spatial(shp = med, overlap = "extent_intersect")
 ex2 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
 ex3 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+
+# Example with custom polygon: first and last row need to be repeated
+# Example with matrix(, byrow = TRUE) or own matrix with repeated x and y
+# Basically: matrix with two columns: first X, second Y
 
 }
 
