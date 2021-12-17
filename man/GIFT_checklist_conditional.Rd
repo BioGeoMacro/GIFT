@@ -17,7 +17,7 @@ GIFT_checklist_conditional(
   natural_indicated = FALSE,
   end_ref = FALSE,
   end_list = FALSE,
-  suit_geo = TRUE,
+  suit_geo = FALSE,
   complete_taxon = TRUE
 )
 }
