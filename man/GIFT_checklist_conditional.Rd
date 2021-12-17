@@ -5,7 +5,7 @@
 \title{GIFT checklists}
 \usage{
 GIFT_checklist_conditional(
-  tax_group = 2,
+  taxon_name = "Tracheophyta",
   ref_included = c("all", "native", "native and naturalized",
     "native and historically introduced", "endangered", "endemic", "naturalized",
     "other subset")[1:4],
@@ -22,7 +22,8 @@ GIFT_checklist_conditional(
 )
 }
 \arguments{
-\item{tax_group}{Numeric, corresponding to the taxonomic group of interest.}
+\item{taxon_name}{Character string corresponding to the taxonomic group
+of interest.}
 
 \item{ref_included}{Character, options are 'all', 'native',
 'native and naturalized', 'native and historically introduced',
@@ -58,7 +59,7 @@ Blabla.
 }
 \examples{
 \dontrun{
-ex <- GIFT_checklist_conditional(tax_group = 1, 
+ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
 ref_included = c("all", "native", "native and naturalized",
 "native and historically introduced", "endangered",
 "endemic", "naturalized", "other subset")[1:4],

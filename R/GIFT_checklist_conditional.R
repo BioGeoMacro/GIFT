@@ -2,7 +2,8 @@
 #'
 #' Retrieve GIFT checklists that fulfill specific criteria.
 #'
-#' @param tax_group Numeric, corresponding to the taxonomic group of interest.
+#' @param taxon_name Character string corresponding to the taxonomic group
+#' of interest.
 #' 
 #' @param ref_included Character, options are 'all', 'native',
 #' 'native and naturalized', 'native and historically introduced',
@@ -42,7 +43,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_conditional(tax_group = 1, 
+#' ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
 #' ref_included = c("all", "native", "native and naturalized",
 #' "native and historically introduced", "endangered",
 #' "endemic", "naturalized", "other subset")[1:4],
@@ -62,7 +63,7 @@
 #' @export
 
 GIFT_checklist_conditional <- function(
-  tax_group = 2, # control: length 1 (no several tax_groups)
+  taxon_name = "Tracheophyta",
   ref_included = c("all", "native", "native and naturalized",
                    "native and historically introduced", "endangered",
                    "endemic", "naturalized", "other subset")[1:4],
@@ -72,7 +73,7 @@ GIFT_checklist_conditional <- function(
   entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
                    "Island Part"),
   native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
-  end_list = FALSE, suit_geo = TRUE,
+  end_list = FALSE, suit_geo = FALSE,
   complete_taxon = TRUE){
   ## below are arguments from db_get_checklist_conditional()
   # entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
@@ -87,10 +88,7 @@ GIFT_checklist_conditional <- function(
   
   # 1. Controls ----
   # Arguments
-  if(!is.logical(restricted)){
-    stop("'restricted' must be a boolean indicating whether you want access to restricted data.")
-  }
-  
+
   # 2. Query ----
   # Lists query
   list_set <- jsonlite::read_json(paste0(api, "?query=lists"),
@@ -99,6 +97,9 @@ GIFT_checklist_conditional <- function(
   # Taxonomy query
   taxonomy <- jsonlite::read_json(paste0(api, "?query=taxonomy"),
                                   simplifyVector = TRUE)
+  
+  # Define tax_group
+  tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
   
   # Numeric columns
   taxonomy[c("lft", "rgt")] <-
