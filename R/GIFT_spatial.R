@@ -5,8 +5,10 @@
 #'
 #' @param shp Shapefile provided by the user.
 #'
-#' @param coordinates Coordinates (point, extent box or polygon) provided by
-#' the user.
+#' @param coordinates Custom set of coordinates. The format is a two columns,
+#' the first one being longitudes and the second being latitudes. If 4
+#' coordinates are given, the function assumes that these are the four corners
+#' of a bounding box.
 #' 
 #' @param overlap character vector or list defining the raster
 #' data to retrieve..
@@ -29,17 +31,22 @@
 #' \dontrun{
 #' data("med")
 #' ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
+#' ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
+#' ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
+#' ex4 <- GIFT_spatial(shp = med, overlap = "shape_inside")
 #' 
-#' ex_extent <- c(-15, 40, 30, 45)
-#' ex_extent <- c(120, 124, -13, -12)
+#' custom_point <- cbind(9.9, 51)
+#' ex5 <- GIFT_spatial(coordinates = custom_point,
+#' overlap = "extent_intersect")
 #' 
-#' ex <- GIFT_spatial(shp = med, overlap = "extent_intersect")
-#' ex2 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
-#' ex3 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+#' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
+#' ex6 <- GIFT_spatial(coordinates = custom_extent,
+#' overlap = "extent_intersect")
 #' 
-#' # Example with custom polygon: first and last row need to be repeated
-#' # Example with matrix(, byrow = TRUE) or own matrix with repeated x and y
-#' # Basically: matrix with two columns: first X, second Y
+#' custom_polygon <- cbind(c(-18, -16.9, -13, -13, -18, -18),
+#' c(29.3, 33, 29.3, 27.5, 27.5, 29.3))
+#' ex7 <- GIFT_spatial(coordinates = custom_polygon,
+#' overlap = "extent_intersect")
 #' 
 #' }
 #' 
@@ -72,27 +79,36 @@ GIFT_spatial <- function(
   }
   
   # Making a shapefile out of provided extent
-  make_box <- function(x){
+  make_box <- function(xmin, xmax, ymin, ymax){
     x_shp <- sf::st_polygon(list(matrix(
-      c(x[1], x[3],
-        x[2], x[3],
-        x[2], x[4],
-        x[1], x[4],
-        x[1], x[3]), ncol = 2, byrow = TRUE)))
+      c(xmin, ymin,
+        xmax, ymin,
+        xmax, ymax,
+        xmin, ymax,
+        xmin, ymin), ncol = 2, byrow = TRUE)))
     return(x_shp)
   }
-  
-  # Define shp as coordinates
+
+  # Define shp as coordinates, only one format accepted
   if(!is.null(coordinates)){
-    if(length(coordinates) == 2){
+    if(nrow(coordinates) == 1){
       shp <- sf::st_point(coordinates)
       shp <- sf::st_sfc(shp, crs = 4326)
-    } else if(length(coordinates) == 4){
-      shp <- make_box(coordinates)
+    } else if(nrow(coordinates) == 2){
+      warning("4 coordinates provided: an extent box was drawn, assuming that
+            minimum X and Y are on row 1, and maximum X and Y on row 2.")
+      shp <- make_box(xmin = coordinates[1, 1],
+                      xmax = coordinates[2, 1],
+                      ymin = coordinates[1, 2],
+                      ymax = coordinates[2, 2])
       shp <- sf::st_sfc(shp, crs = 4326)
-    } else if(length(coordinates) > 4 &
-              coordinates %% 2 == 0){ # even nb of coordinates
-      shp <- sf::st_polygon(coordinates)
+    }else if(nrow(coordinates) > 2){
+      if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
+         (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
+        warning("Provided polygon did not have a closed shape.")
+        coordinates <- rbind(coordinates, coordinates[1, ])
+      }
+      shp <- sf::st_polygon(list(coordinates))
       shp <- sf::st_sfc(shp, crs = 4326)
     } else{
       stop("'coordinates' object does not have the right format. It should be
@@ -173,8 +189,12 @@ GIFT_spatial <- function(
           0.005
       }
       
-      tmp <- make_box(as.numeric(
-        GIFT_extents[i, c("x_min", "x_max", "y_min", "y_max")]))
+      tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
+                      xmax = as.numeric(GIFT_extents[i, "x_max"]),
+                      ymin = as.numeric(GIFT_extents[i, "y_min"]),
+                      ymax = as.numeric(GIFT_extents[i, "y_max"]))
+      # tmp <- make_box(as.numeric(
+      #   GIFT_extents[i, c("x_min", "x_max", "y_min", "y_max")]))
       
       tmp <- sf::st_sfc(tmp, crs = 4326)
       
