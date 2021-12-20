@@ -1,13 +1,58 @@
+#' GIFT checklists
+#'
+#' Retrieve GIFT checklists that fulfill specific criteria.
+#'
+#' @param taxon_name Character string corresponding to the taxonomic group
+#' of interest.
+#' 
+#' @param complete_taxon Boolean, default TRUE.
+#' 
+#' @param floristic_group Character among the following options: 'all',
+#' 'native', 'endemic', 'naturalized'
+#' 
+#' @param complete_floristic Boolean, default TRUE.
+#' 
+#' @param geo_type Character, either 'Mainland' or 'Island'.
+#' 
+#' @param suit_geo Boolean.
+#' 
+#' @param shp Shapefile provided by the user.
+#'
+#' @param coordinates Custom set of coordinates. The format is a two columns,
+#' the first one being longitudes and the second being latitudes. If 4
+#' coordinates are given, the function assumes that these are the four corners
+#' of a bounding box.
+#' 
+#' @param overlap character vector or list defining the raster
+#' data to retrieve..
+#' 
+#' @param api character string defining from which API the data will be retrieved.
+#'  
+#' @return
+#' List with two elements: the checklist with species and the list of ID.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_checklist_raw()]
+#'
+#' @examples
+#' \dontrun{
+#' ex <- GIFT_checklist()
+#' }
+#' 
+#' @export
 
-# Relies on GIFT_checklist_conditional(); GIFT_checklist_raw(); GIFT_spatial()
-
-GIFT <- function(
+GIFT_checklist <- function(
   # actual arguments user needs
   taxon_name = "Tracheophyta",
   complete_taxon = TRUE, # make a figure with orchids and angiosperms for ex.
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
   # if native given => native_indicated = T in GIFT_checklist_conditional()
-  
   complete_floristic = TRUE,
   
   geo_type = c("Mainland", "Island"), # Island gets you to Island, Island Group & Island Part
@@ -50,6 +95,8 @@ GIFT <- function(
   
   # api = "http://gift.uni-goettingen.de/api/extended/index.php"
 ){
+  
+  # Relies on GIFT_checklist_conditional(); GIFT_checklist_raw(); GIFT_spatial()
   
   # 1. Control ----
   # 
