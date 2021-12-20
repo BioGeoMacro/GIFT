@@ -74,7 +74,8 @@ GIFT_checklist_conditional <- function(
                    "Island Part"),
   native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
   end_list = FALSE, suit_geo = FALSE,
-  complete_taxon = TRUE){
+  complete_taxon = TRUE,
+  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   ## below are arguments from db_get_checklist_conditional()
   # entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
   # native_indicated = F, natural_indicated = F, end_ref = F, end_list = F, 

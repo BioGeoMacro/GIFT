@@ -18,7 +18,8 @@ GIFT_checklist_conditional(
   end_ref = FALSE,
   end_list = FALSE,
   suit_geo = FALSE,
-  complete_taxon = TRUE
+  complete_taxon = TRUE,
+  api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )
 }
 \arguments{
