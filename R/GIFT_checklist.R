@@ -26,6 +26,8 @@
 #' @param overlap character vector or list defining the raster
 #' data to retrieve..
 #' 
+#' @param namesmatched Logical
+#' 
 #' @param api character string defining from which API the data will be retrieved.
 #'  
 #' @return
@@ -60,7 +62,6 @@ GIFT_checklist <- function(
   # c("Mainland", "Island")? gives you everything
   suit_geo = FALSE, # find better names for arguments
   
-  
   # complete_floristic = T, # if you want native => are list with only endemics enough or not?
   # function ran twice in the case where you have a list for a region and an additional one with trees only => combine them
   # this last case may(has to?) be included in GIFT_checklist_conditional() 
@@ -68,6 +69,8 @@ GIFT_checklist <- function(
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   
   # remove_overlap = TRUE,
+  
+  namesmatched = FALSE,
   
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
   ##
@@ -99,7 +102,10 @@ GIFT_checklist <- function(
   # Relies on GIFT_checklist_conditional(); GIFT_checklist_raw(); GIFT_spatial()
   
   # 1. Control ----
-  # 
+  
+  
+  # 2. Function ----
+  ## 2.1. GIFT_checklist_conditional ---- 
   GIFT_conditional_arg <- c("all", "native", "native and naturalized",
                             "native and historically introduced", "endangered",
                             "endemic", "naturalized", "other subset")
@@ -159,23 +165,41 @@ GIFT_checklist <- function(
     lists <- lists[which(lists$entity_ID %in% floristic_subset$entity_ID), ]
   }
   
+  ## 2.2. Spatial filtering ----
+  if(!is.null(shp) | !is.null(coordinates)){
+    spatial_filter <- GIFT::GIFT_spatial(shp = shp,
+                                         coordinates = coordinates,
+                                         overlap = overlap, api = api,
+                                         entity_ID = unique(lists$entity_ID))
+    
+    lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]
+    
+    if(nrow(lists) == 0){
+      message("No checklist match your spatial criteria.")
+      return(lists)
+    }
+  }
+  
+  ## 2.3. Overlapping entities ----
+  # To do (overlapped entities are removed => subseting lists based on entity_ID again)
+  
+
+  ## 2.4. Downloading ----
   # When downloading the species, this whole filtering process has to happen again
   # Output of the function: species distribution in lists AND metadata for lists
+
+  # Match argument name with GIFT_checklist_raw()
+  if(floristic_group == "all"){
+    floristic_group <- NULL
+  } else if(floristic_group == "endemic"){
+    floristic_group <- "endemic_ref"
+  }
   
-  # 2. Function ----
-  
-  # convert back tax_group text as the corresponding integer
-  
-  # if coordinates & shp = NULL => GIFT_spatial() is not called
-  
-  # Starting with GIFT_checklist_conditional()
-  
-  # Based on the arguments given, find different ways to run GIFT_checklist_conditional()
-  # running the function twice
-  
-  # Then if shape, GIFT_spatial, add a line in there to only download the geojson
-  # that were given by GIFT_checklist_conditional() (to reduce downloading time)
-  
-  # remove_overlapping comes last
-  
+  checklists <- GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
+                                         taxon_name = taxon_name,
+                                         namesmatched = namesmatched,
+                                         floristic_group = floristic_group,
+                                         api = api)
+
+  return(list(lists, checklists))
 }

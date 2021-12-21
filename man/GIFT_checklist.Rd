@@ -14,6 +14,7 @@ GIFT_checklist(
   shp = NULL,
   coordinates = NULL,
   overlap = "centroid_inside",
+  namesmatched = FALSE,
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )
 }
@@ -41,6 +42,8 @@ of a bounding box.}
 
 \item{overlap}{character vector or list defining the raster
 data to retrieve..}
+
+\item{namesmatched}{Logical}
 
 \item{api}{character string defining from which API the data will be retrieved.}
 }
