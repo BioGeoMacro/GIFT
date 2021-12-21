@@ -6,8 +6,8 @@
 \usage{
 GIFT_checklist_raw(
   list_ID = NULL,
-  taxonid = 1,
   namesmatched = FALSE,
+  taxon_name = "Tracheophyta",
   floristic_group = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )
@@ -16,9 +16,9 @@ GIFT_checklist_raw(
 \item{list_ID}{A vector defining the ID of the lists to retrieve.
 `NULL` by default, in that case, every list from GIFT is retrieved.}
 
-\item{taxonid}{Integer.}
-
 \item{namesmatched}{Boolean: do you want the full species name.}
+
+\item{taxon_name}{Character.}
 
 \item{floristic_group}{NULL or character among these options: 'native',
 'naturalized', 'endemic_list', 'endemic_ref'.}

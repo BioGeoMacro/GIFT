@@ -5,7 +5,7 @@
 #' @param list_ID A vector defining the ID of the lists to retrieve.
 #' `NULL` by default, in that case, every list from GIFT is retrieved.
 #' 
-#' @param taxonid Integer.
+#' @param taxon_name Character.
 #' 
 #' @param namesmatched Boolean: do you want the full species name.
 #' 
@@ -37,7 +37,8 @@
 #' @export
 
 GIFT_checklist_raw <- function(
-  list_ID = NULL, taxonid = 1, namesmatched = FALSE,
+  list_ID = NULL, namesmatched = FALSE,
+  taxon_name = "Tracheophyta",
   floristic_group = NULL,
   # valid options are: c("native", "naturalized", "endemic_list", "endemic_ref"),
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
@@ -52,16 +53,25 @@ GIFT_checklist_raw <- function(
     stop("Please provide the ID numbers of the checklists you want to load.")
   }
   
-  if(!is.numeric(taxonid)){
-    stop("'taxonid' is a numeric describing what taxonomic group you want.
-         See help of the function.")
-  }
+  # if(!is.numeric(taxonid)){
+  #   stop("'taxonid' is a numeric describing what taxonomic group you want.
+  #        See help of the function.")
+  # }
   
   if(!is.logical(namesmatched)){
     stop("'namesmatched' must be a logical indicating whether you want access to original name.")
   }
   
   # 2. Query ----
+  ## 2.1. Taxonomy ----
+  # Taxonomy query
+  taxonomy <- jsonlite::read_json(paste0(api, "?query=taxonomy"),
+                                  simplifyVector = TRUE)
+  
+  # Define tax_group
+  taxonid <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
+  
+  ## 2.2. Loop ----
   list_raw <- c()
   for(i in seq_along(list_ID)){
     tmp <- jsonlite::read_json(paste0(
