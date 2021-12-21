@@ -13,6 +13,8 @@
 #' @param overlap character vector or list defining the raster
 #' data to retrieve..
 #' 
+#' @param entity_ID List of entity_ID to retrieve.
+#' 
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
@@ -56,7 +58,10 @@
 #' @export
 
 GIFT_spatial <- function(
+  # 3 arguments: polygon, extent, point, line and removing shp?
+  # so far, not perfect
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
+  entity_ID = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   
   # 1. Controls ----
@@ -74,9 +79,23 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
-  if(!is.null(shp) & !("sf" %in% class(shp))){
-    stop("The provided shape has to be an 'sf' object.")
-  }
+  # "sfc_POINT" "sfc"
+  # if(!is.null(shp) & !("sf" %in% class(shp))){
+  #   stop("The provided shape has to be an 'sf' object.")
+  # }
+  
+  # If it is the point => the overlap functions need to be simplified
+  # GIFT polygons inside don t make sense for example
+  
+  # Try with a multiple polygon => how does the function behave?
+  # warning message: all polygons treated as one
+  # if they want this information per polygon => they would need to repeat the function
+  
+  # WHY:
+  # custom_point <- cbind(9.9, 51)
+  # tmp=sf::st_point(custom_point) # class sfg
+  # tmp  <- sf::st_sfc(tmp, crs = 4326, dim = "XY")
+  # test <- GIFT::GIFT_spatial(shp = tmp, overlap = "shape_intersect")
   
   # Making a shapefile out of provided extent
   make_box <- function(xmin, xmax, ymin, ymax){
@@ -133,6 +152,12 @@ GIFT_spatial <- function(
   }
   
   # 2. Query ----
+  ## 2.0. Subset entity_ID
+  if(!is.null(entity_ID)){
+    # filter in GIFT_env()
+    
+  }
+  
   # Depending upon the overlap argument, we either query the centroids or
   # the extent from GIFT
   # if(overlap == "centroid_inside"){
@@ -144,6 +169,7 @@ GIFT_spatial <- function(
     # Query the centroid using GIFT_env()
     GIFT_centroids <- GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
                                      api = api)
+    # HERE: filter for entity_ID
     
     # Removing NAs
     GIFT_centroids <- GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
@@ -170,6 +196,7 @@ GIFT_spatial <- function(
     # Query the extent using GIFT_env()
     GIFT_extents <- GIFT::GIFT_env(
       miscellaneous = c("x_min", "x_max", "y_min", "y_max"), api = api)
+    # HERE: filter for entity_ID
     
     # Removing NAs
     GIFT_extents <- GIFT_extents[complete.cases(GIFT_extents$x_max), ]
