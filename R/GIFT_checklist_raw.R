@@ -9,6 +9,9 @@
 #' 
 #' @param namesmatched Boolean: do you want the full species name.
 #' 
+#' @param floristic_group NULL or character among these options: 'native',
+#' 'naturalized', 'endemic_list', 'endemic_ref'.
+#' 
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
@@ -35,6 +38,8 @@
 
 GIFT_checklist_raw <- function(
   list_ID = NULL, taxonid = 1, namesmatched = FALSE,
+  floristic_group = NULL,
+  # valid options are: c("native", "naturalized", "endemic_list", "endemic_ref"),
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
   # potential arguments not implemented yet
   # endemic_ref = 0, endemic_list = 0, native = 0, naturalized = 0,
@@ -53,7 +58,7 @@ GIFT_checklist_raw <- function(
   }
   
   if(!is.logical(namesmatched)){
-    stop("'namesmatched' must be a boolean indicating whether you want access to original name.")
+    stop("'namesmatched' must be a logical indicating whether you want access to original name.")
   }
   
   # 2. Query ----
@@ -62,8 +67,10 @@ GIFT_checklist_raw <- function(
     tmp <- jsonlite::read_json(paste0(
       api, "?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
-      "&namesmatched=", as.numeric(namesmatched)),
-      simplifyVector = TRUE)
+      "&namesmatched=", as.numeric(namesmatched),
+      ifelse(is.null(floristic_group),
+             "", paste0("&filter=", floristic_group)))
+      , simplifyVector = TRUE)
     
     list_raw <- dplyr::bind_rows(list_raw, tmp)
   }

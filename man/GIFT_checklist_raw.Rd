@@ -8,6 +8,7 @@ GIFT_checklist_raw(
   list_ID = NULL,
   taxonid = 1,
   namesmatched = FALSE,
+  floristic_group = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/index.php"
 )
 }
@@ -18,6 +19,9 @@ GIFT_checklist_raw(
 \item{taxonid}{Integer.}
 
 \item{namesmatched}{Boolean: do you want the full species name.}
+
+\item{floristic_group}{NULL or character among these options: 'native',
+'naturalized', 'endemic_list', 'endemic_ref'.}
 
 \item{api}{character string defining from which API the data will be retrieved.}
 }
