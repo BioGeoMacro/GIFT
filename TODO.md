@@ -9,6 +9,25 @@
 
 # 1. Functions
 
+*Finished*
+    - GIFT_checklist()
+    - GIFT_checklist_raw()
+    - GIFT_checklist_conditional()
+    - med()
+    - GIFT_env()
+    - GIFT_spatial()
+    
+*To update*
+    - GIFT_references()
+    - GIFT_traits()
+    - GIFT_env_meta_misc()
+    - GIFT_env_meta_raster()
+    - GIFT_lists()
+    - GIFT_species()
+    - GIFT_taxonomy()
+    - remove_overlap()
+
+## 1.1. Details
 * GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc
     - Make the function work with single point coordinate
