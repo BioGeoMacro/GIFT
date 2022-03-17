@@ -33,6 +33,7 @@
     - Check whether function works with POINT, MULTILINESTRING, etc
     - Make the function work with single point coordinate
     - Have a smaller shapefile than med
+    - have option to download geojson based on a list of entity_ID
 
 * GIFT_env_meta
     - Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
