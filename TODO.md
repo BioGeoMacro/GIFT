@@ -16,6 +16,7 @@
     - med()
     - GIFT_env()
     - GIFT_spatial()
+    - GIFT_traits_meta()
     
 *To update*
     - GIFT_references()

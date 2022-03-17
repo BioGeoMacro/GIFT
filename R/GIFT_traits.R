@@ -1,74 +1,105 @@
-
-GIFT_traits <- function(trait_IDs = "", agreement = 0.66, bias_ref = FALSE,
-                            bias_deriv = FALSE, restricted = FALSE){
+#' GIFT_traits
+#'
+#' Retrieve specific trait values.
+#'
+#' @param trait_IDs a character string indicating which trait you want to
+#' retrieve. Traits must belong to the available list of traits.
+#' 
+#' @param agreement Traits desired.
+#' 
+#' @param bias_ref Traits desired.
+#' 
+#' @param bias_deriv Traits desired.
+#' 
+#' @param api Character string with the API.
+#'
+#' @return
+#' A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,
+#' `trait_value`, `agreement` and `references`.
+#'
+#' @details Blabla.
+#'
+#' @references
+#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+#'      https://doi.org/10.1111/jbi.13623
+#'
+#' @seealso [GIFT::GIFT_traits_meta()]
+#'
+#' @examples
+#' \dontrun{
+#' wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+#' bias_ref = FALSE, bias_deriv = FALSE)
+#' 
+#' }
+#' 
+#' @importFrom jsonlite read_json
+#' @importFrom dplyr bind_rows left_join
+#' 
+#' @export
+#' 
+GIFT_traits <- function(
+  trait_IDs = "", agreement = 0.66, bias_ref = FALSE,
+  bias_deriv = FALSE,
+  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   
   # 1. Controls ----
-  # Package dependencies
-  require(dplyr)
-  require(jsonlite)
-  
   # Arguments
   if(!is.character(trait_IDs)){
-    stop("trait_IDs must be a character string indicating which trait you want to retrieve.")
+    stop("trait_IDs must be a character string indicating which trait you want
+         to retrieve.")
   }
   
-  # Load metadata for traits to check if the provided IDs are available
-  tmp <- traits_meta(restricted = restricted)
+  if(!is.numeric(agreement)){
+    stop("agreement must be a numeric between 0 and 1 indicating .")
+  } else if(agreeement > 1 | agreement < 0){
+    stop("agreement must be a numeric between 0 and 1 indicating .")
+  }
+  
+  if(!is.logical(bias_ref)){
+    stop("bias_ref must be a logical.")
+  }
+  
+  if(!is.logical(bias_deriv)){
+    stop("bias_deriv must be a logical.")
+  }
+  
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
+  # Load traits_metadata to check if the provided IDs are available
+  tmp <- GIFT::GIFT_traits_meta(api = api)
   if(!all(trait_IDs %in% tmp$Lvl3)){
     stop("trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'traits_meta() and look at column
            'Lvl3'.")
   }
   
-  
-  if(!is.numeric(agreement)){
-    stop("'agreement' must be a numeric.")
-  }
-  
-  if(!is.logical(bias_ref)){
-    stop("'bias_ref' must be a boolean.")
-  }
-  
-  if(!is.logical(bias_deriv)){
-    stop("'bias_deriv' must be a boolean.")
-  }
-  
-  if(!is.logical(restricted)){
-    stop("'restricted' must be a boolean indicating whether you want access to restricted data.")
-  }
-  
   # 2. Function ----
   # Initiating list
   trait_list <- list()
-  # query (two different, according 'restricted' value)
-  if(restricted){
-    for (i in 1:length(trait_IDs)){
-      trait_list[[i]] <- read_json(paste0("http://",credentials[[1]],":",credentials[[2]],
-                                          "@gift.uni-goettingen.de/api/restricted/index.php?query=traits&traitid=",
-                                          trait_IDs[i], "&biasref=", as.numeric(bias_ref), "&biasderiv=", as.numeric(bias_deriv)),
-                                   simplifyVector = TRUE)
-      trait_list[[i]]$trait_ID <- trait_IDs[i]
-    }
-  } else {
-    for (i in 1:length(trait_IDs)){
-      trait_list[[i]] <- read_json(paste0("http://",credentials[[1]],":",credentials[[2]],
-                                          "@gift.uni-goettingen.de/api/extended/index.php?query=traits&traitid=",
-                                          trait_IDs[i], "&biasref=", as.numeric(bias_ref), "&biasderiv=", as.numeric(bias_deriv)),
-                                   simplifyVector = TRUE)
-      trait_list[[i]]$trait_ID <- trait_IDs[i]
-    }
+  
+  # for-loop
+  for (i in 1:length(trait_IDs)){
+    trait_list[[i]] <- jsonlite::read_json(
+      paste0(api, "?query=traits&traitid=",
+             trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+             "&biasderiv=", as.numeric(bias_deriv)),
+      simplifyVector = TRUE)
+    trait_list[[i]]$trait_ID <- trait_IDs[i]
   }
   
   # Formating trait_list as a data.frame
-  trait_list <- bind_rows(trait_list)
+  trait_list <- dplyr::bind_rows(trait_list)
   trait_list <- trait_list[which(trait_list$agreement >= agreement), ]
   
-  # add species names
-  species <- species_names()
-  trait_list <- left_join(trait_list, species[, c("work_ID","species")],
-                          by = "work_ID")
+  # Add species names
+  # species <- species_names()
+  # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],
+  #                                by = "work_ID")
   
-  # reordering columns
+  # Reordering columns
   trait_list <- trait_list[, c("trait_ID", "work_ID", "species", "trait_value",
                                "agreement", "references")]        
   
