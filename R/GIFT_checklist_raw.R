@@ -62,6 +62,10 @@ GIFT_checklist_raw <- function(
     stop("'namesmatched' must be a logical indicating whether you want access to original name.")
   }
   
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
   # 2. Query ----
   ## 2.1. Taxonomy ----
   # Taxonomy query

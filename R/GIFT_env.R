@@ -79,6 +79,9 @@ GIFT_env <- function(
   
   # 1. Controls ----
   # Arguments
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
   
   # check if sumstats are available
   

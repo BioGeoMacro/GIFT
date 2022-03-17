@@ -28,10 +28,13 @@
 GIFT_traits_meta <- function(
   api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   # 1. Controls ----
-
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
   # 2. Query ----
   tmp <- jsonlite::read_json(paste0(api, "?query=traits_meta"),
                              simplifyVector = TRUE)
-
+  
   return(tmp)
 }

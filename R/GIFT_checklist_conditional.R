@@ -89,7 +89,10 @@ GIFT_checklist_conditional <- function(
   
   # 1. Controls ----
   # Arguments
-
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
   # 2. Query ----
   # Lists query
   list_set <- jsonlite::read_json(paste0(api, "?query=lists"),

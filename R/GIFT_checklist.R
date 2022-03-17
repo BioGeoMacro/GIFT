@@ -102,7 +102,9 @@ GIFT_checklist <- function(
   # Relies on GIFT_checklist_conditional(); GIFT_checklist_raw(); GIFT_spatial()
   
   # 1. Control ----
-  
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
   
   # 2. Function ----
   ## 2.1. GIFT_checklist_conditional ---- 

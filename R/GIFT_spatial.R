@@ -79,6 +79,10 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
   # "sfc_POINT" "sfc"
   # if(!is.null(shp) & !("sf" %in% class(shp))){
   #   stop("The provided shape has to be an 'sf' object.")
