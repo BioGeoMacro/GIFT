@@ -54,11 +54,12 @@ The output of this function is a long format data.frame. This implies that, when
 
 ```{r traits}
 
-View(GIFT_traits_meta())
+traits_meta <- GIFT_traits_meta()
+head(traits_meta)
 
+ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+                     bias_ref = TRUE, bias_deriv = TRUE, api = api)
 
-ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1", "1.6.2"), agreement = 0.66,
-                     bias_ref = FALSE, bias_deriv = FALSE, api = api)
 unique(ex_tra$trait_ID)
 head(ex_tra)
 # Frequency of trait values for both traits asked
@@ -84,7 +85,7 @@ head(ex_list)
 The functions `GIFT_env_meta_raster()` and `GIFT_env_meta_misc()` allow the user to retrieve metadata about environmental variables.
 
 ```{r env_raster}
-env_meta <- GIFT_env_meta_raster()
+env_meta <- GIFT_env_meta_raster(api = api)
 head(env_meta)
 
 kableExtra::kbl(env_meta) %>%
@@ -92,15 +93,59 @@ kableExtra::kbl(env_meta) %>%
 
 ```
 
+```{r GIFT_checklists}
+checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = NULL, coordinates = NULL, overlap = "centroid_inside",
+  # remove_overlap = TRUE,
+  namesmatched = FALSE,
+  api = api)
 
-```{r env_misc}
-env_meta2 <- GIFT_env_meta_misc()
+# checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
+#   complete_taxon = TRUE, 
+#   floristic_group = c("all", "native", "endemic", "naturalized")[2],
+#   complete_floristic = TRUE,
+#   geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+#   suit_geo = TRUE,
+#   shp = NULL, coordinates = c(0,10,0,10), overlap = "centroid_inside",
+#   # remove_overlap = TRUE,
+#   namesmatched = TRUE,
+#   api = api)
+
+
+head(checklists[[1]])
+head(checklists[[2]])
+
+```
+
+
+
+
+```{r env}
+env_meta2 <- GIFT_env_meta_misc(api = api)
 head(env_meta2)
 
 kableExtra::kbl(env_meta2) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
 
+
+env_meta3 <- GIFT_env_meta_raster(api = api)
+head(env_meta3)
+
+
+
+env <- GIFT_env(api = api)
+
+
+env <- GIFT_env(miscellaneous = c("area", "dist"), rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
+  sumstat = c("mean","max") , api = api)
+
 ```
+
 
 \newpage
 

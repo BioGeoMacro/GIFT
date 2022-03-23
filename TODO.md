@@ -59,6 +59,7 @@
 
 * GIFT_checklist : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
+    - add entity_ID to checklist table output
 
 * GIFT_no_overlap() (last remove_overlapping_regions):
     - to do

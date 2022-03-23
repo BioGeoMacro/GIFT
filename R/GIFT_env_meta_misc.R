@@ -1,12 +1,12 @@
 
-GIFT_env_meta_misc <- function(){
+GIFT_env_meta_misc <- function(api = "http://gift.uni-goettingen.de/api/extended/index.php"){
   require(jsonlite)
   require(dplyr)
 
   # Return the miscellaneous environmental information as a data frame
   tmp <- read_json(paste0(
-    "http://",credentials[[1]], ":",credentials[[2]],
-    "@gift.uni-goettingen.de/api/extended/index.php?query=env_misc"),
+    api,
+    "?query=env_misc"),
     simplifyVector = TRUE)
   
   # Extract Citavi number from each list element
@@ -15,8 +15,8 @@ GIFT_env_meta_misc <- function(){
   
   # Merging complete reference names
   refs <- read_json(paste0(
-    "http://",credentials[[1]], ":",credentials[[2]],
-    "@gift.uni-goettingen.de/api/extended/index.php?query=references_citavi"),
+    api,
+    "?query=references_citavi"),
     simplifyVector = TRUE)
   
   tmp <- left_join(tmp,refs, by = c("citavi_ID" = "citavi_seq_no"))
