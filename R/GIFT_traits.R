@@ -52,7 +52,7 @@ GIFT_traits <- function(
   
   if(!is.numeric(agreement)){
     stop("agreement must be a numeric between 0 and 1 indicating .")
-  } else if(agreeement > 1 | agreement < 0){
+  } else if(agreement > 1 | agreement < 0){
     stop("agreement must be a numeric between 0 and 1 indicating .")
   }
   
@@ -92,7 +92,7 @@ GIFT_traits <- function(
   
   # Formating trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
-  trait_list <- trait_list[which(trait_list$agreement >= agreement), ]
+  trait_list <- trait_list[which(trait_list$agreement >= agreement | is.na(trait_list$agreement)), ]
   
   # Add species names
   # species <- species_names()
@@ -100,8 +100,8 @@ GIFT_traits <- function(
   #                                by = "work_ID")
   
   # Reordering columns
-  trait_list <- trait_list[, c("trait_ID", "work_ID", "species", "trait_value",
-                               "agreement", "references")]        
+  # trait_list <- trait_list[, c("trait_ID", "work_ID", "species", "trait_value",
+  #                             "agreement", "references")]        
   
   return(trait_list)
 }

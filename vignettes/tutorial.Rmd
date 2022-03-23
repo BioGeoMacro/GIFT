@@ -35,7 +35,7 @@ suppressPackageStartupMessages({
 
 options(tinytex.verbose = TRUE)
 
-# devtools::load_all()
+devtools::load_all()
 
 ```
 
@@ -47,21 +47,19 @@ See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
 \newpage
 
 # 2. Main functions
-## 2.1. Credentials
-This feature is temporary.
 
-```{r credentials}
-get_credentials()
-```
-
-## 2.2. Trait extraction
+## 2.1. Trait extraction
 We here retrieve woodiness and life information for every species using `GIFT_traits()` function.
 The output of this function is a long format data.frame. This implies that, when providing several traits, the species rows are replicated.
 
 ```{r traits}
-ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-                     bias_ref = FALSE, bias_deriv = FALSE, restricted = FALSE)
 
+View(GIFT_traits_meta())
+
+
+ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1", "1.6.2"), agreement = 0.66,
+                     bias_ref = FALSE, bias_deriv = FALSE, api = api)
+unique(ex_tra$trait_ID)
 head(ex_tra)
 # Frequency of trait values for both traits asked
 table(ex_tra$trait_ID, ex_tra$trait_value)
