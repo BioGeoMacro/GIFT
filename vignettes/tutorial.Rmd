@@ -65,14 +65,19 @@ head(ex_tra)
 # Frequency of trait values for both traits asked
 table(ex_tra$trait_ID, ex_tra$trait_value)
 # Number of available species
+
 length(unique(ex_tra$species))
+
+
+# do same for numerical trait
+
 ```
 
 ## 2.3. Lists
 Retrieve checklists.
 
 ```{r lists}
-ex_list <- GIFT_lists(restricted = FALSE)
+ex_list <- GIFT_lists(api = api)
 
 head(ex_list)
 
@@ -116,6 +121,7 @@ checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
 #   namesmatched = TRUE,
 #   api = api)
 
+# Check spatial function
 
 head(checklists[[1]])
 head(checklists[[2]])
@@ -190,7 +196,7 @@ kableExtra::kbl(tmp) %>%
 The function `GIFT_references()` allows the user to retrieve metadata about the references that were used to build GIFT database.
 
 ```{r references}
-ref <- GIFT_references(restricted = FALSE)
+ref <- GIFT_references(api = api)
 head(ref)
 
 kableExtra::kbl(ref) %>%

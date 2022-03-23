@@ -17,15 +17,15 @@
     - GIFT_env()
     - GIFT_spatial()
     - GIFT_traits_meta()
-    
-*To update*
     - GIFT_references()
     - GIFT_traits()
     - GIFT_env_meta_misc()
     - GIFT_env_meta_raster()
-    - GIFT_lists()
     - GIFT_species()
     - GIFT_taxonomy()
+    - GIFT_lists()
+   
+*To update*
     - remove_overlap()
 
 ## 1.1. Details
@@ -73,6 +73,7 @@
     - we have to do it as it is now plus:
     - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
     - intraspecific variation (trait values from all references/species)
+    - species names
 
 * GIFT_species_distribution()
     - GIFT_species() either comes first in the workflow or we run it internally
