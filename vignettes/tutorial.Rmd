@@ -71,6 +71,12 @@ length(unique(ex_tra$species))
 
 # do same for numerical trait
 
+
+
+# original traits
+ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
+                     bias_ref = TRUE, bias_deriv = TRUE, api = api)
+
 ```
 
 ## 2.3. Lists
