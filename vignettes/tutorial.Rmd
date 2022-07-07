@@ -77,6 +77,9 @@ length(unique(ex_tra$species))
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
                      bias_ref = TRUE, bias_deriv = TRUE, api = api)
 
+ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
+                     bias_ref = TRUE, bias_deriv = TRUE, api = api)
+
 ```
 
 ## 2.3. Lists
@@ -105,7 +108,7 @@ kableExtra::kbl(env_meta) %>%
 ```
 
 ```{r GIFT_checklists}
-checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
+checklists <- GIFT_checklist(taxon_name = "Pinaceae",
   complete_taxon = TRUE, 
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
   complete_floristic = TRUE,
@@ -113,7 +116,7 @@ checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
   suit_geo = TRUE,
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   # remove_overlap = TRUE,
-  namesmatched = FALSE,
+  namesmatched = TRUE,
   api = api)
 
 # checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
@@ -130,7 +133,7 @@ checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
 # Check spatial function
 
 head(checklists[[1]])
-head(checklists[[2]])
+head(as.data.frame(checklists[[2]]))
 
 ```
 
