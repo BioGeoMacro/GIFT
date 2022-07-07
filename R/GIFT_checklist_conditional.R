@@ -75,7 +75,9 @@ GIFT_checklist_conditional <- function(
   native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
   end_list = FALSE, suit_geo = FALSE,
   complete_taxon = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+  GIFT_version = NULL, 
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  list_set = NULL, taxonomy = NULL){
   ## below are arguments from db_get_checklist_conditional()
   # entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
   # native_indicated = F, natural_indicated = F, end_ref = F, end_list = F, 
@@ -94,13 +96,20 @@ GIFT_checklist_conditional <- function(
   }
   
   # 2. Query ----
-  # Lists query
-  list_set <- jsonlite::read_json(paste0(api, "?query=lists"),
-                                  simplifyVector = TRUE)
-  
+  # List_set query
+  if(is.null(list_set)){
+    list_set <- jsonlite::read_json(paste0(api, "index",
+                                           ifelse(is.null(GIFT_version), "", GIFT_version),
+                                           ".php?query=lists"),
+                                    simplifyVector = TRUE)
+  }
   # Taxonomy query
-  taxonomy <- jsonlite::read_json(paste0(api, "?query=taxonomy"),
-                                  simplifyVector = TRUE)
+  if(is.null(taxonomy)){
+    taxonomy <- jsonlite::read_json(paste0(api, "index",
+                                           ifelse(is.null(GIFT_version), "", GIFT_version),
+                                           ".php?query=taxonomy"),
+                                    simplifyVector = TRUE)
+  }
   
   # Define tax_group
   tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
@@ -191,6 +200,14 @@ GIFT_checklist_conditional <- function(
   
   # Remove unnecessary columns from join with taxonomy
   list_set <- dplyr::select(list_set, -taxon_author, -taxon_lvl, -lft, -rgt)
+  
+  list_set[,c("ref_ID","native_indicated","natural_indicated","end_ref",
+              "restricted","taxon_ID","list_ID","end_list","entity_ID",      
+              "suit_geo")] <- 
+    sapply(list_set[,c("ref_ID","native_indicated","natural_indicated","end_ref",
+                       "restricted","taxon_ID","list_ID","end_list","entity_ID",      
+                       "suit_geo")],
+           as.numeric)
   
   # Output
   return(list_set)

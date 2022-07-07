@@ -72,7 +72,9 @@ GIFT_checklist <- function(
   
   namesmatched = FALSE,
   
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  GIFT_version = NULL, 
+  
+  api = "http://gift.uni-goettingen.de/api/extended/"
   ##
   # GIFT_checklist_conditional() below
   # tax_group = 2, # control: length 1 (no several tax_groups)
@@ -134,6 +136,18 @@ GIFT_checklist <- function(
                                            "Island Part"))
   } 
   
+  # List_set query
+  list_set <- jsonlite::read_json(paste0(api, "index",
+                                         ifelse(is.null(GIFT_version), "", GIFT_version),
+                                         ".php?query=lists"),
+                                  simplifyVector = TRUE)
+  
+  # Taxonomy query
+  taxonomy <- jsonlite::read_json(paste0(api, "index",
+                                         ifelse(is.null(GIFT_version), "", GIFT_version),
+                                         ".php?query=taxonomy"),
+                                  simplifyVector = TRUE)
+  
   # If the user asks for floristic_group = native & geo_type = Island
   # In GIFT_checklist_conditional()
   lists <- GIFT::GIFT_checklist_conditional(
@@ -146,7 +160,10 @@ GIFT_checklist <- function(
     end_list = FALSE,
     suit_geo = suit_geo,
     complete_taxon = complete_taxon,
-    api = api)
+    GIFT_version = GIFT_version,
+    api = api,
+    list_set = list_set,
+    taxonomy = taxonomy)
   
   # If complete_floristic == TRUE => running _conditional() a second time
   # subsetting first call with the entity_IDs got in the second one
@@ -161,7 +178,10 @@ GIFT_checklist <- function(
       end_list = FALSE,
       suit_geo = suit_geo,
       complete_taxon = complete_taxon,
-      api = api)
+      GIFT_version = GIFT_version,
+      api = api,
+      list_set = list_set,
+      taxonomy = taxonomy)
     
     # Subset
     lists <- lists[which(lists$entity_ID %in% floristic_subset$entity_ID), ]
@@ -201,7 +221,10 @@ GIFT_checklist <- function(
                                          taxon_name = taxon_name,
                                          namesmatched = namesmatched,
                                          floristic_group = floristic_group,
-                                         api = api)
+                                         GIFT_version = GIFT_version,
+                                         api = api,
+                                         list_set = list_set,
+                                         taxonomy = taxonomy)
 
   return(list(lists, checklists))
 }

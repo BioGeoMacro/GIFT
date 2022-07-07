@@ -2,8 +2,12 @@
 #'
 #' Raw checklist, to combine with other functions
 #'
-#' @param list_ID A vector defining the ID of the lists to retrieve.
-#' `NULL` by default, in that case, every list from GIFT is retrieved.
+#' @param ref_ID A vector defining the IDs of the references to retrieve.
+#' `NULL` by default.
+#' 
+#' @param list_ID A vector defining the IDs of the lists to retrieve.
+#' `NULL` by default. These lists are retrieved in addition to the lists 
+#' contained in the references in `ref_ID`.
 #' 
 #' @param taxon_name Character.
 #' 
@@ -15,7 +19,7 @@
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
-#' A data frame with 12 columns, if namesmatched = FALSE.
+#' A data frame with 13 columns, if namesmatched = FALSE.
 #'
 #' @details Blabla.
 #'
@@ -37,20 +41,22 @@
 #' @export
 
 GIFT_checklist_raw <- function(
-  list_ID = NULL, namesmatched = FALSE,
+  ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
   taxon_name = "Tracheophyta",
   floristic_group = NULL,
   # valid options are: c("native", "naturalized", "endemic_list", "endemic_ref"),
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
-  # potential arguments not implemented yet
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  list_set = NULL, taxonomy = NULL
+  # potential arguments not implemented yet to make download size smaller
   # endemic_ref = 0, endemic_list = 0, native = 0, naturalized = 0,
-  # ref_ID
 ){
   
   # 1. Controls ----
   # Arguments
-  if(is.null(list_ID)){
-    stop("Please provide the ID numbers of the checklists you want to load.")
+  if(is.null(list_ID) & is.null(ref_ID)){
+    stop("Please provide the ID numbers of the references and/or lists you want 
+         to load.")
   }
   
   # if(!is.numeric(taxonid)){
@@ -67,10 +73,28 @@ GIFT_checklist_raw <- function(
   }
   
   # 2. Query ----
+  
+  ## 2.0 Lists query
+  if(!is.null(ref_ID)){
+    if(is.null(list_set)){
+      list_set <- jsonlite::read_json(paste0(api, "index",
+                                             ifelse(is.null(GIFT_version), "", GIFT_version),
+                                             ".php?query=lists"),
+                                      simplifyVector = TRUE)
+    }
+    list_ID <- unique(append(list_ID,
+                             as.numeric(list_set$list_ID[
+                               which(list_set$ref_ID %in% ref_ID)])))
+  }
+  
   ## 2.1. Taxonomy ----
   # Taxonomy query
-  taxonomy <- jsonlite::read_json(paste0(api, "?query=taxonomy"),
-                                  simplifyVector = TRUE)
+  if(is.null(taxonomy)){
+    taxonomy <- jsonlite::read_json(paste0(api, "index",
+                                           ifelse(is.null(GIFT_version), "", GIFT_version),
+                                           ".php?query=taxonomy"),
+                                    simplifyVector = TRUE)
+  }
   
   # Define tax_group
   taxonid <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
@@ -79,7 +103,8 @@ GIFT_checklist_raw <- function(
   list_raw <- c()
   for(i in seq_along(list_ID)){
     tmp <- jsonlite::read_json(paste0(
-      api, "?query=checklists&listid=",
+      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version), 
+      ".php?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
       "&namesmatched=", as.numeric(namesmatched),
       ifelse(is.null(floristic_group),
@@ -87,6 +112,19 @@ GIFT_checklist_raw <- function(
       , simplifyVector = TRUE)
     
     list_raw <- dplyr::bind_rows(list_raw, tmp)
+  }
+  
+  list_raw[,c("ref_ID","list_ID","work_ID","questionable","native","quest_native",
+              "naturalized","endemic_ref","quest_end_ref","endemic_list","quest_end_list")] <- 
+    sapply(list_raw[,c("ref_ID","list_ID","work_ID","questionable","native","quest_native",
+                       "naturalized","endemic_ref","quest_end_ref","endemic_list","quest_end_list")],
+           as.numeric)
+  list_raw$cons_status <- as.character(list_raw$cons_status)
+  
+  if(namesmatched){
+  list_raw[,c("name_ID","matched","epithetscore","overallscore","resolved")] <- 
+    sapply(list_raw[,c("name_ID","matched","epithetscore","overallscore","resolved")],
+           as.numeric)
   }
   
   return(list_raw)
