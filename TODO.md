@@ -9,24 +9,28 @@
 
 # 1. Functions
 
-*Finished*
-    - GIFT_checklist()
-    - GIFT_checklist_raw()
-    - GIFT_checklist_conditional()
-    - med()
-    - GIFT_env()
-    - GIFT_spatial()
-    - GIFT_traits_meta()
-    - GIFT_references()
-    - GIFT_traits()
-    - GIFT_env_meta_misc()
-    - GIFT_env_meta_raster()
-    - GIFT_species()
-    - GIFT_taxonomy()
-    - GIFT_lists()
-   
-*To update*
-    - remove_overlap()
+*New format*
+    - GIFT_checklist()  
+    - GIFT_checklist_raw()  
+    - GIFT_checklist_conditional()  
+    - med()  
+    - GIFT_env()  
+    - GIFT_spatial()  
+    - GIFT_traits_meta()  
+    - GIFT_references()  
+    - GIFT_traits()  
+    - GIFT_env_meta_misc()  
+    - GIFT_env_meta_raster()  
+    - GIFT_species()  
+    - GIFT_taxonomy()  
+    - GIFT_lists()  
+  
+*To update from GIFT_admin*
+    - remove_overlap() => to be called GIFT_no_overlap()
+    - plotting => to be called GIFT_plot()  
+    - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  
+    - references/citation  => to be called GIFT_references
+    - range_finder => 
 
 ## 1.1. Details
 * GIFT_spatial
@@ -76,7 +80,9 @@
     - species names
 
 * GIFT_species_distribution()
-    - GIFT_species() either comes first in the workflow or we run it internally
+    - input: only one species at the moment
+    - plotting argument => polygons where the sp is native/invasive/naturalized/absent
+    - GIFT_species() run internally
     - output like on POWO website: lists of polygons where the focal species is native/alien/naturalized
     - following logic of bRacatus R package (https://cran.r-project.org/web/packages/bRacatus/vignettes/Using_bRacatus.html)
     
@@ -86,15 +92,26 @@
     - input: shape and criteria (calling get_checklists_conditional)
     - output: lists falling within the area required
 
-* plotting
-* assign_higher_taxa
-* references/citation
-* env_raster
-* env_misc
+* GIFT_plot() => 4 (or 5 options): species_richness, trait coverage, envt variable, species distribution, own variable (example for the vignette: proportion of Orchidaceae across polygons)
+    - works with from GIFT_checklist() or GIFT_checklist_conditional() (faster because there is no need to retrieve the species occurrences) => species richness map
+    - trait coverage (needs GIFT_checklist_conditional() to get taxonomic group/biogeography status and the table)
+
+* GIFT_shape()
+    - input: list of entity_ID
+    - output: sf polygons of these IDs
+
+* GIFT_tax_group(): update of assign_higher_taxa()  
+    - input: species list (work_ID) and level of grouping  
+    - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
+    
+* GIFT_references(): before references/citation
 
 * range_finder
 
-* versions of GIFT => list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
+* versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
+    - one API per version of the database
+    - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
+    - if version is specified => API changed in the R function (correspondence version number versus API)
 
 # 2. Vignette
 
