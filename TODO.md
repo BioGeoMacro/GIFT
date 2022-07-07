@@ -9,49 +9,52 @@
 
 # 1. Functions
 
-*New format*
-    - GIFT_checklist()  
-    - GIFT_checklist_raw()  
-    - GIFT_checklist_conditional()  
-    - med()  
-    - GIFT_env()  
-    - GIFT_spatial()  
-    - GIFT_traits_meta()  
-    - GIFT_references()  
-    - GIFT_traits()  
-    - GIFT_env_meta_misc()  
-    - GIFT_env_meta_raster()  
-    - GIFT_species()  
-    - GIFT_taxonomy()  
-    - GIFT_lists()  
+*Final check*  
+1. Checklists  <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1.1. GIFT_checklist_raw()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.2. GIFT_checklist_conditional()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.3. GIFT_spatial()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.4. GIFT_taxonomy()   
+&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup() (not written yet)  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.6. GIFT_checklist()  
   
-*To update from GIFT_admin*
-    - remove_overlap() => to be called GIFT_no_overlap()
-    - plotting => to be called GIFT_plot()  
-    - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  
-    - references/citation  => to be called GIFT_references
-    - range_finder => 
+2. Trait functions <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2.1. GIFT_traits_meta()  
+&nbsp;&nbsp;&nbsp;&nbsp; 2.2. GIFT_traits()  
+&nbsp;&nbsp;&nbsp;&nbsp; 2.3. GIFT_traits_raw()  
+
+3. Environment  
+&nbsp;&nbsp;&nbsp;&nbsp; 3.1. GIFT_env()  
+&nbsp;&nbsp;&nbsp;&nbsp; 3.2. GIFT_env_meta_misc()  
+&nbsp;&nbsp;&nbsp;&nbsp; 3.3. GIFT_env_meta_raster()  
+
+4. Species distribution  
+&nbsp;&nbsp;&nbsp;&nbsp; 4.1. GIFT_species()  
+&nbsp;&nbsp;&nbsp;&nbsp; 4.2. GIFT_ranges()  
+
+5. Plotting functions  
+&nbsp;&nbsp;&nbsp;&nbsp; 5.1. GIFT_shape()  
+&nbsp;&nbsp;&nbsp;&nbsp; 5.2. GIFT_plot() 
+
+6. Miscellaneous  
+&nbsp;&nbsp;&nbsp;&nbsp; 6.1. med()  
+&nbsp;&nbsp;&nbsp;&nbsp; 6.2. GIFT_references()  
+&nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_no_overlap()  
+
+&nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
+  
+*To update from GIFT_admin*<br>
+    - remove_overlap() => to be called GIFT_no_overlap()<br>
+    - plotting => to be called GIFT_plot()  <br>
+    - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  <br>
+    - references/citation  => to be called GIFT_references<br>
+    - range_finder => <br>
 
 ## 1.1. Details
-* GIFT_spatial
-    - Check whether function works with POINT, MULTILINESTRING, etc
-    - Make the function work with single point coordinate
-    - Have a smaller shapefile than med
-    - have option to download geojson based on a list of entity_ID
-
-* GIFT_env_meta
-    - Update/combine GIFT_env_meta_misc.R and GIFT_env_meta_raster.R (two arguments in that function)
-        Create GIFT_env() => two arguments 
-
-* GIFT_env
-    - highlight GIFT_env_meta for getting overview and citations
-    - Controls for arguments
-    - GIFT_env() => message if selected NAs included
-    
 * GIFT_checklists_raw
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
-
+    
 * GIFT_checklists_conditional
     - input: criteria
     - output: lists matching the criteria
@@ -61,9 +64,50 @@
     - some parameters come as characters instead of numeric (nativeness 1 0)
     - Make the subsets more straightforward for users: for ex. nativeness, subset of $subset %in% native, native and naturalized etc AND $native_indicated==1 has to be done in the BACKGROUND
 
+* GIFT_spatial
+    - Check whether function works with POINT, MULTILINESTRING, etc
+    - Make the function work with single point coordinate
+    - Have a smaller shapefile than med
+    - have option to download geojson based on a list of entity_ID
+
+* GIFT_taxonomy()
+    - input:
+    - output:
+
+* GIFT_tax_group(): update of assign_higher_taxa()  
+    - input: species list (work_ID) and level of grouping  
+    - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
+
 * GIFT_checklist : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
     - add entity_ID to checklist table output
+    - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
+
+* GIFT_traits_meta()
+
+* GIFT_traits()
+    - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
+    - we have to do it as it is now plus:
+    - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
+    - intraspecific variation (trait values from all references/species)
+    - species names
+
+* GIFT_traits_raw()
+
+* GIFT_env
+    - highlight GIFT_env_meta for getting overview and citations
+    - Controls for arguments
+    - GIFT_env() => message if selected NAs included
+
+* GIFT_env_meta_misc
+
+* GIFT_env_meta_raster
+
+* GIFT_species()
+    - input: user's species name
+    - output: table with user's input, whether the species are in GIFT, if yes corrected name
+    
+* GIFT_ranges()
 
 * GIFT_no_overlap() (last remove_overlapping_regions):
     - to do
@@ -72,12 +116,6 @@
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
 
-* GIFT_traits()
-    - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
-    - we have to do it as it is now plus:
-    - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
-    - intraspecific variation (trait values from all references/species)
-    - species names
 
 * GIFT_species_distribution()
     - input: only one species at the moment
@@ -100,9 +138,6 @@
     - input: list of entity_ID
     - output: sf polygons of these IDs
 
-* GIFT_tax_group(): update of assign_higher_taxa()  
-    - input: species list (work_ID) and level of grouping  
-    - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
     
 * GIFT_references(): before references/citation
 
