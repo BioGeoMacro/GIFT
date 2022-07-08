@@ -9,7 +9,8 @@ GIFT_spatial(
   coordinates = NULL,
   overlap = "centroid_inside",
   entity_ID = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{
@@ -24,6 +25,10 @@ of a bounding box.}
 data to retrieve..}
 
 \item{entity_ID}{List of entity_ID to retrieve.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 
 \item{api}{character string defining from which API the data will be retrieved.}
 }

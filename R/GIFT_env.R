@@ -20,6 +20,10 @@
 #' layers. If sumstat is a list, the first element defines the summary 
 #' statistics for the first raster layer, the second for the second and so on.
 #' 
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#' 
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
@@ -69,7 +73,8 @@ GIFT_env <- function(
   # envvar = "area", layername = "",
   miscellaneous = "area", rasterlayer = NULL,
   sumstat = "mean",
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # one argument only
   # check => whether the (list of) argument(s)
@@ -101,11 +106,13 @@ GIFT_env <- function(
   ## 2.1. Miscellaneous data ----
   if(is.null(miscellaneous) | length(miscellaneous) == 0){
     tmp_misc <- jsonlite::read_json(paste0(
-      api, "?query=geoentities_env_misc"),
+      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      ".php?query=geoentities_env_misc"),
       simplifyVector = TRUE)
   } else{
     tmp_misc <- jsonlite::read_json(paste0(
-      api, "?query=geoentities_env_misc&envvar=",
+      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      ".php?query=geoentities_env_misc&envvar=",
       paste(miscellaneous, collapse = ",")),
       simplifyVector = TRUE)
   }
@@ -129,7 +136,8 @@ GIFT_env <- function(
     
     for(i in seq_along(rasterlayer)){
       tmp_raster[[i]] <- jsonlite::read_json(paste0(
-        api, "?query=geoentities_env_raster&layername=", rasterlayer[i],
+        api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+        ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
         "&sumstat=", sumstat_collapse[[i]]),
         simplifyVector = TRUE)
       
