@@ -1,13 +1,14 @@
 
-GIFT_taxonomy <- function(api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+GIFT_taxonomy <- function(GIFT_version = NULL, 
+                          api = "http://gift.uni-goettingen.de/api/extended/"){
   # Packages
   require(jsonlite)
-  require(dplyr)
 
   # Query
   tmp <- read_json(paste0(
-    api,
-    "?query=taxonomy"),
+    api, "index",
+    ifelse(is.null(GIFT_version), "", GIFT_version),
+    ".php?query=taxonomy"),
     simplifyVector = TRUE)
 
   return(tmp)
