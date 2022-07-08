@@ -5,16 +5,24 @@
 \title{GIFT checklists}
 \usage{
 GIFT_checklist_raw(
+  ref_ID = NULL,
   list_ID = NULL,
   namesmatched = FALSE,
   taxon_name = "Tracheophyta",
   floristic_group = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  list_set = NULL,
+  taxonomy = NULL
 )
 }
 \arguments{
-\item{list_ID}{A vector defining the ID of the lists to retrieve.
-`NULL` by default, in that case, every list from GIFT is retrieved.}
+\item{ref_ID}{A vector defining the IDs of the references to retrieve.
+`NULL` by default.}
+
+\item{list_ID}{A vector defining the IDs of the lists to retrieve.
+`NULL` by default. These lists are retrieved in addition to the lists 
+contained in the references in `ref_ID`.}
 
 \item{namesmatched}{Boolean: do you want the full species name.}
 
@@ -26,7 +34,7 @@ GIFT_checklist_raw(
 \item{api}{character string defining from which API the data will be retrieved.}
 }
 \value{
-A data frame with 12 columns, if namesmatched = FALSE.
+A data frame with 13 columns, if namesmatched = FALSE.
 }
 \description{
 Raw checklist, to combine with other functions
