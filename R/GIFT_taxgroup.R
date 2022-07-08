@@ -7,7 +7,10 @@
 #' groups for. `Null` by default. 
 #' 
 #' @param taxon_lvl taxonomic level to retrieve names for. "family" by default. 
-#' Check `GIFT_taxonomy()` for available levels.
+#' Check `GIFT_taxonomy()` for available levels. In addition to the available 
+#' levels one can put "higher_lvl" to retrieve the higher level groups 
+#' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta", 
+#' "Monilophyta", "Gymnospermae", and "Angiospermae".                            
 #' 
 #' @param higher_lvl logical indicating whether to retrieve the higher level 
 #' groups (Angiopsermae, Gymnospermae, Pteridophyta, ...).
@@ -39,7 +42,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_taxgroup(work_ID = c(1,5), taxon_lvl = "family")
+#' ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -48,8 +51,7 @@
 #' @export
 
 GIFT_taxgroup <- function(work_ID = NULL,
-                          taxon_lvl = "family", 
-                          higher_lvl = FALSE, 
+                          taxon_lvl = c("family","order","higher_lvl")[1], 
                           return_ID = FALSE,
                           GIFT_version = NULL,
                           api = "http://gift.uni-goettingen.de/api/extended/",
@@ -77,7 +79,10 @@ GIFT_taxgroup <- function(work_ID = NULL,
                          simplifyVector = TRUE)
   }
   
-  if(!all(work_ID %in% species$work_ID)) stop("Not all work_ID found!")
+  species[c("work_ID", "genus")] <-
+    sapply(species[c("work_ID", "genus")], as.numeric)
+  
+  if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
 
   species = species[match(work_ID,species$work_ID),]
   genera = unique(species$genus)
@@ -90,13 +95,14 @@ GIFT_taxgroup <- function(work_ID = NULL,
                                     simplifyVector = TRUE)
   }
   
+  taxonomy[c("taxon_ID", "lft", "rgt")] <-
+    sapply(taxonomy[c("taxon_ID", "lft", "rgt")], as.numeric)
+  
   taxa = sapply(genera, function(x) {
     taxa = taxonomy[which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == x)] 
                           & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]),]
-    if(higher_lvl){
+    if(taxon_lvl == "higher_lvl"){
       taxa = taxa[grep("level",taxa$taxon_lvl),]
-    }
-    if(is.na(taxon_lvl)) {
       taxa = taxa[which.min(taxa$rgt-taxa$lft),]
     } else {
       taxa = taxa[which(taxa$taxon_lvl == taxon_lvl),]
