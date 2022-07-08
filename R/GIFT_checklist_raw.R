@@ -48,8 +48,6 @@ GIFT_checklist_raw <- function(
   GIFT_version = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/",
   list_set = NULL, taxonomy = NULL
-  # potential arguments not implemented yet to make download size smaller
-  # endemic_ref = 0, endemic_list = 0, native = 0, naturalized = 0,
 ){
   
   # 1. Controls ----
@@ -77,10 +75,10 @@ GIFT_checklist_raw <- function(
   ## 2.0 Lists query
   if(!is.null(ref_ID)){
     if(is.null(list_set)){
-      list_set <- jsonlite::read_json(paste0(api, "index",
-                                             ifelse(is.null(GIFT_version), "", GIFT_version),
-                                             ".php?query=lists"),
-                                      simplifyVector = TRUE)
+      list_set <- jsonlite::read_json(
+        paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+               ".php?query=lists"),
+        simplifyVector = TRUE)
     }
     list_ID <- unique(append(list_ID,
                              as.numeric(list_set$list_ID[
@@ -90,10 +88,10 @@ GIFT_checklist_raw <- function(
   ## 2.1. Taxonomy ----
   # Taxonomy query
   if(is.null(taxonomy)){
-    taxonomy <- jsonlite::read_json(paste0(api, "index",
-                                           ifelse(is.null(GIFT_version), "", GIFT_version),
-                                           ".php?query=taxonomy"),
-                                    simplifyVector = TRUE)
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+             ".php?query=taxonomy"),
+      simplifyVector = TRUE)
   }
   
   # Define tax_group
@@ -114,17 +112,67 @@ GIFT_checklist_raw <- function(
     list_raw <- dplyr::bind_rows(list_raw, tmp)
   }
   
-  list_raw[,c("ref_ID","list_ID","work_ID","questionable","native","quest_native",
-              "naturalized","endemic_ref","quest_end_ref","endemic_list","quest_end_list")] <- 
-    sapply(list_raw[,c("ref_ID","list_ID","work_ID","questionable","native","quest_native",
-                       "naturalized","endemic_ref","quest_end_ref","endemic_list","quest_end_list")],
-           as.numeric)
-  list_raw$cons_status <- as.character(list_raw$cons_status)
+  # Data.frame
+  list_raw <- as.data.frame(list_raw)
   
-  if(namesmatched){
-  list_raw[,c("name_ID","matched","epithetscore","overallscore","resolved")] <- 
-    sapply(list_raw[,c("name_ID","matched","epithetscore","overallscore","resolved")],
-           as.numeric)
+  # Format of the output
+  if(nrow(list_raw) == 0){
+    if(namesmatched){
+      list_raw <- data.frame(ref_ID = numeric(),
+                             list_ID = numeric(),
+                             name_ID = numeric(),
+                             genus = character(),
+                             species_epithet = character(),
+                             subtaxon = character(),
+                             author = character(),
+                             matched = numeric(),
+                             epithetscore = numeric(),
+                             overallscore = numeric(),
+                             resolved = numeric(),
+                             service = character(),
+                             work_ID = numeric(),
+                             species = character(),
+                             questionable = numeric(),
+                             native = numeric(),
+                             quest_native = numeric(),
+                             naturalized = numeric(),
+                             endemic_ref = numeric(),
+                             quest_end_ref = numeric(),
+                             endemic_list = numeric(),
+                             quest_end_list = numeric(),
+                             cons_status = logical())
+    } else{
+      list_raw <- data.frame(ref_ID = numeric(),
+                             list_ID = numeric(),
+                             work_ID = numeric(),
+                             species = character(),
+                             questionable = numeric(),
+                             native = numeric(),
+                             quest_native = numeric(),
+                             naturalized = numeric(),
+                             endemic_ref = numeric(),
+                             quest_end_ref = numeric(),
+                             endemic_list = numeric(),
+                             quest_end_list = numeric(),
+                             cons_status = logical())
+    }
+  } else{
+    # Some columns have to be numeric
+    list_raw[, c("ref_ID", "list_ID", "work_ID", "questionable", "native",
+                 "quest_native", "naturalized", "endemic_ref", "quest_end_ref",
+                 "endemic_list", "quest_end_list")] <- 
+      sapply(list_raw[, c("ref_ID", "list_ID", "work_ID", "questionable",
+                          "native", "quest_native", "naturalized",
+                          "endemic_ref", "quest_end_ref", "endemic_list",
+                          "quest_end_list")], as.numeric)
+    list_raw$cons_status <- as.character(list_raw$cons_status)
+    
+    if(namesmatched){
+      list_raw[, c("name_ID", "matched", "epithetscore", "overallscore",
+                   "resolved")] <- 
+        sapply(list_raw[, c("name_ID", "matched", "epithetscore",
+                            "overallscore", "resolved")], as.numeric)
+    }
   }
   
   return(list_raw)
