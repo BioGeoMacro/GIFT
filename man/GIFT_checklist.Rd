@@ -15,7 +15,8 @@ GIFT_checklist(
   coordinates = NULL,
   overlap = "centroid_inside",
   namesmatched = FALSE,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{

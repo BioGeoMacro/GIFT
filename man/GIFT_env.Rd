@@ -9,7 +9,8 @@ GIFT_env(
   miscellaneous = "area",
   rasterlayer = NULL,
   sumstat = "mean",
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{
@@ -22,8 +23,17 @@ data to retrieve.}
 \item{rasterlayer}{character vector or list defining the raster
 data to retrieve..}
 
-\item{sumstat}{Vector with the summary statistics to aggregate the
-information coming from the raster layers.}
+\item{sumstat}{Vector or list indicating the desired summary statistics out 
+of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
+"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H", 
+"n") used to aggregate the information coming from the raster layers. If 
+sumstat is a vector, the same summary statistics are used for all raster 
+layers. If sumstat is a list, the first element defines the summary 
+statistics for the first raster layer, the second for the second and so on.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 
 \item{api}{character string defining from which API the data will be retrieved.}
 }

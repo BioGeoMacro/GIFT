@@ -31,6 +31,10 @@ contained in the references in `ref_ID`.}
 \item{floristic_group}{NULL or character among these options: 'native',
 'naturalized', 'endemic_list', 'endemic_ref'.}
 
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
+
 \item{api}{character string defining from which API the data will be retrieved.}
 }
 \value{

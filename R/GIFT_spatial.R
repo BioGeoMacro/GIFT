@@ -15,6 +15,10 @@
 #' 
 #' @param entity_ID List of entity_ID to retrieve.
 #' 
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#' 
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
@@ -53,7 +57,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom sf st_polygon st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area
+#' @importFrom sf st_polygon st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
 #' 
 #' @export
 
@@ -62,7 +66,8 @@ GIFT_spatial <- function(
   # so far, not perfect
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   entity_ID = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+  GIFT_version = NULL, 
+  api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   ## 1.1. shp, coordinates ----
@@ -187,10 +192,13 @@ GIFT_spatial <- function(
                                       coords = c("longitude", "latitude"),
                                       crs = 4326)
     
-    tmp <- sf::st_intersection(pnts_sf, shp) # CONTROL for warning message
+    sf::st_agr(GIFT_centroids_sf) <- "constant"
+    sf::st_agr(shp) <- "constant"
+    
+    tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
+    sf::st_geometry(tmp) <- NULL
     
     gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
-    sf::st_geometry(gift_overlap) <- NULL
     
     # Add coverage column
     gift_overlap$coverage <- NA
@@ -268,6 +276,8 @@ GIFT_spatial <- function(
         #   geom_sf(data = tmp_geo[shp, ], color = "red", fill = NA)
         
         # Calculate overlap
+        sf::st_agr(tmp_geo) <- "constant"
+        sf::st_agr(shp) <- "constant"
         tmp <- sf::st_intersection(tmp_geo, shp)
         
         if(nrow(tmp) > 0){
