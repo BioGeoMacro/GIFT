@@ -28,7 +28,8 @@
 #' @export
 
 GIFT_shape <- function(entity_ID = NULL, 
-                       api = "http://gift.uni-goettingen.de/api/extended/"){
+                       api = "http://gift.uni-goettingen.de/api/extended/", 
+                       GIFT_version = NULL){
   
   # 1. Controls ----
   # Arguments
@@ -38,7 +39,7 @@ GIFT_shape <- function(entity_ID = NULL,
   }
   
   GIFT_entities <- GIFT::GIFT_env(miscellaneous = "area",
-                                   api = api)
+                                   api = api, GIFT_version = GIFT_version)
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
   # TODO give back warning if not all entity_IDs have polygons?
@@ -49,6 +50,7 @@ GIFT_shape <- function(entity_ID = NULL,
   
   for (i in seq_along(unique(entity_ID))) {
     
+    # TODO Put old polygons of old versions into respective folders and paste version here
     tmp_geo <- st_read(paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",entity_ID[i],".geojson"),
                             quiet = TRUE)
     
