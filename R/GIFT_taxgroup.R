@@ -13,7 +13,7 @@
 #' "Monilophyta", "Gymnospermae", and "Angiospermae".                            
 #' 
 #' @param higher_lvl logical indicating whether to retrieve the higher level 
-#' groups (Angiopsermae, Gymnospermae, Pteridophyta, ...).
+#' groups (Angiospermae, Gymnospermae, Pteridophyta, ...).
 #' 
 #' @param return_ID logical indicating whether to give back taxon_IDs instead of 
 #' names.
