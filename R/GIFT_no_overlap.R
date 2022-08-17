@@ -24,7 +24,7 @@
 #' plot(st_geometry(geodata), col=geodata$entity_ID)
 #' }
 #' 
-#' @importFrom sf st_read
+#' @importFrom jsonlite read_json
 #' 
 #' 
 #' 
