@@ -133,7 +133,7 @@ checklists_centroid_inside <- GIFT_checklist(taxon_name = "Pinaceae",
   geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = med, coordinates = NULL, overlap = "centroid_inside",
-  # remove_overlap = TRUE,
+  remove_overlap = TRUE,
   namesmatched = TRUE,
   list_set_only = TRUE,
   api = api)
@@ -146,7 +146,7 @@ checklists_extent_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
   geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = med, coordinates = NULL, overlap = "extent_intersect",
-  # remove_overlap = TRUE,
+  remove_overlap = TRUE,
   namesmatched = TRUE,
   list_set_only = TRUE,
   api = api)
@@ -158,7 +158,7 @@ checklists_shape_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
   geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = med, coordinates = NULL, overlap = "shape_intersect",
-  # remove_overlap = TRUE,
+  remove_overlap = TRUE,
   namesmatched = TRUE,
   list_set_only = TRUE,
   api = api)
@@ -170,10 +170,11 @@ checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
   geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = med, coordinates = NULL, overlap = "shape_inside",
-  # remove_overlap = TRUE,
+  remove_overlap = TRUE,
   namesmatched = TRUE,
   list_set_only = TRUE,
   api = api)
+
 
 
 

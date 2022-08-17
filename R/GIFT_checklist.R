@@ -68,7 +68,8 @@ GIFT_checklist <- function(
   
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   
-  # remove_overlap = TRUE,
+  remove_overlap = FALSE, area_th_island = 0, 
+  area_th_mainland = 100, overlap_th = 0.1,
   
   namesmatched = FALSE,
   list_set_only = FALSE, 
@@ -204,9 +205,16 @@ GIFT_checklist <- function(
   }
   
   ## 2.3. Overlapping entities ----
-  # To do (overlapped entities are removed => subseting lists based on entity_ID again)
+  # overlapped entities are removed => subseting lists based on entity_ID again)
+  if(remove_overlap == TRUE){
+    no_overlap <- GIFT_no_overlap(entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
+                                  area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
+                                  geoentities_overlap = NULL, 
+                                  api = api, 
+                                  GIFT_version = GIFT_version)
+    lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+  }
   
-
   ## 2.4. Downloading ----
   # When downloading the species, this whole filtering process has to happen again
   # Output of the function: species distribution in lists AND metadata for lists
