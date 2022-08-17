@@ -167,17 +167,12 @@ GIFT_spatial <- function(
   
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----
-  if(!is.null(entity_ID)){
-    # filter in GIFT_env()
-    
-  }
-  
   # Depending upon the overlap argument, we either query the centroids or
   # the extent from GIFT
   if(overlap == "centroid_inside"){
     # Query the centroid using GIFT_env()
     GIFT_centroids <- GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
-                                     api = api)
+                                     api = api, GIFT_version = GIFT_version)
     # Removing NAs
     GIFT_centroids <- GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
     
@@ -195,7 +190,8 @@ GIFT_spatial <- function(
                            "shape_inside")){
     # Query the extent using GIFT_env()
     GIFT_extents <- GIFT::GIFT_env(
-      miscellaneous = c("x_min", "x_max", "y_min", "y_max"), api = api)
+      miscellaneous = c("x_min", "x_max", "y_min", "y_max"),
+      api = api, GIFT_version = GIFT_version)
     
     # Removing NAs
     GIFT_extents <- GIFT_extents[complete.cases(GIFT_extents$x_max), ]
