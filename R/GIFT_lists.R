@@ -1,5 +1,5 @@
 
-GIFT_lists <- function(api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+GIFT_lists <- function(api = "http://gift.uni-goettingen.de/api/extended/", GIFT_version = NULL){
   
   # 1. Controls ----
   # Package dependencies
@@ -10,8 +10,9 @@ GIFT_lists <- function(api = "http://gift.uni-goettingen.de/api/extended/index.p
 
   # 2. Query ----
   tmp <- read_json(paste0(
-    api,
-    "?query=lists"),
+    api,"index",
+    ifelse(is.null(GIFT_version), "", GIFT_version),
+    ".php?query=lists"),
     simplifyVector = TRUE)
   
   return(tmp)
