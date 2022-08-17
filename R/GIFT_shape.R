@@ -39,7 +39,7 @@ GIFT_shape <- function(entity_ID = NULL){
   
   geodata <- list()
   
-  for (i in seq_along(entity_ID)) {
+  for (i in seq_along(unique(entity_ID))) {
     
     geodata[[i]] <- geojson_sf(paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",entity_ID[i],".geojson"))
     
