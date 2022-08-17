@@ -11,11 +11,11 @@
 
 *Final check*  
 1. Checklists  <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 1.1. GIFT_checklist_raw()  
-&nbsp;&nbsp;&nbsp;&nbsp; 1.2. GIFT_checklist_conditional()  
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">1.1. GIFT_checklist_raw()</span>  
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">1.2. GIFT_checklist_conditional()</span>   
 &nbsp;&nbsp;&nbsp;&nbsp; 1.3. GIFT_spatial()  
 &nbsp;&nbsp;&nbsp;&nbsp; 1.4. GIFT_taxonomy()   
-&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup() (not written yet)  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup()   
 &nbsp;&nbsp;&nbsp;&nbsp; 1.6. GIFT_checklist()  
   
 2. Trait functions <br>
@@ -63,6 +63,7 @@
     - "translate" arguments for naive user
     - some parameters come as characters instead of numeric (nativeness 1 0)
     - Make the subsets more straightforward for users: for ex. nativeness, subset of $subset %in% native, native and naturalized etc AND $native_indicated==1 has to be done in the BACKGROUND
+    - add argument for taxonomic group
 
 * GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc
@@ -147,6 +148,9 @@
     - one API per version of the database
     - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
     - if version is specified => API changed in the R function (correspondence version number versus API)
+
+## 1.2. Controls
+Make a clear error message in case of wrong API (have a clear error message for version)
 
 # 2. Vignette
 
