@@ -15,8 +15,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">1.2. GIFT_checklist_conditional()</span>   
 &nbsp;&nbsp;&nbsp;&nbsp; 1.3. GIFT_spatial()  
 &nbsp;&nbsp;&nbsp;&nbsp; 1.4. GIFT_taxonomy()   
-&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup()   
-&nbsp;&nbsp;&nbsp;&nbsp; 1.6. GIFT_checklist()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.6. GIFT_no_overlap()  
+&nbsp;&nbsp;&nbsp;&nbsp; 1.7. GIFT_checklist()  
   
 2. Trait functions <br>
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1. GIFT_traits_meta()  
@@ -39,7 +40,6 @@
 6. Miscellaneous  
 &nbsp;&nbsp;&nbsp;&nbsp; 6.1. med()  
 &nbsp;&nbsp;&nbsp;&nbsp; 6.2. GIFT_references()  
-&nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_no_overlap()  
 
 &nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
   
@@ -68,8 +68,8 @@
 * GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc
     - Make the function work with single point coordinate
-    - Have a smaller shapefile than med
-    - have option to download geojson based on a list of entity_ID
+    - ~~Have a smaller shapefile than med~~
+    - ~~have option to download geojson based on a list of entity_ID~~
 
 * GIFT_taxonomy()
     - input:
@@ -79,7 +79,7 @@
     - input: species list (work_ID) and level of grouping  
     - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
 
-* GIFT_checklist : wrapper for GIFT_checklist_conditional() and _spatial()
+* GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
@@ -95,7 +95,7 @@
 
 * GIFT_traits_raw()
 
-* GIFT_env
+* GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
@@ -148,6 +148,7 @@
     - one API per version of the database
     - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
     - if version is specified => API changed in the R function (correspondence version number versus API)
+    - versions of the shapefile for each database version has to be available
 
 ## 1.2. Controls
 Make a clear error message in case of wrong API (have a clear error message for version)
