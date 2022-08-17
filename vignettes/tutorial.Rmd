@@ -119,19 +119,101 @@ checklists <- GIFT_checklist(taxon_name = "Pinaceae",
   namesmatched = TRUE,
   api = api)
 
+par(mfrow=c(1,1))
+geodata <- GIFT_shape(checklists[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID)
+
 
 data(med)
 
-checklists <- GIFT_checklist(taxon_name = "Pinaceae",
+checklists_centroid_inside <- GIFT_checklist(taxon_name = "Pinaceae",
   complete_taxon = TRUE, 
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
   complete_floristic = TRUE,
-  geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+  geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = med, coordinates = NULL, overlap = "centroid_inside",
   # remove_overlap = TRUE,
   namesmatched = TRUE,
+  list_set_only = TRUE,
   api = api)
+
+
+checklists_extent_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "extent_intersect",
+  # remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
+
+checklists_shape_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "shape_intersect",
+  # remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
+
+checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "shape_inside",
+  # remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
+
+
+
+
+par(mfrow=c(2,2), mai=c(0,0,0.5,0))
+geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(checklists_centroid_inside[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "centroid inside")
+points(x=geodata$point_x, geodata$point_y)
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(checklists_shape_intersect[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape intersect")
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(checklists_extent_intersect[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
+plot(st_geometry(med), add=TRUE)
+
+
+
+ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
+ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
+ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
+ex4 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+
+par(mfrow=c(2,2), mai=c(0,0,0.5,0))
+geodata <- GIFT_shape(ex4$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(ex$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "centroid inside")
+points(x=geodata$point_x, geodata$point_y)
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(ex3$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape intersect")
+plot(st_geometry(med), add=TRUE)
+geodata <- GIFT_shape(ex2$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
+plot(st_geometry(med), add=TRUE)
 
 
 

@@ -71,6 +71,7 @@ GIFT_checklist <- function(
   # remove_overlap = TRUE,
   
   namesmatched = FALSE,
+  list_set_only = FALSE, 
   
   GIFT_version = NULL, 
   
@@ -217,14 +218,16 @@ GIFT_checklist <- function(
     floristic_group <- "endemic_ref"
   }
   
-  checklists <- GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
-                                         taxon_name = taxon_name,
-                                         namesmatched = namesmatched,
-                                         floristic_group = floristic_group,
-                                         GIFT_version = GIFT_version,
-                                         api = api,
-                                         list_set = list_set,
-                                         taxonomy = taxonomy)
-
+  checklists <- NA
+  if (!list_set_only){
+    checklists <- GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
+                                           taxon_name = taxon_name,
+                                           namesmatched = namesmatched,
+                                           floristic_group = floristic_group,
+                                           GIFT_version = GIFT_version,
+                                           api = api,
+                                           list_set = list_set,
+                                           taxonomy = taxonomy)
+  }
   return(list(lists, checklists))
 }

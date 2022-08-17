@@ -23,11 +23,14 @@
 #' plot(st_geometry(geodata), col=geodata$entity_ID)
 #' }
 #' 
-#' @importFrom geojsonsf geojson_sf
+#' @importFrom sf st_read sf st_is_valid sf st_make_valid sf st_set_precision
+#' 
+#' 
 #' 
 #' @export
 
-GIFT_shape <- function(entity_ID = NULL){
+GIFT_shape <- function(entity_ID = NULL, 
+                       api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   # Arguments
@@ -36,17 +39,33 @@ GIFT_shape <- function(entity_ID = NULL){
          polygons for.")
   }
   
+  GIFT_entities <- GIFT::GIFT_env(miscellaneous = "area",
+                                   api = api)
+  GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
+  
+  # TODO give back warning if not all entity_IDs have polygons?
+  
+  entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
   
   geodata <- list()
   
   for (i in seq_along(unique(entity_ID))) {
     
-    geodata[[i]] <- geojson_sf(paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",entity_ID[i],".geojson"))
+    tmp_geo <- st_read(paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",entity_ID[i],".geojson"),
+                            quiet = TRUE)
     
+    # Control if sf geometry is not valid (i = 68 & 257)
+    if(!(sf::st_is_valid(tmp_geo))){
+      tmp_geo <- sf::st_make_valid(sf::st_set_precision(
+        tmp_geo, 1e2))
+    }
+  
+    geodata[[i]] <- tmp_geo
     
   }
   
   geodata <- do.call(rbind, geodata)
+  geodata <- geodata[order(geodata$area, decreasing = TRUE),]
   return(geodata)
 }
 
