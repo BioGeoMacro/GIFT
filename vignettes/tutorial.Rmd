@@ -119,6 +119,22 @@ checklists <- GIFT_checklist(taxon_name = "Pinaceae",
   namesmatched = TRUE,
   api = api)
 
+
+data(med)
+
+checklists <- GIFT_checklist(taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "centroid_inside",
+  # remove_overlap = TRUE,
+  namesmatched = TRUE,
+  api = api)
+
+
+
 # checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
 #   complete_taxon = TRUE, 
 #   floristic_group = c("all", "native", "endemic", "naturalized")[2],
