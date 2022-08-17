@@ -4,7 +4,10 @@
 \alias{GIFT_shape}
 \title{GIFT shape}
 \usage{
-GIFT_shape(entity_ID = NULL)
+GIFT_shape(
+  entity_ID = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"
+)
 }
 \arguments{
 \item{entity_ID}{A vector defining the IDs of the regions}

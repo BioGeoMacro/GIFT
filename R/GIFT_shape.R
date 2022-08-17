@@ -23,9 +23,7 @@
 #' plot(st_geometry(geodata), col=geodata$entity_ID)
 #' }
 #' 
-#' @importFrom sf st_read sf st_is_valid sf st_make_valid sf st_set_precision
-#' 
-#' 
+#' @importFrom sf st_read st_is_valid st_make_valid st_set_precision
 #' 
 #' @export
 
