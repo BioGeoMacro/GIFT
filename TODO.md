@@ -84,36 +84,48 @@
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
 
-* GIFT_traits_meta()
+* 2.1. GIFT_traits_meta()
 
-* GIFT_traits()
+* 2.2. GIFT_traits()
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
     - we have to do it as it is now plus:
     - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
     - intraspecific variation (trait values from all references/species)
     - species names
 
-* GIFT_traits_raw()
+* 2.3. GIFT_traits_raw()
 
-* GIFT_env()
+* 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
 
-* GIFT_env_meta_misc()
+* 3.2. GIFT_env_meta_misc()
 
-* GIFT_env_meta_raster()
+* 3.3. GIFT_env_meta_raster()
 
-* GIFT_species()
+* 4.1. GIFT_species()
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
     
-* GIFT_ranges()
+* 4.2. GIFT_ranges()
+
+* 5.1. GIFT_shape()
+    - give back warning if not all entity_IDs have polygons?
+    - Put old polygons of old versions into respective folders and paste version in the R function
+    - Add control for GIFT_version argument
+    
+* 5.2. GIFT_plot() => 4 (or 5 options): species_richness, trait coverage, envt variable, species distribution, own variable (example for the vignette: proportion of Orchidaceae across polygons)
+    - works with from GIFT_checklist() or GIFT_checklist_conditional() (faster because there is no need to retrieve the species occurrences) => species richness map
+    - trait coverage (needs GIFT_checklist_conditional() to get taxonomic group/biogeography status and the table)
+
+* 6.1. med()
+
+* 6.2. GIFT_references(): before references/citation
 
 * GIFT_species()
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
-
 
 * GIFT_species_distribution()
     - input: only one species at the moment
@@ -127,16 +139,6 @@
     - submit own coordinates or polygons or lines
     - input: shape and criteria (calling get_checklists_conditional)
     - output: lists falling within the area required
-
-* GIFT_plot() => 4 (or 5 options): species_richness, trait coverage, envt variable, species distribution, own variable (example for the vignette: proportion of Orchidaceae across polygons)
-    - works with from GIFT_checklist() or GIFT_checklist_conditional() (faster because there is no need to retrieve the species occurrences) => species richness map
-    - trait coverage (needs GIFT_checklist_conditional() to get taxonomic group/biogeography status and the table)
-
-* GIFT_shape()
-    - input: list of entity_ID
-    - output: sf polygons of these IDs
-
-* GIFT_references(): before references/citation
 
 * range_finder
 
