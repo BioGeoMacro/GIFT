@@ -36,7 +36,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_raw(list_ID = c(1,5), api = api)
+#' ex <- GIFT_checklist_raw(list_ID = c(1,5))
+#' ex2 <- GIFT_checklist_raw(list_ID = c(1,5), namesmatched = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -135,6 +136,7 @@ GIFT_checklist_raw <- function(
                              resolved = numeric(),
                              service = character(),
                              work_ID = numeric(),
+                             genus_ID = numeric(),
                              species = character(),
                              questionable = numeric(),
                              native = numeric(),
@@ -149,6 +151,7 @@ GIFT_checklist_raw <- function(
       list_raw <- data.frame(ref_ID = numeric(),
                              list_ID = numeric(),
                              work_ID = numeric(),
+                             genus_ID = numeric(),
                              species = character(),
                              questionable = numeric(),
                              native = numeric(),
@@ -162,10 +165,10 @@ GIFT_checklist_raw <- function(
     }
   } else{
     # Some columns have to be numeric
-    list_raw[, c("ref_ID", "list_ID", "work_ID", "questionable", "native",
+    list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable", "native",
                  "quest_native", "naturalized", "endemic_ref", "quest_end_ref",
                  "endemic_list", "quest_end_list")] <- 
-      sapply(list_raw[, c("ref_ID", "list_ID", "work_ID", "questionable",
+      sapply(list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
                           "native", "quest_native", "naturalized",
                           "endemic_ref", "quest_end_ref", "endemic_list",
                           "quest_end_list")], as.numeric)
