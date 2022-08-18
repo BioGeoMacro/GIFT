@@ -117,7 +117,7 @@ checklists <- GIFT_checklist(taxon_name = "Pinaceae",
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   remove_overlap = FALSE,
   namesmatched = TRUE,  
-  taxonomic_group = FALSE,
+  taxonomic_group = TRUE,
   api = api)
 
 par(mfrow=c(1,1))

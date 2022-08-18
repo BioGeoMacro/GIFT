@@ -23,12 +23,16 @@
 #' coordinates are given, the function assumes that these are the four corners
 #' of a bounding box.
 #' 
-#' @param overlap character vector or list defining the raster
-#' data to retrieve..
+#' @param overlap 
 #' 
 #' @param namesmatched Logical
 #' 
 #' @param api character string defining from which API the data will be retrieved.
+#'  
+#' @param by_ref_ID logical indicating whether the removal of overlapping regions 
+#' shall be applied by ref_ID only. Note that regions overlapping with other regions
+#' from the same resource will be removed even if there are other references available
+#' for those regions.
 #'  
 #' @return
 #' List with two elements: the checklist with species and the list of ID.
@@ -69,7 +73,7 @@ GIFT_checklist <- function(
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   
   remove_overlap = FALSE, area_th_island = 0, 
-  area_th_mainland = 100, overlap_th = 0.1,
+  area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
   
   taxonomic_group = TRUE, 
   namesmatched = FALSE,
@@ -208,12 +212,37 @@ GIFT_checklist <- function(
   ## 2.3. Overlapping entities ----
   # overlapped entities are removed => subseting lists based on entity_ID again)
   if(remove_overlap == TRUE){
-    no_overlap <- GIFT_no_overlap(entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
-                                  area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
-                                  geoentities_overlap = NULL, 
-                                  api = api, 
-                                  GIFT_version = GIFT_version)
-    lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+    
+    if(!by_ref_ID){
+      no_overlap <- GIFT::GIFT_no_overlap(entity_IDs = lists$entity_ID, 
+                                          area_th_island = area_th_island, 
+                                          area_th_mainland = area_th_mainland, 
+                                          overlap_th = overlap_th, 
+                                          geoentities_overlap = NULL, 
+                                          api = api, GIFT_version = GIFT_version)
+      
+      lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+      
+    } else {
+      
+      geoentities_overlap <- jsonlite::read_json(
+        paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+               ".php?query=overlap"), simplifyVector = TRUE)
+      
+      to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
+        to_keep <- GIFT::GIFT_no_overlap(entity_IDs = x, 
+                                         area_th_island = area_th_island, 
+                                         area_th_mainland = area_th_mainland, 
+                                         overlap_th = overlap_th, 
+                                         geoentities_overlap = geoentities_overlap, 
+                                         api = api, GIFT_version = GIFT_version)
+        to_remove <- x[which(!x %in% to_keep)]
+      })
+      to_remove <- unlist(to_remove)
+      
+      lists <- lists[which(!lists$entity_ID %in% to_remove),]
+
+    }
   }
   
   ## 2.4. Downloading ----
