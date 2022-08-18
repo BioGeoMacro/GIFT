@@ -29,7 +29,7 @@
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
-#' A data frame with 13 columns, if namesmatched = FALSE.
+#' A
 #'
 #' @details Blabla.
 #'
