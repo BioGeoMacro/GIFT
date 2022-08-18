@@ -194,13 +194,15 @@ plot(st_geometry(med), add=TRUE)
 geodata <- GIFT_shape(checklists_extent_intersect[[1]]$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
 plot(st_geometry(med), add=TRUE)
+```
 
-
-
+Next chunk can be removed.
+```{r GIFT_checklists}
 ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
 ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
 ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
 ex4 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+
 
 par(mfrow=c(2,2), mai=c(0,0,0.5,0))
 geodata <- GIFT_shape(ex4$entity_ID)
@@ -216,9 +218,46 @@ plot(st_geometry(med), add=TRUE)
 geodata <- GIFT_shape(ex2$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
 plot(st_geometry(med), add=TRUE)
+```
+
+Now, with custom shape, coordinates, etc => this would come in the description of GIFT_checklists()
+
+```{r GIFT_spatial_custom}
+custom_point <- cbind(9.92, 51.54)
+ex5 <- GIFT_spatial(coordinates = custom_point,
+                    overlap = "extent_intersect")
+ex52 <- GIFT_spatial(coordinates = custom_point,
+                    overlap = "centroid_inside") # does not work but that is ok
+ex53 <- GIFT_spatial(coordinates = custom_point,
+                    overlap = "shape_intersect") # PROBLEM: empty data frame
+ex54 <- GIFT_spatial(coordinates = custom_point,
+                    overlap = "shape_inside") # does not work but that is ok
+
+checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
+  suit_geo = TRUE,
+  shp = NULL, coordinates = cbind(9.9, 51), overlap = "shape_inside",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
+
+#' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
+#' ex6 <- GIFT_spatial(coordinates = custom_extent,
+#' overlap = "extent_intersect")
+#' 
+#' custom_polygon <- cbind(c(-18, -16.9, -13, -13, -18, -18),
+#' c(29.3, 33, 29.3, 27.5, 27.5, 29.3))
+#' ex7 <- GIFT_spatial(coordinates = custom_polygon,
+#' overlap = "extent_intersect")
+
+```
 
 
-
+```{r}
 # checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
 #   complete_taxon = TRUE, 
 #   floristic_group = c("all", "native", "endemic", "naturalized")[2],

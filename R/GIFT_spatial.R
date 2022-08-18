@@ -84,11 +84,6 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
-  if(is.null(entity_ID)){
-    stop("Please provide the ID numbers of the regions you want 
-         polygons for.")
-  }
-  
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
@@ -164,6 +159,10 @@ GIFT_spatial <- function(
          It has to be 'centroid', 'shape_inside', 'shape_intersect' or
          'extent_in tersect'.")
   }
+  
+  ## 1.3. Manual coordinates ----
+  # Add control when shp=NULL and coord has length = 2 =>
+  # overlap can only be extent_intersect or shape_intersect
   
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----
@@ -288,7 +287,11 @@ GIFT_spatial <- function(
         
         # Calculate overlap
         sf::st_agr(tmp_geo) <- "constant"
-        sf::st_agr(shp) <- "constant"
+        
+        # Control if it is a point
+        if(!("sfc_POINT" %in% class(shp))){
+          sf::st_agr(shp) <- "constant"
+        }
         tmp <- sf::st_intersection(tmp_geo, shp)
         
         if(nrow(tmp) > 0){
@@ -301,6 +304,8 @@ GIFT_spatial <- function(
       
       if(overlap == "shape_intersect"){
         ## 2.3. shape_intersect ----
+        # Add control: if a custom point was provided, then coverage would be
+        # NA
         GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage > 0), ]
         
       } else if(overlap == "shape_inside"){

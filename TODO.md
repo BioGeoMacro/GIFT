@@ -68,6 +68,8 @@
 * 1.3. GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc
     - Make the function work with single point coordinate
+    - Control for case when user provides several polygons, or list of polygons
+    - control: only spatial objects of class sf, question: are we only allowing for sfc_MULTIPOLYGONS??
 
 * 1.4. GIFT_taxonomy()
     - add control for argument GIFT_version in the R function
