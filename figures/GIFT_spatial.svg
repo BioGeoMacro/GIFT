@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="GIFT_spatial_v2.svg"
+   sodipodi:docname="GIFT_spatial.svg"
    inkscape:export-filename="C:\Users\Pierre\ownCloud\GIFT\figures\GIFT_spatial_principle.png"
    inkscape:export-xdpi="250"
    inkscape:export-ydpi="250"
@@ -22,8 +22,8 @@
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.696647"
@@ -31,7 +31,7 @@
      inkscape:cy="371.78083"
      inkscape:window-width="2560"
      inkscape:window-height="1346"
-     inkscape:window-x="-11"
+     inkscape:window-x="1909"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
@@ -379,9 +379,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-58);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40720"><tspan
+         id="tspan1035"><tspan
            style="fill:#2a7500"
-           id="tspan40718">&quot;centroid_inside&quot;</tspan></tspan></text>
+           id="tspan1033">&quot;centroid_inside&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,77.679236,75.666508)"
@@ -389,9 +389,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-3-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40724"><tspan
+         id="tspan1039"><tspan
            style="fill:#2a7500"
-           id="tspan40722">&quot;shape_inside&quot;</tspan></tspan></text>
+           id="tspan1037">&quot;shape_inside&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,77.679236,53.760795)"
@@ -399,9 +399,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40728"><tspan
+         id="tspan1043"><tspan
            style="fill:#2a7500"
-           id="tspan40726">&quot;extent_intersect&quot;</tspan></tspan></text>
+           id="tspan1041">&quot;extent_intersect&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,77.679236,60.805466)"
@@ -409,9 +409,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-5-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40732"><tspan
+         id="tspan1047"><tspan
            style="fill:#2a7500"
-           id="tspan40730">&quot;shape_intersect&quot;</tspan></tspan></text>
+           id="tspan1045">&quot;shape_intersect&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,171.21118,44.312997)"
@@ -419,9 +419,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-58-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40736"><tspan
+         id="tspan1051"><tspan
            style="fill:#2a7500"
-           id="tspan40734">&quot;centroid_inside&quot;</tspan></tspan></text>
+           id="tspan1049">&quot;centroid_inside&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,171.21118,29.451954)"
@@ -429,9 +429,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40740"><tspan
+         id="tspan1055"><tspan
            style="fill:#2a7500"
-           id="tspan40738">&quot;extent_intersect&quot;</tspan></tspan></text>
+           id="tspan1053">&quot;extent_intersect&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,171.21118,36.496625)"
@@ -439,9 +439,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-5-7-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40744"><tspan
+         id="tspan1059"><tspan
            style="fill:#2a7500"
-           id="tspan40742">&quot;shape_intersect&quot;</tspan></tspan></text>
+           id="tspan1057">&quot;shape_intersect&quot;</tspan></tspan></text>
     <g
        id="g28922"
        transform="matrix(1.4341584,0,0,1.4341584,-75.601536,-67.129762)">
@@ -452,9 +452,9 @@
          style="font-style:normal;font-weight:normal;font-size:29.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="31.068299"
-           id="tspan40748"><tspan
+           id="tspan1063"><tspan
              style="font-family:Corbel;-inkscape-font-specification:Corbel"
-             id="tspan40746">Provided shape</tspan></tspan></text>
+             id="tspan1061">Provided shape</tspan></tspan></text>
     </g>
     <g
        id="g25317"
@@ -513,9 +513,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40752"><tspan
+         id="tspan1067"><tspan
            style="fill:#2a7500"
-           id="tspan40750">&quot;extent_intersect&quot;</tspan></tspan></text>
+           id="tspan1065">&quot;extent_intersect&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,216.86569,197.36162)"
@@ -523,9 +523,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-5-7-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40756"><tspan
+         id="tspan1071"><tspan
            style="fill:#2a7500"
-           id="tspan40754">&quot;shape_intersect&quot;</tspan></tspan></text>
+           id="tspan1069">&quot;shape_intersect&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,53.046582,193.0025)"
@@ -533,9 +533,9 @@
        style="font-style:normal;font-weight:normal;font-size:21.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="23.769657"
-         id="tspan40760"><tspan
+         id="tspan1075"><tspan
            style="fill:#2a7500"
-           id="tspan40758">&quot;extent_intersect&quot;</tspan></tspan></text>
+           id="tspan1073">&quot;extent_intersect&quot;</tspan></tspan></text>
     <g
        id="g39623"
        transform="translate(37.071933,-20.69885)">
