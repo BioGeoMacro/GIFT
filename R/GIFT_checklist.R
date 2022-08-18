@@ -71,6 +71,7 @@ GIFT_checklist <- function(
   remove_overlap = FALSE, area_th_island = 0, 
   area_th_mainland = 100, overlap_th = 0.1,
   
+  taxonomic_group = TRUE, 
   namesmatched = FALSE,
   list_set_only = FALSE, 
   
@@ -236,6 +237,27 @@ GIFT_checklist <- function(
                                            api = api,
                                            list_set = list_set,
                                            taxonomy = taxonomy)
+    if (taxonomic_group){
+
+      species <- unique(checklists[,c("work_ID","genus_ID","species")])
+      names(species)[2] <- "genus"
+      
+      checklists$family <- GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
+                                               taxon_lvl = "family",
+                                               return_ID = FALSE,
+                                               GIFT_version = GIFT_version,
+                                               api = api,
+                                               taxonomy = taxonomy,
+                                               species = species)
+      checklists$tax_group <- GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
+                                               taxon_lvl = "higher_lvl",
+                                               return_ID = FALSE,
+                                               GIFT_version = GIFT_version,
+                                               api = api,
+                                               taxonomy = taxonomy,
+                                               species = species)
+    }
   }
+
   return(list(lists, checklists))
 }

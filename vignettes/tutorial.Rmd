@@ -115,8 +115,9 @@ checklists <- GIFT_checklist(taxon_name = "Pinaceae",
   geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
   suit_geo = TRUE,
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
-  # remove_overlap = TRUE,
-  namesmatched = TRUE,
+  remove_overlap = FALSE,
+  namesmatched = TRUE,  
+  taxonomic_group = FALSE,
   api = api)
 
 par(mfrow=c(1,1))
