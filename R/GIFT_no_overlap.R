@@ -3,8 +3,29 @@
 #' Identify overlapping regions in a set of GIFT regions and choose only 
 #' non-overlapping regions based on size and overlap criteria
 #'
-#' @param entity_IDs A vector of IDs of the regions to check overlaps of
+#' @param entity_IDs A vector of IDs of the regions for which we want to check
+#' overlap
 #' 
+#' @param area_th_island A number stating from which surface the smallest
+#' overlapping polygon is kept. By default set to 0 square kilometer
+#' (meaning that by default the smallest islands will be conserverd).
+#' 
+#' @param area_th_mainland When two polygons overlap, the smallest or the
+#' biggest one can be kept. When the surface of the smallest polygon exceeds
+#' this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
+#' Set by default 100 square-kilometers.
+#' 
+#' @param overlap_th A number ranging from 0 to 1, indicating at what
+#' percentage of overlap, partially overlapping polygons should be kept. 
+#' 
+#' @param geoentities_overlap Blabla
+#' 
+#' @param api Character string defining from which API the data will be
+#' retrieved.
+#' 
+#' @param GIFT_version Character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
 #' 
 #' @return
 #' a vector
@@ -20,13 +41,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_shape(entity_ID = c(677, 200))
-#' plot(st_geometry(geodata), col=geodata$entity_ID)
+#' ex <- GIFT_no_overlap(entity_IDs = NULL)
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' 
-#' 
 #' 
 #' @export
 
@@ -43,36 +61,49 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
          to check the overlap of.")
   }
   
-  
-  
   if(is.null(geoentities_overlap)){
-    geoentities_overlap <- jsonlite::read_json(paste0(api, "index",
-                                           ifelse(is.null(GIFT_version), "", GIFT_version),
-                                           ".php?query=overlap"),
-                                    simplifyVector = TRUE)
+    geoentities_overlap <- jsonlite::read_json(
+      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+             ".php?query=overlap"), simplifyVector = TRUE)
   }
   
+  geoentities_overlap <- geoentities_overlap[
+    which(geoentities_overlap$entity1 %in% entity_IDs &
+            geoentities_overlap$entity2 %in% entity_IDs), ]
   
+  geoentities_overlap <- geoentities_overlap[
+    which(geoentities_overlap$overlap12 > overlap_th |
+            geoentities_overlap$overlap21 > overlap_th), ]
   
-  geoentities_overlap <- geoentities_overlap[which(geoentities_overlap$entity1 %in% entity_IDs & geoentities_overlap$entity2 %in% entity_IDs),]
-  geoentities_overlap <- geoentities_overlap[which(geoentities_overlap$overlap12 > overlap_th | geoentities_overlap$overlap21 > overlap_th),]
-  
-  #geoentities_overlap <- geoentities_overlap[order(geoentities_overlap$area1, decreasing = TRUE),]
+  # geoentities_overlap <- geoentities_overlap[order(geoentities_overlap$area1,
+  #                                                  decreasing = TRUE), ]
   
   entity_IDs_tocheck <- unique(geoentities_overlap$entity1)
   
-  # take the smaller entity if larger than threshhold
-  for (i in 1:length(entity_IDs_tocheck)){
-    th <- ifelse(geoentities_overlap$entity_class2[which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in% c("Mainland","Island/Mainland"),area_th_mainland,area_th_island)
-    subset.tocheck <- geoentities_overlap[which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]),]
-    subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in% c("Mainland","Island/Mainland"),area_th_mainland,area_th_island)
-    if(length(which(subset.tocheck$area1>subset.tocheck$area2 & subset.tocheck$area2>subset.tocheck$th))>0 |
-       length(which(subset.tocheck$area1<subset.tocheck$area2 & subset.tocheck$area1<th))>0) {
-      entity_IDs <- entity_IDs[which(entity_IDs!=entity_IDs_tocheck[i])]
+  # take the smaller entity if larger than threshold
+  for(i in 1:length(entity_IDs_tocheck)){
+    th <- ifelse(geoentities_overlap$entity_class2[
+      which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
+        c("Mainland", "Island/Mainland"), area_th_mainland,area_th_island)
+    
+    subset.tocheck <- geoentities_overlap[
+      which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]), ]
+    
+    subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in%
+                                  c("Mainland", "Island/Mainland"),
+                                area_th_mainland, area_th_island)
+    
+    if(length(which(subset.tocheck$area1 > subset.tocheck$area2 &
+                    subset.tocheck$area2 > subset.tocheck$th)) > 0 |
+       length(which(subset.tocheck$area1 < subset.tocheck$area2 &
+                    subset.tocheck$area1<th)) > 0) {
+      entity_IDs <- entity_IDs[which(entity_IDs != entity_IDs_tocheck[i])]
     }
   }
   
-  geoentities_overlap <- geoentities_overlap[which(geoentities_overlap$entity1 %in% entity_IDs & geoentities_overlap$entity2 %in% entity_IDs),]
+  geoentities_overlap <- geoentities_overlap[
+    which(geoentities_overlap$entity1 %in% entity_IDs &
+            geoentities_overlap$entity2 %in% entity_IDs), ]
   # TODO make warning if this data.frame still contains data
   
   return(entity_IDs)
