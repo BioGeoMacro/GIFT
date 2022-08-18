@@ -6,14 +6,21 @@
 \usage{
 GIFT_shape(
   entity_ID = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  GIFT_version = NULL
 )
 }
 \arguments{
-\item{entity_ID}{A vector defining the IDs of the regions}
+\item{entity_ID}{A vector defining the IDs of the regions.}
+
+\item{api}{character string defining from which API the data will be retrieved.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 }
 \value{
-a spatial data.frame
+A spatial data.frame
 }
 \description{
 Get shapefile of GIFT regions for selected entities
@@ -24,7 +31,7 @@ Blabla.
 \examples{
 \dontrun{
 ex <- GIFT_shape(entity_ID = c(677, 200))
-plot(st_geometry(geodata), col=geodata$entity_ID)
+plot(st_geometry(ex), col = ex$entity_ID)
 }
 
 }

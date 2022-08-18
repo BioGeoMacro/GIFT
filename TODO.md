@@ -51,11 +51,11 @@
     - range_finder => <br>
 
 ## 1.1. Details
-* GIFT_checklists_raw
+* 1.1. GIFT_checklists_raw
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
     
-* GIFT_checklists_conditional
+* 1.2. GIFT_checklists_conditional
     - input: criteria
     - output: lists matching the criteria
     - To be improved: * simplify the filtering in the wrapper
@@ -65,21 +65,21 @@
     - Make the subsets more straightforward for users: for ex. nativeness, subset of $subset %in% native, native and naturalized etc AND $native_indicated==1 has to be done in the BACKGROUND
     - add argument for taxonomic group
 
-* GIFT_spatial
+* 1.3. GIFT_spatial
     - Check whether function works with POINT, MULTILINESTRING, etc
     - Make the function work with single point coordinate
-    - ~~Have a smaller shapefile than med~~
-    - ~~have option to download geojson based on a list of entity_ID~~
 
-* GIFT_taxonomy()
-    - input:
-    - output:
+* 1.4. GIFT_taxonomy()
+    - add control for argument GIFT_version in the R function
 
-* GIFT_tax_group(): update of assign_higher_taxa()  
+* 1.5. GIFT_tax_group(): update of assign_higher_taxa()  
     - input: species list (work_ID) and level of grouping  
     - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
 
-* GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
+* 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
+    - to do
+
+* 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
@@ -100,18 +100,15 @@
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
 
-* GIFT_env_meta_misc
+* GIFT_env_meta_misc()
 
-* GIFT_env_meta_raster
+* GIFT_env_meta_raster()
 
 * GIFT_species()
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
     
 * GIFT_ranges()
-
-* GIFT_no_overlap() (last remove_overlapping_regions):
-    - to do
 
 * GIFT_species()
     - input: user's species name
@@ -139,7 +136,6 @@
     - input: list of entity_ID
     - output: sf polygons of these IDs
 
-    
 * GIFT_references(): before references/citation
 
 * range_finder
@@ -169,3 +165,4 @@ Make a clear error message in case of wrong API (have a clear error message for 
 
 # 6. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
+* Restrict some checklists
