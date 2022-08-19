@@ -40,7 +40,8 @@
 GIFT_traits_raw <- function(
   trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   bias_deriv = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  GIFT_version = NULL){
   
   # 1. Controls ----
   # Arguments
@@ -66,7 +67,7 @@ GIFT_traits_raw <- function(
   }
   
   # Load traits_metadata to check if the provided IDs are available
-  tmp <- GIFT::GIFT_traits_meta(api = api)
+  tmp <- GIFT::GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
   if(!all(trait_IDs %in% tmp$Lvl3)){
     stop("trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'traits_meta() and look at column
@@ -80,7 +81,8 @@ GIFT_traits_raw <- function(
   # for-loop
   for (i in 1:length(trait_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
-      paste0(api, "?query=traits_raw&traitid=",
+      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+             ".php?query=traits_raw&traitid=",
              trait_IDs[i], "&deriv=", as.numeric(derived),
              "&biasref=", as.numeric(bias_ref),
              "&biasderiv=", as.numeric(bias_deriv)),
