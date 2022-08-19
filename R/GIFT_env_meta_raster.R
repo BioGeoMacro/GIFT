@@ -1,11 +1,12 @@
 
-GIFT_env_meta_raster <- function(api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+GIFT_env_meta_raster <- function(api = "http://gift.uni-goettingen.de/api/extended/",
+                                 GIFT_version = NULL){
   require(jsonlite)
   require(dplyr)
   # Return the raster environmental information
   tmp <- read_json(paste0(
-      api,
-      "?query=env_raster"), simplifyVector = TRUE)
+    api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+    ".php?query=env_raster"), simplifyVector = TRUE)
  
   # Extract Citavi number from each list element
   tmp$citavi_ID <- gsub("^.*\\#", "", tmp$citavi_ID)
