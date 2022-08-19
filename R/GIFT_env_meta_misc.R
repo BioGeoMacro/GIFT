@@ -1,12 +1,13 @@
 
-GIFT_env_meta_misc <- function(api = "http://gift.uni-goettingen.de/api/extended/index.php"){
+GIFT_env_meta_misc <- function(api = "http://gift.uni-goettingen.de/api/extended/",
+                               GIFT_version = NULL){
   require(jsonlite)
   require(dplyr)
 
   # Return the miscellaneous environmental information as a data frame
   tmp <- read_json(paste0(
-    api,
-    "?query=env_misc"),
+    api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+    ".php?query=env_misc"),
     simplifyVector = TRUE)
   
   # Extract Citavi number from each list element
