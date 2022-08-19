@@ -57,7 +57,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom sf st_polygon st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
+#' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
 #' 
 #' @export
 
@@ -120,16 +120,23 @@ GIFT_spatial <- function(
   # Define shp as coordinates, only one format accepted
   if(!is.null(coordinates)){
     if(nrow(coordinates) == 1){
+      if(overlap %in% c("shape_inside", "centroid_inside")){
+        stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+      }
+      
       shp <- sf::st_point(coordinates)
       shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
     } else if(nrow(coordinates) == 2){
-      warning("4 coordinates provided: an extent box was drawn, assuming that
+      message("4 coordinates provided: an extent box was drawn, assuming that
             minimum X and Y are on row 1, and maximum X and Y on row 2.")
       shp <- make_box(xmin = coordinates[1, 1],
                       xmax = coordinates[2, 1],
                       ymin = coordinates[1, 2],
                       ymax = coordinates[2, 2])
       shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
     }else if(nrow(coordinates) > 2){
       if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
          (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
@@ -138,6 +145,7 @@ GIFT_spatial <- function(
       }
       shp <- sf::st_polygon(list(coordinates))
       shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
     } else{
       stop("'coordinates' object does not have the right format. It should be
            a vector of XY coordinates. See help page.")
@@ -213,7 +221,7 @@ GIFT_spatial <- function(
     sf::st_agr(GIFT_centroids_sf) <- "constant"
     sf::st_agr(shp) <- "constant"
     
-    tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
+    tmp <- sf::st_intersection(GIFT_centroids_sf, shp) # st_intersects INSTEAD??
     sf::st_geometry(tmp) <- NULL
     
     gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
@@ -288,10 +296,7 @@ GIFT_spatial <- function(
         # Calculate overlap
         sf::st_agr(tmp_geo) <- "constant"
         
-        # Control if it is a point
-        if(!("sfc_POINT" %in% class(shp))){
-          sf::st_agr(shp) <- "constant"
-        }
+        sf::st_agr(shp) <- "constant"
         tmp <- sf::st_intersection(tmp_geo, shp)
         
         if(nrow(tmp) > 0){
