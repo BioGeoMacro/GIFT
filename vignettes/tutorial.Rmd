@@ -77,8 +77,11 @@ length(unique(ex_tra$species))
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
                           bias_ref = TRUE, bias_deriv = TRUE, api = api)
 
+ex_tra <- GIFT_traits_raw(trait_IDs = c("1.2.1"), derived = TRUE,
+                          bias_ref = TRUE, bias_deriv = TRUE)
+
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
-                          bias_ref = TRUE, bias_deriv = TRUE, api = api)
+                          bias_ref = FALSE, bias_deriv = FALSE, api = api)
 
 ```
 
@@ -272,6 +275,24 @@ ex63 <- GIFT_spatial(coordinates = custom_extent,
                      overlap = "centroid_inside")
 ex64 <- GIFT_spatial(coordinates = custom_extent,
                      overlap = "shape_inside")
+
+checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
+                                          complete_taxon = TRUE, 
+                                          floristic_group = c("all", "native", "endemic", "naturalized")[2],
+                                          complete_floristic = TRUE,
+                                          geo_type = c("Island"), 
+                                          suit_geo = TRUE,
+                                          shp = NULL, coordinates = cbind(c(-13, -18.5), c(27.5, 29.5)), overlap = "shape_inside",
+                                          remove_overlap = TRUE,
+                                          namesmatched = TRUE,
+                                          list_set_only = TRUE,
+                                          api = api)
+par(mfrow=c(1,1), mai=c(0,0,0.5,0))
+geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
+plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
+
+
+
 ```
 
 
