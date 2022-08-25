@@ -16,8 +16,8 @@ GIFT_env_meta_misc <- function(api = "http://gift.uni-goettingen.de/api/extended
   
   # Merging complete reference names
   refs <- read_json(paste0(
-    api,
-    "?query=references_citavi"),
+    api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+    ".php?query=references_citavi"),
     simplifyVector = TRUE)
   
   tmp <- left_join(tmp,refs, by = c("citavi_ID" = "citavi_seq_no"))
