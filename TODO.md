@@ -40,6 +40,7 @@
 6. Miscellaneous  
 &nbsp;&nbsp;&nbsp;&nbsp; 6.1. med()  
 &nbsp;&nbsp;&nbsp;&nbsp; 6.2. GIFT_references()  
+&nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_geology()? generic queries?  
 
 &nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
   
@@ -85,6 +86,7 @@
     - needs to be simple!
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
+    - check output when floristic_group argument has a length of two (e.g. endemic and native)
 
 * 2.1. GIFT_traits_meta()
 
