@@ -56,7 +56,7 @@
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
     - add message on taxonomic status for original names (Pierre)
-    - check error (only for restricted IP?) (Patrick)
+    - ~~check error (only for restricted IP?) (Patrick)~~
     
 * 1.2. GIFT_checklists_conditional
     - input: criteria
