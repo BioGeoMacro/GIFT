@@ -12,7 +12,8 @@
 #' @param taxon_name Character.
 #' 
 #' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
-#' full species name.
+#' original species name as they came in the references as well as details on
+#' the taxonomic harmonization.
 #' 
 #' @param floristic_group NULL or character string among these options:
 #' 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
@@ -70,18 +71,48 @@ GIFT_checklist_raw <- function(
          identification numbers of the lists you want to retrieve.")
   }
   
-  # if(!is.numeric(taxonid)){
-  #   stop("'taxonid' is a numeric describing what taxonomic group you want.
-  #        See help of the function.")
-  # }
-  
   if(!is.logical(namesmatched)){
-    stop("'namesmatched' must be a logical indicating whether you want access to original name.")
+    stop("'namesmatched' must be a logical indicating whether you want to
+         retrieve the original names of species, as they came in the
+         references.")
+  }
+  
+  if(!is.character(taxon_name)){
+    stop("'taxon_name' must be a character string stating what taxonomical
+         group you want to retrieve. Set to 'Tracheophyta' by default.")
   }
   
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
+  
+  taxon_check <- GIFT::GIFT_taxonomy(api = api)
+  if(!(taxon_name %in% taxon_check$taxon_name)){
+    stop("The 'taxon_name' you specified is not available in GIFT. Run
+         GIFT_taxonomy() to look at the available options (column 'taxon_name'
+         of the output).")
+  }
+  
+  if(!is.character(floristic_group) |
+     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
+    stop("'floristic_group' must be a character string. Available options are
+         'all', 'native', 'endemic' and 'naturalized'.")
+  }
+  
+  # list_set = NULL
+  
+  # taxonomy
+  if(!is.null(taxonomy) & !is.data.frame(taxonomy) |
+     sum(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+           "rgt") %in% colnames(taxonomy)) != 6){
+    stop("'taxonomy' is NULL by default, which means that the whole
+         taxonomy of GIFT is retrived. If you already loaded it, you can
+         provide it here as an argument. In that case, it must be a data
+         frame containing the following columns 'taxon_ID', 'taxon_name',
+         'taxon_author', 'taxon_lvl', 'lft' and 'rgt'.")
+  }
+  
+  # GIFT_version = NULL
   
   # 2. Query ----
   
@@ -131,55 +162,39 @@ GIFT_checklist_raw <- function(
   # Format of the output
   if(nrow(list_raw) == 0){
     if(namesmatched){
-      list_raw <- data.frame(ref_ID = numeric(),
-                             list_ID = numeric(),
-                             name_ID = numeric(),
-                             genus = character(),
+      list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+                             name_ID = numeric(), genus = character(),
                              species_epithet = character(),
-                             subtaxon = character(),
-                             author = character(),
-                             matched = numeric(),
-                             epithetscore = numeric(),
-                             overallscore = numeric(),
-                             resolved = numeric(),
-                             service = character(),
-                             work_ID = numeric(),
-                             genus_ID = numeric(),
-                             species = character(),
-                             questionable = numeric(),
-                             native = numeric(),
-                             quest_native = numeric(),
-                             naturalized = numeric(),
-                             endemic_ref = numeric(),
-                             quest_end_ref = numeric(),
+                             subtaxon = character(), author = character(),
+                             matched = numeric(), epithetscore = numeric(),
+                             overallscore = numeric(), resolved = numeric(),
+                             service = character(), work_ID = numeric(),
+                             genus_ID = numeric(), species = character(),
+                             questionable = numeric(), native = numeric(),
+                             quest_native = numeric(), naturalized = numeric(),
+                             endemic_ref = numeric(), quest_end_ref = numeric(),
                              endemic_list = numeric(),
                              quest_end_list = numeric(),
                              cons_status = logical())
     } else{
-      list_raw <- data.frame(ref_ID = numeric(),
-                             list_ID = numeric(),
-                             work_ID = numeric(),
-                             genus_ID = numeric(),
-                             species = character(),
-                             questionable = numeric(),
-                             native = numeric(),
-                             quest_native = numeric(),
-                             naturalized = numeric(),
-                             endemic_ref = numeric(),
-                             quest_end_ref = numeric(),
-                             endemic_list = numeric(),
+      list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+                             work_ID = numeric(), genus_ID = numeric(),
+                             species = character(), questionable = numeric(),
+                             native = numeric(), quest_native = numeric(),
+                             naturalized = numeric(), endemic_ref = numeric(),
+                             quest_end_ref = numeric(), endemic_list = numeric(),
                              quest_end_list = numeric(),
                              cons_status = logical())
     }
   } else{
     # Some columns have to be numeric
-    list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable", "native",
-                 "quest_native", "naturalized", "endemic_ref", "quest_end_ref",
-                 "endemic_list", "quest_end_list")] <- 
-      sapply(list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
-                          "native", "quest_native", "naturalized",
-                          "endemic_ref", "quest_end_ref", "endemic_list",
-                          "quest_end_list")], as.numeric)
+    list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
+                 "native", "quest_native", "naturalized", "endemic_ref",
+                 "quest_end_ref", "endemic_list", "quest_end_list")] <- 
+      sapply(list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID",
+                          "questionable", "native", "quest_native",
+                          "naturalized", "endemic_ref", "quest_end_ref",
+                          "endemic_list", "quest_end_list")], as.numeric)
     list_raw$cons_status <- as.character(list_raw$cons_status)
     
     if(namesmatched){
@@ -189,6 +204,5 @@ GIFT_checklist_raw <- function(
                             "overallscore", "resolved")], as.numeric)
     }
   }
-  
   return(list_raw)
 }
