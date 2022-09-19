@@ -9,7 +9,8 @@ GIFT_traits(
   agreement = 0.66,
   bias_ref = TRUE,
   bias_deriv = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/index.php"
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  GIFT_version = NULL
 )
 }
 \arguments{
