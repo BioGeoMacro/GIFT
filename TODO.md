@@ -52,13 +52,13 @@
     - range_finder => <br>
 
 ## 1.1. Details
-* 1.1. GIFT_checklists_raw
+* 1.1. GIFT_checklists_raw (Pierre)  
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
     - add message on taxonomic status for original names (Pierre)
     - check error (only for restricted IP?) (Patrick)
     
-* 1.2. GIFT_checklists_conditional
+* 1.2. GIFT_checklists_conditional (Pierre)
     - input: criteria
     - output: lists matching the criteria
     - To be improved: * simplify the filtering in the wrapper
@@ -69,20 +69,20 @@
     - add argument for taxonomic group
 
 * 1.3. GIFT_spatial
-    - Check whether function works with POINT, MULTILINESTRING, etc
-    - Make the function work with single point coordinate
-    - Control for case when user provides several polygons, or list of polygons
-    - control: only spatial objects of class sf, question: are we only allowing for sfc_MULTIPOLYGONS??
+    - Check whether function works with POINT, MULTILINESTRING, etc (Pierre)
+    - Make the function work with single point coordinate (Pierre)
+    - Control for case when user provides several polygons, or list of polygons (Pierre)
+    - control: only spatial objects of class sf, question: are we only allowing for sfc_MULTIPOLYGONS?? (Pierre)
 
-* 1.4. GIFT_taxonomy()
+* 1.4. GIFT_taxonomy() (Pierre)  
     - add control for argument GIFT_version in the R function
 
-* 1.5. GIFT_tax_group(): update of assign_higher_taxa()  
+* 1.5. GIFT_tax_group(): update of assign_higher_taxa() (Pierre)  
     - input: species list (work_ID) and level of grouping  
     - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
 
 * 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
-    - to do
+    - controls and output (Pierre)
 
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
@@ -92,7 +92,7 @@
     - add orig ID for link to traits_raw (Patrick)
     - add message on taxonomic status for original names (Pierre)
     
-* 2.1. GIFT_traits_meta()
+* 2.1. GIFT_traits_meta() (Pierre)  
 
 * 2.2. GIFT_traits()
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
@@ -110,9 +110,11 @@
     - GIFT_env() => message if selected NAs included
     - restricted raster layers (Patrick)
 
-* 3.2. GIFT_env_meta_misc()
-
-* 3.3. GIFT_env_meta_raster()
+* 3.2. GIFT_env_meta_misc()    
+    - restricted raster layers (Patrick)
+    
+* 3.3. GIFT_env_meta_raster()  
+    - restricted raster layers (Patrick)
 
 * 4.1. GIFT_species()
     - input: user's species name
