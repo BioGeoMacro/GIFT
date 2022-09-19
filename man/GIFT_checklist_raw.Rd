@@ -48,7 +48,8 @@ Blabla.
 }
 \examples{
 \dontrun{
-ex <- GIFT_checklist_raw(list_ID = c(1,5), api = api)
+ex <- GIFT_checklist_raw(list_ID = c(1,5))
+ex2 <- GIFT_checklist_raw(list_ID = c(1,5), namesmatched = TRUE)
 }
 
 }

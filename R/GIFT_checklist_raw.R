@@ -11,10 +11,11 @@
 #' 
 #' @param taxon_name Character.
 #' 
-#' @param namesmatched Boolean: do you want the full species name.
+#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
+#' full species name.
 #' 
-#' @param floristic_group NULL or character among these options: 'native',
-#' 'naturalized', 'endemic_list', 'endemic_ref'.
+#' @param floristic_group NULL or character string among these options:
+#' 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
@@ -46,13 +47,10 @@
 #' @export
 
 GIFT_checklist_raw <- function(
-  ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
-  taxon_name = "Tracheophyta",
-  floristic_group = NULL,
-  # valid options are: c("native", "naturalized", "endemic_list", "endemic_ref"),
-  GIFT_version = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/",
-  list_set = NULL, taxonomy = NULL
+    ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
+    taxon_name = "Tracheophyta", floristic_group = NULL,
+    list_set = NULL, taxonomy = NULL, GIFT_version = NULL,
+    api = "http://gift.uni-goettingen.de/api/extended/"
 ){
   
   # 1. Controls ----
@@ -60,6 +58,16 @@ GIFT_checklist_raw <- function(
   if(is.null(list_ID) & is.null(ref_ID)){
     stop("Please provide the ID numbers of the references and/or lists you want 
          to load.")
+  }
+  
+  if(!is.null(ref_ID) & !is.character(ref_ID) & !is.numeric(ref_ID)){
+    stop("'ref_ID' must be a character string or a numeric stating the
+         identification numbers of the references you want to retrieve.")
+  }
+  
+  if(!is.null(list_ID) & !is.character(list_ID) & !is.numeric(list_ID)){
+    stop("'list_ID' must be a character string or a numeric stating the
+         identification numbers of the lists you want to retrieve.")
   }
   
   # if(!is.numeric(taxonid)){

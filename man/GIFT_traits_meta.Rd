@@ -4,7 +4,10 @@
 \alias{GIFT_traits_meta}
 \title{GIFT_traits_meta}
 \usage{
-GIFT_traits_meta(api = "http://gift.uni-goettingen.de/api/extended/index.php")
+GIFT_traits_meta(
+  api = "http://gift.uni-goettingen.de/api/extended/",
+  GIFT_version = NULL
+)
 }
 \arguments{
 \item{api}{Character string corresponding to the API.}
