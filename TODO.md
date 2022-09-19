@@ -55,6 +55,8 @@
 * 1.1. GIFT_checklists_raw
     - ~~input: list of list_ID~~
     - ~~output: associated list~~
+    - add message on taxonomic status for original names (Pierre)
+    - check error (only for restricted IP?) (Patrick)
     
 * 1.2. GIFT_checklists_conditional
     - input: criteria
@@ -87,7 +89,9 @@
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
     - check output when floristic_group argument has a length of two (e.g. endemic and native)
-
+    - add orig ID for link to traits_raw (Patrick)
+    - add message on taxonomic status for original names (Pierre)
+    
 * 2.1. GIFT_traits_meta()
 
 * 2.2. GIFT_traits()
@@ -98,11 +102,13 @@
     - species names
 
 * 2.3. GIFT_traits_raw()
+    - check error (only for restricted IP?) (Patrick)
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
+    - restricted raster layers (Patrick)
 
 * 3.2. GIFT_env_meta_misc()
 
@@ -126,12 +132,14 @@
 * 6.1. med()
 
 * 6.2. GIFT_references(): before references/citation
+    - remove comments, acknowledgements (Patrick)
+    - processed == 1 (Patrick)
 
-* GIFT_species()
+* GIFT_species() (Patrick)
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
 
-* GIFT_species_distribution()
+* GIFT_species_distribution() (Patrick)
     - input: only one species at the moment
     - plotting argument => polygons where the sp is native/invasive/naturalized/absent
     - GIFT_species() run internally
@@ -147,7 +155,7 @@
 * range_finder
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
-    - one API per version of the database
+    - one API per version of the database (Patrick)
     - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
     - if version is specified => API changed in the R function (correspondence version number versus API)
     - versions of the shapefile for each database version has to be available
