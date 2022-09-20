@@ -54,7 +54,7 @@
 #' @export
 
 GIFT_checklist <- function(
-  # actual arguments user needs
+    # actual arguments user needs
   taxon_name = "Tracheophyta",
   complete_taxon = TRUE, # make a figure with orchids and angiosperms for ex.
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
@@ -214,12 +214,10 @@ GIFT_checklist <- function(
   if(remove_overlap == TRUE){
     
     if(!by_ref_ID){
-      no_overlap <- GIFT::GIFT_no_overlap(entity_IDs = lists$entity_ID, 
-                                          area_th_island = area_th_island, 
-                                          area_th_mainland = area_th_mainland, 
-                                          overlap_th = overlap_th, 
-                                          geoentities_overlap = NULL, 
-                                          api = api, GIFT_version = GIFT_version)
+      no_overlap <- GIFT::GIFT_no_overlap(
+        entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
+        area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
+        geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version)
       
       lists <- lists[which(lists$entity_ID %in% no_overlap), ]
       
@@ -241,18 +239,16 @@ GIFT_checklist <- function(
       to_remove <- unlist(to_remove)
       
       lists <- lists[which(!lists$entity_ID %in% to_remove),]
-
+      
     }
   }
   
   ## 2.4. Downloading ----
   # When downloading the species, this whole filtering process has to happen again
   # Output of the function: species distribution in lists AND metadata for lists
-
+  
   # Match argument name with GIFT_checklist_raw()
-  if(floristic_group == "all"){
-    floristic_group <- NULL
-  } else if(floristic_group == "endemic"){
+  if(floristic_group == "endemic"){
     floristic_group <- "endemic_ref"
   }
   
@@ -267,7 +263,7 @@ GIFT_checklist <- function(
                                            list_set = list_set,
                                            taxonomy = taxonomy)
     if (taxonomic_group){
-
+      
       species <- unique(checklists[,c("work_ID","genus_ID","species")])
       names(species)[2] <- "genus"
       
@@ -279,14 +275,14 @@ GIFT_checklist <- function(
                                                taxonomy = taxonomy,
                                                species = species)
       checklists$tax_group <- GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
-                                               taxon_lvl = "higher_lvl",
-                                               return_ID = FALSE,
-                                               GIFT_version = GIFT_version,
-                                               api = api,
-                                               taxonomy = taxonomy,
-                                               species = species)
+                                                  taxon_lvl = "higher_lvl",
+                                                  return_ID = FALSE,
+                                                  GIFT_version = GIFT_version,
+                                                  api = api,
+                                                  taxonomy = taxonomy,
+                                                  species = species)
     }
   }
-
+  
   return(list(lists, checklists))
 }
