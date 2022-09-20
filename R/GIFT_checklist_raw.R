@@ -15,14 +15,15 @@
 #' original species name as they came in the references as well as details on
 #' the taxonomic harmonization.
 #' 
-#' @param floristic_group NULL or character string among these options:
-#' 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
+#' @param floristic_group Character string among these options:
+#' 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return
 #' A data frame with 13 columns, if namesmatched = FALSE.
@@ -34,7 +35,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist_raw()]
+#' @seealso [GIFT::GIFT_checklist()]
 #'
 #' @examples
 #' \dontrun{
@@ -49,7 +50,7 @@
 
 GIFT_checklist_raw <- function(
     ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
-    taxon_name = "Tracheophyta", floristic_group = NULL,
+    taxon_name = "Tracheophyta", floristic_group = "all",
     list_set = NULL, taxonomy = NULL, GIFT_version = NULL,
     api = "http://gift.uni-goettingen.de/api/extended/"
 ){
@@ -94,25 +95,29 @@ GIFT_checklist_raw <- function(
   }
   
   if(!is.character(floristic_group) |
-     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
+     !(floristic_group %in% c("all", "native", "naturalized", "endemic_ref",
+                              "endemic_list"))){
     stop("'floristic_group' must be a character string. Available options are
-         'all', 'native', 'endemic' and 'naturalized'.")
+         'all', 'native', 'naturalized', 'endemic_ref' and 'endemic_list'.")
   }
   
-  # list_set = NULL
+  # list_set
+  
   
   # taxonomy
-  if(!is.null(taxonomy) & !is.data.frame(taxonomy) |
-     sum(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
-           "rgt") %in% colnames(taxonomy)) != 6){
-    stop("'taxonomy' is NULL by default, which means that the whole
-         taxonomy of GIFT is retrived. If you already loaded it, you can
+  if(!is.null(taxonomy)){
+    if(!is.data.frame(taxonomy) |
+       sum(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+             "rgt") %in% colnames(taxonomy)) != 6){
+      stop("'taxonomy' is NULL by default, which means that the whole
+         taxonomy of GIFT is retrieved. If you already loaded it, you can
          provide it here as an argument. In that case, it must be a data
          frame containing the following columns 'taxon_ID', 'taxon_name',
          'taxon_author', 'taxon_lvl', 'lft' and 'rgt'.")
+    }
   }
   
-  # GIFT_version = NULL
+  # GIFT_version
   
   # 2. Query ----
   
@@ -149,7 +154,7 @@ GIFT_checklist_raw <- function(
       ".php?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
       "&namesmatched=", as.numeric(namesmatched),
-      ifelse(is.null(floristic_group),
+      ifelse(floristic_group == "all",
              "", paste0("&filter=", floristic_group)))
       , simplifyVector = TRUE)
     
