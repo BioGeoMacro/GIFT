@@ -9,11 +9,11 @@ GIFT_checklist_raw(
   list_ID = NULL,
   namesmatched = FALSE,
   taxon_name = "Tracheophyta",
-  floristic_group = NULL,
-  GIFT_version = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  floristic_group = "all",
   list_set = NULL,
-  taxonomy = NULL
+  taxonomy = NULL,
+  GIFT_version = NULL,
+  api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{
@@ -24,18 +24,21 @@ GIFT_checklist_raw(
 `NULL` by default. These lists are retrieved in addition to the lists 
 contained in the references in `ref_ID`.}
 
-\item{namesmatched}{Boolean: do you want the full species name.}
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
+original species name as they came in the references as well as details on
+the taxonomic harmonization.}
 
 \item{taxon_name}{Character.}
 
-\item{floristic_group}{NULL or character among these options: 'native',
-'naturalized', 'endemic_list', 'endemic_ref'.}
+\item{floristic_group}{Character string among these options:
+'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
 version.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 }
 \value{
 A data frame with 13 columns, if namesmatched = FALSE.
@@ -59,5 +62,5 @@ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
      https://doi.org/10.1111/jbi.13623
 }
 \seealso{
-[GIFT::GIFT_checklist_raw()]
+[GIFT::GIFT_checklist()]
 }
