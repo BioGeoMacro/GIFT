@@ -168,11 +168,13 @@ GIFT_checklist_raw <- function(
   if(nrow(list_raw) == 0){
     if(namesmatched){
       list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+                             orig_ID = numeric(), 
                              name_ID = numeric(), genus = character(),
                              species_epithet = character(),
                              subtaxon = character(), author = character(),
                              matched = numeric(), epithetscore = numeric(),
                              overallscore = numeric(), resolved = numeric(),
+                             synonym = numeric(),matched_subtaxon = numeric(),accepted = numeric(),
                              service = character(), work_ID = numeric(),
                              genus_ID = numeric(), species = character(),
                              questionable = numeric(), native = numeric(),
@@ -203,11 +205,20 @@ GIFT_checklist_raw <- function(
     list_raw$cons_status <- as.character(list_raw$cons_status)
     
     if(namesmatched){
-      list_raw[, c("name_ID", "matched", "epithetscore", "overallscore",
+      list_raw[, c("orig_ID", "name_ID", "matched", "epithetscore", "overallscore",
                    "resolved")] <- 
-        sapply(list_raw[, c("name_ID", "matched", "epithetscore",
+        sapply(list_raw[, c("orig_ID", "name_ID", "matched", "epithetscore",
                             "overallscore", "resolved")], as.numeric)
     }
+    
+    if(all(c("synonym","matched_subtaxon","accepted") %in% names(list_raw))){
+      list_raw[, c("synonym","matched_subtaxon","accepted")] <- 
+        sapply(list_raw[, c("synonym","matched_subtaxon","accepted")], as.numeric)
+    }
+    
   }
   return(list_raw)
 }
+
+
+
