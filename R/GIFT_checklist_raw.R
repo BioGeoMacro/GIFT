@@ -94,11 +94,12 @@ GIFT_checklist_raw <- function(
          of the output).")
   }
   
-  if(!is.character(floristic_group) |
+  if(length(floristic_group) != 1 || is.na(floristic_group) ||
+     !is.character(floristic_group) || 
      !(floristic_group %in% c("all", "native", "naturalized", "endemic_ref",
                               "endemic_list"))){
-    stop("'floristic_group' must be a character string. Available options are
-         'all', 'native', 'naturalized', 'endemic_ref' and 'endemic_list'.")
+    stop(c("'floristic_group' must be a character string. Available options are
+    'all', 'native', 'naturalized', 'endemic_ref' and 'endemic_list'."))
   }
   
   # list_set
