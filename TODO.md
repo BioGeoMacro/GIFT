@@ -89,7 +89,8 @@
     - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
     - check output when floristic_group argument has a length of two (e.g. endemic and native)
-    - add orig ID for link to traits_raw (Patrick)
+    - ~~add orig ID for link to traits_raw (Patrick)~~
+    - ~~add additional match-up infos and author names (Patrick)~~
     - add message on taxonomic status for original names (Pierre)
     
 * 2.1. GIFT_traits_meta() (Pierre)  
