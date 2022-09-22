@@ -42,6 +42,7 @@ GIFT_taxonomy <- function(GIFT_version = NULL,
   
   # Control for GIFT_version to add
   
+  
   # 2. Query ----
   tmp <- read_json(paste0(
     api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
