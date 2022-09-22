@@ -252,8 +252,8 @@ GIFT_checklist_raw <- function(
     }
     
   }
+  
+  message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
+  
   return(list_raw)
 }
-
-
-

@@ -254,14 +254,15 @@ GIFT_checklist <- function(
   
   checklists <- NA
   if (!list_set_only){
-    checklists <- GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
-                                           taxon_name = taxon_name,
-                                           namesmatched = namesmatched,
-                                           floristic_group = floristic_group,
-                                           GIFT_version = GIFT_version,
-                                           api = api,
-                                           list_set = list_set,
-                                           taxonomy = taxonomy)
+    checklists <- suppressMessages(
+      GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
+                               taxon_name = taxon_name,
+                               namesmatched = namesmatched,
+                               floristic_group = floristic_group,
+                               GIFT_version = GIFT_version,
+                               api = api,
+                               list_set = list_set,
+                               taxonomy = taxonomy))
     if (taxonomic_group){
       
       species <- unique(checklists[,c("work_ID","genus_ID","species")])
@@ -283,6 +284,8 @@ GIFT_checklist <- function(
                                                   species = species)
     }
   }
+  
+  message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
   
   return(list(lists, checklists))
 }
