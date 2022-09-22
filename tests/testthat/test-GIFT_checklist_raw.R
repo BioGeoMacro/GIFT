@@ -5,7 +5,7 @@ test_that("data frame output format", {
   ex <- GIFT_checklist_raw(list_ID = c(5), namesmatched = FALSE)
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(14L))
+  expect_identical(ncol(ex), c(15L))
   
 })
 
@@ -14,10 +14,9 @@ test_that("data frame output format 2", {
   ex <- GIFT_checklist_raw(list_ID = c(5), namesmatched = TRUE)
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(24L))
+  expect_identical(ncol(ex), c(29L))
   
 })
-
 
 # Tests for invalid inputs ----
 
@@ -27,4 +26,3 @@ expect_error(
   "Please provide the ID numbers of the references and/or lists you want 
          to load.", fixed = TRUE
 )
-
