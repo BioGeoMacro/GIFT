@@ -85,7 +85,7 @@
 GIFT_checklist_raw <- function(
     ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
     taxon_name = "Tracheophyta", floristic_group = "all",
-    list_set = NULL, taxonomy = NULL, GIFT_version = NULL,
+    list_set = NULL, taxonomy = NULL, GIFT_version = "latest",
     api = "http://gift.uni-goettingen.de/api/extended/"
 ){
   
@@ -153,6 +153,24 @@ GIFT_checklist_raw <- function(
   }
   
   # GIFT_version
+  gift_version <- jsonlite::read_json(
+    "https://gift.uni-goettingen.de/api/index.php?query=versions",
+    simplifyVector = TRUE)
+  
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version) || 
+     !(GIFT_version %in% c(unique(gift_version$version),
+                           "latest", "beta"))){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
   
   # 2. Query ----
   
@@ -160,7 +178,7 @@ GIFT_checklist_raw <- function(
   if(!is.null(ref_ID)){
     if(is.null(list_set)){
       list_set <- jsonlite::read_json(
-        paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
                ".php?query=lists"),
         simplifyVector = TRUE)
     }
@@ -173,7 +191,7 @@ GIFT_checklist_raw <- function(
   # Taxonomy query
   if(is.null(taxonomy)){
     taxonomy <- jsonlite::read_json(
-      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=taxonomy"),
       simplifyVector = TRUE)
   }
@@ -185,7 +203,7 @@ GIFT_checklist_raw <- function(
   list_raw <- c()
   for(i in seq_along(list_ID)){
     tmp <- jsonlite::read_json(paste0(
-      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version), 
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
       ".php?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
       "&namesmatched=", as.numeric(namesmatched),
