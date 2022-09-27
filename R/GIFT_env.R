@@ -69,12 +69,12 @@
 #' @export
 
 GIFT_env <- function(
-  entity_ID = NULL,
-  # envvar = "area", layername = "",
-  miscellaneous = "area", rasterlayer = NULL,
-  sumstat = "mean",
-  GIFT_version = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/"){
+    entity_ID = NULL,
+    # envvar = "area", layername = "",
+    miscellaneous = "area", rasterlayer = NULL,
+    sumstat = "mean",
+    GIFT_version = "latest",
+    api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # one argument only
   # check => whether the (list of) argument(s)
@@ -93,6 +93,23 @@ GIFT_env <- function(
     stop("api must be a character string indicating which API to use.")
   }
   
+  # GIFT_version
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   # check if sumstats are available
   
   # length of sumstat has to equal length rasterlayer
@@ -106,12 +123,12 @@ GIFT_env <- function(
   ## 2.1. Miscellaneous data ----
   if(is.null(miscellaneous) | length(miscellaneous) == 0){
     tmp_misc <- jsonlite::read_json(paste0(
-      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=geoentities_env_misc"),
       simplifyVector = TRUE)
   } else{
     tmp_misc <- jsonlite::read_json(paste0(
-      api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=geoentities_env_misc&envvar=",
       paste(miscellaneous, collapse = ",")),
       simplifyVector = TRUE)
@@ -136,7 +153,7 @@ GIFT_env <- function(
     
     for(i in seq_along(rasterlayer)){
       tmp_raster[[i]] <- jsonlite::read_json(paste0(
-        api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
         ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
         "&sumstat=", sumstat_collapse[[i]]),
         simplifyVector = TRUE)

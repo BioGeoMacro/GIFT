@@ -9,7 +9,7 @@ GIFT_env(
   miscellaneous = "area",
   rasterlayer = NULL,
   sumstat = "mean",
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
