@@ -10,7 +10,7 @@ GIFT_traits_raw(
   bias_ref = TRUE,
   bias_deriv = TRUE,
   api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
+  GIFT_version = "latest"
 )
 }
 \arguments{

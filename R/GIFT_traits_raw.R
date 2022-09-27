@@ -37,11 +37,10 @@
 #' 
 #' @export
 #' 
-GIFT_traits_raw <- function(
-  trait_IDs = "", derived = TRUE, bias_ref = TRUE,
-  bias_deriv = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL){
+GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
+                            bias_deriv = TRUE,
+                            api = "http://gift.uni-goettingen.de/api/extended/",
+                            GIFT_version = "latest"){
   
   # 1. Controls ----
   # Arguments
@@ -61,7 +60,7 @@ GIFT_traits_raw <- function(
   if(!is.logical(derived)){
     stop("traits_derived must be a logical.")
   }
-
+  
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
@@ -74,6 +73,22 @@ GIFT_traits_raw <- function(
            'Lvl3'.") # TODO: Give back trait IDs that are not valid?
   }
   
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   # 2. Function ----
   # Initiating list
   trait_list <- list()
@@ -81,18 +96,17 @@ GIFT_traits_raw <- function(
   # for-loop
   for (i in 1:length(trait_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
-      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits_raw&traitid=",
              trait_IDs[i], "&deriv=", as.numeric(derived),
              "&biasref=", as.numeric(bias_ref),
-             "&biasderiv=", as.numeric(bias_deriv)),
-      simplifyVector = TRUE)
+             "&biasderiv=", as.numeric(bias_deriv)), simplifyVector = TRUE)
     trait_list[[i]]$trait_ID <- trait_IDs[i]
   }
   
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
-
+  
   # Add species names
   # species <- species_names()
   # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],
@@ -104,5 +118,3 @@ GIFT_traits_raw <- function(
   
   return(trait_list)
 }
-
-
