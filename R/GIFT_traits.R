@@ -39,11 +39,9 @@
 #' @export
 #' 
 GIFT_traits <- function(
-  trait_IDs = "", agreement = 0.66, bias_ref = TRUE,
-  bias_deriv = TRUE,
-  api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
-  ){
+    trait_IDs = "", agreement = 0.66, bias_ref = TRUE, bias_deriv = TRUE,
+    api = "http://gift.uni-goettingen.de/api/extended/",
+    GIFT_version = "latest"){
   
   # 1. Controls ----
   # Arguments
@@ -78,6 +76,22 @@ GIFT_traits <- function(
            'Lvl3'.")
   }
   
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   # 2. Function ----
   # Initiating list
   trait_list <- list()
@@ -85,7 +99,7 @@ GIFT_traits <- function(
   # for-loop
   for (i in 1:length(trait_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
-      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits&traitid=",
              trait_IDs[i], "&biasref=", as.numeric(bias_ref),
              "&biasderiv=", as.numeric(bias_deriv)),
@@ -95,7 +109,8 @@ GIFT_traits <- function(
   
   # Formating trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
-  trait_list <- trait_list[which(trait_list$agreement >= agreement | is.na(trait_list$agreement)), ]
+  trait_list <- trait_list[which(trait_list$agreement >= agreement |
+                                   is.na(trait_list$agreement)), ]
   
   # Add species names
   # species <- species_names()
