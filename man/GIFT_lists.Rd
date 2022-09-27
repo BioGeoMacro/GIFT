@@ -6,7 +6,7 @@
 \usage{
 GIFT_lists(
   api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
+  GIFT_version = "latest"
 )
 }
 \arguments{
