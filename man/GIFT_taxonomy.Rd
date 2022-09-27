@@ -5,7 +5,7 @@
 \title{Taxonomy of GIFT}
 \usage{
 GIFT_taxonomy(
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
