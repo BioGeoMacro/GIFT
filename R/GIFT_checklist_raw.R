@@ -158,9 +158,7 @@ GIFT_checklist_raw <- function(
     simplifyVector = TRUE)
   
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version) || 
-     !(GIFT_version %in% c(unique(gift_version$version),
-                           "latest", "beta"))){
+     !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
     of GIFT you want to use. Available options are 'latest' and the different
            versions."))

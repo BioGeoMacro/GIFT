@@ -12,7 +12,7 @@ GIFT_checklist_raw(
   floristic_group = "all",
   list_set = NULL,
   taxonomy = NULL,
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
