@@ -50,7 +50,7 @@
 GIFT_taxgroup <- function(work_ID = NULL,
                           taxon_lvl = c("family","order","higher_lvl")[1], 
                           return_ID = FALSE,
-                          GIFT_version = NULL,
+                          GIFT_version = "latest",
                           api = "http://gift.uni-goettingen.de/api/extended/",
                           taxonomy = NULL, 
                           species = NULL){
@@ -66,30 +66,45 @@ GIFT_taxgroup <- function(work_ID = NULL,
     stop("api must be a character string indicating which API to use.")
   }
   
+  # GIFT_version
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   # 2. Queries ----
   
   ## 2.0 species names query
   if(is.null(species)){
-    species <- read_json(paste0(api, "index",
-                                ifelse(is.null(GIFT_version), "", GIFT_version),
-                                ".php?query=species"),
-                         simplifyVector = TRUE)
+    species <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=species"), simplifyVector = TRUE)
   }
   
   species[c("work_ID", "genus")] <-
     sapply(species[c("work_ID", "genus")], as.numeric)
   
   if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
-
+  
   species = species[match(work_ID,species$work_ID),]
   genera = unique(species$genus)
   
   ## 2.0 taxonomy query
   if(is.null(taxonomy)){
-    taxonomy <- jsonlite::read_json(paste0(api, "index",
-                                           ifelse(is.null(GIFT_version), "", GIFT_version),
-                                           ".php?query=taxonomy"),
-                                    simplifyVector = TRUE)
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=taxonomy"), simplifyVector = TRUE)
   }
   
   taxonomy[c("taxon_ID", "lft", "rgt")] <-
@@ -108,4 +123,3 @@ GIFT_taxgroup <- function(work_ID = NULL,
   })
   return(taxa[match(species$genus,genera)])
 }
-

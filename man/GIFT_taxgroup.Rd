@@ -8,7 +8,7 @@ GIFT_taxgroup(
   work_ID = NULL,
   taxon_lvl = c("family", "order", "higher_lvl")[1],
   return_ID = FALSE,
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/",
   taxonomy = NULL,
   species = NULL
@@ -36,12 +36,9 @@ avoid double loading. For internal use within GIFT functions. If `NULL`
 \item{species}{option to supply species names object here if loaded already to 
 avoid double loading. For internal use within GIFT functions. If `NULL` 
 (default) species will be loaded within this function.}
-
-\item{higher_lvl}{logical indicating whether to retrieve the higher level 
-groups (Angiospermae, Gymnospermae, Pteridophyta, ...).}
 }
 \value{
-A data frame with 13 columns, if namesmatched = FALSE.
+A
 }
 \description{
 Assign taxonomic groups of various hierarchical level to species from GIFT 
