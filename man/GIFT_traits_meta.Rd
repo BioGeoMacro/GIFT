@@ -6,7 +6,7 @@
 \usage{
 GIFT_traits_meta(
   api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
+  GIFT_version = "latest"
 )
 }
 \arguments{
