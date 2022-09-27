@@ -19,7 +19,7 @@ GIFT_checklist_conditional(
   end_list = FALSE,
   suit_geo = FALSE,
   complete_taxon = TRUE,
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/",
   list_set = NULL,
   taxonomy = NULL

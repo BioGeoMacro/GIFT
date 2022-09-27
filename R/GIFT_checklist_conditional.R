@@ -63,21 +63,21 @@
 #' @export
 
 GIFT_checklist_conditional <- function(
-  taxon_name = "Tracheophyta",
-  ref_included = c("all", "native", "native and naturalized",
-                   "native and historically introduced", "endangered",
-                   "endemic", "naturalized", "other subset")[1:4],
-  type_ref = c("Account", "Catalogue", "Checklist","Flora",
-               "Herbarium collection", "Key", "Red list", "Report",
-               "Species Database", "Survey"),
-  entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
-                   "Island Part"),
-  native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
-  end_list = FALSE, suit_geo = FALSE,
-  complete_taxon = TRUE,
-  GIFT_version = NULL, 
-  api = "http://gift.uni-goettingen.de/api/extended/",
-  list_set = NULL, taxonomy = NULL){
+    taxon_name = "Tracheophyta",
+    ref_included = c("all", "native", "native and naturalized",
+                     "native and historically introduced", "endangered",
+                     "endemic", "naturalized", "other subset")[1:4],
+    type_ref = c("Account", "Catalogue", "Checklist","Flora",
+                 "Herbarium collection", "Key", "Red list", "Report",
+                 "Species Database", "Survey"),
+    entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
+                     "Island Part"),
+    native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
+    end_list = FALSE, suit_geo = FALSE,
+    complete_taxon = TRUE,
+    GIFT_version = "latest", 
+    api = "http://gift.uni-goettingen.de/api/extended/",
+    list_set = NULL, taxonomy = NULL){
   ## below are arguments from db_get_checklist_conditional()
   # entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
   # native_indicated = F, natural_indicated = F, end_ref = F, end_list = F, 
@@ -91,24 +91,47 @@ GIFT_checklist_conditional <- function(
   
   # 1. Controls ----
   # Arguments
+  if(!is.character(taxon_name)){
+    stop("taxon_name incorrect. It must be a character string among one of
+         the taxonomic groups available in GIFT. To check them all, run
+         'GIFT_taxonomy()'.")
+  }
+  
+  
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
+  }
+  
+  # GIFT_version
+  gift_version <- jsonlite::read_json(
+    "https://gift.uni-goettingen.de/api/index.php?query=versions",
+    simplifyVector = TRUE)
+  
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
   }
   
   # 2. Query ----
   # List_set query
   if(is.null(list_set)){
-    list_set <- jsonlite::read_json(paste0(api, "index",
-                                           ifelse(is.null(GIFT_version), "", GIFT_version),
-                                           ".php?query=lists"),
-                                    simplifyVector = TRUE)
+    list_set <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=lists"), simplifyVector = TRUE)
   }
   # Taxonomy query
   if(is.null(taxonomy)){
-    taxonomy <- jsonlite::read_json(paste0(api, "index",
-                                           ifelse(is.null(GIFT_version), "", GIFT_version),
-                                           ".php?query=taxonomy"),
-                                    simplifyVector = TRUE)
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=taxonomy"), simplifyVector = TRUE)
   }
   
   # Define tax_group

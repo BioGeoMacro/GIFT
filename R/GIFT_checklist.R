@@ -115,6 +115,11 @@ GIFT_checklist <- function(
     stop("api must be a character string indicating which API to use.")
   }
   
+  # GIFT_version
+  gift_version <- jsonlite::read_json(
+    "https://gift.uni-goettingen.de/api/index.php?query=versions",
+    simplifyVector = TRUE)
+  
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
      !is.character(GIFT_version) || 
      !(GIFT_version %in% c(unique(gift_version$version),
@@ -212,7 +217,8 @@ GIFT_checklist <- function(
     spatial_filter <- GIFT::GIFT_spatial(shp = shp,
                                          coordinates = coordinates,
                                          overlap = overlap, api = api,
-                                         entity_ID = unique(lists$entity_ID))
+                                         entity_ID = unique(lists$entity_ID),
+                                         GIFT_version = GIFT_version)
     
     lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]
     
