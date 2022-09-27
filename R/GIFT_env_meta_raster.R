@@ -1,6 +1,6 @@
 #' Metadata for the environmental rasters in GIFT
 #'
-#' Retrieve the metadata of every environmental layer accessible in GIFT
+#' Retrieve the metadata of every environmental raster accessible in GIFT
 #'
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date

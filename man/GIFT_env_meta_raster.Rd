@@ -20,7 +20,7 @@ version.}
 A data frame with 10 columns.
 }
 \description{
-Retrieve the metadata of every environmental layer accessible in GIFT
+Retrieve the metadata of every environmental raster accessible in GIFT
 }
 \details{
 Here is what each column refers to:
