@@ -7,7 +7,7 @@
 GIFT_shape(
   entity_ID = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
+  GIFT_version = "latest"
 )
 }
 \arguments{
