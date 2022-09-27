@@ -52,7 +52,7 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
                             area_th_mainland = 100, overlap_th = 0.1, 
                             geoentities_overlap = NULL, 
                             api = "http://gift.uni-goettingen.de/api/extended/", 
-                            GIFT_version = NULL){
+                            GIFT_version = "latest"){
   
   # 1. Controls ----
   # Arguments
@@ -61,12 +61,30 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
          to check the overlap of.")
   }
   
+  # GIFT_version
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   if(is.null(geoentities_overlap)){
     geoentities_overlap <- jsonlite::read_json(
-      paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=overlap"), simplifyVector = TRUE)
   }
   
+  # 2. Function ----
   geoentities_overlap <- geoentities_overlap[
     which(geoentities_overlap$entity1 %in% entity_IDs &
             geoentities_overlap$entity2 %in% entity_IDs), ]

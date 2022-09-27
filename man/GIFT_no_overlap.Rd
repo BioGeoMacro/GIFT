@@ -11,7 +11,7 @@ GIFT_no_overlap(
   overlap_th = 0.1,
   geoentities_overlap = NULL,
   api = "http://gift.uni-goettingen.de/api/extended/",
-  GIFT_version = NULL
+  GIFT_version = "latest"
 )
 }
 \arguments{
