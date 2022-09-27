@@ -14,9 +14,15 @@ GIFT_checklist(
   shp = NULL,
   coordinates = NULL,
   overlap = "centroid_inside",
+  remove_overlap = FALSE,
+  area_th_island = 0,
+  area_th_mainland = 100,
+  overlap_th = 0.1,
+  by_ref_ID = FALSE,
+  taxonomic_group = TRUE,
   namesmatched = FALSE,
   list_set_only = FALSE,
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
@@ -42,8 +48,12 @@ the first one being longitudes and the second being latitudes. If 4
 coordinates are given, the function assumes that these are the four corners
 of a bounding box.}
 
-\item{overlap}{character vector or list defining the raster
-data to retrieve..}
+\item{overlap}{}
+
+\item{by_ref_ID}{logical indicating whether the removal of overlapping regions 
+shall be applied by ref_ID only. Note that regions overlapping with other regions
+from the same resource will be removed even if there are other references available
+for those regions.}
 
 \item{namesmatched}{Logical}
 

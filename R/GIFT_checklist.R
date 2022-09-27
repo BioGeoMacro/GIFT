@@ -79,7 +79,7 @@ GIFT_checklist <- function(
   namesmatched = FALSE,
   list_set_only = FALSE, 
   
-  GIFT_version = NULL, 
+  GIFT_version = "latest", 
   
   api = "http://gift.uni-goettingen.de/api/extended/"
   ##
@@ -115,6 +115,21 @@ GIFT_checklist <- function(
     stop("api must be a character string indicating which API to use.")
   }
   
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version) || 
+     !(GIFT_version %in% c(unique(gift_version$version),
+                           "latest", "beta"))){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   # 2. Function ----
   ## 2.1. GIFT_checklist_conditional ---- 
   GIFT_conditional_arg <- c("all", "native", "native and naturalized",
@@ -144,16 +159,14 @@ GIFT_checklist <- function(
   } 
   
   # List_set query
-  list_set <- jsonlite::read_json(paste0(api, "index",
-                                         ifelse(is.null(GIFT_version), "", GIFT_version),
-                                         ".php?query=lists"),
-                                  simplifyVector = TRUE)
+  list_set <- jsonlite::read_json(
+    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+           ".php?query=lists"), simplifyVector = TRUE)
   
   # Taxonomy query
-  taxonomy <- jsonlite::read_json(paste0(api, "index",
-                                         ifelse(is.null(GIFT_version), "", GIFT_version),
-                                         ".php?query=taxonomy"),
-                                  simplifyVector = TRUE)
+  taxonomy <- jsonlite::read_json(
+    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+           ".php?query=taxonomy"), simplifyVector = TRUE)
   
   # If the user asks for floristic_group = native & geo_type = Island
   # In GIFT_checklist_conditional()
@@ -224,7 +237,7 @@ GIFT_checklist <- function(
     } else {
       
       geoentities_overlap <- jsonlite::read_json(
-        paste0(api, "index", ifelse(is.null(GIFT_version), "", GIFT_version),
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
                ".php?query=overlap"), simplifyVector = TRUE)
       
       to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
@@ -239,7 +252,6 @@ GIFT_checklist <- function(
       to_remove <- unlist(to_remove)
       
       lists <- lists[which(!lists$entity_ID %in% to_remove),]
-      
     }
   }
   
