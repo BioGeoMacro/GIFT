@@ -62,14 +62,32 @@
 #' @export
 
 GIFT_spatial <- function(
-  # 3 arguments: polygon, extent, point, line and removing shp?
+    # 3 arguments: polygon, extent, point, line and removing shp?
   # so far, not perfect
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
   entity_ID = NULL,
-  GIFT_version = NULL, 
+  GIFT_version = "latest", 
   api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
+  
+  # GIFT_version
+  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+     !is.character(GIFT_version)){
+    stop(c("'GIFT_version' must be a character string stating what version
+    of GIFT you want to use. Available options are 'latest' and the different
+           versions."))
+  }
+  if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    GIFT_version <- gift_version[nrow(gift_version), "version"]
+  }
+  if(GIFT_version == "beta"){
+    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
   ## 1.1. shp, coordinates ----
   # shp is the shapefile provided by the user
   # it has to be in WGS84 projection: st_crs() == "" EPSG: 4326

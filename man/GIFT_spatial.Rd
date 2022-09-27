@@ -9,7 +9,7 @@ GIFT_spatial(
   coordinates = NULL,
   overlap = "centroid_inside",
   entity_ID = NULL,
-  GIFT_version = NULL,
+  GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }

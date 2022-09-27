@@ -103,10 +103,6 @@ GIFT_checklist_conditional <- function(
   }
   
   # GIFT_version
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
-  
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
      !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
@@ -114,6 +110,9 @@ GIFT_checklist_conditional <- function(
            versions."))
   }
   if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
