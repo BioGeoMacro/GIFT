@@ -90,7 +90,7 @@
     - ~~add additional match-up infos and author names (Patrick)~~
     - add message on taxonomic status for original names (Pierre)
     
-* 2.1. GIFT_traits_meta() (Pierre)  
+* 2.1. ~~GIFT_traits_meta() (Pierre)~~  
 
 * 2.2. GIFT_traits()
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
@@ -131,7 +131,7 @@
 
 * 6.1. med()
 
-* 6.2. GIFT_references(): before references/citation
+* 6.2. ~~GIFT_references(): before references/citation (Pierre)~~  
     - remove comments, acknowledgements (Patrick)
     - processed == 1 (Patrick)
 
