@@ -158,7 +158,9 @@
 * range_finder
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
-    - one API per version of the database (Patrick)
+    - ~~one API per version of the database (Patrick)~~
+    - restore old polygons for versions < 2.2 (Patrick)
+    - account for old polygons of old versions in functions (Pierre)
     - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
     - if version is specified => API changed in the R function (correspondence version number versus API)
     - versions of the shapefile for each database version has to be available
