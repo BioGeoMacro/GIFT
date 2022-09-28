@@ -51,6 +51,9 @@
 #' ex <- GIFT_checklist()
 #' }
 #' 
+#' @importFrom jsonlite read_json
+#' @importFrom dplyr relocate
+#' 
 #' @export
 
 GIFT_checklist <- function(
@@ -308,6 +311,11 @@ GIFT_checklist <- function(
                                              taxonomy = taxonomy,
                                              species = species))
     }
+  }
+  
+  # Reordering column 'work_author' if available
+  if("work_author" %in% colnames(ex[[2]])){
+    ex[[2]] <- dplyr::relocate(ex[[2]], "work_author", .after = "species")
   }
   
   message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
