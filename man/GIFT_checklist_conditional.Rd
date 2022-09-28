@@ -53,13 +53,31 @@ of interest.}
 \item{complete_taxon}{Boolean, default TRUE.}
 }
 \value{
-data frame with list of entity_ID and the different criteria.
+A data frame with 16 columns.
 }
 \description{
 Retrieve GIFT checklists that fulfill specific criteria.
 }
 \details{
-Blabla.
+Here is what each column refers to:
+'ref_ID' - Identification number of each reference.
+'type'- What type the source is.
+'subset'- What information regarding the status of species is available.
+'native_indicated'- Whether native status of species is available in the
+source.
+'natural_indicated' - Whether naturalized status of species is available in
+the source.
+'end_ref' - Whether endemism information is available in the source.
+'restricted' - Whether the access to this reference is restricted.
+'taxon_ID'- Identification number of species.
+'list_ID'- Identification number of each list.
+'end_list' - Whether endemism information is available in the list.
+'entity_ID'- Identification number of the polygon of the list.
+'geo_entity'- Name of the location.
+'suit_geo'- Is the polygon suitable.
+'entity_class'- Type of polygon.
+'entity_type'- Name of the location.
+'taxon_name'- Name of the group of taxa available.
 }
 \examples{
 \dontrun{

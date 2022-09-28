@@ -27,13 +27,30 @@
 #' @param suit_geo Boolean.
 #' 
 #' @param complete_taxon Boolean, default TRUE.
-#'
 #' 
 #' @return
-#' data frame with list of entity_ID and the different criteria.
+#' A data frame with 16 columns.
 #'
-#' @details Blabla.
-#'
+#' @details Here is what each column refers to:
+#' 'ref_ID' - Identification number of each reference.
+#' 'type'- What type the source is.
+#' 'subset'- What information regarding the status of species is available.
+#' 'native_indicated'- Whether native status of species is available in the
+#' source.
+#' 'natural_indicated' - Whether naturalized status of species is available in
+#' the source.
+#' 'end_ref' - Whether endemism information is available in the source.
+#' 'restricted' - Whether the access to this reference is restricted.
+#' 'taxon_ID'- Identification number of species.
+#' 'list_ID'- Identification number of each list.
+#' 'end_list' - Whether endemism information is available in the list.
+#' 'entity_ID'- Identification number of the polygon of the list.
+#' 'geo_entity'- Name of the location.
+#' 'suit_geo'- Is the polygon suitable.
+#' 'entity_class'- Type of polygon.
+#' 'entity_type'- Name of the location.
+#' 'taxon_name'- Name of the group of taxa available.
+#' 
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
@@ -78,31 +95,79 @@ GIFT_checklist_conditional <- function(
     GIFT_version = "latest", 
     api = "http://gift.uni-goettingen.de/api/extended/",
     list_set = NULL, taxonomy = NULL){
-  ## below are arguments from db_get_checklist_conditional()
-  # entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
-  # native_indicated = F, natural_indicated = F, end_ref = F, end_list = F, 
-  # type_ref = 1:11,
-  # ref_included = c(1,2,3,4),
-  # tax_group = 1,
-  # suit_geo = T, 
-  # exclude_restricted = T, # not available anymore
-  # include_names_unique = F, return_query_only = F
-  # complete_taxonomy = TRUE # renamed complete_taxon
   
   # 1. Controls ----
-  # Arguments
-  if(!is.character(taxon_name)){
-    stop("taxon_name incorrect. It must be a character string among one of
+  if(length(taxon_name) != 1 || is.na(taxon_name) ||
+     !is.character(taxon_name)){
+    stop("taxon_name is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.")
   }
   
+  if(is.na(ref_included) || !is.character(ref_included) || 
+     !(ref_included %in% c("all", "native", "native and naturalized",
+                           "native and historically introduced", "endangered",
+                           "endemic", "naturalized", "other subset"))){
+    stop(c("'ref_included' must be a character string stating what information
+           should be available in the lists you retrieve (e.g. only references
+           where endemic status is indicated). Available options are 'all',
+           'native', 'native and naturalized',
+           'native and historically introduced', 'endangered',
+           'endemic', 'naturalized', 'other subset'"))
+  }
+  
+  if(is.na(type_ref) || !is.character(type_ref) || 
+     !(type_ref %in% c("Account", "Catalogue", "Checklist","Flora",
+                       "Herbarium collection", "Key", "Red list", "Report",
+                       "Species Database", "Survey"))){
+    stop(c("'type_ref' must be a character string stating what type of
+    references you want to retrieve. Available options are 'Account',
+    'Catalogue', 'Checklist','Flora', 'Herbarium collection', 'Key',
+    'Red list', 'Report', 'Species Database', 'Survey'"))
+  }
+  
+  if(is.na(entity_class) || !is.character(entity_class) || 
+     !(entity_class %in% c("Island", "Island/Mainland", "Mainland",
+                           "Island Group", "Island Part"))){
+    stop(c("'entity_class' must be a character string stating what class of
+    polygons you want to retrieve. Available options are 'Island',
+    'Island/Mainland', 'Mainland', 'Island Group', 'Island Part'."))
+  }
+  
+  if(length(native_indicated) != 1 || !is.logical(native_indicated)){
+    stop("'native_indicated' must be a boolean stating if you want the
+         native status of species to be available.")
+  }
+  
+  if(length(natural_indicated) != 1 || !is.logical(natural_indicated)){
+    stop("'natural_indicated' must be a boolean stating if you want to
+         know whether species were naturalized or not.")
+  }
+  
+  if(length(end_ref) != 1 || !is.logical(end_ref)){
+    stop("'end_ref' must be a boolean stating if you want the endemic
+         status at the reference level to be available.")
+  }
+  
+  if(length(end_list) != 1 || !is.logical(end_list)){
+    stop("'end_list' must be a boolean stating if you want the endemic
+         status at the list level to be available.")
+  }
+  
+  if(length(suit_geo) != 1 || !is.logical(suit_geo)){
+    stop("'suit_geo' must be a boolean stating if you want to retrieve
+         lists associated to a suitable polygon or not.")
+  }
+  
+  if(length(complete_taxon) != 1 || !is.logical(complete_taxon)){
+    stop("'complete_taxon' must be a boolean stating if you want to retrieve
+         references that cover entirely or not the required taxonomic group.")
+  }
   
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
-  # GIFT_version
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
      !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
@@ -117,6 +182,13 @@ GIFT_checklist_conditional <- function(
   }
   if(GIFT_version == "beta"){
     message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+  }
+  
+  if(!is.null(taxonomy) && !is.data.frame(taxonomy) &&
+     !(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+         "rgt") %in% colnames(taxonomy))){
+    stop("Taxonomy must be a dataframe with specific column names.
+         See GIFT_taxonomy().")
   }
   
   # 2. Query ----
