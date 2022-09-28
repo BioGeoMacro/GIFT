@@ -45,10 +45,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
   
 *To update from GIFT_admin*<br>
-    - remove_overlap() => to be called GIFT_no_overlap()<br>
     - plotting => to be called GIFT_plot()  <br>
     - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  <br>
-    - references/citation  => to be called GIFT_references<br>
     - range_finder => <br>
 
 ## 1.1. Details
@@ -74,8 +72,7 @@
     - Control for case when user provides several polygons, or list of polygons (Pierre)
     - control: only spatial objects of class sf, question: are we only allowing for sfc_MULTIPOLYGONS?? (Pierre)
 
-* 1.4. GIFT_taxonomy() (Pierre)  
-    - add control for argument GIFT_version in the R function
+* 1.4. ~~GIFT_taxonomy() (Pierre)~~  
 
 * 1.5. GIFT_tax_group(): update of assign_higher_taxa() (Pierre)  
     - input: species list (work_ID) and level of grouping  
