@@ -108,13 +108,13 @@
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
-    - restricted raster layers (Patrick)
+    - control for layer names and variables in env_raster_meta and env_misc_neta. Using the right api this will driectly control for restricted layers
 
 * 3.2. GIFT_env_meta_misc()    
-    - restricted raster layers (Patrick)
+    - ~~restricted veriables (Patrick)~~
     
 * 3.3. GIFT_env_meta_raster()  
-    - restricted raster layers (Patrick)
+    - ~~restricted raster layers (Patrick)~~
 
 * 4.1. GIFT_species()
     - input: user's species name
