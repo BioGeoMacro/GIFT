@@ -3,7 +3,7 @@
 \docType{data}
 \name{med}
 \alias{med}
-\title{Shapefile of Mediterreanean region}
+\title{Shape file of Mediterranean region}
 \format{
 An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 }
@@ -11,7 +11,7 @@ An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
 data("med")
 }
 \description{
-Shapefile encompassing the Mediterreanean sea. CRS is WGS84.
+Shape file encompassing the Mediterranean sea. CRS is WGS84.
 }
 \examples{
 data(med)
