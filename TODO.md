@@ -98,9 +98,11 @@
     - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
     - intraspecific variation (trait values from all references/species)
     - species names
+    - needs to be updated for old GIFT versions without bias and restricted columns
 
 * 2.3. GIFT_traits_raw()
     - check error (only for restricted IP?) (Patrick)
+    - needs to be updated for old GIFT versions without bias column (Patrick)
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
