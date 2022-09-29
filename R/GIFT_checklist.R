@@ -33,7 +33,11 @@
 #' shall be applied by ref_ID only. Note that regions overlapping with other regions
 #' from the same resource will be removed even if there are other references available
 #' for those regions.
-#'  
+#'
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#'
 #' @return
 #' List with two elements: the checklist with species and the list of ID.
 #'
