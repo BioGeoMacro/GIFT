@@ -11,6 +11,10 @@ GIFT_traits_meta(
 }
 \arguments{
 \item{api}{Character string corresponding to the API.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 }
 \value{
 A data frame with 10 columns.

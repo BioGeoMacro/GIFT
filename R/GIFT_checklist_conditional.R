@@ -28,6 +28,10 @@
 #' 
 #' @param complete_taxon Boolean, default TRUE.
 #' 
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#' 
 #' @return
 #' A data frame with 16 columns.
 #'

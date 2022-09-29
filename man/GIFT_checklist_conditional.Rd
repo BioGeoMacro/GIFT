@@ -51,6 +51,10 @@ of interest.}
 \item{suit_geo}{Boolean.}
 
 \item{complete_taxon}{Boolean, default TRUE.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 }
 \value{
 A data frame with 16 columns.

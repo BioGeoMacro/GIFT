@@ -24,6 +24,10 @@ retrieve. Traits must belong to the available list of traits.}
 \item{bias_deriv}{Traits desired.}
 
 \item{api}{Character string with the API.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 }
 \value{
 A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,

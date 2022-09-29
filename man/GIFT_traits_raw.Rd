@@ -25,6 +25,10 @@ GIFT_traits_meta()}
 \item{bias_deriv}{Traits desired.}
 
 \item{api}{Character string with the API.}
+
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
 }
 \value{
 A

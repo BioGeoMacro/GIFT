@@ -13,6 +13,10 @@
 #' 
 #' @param api Character string with the API.
 #'
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#' 
 #' @return
 #' A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,
 #' `trait_value`, `agreement` and `references`.
