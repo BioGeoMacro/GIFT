@@ -27,6 +27,10 @@ levels one can put "higher_lvl" to retrieve the higher level groups
 \item{return_ID}{logical indicating whether to give back taxon_IDs instead of 
 names.}
 
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the most up-to-date
+version.}
+
 \item{api}{character string defining from which API the data will be retrieved.}
 
 \item{taxonomy}{option to supply taxonomy object here if loaded already to 
@@ -38,14 +42,11 @@ avoid double loading. For internal use within GIFT functions. If `NULL`
 (default) species will be loaded within this function.}
 }
 \value{
-A
+A vector with the taxonomic group of the species used as input.
 }
 \description{
 Assign taxonomic groups of various hierarchical level to species from GIFT 
 (work_ID)
-}
-\details{
-Blabla.
 }
 \examples{
 \dontrun{

@@ -25,10 +25,12 @@
 #'  
 #' @param api character string defining from which API the data will be retrieved.
 #' 
+#' @param GIFT_version character string defining the version of the GIFT
+#'  database to use. The function retrieves by default the most up-to-date
+#'  version.
+#' 
 #' @return
-#' A
-#'
-#' @details Blabla.
+#' A vector with the taxonomic group of the species used as input.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -52,14 +54,26 @@ GIFT_taxgroup <- function(work_ID = NULL,
                           return_ID = FALSE,
                           GIFT_version = "latest",
                           api = "http://gift.uni-goettingen.de/api/extended/",
-                          taxonomy = NULL, 
-                          species = NULL){
+                          taxonomy = NULL, species = NULL){
   
   # 1. Controls ----
   # Arguments
   if(is.null(work_ID)){
     stop("Please provide the ID numbers of the species you want 
          taxonomic groups for.")
+  }
+  
+  if(length(taxon_lvl) != 1 || is.na(taxon_lvl) ||
+     !is.character(taxon_lvl) || 
+     !(taxon_lvl %in% c("family","order","higher_lvl"))){
+    stop(c("'taxon_lvl' must be a character string stating what taxonomic
+           level you want to retrieve. Available options are 'family',
+           'genus' and 'higher_lvl'."))
+  }
+  
+  if(length(return_ID) != 1 || !is.logical(return_ID)){
+    stop(c("'return_ID' must be a boolean stating whether you want taxonomic
+           names of IDs."))
   }
   
   if(!is.character(api)){
@@ -82,6 +96,10 @@ GIFT_taxgroup <- function(work_ID = NULL,
   if(GIFT_version == "beta"){
     message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
   }
+  
+  # taxonomy
+  
+  # species
   
   # 2. Queries ----
   
@@ -111,8 +129,9 @@ GIFT_taxgroup <- function(work_ID = NULL,
     sapply(taxonomy[c("taxon_ID", "lft", "rgt")], as.numeric)
   
   taxa = sapply(genera, function(x) {
-    taxa = taxonomy[which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == x)] 
-                          & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]),]
+    taxa = taxonomy[
+      which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == x)] 
+            & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]),]
     if(taxon_lvl == "higher_lvl"){
       taxa = taxa[grep("level",taxa$taxon_lvl),]
       taxa = taxa[which.min(taxa$rgt-taxa$lft),]
