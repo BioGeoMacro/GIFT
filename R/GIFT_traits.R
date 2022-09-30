@@ -38,7 +38,8 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows left_join
+#' @importFrom dplyr bind_rows left_join relocate
+#' @importFrom tidyr pivot_wider
 #' 
 #' @export
 #' 
@@ -117,13 +118,21 @@ GIFT_traits <- function(
                                    is.na(trait_list$agreement)), ]
   
   # Add species names
-  # species <- species_names()
-  # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],
-  #                                by = "work_ID")
+  species <- GIFT::GIFT_species()
+  trait_list <- dplyr::left_join(trait_list,
+                                 species[, c("work_ID", "species")],
+                                 by = "work_ID")
   
   # Reordering columns
-  # trait_list <- trait_list[, c("trait_ID", "work_ID", "species", "trait_value",
-  #                             "agreement", "references")]        
+  trait_list <- trait_list[, c("species", "work_ID", "trait_ID", "trait_value",
+                               "agreement", "references")]
+  
+  # Wider format
+  trait_list <- tidyr::pivot_wider(trait_list, names_from = "trait_ID",
+                                   values_from = "trait_value")
+  
+  trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
+                                .after = last_col())
   
   return(trait_list)
 }
