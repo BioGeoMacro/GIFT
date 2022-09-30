@@ -43,17 +43,12 @@
 #' 'epithetscore' - Matching score for the epithet.
 #' 'overallscore' - Matching score for the overall species name.
 #' 'resolved' - Whether the species name was resolved.
-#' 'synonym' - Whether the original species name is a synonym.
-#' 'matched_subtaxon' - Matching score for the subtaxon.
-#' 'accepted' - Whether the species name was accepted
 #' 'service' - Service used for the taxonomic harmonization.
 #' 'work_ID' - Identification number of each species name, after taxonomic
 #'  harmonization.
 #' 'genus_ID' - Identification number of each genus, after taxonomic
 #'  harmonization.
 #' 'species' - Species name, after taxonomic harmonization.
-#' 'work_author' - Name of the author who described the species, after
-#'  taxonomic harmonization
 #' 'questionable' - Whether the species occurrence is questionable.
 #' 'native' - Whether the species is native.
 #' 'quest_native' - Whether the native information is questionable.
