@@ -1,6 +1,6 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 5 columns
+# Output should be a vector
 test_that("length of format inferior or equal to length of output",
           {
             ex <- GIFT_no_overlap(entity_IDs = c(1, 2))

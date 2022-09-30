@@ -95,7 +95,8 @@ type_ref = c("Account", "Catalogue", "Checklist","Flora",
  entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
  "Island Part"),
  native_indicated = FALSE, natural_indicated = FALSE, end_ref = FALSE,
- end_list = FALSE, suit_geo = TRUE, complete_taxon = TRUE)
+ end_list = FALSE, suit_geo = TRUE, complete_taxon = TRUE,
+ list_set = NULL, taxonomy = NULL)
 
 }
 
