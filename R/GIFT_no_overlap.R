@@ -18,7 +18,8 @@
 #' @param overlap_th A number ranging from 0 to 1, indicating at what
 #' percentage of overlap, partially overlapping polygons should be kept. 
 #' 
-#' @param geoentities_overlap Blabla
+#' @param geoentities_overlap A table coming from GIFT indicating the
+#' overlap in km^2 between pairs of polygons.
 #' 
 #' @param api Character string defining from which API the data will be
 #' retrieved.
@@ -27,10 +28,8 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @return
-#' a vector
-#'
-#' @details Blabla.
+#' @return A vector of entity_IDs (identification numbers of polygons)
+#' non-overlapping.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -41,7 +40,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_no_overlap(entity_IDs = NULL)
+#' ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -56,9 +55,36 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
   
   # 1. Controls ----
   # Arguments
-  if(is.null(entity_IDs)){
+  if(is.null(entity_IDs) || length(entity_IDs) == 0){
     stop("Please provide the ID numbers of the regions you want 
          to check the overlap of.")
+  }
+  
+  if(!is.numeric(area_th_island) || area_th_island < 0){
+    stop("'area_th_island' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+  
+  if(!is.numeric(area_th_mainland) || area_th_mainland < 0){
+    stop("'area_th_mainland' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+  
+  if(!is.numeric(overlap_th) || overlap_th < 0 || overlap_th > 1){
+    stop("'overlap_th' is a number ranging from 0 to 1, indicating at what 
+         percentage of overlap, partially overlapping polygons should be
+         kept.")
+  }
+  
+  if(!is.null(geoentities_overlap) && !is.data.frame(geoentities_overlap) &&
+     ncol(geoentities_overlap) != 7 &&
+     colnames(geoentities_overlap) != c("entity1", "entity2", "overlap12",
+                                        "overlap21", "area1", "area2",
+                                        "entity_class2")){
+    stop("'geoentities_overlap' is a table coming from GIFT indicating the
+         overlap in km^2 between pairs of polygons. It is automatically
+         retrieved when 'geoentities_overlap' = NULL (default value of the
+         function).")
   }
   
   # GIFT_version
@@ -98,7 +124,7 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
   
   entity_IDs_tocheck <- unique(geoentities_overlap$entity1)
   
-  # take the smaller entity if larger than threshold
+  # Take the smaller entity if larger than threshold
   for(i in 1:length(entity_IDs_tocheck)){
     th <- ifelse(geoentities_overlap$entity_class2[
       which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%

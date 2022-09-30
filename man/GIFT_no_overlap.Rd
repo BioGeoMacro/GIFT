@@ -30,7 +30,8 @@ Set by default 100 square-kilometers.}
 \item{overlap_th}{A number ranging from 0 to 1, indicating at what
 percentage of overlap, partially overlapping polygons should be kept.}
 
-\item{geoentities_overlap}{Blabla}
+\item{geoentities_overlap}{A table coming from GIFT indicating the
+overlap in km^2 between pairs of polygons.}
 
 \item{api}{Character string defining from which API the data will be
 retrieved.}
@@ -40,18 +41,16 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-a vector
+A vector of entity_IDs (identification numbers of polygons)
+non-overlapping.
 }
 \description{
 Identify overlapping regions in a set of GIFT regions and choose only 
 non-overlapping regions based on size and overlap criteria
 }
-\details{
-Blabla.
-}
 \examples{
 \dontrun{
-ex <- GIFT_no_overlap(entity_IDs = NULL)
+ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain
 }
 
 }
