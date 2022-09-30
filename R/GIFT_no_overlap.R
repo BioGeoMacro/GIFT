@@ -54,7 +54,6 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
                             GIFT_version = "latest"){
   
   # 1. Controls ----
-  # Arguments
   if(is.null(entity_IDs) || length(entity_IDs) == 0){
     stop("Please provide the ID numbers of the regions you want 
          to check the overlap of.")
@@ -104,13 +103,17 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
     message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
   }
   
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
+  # 2. Function ----
   if(is.null(geoentities_overlap)){
     geoentities_overlap <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=overlap"), simplifyVector = TRUE)
   }
   
-  # 2. Function ----
   geoentities_overlap <- geoentities_overlap[
     which(geoentities_overlap$entity1 %in% entity_IDs &
             geoentities_overlap$entity2 %in% entity_IDs), ]
