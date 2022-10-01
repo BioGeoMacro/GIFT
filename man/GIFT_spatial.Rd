@@ -33,14 +33,14 @@ version.}
 \item{api}{character string defining from which API the data will be retrieved.}
 }
 \value{
-data frame with list of entity_ID.
+A data frame with 3 columns: entity_ID the identification number
+of a polygon, 'geo_entity_ref' its name, and 'coverage' which indicates
+the percentage of overlap between the provided shape and the different
+polygons of GIFT.
 }
 \description{
 Retrieve environmental data associated to each GIFT checklists.
 They can come as rasters or shapefiles (miscellaneous)
-}
-\details{
-Blabla.
 }
 \examples{
 \dontrun{

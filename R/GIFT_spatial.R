@@ -21,10 +21,10 @@
 #' 
 #' @param api character string defining from which API the data will be retrieved.
 #' 
-#' @return
-#' data frame with list of entity_ID.
-#'
-#' @details Blabla.
+#' @return A data frame with 3 columns: entity_ID the identification number
+#' of a polygon, 'geo_entity_ref' its name, and 'coverage' which indicates
+#' the percentage of overlap between the provided shape and the different
+#' polygons of GIFT.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -65,13 +65,20 @@ GIFT_spatial <- function(
     # 3 arguments: polygon, extent, point, line and removing shp?
   # so far, not perfect
   shp = NULL, coordinates = NULL, overlap = "centroid_inside",
-  entity_ID = NULL,
-  GIFT_version = "latest", 
+  entity_ID = NULL, GIFT_version = "latest", 
   api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   
-  # GIFT_version
+  if(!is.character(overlap) || length(overlap) != 1 ||
+     !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
+                          "extent_intersect")))){
+    stop("overlap is a character string indicating whether you want to use
+         centroid or extent of GIFT polygons to overlap with your shapefile.\n
+         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+         'extent_intersect'.")
+  }
+  
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
      !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
@@ -88,6 +95,10 @@ GIFT_spatial <- function(
     message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
   }
   
+  if(!is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
   ## 1.1. shp, coordinates ----
   # shp is the shapefile provided by the user
   # it has to be in WGS84 projection: st_crs() == "" EPSG: 4326
@@ -100,10 +111,6 @@ GIFT_spatial <- function(
     warning("Both shapefile and coordinates are provided. We use the XY
     coordinates. If you want to use the shapefile instead,
             set 'coordinates = NULL'.")
-  }
-  
-  if(!is.character(api)){
-    stop("api must be a character string indicating which API to use.")
   }
   
   # "sfc_POINT" "sfc"
@@ -170,22 +177,6 @@ GIFT_spatial <- function(
     }
   }
   
-  ## 1.2. overlap ----
-  if(!is.character(overlap)){
-    stop("overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
-         'extent_intersect'.")
-  }
-  
-  if(!(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
-                      "extent_intersect"))){
-    stop("overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid', 'shape_inside', 'shape_intersect' or
-         'extent_in tersect'.")
-  }
-  
   ## 1.3. Manual coordinates ----
   # Add control when shp=NULL and coord has length = 2 =>
   # overlap can only be extent_intersect or shape_intersect
@@ -210,6 +201,11 @@ GIFT_spatial <- function(
       GIFT_centroids <- GIFT_centroids[which(GIFT_centroids$entity_ID %in%
                                                entity_ID), ]
     }
+    if(nrow(GIFT_centroids) == 0){
+      message("No polygon matches the shape provided.")
+      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
+                        coverage = character()))
+    }
     
   } else if(overlap %in% c("extent_intersect", "shape_intersect",
                            "shape_inside")){
@@ -226,6 +222,11 @@ GIFT_spatial <- function(
       GIFT_extents <- GIFT_extents[which(GIFT_extents$entity_ID %in%
                                            entity_ID), ]
     }
+    if(nrow(GIFT_extents) == 0){
+      message("No polygon matches the shape provided.")
+      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
+                        coverage = character()))
+    }
   }
   
   ## 2.1. centroid_inside ----
@@ -241,6 +242,12 @@ GIFT_spatial <- function(
     
     tmp <- sf::st_intersection(GIFT_centroids_sf, shp) # st_intersects INSTEAD??
     sf::st_geometry(tmp) <- NULL
+    
+    if(nrow(tmp) == 0){
+      message("No polygon matches the shape provided.")
+      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
+                        coverage = character()))
+    }
     
     gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
     
@@ -281,6 +288,12 @@ GIFT_spatial <- function(
     
     # Subset: only boxes that overlap with provided shape
     GIFT_extents <- GIFT_extents[which(GIFT_extents$keep == 1), ]
+    
+    if(nrow(GIFT_extents) == 0){
+      message("No polygon matches the shape provided.")
+      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
+                        coverage = character()))
+    }
     
     if(overlap == "extent_intersect"){
       ## 2.2. extent_intersect ----
