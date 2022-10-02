@@ -90,7 +90,8 @@
     - ~~add additional match-up infos and author names (Patrick)~~
     - add message on taxonomic status for original names (Pierre)
     
-* 2.1. ~~GIFT_traits_meta() (Pierre)~~  
+* 2.1. ~~GIFT_traits_meta() (Pierre)~~
+    - ~~make work for version 1.0 (Patrick)~~
 
 * 2.2. GIFT_traits()
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
@@ -98,7 +99,9 @@
     - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
     - intraspecific variation (trait values from all references/species)
     - species names
-    - needs to be updated for old GIFT versions without bias and restricted columns
+    - ~~needs to be updated for old GIFT versions without bias and restricted columns (Patrick)~~
+    - agreement and references per trait! long table? !!!
+    - message for version 1.0: no bias columns
 
 * 2.3. GIFT_traits_raw()
     - check error (only for restricted IP?) (Patrick)
@@ -134,8 +137,8 @@
 * 6.1. med()
 
 * 6.2. ~~GIFT_references(): before references/citation (Pierre)~~  
-    - remove comments, acknowledgements (Patrick)
-    - processed == 1 (Patrick)
+    - ~~remove comments, acknowledgements (Patrick)~~
+    - ~~processed == 1 (Patrick)~~
 
 * GIFT_species() (Patrick)
     - input: user's species name
