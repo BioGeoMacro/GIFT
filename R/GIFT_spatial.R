@@ -54,10 +54,20 @@
 #' ex7 <- GIFT_spatial(coordinates = custom_polygon,
 #' overlap = "extent_intersect")
 #' 
+#' List of polygons
+#' pol2 <- sf::st_as_sf(as.data.frame(custom_polygon), coords = c("V1", "V2"))
+#' pol2 <- dplyr::summarise(pol2, geometry = sf::st_combine(geometry))
+#' pol2 <- sf::st_cast(pol2, "POLYGON")
+#' pol2$IDforGIFT <- 1
+#' sf::st_crs(pol2) <- sf::st_crs(med)
+#' ex8 <- GIFT_spatial(shp = rbind(med, pol2))
+#' ex9 <- GIFT_spatial(shp = rbind(med, pol2), overlap = "extent_intersect")
+#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
+#' @importFrom dplyr mutate
 #' 
 #' @export
 
@@ -113,6 +123,14 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
+  if(!is.null(shp) && !("sf" %in% class(shp))){
+    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS set to WGS84 (EPSG: 4326).")
+  }
+  
+  if(nrow(shp) > 1){
+    warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
+  }
+
   # "sfc_POINT" "sfc"
   # if(!is.null(shp) & !("sf" %in% class(shp))){
   #   stop("The provided shape has to be an 'sf' object.")
@@ -227,12 +245,21 @@ GIFT_spatial <- function(
       return(data.frame(entity_ID = character(), geo_entity_ref = character(),
                         coverage = character()))
     }
+    
+    # If all coordinates are equal, extend a bit the coordinates
+    GIFT_extents[c("x_min", "x_max", "y_min", "y_max")] <-
+      sapply(GIFT_extents[c("x_min", "x_max", "y_min", "y_max")], as.numeric)
+    
+    GIFT_extents <- dplyr::mutate(GIFT_extents,
+                                  x_min = ifelse((x_min - x_max) == 0,
+                                                 x_min - 0.005, x_min),
+                                  y_min = ifelse((y_min - y_max) == 0,
+                                                 y_min - 0.005, y_min))
   }
   
   ## 2.1. centroid_inside ----
   if(overlap == "centroid_inside"){
-    
-    # Subset: only GIFT centroids overlapping with provided shapefile
+    # Subset: only GIFT centroids overlapping with provided shape file
     GIFT_centroids_sf <- sf::st_as_sf(GIFT_centroids,
                                       coords = c("longitude", "latitude"),
                                       crs = 4326)
@@ -240,8 +267,19 @@ GIFT_spatial <- function(
     sf::st_agr(GIFT_centroids_sf) <- "constant"
     sf::st_agr(shp) <- "constant"
     
-    tmp <- sf::st_intersection(GIFT_centroids_sf, shp) # st_intersects INSTEAD??
+    if(nrow(shp) == 1){
+    tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
     sf::st_geometry(tmp) <- NULL
+    tmp$input_polygon <- 1
+    } else if(nrow(shp) > 1){ # if several polygons are submitted
+      tmp <- data.frame()
+      for(j in 1:nrow(shp)){
+        tmp_j <- sf::st_intersection(GIFT_centroids_sf, shp[j, ])
+        sf::st_geometry(tmp_j) <- NULL
+        tmp_j$input_polygon <- j
+        tmp <- rbind(tmp, tmp_j)
+      }
+    }
     
     if(nrow(tmp) == 0){
       message("No polygon matches the shape provided.")
@@ -249,7 +287,8 @@ GIFT_spatial <- function(
                         coverage = character()))
     }
     
-    gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
+    gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity",
+                                          "input_polygon")])
     
     # Add coverage column
     gift_overlap$coverage <- NA
@@ -259,25 +298,11 @@ GIFT_spatial <- function(
     # Checking what extent boxes overlap
     GIFT_extents$keep <- 0
     for(i in 1:nrow(GIFT_extents)){
-      # If all coordinates are equal, extend a bit the coordinates
-      if(as.numeric(GIFT_extents[i, "x_min"]) -
-         as.numeric(GIFT_extents[i, "x_max"]) == 0){
-        GIFT_extents[i, "x_min"] <- as.numeric(GIFT_extents[i, "x_min"]) -
-          0.005
-      }
-      if(as.numeric(GIFT_extents[i, "y_min"]) -
-         as.numeric(GIFT_extents[i, "y_max"]) == 0){
-        GIFT_extents[i, "y_min"] <- as.numeric(GIFT_extents[i, "y_min"]) -
-          0.005
-      }
-      
       tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
                       xmax = as.numeric(GIFT_extents[i, "x_max"]),
                       ymin = as.numeric(GIFT_extents[i, "y_min"]),
                       ymax = as.numeric(GIFT_extents[i, "y_max"]))
-      # tmp <- make_box(as.numeric(
-      #   GIFT_extents[i, c("x_min", "x_max", "y_min", "y_max")]))
-      
+
       tmp <- sf::st_sfc(tmp, crs = 4326)
       
       tmp <- sf::st_intersection(tmp, shp)
@@ -319,11 +344,6 @@ GIFT_spatial <- function(
             tmp_geo, 1e2))
         }
         
-        # Control plot
-        # ggplot() +
-        #   geom_sf(data = shp, fill = "blue") +
-        #   geom_sf(data = tmp_geo[shp, ], color = "red", fill = NA)
-        
         # Calculate overlap
         sf::st_agr(tmp_geo) <- "constant"
         
@@ -358,17 +378,3 @@ GIFT_spatial <- function(
   
   return(gift_overlap)
 }
-
-# X. Code resources ----
-# https://gis.stackexchange.com/questions/34535/detect-whether-there-is-a-spatial-polygon-in-a-spatial-extent
-# sp is the shapefile provided by user
-# e is the extent of GIFT polygons => 
-# in <- intersect(e, raster::extent(sp)) # filter
-# if (in) { in <- rgeos::gIntersects(as(e, 'SpatialPolygons'), sp) }
-
-# Defining pipe
-# `%>%` <- magrittr::`%>%`
-# plot(sf::st_geometry(tmp_geo[sf::st_within(tmp_geo, shp) %>%
-#                                lengths > 0, ]), col = "grey")
-# dim(tmp_geo)
-# dim(tmp_geo[sf::st_within(tmp_geo, shp) %>% lengths > 0, ])
