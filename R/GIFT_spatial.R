@@ -54,15 +54,6 @@
 #' ex7 <- GIFT_spatial(coordinates = custom_polygon,
 #' overlap = "extent_intersect")
 #' 
-#' List of polygons
-#' pol2 <- sf::st_as_sf(as.data.frame(custom_polygon), coords = c("V1", "V2"))
-#' pol2 <- dplyr::summarise(pol2, geometry = sf::st_combine(geometry))
-#' pol2 <- sf::st_cast(pol2, "POLYGON")
-#' pol2$IDforGIFT <- 1
-#' sf::st_crs(pol2) <- sf::st_crs(med)
-#' ex8 <- GIFT_spatial(shp = rbind(med, pol2))
-#' ex9 <- GIFT_spatial(shp = rbind(med, pol2), overlap = "extent_intersect")
-#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -130,7 +121,7 @@ GIFT_spatial <- function(
   if(nrow(shp) > 1){
     warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
   }
-
+  
   # "sfc_POINT" "sfc"
   # if(!is.null(shp) & !("sf" %in% class(shp))){
   #   stop("The provided shape has to be an 'sf' object.")
@@ -267,19 +258,8 @@ GIFT_spatial <- function(
     sf::st_agr(GIFT_centroids_sf) <- "constant"
     sf::st_agr(shp) <- "constant"
     
-    if(nrow(shp) == 1){
     tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
     sf::st_geometry(tmp) <- NULL
-    tmp$input_polygon <- 1
-    } else if(nrow(shp) > 1){ # if several polygons are submitted
-      tmp <- data.frame()
-      for(j in 1:nrow(shp)){
-        tmp_j <- sf::st_intersection(GIFT_centroids_sf, shp[j, ])
-        sf::st_geometry(tmp_j) <- NULL
-        tmp_j$input_polygon <- j
-        tmp <- rbind(tmp, tmp_j)
-      }
-    }
     
     if(nrow(tmp) == 0){
       message("No polygon matches the shape provided.")
@@ -287,8 +267,7 @@ GIFT_spatial <- function(
                         coverage = character()))
     }
     
-    gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity",
-                                          "input_polygon")])
+    gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
     
     # Add coverage column
     gift_overlap$coverage <- NA
@@ -302,7 +281,7 @@ GIFT_spatial <- function(
                       xmax = as.numeric(GIFT_extents[i, "x_max"]),
                       ymin = as.numeric(GIFT_extents[i, "y_min"]),
                       ymax = as.numeric(GIFT_extents[i, "y_max"]))
-
+      
       tmp <- sf::st_sfc(tmp, crs = 4326)
       
       tmp <- sf::st_intersection(tmp, shp)
