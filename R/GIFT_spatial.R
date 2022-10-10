@@ -54,6 +54,14 @@
 #' ex7 <- GIFT_spatial(coordinates = custom_polygon,
 #' overlap = "extent_intersect")
 #' 
+#' custom_linestring <- rbind(c(9.9, 51), c(2.35, 48.9))
+#' custom_linestring <- sf::st_as_sf(as.data.frame(custom_linestring),
+#' coords = c("V1", "V2"))
+#' custom_linestring <- dplyr::summarise(custom_linestring,
+#' geometry = sf::st_combine(geometry))
+#' sf::st_crs(custom_linestring) <- sf::st_crs(med)
+#' ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
+#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -100,10 +108,6 @@ GIFT_spatial <- function(
     stop("api must be a character string indicating which API to use.")
   }
   
-  ## 1.1. shp, coordinates ----
-  # shp is the shapefile provided by the user
-  # it has to be in WGS84 projection: st_crs() == "" EPSG: 4326
-  
   if(is.null(shp) & is.null(coordinates)){
     stop("Please provide a shapefile or a set of XY coordinates.")
   }
@@ -118,27 +122,33 @@ GIFT_spatial <- function(
     stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS set to WGS84 (EPSG: 4326).")
   }
   
-  if(nrow(shp) > 1){
+  if(!is.null(shp) && nrow(shp) > 1){
     warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
   }
   
-  # "sfc_POINT" "sfc"
-  # if(!is.null(shp) & !("sf" %in% class(shp))){
-  #   stop("The provided shape has to be an 'sf' object.")
-  # }
+  if(!is.null(shp) && "sfc_POINT" %in% class(st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
   
-  # If it is the point => the overlap functions need to be simplified
-  # GIFT polygons inside don t make sense for example
+  if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
   
-  # Try with a multiple polygon => how does the function behave?
-  # warning message: all polygons treated as one
-  # if they want this information per polygon => they would need to repeat the function
+  if(!is.null(shp) && "sfc_LINESTRING" %in% class(st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
   
-  # WHY:
-  # custom_point <- cbind(9.9, 51)
-  # tmp=sf::st_point(custom_point) # class sfg
-  # tmp  <- sf::st_sfc(tmp, crs = 4326, dim = "XY")
-  # test <- GIFT::GIFT_spatial(shp = tmp, overlap = "shape_intersect")
+  if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
   
   # Making a shapefile out of provided extent
   make_box <- function(xmin, xmax, ymin, ymax){
@@ -185,10 +195,6 @@ GIFT_spatial <- function(
            a vector of XY coordinates. See help page.")
     }
   }
-  
-  ## 1.3. Manual coordinates ----
-  # Add control when shp=NULL and coord has length = 2 =>
-  # overlap can only be extent_intersect or shape_intersect
   
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----
@@ -345,15 +351,11 @@ GIFT_spatial <- function(
         
       } else if(overlap == "shape_inside"){
         ## 2.4. shape_inside ----
-        # Checking if GIFT polygons are fully inside provided shape
-        # tmp <- sf::st_within(tmp_geo, shp)
-        # tmp <- lengths(tmp)
         GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage == 100), ]
       }
       
       gift_overlap <- GIFT_extents[, c("entity_ID", "geo_entity", "coverage")]
     }
   }
-  
   return(gift_overlap)
 }
