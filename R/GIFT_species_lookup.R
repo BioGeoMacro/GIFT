@@ -36,7 +36,7 @@
 #' 
 #' @export
 
-GIFT_species <- function(genus = "", epithet = "", api = "http://gift.uni-goettingen.de/api/extended/",
+GIFT_species_lookup <- function(genus = "", epithet = "", api = "http://gift.uni-goettingen.de/api/extended/",
                          GIFT_version = "latest"){
   # 1. Controls ----
   # Arguments
