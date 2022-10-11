@@ -112,7 +112,7 @@ GIFT_traits <- function(
     trait_list[[i]]$trait_ID <- trait_IDs[i]
   }
   
-  # Formating trait_list as a data.frame
+  # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
   trait_list <- trait_list[which(trait_list$agreement >= agreement |
                                    is.na(trait_list$agreement)), ]
@@ -123,16 +123,24 @@ GIFT_traits <- function(
                                  species[, c("work_ID", "species")],
                                  by = "work_ID")
   
+  # Make certain columns numeric
+  trait_list[, c("work_ID", "agreement")] <- 
+    sapply(trait_list[, c("work_ID", "agreement")], as.numeric)
+  
+  # Round agreement score
+  trait_list$agreement <- round(trait_list$agreement, 3)
+  
   # Reordering columns
   trait_list <- trait_list[, c("species", "work_ID", "trait_ID", "trait_value",
                                "agreement", "references")]
   
+  #trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
+  #                              .after = last_col())
+
   # Wider format
   trait_list <- tidyr::pivot_wider(trait_list, names_from = "trait_ID",
-                                   values_from = "trait_value")
+                                   values_from = c("trait_value","agreement","references"))
   
-  trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
-                                .after = last_col())
   
   return(trait_list)
 }
