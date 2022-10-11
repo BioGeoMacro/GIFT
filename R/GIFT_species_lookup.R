@@ -1,6 +1,8 @@
 #' Species list in GIFT
 #'
-#' Retrieve all name matching information for one taxonomic name
+#' Retrieve all name matching information for one taxonomic name. All results 
+#' are returned, where the name is either found in the unstandardized or 
+#' taxonomically standardized names.
 #'
 #' @param genus character string defining the genus name to be looked for.
 #' 
@@ -13,7 +15,7 @@
 #' @param api character string defining from which API the data will be retrieved.
 #' 
 #' @return
-#' A data frame with 21 columns.
+#' A data frame with 24 columns.
 #'
 #' @details Here is what each column refers to:
 #' 'orig_ID' - 
@@ -79,5 +81,11 @@ GIFT_species_lookup <- function(genus = "", epithet = "", api = "http://gift.uni
     ".php?query=names_matched&genus=", genus, "&epithet=", epithet
     ), simplifyVector = TRUE)
   
+  tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species","matched",
+          "epithetscore","overallscore","resolved","synonym","was_subtaxon",
+          "accepted","work_ID","taxon_ID")] <- 
+    sapply(tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species",
+                   "matched","epithetscore","overallscore","resolved","synonym",
+                   "was_subtaxon","accepted","work_ID","taxon_ID")], as.numeric)
   return(tmp)
 }

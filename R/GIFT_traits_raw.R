@@ -146,9 +146,9 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   trait_list <- dplyr::bind_rows(trait_list)
   
   trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
-                 "derived","bias_deriv","bias_ref")] <- 
+                 "derived","bias_deriv","bias_ref","name_ID")] <- 
     sapply(trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
-                          "derived","bias_deriv","bias_ref")], as.numeric)
+                          "derived","bias_deriv","bias_ref","name_ID")], as.numeric)
   
   # Add species names
   # species <- species_names()
