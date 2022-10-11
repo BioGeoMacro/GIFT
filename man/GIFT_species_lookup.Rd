@@ -23,10 +23,12 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A data frame with 21 columns.
+A data frame with 24 columns.
 }
 \description{
-Retrieve all name matching information for one taxonomic name
+Retrieve all name matching information for one taxonomic name. All results 
+are returned, where the name is either found in the unstandardized or 
+taxonomically standardized names.
 }
 \details{
 Here is what each column refers to:

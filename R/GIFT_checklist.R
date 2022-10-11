@@ -5,16 +5,22 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param complete_taxon Boolean, default TRUE.
+#' @param complete_taxon Boolean stating you want to retrieve checklists that
+#' only contain the exhaustive list of the 'taxon_name' argument or as well
+#' incomplete lists.
 #' 
 #' @param floristic_group Character among the following options: 'all',
-#' 'native', 'endemic', 'naturalized'
+#' 'native', 'endemic', 'naturalized'.
 #' 
-#' @param complete_floristic Boolean, default TRUE.
+#' @param complete_floristic Boolean stating you want to retrieve checklists that
+#' only contain the exhaustive list of the 'floristic_group' argument or as
+#' well incomplete lists.
 #' 
-#' @param geo_type Character, either 'Mainland' or 'Island'.
+#' @param geo_type Character string, either 'Mainland', 'Island' or
+#' c('Mainland', 'Island'). Island gets you to Island, Island Group &
+#' Island Part. Mainland gets you to Mainland & Island/Mainland.
 #' 
-#' @param suit_geo Boolean.
+#' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
 #' 
 #' @param shp Shapefile provided by the user.
 #'
@@ -23,16 +29,42 @@
 #' coordinates are given, the function assumes that these are the four corners
 #' of a bounding box.
 #' 
-#' @param overlap 
+#' @param overlap A character string defining the criteria to use in order to
+#' retrieve checklists. Available options are 'centroid_inside',
+#' 'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
+#' 'extent_intersect' means that every polygon from GIFT for which the extent
+#' intersects the provided shape/coordinates will be retrieved.
 #' 
-#' @param namesmatched Logical
+#' @param remove_overlap a boolean stating whether you want to
+#' retrieve checklists that overlap or not.
+#' 
+#' @param area_th_island A number stating from which surface the smallest
+#' overlapping polygon is kept. By default set to 0 square kilometer
+#' (meaning that by default the smallest islands will be conserverd).
+#' 
+#' @param area_th_mainland When two polygons overlap, the smallest or the
+#' biggest one can be kept. When the surface of the smallest polygon exceeds
+#' this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
+#' Set by default 100 square-kilometers.
+#' 
+#' @param overlap_th A number ranging from 0 to 1, indicating at what
+#' percentage of overlap, partially overlapping polygons should be kept. 
+#' 
+#' @param by_ref_ID logical indicating whether the removal of overlapping
+#' regions shall be applied by ref_ID only. Note that regions overlapping with
+#' other regions from the same resource will be removed even if there are other
+#' references available for those regions.
+#' 
+#' @param taxonomic_group
+#' 
+#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
+#' original species name as they came in the references as well as details on
+#' the taxonomic harmonization.
+#' 
+#' @param list_set_only Boolean. Stating whether you only want the metadata or
+#' if you also want to retrieve the species lists.
 #' 
 #' @param api character string defining from which API the data will be retrieved.
-#'  
-#' @param by_ref_ID logical indicating whether the removal of overlapping regions 
-#' shall be applied by ref_ID only. Note that regions overlapping with other regions
-#' from the same resource will be removed even if there are other references available
-#' for those regions.
 #'
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
@@ -41,7 +73,7 @@
 #' @return
 #' List with two elements: the checklist with species and the list of ID.
 #'
-#' @details Blabla.
+#' @details Here is the detail of each data.frame and their columns:.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -52,7 +84,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist()
+#' data("med")
+#' ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+#' taxon_name = "Angiospermae")
+#' 
+#' ex2 <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+#' taxon_name = "Angiospermae", list_set_only = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -61,68 +98,178 @@
 #' @export
 
 GIFT_checklist <- function(
-    # actual arguments user needs
-  taxon_name = "Tracheophyta",
-  complete_taxon = TRUE, # make a figure with orchids and angiosperms for ex.
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  # if native given => native_indicated = T in GIFT_checklist_conditional()
-  complete_floristic = TRUE,
-  
-  geo_type = c("Mainland", "Island"), # Island gets you to Island, Island Group & Island Part
-  # Mainland gets you to Mainland & Island/Mainland
-  # c("Mainland", "Island")? gives you everything
-  suit_geo = FALSE, # find better names for arguments
-  
-  # complete_floristic = T, # if you want native => are list with only endemics enough or not?
-  # function ran twice in the case where you have a list for a region and an additional one with trees only => combine them
-  # this last case may(has to?) be included in GIFT_checklist_conditional() 
-  
-  shp = NULL, coordinates = NULL, overlap = "centroid_inside",
-  
-  remove_overlap = FALSE, area_th_island = 0, 
-  area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
-  
-  taxonomic_group = TRUE, 
-  namesmatched = FALSE,
-  list_set_only = FALSE, 
-  
-  GIFT_version = "latest", 
-  
-  api = "http://gift.uni-goettingen.de/api/extended/"
-  ##
-  # GIFT_checklist_conditional() below
-  # tax_group = 2, # control: length 1 (no several tax_groups)
-  # ref_included = c("all", "native", "native and naturalized",
-  #                  "native and historically introduced", "endangered",
-  #                  "endemic", "naturalized", "other subset")[1:4],
-  # type_ref = c("Account", "Catalogue", "Checklist","Flora",
-  #              "Herbarium collection", "Key", "Red list", "Report",
-  #              "Species Database", "Survey"),
-  # entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
-  #                  "Island Part"),
-  # native_indicated = FALSE,
-  # natural_indicated = FALSE,
-  # end_ref = FALSE,
-  # end_list = FALSE,
-  # suit_geo = TRUE,
-  # complete_taxon = TRUE,
-  
-  # GIFT_spatial() arguments below
-  # shp = NULL, coordinates = NULL, overlap = "centroid_inside",
-  
-  # remove overlapping entities => to include
-  
-  # api = "http://gift.uni-goettingen.de/api/extended/index.php"
+    taxon_name = "Tracheophyta", complete_taxon = TRUE,
+    floristic_group = c("all", "native", "endemic", "naturalized")[2],
+    complete_floristic = TRUE, geo_type = c("Mainland", "Island"),
+    suit_geo = FALSE, shp = NULL, coordinates = NULL,
+    overlap = "centroid_inside", remove_overlap = FALSE, area_th_island = 0,
+    area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
+    taxonomic_group = TRUE, namesmatched = FALSE, list_set_only = FALSE,
+    GIFT_version = "latest",
+    api = "http://gift.uni-goettingen.de/api/extended/"
 ){
+  # 1. Controls ----
+  if(length(taxon_name) != 1 || is.na(taxon_name) ||
+     !is.character(taxon_name)){
+    stop("'taxon_name' is incorrect. It must be a character string among one of
+         the taxonomic groups available in GIFT. To check them all, run
+         'GIFT_taxonomy()'.")
+  }
   
-  # Relies on GIFT_checklist_conditional(); GIFT_checklist_raw(); GIFT_spatial()
+  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
+     is.na(complete_taxon)){
+    stop("'complete_taxon' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'taxon_name' argument or as well incomplete lists.")
+  }
   
-  # 1. Control ----
+  if(length(floristic_group) != 1 || is.na(floristic_group) ||
+     !is.character(floristic_group) || 
+     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
+    stop(c("'floristic_group' must be a character string. Available options are
+    'all', 'native', 'endemic' and 'naturalized'."))
+  }
+  
+  if(length(complete_floristic) != 1 || !is.logical(complete_floristic) ||
+     is.na(complete_floristic)){
+    stop("'complete_floristic' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'floristic_group' argument or as well incomplete lists.")
+  }
+  
+  if(is.na(geo_type) || !is.character(geo_type) || 
+     !(geo_type %in% c("Mainland", "Island"))){
+    stop(c("'geo_type' must be a character string stating what geographic
+    type you want to retrieve. Available options are 'Mainland', 'Island' or
+    c('Mainland', 'Island')."))
+  }
+  
+  if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
+    stop("'suit_geo' must be a boolean stating whether you want to
+    retrieve only suitable polygons or not.")
+  }
+  
+  if(!is.character(overlap) || length(overlap) != 1 ||
+     !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
+                          "extent_intersect")))){
+    stop("overlap is a character string indicating whether you want to use
+         centroid or extent of GIFT polygons to overlap with your shapefile.\n
+         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+         'extent_intersect'.")
+  }
+  
+  if(!is.null(shp) && !("sf" %in% class(shp))){
+    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS set to WGS84 (EPSG: 4326).")
+  }
+  
+  if(!is.null(shp) && nrow(shp) > 1){
+    warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
+  }
+  
+  if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_LINESTRING" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(coordinates)){
+    if(is.na(coordinates) || is.character(coordinates)){
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
+    
+    if(nrow(coordinates) == 1){
+      if(overlap %in% c("shape_inside", "centroid_inside")){
+        stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+      }
+      
+      shp <- sf::st_point(coordinates)
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
+    } else if(nrow(coordinates) == 2){
+      message("4 coordinates provided: an extent box was drawn, assuming that
+            minimum X and Y are on row 1, and maximum X and Y on row 2.")
+      shp <- make_box(xmin = coordinates[1, 1],
+                      xmax = coordinates[2, 1],
+                      ymin = coordinates[1, 2],
+                      ymax = coordinates[2, 2])
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
+    }else if(nrow(coordinates) > 2){
+      if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
+         (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
+        warning("Provided polygon did not have a closed shape.")
+        coordinates <- rbind(coordinates, coordinates[1, ])
+      }
+      shp <- sf::st_polygon(list(coordinates))
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
+    } else{
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
+  }
+  
+  if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
+     is.na(remove_overlap)){
+    stop("'remove_overlap' must be a boolean stating whether you want to
+    retrieve checklists that overlap or not.")
+  }
+  
+  if(!is.numeric(area_th_island) || area_th_island < 0){
+    stop("'area_th_island' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+  
+  if(!is.numeric(area_th_mainland) || area_th_mainland < 0){
+    stop("'area_th_mainland' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+  
+  if(!is.numeric(overlap_th) || overlap_th < 0 || overlap_th > 1){
+    stop("'overlap_th' is a number ranging from 0 to 1, indicating at what 
+         percentage of overlap, partially overlapping polygons should be
+         kept.")
+  }
+  
+  if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) ||
+     is.na(by_ref_ID)){
+    stop("'by_ref_ID' must be a boolean stating whether indicating whether the
+         removal of overlapping regions shall be applied only at the
+         reference level.")
+  }
+  
+  # taxonomic_group
+  
+  if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
+     is.na(list_set_only)){
+    stop("'list_set_only' must be a boolean stating whether you only want the
+    metadata or if you also want to retrieve the species lists.")
+  }
+  
   if(!is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
-  # GIFT_version
   gift_version <- jsonlite::read_json(
     "https://gift.uni-goettingen.de/api/index.php?query=versions",
     simplifyVector = TRUE)

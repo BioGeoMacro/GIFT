@@ -30,16 +30,22 @@ GIFT_checklist(
 \item{taxon_name}{Character string corresponding to the taxonomic group
 of interest.}
 
-\item{complete_taxon}{Boolean, default TRUE.}
+\item{complete_taxon}{Boolean stating you want to retrieve checklists that
+only contain the exhaustive list of the 'taxon_name' argument or as well
+incomplete lists.}
 
 \item{floristic_group}{Character among the following options: 'all',
-'native', 'endemic', 'naturalized'}
+'native', 'endemic', 'naturalized'.}
 
-\item{complete_floristic}{Boolean, default TRUE.}
+\item{complete_floristic}{Boolean stating you want to retrieve checklists that
+only contain the exhaustive list of the 'floristic_group' argument or as
+well incomplete lists.}
 
-\item{geo_type}{Character, either 'Mainland' or 'Island'.}
+\item{geo_type}{Character string, either 'Mainland', 'Island' or
+c('Mainland', 'Island'). Island gets you to Island, Island Group &
+Island Part. Mainland gets you to Mainland & Island/Mainland.}
 
-\item{suit_geo}{Boolean.}
+\item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
 
 \item{shp}{Shapefile provided by the user.}
 
@@ -48,14 +54,40 @@ the first one being longitudes and the second being latitudes. If 4
 coordinates are given, the function assumes that these are the four corners
 of a bounding box.}
 
-\item{overlap}{}
+\item{overlap}{A character string defining the criteria to use in order to
+retrieve checklists. Available options are 'centroid_inside',
+'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
+'extent_intersect' means that every polygon from GIFT for which the extent
+intersects the provided shape/coordinates will be retrieved.}
 
-\item{by_ref_ID}{logical indicating whether the removal of overlapping regions 
-shall be applied by ref_ID only. Note that regions overlapping with other regions
-from the same resource will be removed even if there are other references available
-for those regions.}
+\item{remove_overlap}{a boolean stating whether you want to
+retrieve checklists that overlap or not.}
 
-\item{namesmatched}{Logical}
+\item{area_th_island}{A number stating from which surface the smallest
+overlapping polygon is kept. By default set to 0 square kilometer
+(meaning that by default the smallest islands will be conserverd).}
+
+\item{area_th_mainland}{When two polygons overlap, the smallest or the
+biggest one can be kept. When the surface of the smallest polygon exceeds
+this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
+Set by default 100 square-kilometers.}
+
+\item{overlap_th}{A number ranging from 0 to 1, indicating at what
+percentage of overlap, partially overlapping polygons should be kept.}
+
+\item{by_ref_ID}{logical indicating whether the removal of overlapping
+regions shall be applied by ref_ID only. Note that regions overlapping with
+other regions from the same resource will be removed even if there are other
+references available for those regions.}
+
+\item{taxonomic_group}{}
+
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
+original species name as they came in the references as well as details on
+the taxonomic harmonization.}
+
+\item{list_set_only}{Boolean. Stating whether you only want the metadata or
+if you also want to retrieve the species lists.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
@@ -70,11 +102,16 @@ List with two elements: the checklist with species and the list of ID.
 Retrieve GIFT checklists that fulfill specific criteria.
 }
 \details{
-Blabla.
+Here is the detail of each data.frame and their columns:.
 }
 \examples{
 \dontrun{
-ex <- GIFT_checklist()
+data("med")
+ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+taxon_name = "Angiospermae")
+
+ex2 <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+taxon_name = "Angiospermae", list_set_only = TRUE)
 }
 
 }

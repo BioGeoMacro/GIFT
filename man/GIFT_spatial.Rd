@@ -21,8 +21,11 @@ the first one being longitudes and the second being latitudes. If 4
 coordinates are given, the function assumes that these are the four corners
 of a bounding box.}
 
-\item{overlap}{character vector or list defining the raster
-data to retrieve..}
+\item{overlap}{A character string defining the criteria to use in order to
+retrieve checklists. Available options are 'centroid_inside',
+'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
+'extent_intersect' means that every polygon from GIFT for which the extent
+intersects the provided shape/coordinates will be retrieved.}
 
 \item{entity_ID}{List of entity_ID to retrieve.}
 
