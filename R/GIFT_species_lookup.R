@@ -76,7 +76,7 @@ GIFT_species_lookup <- function(genus = "", epithet = "", api = "http://gift.uni
   # Return the name matching information
   tmp <- jsonlite::read_json(paste0(
     api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=species&genus=", genus, "&epithet=", epithet
+    ".php?query=names_matched&genus=", genus, "&epithet=", epithet
     ), simplifyVector = TRUE)
   
   return(tmp)
