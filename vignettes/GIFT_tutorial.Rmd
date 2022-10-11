@@ -39,10 +39,19 @@ devtools::load_all()
 
 ```
 
-
 # 1. Overview
 
-See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
+How to cite
+
+[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
+
+\newpage
+
+Examples in this vignette:
+- retrieving checklists within an area (example: Mediterranean)
+- retrieving trait information for a subset of species
+- getting the distribution of a species
+
 
 \newpage
 
@@ -392,11 +401,5 @@ kableExtra::kbl(ref) %>%
 \newpage
 
 # 4. References
-## 4.1. Articles
-
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
-
-\newpage
-
-## 4.2. R packages
 

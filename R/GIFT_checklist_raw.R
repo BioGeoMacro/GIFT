@@ -9,7 +9,8 @@
 #' `NULL` by default. These lists are retrieved in addition to the lists 
 #' contained in the references in `ref_ID`.
 #' 
-#' @param taxon_name Character.
+#' @param taxon_name Character string corresponding to the taxonomic group
+#' of interest.
 #' 
 #' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
 #' original species name as they came in the references as well as details on
