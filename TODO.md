@@ -57,6 +57,7 @@
     - ~~check error (only for restricted IP?) (Patrick)~~
     
 * 1.2. GIFT_checklists_conditional (Pierre)
+    - add cf columns? (Patrick)
     - input: criteria
     - output: lists matching the criteria
     - To be improved: * simplify the filtering in the wrapper
@@ -100,12 +101,14 @@
     - intraspecific variation (trait values from all references/species)
     - species names
     - ~~needs to be updated for old GIFT versions without bias and restricted columns (Patrick)~~
-    - agreement and references per trait! long table? !!!
+    - agreement and references per trait! long table? !!!!!!!
     - message for version 1.0: no bias columns
+    - add author names (Patrick)
 
 * 2.3. GIFT_traits_raw()
     - check error (only for restricted IP?) (Patrick)
     - needs to be updated for old GIFT versions without bias column (Patrick)
+    - used tidyselect::starts_with <- replace?
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations

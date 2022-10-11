@@ -94,23 +94,47 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   }
   
   # 2. Function ----
+  
+  # Getting available ref_ID/trait_ID combinations including derived traits
+  ref_IDs <- jsonlite::read_json(
+    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+           ".php?query=reference_traits"), simplifyVector = TRUE)
+
+  # Convert to long table and get rid of duplicates
+  ref_IDs <- unique(tidyr::pivot_longer(ref_IDs,
+    cols = tidyselect::starts_with("trait"),
+    names_to = NULL,
+    values_to = "trait_ID",
+    values_drop_na = TRUE))
+  
+  # Subset for desired traits
+  ref_IDs <- ref_IDs[which(ref_IDs$trait_ID %in% trait_IDs),]
+  
+  if (!bias_ref){
+    ref_IDs <- ref_IDs[which(ref_IDs$bias == 0),]
+  }
+  
+  
   # Initiating list
   trait_list <- list()
   
   # for-loop
-  for (i in 1:length(trait_IDs)){
+  for (i in 1:nrow(ref_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits_raw&traitid=",
-             trait_IDs[i], "&deriv=", as.numeric(derived),
-             "&biasref=", as.numeric(bias_ref),
-             "&biasderiv=", as.numeric(bias_deriv)), simplifyVector = TRUE)
-    trait_list[[i]]$trait_ID <- trait_IDs[i]
+             ref_IDs$trait_ID[i], "&deriv=", as.numeric(derived),
+             "&biasderiv=", as.numeric(bias_deriv),
+             "&refid=", as.numeric(ref_IDs$ref_ID[i])), simplifyVector = TRUE)
+    if(length(trait_list[[i]])>0){
+      trait_list[[i]]$trait_ID <- ref_IDs$trait_ID[i]
+      trait_list[[i]]$bias_ref <- ref_IDs$bias[i]
+    }
   }
-  
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
   
+
   # Add species names
   # species <- species_names()
   # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],

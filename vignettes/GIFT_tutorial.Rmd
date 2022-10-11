@@ -75,7 +75,7 @@ length(unique(ex_tra$species))
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
                           bias_ref = TRUE, bias_deriv = TRUE, api = api)
 
-ex_tra <- GIFT_traits_raw(trait_IDs = c("1.2.1"), derived = TRUE,
+ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1"), derived = TRUE,
                           bias_ref = TRUE, bias_deriv = TRUE)
 
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
