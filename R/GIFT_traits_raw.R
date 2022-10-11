@@ -150,14 +150,14 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
     sapply(trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
                           "derived","bias_deriv","bias_ref","name_ID")], as.numeric)
   
-  # Add species names
-  # species <- species_names()
-  # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],
-  #                                by = "work_ID")
+  # Join references
+  references <- GIFT_references(api = api, GIFT_version = GIFT_version)
+  references <- references[,c("ref_ID","geo_entity_ref","ref_long")]
   
-  # Reordering columns
-  # trait_list <- trait_list[, c("trait_ID", "work_ID", "species", "trait_value",
-  #                             "agreement", "references")]        
+  trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")
+  
+  # Add standardized species names
+    
   
   return(trait_list)
 }
