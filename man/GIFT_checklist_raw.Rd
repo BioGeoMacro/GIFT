@@ -28,7 +28,8 @@ contained in the references in `ref_ID`.}
 original species name as they came in the references as well as details on
 the taxonomic harmonization.}
 
-\item{taxon_name}{Character.}
+\item{taxon_name}{Character string corresponding to the taxonomic group
+of interest.}
 
 \item{floristic_group}{Character string among these options:
 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.}

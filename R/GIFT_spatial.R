@@ -65,7 +65,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
+#' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_as_sfc st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
 #' @importFrom dplyr mutate
 #' 
 #' @export
@@ -126,25 +126,25 @@ GIFT_spatial <- function(
     warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
   }
   
-  if(!is.null(shp) && "sfc_POINT" %in% class(st_as_sfc(shp)) &&
+  if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
     stop("With a point, use either 'shape_intersect' or
              'extent_intersect' only.")
   }
   
-  if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(st_as_sfc(shp)) &&
+  if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
     stop("With a point, use either 'shape_intersect' or
              'extent_intersect' only.")
   }
   
-  if(!is.null(shp) && "sfc_LINESTRING" %in% class(st_as_sfc(shp)) &&
+  if(!is.null(shp) && "sfc_LINESTRING" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
     stop("With a linestring, use either 'shape_intersect' or
              'extent_intersect' only.")
   }
   
-  if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(st_as_sfc(shp)) &&
+  if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
     stop("With a linestring, use either 'shape_intersect' or
              'extent_intersect' only.")

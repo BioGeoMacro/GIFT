@@ -279,16 +279,6 @@ GIFT_checklist_conditional <- function(
     range_taxgroup <- taxonomy[which(taxonomy$taxon_ID == tax_group), "rgt"] -
       taxonomy[which(taxonomy$taxon_ID == tax_group), "lft"]
     
-    # With the pipe
-    # list_set <- list_set %>%
-    #   dplyr::mutate(range_covered = rgt - lft) %>%
-    #   dplyr::group_by(entity_ID) %>%
-    #   dplyr::mutate(range_covered_max = max(range_covered)) %>%
-    #   dplyr::ungroup(entity_ID) %>%
-    #   dplyr::filter(range_covered_max >= range_taxgroup) %>%
-    #   as.data.frame()
-    
-    # Without the pipe
     list_set <- dplyr::mutate(list_set, range_covered = rgt - lft)
     list_set <- dplyr::group_by(list_set, entity_ID)
     list_set <- dplyr::mutate(list_set, range_covered_max = max(range_covered))
