@@ -63,6 +63,14 @@ c(29.3, 33, 29.3, 27.5, 27.5, 29.3))
 ex7 <- GIFT_spatial(coordinates = custom_polygon,
 overlap = "extent_intersect")
 
+custom_linestring <- rbind(c(9.9, 51), c(2.35, 48.9))
+custom_linestring <- sf::st_as_sf(as.data.frame(custom_linestring),
+coords = c("V1", "V2"))
+custom_linestring <- dplyr::summarise(custom_linestring,
+geometry = sf::st_combine(geometry))
+sf::st_crs(custom_linestring) <- sf::st_crs(med)
+ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
+
 }
 
 }

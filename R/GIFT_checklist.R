@@ -318,8 +318,9 @@ GIFT_checklist <- function(
   }
   
   # Reordering column 'work_author' if available
-  if("work_author" %in% colnames(ex[[2]])){
-    ex[[2]] <- dplyr::relocate(ex[[2]], "work_author", .after = "species")
+  if("work_author" %in% colnames(checklists)){
+    checklists <- dplyr::relocate(checklists, "work_author",
+                                  .after = "species")
   }
   
   message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")

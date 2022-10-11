@@ -9,8 +9,6 @@ get_credentials()
 }
 \arguments{
 }
-\details{
-}
 \value{
 A list with username and password.
 }
