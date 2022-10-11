@@ -77,7 +77,7 @@ Here is what each column refers to:
 'quest_end_ref' - Whether the endemic_ref information is questionable.
 'endemic_list'- Whether the species is endemic within the list.
 'quest_end_list' - Whether the endemic_list information is questionable.
-'cons_status' - Conservation status of the species
+'cons_status' - Conservation status of the species.
 }
 \examples{
 \dontrun{

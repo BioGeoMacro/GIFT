@@ -71,9 +71,47 @@
 #'  version.
 #'
 #' @return
-#' List with two elements: the checklist with species and the list of ID.
+#' List with two data frames: the checklist with species and the list of ID.
 #'
-#' @details Here is the detail of each data.frame and their columns:.
+#' @details Here is the detail of each data.frame and their columns:
+#' #' 'ref_ID' - Identification number of each reference.
+#' 'type'- What type the source is.
+#' 'subset'- What information regarding the status of species is available.
+#' 'native_indicated'- Whether native status of species is available in the
+#' source.
+#' 'natural_indicated' - Whether naturalized status of species is available in
+#' the source.
+#' 'end_ref' - Whether endemism information is available in the source.
+#' 'restricted' - Whether the access to this reference is restricted.
+#' 'taxon_ID'- Identification number of species.
+#' 'list_ID'- Identification number of each list.
+#' 'end_list' - Whether endemism information is available in the list.
+#' 'entity_ID'- Identification number of the polygon of the list.
+#' 'geo_entity'- Name of the location.
+#' 'suit_geo'- Is the polygon suitable.
+#' 'entity_class'- Type of polygon.
+#' 'entity_type'- Name of the location.
+#' 'taxon_name'- Name of the group of taxa available.
+#' 
+#' For the second data frame with the species, each column refers to:
+#' 'ref_ID' - Identification number of each reference.
+#' 'list_ID'- Identification number of each list
+#' 'work_ID' - Identification number of each species name, after taxonomic
+#'  harmonization.
+#' 'genus_ID' - Identification number of each genus, after taxonomic
+#'  harmonization.
+#' 'species' - Species name, after taxonomic harmonization.
+#' 'questionable' - Whether the species occurrence is questionable.
+#' 'native' - Whether the species is native.
+#' 'quest_native' - Whether the native information is questionable.
+#' 'naturalized' - Whether the species is naturalized.
+#' 'endemic_ref' - Whether the species is endemic within the reference.
+#' 'quest_end_ref' - Whether the endemic_ref information is questionable.
+#' 'endemic_list'- Whether the species is endemic within the list.
+#' 'quest_end_list' - Whether the endemic_list information is questionable.
+#' 'cons_status' - Conservation status of the species.
+#' 'family' - Family of the species.
+#' 'tax_group' - Taxonomic group of the species.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
