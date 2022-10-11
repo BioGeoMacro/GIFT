@@ -77,5 +77,13 @@ GIFT_references <- function(
     api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=references"), simplifyVector = TRUE)
   
+  tmp[, c("ref_ID","taxon_ID","checklist","native_indicated",
+          "natural_indicated","end_ref","traits")] <- 
+    sapply(tmp[, c("ref_ID","taxon_ID","checklist","native_indicated",
+                   "natural_indicated","end_ref","traits")], as.numeric)
+  if("restricted" %in% names(tmp)){
+    tmp$restricted <- as.numeric(tmp$restricted)
+  }
+
   return(tmp)
 }
