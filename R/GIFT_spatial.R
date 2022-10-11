@@ -10,8 +10,11 @@
 #' coordinates are given, the function assumes that these are the four corners
 #' of a bounding box.
 #' 
-#' @param overlap character vector or list defining the raster
-#' data to retrieve..
+#' @param overlap A character string defining the criteria to use in order to
+#' retrieve checklists. Available options are 'centroid_inside',
+#' 'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
+#' 'extent_intersect' means that every polygon from GIFT for which the extent
+#' intersects the provided shape/coordinates will be retrieved.
 #' 
 #' @param entity_ID List of entity_ID to retrieve.
 #' 
@@ -163,6 +166,11 @@ GIFT_spatial <- function(
   
   # Define shp as coordinates, only one format accepted
   if(!is.null(coordinates)){
+    if(is.na(coordinates) || is.character(coordinates)){
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
+    
     if(nrow(coordinates) == 1){
       if(overlap %in% c("shape_inside", "centroid_inside")){
         stop("With a point, use either 'shape_intersect' or
