@@ -150,6 +150,15 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
                  "derived","bias_deriv","bias_ref","name_ID")] <- 
     sapply(trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
                           "derived","bias_deriv","bias_ref","name_ID")], as.numeric)
+  # TODO expand making numeric for new names matched columns, but only if names_matched == TRUE
+  
+  
+  # join standardized species names
+  species <- GIFT_species(api = api, GIFT_version = GIFT_version)
+  trait_list <- dplyr::left_join(trait_list, species, by = "work_ID")
+  # TODO rename columns
+  
+  # TODO relocate bias ref
   
   # Join references
   references <- GIFT_references(api = api, GIFT_version = GIFT_version)
