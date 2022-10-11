@@ -82,10 +82,10 @@ GIFT_species_lookup <- function(genus = "", epithet = "", api = "http://gift.uni
     ), simplifyVector = TRUE)
   
   tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species","matched",
-          "epithetscore","overallscore","resolved","synonym","was_subtaxon",
+          "epithetscore","overallscore","resolved","synonym","matched_subtaxon",
           "accepted","work_ID","taxon_ID")] <- 
     sapply(tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species",
                    "matched","epithetscore","overallscore","resolved","synonym",
-                   "was_subtaxon","accepted","work_ID","taxon_ID")], as.numeric)
+                   "matched_subtaxon","accepted","work_ID","taxon_ID")], as.numeric)
   return(tmp)
 }

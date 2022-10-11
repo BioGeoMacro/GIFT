@@ -111,6 +111,8 @@
     - used tidyselect::starts_with() <- replace?
     - message: bias_ref and bias_deriv do not exist in version 1.0
     - write into help that trait values are character values
+    - make orig_names optional?
+    - progressbar for loop?
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
@@ -147,9 +149,10 @@
     - ~~remove comments, acknowledgements (Patrick)~~
     - ~~processed == 1 (Patrick)~~
 
-* GIFT_species() (Patrick)
+* GIFT_species_lookup() (Patrick)
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
+    - get rid of orig ID to be faster?
 
 * GIFT_species_distribution() (Patrick)
     - input: only one species at the moment

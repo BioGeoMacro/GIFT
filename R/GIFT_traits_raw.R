@@ -142,6 +142,7 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
       trait_list[[i]]$bias_ref <- ref_IDs$bias[i]
     }
   }
+  
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
   
@@ -152,7 +153,7 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   
   # Join references
   references <- GIFT_references(api = api, GIFT_version = GIFT_version)
-  references <- references[,c("ref_ID","geo_entity_ref","ref_long")]
+  references <- unique(references[,c("ref_ID","geo_entity_ref","ref_long")])
   
   trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")
   
