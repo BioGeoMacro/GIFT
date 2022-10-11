@@ -102,13 +102,15 @@
     - species names
     - ~~needs to be updated for old GIFT versions without bias and restricted columns (Patrick)~~
     - agreement and references per trait! long table? !!!!!!!
-    - message for version 1.0: no bias columns
+    - message for version 1.0: no bias columns <- OR add NA columns?
     - add author names (Patrick)
 
 * 2.3. GIFT_traits_raw()
-    - check error (only for restricted IP?) (Patrick)
-    - needs to be updated for old GIFT versions without bias column (Patrick)
-    - used tidyselect::starts_with <- replace?
+    - ~~check error (only for restricted IP?) (Patrick)~~
+    - ~~needs to be updated for old GIFT versions without bias column (Patrick)~~
+    - used tidyselect::starts_with() <- replace?
+    - message: bias_ref and bias_deriv do not exist in version 1.0
+    - write into help that trait values are character values
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
@@ -125,6 +127,7 @@
 * 4.1. GIFT_species()
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
+    - Is the current version of this function/query used at the moment?
     
 * 4.2. GIFT_ranges()
 

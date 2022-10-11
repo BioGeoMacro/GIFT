@@ -100,6 +100,13 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=reference_traits"), simplifyVector = TRUE)
 
+  ref_IDs$priority <- NULL
+  ref_IDs$ID <- NULL # Control for additional column in version 1.0
+  
+  if(!"bias" %in% names(ref_IDs)){
+    ref_IDs$bias <- NA
+  }
+  
   # Convert to long table and get rid of duplicates
   ref_IDs <- unique(tidyr::pivot_longer(ref_IDs,
     cols = tidyselect::starts_with("trait"),
@@ -111,9 +118,13 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   ref_IDs <- ref_IDs[which(ref_IDs$trait_ID %in% trait_IDs),]
   
   if (!bias_ref){
-    ref_IDs <- ref_IDs[which(ref_IDs$bias == 0),]
+    ref_IDs <- ref_IDs[which(ref_IDs$bias == 0 | is.na(ref_IDs$bias)),]
   }
   
+  # Get rid of multiple entries introduced due to multiple bias values
+  ref_IDs <- dplyr::group_by(ref_IDs, ref_ID, trait_ID)
+  ref_IDs <- dplyr::summarise(ref_IDs, bias = min(bias))
+  ref_IDs <- unique(dplyr::ungroup(ref_IDs))
   
   # Initiating list
   trait_list <- list()
@@ -134,7 +145,11 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
   
-
+  trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
+                 "derived","bias_deriv","bias_ref")] <- 
+    sapply(trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
+                          "derived","bias_deriv","bias_ref")], as.numeric)
+  
   # Add species names
   # species <- species_names()
   # trait_list <- dplyr::left_join(trait_list, species[, c("work_ID","species")],
