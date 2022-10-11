@@ -101,7 +101,7 @@
     - intraspecific variation (trait values from all references/species)
     - species names
     - ~~needs to be updated for old GIFT versions without bias and restricted columns (Patrick)~~
-    - agreement and references per trait! long table? !!!!!!!
+    - ~~agreement and references per trait! long table?~~
     - message for version 1.0: no bias columns <- OR add NA columns?
     - add author names (Patrick)
 
@@ -128,6 +128,7 @@
     - input: user's species name
     - output: table with user's input, whether the species are in GIFT, if yes corrected name
     - Is the current version of this function/query used at the moment?
+    - Add author names? Would also add author names to GIFT_traits()
     
 * 4.2. GIFT_ranges()
 
