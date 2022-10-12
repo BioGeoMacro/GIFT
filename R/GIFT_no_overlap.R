@@ -131,7 +131,7 @@ GIFT_no_overlap <- function(
   
   # Take the smaller entity if larger than threshold
   if(length(entity_IDs_tocheck)> 0){
-    for(i in seq_len(entity_IDs_tocheck)){
+    for(i in seq_along(entity_IDs_tocheck)){
       th <- ifelse(geoentities_overlap$entity_class2[
         which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
           c("Mainland", "Island/Mainland"), area_th_mainland,area_th_island)
