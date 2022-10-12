@@ -80,7 +80,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr left_join mutate group_by ungroup filter select
+#' @importFrom dplyr left_join mutate group_by ungroup filter select mutate_at
 #' 
 #' @export
 
@@ -220,8 +220,7 @@ GIFT_checklist_conditional <- function(
   tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
   
   # Numeric columns
-  taxonomy[c("lft", "rgt")] <-
-    sapply(taxonomy[c("lft", "rgt")], as.numeric)
+  taxonomy <- dplyr::mutate_at(taxonomy, c("lft", "rgt"), as.numeric)
   
   left_border <- taxonomy[which(taxonomy$taxon_ID == tax_group), "lft"]
   right_border <- taxonomy[which(taxonomy$taxon_ID == tax_group), "rgt"]
@@ -296,13 +295,10 @@ GIFT_checklist_conditional <- function(
   # Remove unnecessary columns from join with taxonomy
   list_set <- dplyr::select(list_set, -taxon_author, -taxon_lvl, -lft, -rgt)
   
-  list_set[,c("ref_ID","native_indicated","natural_indicated","end_ref",
-              "restricted","taxon_ID","list_ID","end_list","entity_ID",      
-              "suit_geo")] <- 
-    sapply(list_set[,c("ref_ID","native_indicated","natural_indicated","end_ref",
-                       "restricted","taxon_ID","list_ID","end_list","entity_ID",      
-                       "suit_geo")],
-           as.numeric)
+  list_set <- dplyr::mutate_at(
+    list_set, c("ref_ID","native_indicated","natural_indicated","end_ref",
+                "restricted","taxon_ID","list_ID","end_list","entity_ID",      
+                "suit_geo"), as.numeric)
   
   # Output
   return(list_set)

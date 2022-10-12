@@ -216,8 +216,8 @@ GIFT_spatial <- function(
     GIFT_centroids <- GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
     
     # Numeric columns
-    GIFT_centroids[c("longitude", "latitude")] <-
-      sapply(GIFT_centroids[c("longitude", "latitude")], as.numeric)
+    GIFT_centroids <- dplyr::mutate_at(
+      GIFT_centroids, c("longitude", "latitude"), as.numeric)
     
     # Filter for entity_ID
     if(!is.null(entity_ID)){
@@ -252,8 +252,8 @@ GIFT_spatial <- function(
     }
     
     # If all coordinates are equal, extend a bit the coordinates
-    GIFT_extents[c("x_min", "x_max", "y_min", "y_max")] <-
-      sapply(GIFT_extents[c("x_min", "x_max", "y_min", "y_max")], as.numeric)
+    GIFT_extents <- dplyr::mutate_at(
+      GIFT_extents, c("x_min", "x_max", "y_min", "y_max"), as.numeric)
     
     GIFT_extents <- dplyr::mutate(GIFT_extents,
                                   x_min = ifelse((x_min - x_max) == 0,
@@ -290,7 +290,7 @@ GIFT_spatial <- function(
                            "shape_inside")){
     # Checking what extent boxes overlap
     GIFT_extents$keep <- 0
-    for(i in 1:nrow(GIFT_extents)){
+    for(i in seq_len(nrow(GIFT_extents))){
       tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
                       xmax = as.numeric(GIFT_extents[i, "x_max"]),
                       ymin = as.numeric(GIFT_extents[i, "y_min"]),
@@ -325,7 +325,7 @@ GIFT_spatial <- function(
       GIFT_extents$coverage <- NA
       
       # Downloading geojson for which extent boxes overlap with provided shape
-      for(i in 1:nrow(GIFT_extents)){
+      for(i in seq_len(nrow(GIFT_extents))){
         tmp_geo <- sf::st_read(paste0(
           "http://gift.uni-goettingen.de/geojson/geojson_smaller/",
           GIFT_extents[i, "entity_ID"],

@@ -35,6 +35,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -44,50 +45,48 @@ GIFT_species_lookup <-
            GIFT_version = "latest"){
     # 1. Controls ----
     # Arguments
-  if(!is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
-  
-  if(!is.character(genus)){
-    stop("genus must be a character string indicating genus to look for.")
-  }
-  
-  if(!is.character(epithet)){
-    stop("epithet must be a character string indicating the specific epithet to 
+    if(!is.character(api)){
+      stop("api must be a character string indicating which API to use.")
+    }
+    
+    if(!is.character(genus)){
+      stop("genus must be a character string indicating genus to look for.")
+    }
+    
+    if(!is.character(epithet)){
+      stop("epithet must be a character string indicating the specific epithet to 
          look for.")
-  }
-  
-  # GIFT_version
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version) || 
-     !(GIFT_version %in% c(unique(gift_version$version),
-                           "latest", "beta"))){
-    stop(c("'GIFT_version' must be a character string stating what version
+    }
+    
+    # GIFT_version
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
+       !is.character(GIFT_version) || 
+       !(GIFT_version %in% c(unique(gift_version$version),
+                             "latest", "beta"))){
+      stop(c("'GIFT_version' must be a character string stating what version
     of GIFT you want to use. Available options are 'latest' and the different
            versions."))
-  }
-  if(GIFT_version == "latest"){
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
-  }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
-  }
-  
-  # 2. Function ----
-  # Return the name matching information
-  tmp <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=names_matched&genus=", genus, "&epithet=", epithet
+    }
+    if(GIFT_version == "latest"){
+      GIFT_version <- gift_version[nrow(gift_version), "version"]
+    }
+    if(GIFT_version == "beta"){
+      message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    }
+    
+    # 2. Function ----
+    # Return the name matching information
+    tmp <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=names_matched&genus=", genus, "&epithet=", epithet
     ), simplifyVector = TRUE)
-  
-  tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species","matched",
-          "epithetscore","overallscore","resolved","synonym","matched_subtaxon",
-          "accepted","work_ID","taxon_ID")] <- 
-    sapply(tmp[, c("orig_ID","name_ID","cf_genus","cf_species","aff_species",
-                   "matched","epithetscore","overallscore","resolved","synonym",
-                   "matched_subtaxon","accepted","work_ID","taxon_ID")], as.numeric)
-  return(tmp)
-}
+    
+    tmp <- dplyr::mutate_at(
+      tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
+             "matched", "epithetscore", "overallscore", "resolved", "synonym",
+             "matched_subtaxon", "accepted", "work_ID", "taxon_ID"), as.numeric)
+    return(tmp)
+  }

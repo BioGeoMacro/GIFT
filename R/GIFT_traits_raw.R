@@ -37,7 +37,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows left_join
+#' @importFrom dplyr bind_rows left_join mutate_at
 #' 
 #' @export
 #' 
@@ -130,7 +130,7 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   trait_list <- list()
   
   # for-loop
-  for (i in 1:nrow(ref_IDs)){
+  for (i in seq_len(nrow(ref_IDs))){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits_raw&traitid=",
@@ -146,10 +146,9 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
   
-  trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
-                 "derived","bias_deriv","bias_ref","name_ID")] <- 
-    sapply(trait_list[, c("trait_derived_ID","ref_ID","orig_ID",
-                          "derived","bias_deriv","bias_ref","name_ID")], as.numeric)
+  trait_list <- dplyr::mutate_at(
+    trait_list, c("trait_derived_ID","ref_ID","orig_ID", "derived",
+                  "bias_deriv", "bias_ref", "name_ID"), as.numeric)
   # TODO expand making numeric for new names matched columns, but only if names_matched == TRUE
   
   
