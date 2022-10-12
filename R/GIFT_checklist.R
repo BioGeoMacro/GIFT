@@ -197,11 +197,14 @@ GIFT_checklist <- function(
   }
   
   if(!is.null(shp) && !("sf" %in% class(shp))){
-    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS set to WGS84 (EPSG: 4326).")
+    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
+         set to WGS84 (EPSG: 4326).")
   }
   
   if(!is.null(shp) && nrow(shp) > 1){
-    warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
+    warning("Several polygons are passed in the shp object. They will be
+            treated at the same time. To know what polygon covers what
+            checklist, please use repeteadly GIFT_spatial().")
   }
   
   if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
@@ -324,7 +327,9 @@ GIFT_checklist <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Function ----
@@ -424,7 +429,7 @@ GIFT_checklist <- function(
   }
   
   ## 2.3. Overlapping entities ----
-  # overlapped entities are removed => subseting lists based on entity_ID again)
+  # overlapped entities are removed => subset lists based on entity_ID again)
   if(remove_overlap == TRUE){
     
     if(!by_ref_ID){
@@ -459,8 +464,8 @@ GIFT_checklist <- function(
   }
   
   ## 2.4. Downloading ----
-  # When downloading the species, this whole filtering process has to happen again
-  # Output of the function: species distribution in lists AND metadata for lists
+  # When downloading the species, whole filtering process has to happen again
+  # Output of the function: species distribution in lists & metadata for lists
   
   # Match argument name with GIFT_checklist_raw()
   if(floristic_group == "endemic"){
@@ -508,7 +513,9 @@ GIFT_checklist <- function(
                                   .after = "species")
   }
   
-  message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
+  message("Be cautious, species indicated as endemic were stated like this in
+          the source reference/checklist. It can be that these species appear
+          in other checklists.")
   
   return(list(lists, checklists))
 }
