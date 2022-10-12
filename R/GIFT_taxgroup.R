@@ -117,8 +117,8 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
   
-  species = species[match(work_ID,species$work_ID),]
-  genera = unique(species$genus)
+  species <- species[match(work_ID,species$work_ID), ]
+  genera <- unique(species$genus)
   
   ## 2.0 taxonomy query
   if(is.null(taxonomy)){
