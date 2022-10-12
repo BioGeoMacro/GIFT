@@ -21,3 +21,8 @@ expect_error(
   "'GIFT_version' must be a character string stating what version
     of GIFT you want to use. Available options are 'latest' and the different
            versions.", fixed = TRUE)
+
+expect_message(GIFT_references(GIFT_version = "beta"),
+               "You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
