@@ -216,8 +216,8 @@ GIFT_spatial <- function(
     GIFT_centroids <- GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
     
     # Numeric columns
-    GIFT_centroids[c("longitude", "latitude")] <-
-      sapply(GIFT_centroids[c("longitude", "latitude")], as.numeric)
+    GIFT_centroids <- dplyr::mutate_at(
+      GIFT_centroids, c("longitude", "latitude"), as.numeric)
     
     # Filter for entity_ID
     if(!is.null(entity_ID)){
@@ -252,8 +252,8 @@ GIFT_spatial <- function(
     }
     
     # If all coordinates are equal, extend a bit the coordinates
-    GIFT_extents[c("x_min", "x_max", "y_min", "y_max")] <-
-      sapply(GIFT_extents[c("x_min", "x_max", "y_min", "y_max")], as.numeric)
+    GIFT_extents <- dplyr::mutate_at(
+      GIFT_extents, c("x_min", "x_max", "y_min", "y_max"), as.numeric)
     
     GIFT_extents <- dplyr::mutate(GIFT_extents,
                                   x_min = ifelse((x_min - x_max) == 0,

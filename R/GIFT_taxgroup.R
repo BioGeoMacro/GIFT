@@ -45,7 +45,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr bind_rows mutate_at
 #' 
 #' @export
 
@@ -110,8 +110,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
              ".php?query=species"), simplifyVector = TRUE)
   }
   
-  species[c("work_ID", "genus")] <-
-    sapply(species[c("work_ID", "genus")], as.numeric)
+  species <- dplyr::mutate_at(species, c("work_ID", "genus"), as.numeric)
   
   if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
   
@@ -125,20 +124,20 @@ GIFT_taxgroup <- function(work_ID = NULL,
              ".php?query=taxonomy"), simplifyVector = TRUE)
   }
   
-  taxonomy[c("taxon_ID", "lft", "rgt")] <-
-    sapply(taxonomy[c("taxon_ID", "lft", "rgt")], as.numeric)
+  taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
+                               as.numeric)
   
-  taxa = sapply(genera, function(x) {
-    taxa = taxonomy[
+  taxa <- sapply(genera, function(x) {
+    taxa <- taxonomy[
       which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == x)] 
-            & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]),]
+            & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]), ]
     if(taxon_lvl == "higher_lvl"){
-      taxa = taxa[grep("level",taxa$taxon_lvl),]
-      taxa = taxa[which.min(taxa$rgt-taxa$lft),]
+      taxa <- taxa[grep("level",taxa$taxon_lvl), ]
+      taxa <- taxa[which.min(taxa$rgt-taxa$lft), ]
     } else {
-      taxa = taxa[which(taxa$taxon_lvl == taxon_lvl),]
+      taxa <- taxa[which(taxa$taxon_lvl == taxon_lvl), ]
     }
-    ifelse(return_ID, taxa[,"taxon_ID"], taxa[,"taxon_name"])
+    ifelse(return_ID, taxa[, "taxon_ID"], taxa[, "taxon_name"])
   })
-  return(taxa[match(species$genus,genera)])
+  return(taxa[match(species$genus, genera)])
 }

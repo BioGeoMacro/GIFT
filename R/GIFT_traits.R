@@ -38,7 +38,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows left_join relocate
+#' @importFrom dplyr bind_rows left_join relocate mutate_at
 #' @importFrom tidyr pivot_wider
 #' 
 #' @export
@@ -124,8 +124,8 @@ GIFT_traits <- function(
                                  by = "work_ID")
   
   # Make certain columns numeric
-  trait_list[, c("work_ID", "agreement")] <- 
-    sapply(trait_list[, c("work_ID", "agreement")], as.numeric)
+  trait_list <- dplyr::mutate_at(trait_list, c("work_ID", "agreement"),
+                                 as.numeric)
   
   # Round agreement score
   trait_list$agreement <- round(trait_list$agreement, 3)
@@ -136,7 +136,7 @@ GIFT_traits <- function(
   
   #trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
   #                              .after = last_col())
-
+  
   # Wider format
   trait_list <- tidyr::pivot_wider(trait_list, names_from = "trait_ID",
                                    values_from = c("trait_value","agreement","references"))
