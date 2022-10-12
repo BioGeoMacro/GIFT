@@ -33,7 +33,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' 
+#' aquatic <- GIFT_traits_raw(trait_IDs = c("1.7.1"))
 #' }
 #' 
 #' @importFrom jsonlite read_json
