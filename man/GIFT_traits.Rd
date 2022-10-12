@@ -42,8 +42,7 @@ Blabla.
 \examples{
 \dontrun{
 wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-bias_ref = FALSE, bias_deriv = FALSE)
-
+bias_ref = FALSE, bias_deriv = FALSE)#' 
 }
 
 }
