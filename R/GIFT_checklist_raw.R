@@ -23,6 +23,10 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
+#' @param list_set NULL by default
+#' 
+#' @param taxonomy NULL by default
+#' 
 #' @param api character string defining from which API the data will be
 #' retrieved.
 #' 
