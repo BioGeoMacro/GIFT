@@ -130,23 +130,25 @@ GIFT_no_overlap <- function(
   entity_IDs_tocheck <- unique(geoentities_overlap$entity1)
   
   # Take the smaller entity if larger than threshold
-  for(i in seq_len(entity_IDs_tocheck)){
-    th <- ifelse(geoentities_overlap$entity_class2[
-      which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
-        c("Mainland", "Island/Mainland"), area_th_mainland,area_th_island)
-    
-    subset.tocheck <- geoentities_overlap[
-      which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]), ]
-    
-    subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in%
-                                  c("Mainland", "Island/Mainland"),
-                                area_th_mainland, area_th_island)
-    
-    if(length(which(subset.tocheck$area1 > subset.tocheck$area2 &
-                    subset.tocheck$area2 > subset.tocheck$th)) > 0 |
-       length(which(subset.tocheck$area1 < subset.tocheck$area2 &
-                    subset.tocheck$area1<th)) > 0) {
-      entity_IDs <- entity_IDs[which(entity_IDs != entity_IDs_tocheck[i])]
+  if(length(entity_IDs_tocheck)> 0){
+    for(i in seq_len(entity_IDs_tocheck)){
+      th <- ifelse(geoentities_overlap$entity_class2[
+        which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
+          c("Mainland", "Island/Mainland"), area_th_mainland,area_th_island)
+      
+      subset.tocheck <- geoentities_overlap[
+        which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]), ]
+      
+      subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in%
+                                    c("Mainland", "Island/Mainland"),
+                                  area_th_mainland, area_th_island)
+      
+      if(length(which(subset.tocheck$area1 > subset.tocheck$area2 &
+                      subset.tocheck$area2 > subset.tocheck$th)) > 0 |
+         length(which(subset.tocheck$area1 < subset.tocheck$area2 &
+                      subset.tocheck$area1<th)) > 0) {
+        entity_IDs <- entity_IDs[which(entity_IDs != entity_IDs_tocheck[i])]
+      }
     }
   }
   

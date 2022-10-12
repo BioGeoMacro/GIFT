@@ -16,8 +16,8 @@ test_that("length of format inferior or equal to length of output",
 # Error message when ref_ID and list_ID are missing
 expect_error(
   GIFT_no_overlap(entity_IDs = NULL),
-  "Please provide the ID numbers of the regions you want 
-         to check the overlap of.", fixed = TRUE)
+  "Please provide the ID numbers of the regions you want to check the
+         overlap of..", fixed = TRUE)
 
 expect_error(
   GIFT_no_overlap(entity_IDs = c(1, 2), area_th_island = NULL),
