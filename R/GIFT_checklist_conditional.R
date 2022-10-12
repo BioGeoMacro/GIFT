@@ -204,6 +204,8 @@ GIFT_checklist_conditional <- function(
     }
   }
   
+  rgt <- lft <- NULL
+  
   # 2. Query ----
   # List_set query
   if(is.null(list_set)){
