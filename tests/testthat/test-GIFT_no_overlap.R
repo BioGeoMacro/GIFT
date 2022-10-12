@@ -17,7 +17,7 @@ test_that("length of format inferior or equal to length of output",
 expect_error(
   GIFT_no_overlap(entity_IDs = NULL),
   "Please provide the ID numbers of the regions you want to check the
-         overlap of..", fixed = TRUE)
+         overlap of.", fixed = TRUE)
 
 expect_error(
   GIFT_no_overlap(entity_IDs = c(1, 2), area_th_island = NULL),

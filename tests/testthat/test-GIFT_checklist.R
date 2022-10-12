@@ -8,7 +8,7 @@ test_that("data frame output format",
               GIFT_checklist(shp = med, overlap = "centroid_inside",
                              taxon_name = "Angiospermae")
             
-            expect_s3_class(ex, "list")
+            expect_identical(class(ex), "list")
             expect_identical(length(ex), c(2L))
             
           })
