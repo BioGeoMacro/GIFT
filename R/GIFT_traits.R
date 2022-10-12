@@ -141,6 +141,8 @@ GIFT_traits <- function(
   trait_list <- tidyr::pivot_wider(trait_list, names_from = "trait_ID",
                                    values_from = c("trait_value","agreement","references"))
   
+  # Make data.frame
+  trait_list <- as.data.frame(trait_list)
   
   return(trait_list)
 }

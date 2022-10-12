@@ -90,6 +90,7 @@
     - ~~add orig ID for link to traits_raw (Patrick)~~
     - ~~add additional match-up infos and author names (Patrick)~~
     - add message on taxonomic status for original names (Pierre)
+    - naming: work_species
     
 * 2.1. ~~GIFT_traits_meta() (Pierre)~~
     - ~~make work for version 1.0 (Patrick)~~
@@ -168,6 +169,8 @@
     - output: lists falling within the area required
 
 * range_finder
+
+* species numbers, trait coverage
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
     - ~~one API per version of the database (Patrick)~~
