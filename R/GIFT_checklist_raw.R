@@ -214,15 +214,18 @@ GIFT_checklist_raw <- function(
   if(nrow(list_raw) == 0){
     if(namesmatched){
       list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(),
-                             orig_ID = numeric(), 
-                             name_ID = numeric(), genus = character(),
+                             entity_ID = numeric(),orig_ID = numeric(), 
+                             name_ID = numeric(), cf_genus = numeric(), 
+                             genus = character(), cf_species = numeric(), 
+                             aff_species = numeric(), 
                              species_epithet = character(),
                              subtaxon = character(), author = character(),
                              matched = numeric(), epithetscore = numeric(),
                              overallscore = numeric(), resolved = numeric(),
-                             synonym = numeric(),matched_subtaxon = numeric(),accepted = numeric(),
+                             synonym = numeric(), matched_subtaxon = numeric(), 
+                             accepted = numeric(),
                              service = character(), work_ID = numeric(),
-                             genus_ID = numeric(), species = character(),
+                             genus_ID = numeric(), work_species = character(),
                              questionable = numeric(), native = numeric(),
                              quest_native = numeric(), naturalized = numeric(),
                              endemic_ref = numeric(), quest_end_ref = numeric(),
@@ -230,9 +233,10 @@ GIFT_checklist_raw <- function(
                              quest_end_list = numeric(),
                              cons_status = logical())
     } else{
-      list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+      list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(), 
+                             entity_ID = numeric(),
                              work_ID = numeric(), genus_ID = numeric(),
-                             species = character(), questionable = numeric(),
+                             work_species = character(), questionable = numeric(),
                              native = numeric(), quest_native = numeric(),
                              naturalized = numeric(), endemic_ref = numeric(),
                              quest_end_ref = numeric(), endemic_list = numeric(),
@@ -242,7 +246,7 @@ GIFT_checklist_raw <- function(
   } else{
     # Some columns have to be numeric
     list_raw <- dplyr::mutate_at(
-      list_raw, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
+      list_raw, c("ref_ID", "list_ID", "entity_ID", "genus_ID", "work_ID", "questionable",
                   "native", "quest_native", "naturalized", "endemic_ref",
                   "quest_end_ref", "endemic_list", "quest_end_list"),
       as.numeric)
@@ -251,8 +255,8 @@ GIFT_checklist_raw <- function(
     
     if(namesmatched){
       list_raw <- dplyr::mutate_at(
-        list_raw, c("orig_ID", "name_ID", "matched", "epithetscore",
-                    "overallscore", "resolved"), as.numeric)
+        list_raw, c("orig_ID", "name_ID", "cf_genus","cf_species","aff_species",
+                    "matched", "epithetscore","overallscore", "resolved"), as.numeric)
     }
     
     if(all(c("synonym","matched_subtaxon","accepted") %in% names(list_raw))){

@@ -480,7 +480,7 @@ GIFT_checklist <- function(
                                taxonomy = taxonomy))
     if (taxonomic_group){
       
-      species <- unique(checklists[,c("work_ID","genus_ID","species")])
+      species <- unique(checklists[,c("work_ID","genus_ID","work_species")])
       names(species)[2] <- "genus"
       
       checklists$family <-
@@ -505,7 +505,7 @@ GIFT_checklist <- function(
   # Reordering column 'work_author' if available
   if("work_author" %in% colnames(checklists)){
     checklists <- dplyr::relocate(checklists, "work_author",
-                                  .after = "species")
+                                  .after = "work_species")
   }
   
   message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
