@@ -74,7 +74,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr bind_rows mutate_at
 #' 
 #' @export
 
@@ -241,27 +241,24 @@ GIFT_checklist_raw <- function(
     }
   } else{
     # Some columns have to be numeric
-    list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
-                 "native", "quest_native", "naturalized", "endemic_ref",
-                 "quest_end_ref", "endemic_list", "quest_end_list")] <- 
-      sapply(list_raw[, c("ref_ID", "list_ID", "genus_ID", "work_ID",
-                          "questionable", "native", "quest_native",
-                          "naturalized", "endemic_ref", "quest_end_ref",
-                          "endemic_list", "quest_end_list")], as.numeric)
+    list_raw <- dplyr::mutate_at(
+      list_raw, c("ref_ID", "list_ID", "genus_ID", "work_ID", "questionable",
+                  "native", "quest_native", "naturalized", "endemic_ref",
+                  "quest_end_ref", "endemic_list", "quest_end_list"),
+      as.numeric)
+    
     list_raw$cons_status <- as.character(list_raw$cons_status)
     
     if(namesmatched){
-      list_raw[, c("orig_ID", "name_ID", "matched", "epithetscore", "overallscore",
-                   "resolved")] <- 
-        sapply(list_raw[, c("orig_ID", "name_ID", "matched", "epithetscore",
-                            "overallscore", "resolved")], as.numeric)
+      list_raw <- dplyr::mutate_at(
+        list_raw, c("orig_ID", "name_ID", "matched", "epithetscore",
+                    "overallscore", "resolved"), as.numeric)
     }
     
     if(all(c("synonym","matched_subtaxon","accepted") %in% names(list_raw))){
-      list_raw[, c("synonym","matched_subtaxon","accepted")] <- 
-        sapply(list_raw[, c("synonym","matched_subtaxon","accepted")], as.numeric)
+      list_raw <- dplyr::mutate_at(
+        list_raw, c("synonym","matched_subtaxon","accepted"), as.numeric)
     }
-    
   }
   
   message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
