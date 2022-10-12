@@ -34,6 +34,10 @@ of interest.}
 \item{floristic_group}{Character string among these options:
 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.}
 
+\item{list_set}{NULL by default}
+
+\item{taxonomy}{NULL by default}
+
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
 version.}

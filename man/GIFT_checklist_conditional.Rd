@@ -55,6 +55,13 @@ of interest.}
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
 version.}
+
+\item{api}{character string defining from which API the data will be
+retrieved.}
+
+\item{list_set}{default NULL}
+
+\item{taxonomy}{default NULL}
 }
 \value{
 A data frame with 16 columns.
