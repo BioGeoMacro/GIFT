@@ -17,7 +17,7 @@
 #' as well incomplete lists.
 #' 
 #' @param geo_type Character string, either 'Mainland', 'Island' or
-#' c('Mainland', 'Island'). Island gets you to Island, Island Group &
+#' 'Mainland, Island'. Island gets you to Island, Island Group &
 #' Island Part. Mainland gets you to Mainland & Island/Mainland.
 #' 
 #' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
@@ -139,7 +139,7 @@
 GIFT_checklist <- function(
     taxon_name = "Tracheophyta", complete_taxon = TRUE,
     floristic_group = c("all", "native", "endemic", "naturalized")[2],
-    complete_floristic = TRUE, geo_type = c("Mainland", "Island"),
+    complete_floristic = TRUE, geo_type = "Mainland, Island",
     suit_geo = FALSE, shp = NULL, coordinates = NULL,
     overlap = "centroid_inside", remove_overlap = FALSE, area_th_island = 0,
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
@@ -177,10 +177,10 @@ GIFT_checklist <- function(
   }
   
   if(is.na(geo_type) || !is.character(geo_type) || 
-     !(geo_type %in% c("Mainland", "Island"))){
+     !(geo_type %in% c("Mainland", "Island", "Mainland, Island"))){
     stop(c("'geo_type' must be a character string stating what geographic
     type you want to retrieve. Available options are 'Mainland', 'Island' or
-    c('Mainland', 'Island')."))
+    'Mainland, Island')."))
   }
   
   if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
@@ -353,11 +353,14 @@ GIFT_checklist <- function(
   
   # Converting geo_type
   entity_class <- c()
-  if("Mainland" %in% geo_type){
+  if(geo_type == "Mainland"){
     entity_class <- append(entity_class, c("Island/Mainland", "Mainland"))
-  }
-  if("Island" %in% geo_type){
+  } else if(geo_type == "Island"){
     entity_class <- append(entity_class, c("Island", "Island Group",
+                                           "Island Part"))
+  } else if(geo_type == "Mainland, Island"){
+    entity_class <- append(entity_class, c("Island/Mainland", "Mainland",
+                                           "Island", "Island Group",
                                            "Island Part"))
   } 
   
