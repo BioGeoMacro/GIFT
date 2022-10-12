@@ -73,6 +73,7 @@
 #' @importFrom sf st_geometry st_read st_is_valid st_make_valid
 #' @importFrom sf st_set_precision st_area st_agr
 #' @importFrom dplyr mutate
+#' @importFrom stats complete.cases
 #' 
 #' @export
 
@@ -223,7 +224,7 @@ GIFT_spatial <- function(
                      api = api, GIFT_version = GIFT_version)
     # Removing NAs
     GIFT_centroids <-
-      GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
+      GIFT_centroids[stats::complete.cases(GIFT_centroids$longitude), ]
     
     # Numeric columns
     GIFT_centroids <- dplyr::mutate_at(
@@ -248,7 +249,7 @@ GIFT_spatial <- function(
       api = api, GIFT_version = GIFT_version)
     
     # Removing NAs
-    GIFT_extents <- GIFT_extents[complete.cases(GIFT_extents$x_max), ]
+    GIFT_extents <- GIFT_extents[stats::complete.cases(GIFT_extents$x_max), ]
     
     # Filter for entity_ID
     if(!is.null(entity_ID)){
