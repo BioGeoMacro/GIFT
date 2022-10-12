@@ -15,30 +15,31 @@ GIFT_taxgroup(
 )
 }
 \arguments{
-\item{work_ID}{A vector defining the IDs of the species to retrieve taxonomic 
-groups for. `Null` by default.}
+\item{work_ID}{A vector defining the IDs of the species to retrieve
+taxonomic groups for. `Null` by default.}
 
-\item{taxon_lvl}{taxonomic level to retrieve names for. "family" by default. 
-Check `GIFT_taxonomy()` for available levels. In addition to the available 
-levels one can put "higher_lvl" to retrieve the higher level groups 
-"Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta", 
+\item{taxon_lvl}{taxonomic level to retrieve names for. "family" by default.
+Check `GIFT_taxonomy()` for available levels. In addition to the available
+levels one can put "higher_lvl" to retrieve the higher level groups
+"Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
 "Monilophyta", "Gymnospermae", and "Angiospermae".}
 
-\item{return_ID}{logical indicating whether to give back taxon_IDs instead of 
-names.}
+\item{return_ID}{logical indicating whether to give back taxon_IDs instead
+of names.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
 version.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 
 \item{taxonomy}{option to supply taxonomy object here if loaded already to 
 avoid double loading. For internal use within GIFT functions. If `NULL` 
 (default) taxonomy will be loaded within this function.}
 
-\item{species}{option to supply species names object here if loaded already to 
-avoid double loading. For internal use within GIFT functions. If `NULL` 
+\item{species}{option to supply species names object here if loaded already
+to avoid double loading. For internal use within GIFT functions. If `NULL` 
 (default) species will be loaded within this function.}
 }
 \value{

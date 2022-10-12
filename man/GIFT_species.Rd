@@ -10,7 +10,8 @@ GIFT_species(
 )
 }
 \arguments{
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
