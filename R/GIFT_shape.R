@@ -8,7 +8,8 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return
 #' A spatial data.frame
@@ -61,7 +62,9 @@ GIFT_shape <- function(entity_ID = NULL,
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Function ----
@@ -76,7 +79,8 @@ GIFT_shape <- function(entity_ID = NULL,
   geodata <- list()
   
   for (i in seq_along(unique(entity_ID))) {
-    # TODO Put old polygons of old versions into respective folders and paste version here
+    # TODO Put old polygons of old versions into respective folders and paste
+    # version here
     tmp_geo <- st_read(
       paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",
              entity_ID[i], ".geojson"), quiet = TRUE)

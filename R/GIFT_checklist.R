@@ -12,9 +12,9 @@
 #' @param floristic_group Character among the following options: 'all',
 #' 'native', 'endemic', 'naturalized'.
 #' 
-#' @param complete_floristic Boolean stating you want to retrieve checklists that
-#' only contain the exhaustive list of the 'floristic_group' argument or as
-#' well incomplete lists.
+#' @param complete_floristic Boolean stating you want to retrieve checklists
+#' that only contain the exhaustive list of the 'floristic_group' argument or
+#' as well incomplete lists.
 #' 
 #' @param geo_type Character string, either 'Mainland', 'Island' or
 #' c('Mainland', 'Island'). Island gets you to Island, Island Group &
@@ -44,8 +44,8 @@
 #' 
 #' @param area_th_mainland When two polygons overlap, the smallest or the
 #' biggest one can be kept. When the surface of the smallest polygon exceeds
-#' this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
-#' Set by default 100 square-kilometers.
+#' this number, the smallest polygon is kept. Otherwise, we keep the bigger
+#' one. Set by default 100 square-kilometers.
 #' 
 #' @param overlap_th A number ranging from 0 to 1, indicating at what
 #' percentage of overlap, partially overlapping polygons should be kept. 
@@ -64,7 +64,8 @@
 #' @param list_set_only Boolean. Stating whether you only want the metadata or
 #' if you also want to retrieve the species lists.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #'
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date

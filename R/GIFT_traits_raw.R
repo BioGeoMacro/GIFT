@@ -41,10 +41,10 @@
 #' 
 #' @export
 #' 
-GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
-                            bias_deriv = TRUE,
-                            api = "http://gift.uni-goettingen.de/api/extended/",
-                            GIFT_version = "latest"){
+GIFT_traits_raw <- function(
+    trait_IDs = "", derived = TRUE, bias_ref = TRUE, bias_deriv = TRUE,
+    api = "http://gift.uni-goettingen.de/api/extended/",
+    GIFT_version = "latest"){
   
   # 1. Controls ----
   # Arguments
@@ -90,7 +90,9 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Function ----
@@ -149,8 +151,8 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   trait_list <- dplyr::mutate_at(
     trait_list, c("trait_derived_ID","ref_ID","orig_ID", "derived",
                   "bias_deriv", "bias_ref", "name_ID"), as.numeric)
-  # TODO expand making numeric for new names matched columns, but only if names_matched == TRUE
-  
+  # TODO expand making numeric for new names matched columns, but only if
+  # names_matched == TRUE
   
   # join standardized species names
   species <- GIFT_species(api = api, GIFT_version = GIFT_version)
@@ -161,12 +163,11 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   
   # Join references
   references <- GIFT_references(api = api, GIFT_version = GIFT_version)
-  references <- unique(references[,c("ref_ID","geo_entity_ref","ref_long")])
+  references <- unique(references[, c("ref_ID", "geo_entity_ref", "ref_long")])
   
   trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")
   
   # Add standardized species names
-    
-  
+
   return(trait_list)
 }

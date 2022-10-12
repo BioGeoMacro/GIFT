@@ -22,7 +22,8 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return A data frame with 3 columns: entity_ID the identification number
 #' of a polygon, 'geo_entity_ref' its name, and 'coverage' which indicates
@@ -104,7 +105,9 @@ GIFT_spatial <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   if(!is.character(api)){
@@ -122,11 +125,14 @@ GIFT_spatial <- function(
   }
   
   if(!is.null(shp) && !("sf" %in% class(shp))){
-    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS set to WGS84 (EPSG: 4326).")
+    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
+         set to WGS84 (EPSG: 4326).")
   }
   
   if(!is.null(shp) && nrow(shp) > 1){
-    warning("Several polygons are passed in the shp object. They will be treated at the same time. To know what polygon covers what checklist, please use repeteadly GIFT_spatial().")
+    warning("Several polygons are passed in the shp object. They will be
+            treated at the same time. To know what polygon covers what
+            checklist, please use repeteadly GIFT_spatial().")
   }
   
   if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
@@ -210,10 +216,12 @@ GIFT_spatial <- function(
   # the extent from GIFT
   if(overlap == "centroid_inside"){
     # Query the centroid using GIFT_env()
-    GIFT_centroids <- GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
-                                     api = api, GIFT_version = GIFT_version)
+    GIFT_centroids <-
+      GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
+                     api = api, GIFT_version = GIFT_version)
     # Removing NAs
-    GIFT_centroids <- GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
+    GIFT_centroids <-
+      GIFT_centroids[complete.cases(GIFT_centroids$longitude), ]
     
     # Numeric columns
     GIFT_centroids <- dplyr::mutate_at(

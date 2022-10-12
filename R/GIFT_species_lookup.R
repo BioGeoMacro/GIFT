@@ -6,13 +6,15 @@
 #'
 #' @param genus character string defining the genus name to be looked for.
 #' 
-#' @param epithet character string defining the specific apithet to be looked for.
+#' @param epithet character string defining the specific epithet to be looked
+#' for.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return
 #' A data frame with 24 columns.
@@ -54,8 +56,8 @@ GIFT_species_lookup <-
     }
     
     if(!is.character(epithet)){
-      stop("epithet must be a character string indicating the specific epithet to 
-         look for.")
+      stop("epithet must be a character string indicating the specific epithet
+      to look for.")
     }
     
     # GIFT_version
@@ -74,7 +76,9 @@ GIFT_species_lookup <-
       GIFT_version <- gift_version[nrow(gift_version), "version"]
     }
     if(GIFT_version == "beta"){
-      message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+      message("You are asking for the beta-version of GIFT which is subject to
+              updates and edits. Consider using 'latest' for the latest stable
+              version.")
     }
     
     # 2. Function ----
@@ -87,6 +91,8 @@ GIFT_species_lookup <-
     tmp <- dplyr::mutate_at(
       tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
              "matched", "epithetscore", "overallscore", "resolved", "synonym",
-             "matched_subtaxon", "accepted", "work_ID", "taxon_ID"), as.numeric)
+             "matched_subtaxon", "accepted", "work_ID", "taxon_ID"),
+      as.numeric)
+    
     return(tmp)
   }
