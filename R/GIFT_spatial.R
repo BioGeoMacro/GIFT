@@ -69,7 +69,9 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_as_sfc st_intersection st_geometry st_read st_is_valid st_make_valid st_set_precision st_area st_agr
+#' @importFrom sf st_polygon st_sf st_sfc st_as_sf st_as_sfc st_intersection
+#' @importFrom sf st_geometry st_read st_is_valid st_make_valid
+#' @importFrom sf st_set_precision st_area st_agr
 #' @importFrom dplyr mutate
 #' 
 #' @export

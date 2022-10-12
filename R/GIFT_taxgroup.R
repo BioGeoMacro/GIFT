@@ -6,11 +6,11 @@
 #' @param work_ID A vector defining the IDs of the species to retrieve
 #' taxonomic groups for. `Null` by default. 
 #' 
-#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default. 
-#' Check `GIFT_taxonomy()` for available levels. In addition to the available 
-#' levels one can put "higher_lvl" to retrieve the higher level groups 
-#' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta", 
-#' "Monilophyta", "Gymnospermae", and "Angiospermae".                            
+#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default.
+#' Check `GIFT_taxonomy()` for available levels. In addition to the available
+#' levels one can put "higher_lvl" to retrieve the higher level groups
+#' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
+#' "Monilophyta", "Gymnospermae", and "Angiospermae".
 #' 
 #' @param return_ID logical indicating whether to give back taxon_IDs instead
 #' of names.
