@@ -239,7 +239,8 @@ GIFT_checklist_raw <- function(
       list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(), 
                              entity_ID = numeric(),
                              work_ID = numeric(), genus_ID = numeric(),
-                             work_species = character(), questionable = numeric(),
+                             work_species = character(),
+                             questionable = numeric(),
                              native = numeric(), quest_native = numeric(),
                              naturalized = numeric(), endemic_ref = numeric(),
                              quest_end_ref = numeric(),
@@ -250,17 +251,18 @@ GIFT_checklist_raw <- function(
   } else{
     # Some columns have to be numeric
     list_raw <- dplyr::mutate_at(
-      list_raw, c("ref_ID", "list_ID", "entity_ID", "genus_ID", "work_ID", "questionable",
-                  "native", "quest_native", "naturalized", "endemic_ref",
-                  "quest_end_ref", "endemic_list", "quest_end_list"),
-      as.numeric)
+      list_raw, c("ref_ID", "list_ID", "entity_ID", "genus_ID", "work_ID",
+                  "questionable", "native", "quest_native", "naturalized",
+                  "endemic_ref", "quest_end_ref", "endemic_list",
+                  "quest_end_list"), as.numeric)
     
     list_raw$cons_status <- as.character(list_raw$cons_status)
     
     if(namesmatched){
       list_raw <- dplyr::mutate_at(
-        list_raw, c("orig_ID", "name_ID", "cf_genus","cf_species","aff_species",
-                    "matched", "epithetscore","overallscore", "resolved"), as.numeric)
+        list_raw, c("orig_ID", "name_ID", "cf_genus", "cf_species",
+                    "aff_species", "matched", "epithetscore", "overallscore",
+                    "resolved"), as.numeric)
     }
     
     if(all(c("synonym","matched_subtaxon","accepted") %in% names(list_raw))){
