@@ -55,7 +55,8 @@
 #' other regions from the same resource will be removed even if there are other
 #' references available for those regions.
 #' 
-#' @param taxonomic_group
+#' @param taxonomic_group Boolean. When set to TRUE, two additional columns
+#' ('family' and 'tax_group') are available in the checklists.
 #' 
 #' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
 #' original species name as they came in the references as well as details on
@@ -301,6 +302,11 @@ GIFT_checklist <- function(
   }
   
   # taxonomic_group
+  if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
+     is.na(taxonomic_group)){
+    stop("'taxonomic_group' must be a boolean. When set to TRUE, two additional
+    columns ('family' and 'tax_group') are available in the checklists.")
+  }
   
   if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
      is.na(list_set_only)){

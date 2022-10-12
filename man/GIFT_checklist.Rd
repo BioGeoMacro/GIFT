@@ -80,7 +80,8 @@ regions shall be applied by ref_ID only. Note that regions overlapping with
 other regions from the same resource will be removed even if there are other
 references available for those regions.}
 
-\item{taxonomic_group}{}
+\item{taxonomic_group}{Boolean. When set to TRUE, two additional columns
+('family' and 'tax_group') are available in the checklists.}
 
 \item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
 original species name as they came in the references as well as details on
