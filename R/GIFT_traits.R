@@ -102,7 +102,7 @@ GIFT_traits <- function(
   trait_list <- list()
   
   # for-loop
-  for (i in 1:length(trait_IDs)){
+  for (i in seq_len(trait_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits&traitid=",

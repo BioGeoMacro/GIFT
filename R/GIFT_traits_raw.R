@@ -130,7 +130,7 @@ GIFT_traits_raw <- function(trait_IDs = "", derived = TRUE, bias_ref = TRUE,
   trait_list <- list()
   
   # for-loop
-  for (i in 1:nrow(ref_IDs)){
+  for (i in seq_len(nrow(ref_IDs))){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits_raw&traitid=",

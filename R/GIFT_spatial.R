@@ -290,7 +290,7 @@ GIFT_spatial <- function(
                            "shape_inside")){
     # Checking what extent boxes overlap
     GIFT_extents$keep <- 0
-    for(i in 1:nrow(GIFT_extents)){
+    for(i in seq_len(nrow(GIFT_extents))){
       tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
                       xmax = as.numeric(GIFT_extents[i, "x_max"]),
                       ymin = as.numeric(GIFT_extents[i, "y_min"]),
@@ -325,7 +325,7 @@ GIFT_spatial <- function(
       GIFT_extents$coverage <- NA
       
       # Downloading geojson for which extent boxes overlap with provided shape
-      for(i in 1:nrow(GIFT_extents)){
+      for(i in seq_len(nrow(GIFT_extents))){
         tmp_geo <- sf::st_read(paste0(
           "http://gift.uni-goettingen.de/geojson/geojson_smaller/",
           GIFT_extents[i, "entity_ID"],
