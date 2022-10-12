@@ -3,27 +3,28 @@
 #' Assign taxonomic groups of various hierarchical level to species from GIFT 
 #' (work_ID)
 #'
-#' @param work_ID A vector defining the IDs of the species to retrieve taxonomic 
-#' groups for. `Null` by default. 
+#' @param work_ID A vector defining the IDs of the species to retrieve
+#' taxonomic groups for. `Null` by default. 
 #' 
-#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default. 
-#' Check `GIFT_taxonomy()` for available levels. In addition to the available 
-#' levels one can put "higher_lvl" to retrieve the higher level groups 
-#' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta", 
-#' "Monilophyta", "Gymnospermae", and "Angiospermae".                            
+#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default.
+#' Check `GIFT_taxonomy()` for available levels. In addition to the available
+#' levels one can put "higher_lvl" to retrieve the higher level groups
+#' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
+#' "Monilophyta", "Gymnospermae", and "Angiospermae".
 #' 
-#' @param return_ID logical indicating whether to give back taxon_IDs instead of 
-#' names.
+#' @param return_ID logical indicating whether to give back taxon_IDs instead
+#' of names.
 #' 
 #' @param taxonomy option to supply taxonomy object here if loaded already to 
 #' avoid double loading. For internal use within GIFT functions. If `NULL` 
 #' (default) taxonomy will be loaded within this function.
 #' 
-#' @param species option to supply species names object here if loaded already to 
-#' avoid double loading. For internal use within GIFT functions. If `NULL` 
+#' @param species option to supply species names object here if loaded already
+#' to avoid double loading. For internal use within GIFT functions. If `NULL` 
 #' (default) species will be loaded within this function. 
 #'  
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
@@ -94,7 +95,9 @@ GIFT_taxgroup <- function(work_ID = NULL,
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # taxonomy
@@ -114,8 +117,8 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
   
-  species = species[match(work_ID,species$work_ID),]
-  genera = unique(species$genus)
+  species <- species[match(work_ID,species$work_ID), ]
+  genera <- unique(species$genus)
   
   ## 2.0 taxonomy query
   if(is.null(taxonomy)){

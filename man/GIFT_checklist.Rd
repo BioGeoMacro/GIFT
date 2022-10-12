@@ -37,9 +37,9 @@ incomplete lists.}
 \item{floristic_group}{Character among the following options: 'all',
 'native', 'endemic', 'naturalized'.}
 
-\item{complete_floristic}{Boolean stating you want to retrieve checklists that
-only contain the exhaustive list of the 'floristic_group' argument or as
-well incomplete lists.}
+\item{complete_floristic}{Boolean stating you want to retrieve checklists
+that only contain the exhaustive list of the 'floristic_group' argument or
+as well incomplete lists.}
 
 \item{geo_type}{Character string, either 'Mainland', 'Island' or
 c('Mainland', 'Island'). Island gets you to Island, Island Group &
@@ -69,8 +69,8 @@ overlapping polygon is kept. By default set to 0 square kilometer
 
 \item{area_th_mainland}{When two polygons overlap, the smallest or the
 biggest one can be kept. When the surface of the smallest polygon exceeds
-this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
-Set by default 100 square-kilometers.}
+this number, the smallest polygon is kept. Otherwise, we keep the bigger
+one. Set by default 100 square-kilometers.}
 
 \item{overlap_th}{A number ranging from 0 to 1, indicating at what
 percentage of overlap, partially overlapping polygons should be kept.}
@@ -93,7 +93,8 @@ if you also want to retrieve the species lists.}
 database to use. The function retrieves by default the most up-to-date
 version.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 }
 \value{
 List with two data frames: the checklist with species and the list of ID.

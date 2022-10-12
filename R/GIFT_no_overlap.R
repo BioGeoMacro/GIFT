@@ -8,12 +8,12 @@
 #' 
 #' @param area_th_island A number stating from which surface the smallest
 #' overlapping polygon is kept. By default set to 0 square kilometer
-#' (meaning that by default the smallest islands will be conserverd).
+#' (meaning that by default the smallest islands will be conserved).
 #' 
 #' @param area_th_mainland When two polygons overlap, the smallest or the
 #' biggest one can be kept. When the surface of the smallest polygon exceeds
-#' this number, the smallest polygon is kept. Otherwise, we keep the bigger one.
-#' Set by default 100 square-kilometers.
+#' this number, the smallest polygon is kept. Otherwise, we keep the bigger
+#' one. Set by default 100 square-kilometers.
 #' 
 #' @param overlap_th A number ranging from 0 to 1, indicating at what
 #' percentage of overlap, partially overlapping polygons should be kept. 
@@ -47,16 +47,16 @@
 #' 
 #' @export
 
-GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0, 
-                            area_th_mainland = 100, overlap_th = 0.1, 
-                            geoentities_overlap = NULL, 
-                            api = "http://gift.uni-goettingen.de/api/extended/", 
-                            GIFT_version = "latest"){
+GIFT_no_overlap <- function(
+    entity_IDs = NULL, area_th_island = 0, area_th_mainland = 100,
+    overlap_th = 0.1, geoentities_overlap = NULL, 
+    api = "http://gift.uni-goettingen.de/api/extended/",
+    GIFT_version = "latest"){
   
   # 1. Controls ----
   if(is.null(entity_IDs) || length(entity_IDs) == 0){
-    stop("Please provide the ID numbers of the regions you want 
-         to check the overlap of.")
+    stop("Please provide the ID numbers of the regions you want to check the
+         overlap of.")
   }
   
   if(!is.numeric(area_th_island) || area_th_island < 0){
@@ -100,7 +100,9 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   if(!is.character(api)){
@@ -154,5 +156,6 @@ GIFT_no_overlap <- function(entity_IDs = NULL, area_th_island = 0,
   # TODO make warning if this data.frame still contains data
   
   return(entity_IDs)
-  # TODO allow for removing overlapping regions only within ref_IDs <- apply this function by ref_ID
+  # TODO allow for removing overlapping regions only within ref_IDs <- apply
+  # this function by ref_ID
 }

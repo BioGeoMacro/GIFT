@@ -33,7 +33,8 @@ intersects the provided shape/coordinates will be retrieved.}
 database to use. The function retrieves by default the most up-to-date
 version.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 }
 \value{
 A data frame with 3 columns: entity_ID the identification number

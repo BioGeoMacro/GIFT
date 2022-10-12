@@ -6,7 +6,8 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return
 #' A data frame with 3 columns.
@@ -57,7 +58,9 @@ GIFT_species <- function(api = "http://gift.uni-goettingen.de/api/extended/",
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Function ----

@@ -162,7 +162,9 @@ GIFT_checklist_raw <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Query ----
@@ -228,7 +230,8 @@ GIFT_checklist_raw <- function(
                              genus_ID = numeric(), work_species = character(),
                              questionable = numeric(), native = numeric(),
                              quest_native = numeric(), naturalized = numeric(),
-                             endemic_ref = numeric(), quest_end_ref = numeric(),
+                             endemic_ref = numeric(),
+                             quest_end_ref = numeric(),
                              endemic_list = numeric(),
                              quest_end_list = numeric(),
                              cons_status = logical())
@@ -239,7 +242,8 @@ GIFT_checklist_raw <- function(
                              work_species = character(), questionable = numeric(),
                              native = numeric(), quest_native = numeric(),
                              naturalized = numeric(), endemic_ref = numeric(),
-                             quest_end_ref = numeric(), endemic_list = numeric(),
+                             quest_end_ref = numeric(),
+                             endemic_list = numeric(),
                              quest_end_list = numeric(),
                              cons_status = logical())
     }
@@ -265,7 +269,9 @@ GIFT_checklist_raw <- function(
     }
   }
   
-  message("Be cautious, species indicated as endemic were stated like this in the source reference/checklist. It can be that these species appear in other checklists.")
+  message("Be cautious, species indicated as endemic were stated like this in
+          the source reference/checklist. It can be that these species appear
+          in other checklists.")
   
   return(list_raw)
 }

@@ -24,7 +24,8 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be retrieved.
+#' @param api character string defining from which API the data will be
+#' retrieved.
 #' 
 #' @return
 #' data frame.
@@ -80,8 +81,9 @@ GIFT_env <- function(
   # check => whether the (list of) argument(s)
   
   # sumstat argument valid for raster only (naturlich)
-  # it can be formated as a single value, a vector or a list
-  # in later case => each list element correspond to the position of the vector or raster names
+  # it can be formatted as a single value, a vector or a list
+  # in later case => each list element correspond to the position of the vector
+  # or raster names
   # control for that argument: length of the vector or of the list has to be
   # equal to the length of the raster layers
   
@@ -107,7 +109,9 @@ GIFT_env <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # check if sumstats are available

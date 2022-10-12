@@ -33,8 +33,7 @@
 #' @examples
 #' \dontrun{
 #' wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-#' bias_ref = FALSE, bias_deriv = FALSE)
-#' 
+#' bias_ref = FALSE, bias_deriv = FALSE)#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -94,7 +93,9 @@ GIFT_traits <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   # 2. Function ----
@@ -138,8 +139,9 @@ GIFT_traits <- function(
   #                              .after = last_col())
   
   # Wider format
-  trait_list <- tidyr::pivot_wider(trait_list, names_from = "trait_ID",
-                                   values_from = c("trait_value","agreement","references"))
+  trait_list <- tidyr::pivot_wider(
+    trait_list, names_from = "trait_ID",
+    values_from = c("trait_value", "agreement", "references"))
   
   # Make data.frame
   trait_list <- as.data.frame(trait_list)

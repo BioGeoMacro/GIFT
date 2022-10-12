@@ -190,7 +190,9 @@ GIFT_checklist_conditional <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to updates and edits. Consider using 'latest' for the latest stable version.")
+    message("You are asking for the beta-version of GIFT which is subject to
+            updates and edits. Consider using 'latest' for the latest stable
+            version.")
   }
   
   if(!is.null(taxonomy)){
@@ -289,7 +291,8 @@ GIFT_checklist_conditional <- function(
     list_set <- dplyr::select(list_set, -range_covered, -range_covered_max)
     
     # TO DO: allow for cases when you can "sum" for taxonomic subsets
-    # TO DO account for cases in which we don't have a list for a taxonomic group but for all subgroups included
+    # TO DO account for cases in which we don't have a list for a taxonomic
+    # group but for all subgroups included
   }
   
   # Remove unnecessary columns from join with taxonomy

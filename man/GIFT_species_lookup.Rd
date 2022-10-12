@@ -14,9 +14,11 @@ GIFT_species_lookup(
 \arguments{
 \item{genus}{character string defining the genus name to be looked for.}
 
-\item{epithet}{character string defining the specific apithet to be looked for.}
+\item{epithet}{character string defining the specific epithet to be looked
+for.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date

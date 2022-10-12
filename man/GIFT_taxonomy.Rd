@@ -14,7 +14,8 @@ GIFT_taxonomy(
 database to use. The function retrieves by default the most up-to-date
 version.}
 
-\item{api}{character string defining from which API the data will be retrieved.}
+\item{api}{character string defining from which API the data will be
+retrieved.}
 }
 \value{
 A data frame with 6 columns.

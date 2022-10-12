@@ -1,6 +1,7 @@
-get_credentials = function(){
+get_credentials <- function(){
   username <- readline("Enter username: ")
   password <- readline("Enter password: ")
-  assign(x = "credentials", value = list(username,password), envir = globalenv())
+  assign(x = "credentials", value = list(username, password),
+         envir = globalenv())
   lockBinding("credentials", globalenv())
 }
