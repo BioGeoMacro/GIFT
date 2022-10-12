@@ -130,17 +130,24 @@ GIFT_taxgroup <- function(work_ID = NULL,
   taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
                                as.numeric)
   
-  taxa <- sapply(genera, function(x) {
-    taxa <- taxonomy[
-      which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == x)] 
-            & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID == x)]), ]
+  taxa <- c()
+  for(i in seq_along(genera)){
+    tmp <- taxonomy[
+      which(taxonomy$lft < taxonomy$lft[which(taxonomy$taxon_ID == genera[i])]
+            & taxonomy$rgt > taxonomy$rgt[which(taxonomy$taxon_ID ==
+                                                  genera[i])]), ]
     if(taxon_lvl == "higher_lvl"){
-      taxa <- taxa[grep("level",taxa$taxon_lvl), ]
-      taxa <- taxa[which.min(taxa$rgt-taxa$lft), ]
+      tmp <- tmp[grep("level", tmp$taxon_lvl), ]
+      tmp <- tmp[which.min(tmp$rgt-taxa$lft), ]
     } else {
-      taxa <- taxa[which(taxa$taxon_lvl == taxon_lvl), ]
+      tmp <- tmp[which(tmp$taxon_lvl == taxon_lvl), ]
     }
-    ifelse(return_ID, taxa[, "taxon_ID"], taxa[, "taxon_name"])
-  })
+    if(return_ID){
+      taxa[i] <- tmp[, "taxon_ID"]
+    }else{
+      taxa[i] <- tmp[, "taxon_name"]
+    }
+  }
+  
   return(taxa[match(species$genus, genera)])
 }
