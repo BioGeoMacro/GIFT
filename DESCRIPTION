@@ -1,7 +1,7 @@
 Package: GIFT
 Type: Package
 Title: Access to the Global Inventory of Floras and Traits (GIFT)
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
   person("Patrick", "Weigelt", email = "weigelt.patrick@gmail.com",
     role = c("aut" , "cre"), comment = c(ORCID = "0000-0002-2485-3708")),
