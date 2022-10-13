@@ -109,7 +109,8 @@ kableExtra::kbl(env_meta) %>%
 ```{r GIFT_checklists, eval=FALSE}
 checklists <- GIFT_checklist(taxon_name = "Pinaceae",
                              complete_taxon = TRUE, 
-                             floristic_group = c("all", "native", "endemic", "naturalized")[2],
+                             floristic_group = c("all", "native", "endemic",
+                                                 "naturalized")[2],
                              complete_floristic = TRUE,
                              geo_type = c("Island"), 
                              suit_geo = TRUE,
@@ -322,7 +323,8 @@ head(env_meta3)
 
 env <- GIFT_env(api = api)
 
-env <- GIFT_env(miscellaneous = c("area", "dist"), rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
+env <- GIFT_env(miscellaneous = c("area", "dist"),
+                rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
                 sumstat = c("mean","max") , api = api)
 ```
 

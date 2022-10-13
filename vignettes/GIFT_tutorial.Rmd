@@ -67,25 +67,70 @@ sf::st_crs(med)
 Now that we have a shape for the region of interest, let's call
 `GIFT_checklist()`.
 
+Function returns a list of two tables: metadata and actual checklists.
+To get only the metadata, set the argument `list_set_only` to `TRUE`.
+
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-taxon_name = "Angiospermae")
+                     taxon_name = "Angiospermae")
+
+ex_meta <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+                          taxon_name = "Angiospermae", list_set_only = TRUE)
 ```
 
+How complete_taxon works.
+
+```{r, eval=FALSE}
+ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+                     taxon_name = "Angiospermae",
+                     complete_taxon = TRUE)
+```
+
+How complete_floristic works.
+
+```{r, eval=FALSE}
+ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+                     taxon_name = "Angiospermae",
+                     floristic_group = "native",
+                     complete_floristic = TRUE)
+```
+
+How remove_overlap works.
+
+```{r, eval=FALSE}
+ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+                     taxon_name = "Angiospermae",
+                     remove_overlap = TRUE)
+```
+
+Function also works with own coordinates, point.
+
+```{r, eval=FALSE}
+custom_point <- cbind(9.9, 51)
+
+ex <- GIFT_checklist(coordinates = custom_point, overlap = "extent_intersect",
+                     taxon_name = "Angiospermae",
+                     remove_overlap = TRUE)
+```
 
 # 3. Distribution of species
 
-```{r}
+```{r, eval=FALSE}
 
 ```
 
 
 # 4. Trait data
 
-```{r}
+Raw traits, and traits after taxonomic harmonization.
+
+```{r, eval=FALSE}
 
 ```
 
+```{r, eval=FALSE}
+
+```
 
 # 5. References
 
