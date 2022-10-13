@@ -523,9 +523,11 @@ GIFT_checklist <- function(
                                   .after = "work_species")
   }
   
-  message("Be cautious, species indicated as endemic were stated like this in
+  if(list_set_only == FALSE){
+    message("Be cautious, species indicated as endemic were stated like this in
           the source reference/checklist. It can be that these species appear
           in other checklists.")
+  }
   
   return(list(lists, checklists))
 }
