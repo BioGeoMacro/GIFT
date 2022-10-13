@@ -1,5 +1,5 @@
 ---
-title: "GIFT API"
+title: "Queries in GIFT API"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
@@ -8,7 +8,7 @@ output:
     toc_depth: 2
     number_sections: true
 vignette: >
- %\VignetteIndexEntry{Tutorial for GIFT R package}
+ %\VignetteIndexEntry{Queries in GIFT API}
  %\VignetteEncoding{UTF-8} 
  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -34,9 +34,6 @@ suppressPackageStartupMessages({
 })
 
 options(tinytex.verbose = TRUE)
-
-devtools::load_all()
-
 ```
 
 

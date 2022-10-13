@@ -1,5 +1,5 @@
 ---
-title: "GIFT tutorial"
+title: "GIFT tutorial, advanced users"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
@@ -8,7 +8,7 @@ output:
     toc_depth: 2
     number_sections: true
 vignette: >
- %\VignetteIndexEntry{Tutorial for GIFT R package}
+ %\VignetteIndexEntry{GIFT tutorial, advanced users}
  %\VignetteEncoding{UTF-8} 
  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -34,9 +34,6 @@ suppressPackageStartupMessages({
 })
 
 options(tinytex.verbose = TRUE)
-
-devtools::load_all()
-
 ```
 
 
@@ -49,10 +46,12 @@ See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
 # 2. Main functions
 
 ## 2.1. Trait extraction
-We here retrieve woodiness and life information for every species using `GIFT_traits()` function.
-The output of this function is a long format data.frame. This implies that, when providing several traits, the species rows are replicated.
+We here retrieve woodiness and life information for every species using
+`GIFT_traits()` function.
+The output of this function is a long format data.frame. This implies that,
+when providing several traits, the species rows are replicated.
 
-```{r traits}
+```{r traits, eval=FALSE}
 
 traits_meta <- GIFT_traits_meta()
 head(traits_meta)
@@ -68,7 +67,6 @@ table(ex_tra$trait_ID, ex_tra$trait_value)
 
 length(unique(ex_tra$species))
 
-
 # do same for numerical trait
 
 # original traits
@@ -80,13 +78,12 @@ ex_tra <- GIFT_traits_raw(trait_IDs = c("1.2.1"), derived = TRUE,
 
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
                           bias_ref = FALSE, bias_deriv = FALSE, api = api)
-
 ```
 
 ## 2.3. Lists
 Retrieve checklists.
 
-```{r lists}
+```{r lists, eval = FALSE}
 ex_list <- GIFT_lists(api = api)
 
 head(ex_list)
@@ -97,9 +94,10 @@ head(ex_list)
 
 # 3. Metadata
 ## 3.1. Environment
-The functions `GIFT_env_meta_raster()` and `GIFT_env_meta_misc()` allow the user to retrieve metadata about environmental variables.
+The functions `GIFT_env_meta_raster()` and `GIFT_env_meta_misc()` allow the
+user to retrieve metadata about environmental variables.
 
-```{r env_raster}
+```{r env_raster, eval=FALSE}
 env_meta <- GIFT_env_meta_raster(api = api)
 head(env_meta)
 
@@ -110,14 +108,15 @@ kableExtra::kbl(env_meta) %>%
 
 ### Temporary: GIFT_shape
 
-```{r GIFT_checklists}
+```{r GIFT_checklists, eval=FALSE}
 checklists <- GIFT_checklist(taxon_name = "Pinaceae",
                              complete_taxon = TRUE, 
                              floristic_group = c("all", "native", "endemic", "naturalized")[2],
                              complete_floristic = TRUE,
-                             geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+                             geo_type = c("Island"), 
                              suit_geo = TRUE,
-                             shp = NULL, coordinates = NULL, overlap = "centroid_inside",
+                             shp = NULL, coordinates = NULL,
+                             overlap = "centroid_inside",
                              remove_overlap = FALSE,
                              namesmatched = TRUE,  
                              taxonomic_group = TRUE,
@@ -127,61 +126,59 @@ par(mfrow=c(1,1))
 geodata <- GIFT_shape(checklists[[1]]$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID)
 
+data("med")
 
-data(med)
+checklists_centroid_inside <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"),
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "centroid_inside",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 
-checklists_centroid_inside <- GIFT_checklist(taxon_name = "Pinaceae",
-                                             complete_taxon = TRUE, 
-                                             floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                             complete_floristic = TRUE,
-                                             geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
-                                             suit_geo = TRUE,
-                                             shp = med, coordinates = NULL, overlap = "centroid_inside",
-                                             remove_overlap = TRUE,
-                                             namesmatched = TRUE,
-                                             list_set_only = TRUE,
-                                             api = api)
+checklists_extent_intersect <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"),
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "extent_intersect",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 
+checklists_shape_intersect <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"), 
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "shape_intersect",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 
-checklists_extent_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
-                                              complete_taxon = TRUE, 
-                                              floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                              complete_floristic = TRUE,
-                                              geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
-                                              suit_geo = TRUE,
-                                              shp = med, coordinates = NULL, overlap = "extent_intersect",
-                                              remove_overlap = TRUE,
-                                              namesmatched = TRUE,
-                                              list_set_only = TRUE,
-                                              api = api)
-
-checklists_shape_intersect <- GIFT_checklist(taxon_name = "Pinaceae",
-                                             complete_taxon = TRUE, 
-                                             floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                             complete_floristic = TRUE,
-                                             geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
-                                             suit_geo = TRUE,
-                                             shp = med, coordinates = NULL, overlap = "shape_intersect",
-                                             remove_overlap = TRUE,
-                                             namesmatched = TRUE,
-                                             list_set_only = TRUE,
-                                             api = api)
-
-checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
-                                          complete_taxon = TRUE, 
-                                          floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                          complete_floristic = TRUE,
-                                          geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
-                                          suit_geo = TRUE,
-                                          shp = med, coordinates = NULL, overlap = "shape_inside",
-                                          remove_overlap = TRUE,
-                                          namesmatched = TRUE,
-                                          list_set_only = TRUE,
-                                          api = api)
-
-
-
-
+checklists_shape_inside <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"),
+  suit_geo = TRUE,
+  shp = med, coordinates = NULL, overlap = "shape_inside",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 
 par(mfrow=c(2,2), mai=c(0,0,0.5,0))
 geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
@@ -202,7 +199,7 @@ plot(st_geometry(med), add=TRUE)
 ### Temporary: GIFT_shape
 
 Next chunk can be removed.
-```{r GIFT_checklists}
+```{r GIFT_checklists2, eval=FALSE}
 ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
 ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
 ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
@@ -225,30 +222,32 @@ plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
 plot(st_geometry(med), add=TRUE)
 ```
 
-Now, with custom shape, coordinates, etc => this would come in the description of GIFT_checklists()
+Now, with custom shape, coordinates, etc => this would come in the description
+of GIFT_checklists()
 
-```{r GIFT_spatial_custom}
+```{r GIFT_spatial_custom, eval = FALSE}
 custom_point <- cbind(9.92, 51.54)
 ex5 <- GIFT_spatial(coordinates = custom_point,
                     overlap = "extent_intersect")
 ex52 <- GIFT_spatial(coordinates = custom_point,
-                     overlap = "centroid_inside") # does not work but that is ok
+                     overlap = "centroid_inside") # does not work but that's ok
 ex53 <- GIFT_spatial(coordinates = custom_point,
                      overlap = "shape_intersect") # PROBLEM: empty data frame
 ex54 <- GIFT_spatial(coordinates = custom_point,
                      overlap = "shape_inside") # does not work but that is ok
 
-checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
-                                          complete_taxon = TRUE, 
-                                          floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                          complete_floristic = TRUE,
-                                          geo_type = c("Island", "Mainland"), # Island gets you to Island, Island Group & Island Part
-                                          suit_geo = TRUE,
-                                          shp = NULL, coordinates = cbind(9.9, 51), overlap = "shape_inside",
-                                          remove_overlap = TRUE,
-                                          namesmatched = TRUE,
-                                          list_set_only = TRUE,
-                                          api = api)
+checklists_shape_inside <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island", "Mainland"),
+  suit_geo = TRUE,
+  shp = NULL, coordinates = cbind(9.9, 51), overlap = "shape_inside",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 
 #' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
 #' ex6 <- GIFT_spatial(coordinates = custom_extent,
@@ -262,7 +261,7 @@ checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
 ```
 
 Case for custom bbox.
-```{r}
+```{r, eval = FALSE}
 custom_extent <- cbind(c(-13, -18), c(27.5, 29.3)) # -18.5 if we want el Hierro
 
 ex6 <- GIFT_spatial(coordinates = custom_extent,
@@ -274,32 +273,31 @@ ex63 <- GIFT_spatial(coordinates = custom_extent,
 ex64 <- GIFT_spatial(coordinates = custom_extent,
                      overlap = "shape_inside")
 
-checklists_shape_inside <- GIFT_checklist(taxon_name = "Pinaceae",
-                                          complete_taxon = TRUE, 
-                                          floristic_group = c("all", "native", "endemic", "naturalized")[2],
-                                          complete_floristic = TRUE,
-                                          geo_type = c("Island"), 
-                                          suit_geo = TRUE,
-                                          shp = NULL, coordinates = cbind(c(-13, -18.5), c(27.5, 29.5)), overlap = "shape_inside",
-                                          remove_overlap = TRUE,
-                                          namesmatched = TRUE,
-                                          list_set_only = TRUE,
-                                          api = api)
+checklists_shape_inside <- GIFT_checklist(
+  taxon_name = "Pinaceae",
+  complete_taxon = TRUE, 
+  floristic_group = c("all", "native", "endemic", "naturalized")[2],
+  complete_floristic = TRUE,
+  geo_type = c("Island"), 
+  suit_geo = TRUE,
+  shp = NULL, coordinates = cbind(c(-13, -18.5), c(27.5, 29.5)),
+  overlap = "shape_inside",
+  remove_overlap = TRUE,
+  namesmatched = TRUE,
+  list_set_only = TRUE,
+  api = api)
 par(mfrow=c(1,1), mai=c(0,0,0.5,0))
 geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
-
-
-
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 # checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
 #   complete_taxon = TRUE, 
 #   floristic_group = c("all", "native", "endemic", "naturalized")[2],
 #   complete_floristic = TRUE,
-#   geo_type = c("Island"), # Island gets you to Island, Island Group & Island Part
+#   geo_type = c("Island"),
 #   suit_geo = TRUE,
 #   shp = NULL, coordinates = c(0,10,0,10), overlap = "centroid_inside",
 #   # remove_overlap = TRUE,
@@ -313,10 +311,7 @@ head(as.data.frame(checklists[[2]]))
 
 ```
 
-
-
-
-```{r env}
+```{r env, eval=FALSE}
 env_meta2 <- GIFT_env_meta_misc(api = api)
 head(env_meta2)
 
@@ -327,66 +322,61 @@ kableExtra::kbl(env_meta2) %>%
 env_meta3 <- GIFT_env_meta_raster(api = api)
 head(env_meta3)
 
-
-
 env <- GIFT_env(api = api)
-
 
 env <- GIFT_env(miscellaneous = c("area", "dist"), rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
                 sumstat = c("mean","max") , api = api)
-
 ```
 
 
 \newpage
 
 ## 3.2. Species
-The functions `GIFT_taxonomy()` and `GIFT_species()` return a data.frame with all the available taxa.
+The functions `GIFT_taxonomy()` and `GIFT_species()` return a data.frame with
+all the available taxa.
 
-```{r taxonomy}
+```{r taxonomy, eval=FALSE}
 taxo <- GIFT_taxonomy()
 head(taxo)
 
 kableExtra::kbl(taxo) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
-
 ```
 
-```{r species}
+```{r species, eval=FALSE}
 species <- GIFT_species()
 head(species)
 
 kableExtra::kbl(species) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
-
 ```
 
 \newpage
 
 ## 3.3. Traits
-The function `GIFT_traits_meta()` allows the user to retrieve metadata about available traits.
+The function `GIFT_traits_meta()` allows the user to retrieve metadata about
+available traits.
 
-```{r traits_meta}
+```{r traits_meta, eval = FALSE}
 tmp <- GIFT_traits_meta()
 head(tmp)
 
 kableExtra::kbl(tmp) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
-
 ```
 
 \newpage
 
 ## 3.4. References
-The function `GIFT_references()` allows the user to retrieve metadata about the references that were used to build GIFT database.
+The function `GIFT_references()` allows the user to retrieve metadata about
+the references that were used to build GIFT database.
 
-```{r references}
+```{r references, eval = FALSE}
 ref <- GIFT_references(api = api)
 head(ref)
 
 kableExtra::kbl(ref) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
-
 ```
 
 \newpage

@@ -4,7 +4,7 @@ author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Tutorial for GIFT R package}
+ %\VignetteIndexEntry{GIFT tutorial}
  %\VignetteEncoding{UTF-8} 
  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -67,7 +67,7 @@ sf::st_crs(med)
 Now that we have a shape for the region of interest, let's call
 `GIFT_checklist()`.
 
-```{r}
+```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
 taxon_name = "Angiospermae")
 ```

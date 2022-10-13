@@ -8,7 +8,7 @@ Authors@R: c(
   person("Pierre", "Denelle", email = "pierre.denelle@gmail.com",
     role = c("aut"), comment = c(ORCID = "0000-0001-5037-2281"))
   )
-Description: Retrieving environmental, traits and distribution for species worldwide.
+Description: Retrieving environmental, traits and distribution for plant species worldwide.
 Depends:
   R (>= 3.5.3)
 License: GPL (>= 2)
@@ -23,7 +23,10 @@ Imports:
 RoxygenNote: 7.2.1
 Suggests: 
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 URL: https://github.com/BioGeoMacro/GIFT
 BugReports: https://github.com/BioGeoMacro/GIFT/issues
+VignetteBuilder: knitr
