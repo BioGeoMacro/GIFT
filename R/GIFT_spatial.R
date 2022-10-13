@@ -178,7 +178,7 @@ GIFT_spatial <- function(
   
   # Define shp as coordinates, only one format accepted
   if(!is.null(coordinates)){
-    if(is.na(coordinates) || is.character(coordinates)){
+    if(any(is.na(as.numeric(coordinates)))){
       stop("'coordinates' object does not have the right format. It should be
            a vector of XY coordinates. See help page.")
     }

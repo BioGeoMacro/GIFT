@@ -60,8 +60,7 @@
     - add geo_entity_ref column behind geoentity column (Patrick)
 
 * 1.3. GIFT_spatial
-    - Warning message: In is.na(coordinates) || is.character(coordinates) (Pierre)
-    
+
 * 1.4. ~~GIFT_taxonomy() (Pierre)~~  
     - continue here
     
