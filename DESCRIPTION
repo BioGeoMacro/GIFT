@@ -24,6 +24,7 @@ RoxygenNote: 7.2.1
 Suggests: 
     covr,
     testthat (>= 3.0.0),
+    kableExtra,
     knitr,
     rmarkdown
 Config/testthat/edition: 3
