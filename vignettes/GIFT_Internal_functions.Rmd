@@ -27,15 +27,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 # Packages --------------------------------------------------------------------
 suppressPackageStartupMessages({
   suppressWarnings({
-    library(dplyr)
-    library(jsonlite)
-    library(kableExtra) # html table with scroll bar
+    library("GIFT")
+    library("kableExtra") # html table with scroll bar
   })
 })
 
 options(tinytex.verbose = TRUE)
 ```
-
 
 # 1. Overview
 

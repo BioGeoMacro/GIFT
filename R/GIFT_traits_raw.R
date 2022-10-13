@@ -95,6 +95,9 @@ GIFT_traits_raw <- function(
             version.")
   }
   
+  # Visible binding for global variable
+  ref_ID <- trait_ID <- bias <- NULL
+  
   # 2. Function ----
   
   # Getting available ref_ID/trait_ID combinations including derived traits

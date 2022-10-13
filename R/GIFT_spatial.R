@@ -162,6 +162,9 @@ GIFT_spatial <- function(
              'extent_intersect' only.")
   }
   
+  # Visible binding for global variable
+  x_min <- x_max <- y_min <- y_max <- NULL
+  
   # Making a shapefile out of provided extent
   make_box <- function(xmin, xmax, ymin, ymax){
     x_shp <- sf::st_polygon(list(matrix(

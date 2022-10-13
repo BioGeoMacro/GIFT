@@ -211,7 +211,9 @@ GIFT_checklist_conditional <- function(
     }
   }
   
-  rgt <- lft <- NULL
+  # Visible binding for global variable
+  rgt <- lft <- entity_ID <- range_covered <- range_covered_max <- NULL
+  taxon_author <- taxon_lvl <- NULL
   
   # 2. Query ----
   # List_set query
