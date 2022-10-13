@@ -280,9 +280,15 @@ GIFT_checklist_raw <- function(
     list_raw <- dplyr::relocate(list_raw, "work_author",.after = "work_species")
   }
   
-  message("Be cautious, species indicated as endemic were stated like this in
-          the source reference/checklist. It can be that these species appear
-          in other checklists.")
+  message(
+  "Be cautious, species indicated as endemic were stated like this in the
+  source reference/checklist. It can be that these species appear in other
+  checklists.")
+  
+  message(
+  "The taxonomic status corresponds to the original taxon names (including
+  subspecies and synonyms) and may not be valid for the taxonomically
+  standardized species names (column 'work_species').")
   
   return(list_raw)
 }

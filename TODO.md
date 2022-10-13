@@ -51,9 +51,6 @@
 
 ## 1.1. Details
 * 1.1. GIFT_checklists_raw (Pierre)  
-    - add message: The taxonomic status corresponds to the original taxon names 
-    (including subspecies and synonyms) and may not be valid for the taxonomically 
-    standardized species names (work_species) (Pierre)
     - add NA author column for old versions via api and remove according if statement (Patrick)
     - add NA columns for three new names matching columns and simplify as numeric (Patrick L 272) 
     
