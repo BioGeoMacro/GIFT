@@ -44,14 +44,18 @@ devtools::load_all()
 
 See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
 
-\newpage
+No R chunk.
+Just a table with two columns:
+queries names
+arguments needed/possible for each query
 
-# 2. Main functions
+See https://www.gbif.org/developer/summary
+http://api.gbif.org/
+
 
 \newpage
 
 # 4. References
-## 4.1. Articles
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 

@@ -42,7 +42,7 @@ Blabla.
 }
 \examples{
 \dontrun{
-aquatic <- GIFT_traits_raw(trait_IDs = c("1.7.1"))
+succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 }
 
 }
