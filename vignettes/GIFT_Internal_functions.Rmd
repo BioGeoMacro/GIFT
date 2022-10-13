@@ -55,7 +55,7 @@ traits_meta <- GIFT_traits_meta()
 head(traits_meta)
 
 ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-                      bias_ref = TRUE, bias_deriv = TRUE, api = api)
+                      bias_ref = TRUE, bias_deriv = TRUE)
 
 unique(ex_tra$trait_ID)
 head(ex_tra)
@@ -69,20 +69,20 @@ length(unique(ex_tra$species))
 
 # original traits
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
-                          bias_ref = TRUE, bias_deriv = TRUE, api = api)
+                          bias_ref = TRUE, bias_deriv = TRUE)
 
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.2.1"), derived = TRUE,
                           bias_ref = TRUE, bias_deriv = TRUE)
 
 ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
-                          bias_ref = FALSE, bias_deriv = FALSE, api = api)
+                          bias_ref = FALSE, bias_deriv = FALSE)
 ```
 
 ## 2.3. Lists
 Retrieve checklists.
 
 ```{r lists, eval = FALSE}
-ex_list <- GIFT_lists(api = api)
+ex_list <- GIFT_lists()
 
 head(ex_list)
 
@@ -96,7 +96,7 @@ The functions `GIFT_env_meta_raster()` and `GIFT_env_meta_misc()` allow the
 user to retrieve metadata about environmental variables.
 
 ```{r env_raster, eval=FALSE}
-env_meta <- GIFT_env_meta_raster(api = api)
+env_meta <- GIFT_env_meta_raster()
 head(env_meta)
 
 kableExtra::kbl(env_meta) %>%
@@ -118,10 +118,9 @@ checklists <- GIFT_checklist(taxon_name = "Pinaceae",
                              overlap = "centroid_inside",
                              remove_overlap = FALSE,
                              namesmatched = TRUE,  
-                             taxonomic_group = TRUE,
-                             api = api)
+                             taxonomic_group = TRUE)
 
-par(mfrow=c(1,1))
+par(mfrow = c(1, 1))
 geodata <- GIFT_shape(checklists[[1]]$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID)
 
@@ -137,8 +136,7 @@ checklists_centroid_inside <- GIFT_checklist(
   shp = med, coordinates = NULL, overlap = "centroid_inside",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
 
 checklists_extent_intersect <- GIFT_checklist(
   taxon_name = "Pinaceae",
@@ -150,8 +148,7 @@ checklists_extent_intersect <- GIFT_checklist(
   shp = med, coordinates = NULL, overlap = "extent_intersect",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
 
 checklists_shape_intersect <- GIFT_checklist(
   taxon_name = "Pinaceae",
@@ -163,8 +160,7 @@ checklists_shape_intersect <- GIFT_checklist(
   shp = med, coordinates = NULL, overlap = "shape_intersect",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
 
 checklists_shape_inside <- GIFT_checklist(
   taxon_name = "Pinaceae",
@@ -176,8 +172,7 @@ checklists_shape_inside <- GIFT_checklist(
   shp = med, coordinates = NULL, overlap = "shape_inside",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
 
 par(mfrow=c(2,2), mai=c(0,0,0.5,0))
 geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
@@ -245,8 +240,7 @@ checklists_shape_inside <- GIFT_checklist(
   shp = NULL, coordinates = cbind(9.9, 51), overlap = "shape_inside",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
 
 #' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
 #' ex6 <- GIFT_spatial(coordinates = custom_extent,
@@ -283,8 +277,8 @@ checklists_shape_inside <- GIFT_checklist(
   overlap = "shape_inside",
   remove_overlap = TRUE,
   namesmatched = TRUE,
-  list_set_only = TRUE,
-  api = api)
+  list_set_only = TRUE)
+
 par(mfrow=c(1,1), mai=c(0,0,0.5,0))
 geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
 plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
@@ -300,8 +294,7 @@ plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
 #   suit_geo = TRUE,
 #   shp = NULL, coordinates = c(0,10,0,10), overlap = "centroid_inside",
 #   # remove_overlap = TRUE,
-#   namesmatched = TRUE,
-#   api = api)
+#   namesmatched = TRUE)
 
 # Check spatial function
 
@@ -311,21 +304,21 @@ head(as.data.frame(checklists[[2]]))
 ```
 
 ```{r env, eval=FALSE}
-env_meta2 <- GIFT_env_meta_misc(api = api)
+env_meta2 <- GIFT_env_meta_misc()
 head(env_meta2)
 
 kableExtra::kbl(env_meta2) %>%
   kableExtra::scroll_box(width = "1000px", height = "600px")
 
 
-env_meta3 <- GIFT_env_meta_raster(api = api)
+env_meta3 <- GIFT_env_meta_raster()
 head(env_meta3)
 
-env <- GIFT_env(api = api)
+env <- GIFT_env()
 
 env <- GIFT_env(miscellaneous = c("area", "dist"),
                 rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
-                sumstat = c("mean","max") , api = api)
+                sumstat = c("mean","max"))
 ```
 
 
@@ -372,7 +365,7 @@ The function `GIFT_references()` allows the user to retrieve metadata about
 the references that were used to build GIFT database.
 
 ```{r references, eval = FALSE}
-ref <- GIFT_references(api = api)
+ref <- GIFT_references()
 head(ref)
 
 kableExtra::kbl(ref) %>%
@@ -382,11 +375,6 @@ kableExtra::kbl(ref) %>%
 \newpage
 
 # 4. References
-## 4.1. Articles
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
-
-\newpage
-
-## 4.2. R packages
 
