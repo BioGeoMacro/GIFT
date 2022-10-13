@@ -250,6 +250,17 @@ GIFT_checklist <- function(
     } else if(nrow(coordinates) == 2){
       message("4 coordinates provided: an extent box was drawn, assuming that
             minimum X and Y are on row 1, and maximum X and Y on row 2.")
+      
+      make_box <- function(xmin, xmax, ymin, ymax){
+        x_shp <- sf::st_polygon(list(matrix(
+          c(xmin, ymin,
+            xmax, ymin,
+            xmax, ymax,
+            xmin, ymax,
+            xmin, ymin), ncol = 2, byrow = TRUE)))
+        return(x_shp)
+      }
+      
       shp <- make_box(xmin = coordinates[1, 1],
                       xmax = coordinates[2, 1],
                       ymin = coordinates[1, 2],
