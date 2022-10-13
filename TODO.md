@@ -51,30 +51,23 @@
 
 ## 1.1. Details
 * 1.1. GIFT_checklists_raw (Pierre)  
-    - ~~input: list of list_ID~~
-    - ~~output: associated list~~
-    - add message on taxonomic status for original names (Pierre)
-    - ~~check error (only for restricted IP?) (Patrick)~~
+    - add message: The taxonomic status corresponds to the original taxon names 
+    (including subspecies and synonyms) and may not be valid for the taxonomically 
+    standardized species names (work_species) (Pierre)
+    - add NA author column for old versions via api and remove according if statement (Patrick)
+    - add NA columns for three new names matching columns and simplify as numeric (Patrick L 272) 
     
 * 1.2. GIFT_checklists_conditional (Pierre)
-    - ~~add cf columns? (Patrick)~~
-    - input: criteria
-    - output: lists matching the criteria
-    - To be improved: * simplify the filtering in the wrapper
-                      * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list)
-    - "translate" arguments for naive user
-    - some parameters come as characters instead of numeric (nativeness 1 0)
-    - Make the subsets more straightforward for users: for ex. nativeness, subset of $subset %in% native, native and naturalized etc AND $native_indicated==1 has to be done in the BACKGROUND
-    - add argument for taxonomic group
+    - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
+    - finish header (Pierre)
+    - add geo_entity_ref column behind geoentity column (Patrick)
 
 * 1.3. GIFT_spatial
-    - Check whether function works with POINT, MULTILINESTRING, etc (Pierre)
-    - Make the function work with single point coordinate (Pierre)
-    - Control for case when user provides several polygons, or list of polygons (Pierre)
-    - control: only spatial objects of class sf, question: are we only allowing for sfc_MULTIPOLYGONS?? (Pierre)
-
+    - Warning message: In is.na(coordinates) || is.character(coordinates) (Pierre)
+    
 * 1.4. ~~GIFT_taxonomy() (Pierre)~~  
-
+    - continue here
+    
 * 1.5. GIFT_tax_group(): update of assign_higher_taxa() (Pierre)  
     - input: species list (work_ID) and level of grouping  
     - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
@@ -91,7 +84,7 @@
     - ~~add additional match-up infos and author names (Patrick)~~
     - add message on taxonomic status for original names (Pierre)
     - naming: work_species
-    
+
 * 2.1. ~~GIFT_traits_meta() (Pierre)~~
     - ~~make work for version 1.0 (Patrick)~~
 

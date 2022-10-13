@@ -78,7 +78,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows mutate_at
+#' @importFrom dplyr bind_rows mutate_at relocate
 #' 
 #' @export
 
@@ -273,6 +273,11 @@ GIFT_checklist_raw <- function(
       list_raw <- dplyr::mutate_at(
         list_raw, c("synonym","matched_subtaxon","accepted"), as.numeric)
     }
+  }
+  
+  # Reordering column 'work_author' if available
+  if("work_author" %in% colnames(list_raw)){
+    list_raw <- dplyr::relocate(list_raw, "work_author",.after = "work_species")
   }
   
   message("Be cautious, species indicated as endemic were stated like this in

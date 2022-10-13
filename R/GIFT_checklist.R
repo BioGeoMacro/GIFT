@@ -133,7 +133,6 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr relocate
 #' 
 #' @export
 
@@ -515,12 +514,6 @@ GIFT_checklist <- function(
                                              taxonomy = taxonomy,
                                              species = species))
     }
-  }
-  
-  # Reordering column 'work_author' if available
-  if("work_author" %in% colnames(checklists)){
-    checklists <- dplyr::relocate(checklists, "work_author",
-                                  .after = "work_species")
   }
   
   if(list_set_only == FALSE){
