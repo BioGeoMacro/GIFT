@@ -57,7 +57,7 @@
     - ~~check error (only for restricted IP?) (Patrick)~~
     
 * 1.2. GIFT_checklists_conditional (Pierre)
-    - add cf columns? (Patrick)
+    - ~~add cf columns? (Patrick)~~
     - input: criteria
     - output: lists matching the criteria
     - To be improved: * simplify the filtering in the wrapper
@@ -109,7 +109,7 @@
 * 2.3. GIFT_traits_raw()
     - ~~check error (only for restricted IP?) (Patrick)~~
     - ~~needs to be updated for old GIFT versions without bias column (Patrick)~~
-    - used tidyselect::starts_with() <- replace?
+    - ~~used tidyselect::starts_with() <- replace?~~
     - message: bias_ref and bias_deriv do not exist in version 1.0
     - write into help that trait values are character values
     - make orig_names optional?
