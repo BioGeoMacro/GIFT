@@ -8,8 +8,8 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="GIFT_complete_taxon.svg"
-   inkscape:export-filename="C:\Users\Pierre\ownCloud\GIFT\figures\GIFT_complete_taxon.png"
+   sodipodi:docname="GIFT_complete_floristic.svg"
+   inkscape:export-filename="C:\Users\Pierre\ownCloud\GIFT\figures\GIFT_complete_floristic.png"
    inkscape:export-xdpi="250"
    inkscape:export-ydpi="250"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -27,8 +27,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.696647"
-     inkscape:cx="663.17662"
-     inkscape:cy="363.16815"
+     inkscape:cx="427.76327"
+     inkscape:cy="456.47222"
      inkscape:window-width="1920"
      inkscape:window-height="986"
      inkscape:window-x="-11"
@@ -535,7 +535,7 @@
        sodipodi:nodetypes="ccccc" />
     <g
        id="g28922"
-       transform="matrix(1.099603,0,0,1.099603,-130.80473,-47.086167)">
+       transform="matrix(1.099603,0,0,1.099603,-130.26762,-52.591563)">
       <text
          xml:space="preserve"
          transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
@@ -543,9 +543,14 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1824"><tspan
+           id="tspan3509"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1822">Checklist of Ferns</tspan></tspan></text>
+             id="tspan3507">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3513"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3511">naturalized</tspan></tspan></text>
     </g>
     <g
        id="g28922-2"
@@ -557,14 +562,11 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1828"><tspan
+           id="tspan3519"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1826">Checklist of </tspan></tspan><tspan
-           x="-70.335938"
-           y="36.814899"
-           id="tspan1832"><tspan
+             id="tspan3515">Checklist of natives</tspan><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1830">Angiosperms </tspan></tspan></text>
+             id="tspan3517"> </tspan></tspan></text>
     </g>
     <g
        id="g28922-9-0"
@@ -576,9 +578,14 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1836"><tspan
+           id="tspan3523"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1834">Checklist of Orchids</tspan></tspan></text>
+             id="tspan3521">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3527"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3525">endemics</tspan></tspan></text>
     </g>
     <g
        id="g28922-1"
@@ -590,14 +597,9 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1840"><tspan
+           id="tspan3531"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1838">Checklist of vascular </tspan></tspan><tspan
-           x="-70.335938"
-           y="36.814899"
-           id="tspan1844"><tspan
-             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1842">plants</tspan></tspan></text>
+             id="tspan3529">Checklist of all plants</tspan></tspan></text>
     </g>
     <g
        id="g28922-9-0-1"
@@ -609,9 +611,14 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1848"><tspan
+           id="tspan3535"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1846">Checklist of Orchids</tspan></tspan></text>
+             id="tspan3533">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3539"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3537">endemics</tspan></tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -620,48 +627,48 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1852">taxon_name =<tspan
+         id="tspan3543">floristic_group =<tspan
    style="fill:#2a7500"
-   id="tspan1850"> &quot;Angiospermae&quot;</tspan></tspan></text>
+   id="tspan3541"> &quot;native&quot;</tspan></tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,260.96877,16.679598)"
+       transform="matrix(0.26458333,0,0,0.26458333,253.37286,25.414892)"
        id="text8157-2-77-1-3-0"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1858"> =<tspan
+         id="tspan3549"> =<tspan
    style="fill:#2a7500"
-   id="tspan1854"> </tspan><tspan
+   id="tspan3545"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan1856">FALSE</tspan></tspan></text>
+   id="tspan3547">FALSE</tspan></tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,115.88692,15.966463)"
+       transform="matrix(0.26458333,0,0,0.26458333,108.29101,24.701757)"
        id="text8157-2-77-1-3-0-4"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1864">complete_taxon =<tspan
+         id="tspan3555">complete_floristic =<tspan
    style="fill:#2a7500"
-   id="tspan1860"> </tspan><tspan
+   id="tspan3551"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan1862">TRUE</tspan></tspan></text>
+   id="tspan3553">TRUE</tspan></tspan></text>
     <g
-       id="g1148">
+       id="g1891">
       <path
-         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5"
+         style="fill:#fffffc;stroke-width:1.88976;fill-opacity:1"
+         id="path1357"
          sodipodi:type="arc"
-         sodipodi:cx="50.03804"
-         sodipodi:cy="93.619568"
+         sodipodi:cx="50.622791"
+         sodipodi:cy="93.457458"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 66.285673,93.619568 a 16.247633,4.8340063 0 0 1 -16.236361,4.834005 16.247633,4.8340063 0 0 1 -16.258889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.281388,4.820581" />
+         d="M 66.870424,93.457458 A 16.247633,4.8340063 0 0 1 50.634063,98.291464 16.247633,4.8340063 0 0 1 34.375174,93.464166 16.247633,4.8340063 0 0 1 50.588975,88.623463 16.247633,4.8340063 0 0 1 66.870362,93.444044" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,50.255356,88.798562)"
@@ -669,47 +676,47 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1866">Region A</tspan></text>
+           id="tspan3557">Region A</tspan></text>
     </g>
     <g
-       id="g1161">
+       id="g1909">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-7"
+         id="path1357-6"
          sodipodi:type="arc"
-         sodipodi:cx="53.741051"
-         sodipodi:cy="124.95268"
+         sodipodi:cx="54.382572"
+         sodipodi:cy="124.60994"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 69.988684,124.95268 a 16.247633,4.8340063 0 0 1 -16.236361,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.213801,-4.8407 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
+         d="m 70.630205,124.60994 a 16.247633,4.8340063 0 0 1 -16.236361,4.834 16.247633,4.8340063 0 0 1 -16.258889,-4.82729 16.247633,4.8340063 0 0 1 16.213801,-4.84071 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
       <text
          xml:space="preserve"
-         transform="matrix(0.20286227,0,0,0.20286227,53.999086,120.43138)"
+         transform="matrix(0.20286227,0,0,0.20286227,54.536198,119.62571)"
          id="text8157-2-77-1-3-0-4-6-1"
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1868">Region B</tspan></text>
+           id="tspan3559">Region B</tspan></text>
     </g>
     <g
-       id="g1174">
+       id="g1927">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-72"
+         id="path1357-63"
          sodipodi:type="arc"
-         sodipodi:cx="50.797638"
-         sodipodi:cy="177.36446"
+         sodipodi:cx="50.622787"
+         sodipodi:cy="177.38118"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 67.045271,177.36446 a 16.247633,4.8340063 0 0 1 -16.236361,4.834 16.247633,4.8340063 0 0 1 -16.258889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
+         d="m 66.87042,177.38118 a 16.247633,4.8340063 0 0 1 -16.23636,4.834 16.247633,4.8340063 0 0 1 -16.25889,-4.82729 16.247633,4.8340063 0 0 1 16.213801,-4.84071 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,50.585537,172.84704)"
@@ -717,7 +724,7 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1870">Region C</tspan></text>
+           id="tspan3561">Region C</tspan></text>
     </g>
     <path
        style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.672639;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -739,14 +746,11 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1874"><tspan
+           id="tspan3567"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1872">Checklist of </tspan></tspan><tspan
-           x="-70.335938"
-           y="36.814899"
-           id="tspan1878"><tspan
+             id="tspan3563">Checklist of native</tspan><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1876">Angiosperms </tspan></tspan></text>
+             id="tspan3565">s </tspan></tspan></text>
     </g>
     <g
        id="g28922-1-2"
@@ -758,14 +762,16 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1882"><tspan
+           id="tspan3571"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1880">Checklist of </tspan></tspan><tspan
+             id="tspan3569">Checklist of native </tspan></tspan><tspan
            x="-70.335938"
            y="36.814899"
-           id="tspan1886"><tspan
+           id="tspan3577"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1884">Angiosperms</tspan></tspan></text>
+             id="tspan3573">plant</tspan><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3575">s</tspan></tspan></text>
     </g>
     <g
        id="g28922-9-0-1-8"
@@ -777,25 +783,30 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1890"><tspan
+           id="tspan3581"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1888">Checklist of Orchids</tspan></tspan></text>
+             id="tspan3579">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3585"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3583">endemics</tspan></tspan></text>
     </g>
     <g
-       id="g1200">
+       id="g1963">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-78"
+         id="path1357-5"
          sodipodi:type="arc"
-         sodipodi:cx="164.73625"
-         sodipodi:cy="94.474121"
+         sodipodi:cx="165.16188"
+         sodipodi:cy="94.3974"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 180.98388,94.474121 a 16.247633,4.8340063 0 0 1 -16.23636,4.834005 16.247633,4.8340063 0 0 1 -16.25889,-4.827297 16.247633,4.8340063 0 0 1 16.21381,-4.840704 16.247633,4.8340063 0 0 1 16.28138,4.820581" />
+         d="m 181.40951,94.3974 a 16.247633,4.8340063 0 0 1 -16.23636,4.834005 16.247633,4.8340063 0 0 1 -16.25889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.28139,4.820581" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,164.92145,89.84874)"
@@ -803,23 +814,23 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1892">Region A</tspan></text>
+           id="tspan3587">Region A</tspan></text>
     </g>
     <g
-       id="g1187">
+       id="g1945">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-5"
+         id="path1357-1"
          sodipodi:type="arc"
-         sodipodi:cx="165.40089"
-         sodipodi:cy="178.12405"
+         sodipodi:cx="165.43044"
+         sodipodi:cy="178.4554"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 181.64853,178.12405 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.28138,4.82058" />
+         d="m 181.67807,178.4554 a 16.247633,4.8340063 0 0 1 -16.23636,4.834 16.247633,4.8340063 0 0 1 -16.25889,-4.82729 16.247633,4.8340063 0 0 1 16.2138,-4.84071 16.247633,4.8340063 0 0 1 16.28139,4.82058" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,165.25163,173.89722)"
@@ -827,7 +838,7 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1894">Region C</tspan></text>
+           id="tspan3589">Region C</tspan></text>
     </g>
     <path
        style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.672639;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -854,14 +865,9 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1898"><tspan
+           id="tspan3593"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1896">Checklist of </tspan></tspan><tspan
-           x="-70.335938"
-           y="36.814899"
-           id="tspan1902"><tspan
-             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1900">Angiosperms </tspan></tspan></text>
+             id="tspan3591">Checklist of natives</tspan></tspan></text>
     </g>
     <g
        id="g28922-9-0-15"
@@ -873,9 +879,14 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1906"><tspan
+           id="tspan3597"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1904">Checklist of Orchids</tspan></tspan></text>
+             id="tspan3595">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3601"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3599">endemics</tspan></tspan></text>
     </g>
     <g
        id="g28922-1-7"
@@ -887,14 +898,16 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1910"><tspan
+           id="tspan3605"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1908">Checklist of </tspan></tspan><tspan
+             id="tspan3603">Checklist of native </tspan></tspan><tspan
            x="-70.335938"
            y="36.814899"
-           id="tspan1914"><tspan
+           id="tspan3611"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1912">Angiosperms</tspan></tspan></text>
+             id="tspan3607">plant</tspan><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3609">s</tspan></tspan></text>
     </g>
     <g
        id="g28922-9-0-1-7"
@@ -906,25 +919,30 @@
          style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="18.022524"
-           id="tspan1918"><tspan
+           id="tspan3615"><tspan
              style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-             id="tspan1916">Checklist of Orchids</tspan></tspan></text>
+             id="tspan3613">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan3619"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan3617">endemics</tspan></tspan></text>
     </g>
     <g
-       id="g1213">
+       id="g1981">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-54"
+         id="path1357-59"
          sodipodi:type="arc"
-         sodipodi:cx="268.32547"
-         sodipodi:cy="93.144829"
+         sodipodi:cx="268.15308"
+         sodipodi:cy="93.457458"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 284.5731,93.144829 a 16.247633,4.8340063 0 0 1 -16.23636,4.834005 16.247633,4.8340063 0 0 1 -16.25889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.28139,4.820581" />
+         d="m 284.40071,93.457458 a 16.247633,4.8340063 0 0 1 -16.23636,4.834006 16.247633,4.8340063 0 0 1 -16.25889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.28139,4.820581" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,268.2258,88.709359)"
@@ -932,23 +950,23 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1920">Region A</tspan></text>
+           id="tspan3621">Region A</tspan></text>
     </g>
     <g
-       id="g1226">
+       id="g1999">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-8"
+         id="path1357-3"
          sodipodi:type="arc"
-         sodipodi:cx="271.74362"
-         sodipodi:cy="125.14259"
+         sodipodi:cx="271.64429"
+         sodipodi:cy="124.74422"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 287.99125,125.14259 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.21381,-4.8407 16.247633,4.8340063 0 0 1 16.28138,4.82058" />
+         d="m 287.89192,124.74422 a 16.247633,4.8340063 0 0 1 -16.23636,4.834 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.28139,4.82058" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,271.96953,120.34218)"
@@ -956,23 +974,23 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1922">Region B</tspan></text>
+           id="tspan3623">Region B</tspan></text>
     </g>
     <g
-       id="g1239">
+       id="g2017">
       <path
          style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
-         id="path1357-5-0"
+         id="path1357-8"
          sodipodi:type="arc"
-         sodipodi:cx="268.32547"
-         sodipodi:cy="177.07962"
+         sodipodi:cx="269.09302"
+         sodipodi:cy="177.11263"
          sodipodi:rx="16.247633"
          sodipodi:ry="4.8340063"
          sodipodi:start="0"
          sodipodi:end="6.2804102"
          sodipodi:open="true"
          sodipodi:arc-type="arc"
-         d="m 284.5731,177.07962 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.84071 16.247633,4.8340063 0 0 1 16.28139,4.82059" />
+         d="m 285.34065,177.11263 a 16.247633,4.8340063 0 0 1 -16.23636,4.834 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.28139,4.82058" />
       <text
          xml:space="preserve"
          transform="matrix(0.20286227,0,0,0.20286227,268.55598,172.75783)"
@@ -980,7 +998,7 @@
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-00);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-70.335938"
            y="33.501211"
-           id="tspan1924">Region C</tspan></text>
+           id="tspan3625">Region C</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -989,7 +1007,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 89.183276,193.72614 c 0,-28.48466 -2.27877,-72.57044 12.533254,-77.50778 C 89.563076,113.18 89.563076,87.704195 89.183276,38.710585"
+       d="m 82.795396,198.28272 c 0,-28.48466 -2.278772,-72.57044 12.533249,-77.50778 C 83.175191,117.73658 83.175191,92.260768 82.795396,43.26716"
        id="path49780-9-2-4"
        sodipodi:nodetypes="ccc" />
   </g>

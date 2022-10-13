@@ -67,6 +67,10 @@ sf::st_crs(med)
 Now that we have a shape for the region of interest, let's call
 `GIFT_checklist()`.
 
+```{r, fig.label = "Figure 1. GIFT spatial", out.width = "100%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_spatial.png")
+```
+
 Function returns a list of two tables: metadata and actual checklists.
 To get only the metadata, set the argument `list_set_only` to `TRUE`.
 
@@ -80,6 +84,10 @@ ex_meta <- GIFT_checklist(shp = med, overlap = "centroid_inside",
 
 How complete_taxon works.
 
+```{r, fig.label = "Figure 2. Complete taxon", out.width = "100%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
+```
+
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
                      taxon_name = "Angiospermae",
@@ -87,6 +95,10 @@ ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
 ```
 
 How complete_floristic works.
+
+```{r, fig.label = "Figure 3. Complete floristic", out.width = "100%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_complete_floristic.png")
+```
 
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
@@ -96,6 +108,14 @@ ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
 ```
 
 How remove_overlap works.
+
+```{r, fig.label = "Figure 4. No overlap", out.width = "100%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_no_overlap.png")
+```
+
+```{r, fig.label = "Figure 5. Overlap threshold", out.width = "100%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_overlap_th.png")
+```
 
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
