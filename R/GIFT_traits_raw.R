@@ -33,7 +33,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' aquatic <- GIFT_traits_raw(trait_IDs = c("1.7.1"))
+#' succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -111,7 +111,7 @@ GIFT_traits_raw <- function(
   
   # Convert to long table and get rid of duplicates
   ref_IDs <- unique(tidyr::pivot_longer(ref_IDs,
-    cols = tidyselect::starts_with("trait"),
+    cols = grep("^trait", colnames(ref_IDs), value = TRUE),
     names_to = NULL,
     values_to = "trait_ID",
     values_drop_na = TRUE))
