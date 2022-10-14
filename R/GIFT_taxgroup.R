@@ -43,6 +43,7 @@
 #' @examples
 #' \dontrun{
 #' ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
+#' ex2 <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "higher_lvl")
 #' }
 #' 
 #' @importFrom jsonlite read_json
