@@ -51,7 +51,7 @@
 #' @export
 
 GIFT_taxgroup <- function(work_ID = NULL,
-                          taxon_lvl = c("family","order","higher_lvl")[1], 
+                          taxon_lvl = c("family", "order", "higher_lvl")[1], 
                           return_ID = FALSE,
                           GIFT_version = "latest",
                           api = "http://gift.uni-goettingen.de/api/extended/",
@@ -138,7 +138,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
                                                   genera[i])]), ]
     if(taxon_lvl == "higher_lvl"){
       tmp <- tmp[grep("level", tmp$taxon_lvl), ]
-      tmp <- tmp[which.min(tmp$rgt-taxa$lft), ]
+      tmp <- tmp[which.min(tmp$rgt - tmp$lft), ]
     } else {
       tmp <- tmp[which(tmp$taxon_lvl == taxon_lvl), ]
     }
