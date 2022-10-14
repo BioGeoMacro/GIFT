@@ -51,9 +51,8 @@
 
 ## 1.1. Details
 * 1.1. GIFT_checklists_raw (Pierre)  
-    - add NA author column for old versions via api and remove according if statement (Patrick)
-    - add NA columns for three new names matching columns and simplify as numeric (Patrick L 272) 
-    
+    - add message on taxonomic status for original names (Pierre)
+
 * 1.2. GIFT_checklists_conditional (Pierre)
     - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
     - finish header (Pierre)
@@ -69,12 +68,9 @@
     - add argument by_ref_ID to apply the function by ref_ID
 
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
-    - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
     - check output when floristic_group argument has a length of two (e.g. endemic and native)
-    - ~~add orig ID for link to traits_raw (Patrick)~~
-    - ~~add additional match-up infos and author names (Patrick)~~
-    - add message on taxonomic status for original names (Pierre)
-    - naming: work_species
+
+    - continue here
 
 * 2.1. ~~GIFT_traits_meta() (Pierre)~~
     - ~~make work for version 1.0 (Patrick)~~

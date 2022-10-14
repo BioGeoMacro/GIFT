@@ -232,6 +232,7 @@ GIFT_checklist_raw <- function(
                              accepted = numeric(),
                              service = character(), work_ID = numeric(),
                              genus_ID = numeric(), work_species = character(),
+                             work_author = character(),
                              questionable = numeric(), native = numeric(),
                              quest_native = numeric(), naturalized = numeric(),
                              endemic_ref = numeric(),
@@ -243,7 +244,8 @@ GIFT_checklist_raw <- function(
       list_raw <- data.frame(ref_ID = numeric(), list_ID = numeric(), 
                              entity_ID = numeric(),
                              work_ID = numeric(), genus_ID = numeric(),
-                             work_species = character(),
+                             work_species = character(), 
+                             work_author = character(),
                              questionable = numeric(),
                              native = numeric(), quest_native = numeric(),
                              naturalized = numeric(), endemic_ref = numeric(),
@@ -266,20 +268,14 @@ GIFT_checklist_raw <- function(
       list_raw <- dplyr::mutate_at(
         list_raw, c("orig_ID", "name_ID", "cf_genus", "cf_species",
                     "aff_species", "matched", "epithetscore", "overallscore",
-                    "resolved"), as.numeric)
-    }
-    
-    if(all(c("synonym","matched_subtaxon","accepted") %in% names(list_raw))){
-      list_raw <- dplyr::mutate_at(
-        list_raw, c("synonym","matched_subtaxon","accepted"), as.numeric)
+                    "resolved","synonym","matched_subtaxon","accepted"), 
+        as.numeric)
     }
   }
   
   # Reordering column 'work_author' if available
-  if("work_author" %in% colnames(list_raw)){
-    list_raw <- dplyr::relocate(list_raw, "work_author",.after = "work_species")
-  }
-  
+  list_raw <- dplyr::relocate(list_raw, "work_author",.after = "work_species")
+
   message(
   "Be cautious, species indicated as endemic were stated like this in the
   source reference/checklist. It can be that these species appear in other
