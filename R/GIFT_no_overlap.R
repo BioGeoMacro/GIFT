@@ -166,9 +166,6 @@ GIFT_no_overlap <- function(
   geoentities_overlap <- geoentities_overlap[
     which(geoentities_overlap$entity1 %in% entity_IDs &
             geoentities_overlap$entity2 %in% entity_IDs), ]
-  # TODO make warning if this data.frame still contains data
-  
+
   return(entity_IDs)
-  # TODO allow for removing overlapping regions only within ref_IDs <- apply
-  # this function by ref_ID
 }

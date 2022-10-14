@@ -66,7 +66,7 @@
 * 1.5. GIFT_tax_group()
 
 * 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
-    - controls and output (Pierre)
+    - add argument by_ref_ID to apply the function by ref_ID
 
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
     - needs to be simple!
