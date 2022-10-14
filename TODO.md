@@ -69,8 +69,6 @@
     - add argument by_ref_ID to apply the function by ref_ID
 
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
-    - needs to be simple!
-    - add entity_ID to checklist table output
     - add an argument to retrieve metadata only (like in GIFT_checklist_conditional())
     - check output when floristic_group argument has a length of two (e.g. endemic and native)
     - ~~add orig ID for link to traits_raw (Patrick)~~

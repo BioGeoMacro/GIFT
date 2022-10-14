@@ -9,7 +9,7 @@ GIFT_checklist(
   complete_taxon = TRUE,
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
   complete_floristic = TRUE,
-  geo_type = "Mainland, Island",
+  geo_type = c("All", "Mainland", "Island")[1],
   suit_geo = FALSE,
   shp = NULL,
   coordinates = NULL,
@@ -42,8 +42,9 @@ that only contain the exhaustive list of the 'floristic_group' argument or
 as well incomplete lists.}
 
 \item{geo_type}{Character string, either 'Mainland', 'Island' or
-'Mainland, Island'. Island gets you to Island, Island Group &
-Island Part. Mainland gets you to Mainland & Island/Mainland.}
+'All'. Island gets you to Island, Island Group &
+Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you 
+all.}
 
 \item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
 
