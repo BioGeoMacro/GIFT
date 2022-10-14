@@ -40,10 +40,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain
+#' ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain. 
+#' # We get Andalusia because it is smaller than Spain and larger than 100 km²
+#' ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078), 
+#' area_th_mainland = 100000) # since Andalusia is smaller than 100,000 km² 
+#' large, the larger entity (Spain) is chosen here.
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -115,6 +120,12 @@ GIFT_no_overlap <- function(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=overlap"), simplifyVector = TRUE)
   }
+  
+  # Convert columns as numeric
+  geoentities_overlap <- 
+    dplyr::mutate_at(geoentities_overlap, c("entity1", "entity2", "overlap12",
+                                            "overlap21","area1","area2"),
+                     as.numeric)
   
   geoentities_overlap <- geoentities_overlap[
     which(geoentities_overlap$entity1 %in% entity_IDs &

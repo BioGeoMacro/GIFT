@@ -61,12 +61,9 @@
 
 * 1.3. GIFT_spatial
 
-* 1.4. ~~GIFT_taxonomy() (Pierre)~~  
-    - continue here
-    
-* 1.5. GIFT_tax_group(): update of assign_higher_taxa() (Pierre)  
-    - input: species list (work_ID) and level of grouping  
-    - output: a vector (not a species table with an extra column (level of grouping) because it is an internal function)
+* 1.4. GIFT_taxonomy()  
+
+* 1.5. GIFT_tax_group()
 
 * 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
     - controls and output (Pierre)
