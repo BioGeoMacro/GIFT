@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="list_of_functions.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.98520767"
+     inkscape:cx="396.36313"
+     inkscape:cy="561.30298"
+     inkscape:window-width="2560"
+     inkscape:window-height="1346"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="477.05678"
+       y="78.156111"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452" />
+    <rect
+       x="41.627968"
+       y="90.433172"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="274.1704"
+       height="51.676098"
+       id="rect3624-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="320.10471"
+       height="51.676098"
+       id="rect3624-7-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="829.64196"
+       height="104.45685"
+       id="rect3624-7-5-7" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-7" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="765.69606"
+       height="70.961372"
+       id="rect3624-7-5-7-6" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-7-8" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-71" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-4" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="296.8789"
+       height="51.676098"
+       id="rect3624-7-2" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-4-9" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-6" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-77" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="443.04098"
+       height="145.05743"
+       id="rect3624-7-4-4" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-77-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="809.34167"
+       height="98.366762"
+       id="rect3624-7-5-7-5" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#24c5c4;fill-opacity:0.370229;stroke-width:0.818999"
+       id="rect45962"
+       width="210.548"
+       height="96.143005"
+       x="-0.26855588"
+       y="0.26855588" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-6.7554389,-14.502019)"
+       id="text3622"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40587">GIFT_env()</tspan></text>
+    <rect
+       style="fill:#a48ac4;fill-opacity:0.370229;stroke-width:0.818999"
+       id="rect45962-2"
+       width="210.54782"
+       height="96.143005"
+       x="-0.26856995"
+       y="96.41156" />
+    <rect
+       style="fill:#d78a3d;fill-opacity:0.37022904;stroke-width:0.818999"
+       id="rect45962-2-8"
+       width="210.54782"
+       height="96.143005"
+       x="-0.26856995"
+       y="192.55457" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-6.7554389,-5.1197321)"
+       id="text3622-8"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-71);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40589">GIFT_env()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.172442,198.93069)"
+       id="text3622-4"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40591">GIFT_traits()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.172442,211.87344)"
+       id="text3622-4-6"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40593">GIFT_traits_meta()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-8.26,31.940984)"
+       id="text3622-4-6-7"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-4-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40595">GIFT_plot() (combine with </tspan><tspan
+         x="41.628906"
+         y="142.32952"
+         id="tspan40597">GIFT_spatial() to have a specific </tspan><tspan
+         x="41.628906"
+         y="172.32952"
+         id="tspan40599">plotting window)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.7095538,75.773133)"
+       id="text3622-43"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40601">GIFT_checklist_raw()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-8.6353302,151.92454)"
+       id="text3622-4-3"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40603">GIFT_checklist_meta()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-8.6353302,103.28254)"
+       id="text3622-4-3-2"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-5-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40605">GIFT_checklist_spatial()  =&gt; list of ID as output, rename </tspan><tspan
+         x="41.628906"
+         y="142.32952"
+         id="tspan40607">GIFT_region()</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-7.2018297,121.37009)"
+       id="text3622-4-3-2-24"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-5-7-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40609">GIFT_checklists() =&gt; combine _conditional(); _spatial(); </tspan><tspan
+         x="41.628906"
+         y="142.32952"
+         id="tspan40611">remove_overlaping as an argument
+</tspan><tspan
+         x="41.628906"
+         y="172.32952"
+         id="tspan40613"> output are the actual lists</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.9781097,86.457827)"
+       id="text3622-4-3-2-2"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-5-7-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40615">GIFT_checklist_conditional() =&gt; list of ID as output </tspan><tspan
+         x="41.628906"
+         y="142.32952"
+         id="tspan40617">(GIFT_criteria() ?)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,8.3252329,-11.547904)"
+       id="text17450"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17452);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="477.05664"
+         y="100.05218"
+         id="tspan40619">Environmental data </tspan><tspan
+         x="477.05664"
+         y="130.05218"
+         id="tspan40621">(&amp;metadata)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,5.8444092,18.329929)"
+       id="text17450-7"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17452-77);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="477.05664"
+         y="100.05218"
+         id="tspan40623">Load and compile </tspan><tspan
+         x="477.05664"
+         y="130.05218"
+         id="tspan40625">geojson</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,4.3404322,37.111789)"
+       id="text17450-7-4"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17452-77-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="477.05664"
+         y="100.05218"
+         id="tspan40627">Plot compiled geojson</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,40.756676,79.560676)"
+       id="text17450-9"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17452-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="477.05664"
+         y="100.05218"
+         id="tspan40629">Checklists</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,7.6323843,155.78148)"
+       id="text17450-9-5"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17452-7-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="477.05664"
+         y="100.05218"
+         id="tspan40631">Checklists metadata</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-8.577711,18.513185)"
+       id="text3622-4-5"
+       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3624-7-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="41.628906"
+         y="112.32952"
+         id="tspan40633">GIFT_geo()</tspan></text>
+  </g>
+</svg>
