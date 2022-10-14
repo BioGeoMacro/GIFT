@@ -112,7 +112,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!is.null(species)){
     if(!is.data.frame(species) ||
-       !(any(c("work_ID", "genus", "species") %in% colnames(taxonomy)))){
+       !(any(c("work_ID", "genus") %in% colnames(species)))){
       stop("'species' must be a dataframe with specific column names.
          See GIFT_species().")
     }
