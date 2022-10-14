@@ -28,7 +28,10 @@ Column taxon_ID indicates the identification number of each
 taxonomic entry. The names describing taxa are in the column taxon_name.
 The third column spells the author name for a given taxon. The column
 taxon_lvl splits every taxon in genus, family, order or superior orders.
-Columns lft and rgt are used internally.
+Taxonomy is a linear sequence of left and right borders for each taxon.
+This is nested, for example left and right borders of a genus would fall
+between the left and right borders of the corresponding family. Columns lft
+and rgt respectively refer to these left and right borders.
 }
 \examples{
 \dontrun{

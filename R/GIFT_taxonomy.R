@@ -16,7 +16,10 @@
 #' taxonomic entry. The names describing taxa are in the column taxon_name.
 #' The third column spells the author name for a given taxon. The column
 #' taxon_lvl splits every taxon in genus, family, order or superior orders.
-#' Columns lft and rgt are used internally.
+#' Taxonomy is a linear sequence of left and right borders for each taxon.
+#' This is nested, for example left and right borders of a genus would fall
+#' between the left and right borders of the corresponding family. Columns lft
+#' and rgt respectively refer to these left and right borders.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -31,6 +34,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -61,9 +65,13 @@ GIFT_taxonomy <- function(GIFT_version = "latest",
   }
   
   # 2. Query ----
-  tmp <- read_json(paste0(
+  taxonomy <- read_json(paste0(
     api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=taxonomy"), simplifyVector = TRUE)
   
-  return(tmp)
+  # Convert columns as numeric
+  taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
+                               as.numeric)
+
+  return(taxonomy)
 }
