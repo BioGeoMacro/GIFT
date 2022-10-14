@@ -101,9 +101,22 @@ GIFT_taxgroup <- function(work_ID = NULL,
             version.")
   }
   
-  # taxonomy
+  if(!is.null(taxonomy)){
+    if(!is.data.frame(taxonomy) ||
+       !(any(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+               "rgt") %in% colnames(taxonomy)))){
+      stop("'taxonomy' must be a dataframe with specific column names.
+         See GIFT_taxonomy().")
+    }
+  }
   
-  # species
+  if(!is.null(species)){
+    if(!is.data.frame(species) ||
+       !(any(c("work_ID", "genus", "species") %in% colnames(taxonomy)))){
+      stop("'species' must be a dataframe with specific column names.
+         See GIFT_species().")
+    }
+  }
   
   # 2. Queries ----
   
