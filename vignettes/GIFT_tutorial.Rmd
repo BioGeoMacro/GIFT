@@ -19,7 +19,7 @@ text-align: justify}
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
-                      fig.width = 8, fig.height = 8)
+                      fig.width = 4, fig.height = 4, fig.align = "center")
 # Packages --------------------------------------------------------------------
 suppressPackageStartupMessages({
   suppressWarnings({
@@ -51,9 +51,9 @@ region of interest and feed it to the `GIFT_checklist()` function.
 We do provide a shapefile of this region in the `GIFT` R package, which you
 can assess using the `data()` function.
 
-```{r}
+```{r, fig.width = 3, fig.height = 3}
 data("med")
-plot(med)
+plot(med, main = "Shape of Mediterranean\nregion")
 ```
 
 Please note that the projection used in GIFT is the WGS84, and that all
@@ -65,28 +65,69 @@ sf::st_crs(med)
 ```
 
 Now that we have a shape for the region of interest, let's call
-`GIFT_checklist()`.
-
-```{r, fig.label = "Figure 1. GIFT spatial", out.width = "100%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_spatial.png")
+`GIFT_checklist()`. This wrapper function has many arguments which we detail
+here.
+<br>
+First, the taxonomic group of interest. We can be interested in a particular
+group of plants, for example only Angiosperms. In that case, we would set the
+`taxon_name` argument like this `taxon_name = "Angiospermae"`. If we are
+interested in a particular plant family, let's say orchids, then 
+`taxon_name = "Orchidaceae"`.
+<br>
+To see all options for the `taxon_name` argument, you can run the
+`GIFT_taxonomy()` function and look at the `taxon_name` column of its output.
+<br>
+Together with this first argument comes `complete_taxon`. This argument, set by
+default to `TRUE` defines whether incomplete checklists **regarding the**
+**taxon of interest** should be retrieved. Figure 1 is explaining the
+principle.
+<br><br>
+  
+```{r, fig.cap = "Figure 1. Complete taxon", out.width = "50%",echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
 ```
+<br>
+In Figure 1, we want to retrieve checklists of Angiosperms. In the first region
+available, region A only one checklist is of interest. This checklist is then
+always retrieved. In region B, there is only a checklist of orchids, which is
+a subset only of Angiosperms. If `complete_taxon` is set to `FALSE`, then this
+checklist won't be retrieved, otherwise yes. Finally, in region C, there is a
+checklist of vascular plants and one for orchids. In both cases, the checklist
+of vascular plants will be retrieved after filtering out the non-angiosperm
+species. The species of Orchids is also retrieved in both cases as it is not
+the only one available and as it can complete the floristic knowledge for
+Angiosperms in this region.
+<br>
+<br>
+Following arguments of `GIFT_checklist()` relate to the floristic statuses of
+plant species. We can for example only be interested in endemic species, or
+naturalized species. Default value is retrieving all native species.
+<br>
+Similarly, two arguments are needed in the function. First, `floristic_group`
+defines the group of interest. Second, `complete_floristic` states whether
+incomplete regions regarding the floristic group chosen should be retrieved or
+not. The logic is detailed in Figure 2 and is similar to the `complete_taxon`
+argument shown before.  
+
+<br>
+```{r, fig.cap = "Figure 2. Complete floristic", out.width = "50%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_complete_floristic.png")
+```
+<br>
 
 Function returns a list of two tables: metadata and actual checklists.
 To get only the metadata, set the argument `list_set_only` to `TRUE`.
 
 ```{r, eval=FALSE}
-ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-                     taxon_name = "Angiospermae")
+ex <- GIFT_checklist(taxon_name = "Angiospermae",
+                     shp = med, overlap = "centroid_inside")
 
-ex_meta <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-                          taxon_name = "Angiospermae", list_set_only = TRUE)
+ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
+                          shp = med, overlap = "centroid_inside",
+                          list_set_only = TRUE)
 ```
 
-How complete_taxon works.
-
-```{r, fig.label = "Figure 2. Complete taxon", out.width = "100%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
-```
+<br>
 
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
@@ -94,11 +135,7 @@ ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
                      complete_taxon = TRUE)
 ```
 
-How complete_floristic works.
-
-```{r, fig.label = "Figure 3. Complete floristic", out.width = "100%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_complete_floristic.png")
-```
+<br>
 
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
@@ -108,14 +145,21 @@ ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
 ```
 
 How remove_overlap works.
-
-```{r, fig.label = "Figure 4. No overlap", out.width = "100%", echo = FALSE}
+<br>
+```{r, fig.cap = "Figure 3. No overlap", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_no_overlap.png")
 ```
+<br>
 
-```{r, fig.label = "Figure 5. Overlap threshold", out.width = "100%", echo = FALSE}
+```{r, fig.cap = "Figure 4. Overlap threshold", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_overlap_th.png")
 ```
+<br>
+
+```{r, fig.cap = "Figure 5. GIFT spatial", out.width = "50%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_spatial.png")
+```
+<br>
 
 ```{r, eval=FALSE}
 ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
@@ -159,4 +203,4 @@ resources to cite:
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
-GIFT R package
+[GIFT R package](https://github.com/BioGeoMacro/GIFT)
