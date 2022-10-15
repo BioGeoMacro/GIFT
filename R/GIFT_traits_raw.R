@@ -159,6 +159,7 @@ GIFT_traits_raw <- function(
   
   # join standardized species names
   species <- GIFT_species(api = api, GIFT_version = GIFT_version)
+  trait_list$work_ID <- as.numeric(trait_list$work_ID)
   trait_list <- dplyr::left_join(trait_list, species, by = "work_ID")
   # TODO rename columns
   
