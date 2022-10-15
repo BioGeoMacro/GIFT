@@ -104,21 +104,24 @@ kableExtra::kbl(env_meta) %>%
 
 ```
 
-```{r}
+```{r, eval = FALSE}
 test <- DB_get_checklists_conditional(
-  entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
+  entity_class = c("Island", "Island/Mainland",  "Mainland","Island Group",
+                   "Island Part"),
   native_indicated = TRUE,
   natural_indicated = F, end_ref = F, end_list = F, 
   type_ref = 1:11,
   ref_included = c(1,2,3,4),
   tax_group = 6,
-  suit_geo = FALSE, # include checklists not marked as having complete angiosperm list
+  suit_geo = FALSE, # include checklists not marked as having complete
+  # angiosperm list
   exclude_restricted = T, include_names_unique = F,
   return_query_only = TRUE, # saving time
   complete_taxonomy = TRUE)
 
 test_withtrees <- DB_get_checklists_conditional(
-  entity_class = c("Island","Island/Mainland","Mainland","Island Group","Island Part"), 
+  entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
+                   "Island Part"), 
   native_indicated = TRUE,
   natural_indicated = F, end_ref = F, end_list = F, 
   type_ref = 1:11,
@@ -134,7 +137,7 @@ library(dplyr)
 n_distinct(test_withtrees$entity_ID)
 n_distinct(test$entity_ID)
 n_distinct(test_withtrees[-which(test_withtrees$entity_ID %in% test$entity_ID),
-               "entity_ID"])
+                          "entity_ID"])
 
 
 View(test_withtrees[-which(test_withtrees$entity_ID %in% test$entity_ID), ])
@@ -149,8 +152,10 @@ dim(test[which(test$ref_ID == 233), ])
 # run a first time DB_get_checklist_conditional(), return query only
 # run DB_get_checklist_conditional() with ref_included 7 and 8, with lists
 # subset this second output with only the entity_ID present in the first run
-# this gives the endemic/tree lists for entity that have both taxonomic and floristic suitable coverage
-# but does not give the regions that do not have good coverage of taxonomic/floristic 
+# this gives the endemic/tree lists for entity that have both taxonomic
+# and floristic suitable coverage
+# but does not give the regions that do not have good coverage of
+# taxonomic/floristic 
 ```
 
 

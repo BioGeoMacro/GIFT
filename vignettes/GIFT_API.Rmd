@@ -59,7 +59,8 @@ r_query <- data.frame(
             "only calling geojson"),
   Dependency_GIFT = c(
     "", "", "GIFT_env()", "", "", "",
-    "GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(), GIFT_no_overlap()",
+    "GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(),
+    GIFT_no_overlap()",
     "", "")
 )
 
