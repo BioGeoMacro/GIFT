@@ -45,6 +45,27 @@ Just a table with two columns:
 queries names
 arguments needed/possible for each query
 
+```{r}
+# Dependency between R functions and queries
+
+r_query <- data.frame(
+  R_function = c("GIFT_checklist_raw()", "GIFT_checklist_conditional()",
+                 "GIFT_spatial()", "GIFT_taxonomy()", "GIFT_taxgroup()",
+                 "GIFT_no_overlap()", "GIFT_checklist()", "GIFT_env()",
+                 "GIFT_shape()"),
+  Query = c("lists, taxonomy, checklists", "lists, taxonomy", "", "taxonomy",
+            "species, taxonomy", "overlap", "lists, taxonomy",
+            "geoentities_env_misc, geoentities_env_raster",
+            "only calling geojson"),
+  Dependency_GIFT = c(
+    "", "", "GIFT_env()", "", "", "",
+    "GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(), GIFT_no_overlap()",
+    "", "")
+)
+
+```
+
+
 See https://www.gbif.org/developer/summary
 http://api.gbif.org/
 
