@@ -103,7 +103,7 @@ GIFT_traits <- function(
   trait_list <- list()
   
   # for-loop
-  for (i in seq_len(trait_IDs)){
+  for (i in seq_along(trait_IDs)){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
              ".php?query=traits&traitid=",
@@ -118,15 +118,15 @@ GIFT_traits <- function(
   trait_list <- trait_list[which(trait_list$agreement >= agreement |
                                    is.na(trait_list$agreement)), ]
   
+  # Make certain columns numeric
+  trait_list <- dplyr::mutate_at(trait_list, c("work_ID", "agreement"),
+                                 as.numeric)
+  
   # Add species names
   species <- GIFT::GIFT_species()
   trait_list <- dplyr::left_join(trait_list,
                                  species[, c("work_ID", "species")],
                                  by = "work_ID")
-  
-  # Make certain columns numeric
-  trait_list <- dplyr::mutate_at(trait_list, c("work_ID", "agreement"),
-                                 as.numeric)
   
   # Round agreement score
   trait_list$agreement <- round(trait_list$agreement, 3)
