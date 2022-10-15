@@ -21,13 +21,34 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A spatial data.frame
+A spatial data.frame with 21 columns.
 }
 \description{
 Get shapefile of GIFT regions for selected entities
 }
 \details{
-Blabla.
+Here is the detail of each column:
+entity_ID - Identification number of the polygon
+geo_entity - Name of the polygon
+point_x - Longitude of the centroid of the polygon
+point_y - Latitude of the centroid of the polygon
+area - Area in km2 of the polygon
+x_min - Minimum longitude of the polygon
+x_max - Maximum longitude of the polygon
+y_min - Minimum latitude of the polygon
+y_max - Maximum latitude of the polygon
+suit_geo - Is the polygon suitable?
+suit_geo_rst -
+entity_class - Class of the polygon
+entity_type -
+overlap_checked -
+overlap_glonaf_checked -
+overlap_gmba_checked -
+overlap_gaptani_checked - 
+polygon_source - 
+priority -
+factor -
+geometry - Geometry column from sf
 }
 \examples{
 \dontrun{
