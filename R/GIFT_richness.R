@@ -45,6 +45,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -118,5 +119,9 @@ GIFT_richness <- function(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
   }
+  
+  tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "native",
+                                 "naturalized", "endemic_min"), as.numeric)
+  
   return(tmp)
 }

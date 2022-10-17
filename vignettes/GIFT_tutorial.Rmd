@@ -24,6 +24,10 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 suppressPackageStartupMessages({
   suppressWarnings({
     library("GIFT")
+    library("ggplot2")
+    library("sf")
+    library("rnaturalearth")
+    library("rnaturalearthdata")
   })
 })
 
@@ -269,26 +273,56 @@ Also, plot species richness.
 
 # 4. Trait data
 
+There are many functional traits available in GIFT. Each of these traits has
+an identification number called `trait_ID`. As the two functions retrieving
+trait values, `GIFT_traits()` and `GIFT_traits_raw()`, rely on these IDs, the
+first step to do is to run the function `GIFT_traits_meta()` to know what is
+the ID of the wanted trait.
+<br>
+For example, let's say we want to retrieve growth forms of plant species.
+<br>
+```{r}
+trait_meta <- GIFT_traits_meta()
+trait_meta[which(trait_meta$Trait2 == "Growth_form_1"), ]
+```
+<br>
+We can see that the ID of this trait is `1.2.1`. Now that we have the ID, we
+can retrieve the growth form values of different plant species using
+`GIFT_traits()`.
+<br>
+```{r}
+wood <- GIFT_traits(trait_IDs = c("1.2.1"), agreement = 0.66,
+                    bias_ref = FALSE, bias_deriv = FALSE)
+```
 Raw traits, and traits after taxonomic harmonization.
 
-`GIFT_traits_meta()`, `GIFT_traits_raw()`, `GIFT_traits()`
+`GIFT_traits_raw()`, 
 
 ```{r, eval=FALSE}
-wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-                    bias_ref = FALSE, bias_deriv = FALSE)
-
 succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
-
-
-ex <- GIFT_traits_meta()
-```
-
-```{r, eval=FALSE}
-
 ```
 
 <br>
 Also, plot trait coverage.
+
+```{r}
+fern_height <- GIFT_richness(what = "trait_coverage",
+                             taxon_name = "Embryophyta",
+                             trait_ID = "1.6.1")
+
+fern_shape <- GIFT_shape(entity_ID = fern_height$entity_ID)
+
+fern_shape <- dplyr::left_join(fern_shape, fern_height, by = "entity_ID")
+
+world <- ne_coastline(returnclass = "sf")
+
+ggplot(world) +
+  geom_sf() +
+  geom_sf(data = fern_shape, aes(fill = total)) +
+  scale_fill_viridis_c("Coverage of height (%)") +
+  theme_bw()
+```
+
 <br>
 
 <br><br>
@@ -301,9 +335,9 @@ misc_env <- GIFT_env_meta_misc()
 raster_env <- GIFT_env_meta_raster()
 
 ex_env <- GIFT_env(entity_ID = c(1,5),
-               miscellaneous = c("perimeter", "biome"),
-               rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
-               sumstat = list(c("mean", "med"), "max"))
+                   miscellaneous = c("perimeter", "biome"),
+                   rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+                   sumstat = list(c("mean", "med"), "max"))
 ```
 
 <br><br>

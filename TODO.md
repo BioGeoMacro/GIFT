@@ -147,9 +147,6 @@
 
 * range_finder
 
-* species numbers, trait coverage
-    - little function (Pierre)
-    
 * GloNAF overlap function (Patrick)
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time

@@ -23,10 +23,13 @@ Imports:
 RoxygenNote: 7.2.1
 Suggests: 
     covr,
+    ggplot2,
     testthat (>= 3.0.0),
     kableExtra,
     knitr,
-    rmarkdown
+    rmarkdown,
+    rnaturalearth,
+    rnaturalearthdata
 Config/testthat/edition: 3
 URL: https://github.com/BioGeoMacro/GIFT
 BugReports: https://github.com/BioGeoMacro/GIFT/issues
