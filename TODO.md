@@ -55,7 +55,6 @@
 
 * 1.2. GIFT_checklists_conditional (Pierre)
     - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
-    - finish header (Pierre)
     - add geo_entity_ref column behind geoentity column (Patrick)
 
 * 1.3. GIFT_spatial

@@ -40,15 +40,19 @@ of interest.}
 \item{entity_class}{Character, options are 'Island', 'Island/Mainland',
 'Mainland', 'Island Group', 'Island Part'}
 
-\item{native_indicated}{Boolean.}
+\item{native_indicated}{Boolean, whether only lists where native status
+is available should be retrieved.}
 
-\item{natural_indicated}{Boolean.}
+\item{natural_indicated}{Boolean, whether only lists where natural status
+is available should be retrieved.}
 
-\item{end_ref}{Boolean.}
+\item{end_ref}{Boolean, whether only lists where endemism at the reference
+level is available should be retrieved.}
 
-\item{end_list}{Boolean.}
+\item{end_list}{Boolean, whether only lists where endemism at the list level
+is available should be retrieved.}
 
-\item{suit_geo}{Boolean.}
+\item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
 
 \item{complete_taxon}{Boolean, default TRUE.}
 
@@ -59,9 +63,11 @@ version.}
 \item{api}{character string defining from which API the data will be
 retrieved.}
 
-\item{list_set}{default NULL}
+\item{list_set}{default NULL. If not, a vector of identification numbers of
+GIFT checklists.}
 
-\item{taxonomy}{default NULL}
+\item{taxonomy}{default NULL. If not, it has to be the taxonomy table (see
+GIFT_taxonomy()).}
 }
 \value{
 A data frame with 16 columns.

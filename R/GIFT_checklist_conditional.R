@@ -16,21 +16,28 @@
 #' @param entity_class Character, options are 'Island', 'Island/Mainland',
 #' 'Mainland', 'Island Group', 'Island Part'
 #' 
-#' @param native_indicated Boolean.
+#' @param native_indicated Boolean, whether only lists where native status
+#' is available should be retrieved.
 #' 
-#' @param natural_indicated Boolean.
+#' @param natural_indicated Boolean, whether only lists where natural status
+#' is available should be retrieved.
 #' 
-#' @param end_ref Boolean.
 #' 
-#' @param end_list Boolean.
+#' @param end_ref Boolean, whether only lists where endemism at the reference
+#' level is available should be retrieved.
+#'  
+#' @param end_list Boolean, whether only lists where endemism at the list level
+#' is available should be retrieved.
 #' 
-#' @param suit_geo Boolean.
+#' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
 #' 
 #' @param complete_taxon Boolean, default TRUE.
 #' 
-#' @param list_set default NULL
+#' @param list_set default NULL. If not, a vector of identification numbers of
+#' GIFT checklists.
 #' 
-#' @param taxonomy default NULL
+#' @param taxonomy default NULL. If not, it has to be the taxonomy table (see
+#' GIFT_taxonomy()).
 #' 
 #' @param api character string defining from which API the data will be
 #' retrieved.
