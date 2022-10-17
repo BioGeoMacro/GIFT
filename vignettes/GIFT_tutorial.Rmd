@@ -252,24 +252,60 @@ got[[1]]
 # 3. Distribution of species
 `GIFT_species()`
 
+`GIFT_species_lookup()`
+
 ```{r, eval=FALSE}
 
 ```
 
 <br><br>
+Also, plot species richness.
+<br>
+
+<br><br>
+
 # 4. Trait data
 
 Raw traits, and traits after taxonomic harmonization.
 
-```{r, eval=FALSE}
+`GIFT_traits_meta()`, `GIFT_traits_raw()`, `GIFT_traits()`
 
+```{r, eval=FALSE}
+wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+                    bias_ref = FALSE, bias_deriv = FALSE)
+
+succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
+
+
+ex <- GIFT_traits_meta()
 ```
 
 ```{r, eval=FALSE}
 
 ```
 
-# 5. References
+<br>
+Also, plot trait coverage.
+<br>
+
+<br><br>
+
+# 5. Environmental values
+`GIFT_env()`, `GIFT_env_meta_misc()`, `GIFT_env_meta_raster()`
+
+```{r, eval=FALSE}
+misc_env <- GIFT_env_meta_misc()
+raster_env <- GIFT_env_meta_raster()
+
+ex_env <- GIFT_env(entity_ID = c(1,5),
+               miscellaneous = c("perimeter", "biome"),
+               rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+               sumstat = list(c("mean", "med"), "max"))
+```
+
+<br><br>
+
+# 6. References
 
 When using the GIFT database and the GIFT R package, here are the two
 resources to cite:
