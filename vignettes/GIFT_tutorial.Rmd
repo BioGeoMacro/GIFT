@@ -249,6 +249,9 @@ got[[1]]
 <br><br>
 <br><br>
 
+Making maps using `GIFT_richness()` (SR + trait coverage).
+<br>
+
 # 3. Distribution of species
 `GIFT_species()`
 
