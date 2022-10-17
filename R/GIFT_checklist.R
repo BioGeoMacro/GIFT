@@ -234,7 +234,7 @@ GIFT_checklist <- function(
   }
   
   if(!is.null(coordinates)){
-    if(is.na(coordinates) || is.character(coordinates)){
+    if(any(is.na(as.numeric(coordinates)))){
       stop("'coordinates' object does not have the right format. It should be
            a vector of XY coordinates. See help page.")
     }
@@ -248,6 +248,7 @@ GIFT_checklist <- function(
       shp <- sf::st_point(coordinates)
       shp <- sf::st_sfc(shp, crs = 4326)
       shp <- sf::st_sf(shp) # making a sf object
+      coordinates <- NULL
     } else if(nrow(coordinates) == 2){
       message("4 coordinates provided: an extent box was drawn, assuming that
             minimum X and Y are on row 1, and maximum X and Y on row 2.")
@@ -267,7 +268,8 @@ GIFT_checklist <- function(
                       ymin = coordinates[1, 2],
                       ymax = coordinates[2, 2])
       shp <- sf::st_sfc(shp, crs = 4326)
-      shp <- sf::st_sf(shp) # making a sf object
+      shp <- sf::st_sf(shp)
+      coordinates <- NULL
     }else if(nrow(coordinates) > 2){
       if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
          (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
@@ -276,7 +278,8 @@ GIFT_checklist <- function(
       }
       shp <- sf::st_polygon(list(coordinates))
       shp <- sf::st_sfc(shp, crs = 4326)
-      shp <- sf::st_sf(shp) # making a sf object
+      shp <- sf::st_sf(shp)
+      coordinates <- NULL
     } else{
       stop("'coordinates' object does not have the right format. It should be
            a vector of XY coordinates. See help page.")
