@@ -27,3 +27,4 @@ devtools::test()
 
 # Checking the package
 devtools::check()
+devtools::check(args = "--as-cran")

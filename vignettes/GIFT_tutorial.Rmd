@@ -36,9 +36,9 @@ The GIFT R package grants an access to the Global Inventory of Floras and
 Traits (GIFT) database. This vignette illustrates the most common usages of
 the package through three detailed examples:
 
-- 1. Retrieving plant checklists within a given area (example: Mediterranean)
-- 2. Getting the distribution of a plant species
-- 3. Retrieving trait information for a subset of plant species
+1. Retrieving plant checklists within a given area (example: Mediterranean)
+2. Getting the distribution of a plant species
+3. Retrieving trait information for a subset of plant species
 
 \newpage
 
@@ -82,7 +82,7 @@ default to `TRUE` defines whether incomplete checklists **regarding the**
 **taxon of interest** should be retrieved. Figure 1 is explaining the
 principle.
 <br><br>
-  
+
 ```{r, fig.cap = "Figure 1. Complete taxon", out.width = "50%",echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
 ```
@@ -139,42 +139,30 @@ not.
 Another important spatial feature we provide is the possibility to remove
 overlapping polygons. Indeed, for many regions in the world, there are several
 polygons in GIFT database that cover them. Since you may not want overlapping
-polygons.
-
-Function returns a list of two tables: metadata and actual checklists.
-To get only the metadata, set the argument `list_set_only` to `TRUE`.
-
-```{r, eval=FALSE}
-ex <- GIFT_checklist(taxon_name = "Angiospermae",
-                     shp = med, overlap = "centroid_inside")
-
-ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
-                          shp = med, overlap = "centroid_inside",
-                          list_set_only = TRUE)
-```
-
+polygons. If you do not care about overlapping polygons, you can simply set
+`remove_overlap` to FALSE.
 <br>
 
-```{r, eval=FALSE}
-ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-                     taxon_name = "Angiospermae",
-                     complete_taxon = TRUE)
-```
-
-<br>
-
-```{r, eval=FALSE}
-ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-                     taxon_name = "Angiospermae",
-                     floristic_group = "native",
-                     complete_floristic = TRUE)
-```
-
-How remove_overlap works.
-<br>
 ```{r, fig.cap = "Figure 4. No overlap", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_no_overlap.png")
 ```
+<br>
+
+But in case you want one polygon per region, then `remove_overlap` can be set
+to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
+smaller or the larger polygon. This will depend on the values set for the
+argument `area_th_mainland` as detailed in Figure 4. This argument takes a
+value in $km^2$. If the smaller polygon exceeds that threshold, then it will be
+retrieved (right column of Figure 4). In case the area of the smaller polygon
+is below the threshold, then the larger overlapping polygon will be retrieved
+(middle column in Figure 4).  
+There is a similar argument for islands, `area_th_island`, which is by default
+set to 0 $km^2$. That way, by default, the smaller islands are always
+retrieved.
+<br>
+Please also note that polygons are considered as overlapping when the exceed a
+certain percentage of overlap. This percentage can be modified using the
+`overlap_th` argument (Figure 5). This argument is set by default to 10%.
 <br>
 
 ```{r, fig.cap = "Figure 5. Overlap threshold", out.width = "50%", echo = FALSE}
@@ -182,31 +170,93 @@ knitr::include_graphics("../man/figures/GIFT_overlap_th.png")
 ```
 <br>
 
-
+Now that we covered the main arguments of `GIFT_checklist()`, we can retrieve
+plant checklists for the Mediterranean region. `GIFT_checklist()` returns a
+list of two elements. First the metadata of checklists fulfilling the
+different criteria. The second element is a `data.frame` of all the checklists
+with the species composition per checklist.
+<br>
+If you only want to retrieve the metadata, you can set the argument
+`list_set_only` to `TRUE`.
+<br>
 
 ```{r, eval=FALSE}
-ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-                     taxon_name = "Angiospermae",
-                     remove_overlap = TRUE)
+ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
+                          shp = med, overlap = "centroid_inside",
+                          list_set_only = TRUE)
 ```
 
-Function also works with own coordinates, point.
-
-```{r, eval=FALSE}
-custom_point <- cbind(9.9, 51)
-
-ex <- GIFT_checklist(coordinates = custom_point, overlap = "extent_intersect",
-                     taxon_name = "Angiospermae",
-                     remove_overlap = TRUE)
+```{r, eval=TRUE}
+medit <- GIFT_checklist(taxon_name = "Angiospermae",
+                        complete_taxon = TRUE,
+                        floristic_group = "native",
+                        complete_floristic = TRUE,
+                        geo_type = "All",
+                        shp = med, overlap = "centroid_inside", 
+                        remove_overlap = FALSE,
+                        taxonomic_group = TRUE) # this argument adds two columns
+# to the checklist: plant family and taxonomic group of each species
 ```
+
+<br>
+
+We can now have an estimation on the number of checklists with native
+Angiosperm species in the Mediterranean basin, as well as of the number of
+species.
+<br>
+
+```{r, eval=TRUE}
+# Number of references covered
+length(unique(medit[[2]]$ref_ID))
+# Number of checklists covered (one reference can have several lists inside)
+length(unique(medit[[2]]$list_ID))
+# Number of species
+length(unique(medit[[2]]$work_species))
+```
+
+<br>
+You can now apply different values for the arguments detailed above. When being
+stricter with some criteria, you can see that the number of checklists
+retrieved decreases. For example, when removing overlapping regions:
+<br>
+
+```{r}
+medit_no_overlap <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+                                   taxon_name = "Angiospermae",
+                                   remove_overlap = TRUE)
+
+# Number of references covered
+length(unique(medit[[2]]$ref_ID))
+length(unique(medit_no_overlap[[2]]$ref_ID))
+```
+
+Please note that the function not only works with a shape file but can accept a
+set of coordinates. The example below illustrates a case in which you want to
+retrieve GIFT checklists intersecting the coordinates of Göttingen.
+<br>
+
+```{r}
+custom_point <- cbind(9.9, 51) # coordinates of Göttingen
+
+got <- GIFT_checklist(coordinates = custom_point,
+                      overlap = "extent_intersect",
+                      taxon_name = "Angiospermae",
+                      remove_overlap = TRUE,
+                      list_set_only = TRUE)
+
+got[[1]]
+```
+<br><br>
+<br><br>
 
 # 3. Distribution of species
+`GIFT_species()`
 
 ```{r, eval=FALSE}
 
 ```
 
-
+<br><br>
 # 4. Trait data
 
 Raw traits, and traits after taxonomic harmonization.
