@@ -69,8 +69,6 @@
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
     - check output when floristic_group argument has a length of two (e.g. endemic and native)
 
-    - continue here
-
 * 2.1. ~~GIFT_traits_meta() (Pierre)~~
     - ~~make work for version 1.0 (Patrick)~~
 
@@ -150,6 +148,9 @@
 * range_finder
 
 * species numbers, trait coverage
+    - little function (Pierre)
+    
+* GloNAF overlap function (Patrick)
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
     - ~~one API per version of the database (Patrick)~~
