@@ -115,6 +115,9 @@ knitr::include_graphics("../man/figures/GIFT_complete_floristic.png")
 ```
 <br>
 
+The next set of arguments relate to spatial matching between the desired area
+and the GIFT database:
+
 Function returns a list of two tables: metadata and actual checklists.
 To get only the metadata, set the argument `list_set_only` to `TRUE`.
 
