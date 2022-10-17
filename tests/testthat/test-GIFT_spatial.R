@@ -42,7 +42,7 @@ test_that("data frame output format",
               fixed = TRUE)
             
             expect_message(
-              GIFT_spatial(GIFT_version = "beta"),
+              GIFT_spatial(shp = med, GIFT_version = "beta"),
               "You are asking for the beta-version of GIFT which is subject to
             updates and edits. Consider using 'latest' for the latest stable
             version.")
