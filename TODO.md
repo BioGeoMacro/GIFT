@@ -138,6 +138,11 @@
     - GIFT_species() run internally
     - output like on POWO website: lists of polygons where the focal species is native/alien/naturalized
     - following logic of bRacatus R package (https://cran.r-project.org/web/packages/bRacatus/vignettes/Using_bRacatus.html)
+  
+* GIFT_region()
+    - query (Patrick)
+    - R function (Pierre) => returns a dataframe with the following columns:
+    entity_ID, geo_entity, TDWG_ID, Country_Name, Country_ID, geology
     
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
