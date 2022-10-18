@@ -35,14 +35,24 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A
+A data.frame with 26 columns.
 }
 \description{
 Retrieve non-aggregated trait values at the level of the bibliographic 
 references and un-standardized species names in GIFT.
 }
 \details{
-Blabla.
+Here is the detail of each column:
+trait_derived_ID -
+ref_ID -
+orig_ID -
+trait_ID -
+trait_value -
+derived -
+bias_deriv -
+name_ID -
+cf_genus -
+genus -
 }
 \examples{
 \dontrun{

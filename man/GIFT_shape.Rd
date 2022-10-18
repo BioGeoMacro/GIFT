@@ -37,17 +37,9 @@ x_min - Minimum longitude of the polygon
 x_max - Maximum longitude of the polygon
 y_min - Minimum latitude of the polygon
 y_max - Maximum latitude of the polygon
-suit_geo - Is the polygon suitable?
-suit_geo_rst -
 entity_class - Class of the polygon
-entity_type -
-overlap_checked -
-overlap_glonaf_checked -
-overlap_gmba_checked -
-overlap_gaptani_checked - 
-polygon_source - 
-priority -
-factor -
+entity_type - Type of the entity
+polygon_source - Source of the polygon
 geometry - Geometry column from sf
 }
 \examples{
