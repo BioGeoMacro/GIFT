@@ -504,8 +504,7 @@ GIFT_checklist <- function(
                                taxonomy = taxonomy)
     if(taxonomic_group){
       species <- unique(checklists[,c("work_ID","genus_ID","work_species")])
-      names(species)[2] <- "genus"
-      
+
       checklists$family <-
         suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
                                              taxon_lvl = "family",
