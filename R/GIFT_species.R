@@ -31,7 +31,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr mutate_at
+#' @importFrom dplyr bind_rows mutate_at
 #' 
 #' @export
 
@@ -66,12 +66,18 @@ GIFT_species <- function(api = "http://gift.uni-goettingen.de/api/extended/",
   
   # 2. Function ----
   # Return the species names
-  tmp <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=species"), simplifyVector = TRUE)
+  tmp <- list()
+  for (i in seq_len(10)){
+    tmp[[i]] <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=species&workidmin=", as.integer(i*100000-100000+1), 
+      "&workidmax=",as.integer(i*100000)), simplifyVector = TRUE)
+  }
+  tmp <- dplyr::bind_rows(tmp)
   
   # Convert columns as numeric
-  tmp <- dplyr::mutate_at(tmp, c("work_ID", "genus"), as.numeric)
+  tmp <- dplyr::mutate_at(tmp, c("work_ID", "genus_ID"), as.numeric)
+  tmp$work_author <- as.character(tmp$work_author)
   
   return(tmp)
 }

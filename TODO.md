@@ -49,11 +49,13 @@
     - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  <br>
     - range_finder => <br>
 
+- !!!!all calls of GIFT functions inside of other functions need the version and api forwarded!!!
+
 ## 1.1. Details
-* 1.1. GIFT_checklists_raw (Pierre)  
+* 1.1. GIFT_checklists_raw
     - add message on taxonomic status for original names (Pierre)
 
-* 1.2. GIFT_checklists_conditional (Pierre)
+* 1.2. GIFT_checklists_conditional
     - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
     - add geo_entity_ref column behind geoentity column (Patrick)
 
@@ -64,13 +66,11 @@
 * 1.5. GIFT_tax_group()
 
 * 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
-    - add argument by_ref_ID to apply the function by ref_ID
 
 * 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
-    - check output when floristic_group argument has a length of two (e.g. endemic and native)
+    - check output when floristic_group argument has a length of two (e.g. endemic and native) Should not be possible
 
-* 2.1. ~~GIFT_traits_meta() (Pierre)~~
-    - ~~make work for version 1.0 (Patrick)~~
+* 2.1. GIFT_traits_meta()
 
 * 2.2. GIFT_traits()
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
@@ -96,21 +96,19 @@
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
-    - control for layer names and variables in env_raster_meta and env_misc_neta. Using the right api this will driectly control for restricted layers
+    - control for layer names and variables in env_raster_meta and env_misc_meta. Using the right api this will driectly control for restricted layers
 
 * 3.2. GIFT_env_meta_misc()    
-    - ~~restricted veriables (Patrick)~~
+    - ~~restricted variables (Patrick)~~
     
 * 3.3. GIFT_env_meta_raster()  
     - ~~restricted raster layers (Patrick)~~
 
 * 4.1. GIFT_species()
-    - input: user's species name
-    - output: table with user's input, whether the species are in GIFT, if yes corrected name
-    - Is the current version of this function/query used at the moment?
-    - Add author names? Would also add author names to GIFT_traits()
+    - ~~Add author names to query? Would also add author names to GIFT_traits()~~
     
 * 4.2. GIFT_ranges()
+    - range_finder
 
 * 5.1. GIFT_shape()
     - give back warning if not all entity_IDs have polygons?
@@ -149,8 +147,6 @@
     - submit own coordinates or polygons or lines
     - input: shape and criteria (calling get_checklists_conditional)
     - output: lists falling within the area required
-
-* range_finder
 
 * GloNAF overlap function (Patrick)
 

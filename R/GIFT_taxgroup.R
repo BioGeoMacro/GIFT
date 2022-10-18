@@ -112,7 +112,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!is.null(species)){
     if(!is.data.frame(species) ||
-       !(any(c("work_ID", "genus") %in% colnames(species)))){
+       !(any(c("work_ID", "genus_ID") %in% colnames(species)))){
       stop("'species' must be a dataframe with specific column names.
          See GIFT_species().")
     }
@@ -122,17 +122,15 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   ## 2.0 species names query
   if(is.null(species)){
-    species <- jsonlite::read_json(
-      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-             ".php?query=species"), simplifyVector = TRUE)
+    species <- GIFT_species(api = api, GIFT_version = GIFT_version)
   }
   
-  species <- dplyr::mutate_at(species, c("work_ID", "genus"), as.numeric)
+  species <- dplyr::mutate_at(species, c("work_ID", "genus_ID"), as.numeric)
   
   if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
   
   species <- species[match(work_ID,species$work_ID), ]
-  genera <- unique(species$genus)
+  genera <- unique(species$genus_ID)
   
   ## 2.0 taxonomy query
   if(is.null(taxonomy)){
@@ -163,5 +161,5 @@ GIFT_taxgroup <- function(work_ID = NULL,
     }
   }
   
-  return(taxa[match(species$genus, genera)])
+  return(taxa[match(species$genus_ID, genera)])
 }

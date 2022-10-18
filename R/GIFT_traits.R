@@ -152,16 +152,17 @@ GIFT_traits <- function(
                                  as.numeric)
   
   # Add species names
-  species <- GIFT::GIFT_species()
+  species <- GIFT::GIFT_species(GIFT_version = GIFT_version, api = api)
   trait_list <- dplyr::left_join(trait_list,
-                                 species[, c("work_ID", "species")],
+                                 species[, c("work_ID", "work_species", 
+                                             "work_author")],
                                  by = "work_ID")
   
   # Round agreement score
   trait_list$agreement <- round(trait_list$agreement, 3)
   
   # Reordering columns
-  trait_list <- trait_list[, c("species", "work_ID", "trait_ID", "trait_value",
+  trait_list <- trait_list[, c("work_ID", "work_species", "work_author", "trait_ID", "trait_value",
                                "agreement", "references")]
   
   #trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
