@@ -51,7 +51,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows left_join relocate mutate_at
 #' @importFrom tidyr pivot_wider
-#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
 #' 
