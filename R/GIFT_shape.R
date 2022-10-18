@@ -110,7 +110,7 @@ GIFT_shape <- function(entity_ID = NULL,
     }
     geodata[[i]] <- tmp_geo
     
-    setTxtProgressBar(progress, i)
+    utils::setTxtProgressBar(progress, i)
   }
   
   geodata <- do.call(rbind, geodata)

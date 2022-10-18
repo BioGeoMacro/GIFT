@@ -214,7 +214,7 @@ GIFT_checklist_raw <- function(
     
     list_raw <- dplyr::bind_rows(list_raw, tmp)
     
-    setTxtProgressBar(progress, i)
+    utils::setTxtProgressBar(progress, i)
   }
   
   # Data.frame

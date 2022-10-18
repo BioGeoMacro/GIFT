@@ -128,7 +128,7 @@ GIFT_traits <- function(
         simplifyVector = TRUE)
       trait_list[[i]]$trait_ID <- trait_IDs[i]
       
-      setTxtProgressBar(progress, i)
+      utils::setTxtProgressBar(progress, i)
     }
   }else{
     for(i in seq_along(trait_IDs)){
