@@ -5,8 +5,7 @@
 #' 
 #' @param what Species richness or trait coverage.
 #'
-#' @param taxon_ID Identification number of the taxonomic group you want to
-#' retrieve.
+#' @param taxon_name Name of the taxonomic group you want to retrieve.
 #'
 #' @param trait_ID Identification number of the trait you want to retrieve.
 #' 
@@ -114,7 +113,7 @@ GIFT_richness <- function(
       paste(trait_ID, collapse = ","), "&taxonid=", tax_group),
       simplifyVector = TRUE)
     
-  } else if(what == "richness"){
+  } else if(what == "species_richness"){
     tmp <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)

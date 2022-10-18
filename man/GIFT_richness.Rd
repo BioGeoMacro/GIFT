@@ -15,6 +15,8 @@ GIFT_richness(
 \arguments{
 \item{what}{Species richness or trait coverage.}
 
+\item{taxon_name}{Name of the taxonomic group you want to retrieve.}
+
 \item{trait_ID}{Identification number of the trait you want to retrieve.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
@@ -23,9 +25,6 @@ version.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}
-
-\item{taxon_ID}{Identification number of the taxonomic group you want to
-retrieve.}
 }
 \value{
 A data frame with either species richness or trait coverage per
