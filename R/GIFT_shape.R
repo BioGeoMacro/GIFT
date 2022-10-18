@@ -44,7 +44,7 @@
 #' 
 #' @importFrom sf st_read st_is_valid st_make_valid st_set_precision
 #' @importFrom dplyr select
-#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
 
@@ -82,6 +82,11 @@ GIFT_shape <- function(entity_ID = NULL,
             version.")
   }
   
+  # Visible binding for global variable
+  suit_geo <- suit_geo_rst <- overlap_checked <- NULL
+  overlap_glonaf_checked <- overlap_gmba_checked <- NULL
+  overlap_gaptani_checked <- priority <- NULL
+
   # 2. Function ----
   GIFT_entities <- GIFT::GIFT_env(miscellaneous = "area",
                                   api = api, GIFT_version = GIFT_version)

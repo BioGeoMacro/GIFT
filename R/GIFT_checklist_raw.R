@@ -79,6 +79,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows mutate_at relocate
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
 

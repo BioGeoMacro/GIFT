@@ -67,7 +67,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows left_join mutate_at
-#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
 #' 
@@ -178,7 +178,7 @@ GIFT_traits_raw <- function(
       trait_list[[i]]$trait_ID <- ref_IDs$trait_ID[i]
       trait_list[[i]]$bias_ref <- ref_IDs$bias[i]
     }
-    setTxtProgressBar(progress, i)
+    utils::setTxtProgressBar(progress, i)
   }
   
   # Formatting trait_list as a data.frame
