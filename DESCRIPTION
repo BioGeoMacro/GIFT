@@ -19,7 +19,8 @@ Imports:
   jsonlite,
   purrr,
   sf,
-  tidyr
+  tidyr,
+  utils
 RoxygenNote: 7.2.1
 Suggests: 
     covr,

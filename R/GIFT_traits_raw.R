@@ -9,9 +9,13 @@
 #' 
 #' @param derived include logically derived traits.
 #' 
-#' @param bias_ref Traits desired.
+#' @param bias_ref When FALSE, exclude entries that are only based on a
+#' resource that potentially introduces a bias (e.g. a resource only including
+#' trees).
 #' 
-#' @param bias_deriv Traits desired.
+#' @param bias_deriv When FALSE, exclude entries that are only based on a
+#' derivation that potentially introduces a bias (e.g. all phanerophytes being
+#' woody but some life forms being ambiguous).
 #' 
 #' @param api Character string with the API.
 #' 
@@ -19,10 +23,20 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #'
-#' @return
-#' A 
+#' @return A data.frame with 26 columns.
 #'
-#' @details Blabla.
+#' @details Here is the detail of each column:
+#' trait_derived_ID -
+#' ref_ID -
+#' orig_ID -
+#' trait_ID -
+#' trait_value -
+#' derived -
+#' bias_deriv -
+#' name_ID -
+#' cf_genus -
+#' genus -
+#' 
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -38,6 +52,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows left_join mutate_at
+#' @importFrom utils txtProgressBar
 #' 
 #' @export
 #' 
@@ -104,7 +119,7 @@ GIFT_traits_raw <- function(
   ref_IDs <- jsonlite::read_json(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=reference_traits"), simplifyVector = TRUE)
-
+  
   ref_IDs$priority <- NULL
   ref_IDs$ID <- NULL # Control for additional column in version 1.0
   
@@ -114,10 +129,10 @@ GIFT_traits_raw <- function(
   
   # Convert to long table and get rid of duplicates
   ref_IDs <- unique(tidyr::pivot_longer(ref_IDs,
-    cols = grep("^trait", colnames(ref_IDs), value = TRUE),
-    names_to = NULL,
-    values_to = "trait_ID",
-    values_drop_na = TRUE))
+                                        cols = grep("^trait", colnames(ref_IDs), value = TRUE),
+                                        names_to = NULL,
+                                        values_to = "trait_ID",
+                                        values_drop_na = TRUE))
   
   # Subset for desired traits
   ref_IDs <- ref_IDs[which(ref_IDs$trait_ID %in% trait_IDs),]
@@ -134,7 +149,9 @@ GIFT_traits_raw <- function(
   # Initiating list
   trait_list <- list()
   
-  # for-loop
+  progress <- utils::txtProgressBar(min = 0, max = nrow(ref_IDs),
+                                    initial = 0)
+  
   for (i in seq_len(nrow(ref_IDs))){
     trait_list[[i]] <- jsonlite::read_json(
       paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
@@ -146,6 +163,7 @@ GIFT_traits_raw <- function(
       trait_list[[i]]$trait_ID <- ref_IDs$trait_ID[i]
       trait_list[[i]]$bias_ref <- ref_IDs$bias[i]
     }
+    setTxtProgressBar(progress, i)
   }
   
   # Formatting trait_list as a data.frame
@@ -172,6 +190,6 @@ GIFT_traits_raw <- function(
   trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")
   
   # Add standardized species names
-
+  
   return(trait_list)
 }

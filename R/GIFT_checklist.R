@@ -347,11 +347,6 @@ GIFT_checklist <- function(
   if(GIFT_version == "latest"){
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
   
   # 2. Function ----
   ## 2.1. GIFT_checklist_conditional ---- 
@@ -498,7 +493,7 @@ GIFT_checklist <- function(
   
   checklists <- NA
   if (!list_set_only){
-    checklists <- suppressMessages(
+    checklists <- 
       GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
                                taxon_name = taxon_name,
                                namesmatched = namesmatched,
@@ -506,9 +501,8 @@ GIFT_checklist <- function(
                                GIFT_version = GIFT_version,
                                api = api,
                                list_set = list_set,
-                               taxonomy = taxonomy))
-    if (taxonomic_group){
-      
+                               taxonomy = taxonomy)
+    if(taxonomic_group){
       species <- unique(checklists[,c("work_ID","genus_ID","work_species")])
       names(species)[2] <- "genus"
       
@@ -529,12 +523,6 @@ GIFT_checklist <- function(
                                              taxonomy = taxonomy,
                                              species = species))
     }
-  }
-  
-  if(list_set_only == FALSE){
-    message("Be cautious, species indicated as endemic were stated like this in
-          the source reference/checklist. It can be that these species appear
-          in other checklists.")
   }
   
   return(list(lists, checklists))

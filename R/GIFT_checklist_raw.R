@@ -199,6 +199,8 @@ GIFT_checklist_raw <- function(
   taxonid <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
   
   ## 2.2. Loop ----
+  progress <- utils::txtProgressBar(min = 0, max = length(unique(list_ID)),
+                                    initial = 0) 
   list_raw <- c()
   for(i in seq_along(list_ID)){
     tmp <- jsonlite::read_json(paste0(
@@ -211,6 +213,8 @@ GIFT_checklist_raw <- function(
       , simplifyVector = TRUE)
     
     list_raw <- dplyr::bind_rows(list_raw, tmp)
+    
+    setTxtProgressBar(progress, i)
   }
   
   # Data.frame

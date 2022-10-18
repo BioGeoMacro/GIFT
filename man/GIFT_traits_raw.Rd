@@ -20,9 +20,13 @@ GIFT_traits_meta()}
 
 \item{derived}{include logically derived traits.}
 
-\item{bias_ref}{Traits desired.}
+\item{bias_ref}{When FALSE, exclude entries that are only based on a
+resource that potentially introduces a bias (e.g. a resource only including
+trees).}
 
-\item{bias_deriv}{Traits desired.}
+\item{bias_deriv}{When FALSE, exclude entries that are only based on a
+derivation that potentially introduces a bias (e.g. all phanerophytes being
+woody but some life forms being ambiguous).}
 
 \item{api}{Character string with the API.}
 

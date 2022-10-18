@@ -5,11 +5,16 @@
 #' @param trait_IDs a character string indicating which trait you want to
 #' retrieve. Traits must belong to the available list of traits.
 #' 
-#' @param agreement Traits desired.
+#' @param agreement Percentage of resources that agree on an aggregated trait
+#' value, entries below this threshold will be omitted. 
 #' 
-#' @param bias_ref Traits desired.
+#' @param bias_ref When FALSE, exclude entries that are only based on a
+#' resource that potentially introduces a bias (e.g. a resource only including
+#' trees).
 #' 
-#' @param bias_deriv Traits desired.
+#' @param bias_deriv When FALSE, exclude entries that are only based on a
+#' derivation that potentially introduces a bias (e.g. all phanerophytes being
+#' woody but some life forms being ambiguous).
 #' 
 #' @param api Character string with the API.
 #'
@@ -33,12 +38,13 @@
 #' @examples
 #' \dontrun{
 #' wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-#' bias_ref = FALSE, bias_deriv = FALSE)#' 
+#' bias_ref = FALSE, bias_deriv = FALSE)
 #' }
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows left_join relocate mutate_at
 #' @importFrom tidyr pivot_wider
+#' @importFrom utils txtProgressBar
 #' 
 #' @export
 #' 
@@ -102,15 +108,31 @@ GIFT_traits <- function(
   # Initiating list
   trait_list <- list()
   
-  # for-loop
-  for (i in seq_along(trait_IDs)){
-    trait_list[[i]] <- jsonlite::read_json(
-      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-             ".php?query=traits&traitid=",
-             trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-             "&biasderiv=", as.numeric(bias_deriv)),
-      simplifyVector = TRUE)
-    trait_list[[i]]$trait_ID <- trait_IDs[i]
+  if(length(trait_IDs) > 5){
+    progress <- utils::txtProgressBar(min = 0, max = length(trait_IDs),
+                                      initial = 0) 
+    
+    for(i in seq_along(trait_IDs)){
+      trait_list[[i]] <- jsonlite::read_json(
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+               ".php?query=traits&traitid=",
+               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+               "&biasderiv=", as.numeric(bias_deriv)),
+        simplifyVector = TRUE)
+      trait_list[[i]]$trait_ID <- trait_IDs[i]
+      
+      setTxtProgressBar(progress, i)
+    }
+  }else{
+    for(i in seq_along(trait_IDs)){
+      trait_list[[i]] <- jsonlite::read_json(
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+               ".php?query=traits&traitid=",
+               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+               "&biasderiv=", as.numeric(bias_deriv)),
+        simplifyVector = TRUE)
+      trait_list[[i]]$trait_ID <- trait_IDs[i]
+    }
   }
   
   # Formatting trait_list as a data.frame

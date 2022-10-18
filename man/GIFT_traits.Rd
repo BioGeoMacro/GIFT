@@ -17,11 +17,16 @@ GIFT_traits(
 \item{trait_IDs}{a character string indicating which trait you want to
 retrieve. Traits must belong to the available list of traits.}
 
-\item{agreement}{Traits desired.}
+\item{agreement}{Percentage of resources that agree on an aggregated trait
+value, entries below this threshold will be omitted.}
 
-\item{bias_ref}{Traits desired.}
+\item{bias_ref}{When FALSE, exclude entries that are only based on a
+resource that potentially introduces a bias (e.g. a resource only including
+trees).}
 
-\item{bias_deriv}{Traits desired.}
+\item{bias_deriv}{When FALSE, exclude entries that are only based on a
+derivation that potentially introduces a bias (e.g. all phanerophytes being
+woody but some life forms being ambiguous).}
 
 \item{api}{Character string with the API.}
 
@@ -42,7 +47,7 @@ Blabla.
 \examples{
 \dontrun{
 wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-bias_ref = FALSE, bias_deriv = FALSE)#' 
+bias_ref = FALSE, bias_deriv = FALSE)
 }
 
 }

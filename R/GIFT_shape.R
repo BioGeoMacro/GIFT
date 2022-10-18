@@ -51,6 +51,7 @@
 #' }
 #' 
 #' @importFrom sf st_read st_is_valid st_make_valid st_set_precision
+#' @importFrom utils txtProgressBar
 #' 
 #' @export
 
@@ -99,7 +100,10 @@ GIFT_shape <- function(entity_ID = NULL,
   
   geodata <- list()
   
-  for (i in seq_along(unique(entity_ID))) {
+  progress <- utils::txtProgressBar(min = 0, max = length(unique(entity_ID)),
+                                    initial = 0) 
+  
+  for(i in seq_along(unique(entity_ID))) {
     # TODO Put old polygons of old versions into respective folders and paste
     # version here
     tmp_geo <- st_read(
@@ -112,9 +116,11 @@ GIFT_shape <- function(entity_ID = NULL,
         tmp_geo, 1e2))
     }
     geodata[[i]] <- tmp_geo
+    
+    setTxtProgressBar(progress, i)
   }
   
   geodata <- do.call(rbind, geodata)
-  geodata <- geodata[order(geodata$area, decreasing = TRUE),]
+  geodata <- geodata[order(geodata$area, decreasing = TRUE), ]
   return(geodata)
 }
