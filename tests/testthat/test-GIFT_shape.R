@@ -4,7 +4,7 @@
 test_that("data frame output format", {
   ex <- GIFT_shape(entity_ID = c(677, 200))
   
-  expect_identical(ncol(ex), c(21L))
+  expect_identical(ncol(ex), c(13L))
   
 })
 

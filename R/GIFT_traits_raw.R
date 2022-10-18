@@ -27,16 +27,31 @@
 #'
 #' @details Here is the detail of each column:
 #' trait_derived_ID -
-#' ref_ID -
-#' orig_ID -
-#' trait_ID -
-#' trait_value -
-#' derived -
-#' bias_deriv -
-#' name_ID -
+#' ref_ID - Identification number of the reference
+#' orig_ID - Identification number of the species, as it came in the source
+#' trait_ID - Identification number of the trait
+#' trait_value - Value of the trait
+#' derived - Is the trait value derived from another information (e.g.
+#' phanerophytes are woody)
+#' bias_deriv - Is the derivation potentially introducing a bias
+#' name_ID - Identification number of the species before being resolved
 #' cf_genus -
-#' genus -
-#' 
+#' genus - Genus of the species
+#' cf_species -
+#' aff_species -
+#' species_epithet - Epithet of the species
+#' subtaxon - Sub-taxon name
+#' author - Author who described the species
+#' matched - Was the species name matched in the taxonomic backbone
+#' epithetscore - Matching score for the epithet
+#' overallscore - Overall matching score
+#' resolved - Was the species name resolved in the taxonomic backbone
+#' service - Taxonomic backbone used for taxonomic harmonization
+#' work_ID - Identification number of the taxonomically harmonized species
+#' bias_ref - Is the resource potentially introducing a bias
+#' species - Species name
+#' geo_entity_ref - Name of the region of the reference
+#' ref_long - Full reference to cite
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

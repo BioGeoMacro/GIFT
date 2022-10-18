@@ -42,7 +42,14 @@ A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,
 Retrieve specific trait values.
 }
 \details{
-Blabla.
+Here is the detail of each column:
+trait_ID - Identification number of the trait
+work_ID - Identification number of the taxonomically harmonized species
+species - Species name
+trait_value - Value of the trait
+agreement - Agreement score between the different sources for that trait
+value
+references - ref_ID from which we got the trait information
 }
 \examples{
 \dontrun{
