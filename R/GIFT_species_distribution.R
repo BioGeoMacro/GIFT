@@ -136,12 +136,12 @@ GIFT_species_distribution <- function(
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
-  names <-GIFT_species_lookup(genus = genus, epithet = epithet, 
+  taxnames <-GIFT_species_lookup(genus = genus, epithet = epithet, 
                                 GIFT_version = GIFT_version, api = api,
                                 namesmatched = namesmatched)
   # TODO: simplify names lookup to not look in orig genus?
   
-  name_IDs <- unique(names$name_ID)
+  name_IDs <- unique(taxnames$name_ID)
 
   ## 2.1. Get distribution ---- 
   
