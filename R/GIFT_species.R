@@ -69,11 +69,11 @@ GIFT_species <- function(api = "http://gift.uni-goettingen.de/api/extended/",
   # 2. Function ----
   # Return the species names
   tmp <- list()
-  for (i in seq_len(10)){
+  for (i in seq_len(6)){
     tmp[[i]] <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species&workidmin=", as.integer(i*100000-100000+1), 
-      "&workidmax=", as.integer(i*100000)), simplifyVector = TRUE)
+      ".php?query=species&startat=", as.integer((i-1)*100000)), 
+      simplifyVector = TRUE)
   }
   tmp <- dplyr::bind_rows(tmp)
   
