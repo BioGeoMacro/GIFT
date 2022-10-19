@@ -86,7 +86,7 @@ GIFT_traits <- function(
   }
   
   # Load traits_metadata to check if the provided IDs are available
-  tmp <- GIFT::GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
+  tmp <- GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
   if(!all(trait_IDs %in% tmp$Lvl3)){
     stop("trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'traits_meta() and look at column
@@ -105,41 +105,40 @@ GIFT_traits <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
-  
+
   # 2. Function ----
+  
+  
   # Initiating list
   trait_list <- list()
   
-  if(length(trait_IDs) > 5){
-    progress <- utils::txtProgressBar(min = 0, max = length(trait_IDs),
-                                      initial = 0) 
+  n <- ceiling(tmp$count[which(tmp$Lvl3 %in% trait_IDs)]/10000)
+  progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
+
+  # Get species names
+  species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
+                                           api = api))
+  
+  count <- 1
+  utils::setTxtProgressBar(progress, count)
+
+  for(i in seq_along(trait_IDs)){
+    trait_list_i <- list()
+
+    for (k in seq_len(n[i])){
+      trait_list_i[[k]] <- jsonlite::read_json(
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+               ".php?query=traits&traitid=",
+               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+               "&biasderiv=", as.numeric(bias_deriv), 
+               "&startat=", as.integer((k-1)*10000)),
+        simplifyVector = TRUE)
+    count = count + 1
+    utils::setTxtProgressBar(progress, count)
+    }
+    trait_list[[i]] <- dplyr::bind_rows(trait_list_i)
+    trait_list[[i]]$trait_ID <- trait_IDs[i]
     
-    for(i in seq_along(trait_IDs)){
-      trait_list[[i]] <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=traits&traitid=",
-               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-               "&biasderiv=", as.numeric(bias_deriv)),
-        simplifyVector = TRUE)
-      trait_list[[i]]$trait_ID <- trait_IDs[i]
-      
-      utils::setTxtProgressBar(progress, i)
-    }
-  }else{
-    for(i in seq_along(trait_IDs)){
-      trait_list[[i]] <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=traits&traitid=",
-               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-               "&biasderiv=", as.numeric(bias_deriv)),
-        simplifyVector = TRUE)
-      trait_list[[i]]$trait_ID <- trait_IDs[i]
-    }
   }
   
   # Formatting trait_list as a data.frame
@@ -152,7 +151,6 @@ GIFT_traits <- function(
                                  as.numeric)
   
   # Add species names
-  species <- GIFT::GIFT_species(GIFT_version = GIFT_version, api = api)
   trait_list <- dplyr::left_join(trait_list,
                                  species[, c("work_ID", "work_species", 
                                              "work_author")],
