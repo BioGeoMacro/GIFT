@@ -202,9 +202,9 @@ GIFT_checklist_raw <- function(
   ## 2.2. Loop ----
   progress <- utils::txtProgressBar(min = 0, max = length(unique(list_ID)),
                                     initial = 0) 
-  list_raw <- c()
+  list_raw <- list()
   for(i in seq_along(list_ID)){
-    tmp <- jsonlite::read_json(paste0(
+    list_raw[[i]] <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
       ".php?query=checklists&listid=",
       as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
@@ -212,11 +212,10 @@ GIFT_checklist_raw <- function(
       ifelse(floristic_group == "all",
              "", paste0("&filter=", floristic_group)))
       , simplifyVector = TRUE)
-    
-    list_raw <- dplyr::bind_rows(list_raw, tmp)
-    
+
     utils::setTxtProgressBar(progress, i)
   }
+  list_raw <- dplyr::bind_rows(list_raw)
   
   # Data.frame
   list_raw <- as.data.frame(list_raw)
