@@ -61,7 +61,7 @@
 #' @export
 
 GIFT_species_distribution <- function(
-    genus = "Fagus", epithet = "sylvatica", work_ID = NULL, 
+    genus = "Fagus", epithet = "sylvatica", 
     namesmatched = FALSE, remove_overlap = FALSE, area_th_island = 0,
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
     GIFT_version = "latest", api = "http://gift.uni-goettingen.de/api/extended/"
@@ -136,20 +136,34 @@ GIFT_species_distribution <- function(
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
-  taxnames <-GIFT_species_lookup(genus = genus, epithet = epithet, 
+  taxnames <- GIFT_species_lookup(genus = genus, epithet = epithet, 
                                 GIFT_version = GIFT_version, api = api,
                                 namesmatched = namesmatched)
-  # TODO: simplify names lookup to not look in orig genus?
+  # TODO: simplify names lookup to not look in orig genus? Or filter here
+  taxnames <- unique(taxnames[,c("name_ID", "genus", "species_epithet", 
+                                 "subtaxon", "author", "matched", 
+                                 "epithetscore", "overallscore", "resolved", 
+                                 "synonym", "matched_subtaxon", "accepted", 
+                                 "service", "work_ID", "taxon_ID", "work_genus", 
+                                 "work_species_epithet", "work_species",
+                                 "work_author" )])
   
   name_IDs <- unique(taxnames$name_ID)
 
   ## 2.1. Get distribution ---- 
   
-  # TODO: modify query to look for name_ID, to include cf, aff. stuff
-  # to include names? No, match back afterwards!
-  # make simple fast version
+  lists <- list()
+  for(i in seq_along(name_IDs)){
+    lists[[i]] <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+      ".php?query=species_distr&nameid=", as.numeric(name_IDs[i])), 
+      simplifyVector = TRUE)
+  }
+  lists <- dplyr::bind_rows(lists)
   
-  
+  # Data.frame
+  lists <- as.data.frame(lists)
+  lists <- dplyr::mutate_all(lists, as.numeric)
   
   
   ## 2.3. Overlapping entities ----
@@ -187,6 +201,8 @@ GIFT_species_distribution <- function(
     }
   }
   
+  ## 2.4. Join lists and names ----
+  lists <- dplyr::left_join(lists, taxnames, by="name_ID")
 
-  return(list(lists, checklists))
+  return(lists)
 }
