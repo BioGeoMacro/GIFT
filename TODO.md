@@ -87,17 +87,15 @@
     - highlight GIFT_env_meta for getting overview and citations
     - Controls for arguments
     - GIFT_env() => message if selected NAs included
-    - control for layer names and variables in env_raster_meta and env_misc_meta. Using the right api this will driectly control for restricted layers
+    - control for layer names and variables in env_raster_meta and env_misc_meta. Using the right api this will directly control for restricted layers
+    - control for sumstats argument
 
 * 3.2. GIFT_env_meta_misc()    
-    - ~~restricted variables (Patrick)~~
-    
+
 * 3.3. GIFT_env_meta_raster()  
-    - ~~restricted raster layers (Patrick)~~
 
 * 4.1. GIFT_species()
-    - ~~Add author names to query? Would also add author names to GIFT_traits()~~
-    
+
 * 4.2. GIFT_ranges()
     - range_finder
 

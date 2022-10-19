@@ -76,19 +76,14 @@ GIFT_shape <- function(entity_ID = NULL,
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
-  
+
   # Visible binding for global variable
   suit_geo <- suit_geo_rst <- overlap_checked <- NULL
   overlap_glonaf_checked <- overlap_gmba_checked <- NULL
   overlap_gaptani_checked <- priority <- NULL
 
   # 2. Function ----
-  GIFT_entities <- GIFT::GIFT_env(miscellaneous = "area",
+  GIFT_entities <- GIFT_env(miscellaneous = "area",
                                   api = api, GIFT_version = GIFT_version)
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
@@ -105,7 +100,8 @@ GIFT_shape <- function(entity_ID = NULL,
     # TODO Put old polygons of old versions into respective folders and paste
     # version here
     tmp_geo <- st_read(
-      paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller/",
+      paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller", 
+             ifelse(GIFT_version == "beta", "", GIFT_version), "/",
              entity_ID[i], ".geojson"), quiet = TRUE)
     
     # Control if sf geometry is not valid (i = 68 & 257)
