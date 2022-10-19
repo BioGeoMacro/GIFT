@@ -154,10 +154,14 @@ GIFT_taxgroup <- function(work_ID = NULL,
     } else {
       tmp <- tmp[which(tmp$taxon_lvl == taxon_lvl), ]
     }
-    if(return_ID){
-      taxa[i] <- tmp[, "taxon_ID"]
+    if(nrow(tmp) == 0){
+      taxa[i] <- NA
     }else{
-      taxa[i] <- tmp[, "taxon_name"]
+      if(return_ID){
+        taxa[i] <- tmp[, "taxon_ID"]
+      }else{
+        taxa[i] <- tmp[, "taxon_name"]
+      }
     }
   }
   
