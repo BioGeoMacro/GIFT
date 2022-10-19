@@ -69,5 +69,7 @@ GIFT_traits_meta <- function(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=traits_meta"), simplifyVector = TRUE)
   
+  tmp$count <- as.numeric(tmp$count)
+  
   return(tmp)
 }

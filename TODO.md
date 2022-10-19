@@ -73,6 +73,7 @@
 * 2.1. GIFT_traits_meta()
 
 * 2.2. GIFT_traits()
+    - chunks
     - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
     - we have to do it as it is now plus:
     - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
