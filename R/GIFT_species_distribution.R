@@ -10,8 +10,7 @@
 #'  
 #' @param namesmatched Boolean. FALSE by default, set to TRUE if you want to 
 #' look for the species not only in the standardized species names but also 
-#' in the original species names as they came in the original resources. Only 
-#' works if `work_ID` = `NULL` and `genus` and `epithet` supplied.
+#' in the original species names as they came in the original resources. 
 #' 
 #' @param remove_overlap a boolean stating whether you want to
 #' retrieve checklists that overlap or not.
@@ -137,17 +136,13 @@ GIFT_species_distribution <- function(
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
-
-  if(namesmatched){
-    names <-GIFT_species_lookup(genus = genus, epithet = epithet, 
-                                GIFT_version = GIFT_version, api = api)
-
-    name_IDs <- unique(names$name_ID)
-  } else {
-    # TODO simple name look up just based on names_matched add to above function
-    
-  }
+  names <-GIFT_species_lookup(genus = genus, epithet = epithet, 
+                                GIFT_version = GIFT_version, api = api,
+                                namesmatched = namesmatched)
+  # TODO: simplify names lookup to not look in orig genus?
   
+  name_IDs <- unique(names$name_ID)
+
   ## 2.1. Get distribution ---- 
   
   # TODO: modify query to look for name_ID, to include cf, aff. stuff

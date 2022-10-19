@@ -9,6 +9,10 @@
 #' @param epithet character string defining the specific epithet to be looked
 #' for.
 #' 
+#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want to 
+#' look for the species not only in the standardized species names but also 
+#' in the original species names as they came in the original resources.
+#' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
@@ -69,7 +73,7 @@
 #' @export
 
 GIFT_species_lookup <-
-  function(genus = "", epithet = "",
+  function(genus = "", epithet = "", namesmatched = FALSE, 
            api = "http://gift.uni-goettingen.de/api/extended/",
            GIFT_version = "latest"){
     # 1. Controls ----
@@ -85,6 +89,13 @@ GIFT_species_lookup <-
     if(!is.character(epithet)){
       stop("epithet must be a character string indicating the specific epithet
       to look for.")
+    }
+    
+    if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
+       is.na(namesmatched)){
+      stop("'namesmatched' must be a boolean stating whether you only want to 
+    look for the species not only in the standardized species names or also 
+    in the original species names as they came in the original resources")
     }
     
     # GIFT_version
@@ -110,16 +121,28 @@ GIFT_species_lookup <-
     
     # 2. Function ----
     # Return the name matching information
-    tmp <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=names_matched&genus=", genus, "&epithet=", epithet
-    ), simplifyVector = TRUE)
-    
-    tmp <- dplyr::mutate_at(
-      tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
-             "matched", "epithetscore", "overallscore", "resolved", "synonym",
-             "matched_subtaxon", "accepted", "work_ID", "taxon_ID"),
-      as.numeric)
-    
+    if(namesmatched){
+      tmp <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=names_matched&genus=", genus, "&epithet=", epithet
+      ), simplifyVector = TRUE)
+      
+      tmp <- dplyr::mutate_at(
+        tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
+               "matched", "epithetscore", "overallscore", "resolved", "synonym",
+               "matched_subtaxon", "accepted", "work_ID", "taxon_ID"),
+        as.numeric)
+    } else {
+      tmp <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=names_matched_unique&genus=", genus, "&epithet=", epithet
+      ), simplifyVector = TRUE)
+      
+      tmp <- dplyr::mutate_at(
+        tmp, c("name_ID", "matched", "epithetscore", "overallscore", 
+               "resolved", "synonym", "matched_subtaxon", "accepted", 
+               "work_ID", "taxon_ID"),
+        as.numeric)
+    }
     return(tmp)
   }
