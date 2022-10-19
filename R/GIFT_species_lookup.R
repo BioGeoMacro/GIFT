@@ -20,9 +20,36 @@
 #' A data frame with 24 columns.
 #'
 #' @details Here is what each column refers to:
-#' 'orig_ID' - 
-#' 'orig_genus'- 
-#' 'name_ID'- 
+#' 'orig_ID' - Identification number of the species before taxonomic
+#' harmonization
+#' 'orig_genus' - Identification number of the genus before taxonomic
+#' harmonization
+#' 'name_ID' - Genus name before taxonomic harmonization
+#' 'cf_genus'- 
+#' 'genus'- Genus before taxonomic harmonization
+#' 'cf_species'- 
+#' 'aff_species'-
+#' 'species_epithet'- Epithet of the species before taxonomic harmonization
+#' 'subtaxon'- Subtaxon of the species before taxonomic harmonization
+#' 'author'- Author who described the species (before taxonomic harmonization)
+#' 'matched'- Is the species matched in the taxonomic backbone
+#' 'epithetscore'- Matching score for the epithet
+#' 'overallscore'- Overall matching score for the species
+#' 'resolved'- Is the species name resolved in the taxonomic backbone
+#' 'synonym'- Is the species name a synonym in the taxonomic backbone
+#' 'matched_subtaxon'- Is the subtaxon matched in the taxonomic backbone
+#' 'accepted'- Is the species name accepted in the taxonomic backbone
+#' 'service'- Service use for the taxonomic harmonization
+#' 'work_ID'- Identification number of the species after taxonomic
+#' harmonization
+#' 'taxon_ID'- Identification number of the taxonomic group
+#' 'work_genus'- Identification number of the genus after taxonomic
+#' harmonization
+#' 'work_species_epithet'- Identification number of the species epithet
+#' after taxonomic harmonization
+#' 'work_species'- Species name (after taxonomic harmonization)
+#' 'work_author'-  Author who described the species (after taxonomic
+#' harmonization)
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

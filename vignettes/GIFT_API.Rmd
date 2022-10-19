@@ -67,6 +67,15 @@ r_query <- data.frame(
 ```
 
 
+```{r}
+# Query for trait and chunks
+
+# Default value for end is 10000
+# https://gift.uni-goettingen.de/api/extended/index.php?query=traits&
+# traitid=1.1.1&biasref=1&biasderiv=1&startat=100000&limit=10
+```
+
+
 See https://www.gbif.org/developer/summary
 http://api.gbif.org/
 

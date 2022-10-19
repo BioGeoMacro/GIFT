@@ -49,7 +49,10 @@
     - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  <br>
     - range_finder => <br>
 
-- !!!!all calls of GIFT functions inside of other functions need the version and api forwarded!!!
+- !!!!all calls of GIFT functions inside of other functions need the version
+  and api forwarded!!! (Pierre)
+
+<br><br>
 
 ## 1.1. Details
 * 1.1. GIFT_checklists_raw

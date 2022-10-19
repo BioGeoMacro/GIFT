@@ -3,7 +3,6 @@
 # Output should be a list with two data frames
 test_that("data frame output format",
           {
-            data("med")
             ex <-
               GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
             
