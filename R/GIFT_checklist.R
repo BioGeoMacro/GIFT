@@ -322,6 +322,13 @@ GIFT_checklist <- function(
     columns ('family' and 'tax_group') are available in the checklists.")
   }
   
+  if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
+     is.na(namesmatched)){
+    stop("'namesmatched' must be a boolean stating whether you only want the
+    standardized species names or if you also want to retrieve original species 
+         names and information on the name matching.")
+  }
+
   if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
      is.na(list_set_only)){
     stop("'list_set_only' must be a boolean stating whether you only want the
