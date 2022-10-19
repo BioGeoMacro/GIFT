@@ -119,12 +119,7 @@ GIFT_traits_raw <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
-  
+
   # Visible binding for global variable
   ref_ID <- trait_ID <- bias <- NULL
   
@@ -191,7 +186,8 @@ GIFT_traits_raw <- function(
   # names_matched == TRUE
   
   # join standardized species names
-  species <- GIFT_species(api = api, GIFT_version = GIFT_version)
+  species <- suppressMessages(GIFT_species(api = api, 
+                                           GIFT_version = GIFT_version))
   trait_list$work_ID <- as.numeric(trait_list$work_ID)
   trait_list <- dplyr::left_join(trait_list, species, by = "work_ID")
   # TODO rename columns
@@ -199,7 +195,8 @@ GIFT_traits_raw <- function(
   # TODO relocate bias ref
   
   # Join references
-  references <- GIFT_references(api = api, GIFT_version = GIFT_version)
+  references <- suppressMessages(GIFT_references(api = api, 
+                                                 GIFT_version = GIFT_version))
   references <- unique(references[, c("ref_ID", "geo_entity_ref", "ref_long")])
   
   trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")

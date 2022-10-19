@@ -56,8 +56,8 @@
 
 ## 1.1. Details
 * 1.1. GIFT_checklists_raw
-    - add message on taxonomic status for original names (Pierre)
-
+    - add message on taxonomic status for original names (Pierre)  
+    
 * 1.2. GIFT_checklists_conditional
     - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
     - add geo_entity_ref column behind geoentity column (Patrick)
@@ -76,25 +76,12 @@
 * 2.1. GIFT_traits_meta()
 
 * 2.2. GIFT_traits()
-    - chunks
-    - arguments: constraining output by species name (GIFT_species() either comes first in the workflow or we run it internally) or taxonomic group
-    - we have to do it as it is now plus:
-    - we need the possibility to have trait values down at the ref/orig species level (e.g. elevational range)
-    - intraspecific variation (trait values from all references/species)
-    - species names
-    - ~~needs to be updated for old GIFT versions without bias and restricted columns (Patrick)~~
-    - ~~agreement and references per trait! long table?~~
-    - message for version 1.0: no bias columns <- OR add NA columns?
-    - add author names (Patrick)
+    - message for version 1.0: no bias information considered. 
 
 * 2.3. GIFT_traits_raw()
-    - ~~check error (only for restricted IP?) (Patrick)~~
-    - ~~needs to be updated for old GIFT versions without bias column (Patrick)~~
-    - ~~used tidyselect::starts_with() <- replace?~~
     - message: bias_ref and bias_deriv do not exist in version 1.0
     - write into help that trait values are character values
     - make orig_names optional?
-    - progressbar for loop?
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
