@@ -18,17 +18,19 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A data frame with 3 columns.
+A data frame with 5 columns.
 }
 \description{
 Retrieve the whole set of plant species available in GIFT
 }
 \details{
 Here is what each column refers to:
-'work_ID' - Identification number of a species after taxonomic
-harmonization.
-'genus'- Genus of a species.
-'species'- Species name.
+'work_ID' - Identification number of the species
+'genus_ID' - Identification number of the genus
+'work_genus' - Genus name after taxonomic harmonization
+'work_species'- Species name after taxonomic harmonization
+'work_author'- Author who described the species (after taxonomic
+ harmonization)
 }
 \examples{
 \dontrun{

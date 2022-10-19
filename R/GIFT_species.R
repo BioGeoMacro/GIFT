@@ -10,13 +10,15 @@
 #' retrieved.
 #' 
 #' @return
-#' A data frame with 3 columns.
+#' A data frame with 5 columns.
 #'
 #' @details Here is what each column refers to:
-#' 'work_ID' - Identification number of a species after taxonomic
-#' harmonization.
-#' 'genus'- Genus of a species.
-#' 'species'- Species name.
+#' 'work_ID' - Identification number of the species
+#' 'genus_ID' - Identification number of the genus
+#' 'work_genus' - Genus name after taxonomic harmonization
+#' 'work_species'- Species name after taxonomic harmonization
+#' 'work_author'- Author who described the species (after taxonomic
+#'  harmonization)
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -71,11 +73,10 @@ GIFT_species <- function(api = "http://gift.uni-goettingen.de/api/extended/",
     tmp[[i]] <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=species&workidmin=", as.integer(i*100000-100000+1), 
-      "&workidmax=",as.integer(i*100000)), simplifyVector = TRUE)
+      "&workidmax=", as.integer(i*100000)), simplifyVector = TRUE)
   }
   tmp <- dplyr::bind_rows(tmp)
   
-  # Convert columns as numeric
   tmp <- dplyr::mutate_at(tmp, c("work_ID", "genus_ID"), as.numeric)
   tmp$work_author <- as.character(tmp$work_author)
   
