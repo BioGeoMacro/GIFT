@@ -2,64 +2,31 @@
 % Please edit documentation in R/GIFT_species_distribution.R
 \name{GIFT_species_distribution}
 \alias{GIFT_species_distribution}
-\title{GIFT checklists}
+\title{GIFT species distribution}
 \usage{
 GIFT_species_distribution(
-  taxon_name = "Tracheophyta",
-  complete_taxon = TRUE,
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All", "Mainland", "Island")[1],
-  suit_geo = FALSE,
-  shp = NULL,
-  coordinates = NULL,
-  overlap = "centroid_inside",
+  genus = "Fagus",
+  epithet = "sylvatica",
+  namesmatched = FALSE,
   remove_overlap = FALSE,
   area_th_island = 0,
   area_th_mainland = 100,
   overlap_th = 0.1,
   by_ref_ID = FALSE,
-  taxonomic_group = TRUE,
-  namesmatched = FALSE,
-  list_set_only = FALSE,
   GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{
-\item{taxon_name}{Character string corresponding to the taxonomic group
+\item{genus}{Character string corresponding to the genus of the species 
 of interest.}
 
-\item{complete_taxon}{Boolean stating you want to retrieve checklists that
-only contain the exhaustive list of the 'taxon_name' argument or as well
-incomplete lists.}
+\item{epithet}{Character string corresponding to the epithet of the species 
+of interest.}
 
-\item{floristic_group}{Character among the following options: 'all',
-'native', 'endemic', 'naturalized'.}
-
-\item{complete_floristic}{Boolean stating you want to retrieve checklists
-that only contain the exhaustive list of the 'floristic_group' argument or
-as well incomplete lists.}
-
-\item{geo_type}{Character string, either 'Mainland', 'Island' or
-'All'. Island gets you to Island, Island Group &
-Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you 
-all.}
-
-\item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
-
-\item{shp}{Shapefile provided by the user.}
-
-\item{coordinates}{Custom set of coordinates. The format is a two columns,
-the first one being longitudes and the second being latitudes. If 4
-coordinates are given, the function assumes that these are the four corners
-of a bounding box.}
-
-\item{overlap}{A character string defining the criteria to use in order to
-retrieve checklists. Available options are 'centroid_inside',
-'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-'extent_intersect' means that every polygon from GIFT for which the extent
-intersects the provided shape/coordinates will be retrieved.}
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to 
+look for the species not only in the standardized species names but also 
+in the original species names as they came in the original resources.}
 
 \item{remove_overlap}{a boolean stating whether you want to
 retrieve checklists that overlap or not.}
@@ -81,16 +48,6 @@ regions shall be applied by ref_ID only. Note that regions overlapping with
 other regions from the same resource will be removed even if there are other
 references available for those regions.}
 
-\item{taxonomic_group}{Boolean. When set to TRUE, two additional columns
-('family' and 'tax_group') are available in the checklists.}
-
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
-original species name as they came in the references as well as details on
-the taxonomic harmonization.}
-
-\item{list_set_only}{Boolean. Stating whether you only want the metadata or
-if you also want to retrieve the species lists.}
-
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
 version.}
@@ -102,57 +59,14 @@ retrieved.}
 List with two data frames: the checklist with species and the list of ID.
 }
 \description{
-Retrieve GIFT checklists that fulfill specific criteria.
+Retrieve the distribution of one species from GIFT checklits.
 }
 \details{
 Here is the detail of each data.frame and their columns:
-#' 'ref_ID' - Identification number of each reference.
-'type'- What type the source is.
-'subset'- What information regarding the status of species is available.
-'native_indicated'- Whether native status of species is available in the
-source.
-'natural_indicated' - Whether naturalized status of species is available in
-the source.
-'end_ref' - Whether endemism information is available in the source.
-'restricted' - Whether the access to this reference is restricted.
-'taxon_ID'- Identification number of species.
-'list_ID'- Identification number of each list.
-'end_list' - Whether endemism information is available in the list.
-'entity_ID'- Identification number of the polygon of the list.
-'geo_entity'- Name of the location.
-'suit_geo'- Is the polygon suitable.
-'entity_class'- Type of polygon.
-'entity_type'- Name of the location.
-'taxon_name'- Name of the group of taxa available.
-
-For the second data frame with the species, each column refers to:
-'ref_ID' - Identification number of each reference.
-'list_ID'- Identification number of each list
-'work_ID' - Identification number of each species name, after taxonomic
- harmonization.
-'genus_ID' - Identification number of each genus, after taxonomic
- harmonization.
-'species' - Species name, after taxonomic harmonization.
-'questionable' - Whether the species occurrence is questionable.
-'native' - Whether the species is native.
-'quest_native' - Whether the native information is questionable.
-'naturalized' - Whether the species is naturalized.
-'endemic_ref' - Whether the species is endemic within the reference.
-'quest_end_ref' - Whether the endemic_ref information is questionable.
-'endemic_list'- Whether the species is endemic within the list.
-'quest_end_list' - Whether the endemic_list information is questionable.
-'cons_status' - Conservation status of the species.
-'family' - Family of the species.
-'tax_group' - Taxonomic group of the species.
 }
 \examples{
 \dontrun{
-data("med")
-ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-taxon_name = "Angiospermae")
-
-ex2 <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-taxon_name = "Angiospermae", list_set_only = TRUE)
+ex <- GIFT_species_distribution()
 }
 
 }
@@ -162,5 +76,5 @@ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
      https://doi.org/10.1111/jbi.13623
 }
 \seealso{
-[GIFT::GIFT_checklist_raw()]
+[GIFT::GIFT_species_lookup()]
 }

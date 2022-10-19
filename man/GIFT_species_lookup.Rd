@@ -7,6 +7,7 @@
 GIFT_species_lookup(
   genus = "",
   epithet = "",
+  namesmatched = FALSE,
   api = "http://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
@@ -16,6 +17,10 @@ GIFT_species_lookup(
 
 \item{epithet}{character string defining the specific epithet to be looked
 for.}
+
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to 
+look for the species not only in the standardized species names but also 
+in the original species names as they came in the original resources.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}
