@@ -101,8 +101,7 @@
 
 * 5.1. GIFT_shape()
     - give back warning if not all entity_IDs have polygons?
-    - Put old polygons of old versions into respective folders and paste version in the R function
-    - Add control for GIFT_version argument
+    - Put old polygons of old versions into respective folders
     
 * 5.2. GIFT_plot() => 4 (or 5 options): species_richness, trait coverage, envt variable, species distribution, own variable (example for the vignette: proportion of Orchidaceae across polygons)
     - works with from GIFT_checklist() or GIFT_checklist_conditional() (faster because there is no need to retrieve the species occurrences) => species richness map
@@ -110,13 +109,10 @@
 
 * 6.1. med()
 
-* 6.2. ~~GIFT_references(): before references/citation (Pierre)~~  
-    - ~~remove comments, acknowledgements (Patrick)~~
-    - ~~processed == 1 (Patrick)~~
+* 6.2. GIFT_references():
+    - restriceted data has extra columns: OK for controls and tests?
 
 * GIFT_species_lookup() (Patrick)
-    - input: user's species name
-    - output: table with user's input, whether the species are in GIFT, if yes corrected name
     - get rid of orig ID to be faster?
 
 * GIFT_species_distribution() (Patrick)
@@ -133,28 +129,17 @@
     
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
-    - submit own coordinates or polygons or lines
-    - input: shape and criteria (calling get_checklists_conditional)
-    - output: lists falling within the area required
 
 * GloNAF overlap function (Patrick)
+    - make query, then simple function
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
-    - ~~one API per version of the database (Patrick)~~
     - restore old polygons for versions < 2.2 (Patrick)
-    - account for old polygons of old versions in functions (Pierre)
-    - in R functions: argument 'version', if not specified, by default the function uses the most up-to-date version
-    - if version is specified => API changed in the R function (correspondence version number versus API)
-    - versions of the shapefile for each database version has to be available
 
 ## 1.2. Controls
 Make a clear error message in case of wrong API (have a clear error message for version)
 
 # 2. Vignette
-
-
-# 3. Database
-* spatial Database?
 
 # 4. Queries
 * Make a dependency graph
@@ -166,4 +151,3 @@ Make a clear error message in case of wrong API (have a clear error message for 
 
 # 6. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
-* Restrict some checklists
