@@ -147,6 +147,8 @@ GIFT_species_distribution <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   
+  endemic_list <- entity_ID <- native <- naturalized <- NULL
+  
   # 2. Function ----
   ## 2.1. Look up species ---- 
   taxnames <- GIFT_species_lookup(genus = genus, epithet = epithet, 
