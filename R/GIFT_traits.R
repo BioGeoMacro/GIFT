@@ -132,7 +132,7 @@ GIFT_traits <- function(
                "&biasderiv=", as.numeric(bias_deriv), 
                "&startat=", as.integer((k-1)*10000)),
         simplifyVector = TRUE)
-      count = count + 1
+      count <- count + 1
       utils::setTxtProgressBar(progress, count)
     }
     trait_list[[i]] <- dplyr::bind_rows(trait_list_i)

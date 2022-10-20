@@ -34,19 +34,20 @@ suppressPackageStartupMessages({
 options(tinytex.verbose = TRUE)
 ```
 
-# 1. Overview
+# Overview
 
 The GIFT R package grants an access to the Global Inventory of Floras and
 Traits (GIFT) database. This vignette illustrates the most common usages of
-the package through three detailed examples:
+the package through detailed examples:
 
 1. Retrieving plant checklists within a given area (example: Mediterranean)
 2. Getting the distribution of a plant species
 3. Retrieving trait information for a subset of plant species
+4. Retrieving environmental information for a list of polygons/regions
 
 \newpage
 
-# 2. Checklists for a region
+# 1. Checklists for a region
 
 Let's assume we are interested in having a floristic knowledge of the
 Mediterranean basin. For this purpose, we can simply use a shapefile of the
@@ -256,7 +257,7 @@ got[[1]]
 Making maps using `GIFT_richness()` (SR + trait coverage).
 <br>
 
-# 3. Distribution of species
+# 2. Distribution of species
 `GIFT_species()`
 
 `GIFT_species_lookup()`
@@ -271,7 +272,7 @@ Also, plot species richness.
 
 <br><br>
 
-# 4. Trait data
+# 3. Trait data
 
 There are many functional traits available in GIFT. Each of these traits has
 an identification number called `trait_ID`. As the two functions retrieving
@@ -327,22 +328,43 @@ ggplot(world) +
 
 <br><br>
 
-# 5. Environmental values
-`GIFT_env()`, `GIFT_env_meta_misc()`, `GIFT_env_meta_raster()`
+# 4. Environmental values
+
+We here illustrate how to retrieve environmental variables, summarized at the
+polygon level, for a subset of polygons.
+
+`GIFT_regions()`
+
+```{r, eval=FALSE}
+regions <- GIFT_regions()
+germany_checklists <- regions[which(grep("germany", regions$geo_entity)), ]
+```
+
+<br><br>
+
+Now, we can retrieve environmental variables for these polygons. To know what
+is available, you can run these two metadata functions: `GIFT_env_meta_misc()`
+and `GIFT_env_meta_raster()`.  
+There are two functions because .  
 
 ```{r, eval=FALSE}
 misc_env <- GIFT_env_meta_misc()
 raster_env <- GIFT_env_meta_raster()
+```
 
+`GIFT_env()`
+
+```{r, eval=FALSE}
 ex_env <- GIFT_env(entity_ID = c(1,5),
                    miscellaneous = c("perimeter", "biome"),
                    rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
                    sumstat = list(c("mean", "med"), "max"))
 ```
 
+
 <br><br>
 
-# 6. References
+# 5. References
 
 When using the GIFT database and the GIFT R package, here are the two
 resources to cite:

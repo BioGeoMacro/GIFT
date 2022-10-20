@@ -19,6 +19,7 @@ Imports:
   jsonlite,
   purrr,
   sf,
+  stats,
   tidyr,
   utils
 RoxygenNote: 7.2.1

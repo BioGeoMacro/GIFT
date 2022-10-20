@@ -30,7 +30,8 @@ library("GIFT")
 # 5. References and dependencies  
 
 ## Dependencies
-`GIFT` depends on `dplyr`, `jsonlite`, `purrr`, `sf`, `tidyr` and `utils`.
+`GIFT` depends on `dplyr`, `jsonlite`, `purrr`, `sf`, `stats`, `tidyr` and
+`utils`.
   
 ## References    
 
