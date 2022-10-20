@@ -110,7 +110,7 @@
 * 6.1. med()
 
 * 6.2. GIFT_references():
-    - restriceted data has extra columns: OK for controls and tests?
+    - restricted data has extra columns: OK for controls and tests?
 
 * GIFT_species_lookup() (Patrick)
     - get rid of orig ID to be faster?
