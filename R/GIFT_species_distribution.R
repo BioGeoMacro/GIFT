@@ -31,6 +31,12 @@
 #' regions shall be applied by ref_ID only. Note that regions overlapping with
 #' other regions from the same resource will be removed even if there are other
 #' references available for those regions.
+#'
+#' @param aggregation A Boolean stating whether you want to aggregate in a
+#' simpler way the floristic status of species per entity_ID. For example, two
+#' lists associated to the same entity_ID could describe a species both as
+#' native and non-native. In that case, the aggregation would consider the
+#' species to be native. Reverse for naturalized and alien.
 #' 
 #' @param api character string defining from which API the data will be
 #' retrieved.
@@ -57,7 +63,8 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows mutate_all left_join
+#' @importFrom dplyr bind_rows mutate_all left_join ungroup distinct mutate
+#' @importFrom dplyr group_by
 #' 
 #' @export
 
@@ -65,7 +72,7 @@ GIFT_species_distribution <- function(
     genus = "Fagus", epithet = "sylvatica", 
     namesmatched = FALSE, remove_overlap = FALSE, area_th_island = 0,
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
-    
+    aggregation = FALSE,
     GIFT_version = "latest",
     api = "http://gift.uni-goettingen.de/api/extended/"){
   
@@ -117,23 +124,26 @@ GIFT_species_distribution <- function(
          reference level.")
   }
   
+  if(length(aggregation) != 1 || !is.logical(aggregation) ||
+     is.na(aggregation)){
+    stop("'aggregation' must be a boolean stating whether you want to
+    aggregate in a simpler way the floristic status of species per entity_ID.")
+  }
+  
   if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
-  
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version) || 
-     !(GIFT_version %in% c(unique(gift_version$version),
-                           "latest", "beta"))){
+     !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
     of GIFT you want to use. Available options are 'latest' and the different
            versions."))
   }
   if(GIFT_version == "latest"){
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   
@@ -205,6 +215,22 @@ GIFT_species_distribution <- function(
   
   ## 2.4. Join lists and names ----
   lists <- dplyr::left_join(lists, taxnames, by="name_ID")
+  
+  ## 2.5. Aggregation ----
+  if(aggregation){
+    lists <- dplyr::group_by(lists, entity_ID)
+    lists <- dplyr::mutate(
+      lists,
+      native = ifelse(1 %in% native, 1, ifelse(0 %in% native, 0, NA)),
+      naturalized = ifelse(0 %in% naturalized, 0,
+                           ifelse(1 %in% naturalized, 1, NA)),
+      endemic_list = ifelse(0 %in% endemic_list, 0,
+                            ifelse(1 %in% endemic_list, 1, NA)))
+    lists <- dplyr::distinct(lists, native, naturalized, endemic_list,
+                             .keep_all = TRUE)
+    lists <-  dplyr::ungroup(lists)
+    
+  }
   
   return(lists)
 }

@@ -13,6 +13,7 @@ GIFT_species_distribution(
   area_th_mainland = 100,
   overlap_th = 0.1,
   by_ref_ID = FALSE,
+  aggregation = FALSE,
   GIFT_version = "latest",
   api = "http://gift.uni-goettingen.de/api/extended/"
 )
@@ -47,6 +48,12 @@ percentage of overlap, partially overlapping polygons should be kept.}
 regions shall be applied by ref_ID only. Note that regions overlapping with
 other regions from the same resource will be removed even if there are other
 references available for those regions.}
+
+\item{aggregation}{A Boolean stating whether you want to aggregate in a
+simpler way the floristic status of species per entity_ID. For example, two
+lists associated to the same entity_ID could describe a species both as
+native and non-native. In that case, the aggregation would consider the
+species to be native. Reverse for naturalized and alien.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
