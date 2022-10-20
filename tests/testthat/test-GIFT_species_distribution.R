@@ -17,7 +17,7 @@ expect_error(
   "api must be a character string indicating which API to use.", fixed = TRUE)
 
 expect_error(
-  GIFT_species(GIFT_species_distribution = NA),
+  GIFT_species_distribution(GIFT_version = NA),
   "'GIFT_version' must be a character string stating what version
     of GIFT you want to use. Available options are 'latest' and the different
            versions.", fixed = TRUE)

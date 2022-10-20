@@ -91,6 +91,10 @@ GIFT_shape <- function(entity_ID = NULL,
   
   entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
   
+  if(length(entity_ID) == 0){
+    stop("The entity_ID provided are not available in GIFT database.")
+  }
+  
   geodata <- list()
   
   progress <- utils::txtProgressBar(min = 0, max = length(unique(entity_ID)),
