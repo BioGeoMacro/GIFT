@@ -187,7 +187,7 @@ GIFT_checklist_conditional <- function(
          references that cover entirely or not the required taxonomic group.")
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   

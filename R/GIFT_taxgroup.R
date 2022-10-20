@@ -78,7 +78,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
            names of IDs."))
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   

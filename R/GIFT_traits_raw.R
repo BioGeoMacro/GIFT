@@ -96,7 +96,7 @@ GIFT_traits_raw <- function(
     stop("traits_derived must be a logical.")
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   

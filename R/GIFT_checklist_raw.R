@@ -118,7 +118,7 @@ GIFT_checklist_raw <- function(
          group you want to retrieve. Set to 'Tracheophyta' by default.")
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   

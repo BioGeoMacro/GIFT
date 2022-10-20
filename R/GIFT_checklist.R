@@ -328,14 +328,14 @@ GIFT_checklist <- function(
     standardized species names or if you also want to retrieve original species 
          names and information on the name matching.")
   }
-
+  
   if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
      is.na(list_set_only)){
     stop("'list_set_only' must be a boolean stating whether you only want the
     metadata or if you also want to retrieve the species lists.")
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
@@ -439,13 +439,13 @@ GIFT_checklist <- function(
   
   ## 2.2. Spatial filtering ----
   if(!is.null(shp) | !is.null(coordinates)){
-    spatial_filter <- suppressMessages(
-      GIFT::GIFT_spatial(shp = shp,
-                         coordinates = coordinates,
-                         overlap = overlap, api = api,
-                         entity_ID = unique(lists$entity_ID),
-                         api = api,
-                         GIFT_version = GIFT_version))
+    spatial_filter <- 
+      suppressMessages(GIFT::GIFT_spatial(shp = shp,
+                                          coordinates = coordinates,
+                                          overlap = overlap,
+                                          entity_ID = unique(lists$entity_ID),
+                                          api = api,
+                                          GIFT_version = GIFT_version))
     
     lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]
     
@@ -512,7 +512,7 @@ GIFT_checklist <- function(
                                taxonomy = taxonomy)
     if(taxonomic_group){
       species <- unique(checklists[,c("work_ID","genus_ID","work_species")])
-
+      
       checklists$family <-
         suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
                                              taxon_lvl = "family",

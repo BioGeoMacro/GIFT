@@ -114,7 +114,7 @@ GIFT_species_distribution <- function(
          reference level.")
   }
   
-  if(!is.character(api)){
+  if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
