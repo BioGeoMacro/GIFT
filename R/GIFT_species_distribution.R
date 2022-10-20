@@ -17,7 +17,7 @@
 #' 
 #' @param area_th_island A number stating from which surface the smallest
 #' overlapping polygon is kept. By default set to 0 square kilometer
-#' (meaning that by default the smallest islands will be conserverd).
+#' (meaning that by default the smallest islands will be conserved).
 #' 
 #' @param area_th_mainland When two polygons overlap, the smallest or the
 #' biggest one can be kept. When the surface of the smallest polygon exceeds
