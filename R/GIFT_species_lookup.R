@@ -129,8 +129,9 @@ GIFT_species_lookup <-
       
       tmp <- dplyr::mutate_at(
         tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
-               "matched", "epithetscore", "overallscore", "resolved", "synonym",
-               "matched_subtaxon", "accepted", "work_ID", "taxon_ID"),
+               "matched", "epithetscore", "overallscore", "resolved",
+               "synonym", "matched_subtaxon", "accepted", "work_ID",
+               "taxon_ID"),
         as.numeric)
     } else {
       tmp <- jsonlite::read_json(paste0(

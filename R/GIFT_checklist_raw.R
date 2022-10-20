@@ -142,14 +142,11 @@ GIFT_checklist_raw <- function(
   
   # taxonomy
   if(!is.null(taxonomy)){
-    if(!is.data.frame(taxonomy) |
-       sum(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
-             "rgt") %in% colnames(taxonomy)) != 6){
-      stop("'taxonomy' is NULL by default, which means that the whole
-         taxonomy of GIFT is retrieved. If you already loaded it, you can
-         provide it here as an argument. In that case, it must be a data
-         frame containing the following columns 'taxon_ID', 'taxon_name',
-         'taxon_author', 'taxon_lvl', 'lft' and 'rgt'.")
+    if(!is.data.frame(taxonomy) ||
+       !(all(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+               "rgt") %in% colnames(taxonomy)))){
+      stop("'taxonomy' must be a dataframe with specific column names.
+         See GIFT_taxonomy().")
     }
   }
   
@@ -212,7 +209,7 @@ GIFT_checklist_raw <- function(
       ifelse(floristic_group == "all",
              "", paste0("&filter=", floristic_group)))
       , simplifyVector = TRUE)
-
+    
     utils::setTxtProgressBar(progress, i)
   }
   list_raw <- dplyr::bind_rows(list_raw)
@@ -279,14 +276,14 @@ GIFT_checklist_raw <- function(
   
   # Reordering column 'work_author' if available
   list_raw <- dplyr::relocate(list_raw, "work_author",.after = "work_species")
-
+  
   message(
-  "Be cautious, species indicated as endemic were stated like this in the
+    "Be cautious, species indicated as endemic were stated like this in the
   source reference/checklist. It can be that these species appear in other
   checklists.")
   
   message(
-  "The taxonomic status corresponds to the original taxon names (including
+    "The taxonomic status corresponds to the original taxon names (including
   subspecies and synonyms) and may not be valid for the taxonomically
   standardized species names (column 'work_species').")
   

@@ -66,7 +66,8 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows left_join mutate_at
+#' @importFrom dplyr bind_rows left_join mutate_at ungroup
+#' @importFrom tidyr pivot_longer
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
@@ -119,7 +120,7 @@ GIFT_traits_raw <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-
+  
   # Visible binding for global variable
   ref_ID <- trait_ID <- bias <- NULL
   
@@ -138,17 +139,18 @@ GIFT_traits_raw <- function(
   }
   
   # Convert to long table and get rid of duplicates
-  ref_IDs <- unique(tidyr::pivot_longer(ref_IDs,
-                                        cols = grep("^trait", colnames(ref_IDs), value = TRUE),
-                                        names_to = NULL,
-                                        values_to = "trait_ID",
-                                        values_drop_na = TRUE))
+  ref_IDs <- unique(
+    tidyr::pivot_longer(ref_IDs,
+                        cols = grep("^trait", colnames(ref_IDs), value = TRUE),
+                        names_to = NULL,
+                        values_to = "trait_ID",
+                        values_drop_na = TRUE))
   
   # Subset for desired traits
-  ref_IDs <- ref_IDs[which(ref_IDs$trait_ID %in% trait_IDs),]
+  ref_IDs <- ref_IDs[which(ref_IDs$trait_ID %in% trait_IDs), ]
   
   if (!bias_ref){
-    ref_IDs <- ref_IDs[which(ref_IDs$bias == 0 | is.na(ref_IDs$bias)),]
+    ref_IDs <- ref_IDs[which(ref_IDs$bias == 0 | is.na(ref_IDs$bias)), ]
   }
   
   # Get rid of multiple entries introduced due to multiple bias values
@@ -169,7 +171,8 @@ GIFT_traits_raw <- function(
              ref_IDs$trait_ID[i], "&deriv=", as.numeric(derived),
              "&biasderiv=", as.numeric(bias_deriv),
              "&refid=", as.numeric(ref_IDs$ref_ID[i])), simplifyVector = TRUE)
-    if(length(trait_list[[i]])>0){
+    
+    if(length(trait_list[[i]]) > 0){
       trait_list[[i]]$trait_ID <- ref_IDs$trait_ID[i]
       trait_list[[i]]$bias_ref <- ref_IDs$bias[i]
     }

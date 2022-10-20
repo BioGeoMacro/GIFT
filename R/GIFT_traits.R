@@ -105,26 +105,25 @@ GIFT_traits <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-
+  
   # 2. Function ----
-  
-  
+
   # Initiating list
   trait_list <- list()
   
   n <- ceiling(tmp$count[which(tmp$Lvl3 %in% trait_IDs)]/10000)
   progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
-
+  
   # Get species names
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))
   
   count <- 1
   utils::setTxtProgressBar(progress, count)
-
+  
   for(i in seq_along(trait_IDs)){
     trait_list_i <- list()
-
+    
     for (k in seq_len(n[i])){
       trait_list_i[[k]] <- jsonlite::read_json(
         paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
@@ -133,8 +132,8 @@ GIFT_traits <- function(
                "&biasderiv=", as.numeric(bias_deriv), 
                "&startat=", as.integer((k-1)*10000)),
         simplifyVector = TRUE)
-    count = count + 1
-    utils::setTxtProgressBar(progress, count)
+      count = count + 1
+      utils::setTxtProgressBar(progress, count)
     }
     trait_list[[i]] <- dplyr::bind_rows(trait_list_i)
     trait_list[[i]]$trait_ID <- trait_IDs[i]
@@ -160,8 +159,9 @@ GIFT_traits <- function(
   trait_list$agreement <- round(trait_list$agreement, 3)
   
   # Reordering columns
-  trait_list <- trait_list[, c("work_ID", "work_species", "work_author", "trait_ID", "trait_value",
-                               "agreement", "references")]
+  trait_list <- trait_list[, c("work_ID", "work_species", "work_author",
+                               "trait_ID", "trait_value", "agreement",
+                               "references")]
   
   #trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
   #                              .after = last_col())

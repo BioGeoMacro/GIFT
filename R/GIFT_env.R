@@ -64,8 +64,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom tidyr pivot_wider
 #' @importFrom purrr reduce
-#' @importFrom dplyr left_join
-#' @importFrom dplyr full_join
+#' @importFrom dplyr left_join full_join
 #' 
 #' @export
 

@@ -6,7 +6,7 @@ test_that("data frame output format", {
                     bias_ref = FALSE, bias_deriv = FALSE)
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(8L))
+  expect_identical(ncol(ex), c(9L))
   
 })
 

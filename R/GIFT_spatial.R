@@ -367,8 +367,6 @@ GIFT_spatial <- function(
       
       if(overlap == "shape_intersect"){
         ## 2.3. shape_intersect ----
-        # Add control: if a custom point was provided, then coverage would be
-        # NA
         GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage > 0), ]
         
       } else if(overlap == "shape_inside"){

@@ -76,15 +76,15 @@ GIFT_shape <- function(entity_ID = NULL,
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-
+  
   # Visible binding for global variable
   suit_geo <- suit_geo_rst <- overlap_checked <- NULL
   overlap_glonaf_checked <- overlap_gmba_checked <- NULL
   overlap_gaptani_checked <- priority <- NULL
-
+  
   # 2. Function ----
   GIFT_entities <- GIFT_env(miscellaneous = "area",
-                                  api = api, GIFT_version = GIFT_version)
+                            api = api, GIFT_version = GIFT_version)
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
   # TODO give back warning if not all entity_IDs have polygons?
@@ -94,7 +94,7 @@ GIFT_shape <- function(entity_ID = NULL,
   geodata <- list()
   
   progress <- utils::txtProgressBar(min = 0, max = length(unique(entity_ID)),
-                                    initial = 0) 
+                                    initial = 0)
   
   for(i in seq_along(unique(entity_ID))) {
     # TODO Put old polygons of old versions into respective folders and paste

@@ -211,7 +211,7 @@ GIFT_checklist_conditional <- function(
   
   if(!is.null(taxonomy)){
     if(!is.data.frame(taxonomy) ||
-       !(any(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+       !(all(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
                "rgt") %in% colnames(taxonomy)))){
       stop("Taxonomy must be a dataframe with specific column names.
          See GIFT_taxonomy().")

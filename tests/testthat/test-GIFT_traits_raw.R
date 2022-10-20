@@ -5,7 +5,7 @@ test_that("data frame output format", {
   ex <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(26L))
+  expect_identical(ncol(ex), c(28L))
   
 })
 
