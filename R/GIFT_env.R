@@ -10,7 +10,7 @@
 #' data to retrieve.
 #' 
 #' @param rasterlayer character vector or list defining the raster
-#' data to retrieve..
+#' data to retrieve.
 #' 
 #' @param sumstat Vector or list indicating the desired summary statistics out 
 #' of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
@@ -27,10 +27,12 @@
 #' @param api character string defining from which API the data will be
 #' retrieved.
 #' 
-#' @return
-#' data frame.
+#' @return A data frame with the environmental values per polygon (entity_ID).
 #'
-#' @details Blabla.
+#' @details The columns of the data.frame are the following:
+#' entity_ID - Identification number of the polygon
+#' geo_entity - Name of the polygon
+#' The other columns relate to the environmental variables the user asked for.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

@@ -21,7 +21,7 @@ GIFT_env(
 data to retrieve.}
 
 \item{rasterlayer}{character vector or list defining the raster
-data to retrieve..}
+data to retrieve.}
 
 \item{sumstat}{Vector or list indicating the desired summary statistics out 
 of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
@@ -39,14 +39,17 @@ version.}
 retrieved.}
 }
 \value{
-data frame.
+A data frame with the environmental values per polygon (entity_ID).
 }
 \description{
 Retrieve environmental data associated to each GIFT checklists.
 They can come as rasters or shapefiles (miscellaneous)
 }
 \details{
-Blabla.
+The columns of the data.frame are the following:
+entity_ID - Identification number of the polygon
+geo_entity - Name of the polygon
+The other columns relate to the environmental variables the user asked for.
 }
 \examples{
 \dontrun{
