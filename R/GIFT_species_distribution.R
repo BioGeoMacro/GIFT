@@ -64,7 +64,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows mutate_all left_join ungroup distinct mutate
-#' @importFrom dplyr group_by
+#' @importFrom dplyr group_by select
 #' 
 #' @export
 
@@ -148,6 +148,11 @@ GIFT_species_distribution <- function(
   }
   
   endemic_list <- entity_ID <- native <- naturalized <- NULL
+  cf_species <- aff_species <- questionable <- quest_native <- NULL
+  endemic_ref <- quest_end_ref <- quest_end_list <- matched <- NULL
+  epithetscore <- overallscore <- resolved <- synonym <- NULL
+  matched_subtaxon <- accepted <- service <- NULL
+  cf_genus <- author <- name_ID <- NULL
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
@@ -220,7 +225,7 @@ GIFT_species_distribution <- function(
   
   ## 2.5. Aggregation ----
   if(aggregation){
-    lists <- dplyr::group_by(lists, entity_ID)
+    lists <- dplyr::group_by(lists, entity_ID, work_ID)
     lists <- dplyr::mutate(
       lists,
       native = ifelse(1 %in% native, 1, ifelse(0 %in% native, 0, NA)),
@@ -231,6 +236,12 @@ GIFT_species_distribution <- function(
     lists <- dplyr::distinct(lists, native, naturalized, endemic_list,
                              .keep_all = TRUE)
     lists <-  dplyr::ungroup(lists)
+    lists <- dplyr::select(lists, -cf_genus, -name_ID, -cf_species,
+                           -aff_species, -questionable, -quest_native,
+                           -endemic_ref, -quest_end_ref, -quest_end_list,
+                           -author, -matched, -epithetscore, -overallscore,
+                           -resolved, -synonym, -matched_subtaxon, -accepted,
+                           -service)
     
   }
   
