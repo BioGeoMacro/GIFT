@@ -103,7 +103,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!is.null(taxonomy)){
     if(!is.data.frame(taxonomy) ||
-       !(any(c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
+       (any(!c("taxon_ID", "taxon_name", "taxon_author", "taxon_lvl", "lft",
                "rgt") %in% colnames(taxonomy)))){
       stop("'taxonomy' must be a dataframe with specific column names.
          See GIFT_taxonomy().")
@@ -112,7 +112,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   if(!is.null(species)){
     if(!is.data.frame(species) ||
-       !(any(c("work_ID", "genus_ID") %in% colnames(species)))){
+       !(all(c("work_ID", "genus_ID") %in% colnames(species)))){
       stop("'species' must be a dataframe with specific column names.
          See GIFT_species().")
     }
