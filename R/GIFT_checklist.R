@@ -444,6 +444,7 @@ GIFT_checklist <- function(
                          coordinates = coordinates,
                          overlap = overlap, api = api,
                          entity_ID = unique(lists$entity_ID),
+                         api = api,
                          GIFT_version = GIFT_version))
     
     lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]

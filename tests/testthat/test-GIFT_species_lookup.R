@@ -7,7 +7,7 @@ test_that("data frame output format",
               GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
             
             expect_s3_class(ex, "data.frame")
-            expect_identical(ncol(ex), c(24L))
+            expect_identical(ncol(ex), c(19L))
             
           })
 
