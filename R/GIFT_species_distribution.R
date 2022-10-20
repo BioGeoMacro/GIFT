@@ -57,6 +57,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr bind_rows mutate_all left_join
 #' 
 #' @export
 
@@ -64,8 +65,10 @@ GIFT_species_distribution <- function(
     genus = "Fagus", epithet = "sylvatica", 
     namesmatched = FALSE, remove_overlap = FALSE, area_th_island = 0,
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
-    GIFT_version = "latest", api = "http://gift.uni-goettingen.de/api/extended/"
-){
+    
+    GIFT_version = "latest",
+    api = "http://gift.uni-goettingen.de/api/extended/"){
+  
   # 1. Controls ----
   if(length(genus) != 1 || is.na(genus) ||
      !is.character(genus)){
@@ -137,8 +140,8 @@ GIFT_species_distribution <- function(
   # 2. Function ----
   ## 2.1. Look up species ---- 
   taxnames <- GIFT_species_lookup(genus = genus, epithet = epithet, 
-                                GIFT_version = GIFT_version, api = api,
-                                namesmatched = namesmatched)
+                                  GIFT_version = GIFT_version, api = api,
+                                  namesmatched = namesmatched)
   # TODO: simplify names lookup to not look in orig genus? Or filter here
   taxnames <- unique(taxnames[,c("name_ID", "genus", "species_epithet", 
                                  "subtaxon", "author", "matched", 
@@ -149,7 +152,7 @@ GIFT_species_distribution <- function(
                                  "work_author" )])
   
   name_IDs <- unique(taxnames$name_ID)
-
+  
   ## 2.1. Get distribution ---- 
   
   lists <- list()
@@ -164,7 +167,6 @@ GIFT_species_distribution <- function(
   # Data.frame
   lists <- as.data.frame(lists)
   lists <- dplyr::mutate_all(lists, as.numeric)
-  
   
   ## 2.3. Overlapping entities ----
   # overlapped entities are removed => subset lists based on entity_ID again)
@@ -203,6 +205,6 @@ GIFT_species_distribution <- function(
   
   ## 2.4. Join lists and names ----
   lists <- dplyr::left_join(lists, taxnames, by="name_ID")
-
+  
   return(lists)
 }
