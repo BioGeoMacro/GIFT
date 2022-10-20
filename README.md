@@ -34,6 +34,6 @@ library("GIFT")
   
 ## References    
 
-Weigelt, P., König, C. & Kreft, H. (2019) GIFT – A Global Inventory of Floras
+Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of Floras
 and Traits for macroecology and biogeography. *Journal of Biogeography*, 
 [https://doi.org/10.1111/jbi.13623](https://doi.org/10.1111/jbi.13623).
