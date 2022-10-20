@@ -53,12 +53,6 @@ GIFT_shape <- function(entity_ID = NULL,
                        GIFT_version = "latest"){
   
   # 1. Controls ----
-  # Arguments
-  if(is.null(entity_ID)){
-    stop("Please provide the ID numbers of the regions you want 
-         polygons for.")
-  }
-  
   if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
@@ -87,13 +81,19 @@ GIFT_shape <- function(entity_ID = NULL,
                             api = api, GIFT_version = GIFT_version)
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
-  # TODO give back warning if not all entity_IDs have polygons?
-  
-  entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
+  if(is.null(entity_ID)){
+    message("No ID number of the regions was given. All GIFT regions are
+            downloaded, it may take a while.")
+    entity_ID <- GIFT_entities$entity_ID
+  }else{
+    entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
+  }
   
   if(length(entity_ID) == 0){
     stop("The entity_ID provided are not available in GIFT database.")
   }
+  
+  # TODO give back warning if not all entity_IDs have polygons?
   
   geodata <- list()
   
