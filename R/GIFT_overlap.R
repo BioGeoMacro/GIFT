@@ -86,5 +86,7 @@ GIFT_overlap <- function(
   
   tmp <- dplyr::select(tmp, -ID)
   
+  tmp <- dplyr::mutate_all(tmp, as.numeric)
+  
   return(tmp)
 }

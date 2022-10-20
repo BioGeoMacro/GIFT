@@ -113,25 +113,20 @@
     - restricted data has extra columns: OK for controls and tests?
 
 * GIFT_species_lookup() (Patrick)
-    - get rid of orig ID to be faster?
+    - get rid of orig ID to be faster? Make simple version at least
 
 * GIFT_species_distribution() (Patrick)
-    - input: only one species at the moment
-    - plotting argument => polygons where the sp is native/invasive/naturalized/absent
-    - GIFT_species() run internally
-    - output like on POWO website: lists of polygons where the focal species is native/alien/naturalized
-    - following logic of bRacatus R package (https://cran.r-project.org/web/packages/bRacatus/vignettes/Using_bRacatus.html)
-  
+    - GIFT_species() run internally; TODO: make simpler version for matchednames
+
 * GIFT_region()
-    - query (Patrick)
-    - R function (Pierre) => returns a dataframe with the following columns:
-    entity_ID, geo_entity, TDWG_ID, Country_Name, Country_ID, geology
-    
+     - R function (Pierre) => returns a dataframe with the following columns:
+
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
 
 * GloNAF overlap function (Patrick)
     - make query, then simple function
+
 
 * versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
     - restore old polygons for versions < 2.2 (Patrick)
