@@ -152,7 +152,8 @@ GIFT_species_distribution <- function(
   endemic_ref <- quest_end_ref <- quest_end_list <- matched <- NULL
   epithetscore <- overallscore <- resolved <- synonym <- NULL
   matched_subtaxon <- accepted <- service <- NULL
-  cf_genus <- author <- name_ID <- NULL
+  cf_genus <- author <- name_ID <- work_ID <- NULL
+  ref_ID <- list_ID <- species_epithet <- subtaxon <- NULL
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
@@ -164,9 +165,9 @@ GIFT_species_distribution <- function(
                                  "subtaxon", "author", "matched", 
                                  "epithetscore", "overallscore", "resolved", 
                                  "synonym", "matched_subtaxon", "accepted", 
-                                 "service", "work_ID", "taxon_ID", "work_genus", 
-                                 "work_species_epithet", "work_species",
-                                 "work_author" )])
+                                 "service", "work_ID", "taxon_ID", 
+                                 "work_genus", "work_species_epithet", 
+                                 "work_species", "work_author" )])
   
   name_IDs <- unique(taxnames$name_ID)
   
@@ -241,7 +242,8 @@ GIFT_species_distribution <- function(
                            -endemic_ref, -quest_end_ref, -quest_end_list,
                            -author, -matched, -epithetscore, -overallscore,
                            -resolved, -synonym, -matched_subtaxon, -accepted,
-                           -service)
+                           -service, -ref_ID, -list_ID, -species_epithet, 
+                           -subtaxon)
     
   }
   
