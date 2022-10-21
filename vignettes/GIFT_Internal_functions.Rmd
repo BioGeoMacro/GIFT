@@ -429,7 +429,18 @@ kableExtra::kbl(ref) %>%
 
 \newpage
 
-# 4. References
+# 4. Regions
+
+`GIFT_regions()`
+
+```{r, eval=FALSE}
+regions <- GIFT_regions()
+# germany_checklists <- regions[grep("Germany", regions$geo_entity), ]
+```
+
+<br><br>
+
+# X. References
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
