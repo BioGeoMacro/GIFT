@@ -48,7 +48,8 @@ GIFT_overlap <- function(
     api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(length(resource) != 1 || !is.character(resource)){
+  if(length(resource) != 1 || !is.character(resource) || 
+     !(resource %in% c("glonaf","gmba","gaptani"))){
     stop("resource must be a character string indicating from which external
          resource you want to calculate the spatial overlap. Available options
          are 'glonaf' or 'gmba'.")

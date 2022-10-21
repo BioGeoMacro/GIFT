@@ -65,7 +65,8 @@
 * 1.5. GIFT_tax_group()
 
 * 1.6. GIFT_no_overlap()
-
+    - Check: what happens to regions that do exist but don't have spatial data? kept or removed
+    
 * 1.7. GIFT_checklist()
 
 * 2.1. GIFT_traits_meta()
@@ -108,11 +109,7 @@
 
 * GIFT_region()
 
-* get_checklists_spatial
-    - include biome layer, country layer etc to choose from
-
-* GloNAF overlap function (Patrick)
-    - make query, then simple function
+* GloNAF overlap function
 
 
 * versions of GIFT:

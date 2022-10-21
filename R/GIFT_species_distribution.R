@@ -171,58 +171,85 @@ GIFT_species_distribution <- function(
   
   name_IDs <- unique(taxnames$name_ID)
   
-  ## 2.1. Get distribution ---- 
-  
   lists <- list()
-  for(i in seq_along(name_IDs)){
-    lists[[i]] <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
-      ".php?query=species_distr&nameid=", as.numeric(name_IDs[i])), 
-      simplifyVector = TRUE)
-  }
-  lists <- dplyr::bind_rows(lists)
-  
-  # Data.frame
-  lists <- as.data.frame(lists)
-  lists <- dplyr::mutate_all(lists, as.numeric)
-  
-  ## 2.3. Overlapping entities ----
-  # overlapped entities are removed => subset lists based on entity_ID again)
-  if(remove_overlap == TRUE){
     
-    if(!by_ref_ID){
-      no_overlap <- suppressMessages(
-        GIFT::GIFT_no_overlap(
-          entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
-          area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
-          geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
-      
-      lists <- lists[which(lists$entity_ID %in% no_overlap), ]
-      
-    } else {
-      
-      geoentities_overlap <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=overlap"), simplifyVector = TRUE)
-      
-      to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
-        to_keep <- suppressMessages(
-          GIFT::GIFT_no_overlap(entity_IDs = x, 
-                                area_th_island = area_th_island, 
-                                area_th_mainland = area_th_mainland, 
-                                overlap_th = overlap_th, 
-                                geoentities_overlap = geoentities_overlap, 
-                                api = api, GIFT_version = GIFT_version))
-        to_remove <- x[which(!x %in% to_keep)]
-      })
-      to_remove <- unlist(to_remove)
-      
-      lists <- lists[which(!lists$entity_ID %in% to_remove),]
+  if(length(name_IDs)>0){
+    ## 2.1. Get distribution ---- 
+    
+    for(i in seq_along(name_IDs)){
+      lists[[i]] <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+        ".php?query=species_distr&nameid=", as.integer(name_IDs[i])), 
+        simplifyVector = TRUE)
     }
-  }
+    lists <- dplyr::bind_rows(lists)
+    
+    # Data.frame
+    lists <- as.data.frame(lists)
+    lists <- dplyr::mutate_all(lists, as.numeric)
+  } 
   
-  ## 2.4. Join lists and names ----
-  lists <- dplyr::left_join(lists, taxnames, by="name_ID")
+  if (length(lists) > 0){
+    ## 2.3. Overlapping entities ----
+    # overlapped entities are removed => subset lists based on entity_ID again)
+    if(remove_overlap == TRUE){
+      
+      if(!by_ref_ID){
+        no_overlap <- suppressMessages(
+          GIFT::GIFT_no_overlap(
+            entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
+            area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
+            geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
+        
+        lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+        
+      } else {
+        
+        geoentities_overlap <- jsonlite::read_json(
+          paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+                 ".php?query=overlap"), simplifyVector = TRUE)
+        
+        to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
+          to_keep <- suppressMessages(
+            GIFT::GIFT_no_overlap(entity_IDs = x, 
+                                  area_th_island = area_th_island, 
+                                  area_th_mainland = area_th_mainland, 
+                                  overlap_th = overlap_th, 
+                                  geoentities_overlap = geoentities_overlap, 
+                                  api = api, GIFT_version = GIFT_version))
+          to_remove <- x[which(!x %in% to_keep)]
+        })
+        to_remove <- unlist(to_remove)
+        
+        lists <- lists[which(!lists$entity_ID %in% to_remove),]
+      }
+    }
+    
+    ## 2.4. Join lists and names ----
+    lists <- dplyr::left_join(lists, taxnames, by="name_ID")
+  } else {
+    lists <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+                        entity_ID = numeric(), name_ID = numeric(), 
+                        cf_genus = numeric(), cf_species = numeric(), 
+                        aff_species = numeric(), 
+                        questionable = numeric(), native = numeric(),
+                        quest_native = numeric(), naturalized = numeric(),
+                        endemic_ref = numeric(),
+                        quest_end_ref = numeric(),
+                        endemic_list = numeric(),
+                        quest_end_list = numeric(),
+                        genus = character(),species_epithet = character(),
+                        subtaxon = character(), author = character(),
+                        matched = numeric(), epithetscore = numeric(),
+                        overallscore = numeric(), resolved = numeric(),
+                        synonym = numeric(), matched_subtaxon = numeric(), 
+                        accepted = numeric(),
+                        service = character(), work_ID = numeric(),
+                        taxon_ID = numeric(), work_genus = character(),
+                        work_species_epithet = character(), 
+                        work_species = character(),
+                        work_author = character())
+  }
   
   ## 2.5. Aggregation ----
   if(aggregation){
@@ -246,6 +273,5 @@ GIFT_species_distribution <- function(
                            -subtaxon)
     
   }
-  
   return(lists)
 }
