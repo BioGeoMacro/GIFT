@@ -33,6 +33,7 @@ suppressPackageStartupMessages({
     library("sf")
     library("rnaturalearth")
     library("rnaturalearthdata")
+    library("tidyr")
   })
 })
 
@@ -347,60 +348,103 @@ ggplot(world) +
 <br><br>
 
 # 2. Distribution of species
+
+The GIFT R package also allows for retrieving the spatial distribution of a
+focal plant species.
+<br>
+
 ## 2.1. Available species
-To know what species are available, you can run the function `GIFT_species()`.
+To know what plantspecies are available, you can first run the function
+`GIFT_species()`.
 
 ```{r}
 all_sp <- GIFT_species()
 ```
 
-`r length(unique(all_sp$work_ID))` species are currently available.
+`r length(unique(all_sp$work_ID))` species are currently available in the
+database. This number may increase with new releases of the database.
 
 ## 2.2. Species names and taxonomic harmonization
-The column `work_species` is listing all species available
-**after taxonomic harmonization**. This is important to consider as species
-names may be stated differently in the original sources.
+
+Since GIFT is a collection of checklists in which authors use their own
+taxonomic knowledge to describe species, there is a step of taxonomic
+harmonization when including checklists into the database. The most frequent
+backbone used is the
+[World Checklists of Vascular Plants (WCVP)](https://wcvp.science.kew.org/).
 <br>
-To have an overview of all the original species names were in the checklists,
-you can run the function `GIFT_species_lookup()`.
+Both original and harmonized names are stored in the database and you can use
+the function `GIFT_species_lookup()` to look at the differences for particular
+species. For example, the evergreen oak *Quercus ilex*.
 <br>
+
 ```{r fagus_lookup}
-fagus_lookup <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
-knitr::kable(fagus_lookup)
+quercus_lookup <- GIFT_species_lookup(genus = "Quercus", epithet = "ilex")
+
+kable(quercus_lookup, "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
 Looking at the output table, you can see the original species names and their
-identification numbers (`name_ID`) before taxonomic harmonization. The final
-names and ID are the last column on the right starting with `work_`.
+identification numbers (`name_ID`) **before** taxonomic harmonization. The
+species' names and IDs **after** taxonmic harmonization are the last columns on
+the right starting with the prefix `work_`.
 
 <br><br>
 
 ## 2.3. Species distribution
 <br>
-Now that we have a species name, we can run the function
-`GIFT_species_distribution()` to know where it occurs.
+Now that we have a focal species and its harmonized name, we can retrieve its
+distribution using `GIFT_species_distribution()`.
 <br>
+Please note that we here set the `aggregation` argument to `TRUE` in order to
+have only one floristic status per polygon. For further details, check the
+help page of the function.
+<br>
+
 ```{r}
-fagus_distr <- GIFT_species_distribution(genus = "Fagus",
-                                         epithet = "sylvatica")
+quercus_distr <- GIFT_species_distribution(
+  genus = "Quercus", epithet = "ilex", aggregation = TRUE)
 ```
 
 <br>
 
-Also, plot species distribution.
+Now that we know in which polygons the species occur, we can map its
+distribution using the GIFT shapes we retrieved earlier using `GIFT_shape()`.
 
-```{r, eval = FALSE}
+```{r}
+quercus_shape <- gift_shape[which(gift_shape$entity_ID %in% 
+                                    unique(quercus_distr$entity_ID)), ]
 
+quercus_map <- dplyr::left_join(
+  quercus_shape,
+  quercus_distr[, c("entity_ID", "native", "naturalized", "endemic_list")],
+  by = "entity_ID")
 
+quercus_map <- tidyr::pivot_longer(
+  quercus_map, cols = c("native", "naturalized", "endemic_list"),
+  names_to = "Status", values_to = "status_value")
 
+quercus_map <- quercus_map[which(quercus_map$status_value == 1), ]
+
+ggplot(world) +
+  geom_sf(color = "gray50") +
+  geom_sf(data = quercus_map, aes(fill = as.factor(Status))) +
+  scale_fill_viridis_d("Status") +
+  labs(title = expression(paste("Distribution map of ",
+                                italic("Quercus ilex"))),
+       subtitle = "Projection EckertIV") +
+  coord_sf(crs = eckertIV) +
+  theme_void()
 ```
-
-
-<br>
 
 <br><br>
 
 # 3. Trait data
+
+Trait information at the species level are also made available in the `GIFT` R
+package.
+<br>
+
 ## 3.1. Metadata
 <br>
 There are many functional traits available in GIFT. Each of these traits has
@@ -419,6 +463,7 @@ trait_meta[which(trait_meta$Trait2 == "Growth_form_1"), ]
 We can see that the ID of this trait is `1.2.1`. Now that we have the ID, we
 can retrieve the growth form values of different plant species using
 `GIFT_traits()`.
+
 <br>
 
 ## 3.2. Trait values
