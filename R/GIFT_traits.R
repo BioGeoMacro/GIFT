@@ -146,6 +146,7 @@ GIFT_traits <- function(
     trait_list[[i]]$trait_ID <- trait_IDs[i]
     
   }
+  message("\n")
   
   # Formatting trait_list as a data.frame
   trait_list <- dplyr::bind_rows(trait_list)
