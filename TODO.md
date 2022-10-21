@@ -45,16 +45,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
   
 *To update from GIFT_admin*<br>
-    - plotting => to be called GIFT_plot()  <br>
-    - assign_higher_taxa => internal function for GIFT_species() (argument family=TRUE/FALSE)  <br>
-    - range_finder => <br>
 
-- !!!!all calls of GIFT functions inside of other functions need the version
-  and api forwarded!!! (Pierre)
+## 0. General
 
-<br><br>
+    - all calls of GIFT functions inside of other functions need the version
+  and api forwarded!!!
 
-## 1.1. Details
+
+## 1. Details
 * 1.1. GIFT_checklists_raw
     - add message on taxonomic status for original names (Pierre)  
     
@@ -80,14 +78,12 @@
 
 * 2.3. GIFT_traits_raw()
     - message: bias_ref and bias_deriv do not exist in version 1.0
-    - write into help that trait values are character values
+    - write into help that trait values are character values (even if numbers)
     - make orig_names optional?
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations
-    - Controls for arguments
     - GIFT_env() => message if selected NAs included
-    - control for layer names and variables in env_raster_meta and env_misc_meta. Using the right api this will directly control for restricted layers
     - control for sumstats argument
 
 * 3.2. GIFT_env_meta_misc()    
@@ -97,7 +93,7 @@
 * 4.1. GIFT_species()
 
 * 4.2. GIFT_ranges()
-    - range_finder
+    - translate range_finder?
 
 * 5.1. GIFT_shape()
     - give back warning if not all entity_IDs have polygons?
@@ -113,10 +109,10 @@
     - restricted data has extra columns: OK for controls and tests?
 
 * GIFT_species_lookup() (Patrick)
-    - get rid of orig ID to be faster? Make simple version at least
+    - get rid of orig ID to be faster? Make simple version at least.
 
 * GIFT_species_distribution() (Patrick)
-    - GIFT_species() run internally; TODO: make simpler version for matchednames
+    -  make simpler version of GIFT_species() for matchednames
 
 * GIFT_region()
      - R function (Pierre) => returns a dataframe with the following columns:
@@ -128,7 +124,7 @@
     - make query, then simple function
 
 
-* versions of GIFT: different options are list of entity_ID/list_ID trait_ID at a given time + upon request message OR restore the whole database at a given time
+* versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)
 
 ## 1.2. Controls
