@@ -39,7 +39,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist_raw()]
+#' @seealso [GIFT::GIFT_env_meta_misc()] and [GIFT::GIFT_env_meta_raster()]
 #'
 #' @examples
 #' \dontrun{
@@ -72,23 +72,10 @@
 
 GIFT_env <- function(
     entity_ID = NULL,
-    # envvar = "area", layername = "",
     miscellaneous = "area", rasterlayer = NULL,
     sumstat = "mean",
     GIFT_version = "latest",
     api = "http://gift.uni-goettingen.de/api/extended/"){
-  
-  # one argument only
-  # check => whether the (list of) argument(s)
-  
-  # sumstat argument valid for raster only (naturlich)
-  # it can be formatted as a single value, a vector or a list
-  # in later case => each list element correspond to the position of the vector
-  # or raster names
-  # control for that argument: length of the vector or of the list has to be
-  # equal to the length of the raster layers
-  
-  # default value => mean repeated to length of layername
   
   # 1. Controls ----
   # Arguments
@@ -116,13 +103,17 @@ GIFT_env <- function(
   }
   
   # check if sumstats are available
-  
-  # length of sumstat has to equal length rasterlayer
-  # if 1 value, repeat it to the length of rasterlayer
-  # if(length(sumstat) > 1 & length(sumstat) != length(rasterlayer)){
-  #   stop("Please provide the same number of summary statistics as you have
-  #        raster layers.")
-  # }
+  if(!is.character(sumstat) || 
+     !(all(sumstat %in% c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
+                           "med", "q60", "q70", "q75", "q80", "q90", "q95", 
+                           "max", "mean", "sd", "modal", "unique_n", "H", "n"))
+       )
+     ){
+    stop('sumstat needs to be a character vector including one or more of the 
+         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
+         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
+         "modal", "unique_n", "H", "n")')
+  }
   
   # 2. Query ----
   ## 2.1. Miscellaneous data ----

@@ -80,12 +80,10 @@
     - Give back trait IDs that are not valid?
 
 * 3.1. GIFT_env()
-    - highlight GIFT_env_meta for getting overview and citations
-    - GIFT_env() => message if selected NAs included
-    - control for sumstats argument
+    - remove rows that are NA for all variables
 
 * 3.2. GIFT_env_meta_misc()    
-
+    
 * 3.3. GIFT_env_meta_raster()  
 
 * 4.1. GIFT_species()

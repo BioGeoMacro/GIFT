@@ -80,5 +80,5 @@ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
      https://doi.org/10.1111/jbi.13623
 }
 \seealso{
-[GIFT::GIFT_checklist_raw()]
+[GIFT::GIFT_env_meta_misc()] and [GIFT::GIFT_env_meta_raster()]
 }
