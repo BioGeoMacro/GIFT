@@ -81,7 +81,8 @@
 
 * 3.1. GIFT_env()
     - remove rows that are NA for all variables
-
+    - control for non-existing misc and raster variables
+    
 * 3.2. GIFT_env_meta_misc()    
     
 * 3.3. GIFT_env_meta_raster()  
@@ -95,23 +96,17 @@
     - give back warning if not all entity_IDs have polygons?
     - Put old polygons of old versions into respective folders
     
-* 5.2. GIFT_plot() => 4 (or 5 options): species_richness, trait coverage, envt variable, species distribution, own variable (example for the vignette: proportion of Orchidaceae across polygons)
-    - works with from GIFT_checklist() or GIFT_checklist_conditional() (faster because there is no need to retrieve the species occurrences) => species richness map
-    - trait coverage (needs GIFT_checklist_conditional() to get taxonomic group/biogeography status and the table)
-
 * 6.1. med()
 
 * 6.2. GIFT_references():
-    - restricted data has extra columns: OK for controls and tests?
 
-* GIFT_species_lookup() (Patrick)
-    - get rid of orig ID to be faster? Make simple version at least.
+* GIFT_species_lookup()
+    - get rid of orig ID to be faster? Make simple version at least. (Patrick)
 
-* GIFT_species_distribution() (Patrick)
-    -  make simpler version of GIFT_species() for matchednames
+* GIFT_species_distribution()
+    -  use simpler version of GIFT_species() for matchednames (Patrick)
 
 * GIFT_region()
-     - R function (Pierre) => returns a dataframe with the following columns:
 
 * get_checklists_spatial
     - include biome layer, country layer etc to choose from
