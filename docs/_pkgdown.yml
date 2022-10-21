@@ -1,0 +1,11 @@
+url: https://biogeomacro.github.io/GIFT/
+
+pandoc: '2.18'
+pkgdown: 2.0.6
+pkgdown_sha: ~
+articles:
+  GIFT_API: GIFT_API.html
+  GIFT_Internal_functions: GIFT_Internal_functions.html
+  GIFT_tutorial: GIFT_tutorial.html
+last_built: 2022-10-21T15:18Z
+
