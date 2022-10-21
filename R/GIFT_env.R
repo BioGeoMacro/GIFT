@@ -103,12 +103,12 @@ GIFT_env <- function(
   }
   
   # check if sumstats are available
-  if(!is.character(sumstat) || 
-     !(all(sumstat %in% c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
-                           "med", "q60", "q70", "q75", "q80", "q90", "q95", 
-                           "max", "mean", "sd", "modal", "unique_n", "H", "n"))
-       )
-     ){
+  if(!is.character(unlist(sumstat)) || 
+     !(all(unlist(sumstat) %in% c(
+       "min", "q05", "q10", "q20", "q25", "q30", "q40", 
+       "med", "q60", "q70", "q75", "q80", "q90", "q95", 
+       "max", "mean", "sd", "modal", "unique_n", "H", "n")))
+  ){
     stop('sumstat needs to be a character vector including one or more of the 
          following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
          "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 

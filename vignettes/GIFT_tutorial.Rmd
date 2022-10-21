@@ -64,7 +64,6 @@ can assess using the `data()` function.
 
 ```{r, fig.width = 3, fig.height = 3}
 data("med")
-plot(med, main = "Shape of Mediterranean\nregion")
 
 world <- ne_coastline(returnclass = "sf")
 
@@ -74,7 +73,7 @@ eckertIV <-
 ggplot(world) +
   geom_sf(color = "gray50") +
   geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.8) +
-  labs(title = "Mediterranean basin") +
+  labs(title = "Western Mediterranean basin") +
   coord_sf(crs = eckertIV) +
   theme_void()
 ```
