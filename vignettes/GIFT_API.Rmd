@@ -71,7 +71,7 @@ r_query
 
 List of available queries and their arguments:
 
-```{r}
+```{r, eval = FALSE}
 api <- ""
 GIFT_version <- "latest"
 

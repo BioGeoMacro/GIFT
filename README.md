@@ -1,4 +1,4 @@
-# GIFT <img src="man/figures/biodiv_gottingen_logo.png" align="right" alt="" width="200" />
+# GIFT <img src="man/figures/GIFT_biodiv_gottingen_logo.png" align="right" alt="" width="200" />
 <br><br>
 [![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)](https://www.r-project.org/Licenses/GPL-3)  
 <br>
