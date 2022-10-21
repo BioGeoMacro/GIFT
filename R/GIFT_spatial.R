@@ -341,7 +341,8 @@ GIFT_spatial <- function(
       # Downloading geojson for which extent boxes overlap with provided shape
       for(i in seq_len(nrow(GIFT_extents))){
         tmp_geo <- sf::st_read(paste0(
-          "http://gift.uni-goettingen.de/geojson/geojson_smaller/",
+          "http://gift.uni-goettingen.de/geojson/geojson_smaller", 
+          ifelse(GIFT_version == "beta", "", GIFT_version), "/",
           GIFT_extents[i, "entity_ID"],
           ".geojson"), quiet = TRUE)
         
