@@ -2,3 +2,7 @@ url: https://biogeomacro.github.io/GIFT/
 template:
   bootstrap: 5
 
+destination: docs
+
+toc:
+  depth: 1
