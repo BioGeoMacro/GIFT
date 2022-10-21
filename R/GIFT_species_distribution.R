@@ -49,6 +49,10 @@
 #' List with two data frames: the checklist with species and the list of ID.
 #'
 #' @details Here is the detail of each data.frame and their columns:
+#' When aggregation = TRUE, there is 3 extra columns telling whether there was
+#' a conflict with the floristic statuses of a species across the different
+#' sources. The columns relating to the floristic statuses then have only one
+#' value.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -172,9 +176,9 @@ GIFT_species_distribution <- function(
   name_IDs <- unique(taxnames$name_ID)
   
   lists <- list()
-    
+  
   if(length(name_IDs)>0){
-    ## 2.1. Get distribution ---- 
+    ## 2.2. Get distribution ---- 
     
     for(i in seq_along(name_IDs)){
       lists[[i]] <- jsonlite::read_json(paste0(
@@ -256,11 +260,15 @@ GIFT_species_distribution <- function(
     lists <- dplyr::group_by(lists, entity_ID, work_ID)
     lists <- dplyr::mutate(
       lists,
+      conflict_native = ifelse(length(unique(native)) > 1, 1, 0),
+      conflict_naturalized = ifelse(length(unique(naturalized)) > 1, 1, 0),
+      conflict_endemic_list = ifelse(length(unique(endemic_list)) > 1, 1, 0),
       native = ifelse(1 %in% native, 1, ifelse(0 %in% native, 0, NA)),
       naturalized = ifelse(0 %in% naturalized, 0,
                            ifelse(1 %in% naturalized, 1, NA)),
       endemic_list = ifelse(0 %in% endemic_list, 0,
-                            ifelse(1 %in% endemic_list, 1, NA)))
+                            ifelse(1 %in% endemic_list, 1, NA))
+    )
     lists <- dplyr::distinct(lists, native, naturalized, endemic_list,
                              .keep_all = TRUE)
     lists <-  dplyr::ungroup(lists)

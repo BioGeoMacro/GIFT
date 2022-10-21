@@ -70,6 +70,10 @@ Retrieve the distribution of one species from GIFT checklits.
 }
 \details{
 Here is the detail of each data.frame and their columns:
+When aggregation = TRUE, there is 3 extra columns telling whether there was
+a conflict with the floristic statuses of a species across the different
+sources. The columns relating to the floristic statuses then have only one
+value.
 }
 \examples{
 \dontrun{
