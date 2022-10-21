@@ -192,23 +192,25 @@ GIFT_checklist_raw <- function(
   taxonid <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
   
   ## 2.2. Loop ----
-  progress <- utils::txtProgressBar(min = 0, max = length(unique(list_ID)),
-                                    initial = 0) 
   list_raw <- list()
-  for(i in seq_along(list_ID)){
-    list_raw[[i]] <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
-      ".php?query=checklists&listid=",
-      as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
-      "&namesmatched=", as.numeric(namesmatched),
-      ifelse(floristic_group == "all",
-             "", paste0("&filter=", floristic_group)))
-      , simplifyVector = TRUE)
+  if (length(unique(list_ID))>0){
+    progress <- utils::txtProgressBar(min = 0, max = length(unique(list_ID)),
+                                      initial = 0) 
+    for(i in seq_along(list_ID)){
+      list_raw[[i]] <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+        ".php?query=checklists&listid=",
+        as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
+        "&namesmatched=", as.numeric(namesmatched),
+        ifelse(floristic_group == "all",
+               "", paste0("&filter=", floristic_group)))
+        , simplifyVector = TRUE)
+      
+      utils::setTxtProgressBar(progress, i)
+    }
     
-    utils::setTxtProgressBar(progress, i)
-  }
-  
   message("\n")
+  }
   
   list_raw <- dplyr::bind_rows(list_raw)
   
