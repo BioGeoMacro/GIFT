@@ -296,7 +296,7 @@ richness or trait coverage per polygon and `GIFT_shape()` which retrieves the
 shapefile of a list of GIFT polygons.
 <br>
 The next two chunks illustrate this for the Angiosperms in the World and in the
-Western part of the Mediterranean bassin.
+Western part of the Mediterranean basin.
 <br>
 
 ```{r, message=FALSE, fig.width = 8, fig.height = 4}
@@ -518,7 +518,8 @@ angio_height_map <- dplyr::left_join(
 
 ggplot(world) +
   geom_sf(color = "gray50") +
-  geom_sf(data = angio_height_map, aes(fill = native)) +
+  geom_sf(data = angio_height_map[complete.cases(angio_height_map$native), ],
+          aes(fill = native)) +
   scale_fill_viridis_c("Coverage (%)") +
   labs(title = "Coverage for maximal vegetative height of Angiosperms",
        subtitle = "Projection EckertIV") +
@@ -611,4 +612,4 @@ resources to cite:
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
-[GIFT R package](https://github.com/BioGeoMacro/GIFT)
+[GIFT R package](https://biogeomacro.github.io/GIFT/)
