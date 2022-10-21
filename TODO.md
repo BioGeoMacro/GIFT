@@ -48,28 +48,25 @@
 
 ## 0. General
 
-    - all calls of GIFT functions inside of other functions need the version
-  and api forwarded!!!
+    - ~~all calls of GIFT functions inside of other functions need the version
+  and api forwarded!!!~~
 
 
 ## 1. Details
-* 1.1. GIFT_checklists_raw
-    - add message on taxonomic status for original names (Pierre)  
+* 1.1. GIFT_checklists_raw()
     
-* 1.2. GIFT_checklists_conditional
-    - To be improved: * leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
-    - add geo_entity_ref column behind geoentity column (Patrick)
+* 1.2. GIFT_checklists_conditional()
+    - leveling-up (if complete fern and seed plant lists => you have a complete Tracheophyta list): count unique genera in all available groups and compare to unique genera included in desired group
 
-* 1.3. GIFT_spatial
+* 1.3. GIFT_spatial()
 
 * 1.4. GIFT_taxonomy()  
 
 * 1.5. GIFT_tax_group()
 
-* 1.6. GIFT_no_overlap() (last remove_overlapping_regions):
+* 1.6. GIFT_no_overlap()
 
-* 1.7. GIFT_checklist() : wrapper for GIFT_checklist_conditional() and _spatial()
-    - check output when floristic_group argument has a length of two (e.g. endemic and native) Should not be possible
+* 1.7. GIFT_checklist()
 
 * 2.1. GIFT_traits_meta()
 
@@ -131,7 +128,8 @@
 Make a clear error message in case of wrong API (have a clear error message for version)
 
 # 2. Vignette
-
+    - GIFT logo
+    
 # 4. Queries
 * Make a dependency graph
 * In queries.php (WinSCP) => put as a comment in which R function queries are used

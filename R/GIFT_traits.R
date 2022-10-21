@@ -106,6 +106,13 @@ GIFT_traits <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   
+  if(GIFT_version == "1.0" & (bias_ref == FALSE | bias_deriv == FALSE)){
+    message(
+      "Warning: In GIFT version 1.0 it is not yet possible to filter trait 
+      values for biases. bias_ref and bias_deriv arguments are ignored.")
+  }
+  
+  
   # 2. Function ----
 
   # Initiating list
@@ -162,9 +169,6 @@ GIFT_traits <- function(
   trait_list <- trait_list[, c("work_ID", "work_species", "work_author",
                                "trait_ID", "trait_value", "agreement",
                                "references")]
-  
-  #trait_list <- dplyr::relocate(trait_list, c("agreement", "references"),
-  #                              .after = last_col())
   
   # Wider format
   trait_list <- tidyr::pivot_wider(
