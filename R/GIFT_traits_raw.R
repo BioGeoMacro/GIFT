@@ -121,6 +121,12 @@ GIFT_traits_raw <- function(
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   
+  if(GIFT_version == "1.0" & (bias_ref == FALSE | bias_deriv == FALSE)){
+    message(
+      "Warning: In GIFT version 1.0 it is not yet possible to filter trait 
+      values for biases. bias_ref and bias_deriv arguments are ignored.")
+  }
+  
   # Visible binding for global variable
   ref_ID <- trait_ID <- bias <- NULL
   
