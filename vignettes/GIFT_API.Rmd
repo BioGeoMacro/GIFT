@@ -64,8 +64,128 @@ r_query <- data.frame(
     "", "")
 )
 
+r_query
 ```
 
+# 2. Queries
+
+List of available queries and their arguments:
+
+```{r}
+api <- ""
+GIFT_version <- "latest"
+
+jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+      ".php?query=checklists&listid=",
+      as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
+      "&namesmatched=", as.numeric(namesmatched),
+      ifelse(floristic_group == "all",
+             "", paste0("&filter=", floristic_group))))
+
+jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=geoentities_env_misc&envvar=",
+      paste(miscellaneous, collapse = ",")),
+      simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
+        "&sumstat=", sumstat_collapse[[i]]),
+        simplifyVector = TRUE)
+
+paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+       ".php?query=lists")
+
+jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=names_matched&genus=", genus, "&epithet=", epithet
+      ), simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=names_matched_unique&genus=", genus, "&epithet=", epithet
+      ), simplifyVector = TRUE)
+
+paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+       ".php?query=overlap")
+jsonlite::read_json(paste0(
+    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+    ".php?query=overlap_misc&layer=", resource), simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+    ".php?query=references_citavi"), simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+    ".php?query=references"), simplifyVector = TRUE)
+
+jsonlite::read_json(
+    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+           ".php?query=reference_traits"), simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+    api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
+    ".php?query=regions"), simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=species&startat=", as.integer((i-1)*100000)), 
+      simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+        ".php?query=species_distr&nameid=", as.integer(name_IDs[i])), 
+        simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
+
+paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+       ".php?query=taxonomy")
+
+jsonlite::read_json(
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+               ".php?query=traits&traitid=",
+               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+               "&biasderiv=", as.numeric(bias_deriv), 
+               "&startat=", as.integer((k-1)*10000)),
+        simplifyVector = TRUE)
+
+jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=traits_cov&traitid=",
+      paste(trait_ID, collapse = ","), "&taxonid=", tax_group),
+      simplifyVector = TRUE)
+
+jsonlite::read_json(
+    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+           ".php?query=traits_meta"), simplifyVector = TRUE)
+
+jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=traits_raw&traitid=",
+             ref_IDs$trait_ID[i], "&deriv=", as.numeric(derived),
+             "&biasderiv=", as.numeric(bias_deriv),
+             "&refid=", as.numeric(ref_IDs$ref_ID[i])), simplifyVector = TRUE)
+
+jsonlite::read_json(
+  "https://gift.uni-goettingen.de/api/index.php?query=versions",
+  simplifyVector = TRUE)
+
+
+
+st_read(
+      paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller", 
+             ifelse(GIFT_version == "beta", "", GIFT_version), "/",
+             entity_ID[i], ".geojson"), quiet = TRUE)
+
+```
+
+<br>
 
 ```{r}
 # Query for trait and chunks

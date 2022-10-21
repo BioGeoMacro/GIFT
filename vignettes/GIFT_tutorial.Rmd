@@ -324,6 +324,14 @@ fagus_distr <- GIFT_species_distribution(genus = "Fagus",
 <br>
 
 Also, plot species richness.
+
+```{r, eval = FALSE}
+
+gift_shape <- GIFT_shape(entity_ID = fern_height$entity_ID)
+
+```
+
+
 <br>
 
 <br><br>
@@ -348,7 +356,9 @@ We can see that the ID of this trait is `1.2.1`. Now that we have the ID, we
 can retrieve the growth form values of different plant species using
 `GIFT_traits()`.
 <br>
+
 ## 3.2. Trait values
+
 <br>
 ```{r}
 wood <- GIFT_traits(trait_IDs = c("1.2.1"), agreement = 0.66,
@@ -363,7 +373,9 @@ succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 ```
 
 <br>
+
 ## 3.3. Trait coverage
+
 <br>
 Also, plot trait coverage.
 
