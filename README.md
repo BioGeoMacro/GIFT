@@ -4,19 +4,17 @@
 <br>
 Functions to extract data from Global Inventory of Floras and Traits (GIFT)
 
+# 1. Vignettes
 
-# 1. Tutorials
-
-Here, we provide tutorials on <br>
-- **[how to use the package's functions](https://patrickweigelt.github.io/BotanizeR/articles/BotanizeR_functions.html)**  
-- **[how to use the BotanizeR Shiny app](https://patrickweigelt.github.io/BotanizeR/articles/BotanizeR_Shiny.html)**  
-- **[how to set up and customize the Shiny app](https://patrickweigelt.github.io/BotanizeR/articles/BotanizeR_config.html)**  
-
+Three vignettes are available: <br>
+- **[Main tutorial](https://biogeomacro.github.io/GIFT)**  
+- **For advanced users => work in progress**  
+- **API => work in progress**  
 
 # 2. Functions
 
 An overview of all functions and data is given 
-**[here](https://patrickweigelt.github.io/BotanizeR/reference/index.html)**.  
+**[here](https://biogeomacro.github.io/GIFT/reference/index.html)**.  
 
 
 # 3. Installation
