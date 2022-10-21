@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="GIFT_complete_taxon.svg"
+   inkscape:export-filename="C:\Users\Pierre\ownCloud\GIFT\figures\GIFT_complete_taxon.png"
+   inkscape:export-xdpi="250"
+   inkscape:export-ydpi="250"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="false"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.696647"
+     inkscape:cx="663.17662"
+     inkscape:cy="363.16815"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path49785" />
+    </marker>
+    <rect
+       x="-70.336914"
+       y="4.3063417"
+       width="295.70213"
+       height="84.691386"
+       id="rect8159" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="274.17041"
+       height="51.676098"
+       id="rect3624-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="320.10471"
+       height="51.676098"
+       id="rect3624-7-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="829.64197"
+       height="104.45685"
+       id="rect3624-7-5-7" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-7" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="765.69604"
+       height="70.961372"
+       id="rect3624-7-5-7-6" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-7-8" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-71" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-4" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="296.87891"
+       height="51.676098"
+       id="rect3624-7-2" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-4-9" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="251.20325"
+       height="51.676098"
+       id="rect3624-7-6" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-77" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="443.04099"
+       height="145.05743"
+       id="rect3624-7-4-4" />
+    <rect
+       x="477.05679"
+       y="78.156113"
+       width="266.94879"
+       height="101.50144"
+       id="rect17452-77-5" />
+    <rect
+       x="41.627968"
+       y="90.433174"
+       width="809.34167"
+       height="98.36676"
+       id="rect3624-7-5-7-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859258"
+       id="rect8159-8" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-3" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-8" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-8-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-5-7" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-3-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-58" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-3-6-4" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-58-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-5-7-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-8-5-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-3-6-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-58-7" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-5-7-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-8-5-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-3-6-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-58-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
+       id="rect8159-5-5-7-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="589.99143"
+       height="76.931941"
+       id="rect8159-5-8-5-67" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path49785-8" />
+    </marker>
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-8" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-17" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9-7" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path49785-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-5-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path49785-1-1" />
+    </marker>
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-99" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-17-2" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-6-8" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-8-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-4" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9-7-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-4" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-17-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-3" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-6-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-8-4" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-3" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-6-9-7-00" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="455.05939"
+       height="41.045761"
+       id="rect8159-5-8-5-67-3-1-4" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.672639;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 3.7993184,70.40569 C 3.8119763,49.256811 3.4296366,49.436567 36.887831,49.096222 71.554263,49.035083 72.888232,48.944419 72.527035,70.40569 73.211227,99.199735 73.00498,100.33612 36.887831,100.16912 4.5054138,99.396911 4.614083,97.942778 3.7993184,70.40569 Z"
+       id="path1017-6"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 4.2574015,117.32396 c 0.013134,-9.68752 -0.3836883,-9.60519 34.3421985,-9.76108 35.979907,-0.028 37.364418,-0.0695 36.989536,9.76108 0.710109,13.18949 0.496047,13.71003 -36.989536,13.63353 C 4.9902505,130.60377 5.103037,129.93769 4.2574015,117.32396 Z"
+       id="path1017-6-5"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.657745;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 2.6551875,156.86023 c 0.013134,-19.48438 -0.3836884,-19.31879 34.3421985,-19.63234 35.979907,-0.0563 37.364418,-0.13986 36.989536,19.63234 0.710109,26.52786 0.496047,27.5748 -36.989536,27.42095 C 3.3880365,183.56975 3.5008231,182.23006 2.6551875,156.86023 Z"
+       id="path1017-6-5-4"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       id="g28922"
+       transform="matrix(1.099603,0,0,1.099603,-130.80473,-47.086167)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1824"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1822">Checklist of Ferns</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-2"
+       transform="matrix(1.099603,0,0,1.099603,-132.54434,-71.212819)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-1"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1828"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1826">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1832"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1830">Angiosperms </tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-9-0"
+       transform="matrix(1.099603,0,0,1.099603,-127.26291,-10.449339)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,144.55804,109.66294)"
+         id="text8157-0-6-9"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1836"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1834">Checklist of Orchids</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-1"
+       transform="matrix(1.099603,0,0,1.099603,-132.24824,15.494356)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-2"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1840"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1838">Checklist of vascular </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1844"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1842">plants</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-9-0-1"
+       transform="matrix(1.099603,0,0,1.099603,-132.2008,37.862477)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-6-9-1"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1848"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1846">Checklist of Orchids</tspan></tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,166.9852,1.5856131)"
+       id="text8157-2-77-1-3"
+       style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="-70.335938"
+         y="33.501211"
+         id="tspan1852">taxon_name =<tspan
+   style="fill:#2a7500"
+   id="tspan1850"> &quot;Angiospermae&quot;</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,260.96877,16.679598)"
+       id="text8157-2-77-1-3-0"
+       style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="-70.335938"
+         y="33.501211"
+         id="tspan1858"> =<tspan
+   style="fill:#2a7500"
+   id="tspan1854"> </tspan><tspan
+   style="fill:#0000ff"
+   id="tspan1856">FALSE</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,115.88692,15.966463)"
+       id="text8157-2-77-1-3-0-4"
+       style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="-70.335938"
+         y="33.501211"
+         id="tspan1864">complete_taxon =<tspan
+   style="fill:#2a7500"
+   id="tspan1860"> </tspan><tspan
+   style="fill:#0000ff"
+   id="tspan1862">TRUE</tspan></tspan></text>
+    <g
+       id="g1148">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5"
+         sodipodi:type="arc"
+         sodipodi:cx="50.03804"
+         sodipodi:cy="93.619568"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 66.285673,93.619568 a 16.247633,4.8340063 0 0 1 -16.236361,4.834005 16.247633,4.8340063 0 0 1 -16.258889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.281388,4.820581" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,50.255356,88.798562)"
+         id="text8157-2-77-1-3-0-4-6"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1866">Region A</tspan></text>
+    </g>
+    <g
+       id="g1161">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-7"
+         sodipodi:type="arc"
+         sodipodi:cx="53.741051"
+         sodipodi:cy="124.95268"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 69.988684,124.95268 a 16.247633,4.8340063 0 0 1 -16.236361,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.213801,-4.8407 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,53.999086,120.43138)"
+         id="text8157-2-77-1-3-0-4-6-1"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1868">Region B</tspan></text>
+    </g>
+    <g
+       id="g1174">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-72"
+         sodipodi:type="arc"
+         sodipodi:cx="50.797638"
+         sodipodi:cy="177.36446"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 67.045271,177.36446 a 16.247633,4.8340063 0 0 1 -16.236361,4.834 16.247633,4.8340063 0 0 1 -16.258889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.281387,4.82058" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,50.585537,172.84704)"
+         id="text8157-2-77-1-3-0-4-6-1-4"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1870">Region C</tspan></text>
+    </g>
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.672639;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 118.46541,71.455873 c 0.0127,-21.148879 -0.36968,-20.969123 33.08851,-21.309468 34.66643,-0.06114 36.0004,-0.151803 35.6392,21.309468 0.6842,28.794047 0.47795,29.930427 -35.6392,29.763427 -32.38242,-0.77221 -32.27375,-2.22634 -33.08851,-29.763427 z"
+       id="path1017-6-2"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.657745;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 117.32128,157.91041 c 0.0131,-19.48438 -0.38369,-19.31879 34.3422,-19.63234 35.9799,-0.0563 37.36441,-0.13986 36.98953,19.63234 0.71011,26.52786 0.49605,27.5748 -36.98953,27.42095 -33.60935,-0.71143 -33.49657,-2.05112 -34.3422,-27.42095 z"
+       id="path1017-6-5-4-3"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       id="g28922-2-6"
+       transform="matrix(1.099603,0,0,1.099603,-17.878249,-70.162636)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-1-2"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1874"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1872">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1878"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1876">Angiosperms </tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-1-2"
+       transform="matrix(1.099603,0,0,1.099603,-17.582149,16.544539)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-2-5"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1882"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1880">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1886"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1884">Angiosperms</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-9-0-1-8"
+       transform="matrix(1.099603,0,0,1.099603,-17.534709,38.91266)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-6-9-1-5"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1890"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1888">Checklist of Orchids</tspan></tspan></text>
+    </g>
+    <g
+       id="g1200">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-78"
+         sodipodi:type="arc"
+         sodipodi:cx="164.73625"
+         sodipodi:cy="94.474121"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 180.98388,94.474121 a 16.247633,4.8340063 0 0 1 -16.23636,4.834005 16.247633,4.8340063 0 0 1 -16.25889,-4.827297 16.247633,4.8340063 0 0 1 16.21381,-4.840704 16.247633,4.8340063 0 0 1 16.28138,4.820581" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,164.92145,89.84874)"
+         id="text8157-2-77-1-3-0-4-6-19"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1892">Region A</tspan></text>
+    </g>
+    <g
+       id="g1187">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-5"
+         sodipodi:type="arc"
+         sodipodi:cx="165.40089"
+         sodipodi:cy="178.12405"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 181.64853,178.12405 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.8407 16.247633,4.8340063 0 0 1 16.28138,4.82058" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,165.25163,173.89722)"
+         id="text8157-2-77-1-3-0-4-6-1-4-3"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1894">Region C</tspan></text>
+    </g>
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.672639;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 221.76976,70.316487 c 0.0127,-21.148879 -0.36968,-20.969123 33.08851,-21.309468 34.66643,-0.06114 36.0004,-0.151803 35.6392,21.309468 0.6842,28.794045 0.47795,29.930433 -35.6392,29.763433 -32.38242,-0.772212 -32.27375,-2.226345 -33.08851,-29.763433 z"
+       id="path1017-6-7"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 222.22784,117.23476 c 0.0131,-9.68752 -0.38369,-9.60519 34.3422,-9.76108 35.97991,-0.028 37.36442,-0.0695 36.98954,9.76108 0.7101,13.18949 0.49604,13.71002 -36.98954,13.63353 -33.60935,-0.35372 -33.49656,-1.0198 -34.3422,-13.63353 z"
+       id="path1017-6-5-7"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#d7d7d7;fill-opacity:0.370229;stroke:#000000;stroke-width:0.657745;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 220.62563,156.77102 c 0.0131,-19.48437 -0.38369,-19.31879 34.3422,-19.63233 35.9799,-0.0563 37.36441,-0.13986 36.98953,19.63233 0.71011,26.52786 0.49605,27.5748 -36.98953,27.42095 -33.60935,-0.71143 -33.49657,-2.05112 -34.3422,-27.42095 z"
+       id="path1017-6-5-4-5"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       id="g28922-2-0"
+       transform="matrix(1.099603,0,0,1.099603,85.426103,-71.302022)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-1-3"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1898"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1896">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1902"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1900">Angiosperms </tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-9-0-15"
+       transform="matrix(1.099603,0,0,1.099603,90.707533,-10.538542)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,144.55804,109.66294)"
+         id="text8157-0-6-9-3"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1906"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1904">Checklist of Orchids</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-1-7"
+       transform="matrix(1.099603,0,0,1.099603,85.722203,15.405153)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-2-9"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1910"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1908">Checklist of </tspan></tspan><tspan
+           x="-70.335938"
+           y="36.814899"
+           id="tspan1914"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1912">Angiosperms</tspan></tspan></text>
+    </g>
+    <g
+       id="g28922-9-0-1-7"
+       transform="matrix(1.099603,0,0,1.099603,85.769643,37.773274)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+         id="text8157-0-6-9-1-1"
+         style="font-style:normal;font-weight:normal;font-size:15.0339px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-4);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="18.022524"
+           id="tspan1918"><tspan
+             style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+             id="tspan1916">Checklist of Orchids</tspan></tspan></text>
+    </g>
+    <g
+       id="g1213">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-54"
+         sodipodi:type="arc"
+         sodipodi:cx="268.32547"
+         sodipodi:cy="93.144829"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 284.5731,93.144829 a 16.247633,4.8340063 0 0 1 -16.23636,4.834005 16.247633,4.8340063 0 0 1 -16.25889,-4.827298 16.247633,4.8340063 0 0 1 16.2138,-4.840703 16.247633,4.8340063 0 0 1 16.28139,4.820581" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,268.2258,88.709359)"
+         id="text8157-2-77-1-3-0-4-6-5"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1920">Region A</tspan></text>
+    </g>
+    <g
+       id="g1226">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-8"
+         sodipodi:type="arc"
+         sodipodi:cx="271.74362"
+         sodipodi:cy="125.14259"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 287.99125,125.14259 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.21381,-4.8407 16.247633,4.8340063 0 0 1 16.28138,4.82058" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,271.96953,120.34218)"
+         id="text8157-2-77-1-3-0-4-6-1-2"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1922">Region B</tspan></text>
+    </g>
+    <g
+       id="g1239">
+      <path
+         style="fill:#fffffc;fill-opacity:1;stroke-width:1.88976"
+         id="path1357-5-0"
+         sodipodi:type="arc"
+         sodipodi:cx="268.32547"
+         sodipodi:cy="177.07962"
+         sodipodi:rx="16.247633"
+         sodipodi:ry="4.8340063"
+         sodipodi:start="0"
+         sodipodi:end="6.2804102"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m 284.5731,177.07962 a 16.247633,4.8340063 0 0 1 -16.23636,4.83401 16.247633,4.8340063 0 0 1 -16.25889,-4.8273 16.247633,4.8340063 0 0 1 16.2138,-4.84071 16.247633,4.8340063 0 0 1 16.28139,4.82059" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.20286227,0,0,0.20286227,268.55598,172.75783)"
+         id="text8157-2-77-1-3-0-4-6-1-4-5"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-00);fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="-70.335938"
+           y="33.501211"
+           id="tspan1924">Region C</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 206.51944,200.52107 V 45.50551"
+       id="path49780-9-2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 89.183276,193.72614 c 0,-28.48466 -2.27877,-72.57044 12.533254,-77.50778 C 89.563076,113.18 89.563076,87.704195 89.183276,38.710585"
+       id="path49780-9-2-4"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>
