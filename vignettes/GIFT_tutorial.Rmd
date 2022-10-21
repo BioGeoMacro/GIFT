@@ -2,7 +2,9 @@
 title: "GIFT tutorial"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
  %\VignetteIndexEntry{GIFT tutorial}
  %\VignetteEncoding{UTF-8} 
@@ -34,6 +36,10 @@ suppressPackageStartupMessages({
 options(tinytex.verbose = TRUE)
 ```
 
+```{r, out.width = "20%", echo = FALSE}
+knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
+```
+
 # Overview
 
 The GIFT R package grants an access to the Global Inventory of Floras and
@@ -59,6 +65,18 @@ can assess using the `data()` function.
 ```{r, fig.width = 3, fig.height = 3}
 data("med")
 plot(med, main = "Shape of Mediterranean\nregion")
+
+world <- ne_coastline(returnclass = "sf")
+
+eckertIV <-
+  "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
+
+ggplot(world) +
+  geom_sf(color = "gray50") +
+  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.8) +
+  labs(title = "Mediterranean basin") +
+  coord_sf(crs = eckertIV) +
+  theme_void()
 ```
 
 Please note that the projection used in GIFT is the WGS84, and that all
@@ -199,8 +217,8 @@ medit <- GIFT_checklist(taxon_name = "Angiospermae",
                         geo_type = "All",
                         shp = med, overlap = "centroid_inside", 
                         remove_overlap = FALSE,
-                        taxonomic_group = TRUE) # this argument adds two columns
-# to the checklist: plant family and taxonomic group of each species
+                        taxonomic_group = TRUE) # this argument adds two
+# columns to the checklist: plant family and taxonomic group of each species
 ```
 
 <br>
@@ -256,24 +274,64 @@ got[[1]]
 
 Making maps using `GIFT_richness()` (SR + trait coverage).
 <br>
+Use of `GIFT_references()` for citation and geo_entity_ref.
 
-# 2. Distribution of species
-`GIFT_species()`
-
-`GIFT_species_lookup()`
-
-```{r, eval=FALSE}
-
+```{r, eval = FALSE}
+ref <- GIFT_references()
 ```
 
+
+<br>
+
+# 2. Distribution of species
+## 2.1. Available species
+To know what species are available, you can run the function `GIFT_species()`.
+
+```{r}
+all_sp <- GIFT_species()
+```
+
+`r length(unique(all_sp$work_ID))` species are currently available.
+
+## 2.2. Species names and taxonomic harmonization
+The column `work_species` is listing all species available
+**after taxonomic harmonization**. This is important to consider as species
+names may be stated differently in the original sources.
+<br>
+To have an overview of all the original species names were in the checklists,
+you can run the function `GIFT_species_lookup()`.
+<br>
+```{r fagus_lookup}
+fagus_lookup <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
+knitr::kable(fagus_lookup)
+```
+
+Looking at the output table, you can see the original species names and their
+identification numbers (`name_ID`) before taxonomic harmonization. The final
+names and ID are the last column on the right starting with `work_`.
+
 <br><br>
+
+## 2.3. Species distribution
+<br>
+Now that we have a species name, we can run the function
+`GIFT_species_distribution()` to know where it occurs.
+<br>
+```{r}
+fagus_distr <- GIFT_species_distribution(genus = "Fagus",
+                                         epithet = "sylvatica")
+```
+
+<br>
+
 Also, plot species richness.
 <br>
 
 <br><br>
 
 # 3. Trait data
-
+## 3.1. Metadata
+<br>
 There are many functional traits available in GIFT. Each of these traits has
 an identification number called `trait_ID`. As the two functions retrieving
 trait values, `GIFT_traits()` and `GIFT_traits_raw()`, rely on these IDs, the
@@ -291,6 +349,8 @@ We can see that the ID of this trait is `1.2.1`. Now that we have the ID, we
 can retrieve the growth form values of different plant species using
 `GIFT_traits()`.
 <br>
+## 3.2. Trait values
+<br>
 ```{r}
 wood <- GIFT_traits(trait_IDs = c("1.2.1"), agreement = 0.66,
                     bias_ref = FALSE, bias_deriv = FALSE)
@@ -304,9 +364,11 @@ succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 ```
 
 <br>
+## 3.3. Trait coverage
+<br>
 Also, plot trait coverage.
 
-```{r}
+```{r, fig.width = 8, fig.height = 4}
 fern_height <- GIFT_richness(what = "trait_coverage",
                              taxon_name = "Embryophyta",
                              trait_ID = "1.6.1")
@@ -315,52 +377,55 @@ fern_shape <- GIFT_shape(entity_ID = fern_height$entity_ID)
 
 fern_shape <- dplyr::left_join(fern_shape, fern_height, by = "entity_ID")
 
-world <- ne_coastline(returnclass = "sf")
-
 ggplot(world) +
   geom_sf() +
   geom_sf(data = fern_shape, aes(fill = total)) +
   scale_fill_viridis_c("Coverage of height (%)") +
-  theme_bw()
+  coord_sf(crs = eckertIV) +
+  theme_void()
 ```
-
-<br>
 
 <br><br>
 
-# 4. Environmental values
-
+# 4. Environmental variables
+## 4.1. Metadata
 We here illustrate how to retrieve environmental variables, summarized at the
 polygon level, for a subset of polygons.
-
-`GIFT_regions()`
-
-```{r, eval=FALSE}
-regions <- GIFT_regions()
-germany_checklists <- regions[which(grep("germany", regions$geo_entity)), ]
-```
-
-<br><br>
-
-Now, we can retrieve environmental variables for these polygons. To know what
-is available, you can run these two metadata functions: `GIFT_env_meta_misc()`
-and `GIFT_env_meta_raster()`.  
-There are two functions because .  
-
-```{r, eval=FALSE}
+<br>
+We here retrieve environmental variables for the polygons falling into the
+Mediterranean basin, retrieved in the section 1.
+<br>
+To know what variables are available, you can run these two metadata functions: `GIFT_env_meta_misc()` and `GIFT_env_meta_raster()`. They respectively give
+access to the list of miscellaneous variables and raster layers available in
+the GIFT database.
+<br>
+The references to cite when using environemental variables are also available
+through these functions (column `ref_long` of the outputs).  
+<br>
+```{r env_meta}
 misc_env <- GIFT_env_meta_misc()
 raster_env <- GIFT_env_meta_raster()
 ```
+<br>
 
-`GIFT_env()`
+## 4.2. Environmental values
+Now, let's say we want to retrieve the perimeter and biome of each polygon as
+well as elevation and mean temperature. For these two raster layers, we need to
+define summary statistics, as the polygons are usually bigger than the raster
+resolution.
+<br>
+They are many summary statistics available, you can check the help page of
+`GIFT_env()` to see them all. Let's here call for the mean and median of
+elevation and the maximal value of average temperature.
+<br>
+```{r}
+med_env <- GIFT_env(entity_ID = unique(medit[[2]]$entity_ID),
+                    miscellaneous = c("perimeter", "biome"),
+                    rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
+                    sumstat = list(c("mean", "med"), "max"))
 
-```{r, eval=FALSE}
-ex_env <- GIFT_env(entity_ID = c(1,5),
-                   miscellaneous = c("perimeter", "biome"),
-                   rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
-                   sumstat = list(c("mean", "med"), "max"))
+med_env[1, ]
 ```
-
 
 <br><br>
 

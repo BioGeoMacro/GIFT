@@ -39,7 +39,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr select
+#' @importFrom dplyr select mutate_all
 #' 
 #' @export
 
