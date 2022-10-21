@@ -105,12 +105,15 @@
     - get rid of orig ID to be faster? Make simple version at least. (Patrick)
 
 * GIFT_species_distribution()
-    -  use simpler version of GIFT_species() for matchednames (Patrick)
+    - use simpler version of GIFT_species() for matchednames (Patrick)
+    - add conflict columns for aggregated data
 
 * GIFT_region()
 
-* GloNAF overlap function
+* GIFT_overlap()
 
+* GIFT_no_overlap()
+    - gives back entity IDs as character. Change to numeric and make sure it works downstream
 
 * versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)
