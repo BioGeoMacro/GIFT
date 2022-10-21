@@ -7,7 +7,7 @@ Functions to extract data from Global Inventory of Floras and Traits (GIFT)
 # 1. Vignettes
 
 Three vignettes are available: <br>
-- **[Main tutorial](https://biogeomacro.github.io/GIFT)**  
+- **[Main tutorial](https://biogeomacro.github.io/GIFT/articles/GIFT_tutorial.html)**  
 - **For advanced users => work in progress**  
 - **API => work in progress**  
 
@@ -25,7 +25,7 @@ install_github("https://github.com/BioGeoMacro/GIFT")
 library("GIFT")
 ```
 
-# 5. References and dependencies  
+# 4. References and dependencies  
 
 ## Dependencies
 `GIFT` depends on `dplyr`, `jsonlite`, `purrr`, `sf`, `stats`, `tidyr` and
