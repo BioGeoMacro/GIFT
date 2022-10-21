@@ -44,7 +44,7 @@
 #' # We get Andalusia because it is smaller than Spain and larger than 100 km²
 #' ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078), 
 #' area_th_mainland = 100000) # since Andalusia is smaller than 100,000 km² 
-#' large, the larger entity (Spain) is chosen here.
+#' # large, the larger entity (Spain) is chosen here.
 #' }
 #' 
 #' @importFrom jsonlite read_json
