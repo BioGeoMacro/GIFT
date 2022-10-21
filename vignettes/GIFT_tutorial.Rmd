@@ -26,6 +26,9 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 suppressPackageStartupMessages({
   suppressWarnings({
     library("GIFT")
+    library("dplyr")
+    library("kable")
+    library("kableExtra")
     library("ggplot2")
     library("sf")
     library("rnaturalearth")
@@ -36,31 +39,38 @@ suppressPackageStartupMessages({
 options(tinytex.verbose = TRUE)
 ```
 
-```{r, out.width = "20%", echo = FALSE}
+```{r gottingen_logo, out.width = "20%", echo = FALSE}
 knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
 ```
 
-# Overview
+```{r gift_logo, out.width = "20%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT.png")
+```
 
-The GIFT R package grants an access to the Global Inventory of Floras and
-Traits (GIFT) database. This vignette illustrates the most common usages of
-the package through detailed examples:
+The Global Inventory of Floras and Traits (GIFT) is a database of floras and
+plant checklists, distributed worldwide. It also includes trait and
+phylogenetic information. The GIFT R package grants an access to the GIFT
+database.
+<br>
+This vignette illustrates the most common usages of the package through
+detailed examples.
 
-1. Retrieving plant checklists within a given area (example: Mediterranean)
-2. Getting the distribution of a plant species
-3. Retrieving trait information for a subset of plant species
-4. Retrieving environmental information for a list of polygons/regions
+1. Retrieving plant checklists within a given area (example: Mediterranean)  
+2. Getting the distribution of a plant species  
+3. Retrieving trait information for a subset of plant species  
+4. Retrieving environmental information for a list of polygons/regions  
 
-\newpage
+<br><br><br>
 
 # 1. Checklists for a region
-
-Let's assume we are interested in having a floristic knowledge of the
-Mediterranean basin. For this purpose, we can simply use a shapefile of the
-region of interest and feed it to the `GIFT_checklist()` function.  
+## 1.1. Shapefile
+Let's assume we are interested in having a floristic knowledge of the western
+part of the Mediterranean basin. For this purpose, we can simply use a
+shapefile of the region of interest and feed it to the `GIFT_checklist()`
+function.  
 
 We do provide a shapefile of this region in the `GIFT` R package, which you
-can assess using the `data()` function.
+can access using the `data("med")` command.
 
 ```{r, fig.width = 3, fig.height = 3}
 data("med")
@@ -72,23 +82,24 @@ eckertIV <-
 
 ggplot(world) +
   geom_sf(color = "gray50") +
-  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.8) +
+  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.5,
+          size = 1) +
   labs(title = "Western Mediterranean basin") +
-  coord_sf(crs = eckertIV) +
+  lims(x = c(-20, 20), y = c(24, 48)) +
   theme_void()
 ```
 
-Please note that the projection used in GIFT is the WGS84, and that all
-shapefiles provided should be in this CRS. You can check this using
-`sf::st_crs().`
+<br>
+*Please note that the projection used in GIFT is the WGS84, and that all*
+*shapefiles provided should be in this CRS. You can check the coordinate*
+*reference system of a sf object by using* `sf::st_crs().`
+<br>
 
-```{r, eval = FALSE}
-sf::st_crs(med)
-```
+## 1.2. Main arguments
 
 Now that we have a shape for the region of interest, let's call
 `GIFT_checklist()`. This wrapper function has many arguments which we detail
-here.
+in this subsection.
 <br>
 First, the taxonomic group of interest. We can be interested in a particular
 group of plants, for example only Angiosperms. In that case, we would set the
@@ -192,6 +203,8 @@ knitr::include_graphics("../man/figures/GIFT_overlap_th.png")
 ```
 <br>
 
+## 1.3. GIFT_checklist()
+
 Now that we covered the main arguments of `GIFT_checklist()`, we can retrieve
 plant checklists for the Mediterranean region. `GIFT_checklist()` returns a
 list of two elements. First the metadata of checklists fulfilling the
@@ -208,7 +221,7 @@ ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
                           list_set_only = TRUE)
 ```
 
-```{r, eval=TRUE}
+```{r, eval = TRUE, message = FALSE}
 medit <- GIFT_checklist(taxon_name = "Angiospermae",
                         complete_taxon = TRUE,
                         floristic_group = "native",
@@ -223,8 +236,8 @@ medit <- GIFT_checklist(taxon_name = "Angiospermae",
 <br>
 
 We can now have an estimation on the number of checklists with native
-Angiosperm species in the Mediterranean basin, as well as of the number of
-species.
+Angiosperm species in the western part of the Mediterranean basin, as well as
+of the number of species.
 <br>
 
 ```{r, eval=TRUE}
@@ -242,7 +255,7 @@ stricter with some criteria, you can see that the number of checklists
 retrieved decreases. For example, when removing overlapping regions:
 <br>
 
-```{r}
+```{r, message = FALSE}
 medit_no_overlap <- GIFT_checklist(shp = med, overlap = "centroid_inside",
                                    taxon_name = "Angiospermae",
                                    remove_overlap = TRUE)
@@ -266,21 +279,72 @@ got <- GIFT_checklist(coordinates = custom_point,
                       remove_overlap = TRUE,
                       list_set_only = TRUE)
 
-got[[1]]
+kable(got[[1]], "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 <br><br>
-<br><br>
 
-Making maps using `GIFT_richness()` (SR + trait coverage).
+To cite properly the references retrieved, you can run the function
+`GIFT_references()` and look for the column `ref_long``. The column also
+`geo_entity_ref` associates each reference to a name.
+
 <br>
-Use of `GIFT_references()` for citation and geo_entity_ref.
 
-```{r, eval = FALSE}
-ref <- GIFT_references()
+## 1.4. Species richness map
+
+Once we downloaded a set of checklists, it is possible to map the species
+richness of the taxonomic group of interest. For this purpose, we use a
+combination of two functions: `GIFT_richness()` which either retrieves species
+richness or trait coverage per polygon and `GIFT_shape()` which retrieves the
+shapefile of a list of GIFT polygons.
+<br>
+The next two chunks illustrate this for the Angiosperms in the World and in the
+Western part of the Mediterranean bassin.
+<br>
+
+```{r, message=FALSE, fig.width = 8, fig.height = 4}
+gift_shape <- GIFT_shape() # retrieves all shapefiles by default
+
+angio_rich <- GIFT_richness(what = "species_richness",
+                            taxon_name = "Angiospermae")
+
+rich_map <- dplyr::left_join(gift_shape, angio_rich, by = "entity_ID") %>%
+  dplyr::filter(stats::complete.cases(total))
+
+ggplot(world) +
+  geom_sf(color = "gray50") +
+  geom_sf(data = rich_map, aes(fill = total + 1)) +
+  scale_fill_viridis_c("Species number\n(log-transformed)", trans = "log",
+                       labels = scales::number_format(accuracy = 1)) +
+  labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
+  coord_sf(crs = eckertIV) +
+  theme_void()
 ```
 
-
 <br>
+
+```{r, message=FALSE, fig.width = 8, fig.height = 4}
+med_shape <- gift_shape[which(gift_shape$entity_ID %in% 
+                                unique(medit[[2]]$entity_ID)), ]
+
+med_rich <- angio_rich[which(angio_rich$entity_ID %in% 
+                               unique(medit[[2]]$entity_ID)), ]
+
+med_map <- dplyr::left_join(med_shape, med_rich, by = "entity_ID") %>%
+  dplyr::filter(stats::complete.cases(total))
+
+ggplot(world) +
+  geom_sf(color = "gray50") +
+  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.1,
+          size = 1) +
+  geom_sf(data = med_map, aes(fill = total)) +
+  scale_fill_viridis_c("Species number") +
+  labs(title = "Angiosperms in the Western Mediterranean basin") +
+  lims(x = c(-20, 20), y = c(24, 48)) +
+  theme_void()
+```
+
+<br><br>
 
 # 2. Distribution of species
 ## 2.1. Available species
@@ -323,11 +387,11 @@ fagus_distr <- GIFT_species_distribution(genus = "Fagus",
 
 <br>
 
-Also, plot species richness.
+Also, plot species distribution.
 
 ```{r, eval = FALSE}
 
-gift_shape <- GIFT_shape(entity_ID = fern_height$entity_ID)
+
 
 ```
 

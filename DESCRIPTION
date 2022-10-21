@@ -26,9 +26,10 @@ RoxygenNote: 7.2.1
 Suggests: 
     covr,
     ggplot2,
-    testthat (>= 3.0.0),
+    kable,
     kableExtra,
     knitr,
+    testthat (>= 3.0.0),
     rmarkdown,
     rnaturalearth,
     rnaturalearthdata
