@@ -41,11 +41,7 @@ options(tinytex.verbose = TRUE)
 ```
 
 ```{r gottingen_logo, out.width = "20%", echo = FALSE}
-knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
-```
-
-```{r gift_logo, out.width = "20%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT.png")
+knitr::include_graphics("../man/figures/GIFT_biodiv_gottingen_logo.png")
 ```
 
 The Global Inventory of Floras and Traits (GIFT) is a database of floras and
@@ -411,7 +407,7 @@ quercus_distr <- GIFT_species_distribution(
 Now that we know in which polygons the species occur, we can map its
 distribution using the GIFT shapes we retrieved earlier using `GIFT_shape()`.
 
-```{r}
+```{r, fig.width = 8, fig.height = 4}
 quercus_shape <- gift_shape[which(gift_shape$entity_ID %in% 
                                     unique(quercus_distr$entity_ID)), ]
 
@@ -583,7 +579,7 @@ med_env[1, ]
 Using the shapes previously loaded, we can also map a particular environmental
 variable for all GIFT polygons.
 
-```{r}
+```{r, fig.width = 8, fig.height = 4}
 world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
                        rasterlayer = c("wc2.0_bio_30s_01"),
                        sumstat = c("mean"))
