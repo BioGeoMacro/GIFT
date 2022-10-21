@@ -26,7 +26,6 @@ RoxygenNote: 7.2.1
 Suggests: 
     covr,
     ggplot2,
-    kable,
     kableExtra,
     knitr,
     testthat (>= 3.0.0),

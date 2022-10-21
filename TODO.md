@@ -83,6 +83,8 @@
 * 3.1. GIFT_env()
     - remove rows that are NA for all variables
     - control for non-existing misc and raster variables
+    - as.numeric() entity_ID and raster values
+    - delete duplicate of geo_entity
     
 * 3.2. GIFT_env_meta_misc()    
     

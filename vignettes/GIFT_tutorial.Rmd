@@ -27,7 +27,7 @@ suppressPackageStartupMessages({
   suppressWarnings({
     library("GIFT")
     library("dplyr")
-    library("kable")
+    library("knitr")
     library("kableExtra")
     library("ggplot2")
     library("sf")
@@ -453,14 +453,15 @@ trait values, `GIFT_traits()` and `GIFT_traits_raw()`, rely on these IDs, the
 first step to do is to run the function `GIFT_traits_meta()` to know what is
 the ID of the wanted trait.
 <br>
-For example, let's say we want to retrieve growth forms of plant species.
+For example, let's say we want to retrieve the maximal vegetative heights of
+plant species.
 <br>
 ```{r}
 trait_meta <- GIFT_traits_meta()
-trait_meta[which(trait_meta$Trait2 == "Growth_form_1"), ]
+trait_meta[which(trait_meta$Trait2 == "Plant_height_max"), ]
 ```
 <br>
-We can see that the ID of this trait is `1.2.1`. Now that we have the ID, we
+We can see that the ID of this trait is `1.6.2`. Now that we have the ID, we
 can retrieve the growth form values of different plant species using
 `GIFT_traits()`.
 
@@ -468,39 +469,63 @@ can retrieve the growth form values of different plant species using
 
 ## 3.2. Trait values
 
+There are two functions to access trait values. First, `GIFT_traits_raw()`
+gives all the trait values for a given species and a given trait. These trait
+values can then vary.
 <br>
-```{r}
-wood <- GIFT_traits(trait_IDs = c("1.2.1"), agreement = 0.66,
-                    bias_ref = FALSE, bias_deriv = FALSE)
-```
-Raw traits, and traits after taxonomic harmonization.
+Second, `GIFT_traits()` returns an aggregated trait value at the species level.
+The aggregation simply takes the mean for continuous traits or the most
+frequent entry for categorical traits. However, for some specific cases, the
+aggregation takes either the minimum or maximum, like for the trait we chose.
+<br>
+Let's 
 
-`GIFT_traits_raw()`, 
+```{r, message=FALSE}
+height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
+                      bias_ref = FALSE, bias_deriv = FALSE)
 
-```{r, eval=FALSE}
-succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
+height_raw <- GIFT_traits_raw(trait_IDs = c("1.6.2"))
+
+# Raw values
+as.numeric(height_raw[which(height_raw$work_species == "Fagus sylvatica"),
+                      "trait_value"])
+
+# Aggregated value
+as.numeric(height[which(height$work_species == "Fagus sylvatica"),
+                  "trait_value_1.6.2"])
 ```
+
+Three maximal heights for *Fagus sylvatica* were available, 30, 35 and 50
+meters, which led to an aggregated value of 50 meters.
 
 <br>
 
 ## 3.3. Trait coverage
 
+We can also retrieve trait coverage information for polygons, using the same
+function as for species richness `GIFT_richness()`.
 <br>
-Also, plot trait coverage.
+In combination with the shapes loaded previously, we can also map the trait
+coverage.
+<br>
 
 ```{r, fig.width = 8, fig.height = 4}
-fern_height <- GIFT_richness(what = "trait_coverage",
-                             taxon_name = "Embryophyta",
-                             trait_ID = "1.6.1")
+angio_height <- GIFT_richness(what = "trait_coverage",
+                              taxon_name = "Angiospermae",
+                              trait_ID = "1.6.2")
 
-fern_shape <- GIFT_shape(entity_ID = fern_height$entity_ID)
+angio_height_shape <- gift_shape[which(gift_shape$entity_ID %in% 
+                                         unique(angio_height$entity_ID)), ]
 
-fern_shape <- dplyr::left_join(fern_shape, fern_height, by = "entity_ID")
+angio_height_map <- dplyr::left_join(
+  angio_height_shape, angio_height, by = "entity_ID")
 
 ggplot(world) +
-  geom_sf() +
-  geom_sf(data = fern_shape, aes(fill = total)) +
-  scale_fill_viridis_c("Coverage of height (%)") +
+  geom_sf(color = "gray50") +
+  geom_sf(data = angio_height_map, aes(fill = native)) +
+  scale_fill_viridis_c("Coverage (%)") +
+  labs(title = "Coverage for maximal vegetative height of Angiosperms",
+       subtitle = "Projection EckertIV") +
   coord_sf(crs = eckertIV) +
   theme_void()
 ```
@@ -508,18 +533,22 @@ ggplot(world) +
 <br><br>
 
 # 4. Environmental variables
+
+Finally, a set of summary statistics for many environmental variables can be
+retrieved for each GIFT polygon.
+
 ## 4.1. Metadata
 We here illustrate how to retrieve environmental variables, summarized at the
 polygon level, for a subset of polygons.
 <br>
 We here retrieve environmental variables for the polygons falling into the
-Mediterranean basin, retrieved in the section 1.
+western Mediterranean basin, retrieved in the section 1.
 <br>
 To know what variables are available, you can run these two metadata functions: `GIFT_env_meta_misc()` and `GIFT_env_meta_raster()`. They respectively give
 access to the list of miscellaneous variables and raster layers available in
 the GIFT database.
 <br>
-The references to cite when using environemental variables are also available
+The references to cite when using environmental variables are also available
 through these functions (column `ref_long` of the outputs).  
 <br>
 ```{r env_meta}
@@ -545,6 +574,36 @@ med_env <- GIFT_env(entity_ID = unique(medit[[2]]$entity_ID),
                     sumstat = list(c("mean", "med"), "max"))
 
 med_env[1, ]
+```
+
+<br>
+
+## 4.3. Map
+
+Using the shapes previously loaded, we can also map a particular environmental
+variable for all GIFT polygons.
+
+```{r}
+world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
+                       rasterlayer = c("wc2.0_bio_30s_01"),
+                       sumstat = c("mean"))
+world_temp$entity_ID <- as.numeric(world_temp$entity_ID)
+
+temp_shape <- gift_shape[which(gift_shape$entity_ID %in% 
+                                 unique(angio_rich$entity_ID)), ]
+
+temp_map <- dplyr::left_join(temp_shape, world_temp, by = "entity_ID")
+
+temp_map$mean_wc2.0_bio_30s_01 <- as.numeric(temp_map$mean_wc2.0_bio_30s_01)
+
+ggplot(world) +
+  geom_sf(color = "gray50") +
+  geom_sf(data = temp_map, aes(fill = mean_wc2.0_bio_30s_01)) +
+  scale_fill_viridis_c("Celsius degrees") +
+  labs(title = "Average temperature",
+       subtitle = "Projection EckertIV") +
+  coord_sf(crs = eckertIV) +
+  theme_void()
 ```
 
 <br><br>
