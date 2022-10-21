@@ -71,12 +71,13 @@
 * 2.1. GIFT_traits_meta()
 
 * 2.2. GIFT_traits()
-    - message for version 1.0: no bias information considered. 
+    - make numeric traits numeric?
+    - Give back trait IDs that are not valid?
 
 * 2.3. GIFT_traits_raw()
-    - message: bias_ref and bias_deriv do not exist in version 1.0
     - write into help that trait values are character values (even if numbers)
-    - make orig_names optional?
+    - make orig_names/names matched info optional? Add the three new matching columns
+    - Give back trait IDs that are not valid?
 
 * 3.1. GIFT_env()
     - highlight GIFT_env_meta for getting overview and citations

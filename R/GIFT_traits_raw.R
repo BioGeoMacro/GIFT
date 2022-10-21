@@ -66,7 +66,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
-#' @importFrom dplyr bind_rows left_join mutate_at ungroup
+#' @importFrom dplyr bind_rows left_join mutate_at ungroup relocate
 #' @importFrom tidyr pivot_longer
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
@@ -105,7 +105,7 @@ GIFT_traits_raw <- function(
   if(!all(trait_IDs %in% tmp$Lvl3)){
     stop("trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'traits_meta() and look at column
-           'Lvl3'.") # TODO: Give back trait IDs that are not valid?
+           'Lvl3'.")
   }
   
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
@@ -191,17 +191,18 @@ GIFT_traits_raw <- function(
   trait_list <- dplyr::mutate_at(
     trait_list, c("trait_derived_ID","ref_ID","orig_ID", "derived",
                   "bias_deriv", "bias_ref", "name_ID"), as.numeric)
-  # TODO expand making numeric for new names matched columns, but only if
-  # names_matched == TRUE
   
+  trait_list <- dplyr::mutate_at(
+    trait_list, c("cf_genus","cf_species","aff_species", "matched",
+                  "epithetscore", "overallscore", "resolved"), as.numeric)
+
   # join standardized species names
   species <- suppressMessages(GIFT_species(api = api, 
                                            GIFT_version = GIFT_version))
   trait_list$work_ID <- as.numeric(trait_list$work_ID)
   trait_list <- dplyr::left_join(trait_list, species, by = "work_ID")
-  # TODO rename columns
-  
-  # TODO relocate bias ref
+
+  trait_list <- dplyr::relocate(trait_list, "bias_ref", .after = "bias_deriv")
   
   # Join references
   references <- suppressMessages(GIFT_references(api = api, 
@@ -209,8 +210,6 @@ GIFT_traits_raw <- function(
   references <- unique(references[, c("ref_ID", "geo_entity_ref", "ref_long")])
   
   trait_list <- dplyr::left_join(trait_list, references, by = "ref_ID")
-  
-  # Add standardized species names
   
   return(trait_list)
 }
