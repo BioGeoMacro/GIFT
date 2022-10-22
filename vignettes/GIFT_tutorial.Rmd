@@ -57,7 +57,23 @@ detailed examples.
 3. Retrieving trait information for a subset of plant species  
 4. Retrieving environmental information for a list of polygons/regions  
 
-<br><br><br>
+<br>
+
+The following R packages are needed to build this vignette:
+
+```{r, echo=TRUE, eval=FALSE}
+library("GIFT")
+library("dplyr")
+library("knitr")
+library("kableExtra")
+library("ggplot2")
+library("sf")
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("tidyr")
+```
+
+<br><br>
 
 # 1. Checklists for a region
 ## 1.1. Shapefile
@@ -108,9 +124,9 @@ To see all options for the `taxon_name` argument, you can run the
 `GIFT_taxonomy()` function and look at the `taxon_name` column of its output.
 <br>
 Together with this first argument comes `complete_taxon`. This argument, set by
-default to `TRUE` defines whether incomplete checklists **regarding the**
-**taxon of interest** should be retrieved. Figure 1 is explaining the
-principle.
+default to TRUE defines whether only regions represented by checklists in GIFT
+completely covering **the taxon of interest** should be retrieved. Figure 1 is
+explaining the principle.
 <br><br>
 
 ```{r, fig.cap = "Figure 1. Complete taxon", out.width = "50%",echo = FALSE}
@@ -370,13 +386,13 @@ backbone used is the
 <br>
 Both original and harmonized names are stored in the database and you can use
 the function `GIFT_species_lookup()` to look at the differences for particular
-species. For example, the evergreen oak *Quercus ilex*.
+species. For example, the wood anemone *Anemone nemorosa*.
 <br>
 
-```{r fagus_lookup}
-quercus_lookup <- GIFT_species_lookup(genus = "Quercus", epithet = "ilex")
+```{r anemone_lookup}
+anemone_lookup <- GIFT_species_lookup(genus = "Anemone", epithet = "nemorosa")
 
-kable(quercus_lookup, "html") %>%
+kable(anemone_lookup, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
@@ -398,38 +414,71 @@ help page of the function.
 <br>
 
 ```{r}
-quercus_distr <- GIFT_species_distribution(
-  genus = "Quercus", epithet = "ilex", aggregation = TRUE)
+anemone_distr <- GIFT_species_distribution(
+  genus = "Anemone", epithet = "nemorosa", aggregation = TRUE)
+
+anemone_statuses <- anemone_distr %>%
+  mutate(native = ifelse(native == 1, "native", "non-native"),
+         naturalized = ifelse(naturalized == 1, "naturalized",
+                              "non-naturalized"),
+         endemic_list = ifelse(endemic_list == 1, "endemic_list",
+                               "non-endemic_list")) %>%
+  dplyr::select(entity_ID, native, naturalized, endemic_list)
+
+table(anemone_statuses$endemic_list)
 ```
 
+This species is not listed as endemic in any of the GIFT polygons. Let's now
+check the places where it is listed as native or naturalized.
 <br>
 
-Now that we know in which polygons the species occur, we can map its
-distribution using the GIFT shapes we retrieved earlier using `GIFT_shape()`.
+```{r}
+table(paste(anemone_statuses$native, anemone_statuses$naturalized,
+            sep = "_"))
+```
+
+Looking at the different combinations of statuses, we can distinguish several
+situations: in 13 polygons, there is no status available. The species is listed
+as native and non-naturalized (or naturalized status is missing) in 113+17=130
+polygons. It is naturalized and non native in 5 polygons.
+<br>
+More surprising are the cases where the species is non-native and
+non-naturalized, which happens in 3+2=5 polygons. This specific combination
+can happen in unstable cases where the species in the process of being
+naturalized.
+<br>
+
+Now that we know in which polygons the species occur and with what status, we
+can map its distribution using the GIFT shapes we retrieved earlier using
+`GIFT_shape()`.
 
 ```{r, fig.width = 8, fig.height = 4}
-quercus_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                    unique(quercus_distr$entity_ID)), ]
+# We rename the statuses based on the distinct combinations
+anemone_statuses <- anemone_statuses %>%
+  mutate(Status = case_when(
+    native == "native" & naturalized == "non-naturalized" ~ "native",
+    native == "native" & is.na(naturalized) ~ "native",
+    native == "non-native" & is.na(naturalized) ~ "non-native",
+    native == "non-native" & naturalized == "naturalized" ~ "naturalized",
+    native == "non-native" & naturalized == "non-naturalized" ~ "non-native",
+    is.na(native) & is.na(naturalized) ~ "unknown"
+  ))
 
-quercus_map <- dplyr::left_join(
-  quercus_shape,
-  quercus_distr[, c("entity_ID", "native", "naturalized", "endemic_list")],
-  by = "entity_ID")
+# Merge with the shapes
+anemone_shape <- gift_shape[which(gift_shape$entity_ID %in% 
+                                    unique(anemone_distr$entity_ID)), ]
+anemone_map <- dplyr::left_join(anemone_shape, anemone_statuses,
+                                by = "entity_ID")
 
-quercus_map <- tidyr::pivot_longer(
-  quercus_map, cols = c("native", "naturalized", "endemic_list"),
-  names_to = "Status", values_to = "status_value")
-
-quercus_map <- quercus_map[which(quercus_map$status_value == 1), ]
-
+# Area of distribution with floristic status
 ggplot(world) +
-  geom_sf(color = "gray50") +
-  geom_sf(data = quercus_map, aes(fill = as.factor(Status))) +
-  scale_fill_viridis_d("Status") +
+  geom_sf(color = "gray70") +
+  geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
+  scale_fill_brewer("Status", palette = "Set2") +
   labs(title = expression(paste("Distribution map of ",
-                                italic("Quercus ilex"))),
-       subtitle = "Projection EckertIV") +
-  coord_sf(crs = eckertIV) +
+                                italic("Anemone nemorosa"))),
+       subtitle = "Projection WGS84") +
+  lims(x = c(-65, 170), y = c(-45, 70)) +
   theme_void()
 ```
 
