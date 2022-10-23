@@ -63,17 +63,53 @@ version.}
 retrieved.}
 }
 \value{
-List with two data frames: the checklist with species and the list of ID.
+A data frame with 33 columns.
 }
 \description{
 Retrieve the distribution of one species from GIFT checklits.
 }
 \details{
 Here is the detail of each data.frame and their columns:
-When aggregation = TRUE, there is 3 extra columns telling whether there was
-a conflict with the floristic statuses of a species across the different
-sources. The columns relating to the floristic statuses then have only one
-value.
+\emph{ref_ID} - Identification number of the reference\cr
+\emph{list_ID} - Identification number of the list\cr
+\emph{entity_ID} - Identification number of the polygon\cr
+\emph{name_ID} - Identification number of the genus before taxonomic
+harmonization\cr 
+\emph{cf_genus} - \cr
+\emph{cf_species} - \cr 
+\emph{aff_species} -\cr
+\emph{questionable} -\cr
+\emph{native} - Is the species native\cr 
+\emph{quest_native} - Is the native status questionable\cr
+\emph{naturalized} - Is the species naturalized\cr 
+\emph{endemic_ref} - Is the species endemic at the reference level\cr
+\emph{quest_end_ref} - Is the endemic_ref status questionable\cr
+\emph{endemic_list} - Is the species endemic at the list level\cr
+\emph{quest_end_list} - Is the endemic_list status questionable\cr
+\emph{genus} - Genus name before taxonomic harmonization\cr
+\emph{species_epithet} - Epithet before taxonomic harmonization\cr
+\emph{subtaxon} - Subtaxon name before taxonomic harmonization\cr
+\emph{author} - Author who described the species before taxonomic
+ harmonization\cr
+\emph{matched} - Is the species name matched in the taxonomic backbone\cr
+\emph{epithetscore} - Matching score for the epithet\cr
+\emph{overallscore} - Overall matching score for the species\cr
+\emph{resolved} - Is the species name resolved in the taxonomic backbone\cr
+\emph{synonym} -Is the species a synonym in the taxonomic backbone\cr
+\emph{matched_subtaxon} -Is the sub-species name matched in the taxonomic
+ backbone\cr
+\emph{accepted} - Is the species name accepted in the taxonomic backbone\cr
+\emph{service} - Service use for the taxonomic harmonization\cr
+\emph{work_ID} -Identification number of the species after taxonomic
+harmonization\cr
+\emph{taxon_ID} -Identification number of the taxonomic group\cr
+\emph{work_genus} - Identification number of the genus after taxonomic
+harmonization\cr
+\emph{work_species_epithet} - Identification number of the species epithet
+after taxonomic harmonization\cr
+\emph{work_species} - Species name (after taxonomic harmonization)\cr
+\emph{work_author} - Author who described the species (after taxonomic
+harmonization)
 }
 \examples{
 \dontrun{

@@ -21,38 +21,40 @@
 #' retrieved.
 #' 
 #' @return
-#' A data frame with 24 columns.
+#' A data frame with 19 columns (or 24 if namesmatched = TRUE).
 #'
 #' @details Here is what each column refers to:
-#' 'orig_ID' - Identification number of the species before taxonomic
-#' harmonization
-#' 'orig_genus' - Identification number of the genus before taxonomic
-#' harmonization
-#' 'name_ID' - Genus name before taxonomic harmonization
-#' 'cf_genus'- 
-#' 'genus'- Genus before taxonomic harmonization
-#' 'cf_species'- 
-#' 'aff_species'-
-#' 'species_epithet'- Epithet of the species before taxonomic harmonization
-#' 'subtaxon'- Subtaxon of the species before taxonomic harmonization
-#' 'author'- Author who described the species (before taxonomic harmonization)
-#' 'matched'- Is the species matched in the taxonomic backbone
-#' 'epithetscore'- Matching score for the epithet
-#' 'overallscore'- Overall matching score for the species
-#' 'resolved'- Is the species name resolved in the taxonomic backbone
-#' 'synonym'- Is the species name a synonym in the taxonomic backbone
-#' 'matched_subtaxon'- Is the subtaxon matched in the taxonomic backbone
-#' 'accepted'- Is the species name accepted in the taxonomic backbone
-#' 'service'- Service use for the taxonomic harmonization
-#' 'work_ID'- Identification number of the species after taxonomic
-#' harmonization
-#' 'taxon_ID'- Identification number of the taxonomic group
-#' 'work_genus'- Identification number of the genus after taxonomic
-#' harmonization
-#' 'work_species_epithet'- Identification number of the species epithet
-#' after taxonomic harmonization
-#' 'work_species'- Species name (after taxonomic harmonization)
-#' 'work_author'-  Author who described the species (after taxonomic
+#' \emph{orig_ID} - Identification number of the species before taxonomic
+#' harmonization\cr
+#' \emph{orig_genus} - Genus before taxonomic harmonization\cr
+#' \emph{name_ID} - Identification number of the genus before taxonomic
+#' harmonization\cr
+#' \emph{cf_genus}- \cr
+#' \emph{genus}- Genus before taxonomic harmonization\cr
+#' \emph{cf_species}- \cr
+#' \emph{aff_species}-\cr
+#' \emph{species_epithet}- Epithet of the species before taxonomic
+#'  harmonization\cr
+#' \emph{subtaxon}- Subtaxon of the species before taxonomic harmonization\cr
+#' \emph{author}- Author who described the species (before taxonomic
+#'  harmonization)\cr
+#' \emph{matched}- Is the species matched in the taxonomic backbone\cr
+#' \emph{epithetscore}- Matching score for the epithet\cr
+#' \emph{overallscore}- Overall matching score for the species\cr
+#' \emph{resolved}- Is the species name resolved in the taxonomic backbone\cr
+#' \emph{synonym}- Is the species name a synonym in the taxonomic backbone\cr
+#' \emph{matched_subtaxon}- Is the subtaxon matched in the taxonomic backbone\cr
+#' \emph{accepted}- Is the species name accepted in the taxonomic backbone\cr
+#' \emph{service}- Service use for the taxonomic harmonization\cr
+#' \emph{work_ID}- Identification number of the species after taxonomic
+#' harmonization\cr
+#' \emph{taxon_ID}- Identification number of the taxonomic group\cr
+#' \emph{work_genus}- Identification number of the genus after taxonomic
+#' harmonization\cr
+#' \emph{work_species_epithet}- Identification number of the species epithet
+#' after taxonomic harmonization\cr
+#' \emph{work_species} - Species name (after taxonomic harmonization)\cr
+#' \emph{work_author}-  Author who described the species (after taxonomic
 #' harmonization)
 #'
 #' @references
