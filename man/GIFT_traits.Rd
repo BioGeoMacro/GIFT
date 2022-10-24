@@ -43,13 +43,15 @@ Retrieve specific trait values.
 }
 \details{
 Here is the detail of each column:
-trait_ID - Identification number of the trait
-work_ID - Identification number of the taxonomically harmonized species
-species - Species name
-trait_value - Value of the trait
-agreement - Agreement score between the different sources for that trait
-value
-references - ref_ID from which we got the trait information
+
+\emph{trait_ID} - Identification number of the trait\cr
+\emph{work_ID} - Identification number of the taxonomically harmonized
+ species\cr
+\emph{species} - Species name\cr
+\emph{trait_value} - Value of the trait\cr
+\emph{agreement} - Agreement score between the different sources for that
+trait value\cr
+\emph{references} - ref_ID from which we got the trait information
 }
 \examples{
 \dontrun{

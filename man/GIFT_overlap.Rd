@@ -32,12 +32,13 @@ from other resources
 }
 \details{
 The columns of the data.frame are the following:
-entity_ID - Identification number of the GIFT polygon
-glonaf_ID (or gmba_ID) - Identification number of the polygon from the other
-resource.
-overlap12 - Spatial overlap in percentage between GIFT polygon and the
-external polygon.
-overlap21 - The other way around.
+
+\emph{entity_ID} - Identification number of the GIFT polygon\cr
+\emph{glonaf_ID} (or \emph{gmba_ID}) - Identification number of the polygon
+ from the other resource\cr
+\emph{overlap12} - Spatial overlap in percentage between GIFT polygon and
+ the external polygon\cr
+\emph{overlap21} - The other way around
 }
 \examples{
 \dontrun{

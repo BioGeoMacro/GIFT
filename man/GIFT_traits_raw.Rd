@@ -43,32 +43,37 @@ references and un-standardized species names in GIFT.
 }
 \details{
 Here is the detail of each column:
-trait_derived_ID -
-ref_ID - Identification number of the reference
-orig_ID - Identification number of the species, as it came in the source
-trait_ID - Identification number of the trait
-trait_value - Value of the trait
-derived - Is the trait value derived from another information (e.g.
-phanerophytes are woody)
-bias_deriv - Is the derivation potentially introducing a bias
-name_ID - Identification number of the species before being resolved
-cf_genus -
-genus - Genus of the species
-cf_species -
-aff_species -
-species_epithet - Epithet of the species
-subtaxon - Sub-taxon name
-author - Author who described the species
-matched - Was the species name matched in the taxonomic backbone
-epithetscore - Matching score for the epithet
-overallscore - Overall matching score
-resolved - Was the species name resolved in the taxonomic backbone
-service - Taxonomic backbone used for taxonomic harmonization
-work_ID - Identification number of the taxonomically harmonized species
-bias_ref - Is the resource potentially introducing a bias
-species - Species name
-geo_entity_ref - Name of the region of the reference
-ref_long - Full reference to cite
+
+\emph{trait_derived_ID} - \cr
+\emph{ref_ID} - Identification number of the reference\cr
+\emph{orig_ID} - Identification number of the species, as it came in the
+ source\cr
+\emph{trait_ID} - Identification number of the trait\cr
+\emph{trait_value} - Value of the trait\cr
+\emph{derived} - Is the trait value derived from another information (e.g.
+phanerophytes are woody)\cr
+\emph{bias_deriv} - Is the derivation potentially introducing a bias\cr
+\emph{name_ID} - Identification number of the species before being
+resolved\cr
+\emph{cf_genus} - \cr
+\emph{genus} - Genus of the species\cr
+\emph{cf_species} - \cr
+\emph{aff_species} - \cr
+\emph{species_epithet} - Epithet of the species\cr
+\emph{subtaxon} - Sub-taxon name\cr
+\emph{author} - Author who described the species\cr
+\emph{matched} - Was the species name matched in the taxonomic backbone\cr
+\emph{epithetscore} - Matching score for the epithet\cr
+\emph{overallscore} - Overall matching score\cr
+\emph{resolved} - Was the species name resolved in the taxonomic
+backbone\cr
+\emph{service} - Taxonomic backbone used for taxonomic harmonization\cr
+\emph{work_ID} - Identification number of the taxonomically harmonized
+species\cr
+\emph{bias_ref} - Is the resource potentially introducing a bias\cr
+\emph{species} - Species name\cr
+\emph{geo_entity} _ref - Name of the region of the reference\cr
+\emph{ref_long} - Full reference to cite
 }
 \examples{
 \dontrun{

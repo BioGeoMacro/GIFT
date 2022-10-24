@@ -50,24 +50,26 @@
 #' A data frame with 16 columns.
 #'
 #' @details Here is what each column refers to:
-#' 'ref_ID' - Identification number of each reference.
-#' 'type'- What type the source is.
-#' 'subset'- What information regarding the status of species is available.
-#' 'native_indicated'- Whether native status of species is available in the
-#' source.
-#' 'natural_indicated' - Whether naturalized status of species is available in
-#' the source.
-#' 'end_ref' - Whether endemism information is available in the source.
-#' 'restricted' - Whether the access to this reference is restricted.
-#' 'taxon_ID'- Identification number of species.
-#' 'list_ID'- Identification number of each list.
-#' 'end_list' - Whether endemism information is available in the list.
-#' 'entity_ID'- Identification number of the polygon of the list.
-#' 'geo_entity'- Name of the location.
-#' 'suit_geo'- Is the polygon suitable.
-#' 'entity_class'- Type of polygon.
-#' 'entity_type'- Name of the location.
-#' 'taxon_name'- Name of the group of taxa available.
+#' 
+#' \emph{ref_ID} - Identification number of each reference.\cr
+#' \emph{type} - What type the source is.\cr
+#' \emph{subset} - What information regarding the status of species is
+#' available.\cr
+#' \emph{native_indicated} - Whether native status of species is available in
+#'  the source.\cr
+#' \emph{natural_indicated} - Whether naturalized status of species is
+#' available in the source.\cr
+#' \emph{end_ref} - Whether endemism information is available in the source.\cr
+#' \emph{restricted} - Whether the access to this reference is restricted.\cr
+#' \emph{taxon_ID} - Identification number of species.\cr
+#' \emph{list_ID} - Identification number of each list.\cr
+#' \emph{end_list} - Whether endemism information is available in the list.\cr
+#' \emph{entity_ID} - Identification number of the polygon of the list.\cr
+#' \emph{geo_entity} - Name of the location.\cr
+#' \emph{suit_geo} - Is the polygon suitable.\cr
+#' \emph{entity_class} - Type of polygon.\cr
+#' \emph{entity_type} - Name of the location.\cr
+#' \emph{taxon_name} - Name of the group of taxa available.
 #' 
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

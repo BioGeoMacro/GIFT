@@ -28,19 +28,20 @@ Get shapefile of GIFT regions for selected entities
 }
 \details{
 Here is the detail of each column:
-entity_ID - Identification number of the polygon
-geo_entity - Name of the polygon
-point_x - Longitude of the centroid of the polygon
-point_y - Latitude of the centroid of the polygon
-area - Area in km2 of the polygon
-x_min - Minimum longitude of the polygon
-x_max - Maximum longitude of the polygon
-y_min - Minimum latitude of the polygon
-y_max - Maximum latitude of the polygon
-entity_class - Class of the polygon
-entity_type - Type of the entity
-polygon_source - Source of the polygon
-geometry - Geometry column from sf
+
+\emph{entity_ID} - Identification number of the polygon\cr
+\emph{geo_entity} - Name of the polygon\cr
+\emph{point_x} - Longitude of the centroid of the polygon\cr
+\emph{point_y} - Latitude of the centroid of the polygon\cr
+\emph{area} - Area in km2 of the polygon\cr
+\emph{x_min} - Minimum longitude of the polygon\cr
+\emph{x_max} - Maximum longitude of the polygon\cr
+\emph{y_min} - Minimum latitude of the polygon\cr
+\emph{y_max} - Maximum latitude of the polygon\cr
+\emph{entity_class} - Class of the polygon\cr
+\emph{entity_type} - Type of the entity\cr
+\emph{polygon_source} - Source of the polygon\cr
+\emph{geometry} - Geometry column from sf
 }
 \examples{
 \dontrun{

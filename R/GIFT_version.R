@@ -6,9 +6,10 @@
 #' A data frame with 4 columns.
 #'
 #' @details Here is what each column refers to:
-#' 'ID' - Identification number of the version.
-#' 'version'- Version number.
-#' 'description'- What were the major updates about.
+#' 
+#' \emph{ID} - Identification number of the version\cr
+#' \emph{version} - Version number\cr
+#' \emph{description} - What were the major updates about
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

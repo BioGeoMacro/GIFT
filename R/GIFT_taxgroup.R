@@ -30,8 +30,7 @@
 #'  database to use. The function retrieves by default the most up-to-date
 #'  version.
 #' 
-#' @return
-#' A vector with the taxonomic group of the species used as input.
+#' @return A vector with the taxonomic group of the species used as input.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

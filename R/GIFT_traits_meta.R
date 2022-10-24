@@ -11,16 +11,17 @@
 #' @return A data frame with 10 columns.
 #'
 #' @details Here is what each column refers to:
-#' 'Lvl1' - First level of the trait classification.
-#' 'Category'- Name of the first level of classification.
-#' 'Lvl2'- Second level of the trait classification.
-#' 'Trait1'- ame of the second level of classification.
-#' 'Lvl3' - Identification number of the trait.
-#' 'Trait2' - Trait name.
-#' 'Units' - Trait unit.
-#' 'type'- Trait type.
-#' 'comment'- Comment.
-#' 'count' - How many entries for that traits are in the database.
+#' 
+#' \emph{Lvl1} - First level of the trait classification\cr
+#' \emph{Category} - Name of the first level of classification\cr
+#' \emph{Lvl2} - Second level of the trait classification\cr
+#' \emph{Trait1} - Name of the second level of classification\cr
+#' \emph{Lvl3} - Identification number of the trait\cr
+#' \emph{Trait2} - Trait name\cr
+#' \emph{Units} - Trait unit\cr
+#' \emph{type} - Trait type\cr
+#' \emph{comment} - Comment\cr
+#' \emph{count} - How many entries for that traits are in the database
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

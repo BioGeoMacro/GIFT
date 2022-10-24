@@ -35,34 +35,38 @@
 #' data frame contains the species checklist for a given reference/list.
 #'
 #' @details  Here is what each column refers to:
-#' 'ref_ID' - Identification number of each reference.
-#' 'list_ID'- Identification number of each list
-#' 'orig_ID'- Identification number of each species name, unchanged from the
-#'  sources.
-#' 'name_ID'- Identification number of each reference.
-#' 'genus'- Genus of each species.
-#' 'species_epithet'- Epithet of each species.
-#' 'subtaxon'- If needed, subtaxon of the species.
-#' 'author'- Name of the author who described the species.
-#' 'matched' - Whether a match was found when using a taxonomic backbone.
-#' 'epithetscore' - Matching score for the epithet.
-#' 'overallscore' - Matching score for the overall species name.
-#' 'resolved' - Whether the species name was resolved.
-#' 'service' - Service used for the taxonomic harmonization.
-#' 'work_ID' - Identification number of each species name, after taxonomic
-#'  harmonization.
-#' 'genus_ID' - Identification number of each genus, after taxonomic
-#'  harmonization.
-#' 'species' - Species name, after taxonomic harmonization.
-#' 'questionable' - Whether the species occurrence is questionable.
-#' 'native' - Whether the species is native.
-#' 'quest_native' - Whether the native information is questionable.
-#' 'naturalized' - Whether the species is naturalized.
-#' 'endemic_ref' - Whether the species is endemic within the reference.
-#' 'quest_end_ref' - Whether the endemic_ref information is questionable.
-#' 'endemic_list'- Whether the species is endemic within the list.
-#' 'quest_end_list' - Whether the endemic_list information is questionable.
-#' 'cons_status' - Conservation status of the species.
+#' 
+#' \emph{ref_ID} - Identification number of each reference\cr
+#' \emph{list_ID} - Identification number of each list\cr
+#' \emph{orig_ID} - Identification number of each species name, unchanged from
+#'  the sources\cr
+#' \emph{name_ID} - Identification number of each reference\cr
+#' \emph{genus} - Genus of each species\cr
+#' \emph{species_epithet} - Epithet of each species\cr
+#' \emph{subtaxon} - If needed, subtaxon of the species\cr
+#' \emph{author} - Name of the author who described the species\cr
+#' \emph{matched} - Whether a match was found when using a taxonomic
+#' backbone\cr
+#' \emph{epithetscore} - Matching score for the epithet\cr
+#' \emph{overallscore} - Matching score for the overall species name\cr
+#' \emph{resolved} - Whether the species name was resolved\cr
+#' \emph{service} - Service used for the taxonomic harmonization\cr
+#' \emph{work_ID} - Identification number of each species name, after
+#'  taxonomic  harmonization\cr
+#' \emph{genus_ID} - Identification number of each genus, after taxonomic
+#'  harmonization\cr
+#' \emph{species} - Species name, after taxonomic harmonization\cr
+#' \emph{questionable} - Whether the species occurrence is questionable\cr
+#' \emph{native} - Whether the species is native\cr
+#' \emph{quest_native} - Whether the native information is questionable\cr
+#' \emph{naturalized} - Whether the species is naturalized\cr
+#' \emph{endemic_ref} - Whether the species is endemic within the reference\cr
+#' \emph{quest_end_ref} - Whether the endemic_ref information is
+#' questionable\cr
+#' \emph{endemic_list}- Whether the species is endemic within the list\cr
+#' \emph{quest_end_list} - Whether the endemic_list information is
+#'  questionable\cr
+#' \emph{cons_status} - Conservation status of the species
 #' 
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

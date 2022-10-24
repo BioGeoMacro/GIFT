@@ -25,16 +25,17 @@ Retrieve the metadata of every environmental raster accessible in GIFT
 }
 \details{
 Here is what each column refers to:
-'dataset' - Name of the source dataset.
-'layer_name'- Name of the environmental layer.
-'layer'- Full name.
-'description'- Description.
-'unit'- Unit.
-'coord_system'- Coordinate system.
-'resolution'- Resolution.
-'extent'- Extent.
-'version' - Version of the source.
-'ref_long' - Full reference to cite when using an environmental layer.
+
+\emph{dataset} - Name of the source dataset\cr
+\emph{layer_name} - Name of the environmental layer\cr
+\emph{layer} - Full name\cr
+\emph{description} - Description\cr
+\emph{unit} - Unit\cr
+\emph{coord_system} - Coordinate system\cr
+\emph{resolution} - Resolution\cr
+\emph{extent} - Extent\cr
+\emph{version} - Version of the source\cr
+\emph{ref_long} - Full reference to cite when using an environmental layer
 }
 \examples{
 \dontrun{

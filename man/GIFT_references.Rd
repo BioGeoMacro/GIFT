@@ -25,22 +25,24 @@ Retrieve the metadata of every reference accessible in GIFT
 }
 \details{
 Here is what each column refers to:
-'ref_ID' - Identification number of the reference.
-'ref_long'- Full reference for the reference.
-'geo_entity_ref'- Name of the location.
-'type'- What type the source is.
-'subset'- What information regarding the status of species is available.
-'taxon_ID'- Identification number of the group of taxa available.
-'taxon_name'- Name of the group of taxa available.
-'checklist'- Is the source a checklist.
-'native_indicated'- Whether native status of species is available in the
-source.
-'natural_indicated' - Whether naturalized status of species is available in
-the source.
-'end_ref' - Whether endemism information is available in the source.
-'traits' - Whether trait information is available in the source.
-'restricted' - Whether the access to this reference is restricted.
-'proc_date' - When the source was processed.
+
+\emph{ref_ID} - Identification number of the reference\cr
+\emph{ref_long} - Full reference for the reference\cr
+\emph{geo_entity_ref} - Name of the location\cr
+\emph{type} - What type the source is\cr
+\emph{subset} - What information regarding the status of species is
+ available\cr
+\emph{taxon_ID} - Identification number of the group of taxa available\cr
+\emph{taxon_name} - Name of the group of taxa available\cr
+\emph{checklist} - Is the source a checklist\cr
+\emph{native_indicated} - Whether native status of species is available in
+ the source\cr
+\emph{natural_indicated} - Whether naturalized status of species is
+available in the source\cr
+\emph{end_ref} - Whether endemism information is available in the source\cr
+\emph{traits} - Whether trait information is available in the source\cr
+\emph{restricted} - Whether the access to this reference is restricted\cr
+\emph{proc_date} - When the source was processed
 }
 \examples{
 \dontrun{

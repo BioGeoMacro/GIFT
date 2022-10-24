@@ -13,14 +13,15 @@
 #' A data frame with 7 columns.
 #'
 #' @details Here is the detail of each column:
-#' entity_ID - Identification number of GIFT polygons
-#' geo_entity - Name of GIFT polygons
-#' suit_geo - Whether the polygon is suitable
-#' entity_class - Class of the polygon
-#' entity_type - Type of the polygon
-#' TDWG_lvl3_ID - Whether the polygon is a TDWG region (see
-#' https://www.tdwg.org/)
-#' country - Whether the polygon is a country
+#' 
+#' \emph{entity_ID} - Identification number of GIFT polygons\cr
+#' \emph{geo_entity} - Name of GIFT polygons\cr
+#' \emph{suit_geo} - Whether the polygon is suitable\cr
+#' \emph{entity_class} - Class of the polygon\cr
+#' \emph{entity_type} - Type of the polygon\cr
+#' \emph{TDWG_lvl3_ID} - Whether the polygon is a TDWG region (see
+#' https://www.tdwg.org/)\cr
+#' \emph{country} - Whether the polygon is a country
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

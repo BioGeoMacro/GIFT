@@ -47,8 +47,9 @@ They can come as rasters or shapefiles (miscellaneous)
 }
 \details{
 The columns of the data.frame are the following:
-entity_ID - Identification number of the polygon
-geo_entity - Name of the polygon
+
+\emph{entity_ID} - Identification number of the polygon\cr
+\emph{geo_entity} - Name of the polygon\cr
 The other columns relate to the environmental variables the user asked for.
 }
 \examples{

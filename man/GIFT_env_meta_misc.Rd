@@ -26,11 +26,12 @@ GIFT
 }
 \details{
 Here is what each column refers to:
-'dataset' - Name of the source dataset.
-'variable'- Name of the environmental layer.
-'description'- Description.
-'unit'- Unit.
-'ref_long' - Full reference to cite when using an environmental layer.
+
+\emph{dataset} - Name of the source dataset.\cr
+\emph{variable} - Name of the environmental layer.\cr
+\emph{description}- Description.\cr
+\emph{unit} - Unit.\cr
+\emph{ref_long} - Full reference to cite when using an environmental layer.
 }
 \examples{
 \dontrun{

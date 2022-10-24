@@ -24,14 +24,15 @@ A data frame with 6 columns.
 Retrieves the taxonomy of GIFT.
 }
 \details{
-Column taxon_ID indicates the identification number of each
-taxonomic entry. The names describing taxa are in the column taxon_name.
-The third column spells the author name for a given taxon. The column
-taxon_lvl splits every taxon in genus, family, order or superior orders.
-Taxonomy is a linear sequence of left and right borders for each taxon.
-This is nested, for example left and right borders of a genus would fall
-between the left and right borders of the corresponding family. Columns lft
-and rgt respectively refer to these left and right borders.
+Column \emph{taxon_ID} indicates the identification number of each
+taxonomic entry. The names describing taxa are in the column
+\emph{taxon_name}.The third column spells the author name for a given taxon.
+The column \emph{taxon_lvl} splits every taxon in genus, family, order or
+superior orders. Taxonomy is a linear sequence of left and right borders
+for each taxon. This is nested, for example left and right borders of a
+genus would fall between the left and right borders of the corresponding
+family. Columns \emph{lft} and \emph{rgt} respectively refer to these left
+and right borders.
 }
 \examples{
 \dontrun{

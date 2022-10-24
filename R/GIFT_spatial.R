@@ -25,10 +25,10 @@
 #' @param api character string defining from which API the data will be
 #' retrieved.
 #' 
-#' @return A data frame with 3 columns: entity_ID the identification number
-#' of a polygon, 'geo_entity_ref' its name, and 'coverage' which indicates
-#' the percentage of overlap between the provided shape and the different
-#' polygons of GIFT.
+#' @return A data frame with 3 columns: \emph{entity_ID} the identification
+#'  number of a polygon, \emph{geo_entity_ref} its name, and \emph{coverage}
+#'  which indicates the percentage of overlap between the provided shape and
+#'  the different polygons of GIFT.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

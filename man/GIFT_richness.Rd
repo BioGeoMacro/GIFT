@@ -36,12 +36,14 @@ trait.
 }
 \details{
 The output has 5 columns:
-entity_ID - Identification number of GIFT polygons
-total - total species richness or trait coverage
-native - number of native species or trait coverage for native species
-naturalized - number of naturalized species or trait coverage for
-naturalized species
-endemic_min - number of endemic species or trait coverage for endemic
+
+\emph{entity_ID} - Identification number of GIFT polygons\cr
+\emph{total} - total species richness or trait coverage\cr
+\emph{native} - number of native species or trait coverage for native
+ species\cr
+\emph{naturalized} - number of naturalized species or trait coverage for
+naturalized species\cr
+\emph{endemic_min} - number of endemic species or trait coverage for endemic
 species
 }
 \examples{

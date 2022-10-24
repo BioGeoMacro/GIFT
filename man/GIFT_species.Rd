@@ -25,11 +25,12 @@ Retrieve the whole set of plant species available in GIFT
 }
 \details{
 Here is what each column refers to:
-'work_ID' - Identification number of the species
-'genus_ID' - Identification number of the genus
-'work_genus' - Genus name after taxonomic harmonization
-'work_species'- Species name after taxonomic harmonization
-'work_author'- Author who described the species (after taxonomic
+
+\emph{work_ID} - Identification number of the species\cr
+\emph{genus_ID} - Identification number of the genus\cr
+\emph{work_genus} - Genus name after taxonomic harmonization\cr
+\emph{work_species} - Species name after taxonomic harmonization\cr
+\emph{work_author} - Author who described the species (after taxonomic
  harmonization)
 }
 \examples{

@@ -14,9 +14,10 @@ Returns a table with information on the different versions of the database
 }
 \details{
 Here is what each column refers to:
-'ID' - Identification number of the version.
-'version'- Version number.
-'description'- What were the major updates about.
+
+\emph{ID} - Identification number of the version\cr
+\emph{version} - Version number\cr
+\emph{description} - What were the major updates about
 }
 \examples{
 \dontrun{
