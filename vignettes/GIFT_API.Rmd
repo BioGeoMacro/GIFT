@@ -28,7 +28,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 suppressPackageStartupMessages({
   suppressWarnings({
     library("GIFT")
-    library("kableExtra") # html table with scroll bar
+    library("knitr")
+    library("kableExtra")
   })
 })
 
@@ -36,177 +37,83 @@ options(tinytex.verbose = TRUE)
 ```
 
 
-# 1. Overview
+List of the 23 available queries, their arguments and in which GIFT R function
+they are called:
 
-See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
-
-No R chunk.
-Just a table with two columns:
-queries names
-arguments needed/possible for each query
-
-```{r}
-# Dependency between R functions and queries
-
-r_query <- data.frame(
-  R_function = c("GIFT_checklist_raw()", "GIFT_checklist_conditional()",
-                 "GIFT_spatial()", "GIFT_taxonomy()", "GIFT_taxgroup()",
-                 "GIFT_no_overlap()", "GIFT_checklist()", "GIFT_env()",
-                 "GIFT_shape()"),
-  Query = c("lists, taxonomy, checklists", "lists, taxonomy", "", "taxonomy",
-            "species, taxonomy", "overlap", "lists, taxonomy",
-            "geoentities_env_misc, geoentities_env_raster",
-            "only calling geojson"),
-  Dependency_GIFT = c(
-    "", "", "GIFT_env()", "", "", "",
-    "GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(),
-    GIFT_no_overlap()",
-    "", "")
-)
-
-r_query
+```{r, eval = FALSE, echo = FALSE}
+# GIFT_traits_raw => reference_traits traits_raw
+# GIFT_traits_meta => traits_meta
+# GIFT_traits => traits
+# GIFT_taxonomy => taxonomy
+# GIFT_taxgroup => taxonomy
+# GIFT_species_lookup => names_matched names_matched_unique
+# GIFT_species_distribution => species_distr overlap
+# GIFT_species => species
+# GIFT_richness => taxonomy, traits_cov, species_num
+# GIFT_regions => regions
+# GIFT_references => references
+# GIFT_overlap => overlap_misc
+# GIFT_no_overlap => overlap
+# GIFT_lists => lists
+# GIFT_env_meta_raster => env_raster, references_citavi
+# GIFT_env_meta_misc => env_misc, references_citavi
+# GIFT_env => geoentities_env_misc, geoentities_env_raster
+# GIFT_checklist_raw => taxonomy, checklists
+# GIFT_checklist_conditional => lists, taxonomy
+# GIFT_checklist => lists, taxonomy, overlap
 ```
 
-# 2. Queries
+```{r, echo = FALSE}
+query_table <-
+  data.frame(
+    Query = c("checklists", "env_misc", "env_raster", "geoentities_env_misc",
+              "geoentities_env_raster", "lists", "names_matched",
+              "names_matched_unique", "overlap", "overlap_misc",
+              "references_citavi", "references", "reference_traits", "regions",
+              "species", "species_distr", "species_num", "taxonomy", "traits",
+              "traits_cov", "traits_meta", "traits_raw", "versions"),
+    Arguments = c("listid, taxonid, namesmatched, filter", "", "", "envvar",
+                  "layername, sumstat", "", "genus, epithet", "genus, epithet",
+                  "", "layer", "", "", "", "", "startat", "nameid", "taxonid",
+                  "", "traitid, biasref, biasderiv, startat",
+                  "traitid, taxonid", "", "traitid, deriv, biasderiv, refid",
+                  ""
+    ),
+    R_function = c(
+      "GIFT_checklist_raw()",  "GIFT_env_meta_misc()",
+      "GIFT_env_meta_raster()", "GIFT_env()", "GIFT_env()",
+      "GIFT_lists(), GIFT_checklist_conditional(), GIFT_checklist()",
+      "GIFT_species_lookup()", "GIFT_species_lookup()",
+      "GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklist()",
+      "GIFT_overlap()", "GIFT_env_meta_raster(), GIFT_env_meta_misc()",
+      "GIFT_references()", "GIFT_traits_raw()", "GIFT_regions()",
+      "GIFT_species()", "GIFT_species_distribution()", "GIFT_richness()",
+      "GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(),
+      GIFT_checklist_raw(), GIFT_checklist(), GIFT_checklist_conditional()",
+      "GIFT_traits()", "GIFT_richness()", "GIFT_traits_meta()",
+      "GIFT_traits_raw()", "All GIFT functions"
+    )
+  )
 
-List of available queries and their arguments:
-
-```{r, eval = FALSE}
-api <- ""
-GIFT_version <- "latest"
-
-jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
-      ".php?query=checklists&listid=",
-      as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
-      "&namesmatched=", as.numeric(namesmatched),
-      ifelse(floristic_group == "all",
-             "", paste0("&filter=", floristic_group))))
-
-jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=geoentities_env_misc&envvar=",
-      paste(miscellaneous, collapse = ",")),
-      simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
-        "&sumstat=", sumstat_collapse[[i]]),
-        simplifyVector = TRUE)
-
-paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-       ".php?query=lists")
-
-jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=names_matched&genus=", genus, "&epithet=", epithet
-      ), simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=names_matched_unique&genus=", genus, "&epithet=", epithet
-      ), simplifyVector = TRUE)
-
-paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-       ".php?query=overlap")
-jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=overlap_misc&layer=", resource), simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=references_citavi"), simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=references"), simplifyVector = TRUE)
-
-jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=reference_traits"), simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-    api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=regions"), simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species&startat=", as.integer((i-1)*100000)), 
-      simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
-        ".php?query=species_distr&nameid=", as.integer(name_IDs[i])), 
-        simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
-
-paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-       ".php?query=taxonomy")
-
-jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=traits&traitid=",
-               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-               "&biasderiv=", as.numeric(bias_deriv), 
-               "&startat=", as.integer((k-1)*10000)),
-        simplifyVector = TRUE)
-
-jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=traits_cov&traitid=",
-      paste(trait_ID, collapse = ","), "&taxonid=", tax_group),
-      simplifyVector = TRUE)
-
-jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=traits_meta"), simplifyVector = TRUE)
-
-jsonlite::read_json(
-      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-             ".php?query=traits_raw&traitid=",
-             ref_IDs$trait_ID[i], "&deriv=", as.numeric(derived),
-             "&biasderiv=", as.numeric(bias_deriv),
-             "&refid=", as.numeric(ref_IDs$ref_ID[i])), simplifyVector = TRUE)
-
-jsonlite::read_json(
-  "https://gift.uni-goettingen.de/api/index.php?query=versions",
-  simplifyVector = TRUE)
-
-
-
-st_read(
-      paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller", 
-             ifelse(GIFT_version == "beta", "", GIFT_version), "/",
-             entity_ID[i], ".geojson"), quiet = TRUE)
-
+kable(query_table, "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
 <br>
+Some precisions:
 
-```{r}
+```{r, eval=FALSE}
 # Query for trait and chunks
-
 # Default value for end is 10000
 # https://gift.uni-goettingen.de/api/extended/index.php?query=traits&
 # traitid=1.1.1&biasref=1&biasderiv=1&startat=100000&limit=10
+
+# To retrieve the geojson
+paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller", 
+       ifelse(GIFT_version == "beta", "", GIFT_version), "/",
+       entity_ID[i], ".geojson")
 ```
 
-
-See https://www.gbif.org/developer/summary
-http://api.gbif.org/
-
-
-\newpage
-
-# 4. References
+What to cite: 
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
-
-\newpage
-
-## 4.2. R packages
-
