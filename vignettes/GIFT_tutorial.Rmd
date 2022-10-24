@@ -633,7 +633,6 @@ variable for all GIFT polygons.
 world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
                        rasterlayer = c("wc2.0_bio_30s_01"),
                        sumstat = c("mean"))
-world_temp$entity_ID <- as.numeric(world_temp$entity_ID)
 
 temp_shape <- gift_shape[which(gift_shape$entity_ID %in% 
                                  unique(angio_rich$entity_ID)), ]

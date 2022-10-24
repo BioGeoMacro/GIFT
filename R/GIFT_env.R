@@ -175,5 +175,7 @@ GIFT_env <- function(
     tmp_misc <- tmp_misc[tmp_misc$entity_ID %in% entity_ID, ]
   }
   
+  tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
+  
   return(tmp_misc)
 }
