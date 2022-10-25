@@ -84,8 +84,7 @@
 * 3.1. GIFT_env()
     - remove rows that are NA for all variables
     - control for non-existing misc and raster variables
-    - as.numeric() entity_ID and raster values
-    - delete duplicate of geo_entity
+    - as.numeric() raster values
     
 * 3.2. GIFT_env_meta_misc()    
     
@@ -102,21 +101,19 @@
     
 * 6.1. med()
 
-* 6.2. GIFT_references():
+* 6.2. GIFT_references()
 
 * GIFT_species_lookup()
     - get rid of orig ID to be faster? Make simple version at least. (Patrick)
 
 * GIFT_species_distribution()
     - use simpler version of GIFT_species() for matchednames (Patrick)
-    - header to do!
 
-* GIFT_region()
+* GIFT_regions()
 
 * GIFT_overlap()
 
 * GIFT_no_overlap()
-    - gives back entity IDs as character. Change to numeric and make sure it works downstream
 
 * versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)
@@ -125,10 +122,8 @@
 Make a clear error message in case of wrong API (have a clear error message for version)
 
 # 2. Vignette
-    - GIFT logo
-    
+
 # 4. Queries
-* Make a dependency graph
 * In queries.php (WinSCP) => put as a comment in which R function queries are used
 
 # 5. GIFT admin/database

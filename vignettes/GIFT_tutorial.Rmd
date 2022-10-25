@@ -64,8 +64,6 @@ The following R packages are needed to build this vignette:
 ```{r, echo=TRUE, eval=FALSE}
 library("GIFT")
 library("dplyr")
-library("knitr")
-library("kableExtra")
 library("ggplot2")
 library("sf")
 library("rnaturalearth")

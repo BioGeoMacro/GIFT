@@ -3,10 +3,8 @@ title: "GIFT tutorial, advanced users"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
-  html_vignette:
+  rmarkdown::html_vignette:
     toc: true
-    toc_depth: 2
-    number_sections: true
 vignette: >
  %\VignetteIndexEntry{GIFT tutorial, advanced users}
  %\VignetteEncoding{UTF-8} 
@@ -28,428 +26,252 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 suppressPackageStartupMessages({
   suppressWarnings({
     library("GIFT")
-    library("kableExtra") # html table with scroll bar
+    library("knitr")
+    library("kableExtra")
   })
 })
 
 options(tinytex.verbose = TRUE)
 ```
 
-# 1. Overview
+This vignette documents some functions and specificities that were not
+presented in the main vignette of the package. It is mainly targeted for
+advanced users of the GIFT database.
 
-See [Weigelt et al. (2020)]((https://doi.org/10.1111/jbi.13623).
+# 1. Versions and metadata for checklists
 
-\newpage
+In all the functions from the package, there is a `version` argument. This
+argument allows for retrieving different isntances of the GIFT database and
+therefore make all previous studies using the GIFT database reproducible. For
+example, the version used in the Weigelt et al. (2021) is `"1.0"`. To get more
+information about the content of the different versions, you can go
+[here](https://gift.uni-goettingen.de/about) and click on the tab Version Log.
 
-# 2. Main functions
+To access all the available versions of the database, you can run the
+following function:
 
-## 2.1. Trait extraction
-We here retrieve woodiness and life information for every species using
-`GIFT_traits()` function.
-The output of this function is a long format data.frame. This implies that,
-when providing several traits, the species rows are replicated.
-
-```{r traits, eval=FALSE}
-
-traits_meta <- GIFT_traits_meta()
-head(traits_meta)
-
-ex_tra <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
-                      bias_ref = TRUE, bias_deriv = TRUE)
-
-unique(ex_tra$trait_ID)
-head(ex_tra)
-# Frequency of trait values for both traits asked
-table(ex_tra$trait_ID, ex_tra$trait_value)
-# Number of available species
-
-length(unique(ex_tra$species))
-
-# do same for numerical trait
-
-# original traits
-ex_tra <- GIFT_traits_raw(trait_IDs = c("1.1.1", "1.2.1"), derived = TRUE,
-                          bias_ref = TRUE, bias_deriv = TRUE)
-
-ex_tra <- GIFT_traits_raw(trait_IDs = c("1.2.1"), derived = TRUE,
-                          bias_ref = TRUE, bias_deriv = TRUE)
-
-ex_tra <- GIFT_traits_raw(trait_IDs = c("1.6.1", "1.6.2"), derived = FALSE,
-                          bias_ref = FALSE, bias_deriv = FALSE)
+```{r}
+versions <- GIFT_version()
+kable(versions, "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
-## 2.3. Lists
-Retrieve checklists.
+The column `version` of this table is the one to use when you want to retrieve
+past versions of the GIFT database. By default, the argument used is
+`GIFT_version = "latest"` which leads to the current latest stable version of
+the database ("2.0" in October 2022).
 
-```{r lists, eval = FALSE}
-ex_list <- GIFT_lists()
+The function `GIFT_lists()` can be run to retrieve metadata about the GIFT
+checklists. In the next chunk, we call it with different values for the
+`GIFT_version` argument.
 
-head(ex_list)
-
+```{r}
+list_latest <- GIFT_lists(GIFT_version = "latest") # default value
+list_1 <- GIFT_lists(GIFT_version = "1.0")
 ```
 
-\newpage
+The number of checklists available was `r length(unique(list_1$list_ID))` in
+the version 1.0 and equals `r length(unique(list_latest$list_ID))` in the
+version 2.0.
 
-# 3. Metadata
-## 3.1. Environment
-The functions `GIFT_env_meta_raster()` and `GIFT_env_meta_misc()` allow the
-user to retrieve metadata about environmental variables.
+# 2. References
 
-```{r env_raster, eval=FALSE}
-env_meta <- GIFT_env_meta_raster()
-head(env_meta)
+When using GIFT database in a research article, it is a good practice to cite
+the references used, and list them in an Appendix. The following function
+retrieves the reference for each checklist, as well as some metadata.
 
-kableExtra::kbl(env_meta) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
-
+```{r}
+ref <- GIFT_references()
 ```
 
-```{r, eval = FALSE}
-test <- DB_get_checklists_conditional(
-  entity_class = c("Island", "Island/Mainland",  "Mainland","Island Group",
-                   "Island Part"),
-  native_indicated = TRUE,
-  natural_indicated = F, end_ref = F, end_list = F, 
-  type_ref = 1:11,
-  ref_included = c(1,2,3,4),
-  tax_group = 6,
-  suit_geo = FALSE, # include checklists not marked as having complete
-  # angiosperm list
-  exclude_restricted = T, include_names_unique = F,
-  return_query_only = TRUE, # saving time
-  complete_taxonomy = TRUE)
+References are documented in the column `ref_long`.
 
-test_withtrees <- DB_get_checklists_conditional(
-  entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
-                   "Island Part"), 
-  native_indicated = TRUE,
-  natural_indicated = F, end_ref = F, end_list = F, 
-  type_ref = 1:11,
-  ref_included = c(1,2,3,4, 7, 8),
-  tax_group = 6,
-  suit_geo = FALSE, 
-  exclude_restricted = T, include_names_unique = F,
-  return_query_only = TRUE, # saving time
-  complete_taxonomy = TRUE)
+# 3. Checklist data
 
-# differences in entity_ID
-library(dplyr)
-n_distinct(test_withtrees$entity_ID)
-n_distinct(test$entity_ID)
-n_distinct(test_withtrees[-which(test_withtrees$entity_ID %in% test$entity_ID),
-                          "entity_ID"])
+The main wrapper function to retrieve checklists and their species composition
+is `GIFT_checklist()` but you also have the possibility to retrieve individual
+checklists using `GIFT_checklist_raw()`. You would need to know the
+identification number `list_ID` of the checklists you want to retrieve.
+<br>
+To quickly see all the `list_ID` available in the database, you can run:
 
-
-View(test_withtrees[-which(test_withtrees$entity_ID %in% test$entity_ID), ])
-
-# ref_ID 10598 Wallis-Futuna => only trees (other subset) (included 8)
-# ref_ID 233 => 7 endemic only
-
-dim(test[which(test$ref_ID == 10598), ])
-dim(test[which(test$ref_ID == 233), ])
-
-# Classic way to go:
-# run a first time DB_get_checklist_conditional(), return query only
-# run DB_get_checklist_conditional() with ref_included 7 and 8, with lists
-# subset this second output with only the entity_ID present in the first run
-# this gives the endemic/tree lists for entity that have both taxonomic
-# and floristic suitable coverage
-# but does not give the regions that do not have good coverage of
-# taxonomic/floristic 
+```{r}
+gift_lists <- GIFT_lists()
+length(unique(gift_lists$list_ID))
 ```
 
+<br>
+When calling `GIFT_checklist_raw()`, you can set the argument `namesmatched`
+to `TRUE` in order to get extra columns informing about the taxonomic
+harmonization that was performed when uploading the list to GIFT database.
 
-### Temporary: GIFT_shape
+```{r}
+listID_1 <- GIFT_checklist_raw(list_ID = c(11926))
 
-```{r GIFT_checklists, eval=FALSE}
-checklists <- GIFT_checklist(taxon_name = "Pinaceae",
-                             complete_taxon = TRUE, 
-                             floristic_group = c("all", "native", "endemic",
-                                                 "naturalized")[2],
-                             complete_floristic = TRUE,
-                             geo_type = c("Island"), 
-                             suit_geo = TRUE,
-                             shp = NULL, coordinates = NULL,
-                             overlap = "centroid_inside",
-                             remove_overlap = FALSE,
-                             namesmatched = TRUE,  
-                             taxonomic_group = TRUE)
+listID_1_tax <- GIFT_checklist_raw(list_ID = c(11926), namesmatched = TRUE)
 
-par(mfrow = c(1, 1))
-geodata <- GIFT_shape(checklists[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID)
-
-data("med")
-
-checklists_centroid_inside <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All"),
-  suit_geo = TRUE,
-  shp = med, coordinates = NULL, overlap = "centroid_inside",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
-
-checklists_extent_intersect <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All"),
-  suit_geo = TRUE,
-  shp = med, coordinates = NULL, overlap = "extent_intersect",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
-
-checklists_shape_intersect <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All"), 
-  suit_geo = TRUE,
-  shp = med, coordinates = NULL, overlap = "shape_intersect",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
-
-checklists_shape_inside <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All"),
-  suit_geo = TRUE,
-  shp = med, coordinates = NULL, overlap = "shape_inside",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
-
-par(mfrow=c(2,2), mai=c(0,0,0.5,0))
-geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(checklists_centroid_inside[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "centroid inside")
-points(x=geodata$point_x, geodata$point_y)
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(checklists_shape_intersect[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape intersect")
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(checklists_extent_intersect[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
-plot(st_geometry(med), add=TRUE)
+ncol(listID_1); ncol(listID_1_tax)
+length(unique(listID_1$work_ID)); length(unique(listID_1_tax$orig_ID))
 ```
 
-### Temporary: GIFT_shape
+In the list we called, you can see that we "lost" some species after taxonomic
+harmonization as we went from `r `length(unique(listID_1_tax$orig_ID))` in the
+source to `r `length(unique(listID_1_tax$work_ID))` after the taxonomic
+harmonization. This means that several species were considered as synonyms or
+unknown plant species in the taxonomic backbone used for harmonization.
+<br>
+*Note: the service mainly used to taxonomically harmonize the species' names*
+*was The Plant List up to version 2.0 and World checklist of Vascular Plants*
+*afterwards.*
 
-Next chunk can be removed.
-```{r GIFT_checklists2, eval=FALSE}
-ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
-ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
-ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
-ex4 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+# 4. Spatial subset
 
+In the main vignette, we illustrated how to retrieve checklists that were
+falling into a provided shapefile, using the western Mediterranean basin
+provided with the GIFT R package.
 
-par(mfrow=c(2,2), mai=c(0,0,0.5,0))
-geodata <- GIFT_shape(ex4$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(ex$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "centroid inside")
-points(x=geodata$point_x, geodata$point_y)
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(ex3$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape intersect")
-plot(st_geometry(med), add=TRUE)
-geodata <- GIFT_shape(ex2$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "extent intersect")
-plot(st_geometry(med), add=TRUE)
+```{r}
+data(med)
 ```
 
-Now, with custom shape, coordinates, etc => this would come in the description
-of GIFT_checklists()
+We here provide more details on the different values the `overlap` argument
+can take, using the function `GIFT_spatial()`. The following figure illustrates
+how this argument works:
 
-```{r GIFT_spatial_custom, eval = FALSE}
-custom_point <- cbind(9.92, 51.54)
-ex5 <- GIFT_spatial(coordinates = custom_point,
-                    overlap = "extent_intersect")
-ex52 <- GIFT_spatial(coordinates = custom_point,
-                     overlap = "centroid_inside") # does not work but that's ok
-ex53 <- GIFT_spatial(coordinates = custom_point,
-                     overlap = "shape_intersect") # PROBLEM: empty data frame
-ex54 <- GIFT_spatial(coordinates = custom_point,
-                     overlap = "shape_inside") # does not work but that is ok
+<br>
+```{r, fig.cap = "Figure 1. GIFT spatial", out.width = "50%", echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_spatial.png")
+```
+<br>
 
-checklists_shape_inside <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("All"),
-  suit_geo = TRUE,
-  shp = NULL, coordinates = cbind(9.9, 51), overlap = "shape_inside",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
+We now illustrate this by retrieving checklists falling in the western
+Mediterranean basin using the four options available.
 
-#' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
-#' ex6 <- GIFT_spatial(coordinates = custom_extent,
-#' overlap = "extent_intersect")
-#' 
-#' custom_polygon <- cbind(c(-18, -16.9, -13, -13, -18, -18),
-#' c(29.3, 33, 29.3, 27.5, 27.5, 29.3))
-#' ex7 <- GIFT_spatial(coordinates = custom_polygon,
-#' overlap = "extent_intersect")
+```{r}
+med_centroid_inside  <- GIFT_spatial(shp = med, overlap = "centroid_inside")
+med_extent_intersect <- GIFT_spatial(shp = med, overlap = "extent_intersect")
+med_shape_intersect <- GIFT_spatial(shp = med, overlap = "shape_intersect")
+med_shape_inside <- GIFT_spatial(shp = med, overlap = "shape_inside")
 
+length(unique(med_extent_intersect$entity_ID))
+length(unique(med_shape_intersect$entity_ID))
+length(unique(med_centroid_inside$entity_ID))
+length(unique(med_shape_inside$entity_ID))
 ```
 
-Case for custom bbox.
-```{r, eval = FALSE}
-custom_extent <- cbind(c(-13, -18), c(27.5, 29.3)) # -18.5 if we want el Hierro
+We here see that we progressively lose lists as we apply more selective
+criterion on the spatial overlap. The most restrictive option being
+`overlap = "shape_inside"` and the less restrictive one being
+`overlap = "extent_intersect"`.
+<br>
+Using the functions `GIFT_shape()` and calling it for the entity_IDs retrieved
+in each instance, we can also map this difference.
 
-ex6 <- GIFT_spatial(coordinates = custom_extent,
-                    overlap = "extent_intersect")
-ex62 <- GIFT_spatial(coordinates = custom_extent,
-                     overlap = "shape_intersect")
-ex63 <- GIFT_spatial(coordinates = custom_extent,
-                     overlap = "centroid_inside")
-ex64 <- GIFT_spatial(coordinates = custom_extent,
-                     overlap = "shape_inside")
+```{r}
+par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
+geodata_shape_inside <- GIFT_shape(med_shape_inside$entity_ID)
+plot(sf::st_geometry(geodata_shape_inside),
+     col = geodata_shape_inside$entity_ID,
+     main = paste("shape inside\n",
+                  length(unique(med_shape_inside$entity_ID)),
+                  "polygons"))
+plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
-checklists_shape_inside <- GIFT_checklist(
-  taxon_name = "Pinaceae",
-  complete_taxon = TRUE, 
-  floristic_group = c("all", "native", "endemic", "naturalized")[2],
-  complete_floristic = TRUE,
-  geo_type = c("Island"), 
-  suit_geo = TRUE,
-  shp = NULL, coordinates = cbind(c(-13, -18.5), c(27.5, 29.5)),
-  overlap = "shape_inside",
-  remove_overlap = TRUE,
-  namesmatched = TRUE,
-  list_set_only = TRUE)
+geodata_centroid_inside <- GIFT_shape(med_centroid_inside$entity_ID)
+plot(sf::st_geometry(geodata_centroid_inside),
+     col = geodata_centroid_inside$entity_ID,
+     main = paste("centroid inside\n",
+                  length(unique(med_centroid_inside$entity_ID)),
+                  "polygons"))
+points(geodata_centroid_inside$point_x, geodata_centroid_inside$point_y)
+plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
-par(mfrow=c(1,1), mai=c(0,0,0.5,0))
-geodata <- GIFT_shape(checklists_shape_inside[[1]]$entity_ID)
-plot(st_geometry(geodata), col=geodata$entity_ID, main= "shape inside")
+geodata_shape_intersect <- GIFT_shape(med_shape_intersect$entity_ID)
+plot(sf::st_geometry(geodata_shape_intersect),
+     col = geodata_shape_intersect$entity_ID,
+     main = paste("shape intersect\n",
+                  length(unique(med_shape_intersect$entity_ID)),
+                  "polygons"))
+plot(sf::st_geometry(med), lwd = 2, add = TRUE)
+
+geodata_extent_intersect <- GIFT_shape(med_extent_intersect$entity_ID)
+plot(sf::st_geometry(geodata_extent_intersect),
+     col = geodata_extent_intersect$entity_ID,
+     main = paste("extent intersect\n",
+                  length(unique(med_extent_intersect$entity_ID)),
+                  "polygons"))
+plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 ```
 
+<br>
 
-```{r, eval = FALSE}
-# checklists <- GIFT_checklist(taxon_name = "Spermatophyta",
-#   complete_taxon = TRUE, 
-#   floristic_group = c("all", "native", "endemic", "naturalized")[2],
-#   complete_floristic = TRUE,
-#   geo_type = c("Island"),
-#   suit_geo = TRUE,
-#   shp = NULL, coordinates = c(0,10,0,10), overlap = "centroid_inside",
-#   # remove_overlap = TRUE,
-#   namesmatched = TRUE)
+# 6. Remove overlapping regions
 
-# Check spatial function
+GIFT comprises many polygons and for some regions, there are several polygons
+overlapping. How to remove overlapping polygons and the associated parameters
+are two things detailed in the main vignette. We here provide further details:
 
-head(checklists[[1]])
-head(as.data.frame(checklists[[2]]))
+```{r}
+length(med_shape_inside$entity_ID)
+length(GIFT_no_overlap(med_shape_inside$entity_ID, area_th_island = 0,
+                       area_th_mainland = 100, overlap_th = 0.1))
 
+# The following polygons are overlapping:
+GIFT_no_overlap(med_shape_inside$entity_ID, area_th_island = 0,
+                area_th_mainland = 100, overlap_th = 0.1)
+
+# Example of the function: Spain mainland and Andalusia
+GIFT_no_overlap(c(10071, 12078), area_th_island = 0, area_th_mainland = 100,
+                overlap_th = 0.1)
+GIFT_no_overlap(c(10071, 12078), area_th_island = 0, area_th_mainland = 100000,
+                overlap_th = 0.1)
 ```
 
-```{r env, eval=FALSE}
-env_meta2 <- GIFT_env_meta_misc()
-head(env_meta2)
+# 7. Species
 
-kableExtra::kbl(env_meta2) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
+```{r}
+species <- GIFT_species()
+str(species)
 
+species$Family <- GIFT_taxgroup(
+  as.numeric(species$work_ID), taxon_lvl = "family", return_ID = FALSE, 
+  species = species)
 
-env_meta3 <- GIFT_env_meta_raster()
-head(env_meta3)
-
-env <- GIFT_env()
-
-env <- GIFT_env(miscellaneous = c("area", "dist"),
-                rasterlayer = c("wc2.0_bio_30s_01","wc2.0_bio_30s_02"),
-                sumstat = c("mean","max"))
+group <- GIFT_taxgroup(as.numeric(species$work_ID[1:5]), taxon_lvl = "order",
+                       return_ID = FALSE)
+group <- GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
+                       taxon_lvl = "higher_lvl", return_ID = FALSE,
+                       species = species)
 ```
 
+# 8. Looking-up a species
 
-\newpage
+```{r}
+Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
+                             namesmatched = TRUE)
 
-## 3.2. Species
-The functions `GIFT_taxonomy()` and `GIFT_species()` return a data.frame with
-all the available taxa.
+str(Fagus)
+```
 
-```{r taxonomy, eval=FALSE}
+# 9. Overlap_GloNAF tables (and others)
+
+So far, only two resources available.
+
+```{r}
+glonaf <- GIFT_overlap(resource = "glonaf")
+gmba <- GIFT_overlap(resource = "gmba")
+str(glonaf)
+```
+
+# 10. Taxonomy
+
+```{r}
 taxo <- GIFT_taxonomy()
 head(taxo)
-
-kableExtra::kbl(taxo) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
+str(taxo)
 ```
 
-```{r species, eval=FALSE}
-species <- GIFT_species()
-head(species)
-
-kableExtra::kbl(species) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
-```
-
-\newpage
-
-## 3.3. Traits
-The function `GIFT_traits_meta()` allows the user to retrieve metadata about
-available traits.
-
-```{r traits_meta, eval = FALSE}
-tmp <- GIFT_traits_meta()
-head(tmp)
-
-kableExtra::kbl(tmp) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
-```
-
-\newpage
-
-## 3.4. References
-The function `GIFT_references()` allows the user to retrieve metadata about
-the references that were used to build GIFT database.
-
-```{r references, eval = FALSE}
-ref <- GIFT_references()
-head(ref)
-
-kableExtra::kbl(ref) %>%
-  kableExtra::scroll_box(width = "1000px", height = "600px")
-```
-
-\newpage
-
-# 4. Regions
-
-`GIFT_regions()`
-
-```{r, eval=FALSE}
-regions <- GIFT_regions()
-# germany_checklists <- regions[grep("Germany", regions$geo_entity), ]
-```
-
-<br><br>
-
-# 5. GIFT versions
-
-`GIFT_version()`
-
-```{r, eval = FALSE}
-gift_version <- GIFT_version()
-```
-
-
-# X. References
+# References
 
 [Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 

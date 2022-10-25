@@ -3,10 +3,8 @@ title: "Queries in GIFT API"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
-  html_vignette:
+  rmarkdown::html_vignette:
     toc: true
-    toc_depth: 2
-    number_sections: true
 vignette: >
  %\VignetteIndexEntry{Queries in GIFT API}
  %\VignetteEncoding{UTF-8} 
