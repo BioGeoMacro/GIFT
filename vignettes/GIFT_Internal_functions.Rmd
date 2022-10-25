@@ -74,17 +74,24 @@ The number of checklists available was `r length(unique(list_1$list_ID))` in
 the version 1.0 and equals `r length(unique(list_latest$list_ID))` in the
 version 2.0.
 
+<br>
+
 # 2. References
 
 When using GIFT database in a research article, it is a good practice to cite
 the references used, and list them in an Appendix. The following function
 retrieves the reference for each checklist, as well as some metadata.
+References are documented in the column `ref_long`.
 
 ```{r}
 ref <- GIFT_references()
+
+# 3 first rows of that table
+kable(ref[1:3, c("ref_ID", "ref_long", "geo_entity_ref")], "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
-References are documented in the column `ref_long`.
+<br>
 
 # 3. Checklist data
 
@@ -105,24 +112,32 @@ When calling `GIFT_checklist_raw()`, you can set the argument `namesmatched`
 to `TRUE` in order to get extra columns informing about the taxonomic
 harmonization that was performed when uploading the list to GIFT database.
 
-```{r}
+```{r, eval = TRUE, include = FALSE}
 listID_1 <- GIFT_checklist_raw(list_ID = c(11926))
-
 listID_1_tax <- GIFT_checklist_raw(list_ID = c(11926), namesmatched = TRUE)
+```
 
+```{r, echo = TRUE, eval = FALSE}
+listID_1 <- GIFT_checklist_raw(list_ID = c(11926))
+listID_1_tax <- GIFT_checklist_raw(list_ID = c(11926), namesmatched = TRUE)
+```
+
+```{r}
 ncol(listID_1); ncol(listID_1_tax)
 length(unique(listID_1$work_ID)); length(unique(listID_1_tax$orig_ID))
 ```
 
 In the list we called, you can see that we "lost" some species after taxonomic
-harmonization as we went from `r `length(unique(listID_1_tax$orig_ID))` in the
-source to `r `length(unique(listID_1_tax$work_ID))` after the taxonomic
+harmonization as we went from `r length(unique(listID_1_tax$orig_ID))` in the
+source to `r length(unique(listID_1_tax$work_ID))` after the taxonomic
 harmonization. This means that several species were considered as synonyms or
 unknown plant species in the taxonomic backbone used for harmonization.
-<br>
+<br><br>
 *Note: the service mainly used to taxonomically harmonize the species' names*
 *was The Plant List up to version 2.0 and World checklist of Vascular Plants*
 *afterwards.*
+
+<br>
 
 # 4. Spatial subset
 
@@ -165,11 +180,26 @@ criterion on the spatial overlap. The most restrictive option being
 `overlap = "extent_intersect"`.
 <br>
 Using the functions `GIFT_shape()` and calling it for the entity_IDs retrieved
-in each instance, we can also map this difference.
+in each instance, we can download the shapefiles for each region.
 
-```{r}
-par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
+```{r, eval= TRUE, include = FALSE}
 geodata_shape_inside <- GIFT_shape(med_shape_inside$entity_ID)
+geodata_centroid_inside <- GIFT_shape(med_centroid_inside$entity_ID)
+geodata_shape_intersect <- GIFT_shape(med_shape_intersect$entity_ID)
+geodata_extent_intersect <- GIFT_shape(med_extent_intersect$entity_ID)
+```
+
+```{r, echo = TRUE, eval = FALSE}
+geodata_shape_inside <- GIFT_shape(med_shape_inside$entity_ID)
+geodata_centroid_inside <- GIFT_shape(med_centroid_inside$entity_ID)
+geodata_shape_intersect <- GIFT_shape(med_shape_intersect$entity_ID)
+geodata_extent_intersect <- GIFT_shape(med_extent_intersect$entity_ID)
+```
+
+And then make a map.
+
+```{r, message=FALSE, fig.width = 8, fig.height = 4}
+par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
 plot(sf::st_geometry(geodata_shape_inside),
      col = geodata_shape_inside$entity_ID,
      main = paste("shape inside\n",
@@ -177,7 +207,6 @@ plot(sf::st_geometry(geodata_shape_inside),
                   "polygons"))
 plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
-geodata_centroid_inside <- GIFT_shape(med_centroid_inside$entity_ID)
 plot(sf::st_geometry(geodata_centroid_inside),
      col = geodata_centroid_inside$entity_ID,
      main = paste("centroid inside\n",
@@ -186,7 +215,6 @@ plot(sf::st_geometry(geodata_centroid_inside),
 points(geodata_centroid_inside$point_x, geodata_centroid_inside$point_y)
 plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
-geodata_shape_intersect <- GIFT_shape(med_shape_intersect$entity_ID)
 plot(sf::st_geometry(geodata_shape_intersect),
      col = geodata_shape_intersect$entity_ID,
      main = paste("shape intersect\n",
@@ -194,7 +222,6 @@ plot(sf::st_geometry(geodata_shape_intersect),
                   "polygons"))
 plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
-geodata_extent_intersect <- GIFT_shape(med_extent_intersect$entity_ID)
 plot(sf::st_geometry(geodata_extent_intersect),
      col = geodata_extent_intersect$entity_ID,
      main = paste("extent intersect\n",
@@ -205,13 +232,13 @@ plot(sf::st_geometry(med), lwd = 2, add = TRUE)
 
 <br>
 
-# 6. Remove overlapping regions
+# 5. Remove overlapping regions
 
 GIFT comprises many polygons and for some regions, there are several polygons
 overlapping. How to remove overlapping polygons and the associated parameters
 are two things detailed in the main vignette. We here provide further details:
 
-```{r}
+```{r, message=FALSE, fig.width = 8, fig.height = 4}}
 length(med_shape_inside$entity_ID)
 length(GIFT_no_overlap(med_shape_inside$entity_ID, area_th_island = 0,
                        area_th_mainland = 100, overlap_th = 0.1))
@@ -220,56 +247,104 @@ length(GIFT_no_overlap(med_shape_inside$entity_ID, area_th_island = 0,
 GIFT_no_overlap(med_shape_inside$entity_ID, area_th_island = 0,
                 area_th_mainland = 100, overlap_th = 0.1)
 
-# Example of the function: Spain mainland and Andalusia
+# Example of two overlapping polygons: Spain mainland and Andalusia
+overlap_shape <- GIFT_shape(entity_ID = c(10071, 12078))
+par(mfrow = c(1, 1))
+plot(sf::st_geometry(overlap_shape),
+     col = c(rgb(red = 1, green = 0, blue = 0, alpha = 0.5),
+             rgb(red = 0, green = 0, blue = 1, alpha = 0.3)),
+     lwd = c(2, 1),
+     main = "Overlapping polygons")
+
 GIFT_no_overlap(c(10071, 12078), area_th_island = 0, area_th_mainland = 100,
                 overlap_th = 0.1)
 GIFT_no_overlap(c(10071, 12078), area_th_island = 0, area_th_mainland = 100000,
                 overlap_th = 0.1)
 ```
 
-# 7. Species
+<br>
+
+# 6. Species
+
+All the plant species present in GIFT database can be retrieved using
+`GIFT_species()`. To add additional information, like their order or family,
+we can call `GIFT_taxgroup()`.
 
 ```{r}
 species <- GIFT_species()
-str(species)
-
+# Add Family
 species$Family <- GIFT_taxgroup(
   as.numeric(species$work_ID), taxon_lvl = "family", return_ID = FALSE, 
   species = species)
 
-group <- GIFT_taxgroup(as.numeric(species$work_ID[1:5]), taxon_lvl = "order",
-                       return_ID = FALSE)
-group <- GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
-                       taxon_lvl = "higher_lvl", return_ID = FALSE,
-                       species = species)
+kable(species[1:5, ], "html") %>%
+  kable_styling(full_width = FALSE)
+
+GIFT_taxgroup(as.numeric(species$work_ID[1:5]), taxon_lvl = "order",
+              return_ID = FALSE)
+GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
+              taxon_lvl = "higher_lvl", return_ID = FALSE,
+              species = species)
 ```
 
-# 8. Looking-up a species
+<br>
+
+As said above, plant species names can vary from the original sources they come
+from to the final `work_species` name they get, due to the taxonomic
+harmonization procedure. Looking-up for a species and the different steps of
+the taxonomic harmonization is possible with the function
+`GIFT_species_lookup()`.
 
 ```{r}
 Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
                              namesmatched = TRUE)
 
-str(Fagus)
+kable(Fagus[1:5, ], "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
-# 9. Overlap_GloNAF tables (and others)
+<br>
 
-So far, only two resources available.
+# 7. Taxonomy
 
-```{r}
-glonaf <- GIFT_overlap(resource = "glonaf")
-gmba <- GIFT_overlap(resource = "gmba")
-str(glonaf)
-```
-
-# 10. Taxonomy
+The taxonomy used in GIFT database can be downloaded using `GIFT_taxonomy()`.
 
 ```{r}
 taxo <- GIFT_taxonomy()
-head(taxo)
-str(taxo)
+
+kable(taxo[1:20, ], "html") %>%
+  kable_styling(full_width = FALSE)
 ```
+
+<br>
+
+# 8. Overlap_GloNAF tables (and others)
+
+As other global databases of plant diversity exist and may rely on different
+polygons, we provide a function `GIFT_overlap()` than can look at the spatial
+overlap between GIFT polygons and polygons coming from other databases.
+<br>
+So far, only two resources are available: `glonaf` and `gmba`.
+`glonaf` stands for [Global Naturalized Alien Flora](https://glonaf.org/) and
+`gmba` for
+[Global Mountain Biodiversity Assessment](https://www.gmba.unibe.ch/).
+
+`GIFT_overlap()` retunrs the spatial overlap in percentage for each pairwise
+combination of polygons between GIFT and the other resource.
+
+```{r}
+glonaf <- GIFT_overlap(resource = "glonaf")
+
+kable(glonaf[1:5, ], "html") %>%
+  kable_styling(full_width = FALSE)
+
+gmba <- GIFT_overlap(resource = "gmba")
+
+kable(gmba[1:5, ], "html") %>%
+  kable_styling(full_width = FALSE)
+```
+
+<br>
 
 # References
 
