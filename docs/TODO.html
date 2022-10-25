@@ -126,8 +126,7 @@
 <p>3.1. GIFT_env()</p>
 <ul><li>remove rows that are NA for all variables</li>
 <li>control for non-existing misc and raster variables</li>
-<li>as.numeric() entity_ID and raster values</li>
-<li>delete duplicate of geo_entity</li>
+<li>as.numeric() raster values</li>
 </ul></li>
 <li><p>3.2. GIFT_env_meta_misc()</p></li>
 <li><p>3.3. GIFT_env_meta_raster()</p></li>
@@ -142,7 +141,7 @@
 <li>Put old polygons of old versions into respective folders</li>
 </ul></li>
 <li><p>6.1. med()</p></li>
-<li><p>6.2. GIFT_references():</p></li>
+<li><p>6.2. GIFT_references()</p></li>
 <li>
 <p>GIFT_species_lookup()</p>
 <ul><li>get rid of orig ID to be faster? Make simple version at least. (Patrick)</li>
@@ -150,14 +149,10 @@
 <li>
 <p>GIFT_species_distribution()</p>
 <ul><li>use simpler version of GIFT_species() for matchednames (Patrick)</li>
-<li>header to do!</li>
 </ul></li>
-<li><p>GIFT_region()</p></li>
+<li><p>GIFT_regions()</p></li>
 <li><p>GIFT_overlap()</p></li>
-<li>
-<p>GIFT_no_overlap()</p>
-<ul><li>gives back entity IDs as character. Change to numeric and make sure it works downstream</li>
-</ul></li>
+<li><p>GIFT_no_overlap()</p></li>
 <li>
 <p>versions of GIFT:</p>
 <ul><li>restore old polygons for versions &lt; 2.2 (Patrick)</li>
@@ -170,12 +165,10 @@
 </div>
 <div class="section level1">
 <h1 id="id_2-vignette">2. Vignette<a class="anchor" aria-label="anchor" href="#id_2-vignette"></a></h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> GIFT logo</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="id_4-queries">4. Queries<a class="anchor" aria-label="anchor" href="#id_4-queries"></a></h1>
-<ul><li>Make a dependency graph</li>
-<li>In queries.php (WinSCP) =&gt; put as a comment in which R function queries are used</li>
+<ul><li>In queries.php (WinSCP) =&gt; put as a comment in which R function queries are used</li>
 </ul></div>
 <div class="section level1">
 <h1 id="id_5-gift-admindatabase">5. GIFT admin/database<a class="anchor" aria-label="anchor" href="#id_5-gift-admindatabase"></a></h1>

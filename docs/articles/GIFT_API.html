@@ -67,14 +67,14 @@
 
 
 
-
+<script src="GIFT_API_files/kePrint-0.0.1/kePrint.js"></script><link href="GIFT_API_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Queries in GIFT API</h1>
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2022-10-22</h4>
+            <h4 data-toc-skip class="date">2022-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_API.Rmd" class="external-link"><code>vignettes/GIFT_API.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_API.Rmd</code></div>
@@ -86,191 +86,282 @@
 body {
 text-align: justify}
 </style>
-<div class="section level2">
-<h2 id="overview">1. Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
-<p>See [Weigelt et al. (2020)]((<a href="https://doi.org/10.1111/jbi.13623" class="external-link uri">https://doi.org/10.1111/jbi.13623</a>).</p>
-<p>No R chunk. Just a table with two columns: queries names arguments
-needed/possible for each query</p>
+<p>List of the 23 available queries, their arguments and in which GIFT R
+function they are called:</p>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+Query
+</th>
+<th style="text-align:left;">
+Arguments
+</th>
+<th style="text-align:left;">
+R_function
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+checklists
+</td>
+<td style="text-align:left;">
+listid, taxonid, namesmatched, filter
+</td>
+<td style="text-align:left;">
+GIFT_checklist_raw()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+env_misc
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_env_meta_misc()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+env_raster
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_env_meta_raster()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+geoentities_env_misc
+</td>
+<td style="text-align:left;">
+envvar
+</td>
+<td style="text-align:left;">
+GIFT_env()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+geoentities_env_raster
+</td>
+<td style="text-align:left;">
+layername, sumstat
+</td>
+<td style="text-align:left;">
+GIFT_env()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lists
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_lists(), GIFT_checklist_conditional(), GIFT_checklist()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+names_matched
+</td>
+<td style="text-align:left;">
+genus, epithet
+</td>
+<td style="text-align:left;">
+GIFT_species_lookup()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+names_matched_unique
+</td>
+<td style="text-align:left;">
+genus, epithet
+</td>
+<td style="text-align:left;">
+GIFT_species_lookup()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+overlap
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklist()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+overlap_misc
+</td>
+<td style="text-align:left;">
+layer
+</td>
+<td style="text-align:left;">
+GIFT_overlap()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+references_citavi
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_env_meta_raster(), GIFT_env_meta_misc()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+references
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_references()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+reference_traits
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_traits_raw()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regions
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_regions()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+species
+</td>
+<td style="text-align:left;">
+startat
+</td>
+<td style="text-align:left;">
+GIFT_species()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+species_distr
+</td>
+<td style="text-align:left;">
+nameid
+</td>
+<td style="text-align:left;">
+GIFT_species_distribution()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+species_num
+</td>
+<td style="text-align:left;">
+taxonid
+</td>
+<td style="text-align:left;">
+GIFT_richness()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+taxonomy
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(), GIFT_checklist_raw(),
+GIFT_checklist(), GIFT_checklist_conditional()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+traits
+</td>
+<td style="text-align:left;">
+traitid, biasref, biasderiv, startat
+</td>
+<td style="text-align:left;">
+GIFT_traits()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+traits_cov
+</td>
+<td style="text-align:left;">
+traitid, taxonid
+</td>
+<td style="text-align:left;">
+GIFT_richness()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+traits_meta
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+GIFT_traits_meta()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+traits_raw
+</td>
+<td style="text-align:left;">
+traitid, deriv, biasderiv, refid
+</td>
+<td style="text-align:left;">
+GIFT_traits_raw()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versions
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+All GIFT functions
+</td>
+</tr>
+</tbody>
+</table>
+<p><br> Some precisions:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Dependency between R functions and queries</span></span>
-<span></span>
-<span><span class="va">r_query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  R_function <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GIFT_checklist_raw()"</span>, <span class="st">"GIFT_checklist_conditional()"</span>,</span>
-<span>                 <span class="st">"GIFT_spatial()"</span>, <span class="st">"GIFT_taxonomy()"</span>, <span class="st">"GIFT_taxgroup()"</span>,</span>
-<span>                 <span class="st">"GIFT_no_overlap()"</span>, <span class="st">"GIFT_checklist()"</span>, <span class="st">"GIFT_env()"</span>,</span>
-<span>                 <span class="st">"GIFT_shape()"</span><span class="op">)</span>,</span>
-<span>  Query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lists, taxonomy, checklists"</span>, <span class="st">"lists, taxonomy"</span>, <span class="st">""</span>, <span class="st">"taxonomy"</span>,</span>
-<span>            <span class="st">"species, taxonomy"</span>, <span class="st">"overlap"</span>, <span class="st">"lists, taxonomy"</span>,</span>
-<span>            <span class="st">"geoentities_env_misc, geoentities_env_raster"</span>,</span>
-<span>            <span class="st">"only calling geojson"</span><span class="op">)</span>,</span>
-<span>  Dependency_GIFT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">""</span>, <span class="st">""</span>, <span class="st">"GIFT_env()"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>,</span>
-<span>    <span class="st">"GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(),</span></span>
-<span><span class="st">    GIFT_no_overlap()"</span>,</span>
-<span>    <span class="st">""</span>, <span class="st">""</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">r_query</span></span></code></pre></div>
-<pre><code><span><span class="co">##                     R_function                                        Query</span></span>
-<span><span class="co">## 1         GIFT_checklist_raw()                  lists, taxonomy, checklists</span></span>
-<span><span class="co">## 2 GIFT_checklist_conditional()                              lists, taxonomy</span></span>
-<span><span class="co">## 3               GIFT_spatial()                                             </span></span>
-<span><span class="co">## 4              GIFT_taxonomy()                                     taxonomy</span></span>
-<span><span class="co">## 5              GIFT_taxgroup()                            species, taxonomy</span></span>
-<span><span class="co">## 6            GIFT_no_overlap()                                      overlap</span></span>
-<span><span class="co">## 7             GIFT_checklist()                              lists, taxonomy</span></span>
-<span><span class="co">## 8                   GIFT_env() geoentities_env_misc, geoentities_env_raster</span></span>
-<span><span class="co">## 9                 GIFT_shape()                         only calling geojson</span></span>
-<span><span class="co">##                                                                              Dependency_GIFT</span></span>
-<span><span class="co">## 1                                                                                           </span></span>
-<span><span class="co">## 2                                                                                           </span></span>
-<span><span class="co">## 3                                                                                 GIFT_env()</span></span>
-<span><span class="co">## 4                                                                                           </span></span>
-<span><span class="co">## 5                                                                                           </span></span>
-<span><span class="co">## 6                                                                                           </span></span>
-<span><span class="co">## 7 GIFT_checklist_conditional(), GIFT_spatial(), GIFT_checklist_raw(),\n    GIFT_no_overlap()</span></span>
-<span><span class="co">## 8                                                                                           </span></span>
-<span><span class="co">## 9</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="queries">2. Queries<a class="anchor" aria-label="anchor" href="#queries"></a>
-</h2>
-<p>List of available queries and their arguments:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">api</span> <span class="op">&lt;-</span> <span class="st">""</span></span>
-<span><span class="va">GIFT_version</span> <span class="op">&lt;-</span> <span class="st">"latest"</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>, </span>
-<span>      <span class="st">".php?query=checklists&amp;listid="</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">list_ID</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, <span class="st">"&amp;taxonid="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">taxonid</span><span class="op">)</span>,</span>
-<span>      <span class="st">"&amp;namesmatched="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">namesmatched</span><span class="op">)</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">floristic_group</span> <span class="op">==</span> <span class="st">"all"</span>,</span>
-<span>             <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"&amp;filter="</span>, <span class="va">floristic_group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>      <span class="st">".php?query=geoentities_env_misc&amp;envvar="</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">miscellaneous</span>, collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>        <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>        <span class="st">".php?query=geoentities_env_raster&amp;layername="</span>, <span class="va">rasterlayer</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,</span>
-<span>        <span class="st">"&amp;sumstat="</span>, <span class="va">sumstat_collapse</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>        simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>       <span class="st">".php?query=lists"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>        <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>        <span class="st">".php?query=names_matched&amp;genus="</span>, <span class="va">genus</span>, <span class="st">"&amp;epithet="</span>, <span class="va">epithet</span></span>
-<span>      <span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>        <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>        <span class="st">".php?query=names_matched_unique&amp;genus="</span>, <span class="va">genus</span>, <span class="st">"&amp;epithet="</span>, <span class="va">epithet</span></span>
-<span>      <span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>       <span class="st">".php?query=overlap"</span><span class="op">)</span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>    <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>    <span class="st">".php?query=overlap_misc&amp;layer="</span>, <span class="va">resource</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>    <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>    <span class="st">".php?query=references_citavi"</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>    <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>    <span class="st">".php?query=references"</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>           <span class="st">".php?query=reference_traits"</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>    <span class="va">api</span>,<span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>    <span class="st">".php?query=regions"</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>      <span class="st">".php?query=species&amp;startat="</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>      simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>        <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>, </span>
-<span>        <span class="st">".php?query=species_distr&amp;nameid="</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">name_IDs</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>        simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>      <span class="st">".php?query=species_num&amp;taxonid="</span>, <span class="va">tax_group</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>       <span class="st">".php?query=taxonomy"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span></span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>               <span class="st">".php?query=traits&amp;traitid="</span>,</span>
-<span>               <span class="va">trait_IDs</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">"&amp;biasref="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">bias_ref</span><span class="op">)</span>,</span>
-<span>               <span class="st">"&amp;biasderiv="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">bias_deriv</span><span class="op">)</span>, </span>
-<span>               <span class="st">"&amp;startat="</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="op">(</span><span class="va">k</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>        simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>      <span class="st">".php?query=traits_cov&amp;traitid="</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">trait_ID</span>, collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span>, <span class="st">"&amp;taxonid="</span>, <span class="va">tax_group</span><span class="op">)</span>,</span>
-<span>      simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>           <span class="st">".php?query=traits_meta"</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">api</span>, <span class="st">"index"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>,</span>
-<span>             <span class="st">".php?query=traits_raw&amp;traitid="</span>,</span>
-<span>             <span class="va">ref_IDs</span><span class="op">$</span><span class="va">trait_ID</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">"&amp;deriv="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">derived</span><span class="op">)</span>,</span>
-<span>             <span class="st">"&amp;biasderiv="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">bias_deriv</span><span class="op">)</span>,</span>
-<span>             <span class="st">"&amp;refid="</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">ref_IDs</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html" class="external-link">read_json</a></span><span class="op">(</span></span>
-<span>  <span class="st">"https://gift.uni-goettingen.de/api/index.php?query=versions"</span>,</span>
-<span>  simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span></span>
-<span><span class="fu">st_read</span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"http://gift.uni-goettingen.de/geojson/geojson_smaller"</span>, </span>
-<span>             <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>, <span class="st">"/"</span>,</span>
-<span>             <span class="va">entity_ID</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">".geojson"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><br></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Query for trait and chunks</span></span>
-<span></span>
 <span><span class="co"># Default value for end is 10000</span></span>
 <span><span class="co"># https://gift.uni-goettingen.de/api/extended/index.php?query=traits&amp;</span></span>
-<span><span class="co"># traitid=1.1.1&amp;biasref=1&amp;biasderiv=1&amp;startat=100000&amp;limit=10</span></span></code></pre></div>
-<p>See <a href="https://www.gbif.org/developer/summary" class="external-link uri">https://www.gbif.org/developer/summary</a> <a href="http://api.gbif.org/" class="external-link uri">http://api.gbif.org/</a></p>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="section level2">
-<h2 id="references">4. References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h2>
+<span><span class="co"># traitid=1.1.1&amp;biasref=1&amp;biasderiv=1&amp;startat=100000&amp;limit=10</span></span>
+<span></span>
+<span><span class="co"># To retrieve the geojson</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"http://gift.uni-goettingen.de/geojson/geojson_smaller"</span>, </span>
+<span>       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">GIFT_version</span> <span class="op">==</span> <span class="st">"beta"</span>, <span class="st">""</span>, <span class="va">GIFT_version</span><span class="op">)</span>, <span class="st">"/"</span>,</span>
+<span>       <span class="va">entity_ID</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">".geojson"</span><span class="op">)</span></span></code></pre></div>
+<p>What to cite:</p>
 <p><a href="https://doi.org/10.1111/jbi.13623" class="external-link">Weigelt, P., König, C.,
 &amp; Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits
 for macroecology and biogeography. Journal of Biogeography, 47(1),
 16–43.</a></p>
-<div style="page-break-after: always;"></div>
-<div class="section level3">
-<h3 id="r-packages">4.2. R packages<a class="anchor" aria-label="anchor" href="#r-packages"></a>
-</h3>
-</div>
-</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
