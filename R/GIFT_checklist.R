@@ -398,10 +398,14 @@ GIFT_checklist <- function(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=lists"), simplifyVector = TRUE)
   
+  message("Metadata for lists retrieved.\n")
+  
   # Taxonomy query
   taxonomy <- jsonlite::read_json(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=taxonomy"), simplifyVector = TRUE)
+  
+  message("GIFT taxonomy downloaded.\n")
   
   # If the user asks for floristic_group = native & geo_type = Island
   # In GIFT_checklist_conditional()
@@ -495,6 +499,8 @@ GIFT_checklist <- function(
       
       lists <- lists[which(!lists$entity_ID %in% to_remove),]
     }
+    
+    message("Overlapping polygons removed.\n")
   }
   
   ## 2.4. Downloading ----
@@ -508,6 +514,8 @@ GIFT_checklist <- function(
   
   checklists <- NA
   if (!list_set_only){
+    message("Preparing the download of checklists.\n")
+    
     checklists <- 
       GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
                                taxon_name = taxon_name,
