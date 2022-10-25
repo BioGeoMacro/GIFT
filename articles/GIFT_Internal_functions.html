@@ -67,13 +67,13 @@
 
 
 
-
+<script src="GIFT_Internal_functions_files/kePrint-0.0.1/kePrint.js"></script><link href="GIFT_Internal_functions_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>GIFT tutorial, advanced users</h1>
                         <h4 data-toc-skip class="author">Pierre Denelle &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2022-10-24</h4>
+            <h4 data-toc-skip class="date">2022-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_Internal_functions.Rmd" class="external-link"><code>vignettes/GIFT_Internal_functions.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_Internal_functions.Rmd</code></div>
@@ -85,389 +85,318 @@
 body {
 text-align: justify}
 </style>
+<p>This vignette documents some functions and specificities that were not presented in the main vignette of the package. It is mainly targeted for advanced users of the GIFT database.</p>
 <div class="section level2">
-<h2 id="overview">1. Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="versions-and-metadata-for-checklists">1. Versions and metadata for checklists<a class="anchor" aria-label="anchor" href="#versions-and-metadata-for-checklists"></a>
 </h2>
-<p>See [Weigelt et al. (2020)]((<a href="https://doi.org/10.1111/jbi.13623" class="external-link uri">https://doi.org/10.1111/jbi.13623</a>).</p>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="section level2">
-<h2 id="main-functions">2. Main functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
-</h2>
-<div class="section level3">
-<h3 id="trait-extraction">2.1. Trait extraction<a class="anchor" aria-label="anchor" href="#trait-extraction"></a>
-</h3>
-<p>We here retrieve woodiness and life information for every species using <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> function. The output of this function is a long format data.frame. This implies that, when providing several traits, the species rows are replicated.</p>
+<p>In all the functions from the package, there is a <code>version</code> argument. This argument allows for retrieving different isntances of the GIFT database and therefore make all previous studies using the GIFT database reproducible. For example, the version used in the Weigelt et al. (2021) is <code>"1.0"</code>. To get more information about the content of the different versions, you can go <a href="https://gift.uni-goettingen.de/about" class="external-link">here</a> and click on the tab Version Log.</p>
+<p>To access all the available versions of the database, you can run the following function:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">traits_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">traits_meta</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ex_tra</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.1.1"</span>, <span class="st">"1.2.1"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
-<span>                      bias_ref <span class="op">=</span> <span class="cn">TRUE</span>, bias_deriv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex_tra</span><span class="op">$</span><span class="va">trait_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ex_tra</span><span class="op">)</span></span>
-<span><span class="co"># Frequency of trait values for both traits asked</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ex_tra</span><span class="op">$</span><span class="va">trait_ID</span>, <span class="va">ex_tra</span><span class="op">$</span><span class="va">trait_value</span><span class="op">)</span></span>
-<span><span class="co"># Number of available species</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex_tra</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># do same for numerical trait</span></span>
-<span></span>
-<span><span class="co"># original traits</span></span>
-<span><span class="va">ex_tra</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.1.1"</span>, <span class="st">"1.2.1"</span><span class="op">)</span>, derived <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                          bias_ref <span class="op">=</span> <span class="cn">TRUE</span>, bias_deriv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ex_tra</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.2.1"</span><span class="op">)</span>, derived <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                          bias_ref <span class="op">=</span> <span class="cn">TRUE</span>, bias_deriv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ex_tra</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.1"</span>, <span class="st">"1.6.2"</span><span class="op">)</span>, derived <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                          bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="lists">2.3. Lists<a class="anchor" aria-label="anchor" href="#lists"></a>
-</h3>
-<p>Retrieve checklists.</p>
+<code class="sourceCode R"><span><span class="va">versions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_version.html">GIFT_version</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">versions</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+ID
+</th>
+<th style="text-align:left;">
+version
+</th>
+<th style="text-align:left;">
+description
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1.0
+</td>
+<td style="text-align:left;">
+Data included in and workflows used to assemble GIFT 1.0 are described in detail in: Weigelt, P., König, C. &amp; Kreft, H. (2020) GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47, 16-43. doi: 10.1111/jbi.13623
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+2.0
+</td>
+<td style="text-align:left;">
+New checklist and trait data included for Europe, the Mediterranean, temperate Asia, Panama, Japan, Java, New Zealand, Easter Island and the Torres Strait Islands. Updated workflows to document biases in the distribution of trait data; Updated taxonomic trait derivation; Final trait values and agreement scores for trait values from several resources are now calculated separately including and excluding restricted resources.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2.1
+</td>
+<td style="text-align:left;">
+New checklists and traits included for the Americas, Crimea, Madagascar, Arabian peninsula, Laos, Bhutan, India, China, Sunda-Sahul shelf, Tonga, Canary Islands, West Africa and for ferns and palms globally. Large categorical trait data included from Try.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+2.2
+</td>
+<td style="text-align:left;">
+New checklists (with a focus on endemic species) and traits for various oceanic archipelagos (Cook Islands, Madeira, Arctic Islands, Cayman Islands, Comores, Juan Fernandez, Palau, Galapagos, Frisian Islands, Antilles, Japan, Mayotte, Fiji, Taiwan, etc.) and various mainland regions (Equatorial Guinea and the entire former USSR in sub-regions).
+</td>
+</tr>
+</tbody>
+</table>
+<p>The column <code>version</code> of this table is the one to use when you want to retrieve past versions of the GIFT database. By default, the argument used is <code>GIFT_version = "latest"</code> which leads to the current latest stable version of the database (“2.0” in October 2022).</p>
+<p>The function <code><a href="../reference/GIFT_lists.html">GIFT_lists()</a></code> can be run to retrieve metadata about the GIFT checklists. In the next chunk, we call it with different values for the <code>GIFT_version</code> argument.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ex_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ex_list</span><span class="op">)</span></span></code></pre></div>
-<div style="page-break-after: always;"></div>
-</div>
+<code class="sourceCode R"><span><span class="va">list_latest</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"latest"</span><span class="op">)</span> <span class="co"># default value</span></span>
+<span><span class="va">list_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"1.0"</span><span class="op">)</span></span></code></pre></div>
+<p>The number of checklists available was 3122 in the version 1.0 and equals 4475 in the version 2.0.</p>
 </div>
 <div class="section level2">
-<h2 id="metadata">3. Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
+<h2 id="references">2. References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div class="section level3">
-<h3 id="environment">3.1. Environment<a class="anchor" aria-label="anchor" href="#environment"></a>
-</h3>
-<p>The functions <code><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster()</a></code> and <code><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc()</a></code> allow the user to retrieve metadata about environmental variables.</p>
+<p>When using GIFT database in a research article, it is a good practice to cite the references used, and list them in an Appendix. The following function retrieves the reference for each checklist, as well as some metadata.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">env_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">env_meta</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">env_meta</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_references.html">GIFT_references</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>References are documented in the column <code>ref_long</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="checklist-data">3. Checklist data<a class="anchor" aria-label="anchor" href="#checklist-data"></a>
+</h2>
+<p>The main wrapper function to retrieve checklists and their species composition is <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> but you also have the possibility to retrieve individual checklists using <code><a href="../reference/GIFT_checklist_raw.html">GIFT_checklist_raw()</a></code>. You would need to know the identification number <code>list_ID</code> of the checklists you want to retrieve. <br> To quickly see all the <code>list_ID</code> available in the database, you can run:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">DB_get_checklists_conditional</span><span class="op">(</span></span>
-<span>  entity_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Island"</span>, <span class="st">"Island/Mainland"</span>,  <span class="st">"Mainland"</span>,<span class="st">"Island Group"</span>,</span>
-<span>                   <span class="st">"Island Part"</span><span class="op">)</span>,</span>
-<span>  native_indicated <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  natural_indicated <span class="op">=</span> <span class="cn">F</span>, end_ref <span class="op">=</span> <span class="cn">F</span>, end_list <span class="op">=</span> <span class="cn">F</span>, </span>
-<span>  type_ref <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">11</span>,</span>
-<span>  ref_included <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,</span>
-<span>  tax_group <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># include checklists not marked as having complete</span></span>
-<span>  <span class="co"># angiosperm list</span></span>
-<span>  exclude_restricted <span class="op">=</span> <span class="cn">T</span>, include_names_unique <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>  return_query_only <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># saving time</span></span>
-<span>  complete_taxonomy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">test_withtrees</span> <span class="op">&lt;-</span> <span class="fu">DB_get_checklists_conditional</span><span class="op">(</span></span>
-<span>  entity_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Island"</span>, <span class="st">"Island/Mainland"</span>, <span class="st">"Mainland"</span>, <span class="st">"Island Group"</span>,</span>
-<span>                   <span class="st">"Island Part"</span><span class="op">)</span>, </span>
-<span>  native_indicated <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  natural_indicated <span class="op">=</span> <span class="cn">F</span>, end_ref <span class="op">=</span> <span class="cn">F</span>, end_list <span class="op">=</span> <span class="cn">F</span>, </span>
-<span>  type_ref <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">11</span>,</span>
-<span>  ref_included <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,</span>
-<span>  tax_group <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>  exclude_restricted <span class="op">=</span> <span class="cn">T</span>, include_names_unique <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>  return_query_only <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># saving time</span></span>
-<span>  complete_taxonomy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># differences in entity_ID</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">test_withtrees</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">test_withtrees</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">test_withtrees</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">test</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
-<span>                          <span class="st">"entity_ID"</span><span class="op">]</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">test_withtrees</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">test_withtrees</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">test</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ref_ID 10598 Wallis-Futuna =&gt; only trees (other subset) (included 8)</span></span>
-<span><span class="co"># ref_ID 233 =&gt; 7 endemic only</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">test</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op">==</span> <span class="fl">10598</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">test</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op">==</span> <span class="fl">233</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Classic way to go:</span></span>
-<span><span class="co"># run a first time DB_get_checklist_conditional(), return query only</span></span>
-<span><span class="co"># run DB_get_checklist_conditional() with ref_included 7 and 8, with lists</span></span>
-<span><span class="co"># subset this second output with only the entity_ID present in the first run</span></span>
-<span><span class="co"># this gives the endemic/tree lists for entity that have both taxonomic</span></span>
-<span><span class="co"># and floristic suitable coverage</span></span>
-<span><span class="co"># but does not give the regions that do not have good coverage of</span></span>
-<span><span class="co"># taxonomic/floristic </span></span></code></pre></div>
-<div class="section level4">
-<h4 id="temporary-gift_shape">Temporary: GIFT_shape<a class="anchor" aria-label="anchor" href="#temporary-gift_shape"></a>
-</h4>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">checklists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>                             complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>                             floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>,</span>
-<span>                                                 <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>                             complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                             geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Island"</span><span class="op">)</span>, </span>
-<span>                             suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                             shp <span class="op">=</span> <span class="cn">NULL</span>, coordinates <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                             overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
-<span>                             remove_overlap <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                             namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,  </span>
-<span>                             taxonomic_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"med"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">checklists_centroid_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span><span class="op">)</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="va">med</span>, coordinates <span class="op">=</span> <span class="cn">NULL</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">checklists_extent_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span><span class="op">)</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="va">med</span>, coordinates <span class="op">=</span> <span class="cn">NULL</span>, overlap <span class="op">=</span> <span class="st">"extent_intersect"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">checklists_shape_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span><span class="op">)</span>, </span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="va">med</span>, coordinates <span class="op">=</span> <span class="cn">NULL</span>, overlap <span class="op">=</span> <span class="st">"shape_intersect"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">checklists_shape_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span><span class="op">)</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="va">med</span>, coordinates <span class="op">=</span> <span class="cn">NULL</span>, overlap <span class="op">=</span> <span class="st">"shape_inside"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, mai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0.5</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists_shape_inside</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"shape inside"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists_centroid_inside</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"centroid inside"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">point_x</span>, <span class="va">geodata</span><span class="op">$</span><span class="va">point_y</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists_shape_intersect</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"shape intersect"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists_extent_intersect</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"extent intersect"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="temporary-gift_shape-1">Temporary: GIFT_shape<a class="anchor" aria-label="anchor" href="#temporary-gift_shape-1"></a>
-</h4>
-<p>Next chunk can be removed.</p>
+<code class="sourceCode R"><span><span class="va">gift_lists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">gift_lists</span><span class="op">$</span><span class="va">list_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 4475</span></span></code></pre>
+<p><br> When calling <code><a href="../reference/GIFT_checklist_raw.html">GIFT_checklist_raw()</a></code>, you can set the argument <code>namesmatched</code> to <code>TRUE</code> in order to get extra columns informing about the taxonomic harmonization that was performed when uploading the list to GIFT database.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span><span class="op">)</span></span>
-<span><span class="va">ex2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span>
-<span><span class="va">ex3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"shape_intersect"</span><span class="op">)</span></span>
-<span><span class="va">ex4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"shape_inside"</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, mai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0.5</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">ex4</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"shape inside"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">ex</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"centroid inside"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">point_x</span>, <span class="va">geodata</span><span class="op">$</span><span class="va">point_y</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"shape intersect"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"extent intersect"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Now, with custom shape, coordinates, etc =&gt; this would come in the description of GIFT_checklists()</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">custom_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.92</span>, <span class="fl">51.54</span><span class="op">)</span></span>
-<span><span class="va">ex5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
-<span>                    overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span>
-<span><span class="va">ex52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"centroid_inside"</span><span class="op">)</span> <span class="co"># does not work but that's ok</span></span>
-<span><span class="va">ex53</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"shape_intersect"</span><span class="op">)</span> <span class="co"># PROBLEM: empty data frame</span></span>
-<span><span class="va">ex54</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"shape_inside"</span><span class="op">)</span> <span class="co"># does not work but that is ok</span></span>
-<span></span>
-<span><span class="va">checklists_shape_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span><span class="op">)</span>,</span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="cn">NULL</span>, coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span>, overlap <span class="op">=</span> <span class="st">"shape_inside"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#' custom_extent &lt;- cbind(c(-13, -18), c(27.5, 29.3))</span></span>
-<span><span class="co">#' ex6 &lt;- GIFT_spatial(coordinates = custom_extent,</span></span>
-<span><span class="co">#' overlap = "extent_intersect")</span></span>
-<span><span class="co">#' </span></span>
-<span><span class="co">#' custom_polygon &lt;- cbind(c(-18, -16.9, -13, -13, -18, -18),</span></span>
-<span><span class="co">#' c(29.3, 33, 29.3, 27.5, 27.5, 29.3))</span></span>
-<span><span class="co">#' ex7 &lt;- GIFT_spatial(coordinates = custom_polygon,</span></span>
-<span><span class="co">#' overlap = "extent_intersect")</span></span></code></pre></div>
-<p>Case for custom bbox.</p>
+<code class="sourceCode R"><span><span class="va">listID_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist_raw.html">GIFT_checklist_raw</a></span><span class="op">(</span>list_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11926</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">custom_extent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">13</span>, <span class="op">-</span><span class="fl">18</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">27.5</span>, <span class="fl">29.3</span><span class="op">)</span><span class="op">)</span> <span class="co"># -18.5 if we want el Hierro</span></span>
-<span></span>
-<span><span class="va">ex6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_extent</span>,</span>
-<span>                    overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span>
-<span><span class="va">ex62</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_extent</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"shape_intersect"</span><span class="op">)</span></span>
-<span><span class="va">ex63</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_extent</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"centroid_inside"</span><span class="op">)</span></span>
-<span><span class="va">ex64</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_extent</span>,</span>
-<span>                     overlap <span class="op">=</span> <span class="st">"shape_inside"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">checklists_shape_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span></span>
-<span>  taxon_name <span class="op">=</span> <span class="st">"Pinaceae"</span>,</span>
-<span>  complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Island"</span><span class="op">)</span>, </span>
-<span>  suit_geo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  shp <span class="op">=</span> <span class="cn">NULL</span>, coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">13</span>, <span class="op">-</span><span class="fl">18.5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">27.5</span>, <span class="fl">29.5</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  overlap <span class="op">=</span> <span class="st">"shape_inside"</span>,</span>
-<span>  remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  namesmatched <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>, mai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0.5</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">checklists_shape_inside</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span>, col<span class="op">=</span><span class="va">geodata</span><span class="op">$</span><span class="va">entity_ID</span>, main<span class="op">=</span> <span class="st">"shape inside"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># checklists &lt;- GIFT_checklist(taxon_name = "Spermatophyta",</span></span>
-<span><span class="co">#   complete_taxon = TRUE, </span></span>
-<span><span class="co">#   floristic_group = c("all", "native", "endemic", "naturalized")[2],</span></span>
-<span><span class="co">#   complete_floristic = TRUE,</span></span>
-<span><span class="co">#   geo_type = c("Island"),</span></span>
-<span><span class="co">#   suit_geo = TRUE,</span></span>
-<span><span class="co">#   shp = NULL, coordinates = c(0,10,0,10), overlap = "centroid_inside",</span></span>
-<span><span class="co">#   # remove_overlap = TRUE,</span></span>
-<span><span class="co">#   namesmatched = TRUE)</span></span>
-<span></span>
-<span><span class="co"># Check spatial function</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">checklists</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">checklists</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">listID_1_tax</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist_raw.html">GIFT_checklist_raw</a></span><span class="op">(</span>list_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11926</span><span class="op">)</span>, namesmatched <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">env_meta2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">env_meta2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">env_meta2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va">env_meta3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">env_meta3</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>miscellaneous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"area"</span>, <span class="st">"dist"</span><span class="op">)</span>,</span>
-<span>                rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wc2.0_bio_30s_01"</span>,<span class="st">"wc2.0_bio_30s_02"</span><span class="op">)</span>,</span>
-<span>                sumstat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span>,<span class="st">"max"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="species">3.2. Species<a class="anchor" aria-label="anchor" href="#species"></a>
-</h3>
-<p>The functions <code><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy()</a></code> and <code><a href="../reference/GIFT_species.html">GIFT_species()</a></code> return a data.frame with all the available taxa.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">taxo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxo</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">taxo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="section level3">
-<h3 id="traits">3.3. Traits<a class="anchor" aria-label="anchor" href="#traits"></a>
-</h3>
-<p>The function <code><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta()</a></code> allows the user to retrieve metadata about available traits.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">listID_1</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">listID_1_tax</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 16</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 33</span></span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="section level3">
-<h3 id="references">3.4. References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h3>
-<p>The function <code><a href="../reference/GIFT_references.html">GIFT_references()</a></code> allows the user to retrieve metadata about the references that were used to build GIFT database.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_references.html">GIFT_references</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ref</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">ref</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/scroll_box.html" class="external-link">scroll_box</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"1000px"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<div style="page-break-after: always;"></div>
-</div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">listID_1</span><span class="op">$</span><span class="va">work_ID</span><span class="op">)</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">listID_1_tax</span><span class="op">$</span><span class="va">orig_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 1106</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 1331</span></span></code></pre>
+<p>In the list we called, you can see that we “lost” some species after taxonomic harmonization as we went from <code>r</code>length(unique(listID_1_tax<span class="math inline">\(orig_ID))` in the source to `r `length(unique(listID_1_tax\)</span>work_ID))` after the taxonomic harmonization. This means that several species were considered as synonyms or unknown plant species in the taxonomic backbone used for harmonization. <br><em>Note: the service mainly used to taxonomically harmonize the species’ names</em> <em>was The Plant List up to version 2.0 and World checklist of Vascular Plants</em> <em>afterwards.</em></p>
 </div>
 <div class="section level2">
-<h2 id="regions">4. Regions<a class="anchor" aria-label="anchor" href="#regions"></a>
+<h2 id="spatial-subset">4. Spatial subset<a class="anchor" aria-label="anchor" href="#spatial-subset"></a>
 </h2>
-<p><code><a href="../reference/GIFT_regions.html">GIFT_regions()</a></code></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_regions.html">GIFT_regions</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co"># germany_checklists &lt;- regions[grep("Germany", regions$geo_entity), ]</span></span></code></pre></div>
-<p><br><br></p>
-</div>
-<div class="section level2">
-<h2 id="gift-versions">5. GIFT versions<a class="anchor" aria-label="anchor" href="#gift-versions"></a>
-</h2>
-<p><code><a href="../reference/GIFT_version.html">GIFT_version()</a></code></p>
+<p>In the main vignette, we illustrated how to retrieve checklists that were falling into a provided shapefile, using the western Mediterranean basin provided with the GIFT R package.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gift_version</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_version.html">GIFT_version</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span></span></code></pre></div>
+<p>We here provide more details on the different values the <code>overlap</code> argument can take, using the function <code><a href="../reference/GIFT_spatial.html">GIFT_spatial()</a></code>. The following figure illustrates how this argument works:</p>
+<br><div class="figure">
+<img src="../reference/figures/GIFT_spatial.png" alt="Figure 1. GIFT spatial" width="50%"><p class="caption">
+Figure 1. GIFT spatial
+</p>
+</div>
+<p><br></p>
+<p>We now illustrate this by retrieving checklists falling in the western Mediterranean basin using the four options available.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">med_centroid_inside</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span><span class="op">)</span></span>
+<span><span class="va">med_extent_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span>
+<span><span class="va">med_shape_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"shape_intersect"</span><span class="op">)</span></span>
+<span><span class="va">med_shape_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_spatial.html">GIFT_spatial</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"shape_inside"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_extent_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 108</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 104</span></span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_centroid_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 84</span></span></code></pre>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 72</span></span></code></pre>
+<p>We here see that we progressively lose lists as we apply more selective criterion on the spatial overlap. The most restrictive option being <code>overlap = "shape_inside"</code> and the less restrictive one being <code>overlap = "extent_intersect"</code>. <br> Using the functions <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></code> and calling it for the entity_IDs retrieved in each instance, we can also map this difference.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, mai <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">geodata_shape_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">geodata_shape_inside</span><span class="op">)</span>,</span>
+<span>     col <span class="op">=</span> <span class="va">geodata_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span>,</span>
+<span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"shape inside\n"</span>,</span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"polygons"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">geodata_centroid_inside</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">med_centroid_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">geodata_centroid_inside</span><span class="op">)</span>,</span>
+<span>     col <span class="op">=</span> <span class="va">geodata_centroid_inside</span><span class="op">$</span><span class="va">entity_ID</span>,</span>
+<span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"centroid inside\n"</span>,</span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_centroid_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"polygons"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">geodata_centroid_inside</span><span class="op">$</span><span class="va">point_x</span>, <span class="va">geodata_centroid_inside</span><span class="op">$</span><span class="va">point_y</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">geodata_shape_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">med_shape_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">geodata_shape_intersect</span><span class="op">)</span>,</span>
+<span>     col <span class="op">=</span> <span class="va">geodata_shape_intersect</span><span class="op">$</span><span class="va">entity_ID</span>,</span>
+<span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"shape intersect\n"</span>,</span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"polygons"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">geodata_extent_intersect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="va">med_extent_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">geodata_extent_intersect</span><span class="op">)</span>,</span>
+<span>     col <span class="op">=</span> <span class="va">geodata_extent_intersect</span><span class="op">$</span><span class="va">entity_ID</span>,</span>
+<span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"extent intersect\n"</span>,</span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_extent_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"polygons"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="GIFT_Internal_functions_files/figure-html/unnamed-chunk-9-1.png" width="768"></p>
+<p><br></p>
 </div>
 <div class="section level2">
-<h2 id="x--references">X. References<a class="anchor" aria-label="anchor" href="#x--references"></a>
+<h2 id="remove-overlapping-regions">6. Remove overlapping regions<a class="anchor" aria-label="anchor" href="#remove-overlapping-regions"></a>
+</h2>
+<p>GIFT comprises many polygons and for some regions, there are several polygons overlapping. How to remove overlapping polygons and the associated parameters are two things detailed in the main vignette. We here provide further details:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 72</span></span></code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/GIFT_no_overlap.html">GIFT_no_overlap</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span>, area_th_island <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                       area_th_mainland <span class="op">=</span> <span class="fl">100</span>, overlap_th <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 53</span></span></code></pre>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># The following polygons are overlapping:</span></span>
+<span><span class="fu"><a href="../reference/GIFT_no_overlap.html">GIFT_no_overlap</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span>, area_th_island <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                area_th_mainland <span class="op">=</span> <span class="fl">100</span>, overlap_th <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1]   145   146   147   148   149   150   151   414   415   416   417   547</span></span>
+<span><span class="co">## [13]   548   549   550   551   552   586   591   592   736   738   739 10001</span></span>
+<span><span class="co">## [25] 10072 10104 10184 10303 10422 10430 10978 11029 11030 11031 11033 11035</span></span>
+<span><span class="co">## [37] 11038 11039 11042 11044 11045 11046 11434 11474 11477 11503 12231 12232</span></span>
+<span><span class="co">## [49] 12233 12632 12633 12634 12635</span></span></code></pre>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example of the function: Spain mainland and Andalusia</span></span>
+<span><span class="fu"><a href="../reference/GIFT_no_overlap.html">GIFT_no_overlap</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10071</span>, <span class="fl">12078</span><span class="op">)</span>, area_th_island <span class="op">=</span> <span class="fl">0</span>, area_th_mainland <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>                overlap_th <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 12078</span></span></code></pre>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/GIFT_no_overlap.html">GIFT_no_overlap</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10071</span>, <span class="fl">12078</span><span class="op">)</span>, area_th_island <span class="op">=</span> <span class="fl">0</span>, area_th_mainland <span class="op">=</span> <span class="fl">100000</span>,</span>
+<span>                overlap_th <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 10071</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="species">7. Species<a class="anchor" aria-label="anchor" href="#species"></a>
+</h2>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 'data.frame':    364573 obs. of  5 variables:</span></span>
+<span><span class="co">##  $ work_ID     : num  1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span><span class="co">##  $ genus_ID    : num  950 951 952 952 952 952 952 952 952 952 ...</span></span>
+<span><span class="co">##  $ work_genus  : chr  "Aaronsohnia" "Abacopteris" "Abarema" "Abarema" ...</span></span>
+<span><span class="co">##  $ work_species: chr  "Aaronsohnia pubescens" "Abacopteris lineata" "Abarema abbottii" "Abarema alexandri" ...</span></span>
+<span><span class="co">##  $ work_author : chr  NA NA NA NA ...</span></span></code></pre>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">species</span><span class="op">$</span><span class="va">Family</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">species</span><span class="op">$</span><span class="va">work_ID</span><span class="op">)</span>, taxon_lvl <span class="op">=</span> <span class="st">"family"</span>, return_ID <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>  species <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">species</span><span class="op">$</span><span class="va">work_ID</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>, taxon_lvl <span class="op">=</span> <span class="st">"order"</span>,</span>
+<span>                       return_ID <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">species</span><span class="op">$</span><span class="va">work_ID</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>                       taxon_lvl <span class="op">=</span> <span class="st">"higher_lvl"</span>, return_ID <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                       species <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="looking-up-a-species">8. Looking-up a species<a class="anchor" aria-label="anchor" href="#looking-up-a-species"></a>
+</h2>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Fagus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Fagus"</span>, epithet <span class="op">=</span> <span class="st">"sylvatica"</span>,</span>
+<span>                             namesmatched <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Fagus</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 'data.frame':    31 obs. of  24 variables:</span></span>
+<span><span class="co">##  $ orig_ID             : num  59384 10231 1393055 1395198 1395199 ...</span></span>
+<span><span class="co">##  $ orig_genus          : chr  "Fagus" "Fagus" "Fagus" "Fagus" ...</span></span>
+<span><span class="co">##  $ name_ID             : num  29235 29236 29236 29236 29236 ...</span></span>
+<span><span class="co">##  $ cf_genus            : num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">##  $ genus               : chr  "Fagus" "Fagus" "Fagus" "Fagus" ...</span></span>
+<span><span class="co">##  $ cf_species          : num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">##  $ aff_species         : num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">##  $ species_epithet     : chr  "silvatica" "sylvatica" "sylvatica" "sylvatica" ...</span></span>
+<span><span class="co">##  $ subtaxon            : chr  NA NA NA NA ...</span></span>
+<span><span class="co">##  $ author              : chr  "L." NA NA NA ...</span></span>
+<span><span class="co">##  $ matched             : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span><span class="co">##  $ epithetscore        : num  0.889 1 1 1 1 ...</span></span>
+<span><span class="co">##  $ overallscore        : num  0.944 0.833 0.833 0.833 0.833 ...</span></span>
+<span><span class="co">##  $ resolved            : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span><span class="co">##  $ synonym             : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span><span class="co">##  $ matched_subtaxon    : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span><span class="co">##  $ accepted            : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span><span class="co">##  $ service             : chr  "tpl" "tpl" "tpl" "tpl" ...</span></span>
+<span><span class="co">##  $ work_ID             : num  18283 18283 18283 18283 18283 ...</span></span>
+<span><span class="co">##  $ taxon_ID            : num  3288 3288 3288 3288 3288 ...</span></span>
+<span><span class="co">##  $ work_genus          : chr  "Fagus" "Fagus" "Fagus" "Fagus" ...</span></span>
+<span><span class="co">##  $ work_species_epithet: chr  "sylvatica" "sylvatica" "sylvatica" "sylvatica" ...</span></span>
+<span><span class="co">##  $ work_species        : chr  "Fagus sylvatica" "Fagus sylvatica" "Fagus sylvatica" "Fagus sylvatica" ...</span></span>
+<span><span class="co">##  $ work_author         : logi  NA NA NA NA NA NA ...</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="overlap_glonaf-tables-and-others">9. Overlap_GloNAF tables (and others)<a class="anchor" aria-label="anchor" href="#overlap_glonaf-tables-and-others"></a>
+</h2>
+<p>So far, only two resources available.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">glonaf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"glonaf"</span><span class="op">)</span></span>
+<span><span class="va">gmba</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"gmba"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">glonaf</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 'data.frame':    15494 obs. of  4 variables:</span></span>
+<span><span class="co">##  $ entity_ID: num  10535 10535 10535 10535 10535 ...</span></span>
+<span><span class="co">##  $ glonaf_ID: num  2 9 43 86 112 120 173 187 189 208 ...</span></span>
+<span><span class="co">##  $ overlap12: num  2.34e-05 6.28e-06 1.33e-05 9.96e-01 1.12e-05 ...</span></span>
+<span><span class="co">##  $ overlap21: num  0.000341 0.000163 0.003174 0.992337 0.000203 ...</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="taxonomy">10. Taxonomy<a class="anchor" aria-label="anchor" href="#taxonomy"></a>
+</h2>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">taxo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxo</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   taxon_ID       taxon_name taxon_author taxon_lvl   lft   rgt</span></span>
+<span><span class="co">## 1        1      Embryophyta         &lt;NA&gt;   level_1     1 39914</span></span>
+<span><span class="co">## 2        2     Tracheophyta         &lt;NA&gt;   level_2     2 35965</span></span>
+<span><span class="co">## 3        3 non-Tracheophyta         &lt;NA&gt;   level_2 35966 39911</span></span>
+<span><span class="co">## 4        4     Pteridophyta         &lt;NA&gt;   level_3     3  1480</span></span>
+<span><span class="co">## 5        5    Spermatophyta         &lt;NA&gt;   level_3  1481 35964</span></span>
+<span><span class="co">## 6        6     Angiospermae         &lt;NA&gt;   level_4  1482 35749</span></span></code></pre>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">taxo</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 'data.frame':    19956 obs. of  6 variables:</span></span>
+<span><span class="co">##  $ taxon_ID    : num  1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span><span class="co">##  $ taxon_name  : chr  "Embryophyta" "Tracheophyta" "non-Tracheophyta" "Pteridophyta" ...</span></span>
+<span><span class="co">##  $ taxon_author: chr  NA NA NA NA ...</span></span>
+<span><span class="co">##  $ taxon_lvl   : chr  "level_1" "level_2" "level_2" "level_3" ...</span></span>
+<span><span class="co">##  $ lft         : num  1 2 35966 3 1481 ...</span></span>
+<span><span class="co">##  $ rgt         : num  39914 35965 39911 1480 35964 ...</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="references-1">References<a class="anchor" aria-label="anchor" href="#references-1"></a>
 </h2>
 <p><a href="https://doi.org/10.1111/jbi.13623" class="external-link">Weigelt, P., König, C., &amp; Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.</a></p>
 </div>
