@@ -44,10 +44,10 @@ harmonization\cr
 \emph{orig_genus} - Genus before taxonomic harmonization\cr
 \emph{name_ID} - Identification number of the genus before taxonomic
 harmonization\cr
-\emph{cf_genus}- \cr
+\emph{cf_genus}- Whether the genus name is uncertain\cr
 \emph{genus}- Genus before taxonomic harmonization\cr
-\emph{cf_species}- \cr
-\emph{aff_species}-\cr
+\emph{cf_species}- Whether the species' epithet is uncertain\cr
+\emph{aff_species}- Species' epithet uncertain\cr
 \emph{species_epithet}- Epithet of the species before taxonomic
  harmonization\cr
 \emph{subtaxon}- Subtaxon of the species before taxonomic harmonization\cr

@@ -75,10 +75,10 @@ Here is the detail of each data.frame and their columns:
 \emph{entity_ID} - Identification number of the polygon\cr
 \emph{name_ID} - Identification number of the genus before taxonomic
 harmonization\cr 
-\emph{cf_genus} - \cr
-\emph{cf_species} - \cr 
-\emph{aff_species} -\cr
-\emph{questionable} -\cr
+\emph{cf_genus} - Whether the genus name is uncertain\cr
+\emph{cf_species} - Whether the species' epithet is uncertain\cr 
+\emph{aff_species} - Species' epithet uncertain\cr
+\emph{questionable} - Whether the species name is questionable\cr
 \emph{native} - Is the species native\cr 
 \emph{quest_native} - Is the native status questionable\cr
 \emph{naturalized} - Is the species naturalized\cr 
