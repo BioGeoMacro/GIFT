@@ -42,8 +42,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp; 6.2. GIFT_references()  
 &nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_geology()? generic queries?  
 
-&nbsp;&nbsp;&nbsp;&nbsp; GIFT_lists() => useless function to be removed? 
-  
 *To update from GIFT_admin*<br>
 
 ## 0. General

@@ -322,7 +322,6 @@ GIFT_checklist <- function(
          reference level.")
   }
   
-  # taxonomic_group
   if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
      is.na(taxonomic_group)){
     stop("'taxonomic_group' must be a boolean. When set to TRUE, two additional

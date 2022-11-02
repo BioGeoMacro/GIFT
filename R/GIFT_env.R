@@ -18,7 +18,12 @@
 #' "n") used to aggregate the information coming from the raster layers. If 
 #' sumstat is a vector, the same summary statistics are used for all raster 
 #' layers. If sumstat is a list, the first element defines the summary 
-#' statistics for the first raster layer, the second for the second and so on.
+#' statistics for the first raster layer, the second for the second and so
+#' on.\cr
+#' \strong{Important note} Some summary statistics may not be informative
+#' depending on the environmental layer you ask for. For example, it is not
+#' relevant to retrieve the mean of soil classes for a polygon. The mode or
+#' Shannon index are more suitable in that case.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the most up-to-date
@@ -79,12 +84,22 @@ GIFT_env <- function(
     api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  # Arguments
+  if(!is.character(unlist(sumstat)) || 
+     !(all(unlist(sumstat) %in% c(
+       "min", "q05", "q10", "q20", "q25", "q30", "q40", 
+       "med", "q60", "q70", "q75", "q80", "q90", "q95", 
+       "max", "mean", "sd", "modal", "unique_n", "H", "n")))
+  ){
+    stop('sumstat needs to be a character vector including one or more of the 
+         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
+         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
+         "modal", "unique_n", "H", "n")')
+  }
+  
   if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
   }
   
-  # GIFT_version
   if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
      !is.character(GIFT_version)){
     stop(c("'GIFT_version' must be a character string stating what version
@@ -97,23 +112,23 @@ GIFT_env <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
+
+  gift_env_meta_misc <- GIFT_env_meta_misc(api = api,
+                                           GIFT_version = GIFT_version)
+  if(!is.null(miscellaneous) &&
+     !(all(miscellaneous %in% gift_env_meta_misc$variable))){
+    stop(c("'miscellaneous' must be a character string stating what
+           miscellaneous variable you want to retrieve. Run
+           GIFT_env_meta_misc() to see available options."))
   }
   
-  # check if sumstats are available
-  if(!is.character(unlist(sumstat)) || 
-     !(all(unlist(sumstat) %in% c(
-       "min", "q05", "q10", "q20", "q25", "q30", "q40", 
-       "med", "q60", "q70", "q75", "q80", "q90", "q95", 
-       "max", "mean", "sd", "modal", "unique_n", "H", "n")))
-  ){
-    stop('sumstat needs to be a character vector including one or more of the 
-         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
-         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
-         "modal", "unique_n", "H", "n")')
+  gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
+                                               GIFT_version = GIFT_version)
+  if(!is.null(rasterlayer) &&
+     !(all(rasterlayer %in% gift_env_meta_raster$layer_name))){
+    stop(c("'rasterlayer' must be a character string stating what
+           raster layer you want to retrieve. Run
+           GIFT_env_meta_raster() to see available options."))
   }
   
   # 2. Query ----
