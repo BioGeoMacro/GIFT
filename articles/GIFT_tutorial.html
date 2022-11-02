@@ -71,9 +71,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>GIFT tutorial</h1>
-                        <h4 data-toc-skip class="author">Pierre Denelle &amp; Patrick Weigelt</h4>
+                        <h4 data-toc-skip class="author">Pierre Denelle
+&amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2022-10-25</h4>
+            <h4 data-toc-skip class="date">2022-11-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_tutorial.Rmd" class="external-link"><code>vignettes/GIFT_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_tutorial.Rmd</code></div>
@@ -86,15 +87,21 @@ body {
 text-align: justify}
 </style>
 <p><img src="../reference/figures/GIFT_biodiv_gottingen_logo.png" width="20%" style="display: block; margin: auto;"></p>
-<p>The Global Inventory of Floras and Traits (GIFT) is a database of floras and plant checklists, distributed worldwide. It also includes trait and phylogenetic information. The GIFT R package grants an access to the GIFT database. <br> This vignette illustrates the most common usages of the package through detailed examples.</p>
+<p>The Global Inventory of Floras and Traits (GIFT) is a database of
+floras and plant checklists, distributed worldwide. It also includes
+trait and phylogenetic information. The GIFT R package grants an access
+to the GIFT database. <br> This vignette illustrates the most common
+usages of the package through detailed examples.</p>
 <ol style="list-style-type: decimal">
-<li>Retrieving plant checklists within a given area (example: Mediterranean)<br>
+<li>Retrieving plant checklists within a given area (example:
+Mediterranean)<br>
 </li>
 <li>Getting the distribution of a plant species<br>
 </li>
 <li>Retrieving trait information for a subset of plant species<br>
 </li>
-<li>Retrieving environmental information for a list of polygons/regions</li>
+<li>Retrieving environmental information for a list of
+polygons/regions</li>
 </ol>
 <p><br></p>
 <p>The following R packages are needed to build this vignette:</p>
@@ -113,8 +120,13 @@ text-align: justify}
 <div class="section level3">
 <h3 id="shapefile">1.1. Shapefile<a class="anchor" aria-label="anchor" href="#shapefile"></a>
 </h3>
-<p>Let’s assume we are interested in having a floristic knowledge of the western part of the Mediterranean basin. For this purpose, we can simply use a shapefile of the region of interest and feed it to the <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> function.</p>
-<p>We do provide a shapefile of this region in the <code>GIFT</code> R package, which you can access using the <code>data("med")</code> command.</p>
+<p>Let’s assume we are interested in having a floristic knowledge of the
+western part of the Mediterranean basin. For this purpose, we can simply
+use a shapefile of the region of interest and feed it to the
+<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> function.</p>
+<p>We do provide a shapefile of this region in the <code>GIFT</code> R
+package, which you can access using the <code>data("med")</code>
+command.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"med"</span><span class="op">)</span></span>
 <span></span>
@@ -131,43 +143,107 @@ text-align: justify}
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">48</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GIFT_tutorial_files/figure-html/unnamed-chunk-2-1.png" width="288" style="display: block; margin: auto;"></p>
-<p><br><em>Please note that the projection used in GIFT is the WGS84, and that all</em> <em>shapefiles provided should be in this CRS. You can check the coordinate</em> <em>reference system of a sf object by using</em> <code>sf::st_crs().</code> <br></p>
+<p><br><em>Please note that the projection used in GIFT is the WGS84,
+and that all</em> <em>shapefiles provided should be in this CRS. You can
+check the coordinate</em> <em>reference system of a sf object by
+using</em> <code>sf::st_crs().</code> <br></p>
 </div>
 <div class="section level3">
 <h3 id="main-arguments">1.2. Main arguments<a class="anchor" aria-label="anchor" href="#main-arguments"></a>
 </h3>
-<p>Now that we have a shape for the region of interest, let’s call <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>. This wrapper function has many arguments which we detail in this subsection. <br> First, the taxonomic group of interest. We can be interested in a particular group of plants, for example only Angiosperms. In that case, we would set the <code>taxon_name</code> argument like this <code>taxon_name = "Angiospermae"</code>. If we are interested in a particular plant family, let’s say orchids, then <code>taxon_name = "Orchidaceae"</code>. <br> To see all options for the <code>taxon_name</code> argument, you can run the <code><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy()</a></code> function and look at the <code>taxon_name</code> column of its output. <br> Together with this first argument comes <code>complete_taxon</code>. This argument, set by default to TRUE defines whether only regions represented by checklists in GIFT completely covering <strong>the taxon of interest</strong> should be retrieved. Figure 1 is explaining the principle. <br><br></p>
+<p>Now that we have a shape for the region of interest, let’s call
+<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>. This wrapper function has many arguments
+which we detail in this subsection. <br> First, the taxonomic group of
+interest. We can be interested in a particular group of plants, for
+example only Angiosperms. In that case, we would set the
+<code>taxon_name</code> argument like this
+<code>taxon_name = "Angiospermae"</code>. If we are interested in a
+particular plant family, let’s say orchids, then
+<code>taxon_name = "Orchidaceae"</code>. <br> To see all options for the
+<code>taxon_name</code> argument, you can run the
+<code><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy()</a></code> function and look at the
+<code>taxon_name</code> column of its output. <br> Together with this
+first argument comes <code>complete_taxon</code>. This argument, set by
+default to TRUE defines whether only regions represented by checklists
+in GIFT completely covering <strong>the taxon of interest</strong>
+should be retrieved. Figure 1 is explaining the principle. <br><br></p>
 <div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_complete_taxon.png" alt="Figure 1. Complete taxon" width="50%"><p class="caption">
 Figure 1. Complete taxon
 </p>
 </div>
-<p><br> In Figure 1, we want to retrieve checklists of Angiosperms. In the first region available, region A only one checklist is of interest. This checklist is then always retrieved. In region B, there is only a checklist of orchids, which is a subset only of Angiosperms. If <code>complete_taxon</code> is set to <code>FALSE</code>, then this checklist won’t be retrieved, otherwise yes. Finally, in region C, there is a checklist of vascular plants and one for orchids. In both cases, the checklist of vascular plants will be retrieved after filtering out the non-angiosperm species. The species of Orchids is also retrieved in both cases as it is not the only one available and as it can complete the floristic knowledge for Angiosperms in this region. <br><br> Following arguments of <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> relate to the floristic statuses of plant species. We can for example only be interested in endemic species, or naturalized species. Default value is retrieving all native species. <br> Similarly, two arguments are needed in the function. First, <code>floristic_group</code> defines the group of interest. Second, <code>complete_floristic</code> states whether incomplete regions regarding the floristic group chosen should be retrieved or not. The logic is detailed in Figure 2 and is similar to the <code>complete_taxon</code> argument shown before.</p>
+<p><br> In Figure 1, we want to retrieve checklists of Angiosperms. In
+the first region available, region A only one checklist is of interest.
+This checklist is then always retrieved. In region B, there is only a
+checklist of orchids, which is a subset only of Angiosperms. If
+<code>complete_taxon</code> is set to <code>FALSE</code>, then this
+checklist won’t be retrieved, otherwise yes. Finally, in region C, there
+is a checklist of vascular plants and one for orchids. In both cases,
+the checklist of vascular plants will be retrieved after filtering out
+the non-angiosperm species. The species of Orchids is also retrieved in
+both cases as it is not the only one available and as it can complete
+the floristic knowledge for Angiosperms in this region. <br><br>
+Following arguments of <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> relate to the
+floristic statuses of plant species. We can for example only be
+interested in endemic species, or naturalized species. Default value is
+retrieving all native species. <br> Similarly, two arguments are needed
+in the function. First, <code>floristic_group</code> defines the group
+of interest. Second, <code>complete_floristic</code> states whether
+incomplete regions regarding the floristic group chosen should be
+retrieved or not. The logic is detailed in Figure 2 and is similar to
+the <code>complete_taxon</code> argument shown before.</p>
 <br><div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_complete_floristic.png" alt="Figure 2. Complete floristic" width="50%"><p class="caption">
 Figure 2. Complete floristic
 </p>
 </div>
 <p><br></p>
-<p>The next set of arguments relate to spatial matching between the desired area and the GIFT database. <br></p>
-<p>The main argument in that regard, when providing a shapefile or a set of coordinates, is the <code>overlap</code> argument. This argument can get 4 options, each of these options leading to a different outcome as explained in Figure 3. <br></p>
+<p>The next set of arguments relate to spatial matching between the
+desired area and the GIFT database. <br></p>
+<p>The main argument in that regard, when providing a shapefile or a set
+of coordinates, is the <code>overlap</code> argument. This argument can
+get 4 options, each of these options leading to a different outcome as
+explained in Figure 3. <br></p>
 <div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_spatial.png" alt="Figure 3. GIFT spatial" width="50%"><p class="caption">
 Figure 3. GIFT spatial
 </p>
 </div>
 <p><br></p>
-<p>On Figure3, the GIFT polygons represented in orange either intersect, fall inside or outside the provided shape file. The overlap argument below each GIFT polygon illustrates in which situation a given GIFT polygon is retrieved or not.</p>
+<p>On Figure3, the GIFT polygons represented in orange either intersect,
+fall inside or outside the provided shape file. The overlap argument
+below each GIFT polygon illustrates in which situation a given GIFT
+polygon is retrieved or not.</p>
 <p><br></p>
-<p>Another important spatial feature we provide is the possibility to remove overlapping polygons. Indeed, for many regions in the world, there are several polygons in GIFT database that cover them. Since you may not want overlapping polygons. If you do not care about overlapping polygons, you can simply set <code>remove_overlap</code> to FALSE. <br></p>
+<p>Another important spatial feature we provide is the possibility to
+remove overlapping polygons. Indeed, for many regions in the world,
+there are several polygons in GIFT database that cover them. Since you
+may not want overlapping polygons. If you do not care about overlapping
+polygons, you can simply set <code>remove_overlap</code> to FALSE.
+<br></p>
 <div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_no_overlap.png" alt="Figure 4. No overlap" width="50%"><p class="caption">
 Figure 4. No overlap
 </p>
 </div>
 <p><br></p>
-<p>But in case you want one polygon per region, then <code>remove_overlap</code> can be set to <code>TRUE</code>. In that case, the <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> will either retrieve the smaller or the larger polygon. This will depend on the values set for the argument <code>area_th_mainland</code> as detailed in Figure 4. This argument takes a value in <span class="math inline">\(km^2\)</span>. If the smaller polygon exceeds that threshold, then it will be retrieved (right column of Figure 4). In case the area of the smaller polygon is below the threshold, then the larger overlapping polygon will be retrieved (middle column in Figure 4).<br>
-There is a similar argument for islands, <code>area_th_island</code>, which is by default set to 0 <span class="math inline">\(km^2\)</span>. That way, by default, the smaller islands are always retrieved. <br> Please also note that polygons are considered as overlapping when the exceed a certain percentage of overlap. This percentage can be modified using the <code>overlap_th</code> argument (Figure 5). This argument is set by default to 10%. <br></p>
+<p>But in case you want one polygon per region, then
+<code>remove_overlap</code> can be set to <code>TRUE</code>. In that
+case, the <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> will either retrieve the smaller
+or the larger polygon. This will depend on the values set for the
+argument <code>area_th_mainland</code> as detailed in Figure 4. This
+argument takes a value in <span class="math inline">\(km^2\)</span>. If
+the smaller polygon exceeds that threshold, then it will be retrieved
+(right column of Figure 4). In case the area of the smaller polygon is
+below the threshold, then the larger overlapping polygon will be
+retrieved (middle column in Figure 4).<br>
+There is a similar argument for islands, <code>area_th_island</code>,
+which is by default set to 0 <span class="math inline">\(km^2\)</span>.
+That way, by default, the smaller islands are always retrieved. <br>
+Please also note that polygons are considered as overlapping when the
+exceed a certain percentage of overlap. This percentage can be modified
+using the <code>overlap_th</code> argument (Figure 5). This argument is
+set by default to 10%. <br></p>
 <div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_overlap_th.png" alt="Figure 5. Overlap threshold" width="50%"><p class="caption">
 Figure 5. Overlap threshold
@@ -178,7 +254,14 @@ Figure 5. Overlap threshold
 <div class="section level3">
 <h3 id="gift_checklist">1.3. GIFT_checklist()<a class="anchor" aria-label="anchor" href="#gift_checklist"></a>
 </h3>
-<p>Now that we covered the main arguments of <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>, we can retrieve plant checklists for the Mediterranean region. <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> returns a list of two elements. First the metadata of checklists fulfilling the different criteria. The second element is a <code>data.frame</code> of all the checklists with the species composition per checklist. <br> If you only want to retrieve the metadata, you can set the argument <code>list_set_only</code> to <code>TRUE</code>. <br></p>
+<p>Now that we covered the main arguments of
+<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>, we can retrieve plant checklists for the
+Mediterranean region. <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> returns a list of
+two elements. First the metadata of checklists fulfilling the different
+criteria. The second element is a <code>data.frame</code> of all the
+checklists with the species composition per checklist. <br> If you only
+want to retrieve the metadata, you can set the argument
+<code>list_set_only</code> to <code>TRUE</code>. <br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                          shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
@@ -196,7 +279,9 @@ Figure 5. Overlap threshold
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># columns to the checklist: plant family and taxonomic group of each species</span></span></code></pre></div>
 <p><br></p>
-<p>We can now have an estimation on the number of checklists with native Angiosperm species in the western part of the Mediterranean basin, as well as of the number of species. <br></p>
+<p>We can now have an estimation on the number of checklists with native
+Angiosperm species in the western part of the Mediterranean basin, as
+well as of the number of species. <br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Number of references covered</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -209,7 +294,10 @@ Figure 5. Overlap threshold
 <code class="sourceCode R"><span><span class="co"># Number of species</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">work_species</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 12840</span></span></code></pre>
-<p><br> You can now apply different values for the arguments detailed above. When being stricter with some criteria, you can see that the number of checklists retrieved decreases. For example, when removing overlapping regions: <br></p>
+<p><br> You can now apply different values for the arguments detailed
+above. When being stricter with some criteria, you can see that the
+number of checklists retrieved decreases. For example, when removing
+overlapping regions: <br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
 <span>                                   taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
@@ -222,7 +310,10 @@ Figure 5. Overlap threshold
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit_no_overlap</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 22</span></span></code></pre>
-<p>Please note that the function not only works with a shape file but can accept a set of coordinates. The example below illustrates a case in which you want to retrieve GIFT checklists intersecting the coordinates of Göttingen. <br></p>
+<p>Please note that the function not only works with a shape file but
+can accept a set of coordinates. The example below illustrates a case in
+which you want to retrieve GIFT checklists intersecting the coordinates
+of Göttingen. <br></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span> <span class="co"># coordinates of Göttingen</span></span>
 <span></span>
@@ -397,13 +488,23 @@ Tracheophyta
 </tbody>
 </table>
 <p><br><br></p>
-<p>To cite properly the references retrieved, you can run the function <code><a href="../reference/GIFT_references.html">GIFT_references()</a></code> and look for the column <code>ref_long``. The column also</code>geo_entity_ref` associates each reference to a name.</p>
+<p>To cite properly the references retrieved, you can run the function
+<code><a href="../reference/GIFT_references.html">GIFT_references()</a></code> and look for the column
+<code>ref_long``. The column also</code>geo_entity_ref` associates each
+reference to a name.</p>
 <p><br></p>
 </div>
 <div class="section level3">
 <h3 id="species-richness-map">1.4. Species richness map<a class="anchor" aria-label="anchor" href="#species-richness-map"></a>
 </h3>
-<p>Once we downloaded a set of checklists, it is possible to map the species richness of the taxonomic group of interest. For this purpose, we use a combination of two functions: <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code> which either retrieves species richness or trait coverage per polygon and <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></code> which retrieves the shapefile of a list of GIFT polygons. <br> The next two chunks illustrate this for the Angiosperms in the World and in the Western part of the Mediterranean basin. <br></p>
+<p>Once we downloaded a set of checklists, it is possible to map the
+species richness of the taxonomic group of interest. For this purpose,
+we use a combination of two functions: <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code>
+which either retrieves species richness or trait coverage per polygon
+and <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></code> which retrieves the shapefile of a list of
+GIFT polygons. <br> The next two chunks illustrate this for the
+Angiosperms in the World and in the Western part of the Mediterranean
+basin. <br></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gift_shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># retrieves all shapefiles by default</span></span></code></pre></div>
 <pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
@@ -450,19 +551,29 @@ Tracheophyta
 <div class="section level2">
 <h2 id="distribution-of-species">2. Distribution of species<a class="anchor" aria-label="anchor" href="#distribution-of-species"></a>
 </h2>
-<p>The GIFT R package also allows for retrieving the spatial distribution of a focal plant species. <br></p>
+<p>The GIFT R package also allows for retrieving the spatial
+distribution of a focal plant species. <br></p>
 <div class="section level3">
 <h3 id="available-species">2.1. Available species<a class="anchor" aria-label="anchor" href="#available-species"></a>
 </h3>
-<p>To know what plantspecies are available, you can first run the function <code><a href="../reference/GIFT_species.html">GIFT_species()</a></code>.</p>
+<p>To know what plantspecies are available, you can first run the
+function <code><a href="../reference/GIFT_species.html">GIFT_species()</a></code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>364573 species are currently available in the database. This number may increase with new releases of the database.</p>
+<p>364573 species are currently available in the database. This number
+may increase with new releases of the database.</p>
 </div>
 <div class="section level3">
 <h3 id="species-names-and-taxonomic-harmonization">2.2. Species names and taxonomic harmonization<a class="anchor" aria-label="anchor" href="#species-names-and-taxonomic-harmonization"></a>
 </h3>
-<p>Since GIFT is a collection of checklists in which authors use their own taxonomic knowledge to describe species, there is a step of taxonomic harmonization when including checklists into the database. The most frequent backbone used is the <a href="https://wcvp.science.kew.org/" class="external-link">World Checklists of Vascular Plants (WCVP)</a>. <br> Both original and harmonized names are stored in the database and you can use the function <code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code> to look at the differences for particular species. For example, the wood anemone <em>Anemone nemorosa</em>. <br></p>
+<p>Since GIFT is a collection of checklists in which authors use their
+own taxonomic knowledge to describe species, there is a step of
+taxonomic harmonization when including checklists into the database. The
+most frequent backbone used is the <a href="https://wcvp.science.kew.org/" class="external-link">World Checklists of Vascular Plants
+(WCVP)</a>. <br> Both original and harmonized names are stored in the
+database and you can use the function <code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code>
+to look at the differences for particular species. For example, the wood
+anemone <em>Anemone nemorosa</em>. <br></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span><span class="op">)</span></span>
 <span></span>
@@ -767,13 +878,22 @@ NA
 </tr>
 </tbody>
 </table>
-<p>Looking at the output table, you can see the original species names and their identification numbers (<code>name_ID</code>) <strong>before</strong> taxonomic harmonization. The species’ names and IDs <strong>after</strong> taxonmic harmonization are the last columns on the right starting with the prefix <code>work_</code>.</p>
+<p>Looking at the output table, you can see the original species names
+and their identification numbers (<code>name_ID</code>)
+<strong>before</strong> taxonomic harmonization. The species’ names and
+IDs <strong>after</strong> taxonmic harmonization are the last columns
+on the right starting with the prefix <code>work_</code>.</p>
 <p><br><br></p>
 </div>
 <div class="section level3">
 <h3 id="species-distribution">2.3. Species distribution<a class="anchor" aria-label="anchor" href="#species-distribution"></a>
 </h3>
-<p><br> Now that we have a focal species and its harmonized name, we can retrieve its distribution using <code><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution()</a></code>. <br> Please note that we here set the <code>aggregation</code> argument to <code>TRUE</code> in order to have only one floristic status per polygon. For further details, check the help page of the function. <br></p>
+<p><br> Now that we have a focal species and its harmonized name, we can
+retrieve its distribution using
+<code><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution()</a></code>. <br> Please note that we here
+set the <code>aggregation</code> argument to <code>TRUE</code> in order
+to have only one floristic status per polygon. For further details,
+check the help page of the function. <br></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_distr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution</a></span><span class="op">(</span></span>
 <span>  genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -790,7 +910,9 @@ NA
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## non-endemic_list </span></span>
 <span><span class="co">##               53</span></span></code></pre>
-<p>This species is not listed as endemic in any of the GIFT polygons. Let’s now check the places where it is listed as native or naturalized. <br></p>
+<p>This species is not listed as endemic in any of the GIFT polygons.
+Let’s now check the places where it is listed as native or naturalized.
+<br></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">native</span>, <span class="va">anemone_statuses</span><span class="op">$</span><span class="va">naturalized</span>,</span>
 <span>            sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -801,8 +923,17 @@ NA
 <span><span class="co">##                        113                          3 </span></span>
 <span><span class="co">##     non-native_naturalized non-native_non-naturalized </span></span>
 <span><span class="co">##                          5                          2</span></span></code></pre>
-<p>Looking at the different combinations of statuses, we can distinguish several situations: in 13 polygons, there is no status available. The species is listed as native and non-naturalized (or naturalized status is missing) in 113+17=130 polygons. It is naturalized and non native in 5 polygons. <br> More surprising are the cases where the species is non-native and non-naturalized, which happens in 3+2=5 polygons. This specific combination can happen in unstable cases where the species in the process of being naturalized. <br></p>
-<p>Now that we know in which polygons the species occur and with what status, we can map its distribution using the GIFT shapes we retrieved earlier using <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></code>.</p>
+<p>Looking at the different combinations of statuses, we can distinguish
+several situations: in 13 polygons, there is no status available. The
+species is listed as native and non-naturalized (or naturalized status
+is missing) in 113+17=130 polygons. It is naturalized and non native in
+5 polygons. <br> More surprising are the cases where the species is
+non-native and non-naturalized, which happens in 3+2=5 polygons. This
+specific combination can happen in unstable cases where the species in
+the process of being naturalized. <br></p>
+<p>Now that we know in which polygons the species occur and with what
+status, we can map its distribution using the GIFT shapes we retrieved
+earlier using <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></code>.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We rename the statuses based on the distinct combinations</span></span>
 <span><span class="va">anemone_statuses</span> <span class="op">&lt;-</span> <span class="va">anemone_statuses</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -838,11 +969,18 @@ NA
 <div class="section level2">
 <h2 id="trait-data">3. Trait data<a class="anchor" aria-label="anchor" href="#trait-data"></a>
 </h2>
-<p>Trait information at the species level are also made available in the <code>GIFT</code> R package. <br></p>
+<p>Trait information at the species level are also made available in the
+<code>GIFT</code> R package. <br></p>
 <div class="section level3">
 <h3 id="metadata">3.1. Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h3>
-<p><br> There are many functional traits available in GIFT. Each of these traits has an identification number called <code>trait_ID</code>. As the two functions retrieving trait values, <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> and <code><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw()</a></code>, rely on these IDs, the first step to do is to run the function <code><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta()</a></code> to know what is the ID of the wanted trait. <br> For example, let’s say we want to retrieve the maximal vegetative heights of plant species. <br></p>
+<p><br> There are many functional traits available in GIFT. Each of
+these traits has an identification number called <code>trait_ID</code>.
+As the two functions retrieving trait values, <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code>
+and <code><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw()</a></code>, rely on these IDs, the first step to
+do is to run the function <code><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta()</a></code> to know what
+is the ID of the wanted trait. <br> For example, let’s say we want to
+retrieve the maximal vegetative heights of plant species. <br></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trait_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">trait_meta</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">trait_meta</span><span class="op">$</span><span class="va">Trait2</span> <span class="op">==</span> <span class="st">"Plant_height_max"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
@@ -850,13 +988,22 @@ NA
 <span><span class="co">## 12    1 Morphology  1.6 Plant height 1.6.2 Plant_height_max     m numeric</span></span>
 <span><span class="co">##    comment count</span></span>
 <span><span class="co">## 12    &lt;NA&gt; 71258</span></span></code></pre>
-<p><br> We can see that the ID of this trait is <code>1.6.2</code>. Now that we have the ID, we can retrieve the growth form values of different plant species using <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code>.</p>
+<p><br> We can see that the ID of this trait is <code>1.6.2</code>. Now
+that we have the ID, we can retrieve the growth form values of different
+plant species using <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code>.</p>
 <p><br></p>
 </div>
 <div class="section level3">
 <h3 id="trait-values">3.2. Trait values<a class="anchor" aria-label="anchor" href="#trait-values"></a>
 </h3>
-<p>There are two functions to access trait values. First, <code><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw()</a></code> gives all the trait values for a given species and a given trait. These trait values can then vary. <br> Second, <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> returns an aggregated trait value at the species level. The aggregation simply takes the mean for continuous traits or the most frequent entry for categorical traits. However, for some specific cases, the aggregation takes either the minimum or maximum, like for the trait we chose. <br> Let’s</p>
+<p>There are two functions to access trait values. First,
+<code><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw()</a></code> gives all the trait values for a given
+species and a given trait. These trait values can then vary. <br>
+Second, <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> returns an aggregated trait value at
+the species level. The aggregation simply takes the mean for continuous
+traits or the most frequent entry for categorical traits. However, for
+some specific cases, the aggregation takes either the minimum or
+maximum, like for the trait we chose. <br> Let’s</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
 <span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
@@ -874,13 +1021,17 @@ NA
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">height</span><span class="op">$</span><span class="va">work_species</span> <span class="op">==</span> <span class="st">"Fagus sylvatica"</span><span class="op">)</span>,</span>
 <span>                  <span class="st">"trait_value_1.6.2"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 50</span></span></code></pre>
-<p>Three maximal heights for <em>Fagus sylvatica</em> were available, 30, 35 and 50 meters, which led to an aggregated value of 50 meters.</p>
+<p>Three maximal heights for <em>Fagus sylvatica</em> were available,
+30, 35 and 50 meters, which led to an aggregated value of 50 meters.</p>
 <p><br></p>
 </div>
 <div class="section level3">
 <h3 id="trait-coverage">3.3. Trait coverage<a class="anchor" aria-label="anchor" href="#trait-coverage"></a>
 </h3>
-<p>We can also retrieve trait coverage information for polygons, using the same function as for species richness <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code>. <br> In combination with the shapes loaded previously, we can also map the trait coverage. <br></p>
+<p>We can also retrieve trait coverage information for polygons, using
+the same function as for species richness <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code>.
+<br> In combination with the shapes loaded previously, we can also map
+the trait coverage. <br></p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">angio_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_richness.html">GIFT_richness</a></span><span class="op">(</span>what <span class="op">=</span> <span class="st">"trait_coverage"</span>,</span>
 <span>                              taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
@@ -908,11 +1059,22 @@ NA
 <div class="section level2">
 <h2 id="environmental-variables">4. Environmental variables<a class="anchor" aria-label="anchor" href="#environmental-variables"></a>
 </h2>
-<p>Finally, a set of summary statistics for many environmental variables can be retrieved for each GIFT polygon.</p>
+<p>Finally, a set of summary statistics for many environmental variables
+can be retrieved for each GIFT polygon.</p>
 <div class="section level3">
 <h3 id="metadata-1">4.1. Metadata<a class="anchor" aria-label="anchor" href="#metadata-1"></a>
 </h3>
-<p>We here illustrate how to retrieve environmental variables, summarized at the polygon level, for a subset of polygons. <br> We here retrieve environmental variables for the polygons falling into the western Mediterranean basin, retrieved in the section 1. <br> To know what variables are available, you can run these two metadata functions: <code><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc()</a></code> and <code><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster()</a></code>. They respectively give access to the list of miscellaneous variables and raster layers available in the GIFT database. <br> The references to cite when using environmental variables are also available through these functions (column <code>ref_long</code> of the outputs).<br><br></p>
+<p>We here illustrate how to retrieve environmental variables,
+summarized at the polygon level, for a subset of polygons. <br> We here
+retrieve environmental variables for the polygons falling into the
+western Mediterranean basin, retrieved in the section 1. <br> To know
+what variables are available, you can run these two metadata functions:
+<code><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc()</a></code> and
+<code><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster()</a></code>. They respectively give access to
+the list of miscellaneous variables and raster layers available in the
+GIFT database. <br> The references to cite when using environmental
+variables are also available through these functions (column
+<code>ref_long</code> of the outputs).<br><br></p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">misc_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">raster_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -921,7 +1083,14 @@ NA
 <div class="section level3">
 <h3 id="environmental-values">4.2. Environmental values<a class="anchor" aria-label="anchor" href="#environmental-values"></a>
 </h3>
-<p>Now, let’s say we want to retrieve the perimeter and biome of each polygon as well as elevation and mean temperature. For these two raster layers, we need to define summary statistics, as the polygons are usually bigger than the raster resolution. <br> They are many summary statistics available, you can check the help page of <code><a href="../reference/GIFT_env.html">GIFT_env()</a></code> to see them all. Let’s here call for the mean and median of elevation and the maximal value of average temperature. <br></p>
+<p>Now, let’s say we want to retrieve the perimeter and biome of each
+polygon as well as elevation and mean temperature. For these two raster
+layers, we need to define summary statistics, as the polygons are
+usually bigger than the raster resolution. <br> They are many summary
+statistics available, you can check the help page of
+<code><a href="../reference/GIFT_env.html">GIFT_env()</a></code> to see them all. Let’s here call for the mean
+and median of elevation and the maximal value of average temperature.
+<br></p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                    miscellaneous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"perimeter"</span>, <span class="st">"biome"</span><span class="op">)</span>,</span>
@@ -938,7 +1107,8 @@ NA
 <div class="section level3">
 <h3 id="map">4.3. Map<a class="anchor" aria-label="anchor" href="#map"></a>
 </h3>
-<p>Using the shapes previously loaded, we can also map a particular environmental variable for all GIFT polygons.</p>
+<p>Using the shapes previously loaded, we can also map a particular
+environmental variable for all GIFT polygons.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">world_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">angio_rich</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                       rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
@@ -966,8 +1136,12 @@ NA
 <div class="section level2">
 <h2 id="references">5. References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>When using the GIFT database and the GIFT R package, here are the two resources to cite:</p>
-<p><a href="https://doi.org/10.1111/jbi.13623" class="external-link">Weigelt, P., König, C., &amp; Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.</a></p>
+<p>When using the GIFT database and the GIFT R package, here are the two
+resources to cite:</p>
+<p><a href="https://doi.org/10.1111/jbi.13623" class="external-link">Weigelt, P., König, C.,
+&amp; Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits
+for macroecology and biogeography. Journal of Biogeography, 47(1),
+16–43.</a></p>
 <p><a href="https://biogeomacro.github.io/GIFT/" class="external-link">GIFT R package</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
