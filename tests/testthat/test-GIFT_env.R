@@ -26,3 +26,15 @@ expect_message(GIFT_env(GIFT_version = "beta"),
                "You are asking for the beta-version of GIFT which is subject to
             updates and edits. Consider using 'latest' for the latest stable
             version.")
+
+expect_error(
+  GIFT_env(miscellaneous = "XX"),
+  "'miscellaneous' must be a character string stating what
+           miscellaneous variable you want to retrieve. Run
+           GIFT_env_meta_misc() to see available options.", fixed = TRUE)
+
+expect_error(
+  GIFT_env(rasterlayer = "XX"),
+  "'rasterlayer' must be a character string stating what
+           raster layer you want to retrieve. Run
+           GIFT_env_meta_raster() to see available options.", fixed = TRUE)
