@@ -72,7 +72,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom tidyr pivot_wider
 #' @importFrom purrr reduce
-#' @importFrom dplyr left_join full_join
+#' @importFrom dplyr left_join full_join mutate_if
 #' 
 #' @export
 
@@ -176,12 +176,17 @@ GIFT_env <- function(
         names_from = "layer_name",
         values_from = sumstat[[i]],
         names_glue = "{.value}_{layer_name}")
+      
+      # Numeric raster columns
+      tmp_raster[[i]] <- dplyr::mutate_if(tmp_raster[[i]], is.character,
+                                          as.numeric)
     }
     
     # Join list elements together
     tmp_raster <- purrr::reduce(tmp_raster, dplyr::full_join, by = "entity_ID")
     
     # Combining with tmp_misc
+    tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
     tmp_misc <- dplyr::left_join(tmp_misc, tmp_raster, by = "entity_ID")
   }
   
@@ -189,8 +194,8 @@ GIFT_env <- function(
   if(!is.null(entity_ID)){
     tmp_misc <- tmp_misc[tmp_misc$entity_ID %in% entity_ID, ]
   }
-  
-  tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
+
+  tmp_misc <- tmp_misc[stats::complete.cases(tmp_misc), ]
   
   return(tmp_misc)
 }

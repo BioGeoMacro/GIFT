@@ -639,8 +639,6 @@ temp_shape <- gift_shape[which(gift_shape$entity_ID %in%
 
 temp_map <- dplyr::left_join(temp_shape, world_temp, by = "entity_ID")
 
-temp_map$mean_wc2.0_bio_30s_01 <- as.numeric(temp_map$mean_wc2.0_bio_30s_01)
-
 ggplot(world) +
   geom_sf(color = "gray50") +
   geom_sf(data = temp_map, aes(fill = mean_wc2.0_bio_30s_01)) +

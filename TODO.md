@@ -81,9 +81,7 @@
 
 * 3.1. GIFT_env()
     - remove rows that are NA for all variables
-    - control for non-existing misc and raster variables
-    - as.numeric() raster values
-    
+
 * 3.2. GIFT_env_meta_misc()    
     
 * 3.3. GIFT_env_meta_raster()  
