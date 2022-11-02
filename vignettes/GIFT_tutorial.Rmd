@@ -521,7 +521,9 @@ The aggregation simply takes the mean for continuous traits or the most
 frequent entry for categorical traits. However, for some specific cases, the
 aggregation takes either the minimum or maximum, like for the trait we chose.
 <br>
-Let's 
+Let's retrieve the raw and aggregated values for the maximal vegetative height
+of plants (trait_ID 1.6.2).
+<br>
 
 ```{r, message=FALSE}
 height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
