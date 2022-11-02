@@ -1003,7 +1003,9 @@ Second, <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> r
 the species level. The aggregation simply takes the mean for continuous
 traits or the most frequent entry for categorical traits. However, for
 some specific cases, the aggregation takes either the minimum or
-maximum, like for the trait we chose. <br> Let’s</p>
+maximum, like for the trait we chose. <br> Let’s retrieve the raw and
+aggregated values for the maximal vegetative height of plants (trait_ID
+1.6.2). <br></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
 <span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
