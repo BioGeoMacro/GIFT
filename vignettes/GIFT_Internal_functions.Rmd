@@ -1,12 +1,12 @@
 ---
-title: "GIFT tutorial, advanced users"
+title: "GIFT tutorial for advanced users"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
- %\VignetteIndexEntry{GIFT tutorial, advanced users}
+ %\VignetteIndexEntry{GIFT tutorial for advanced users}
  %\VignetteEncoding{UTF-8} 
  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

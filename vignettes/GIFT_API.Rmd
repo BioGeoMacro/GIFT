@@ -1,12 +1,12 @@
 ---
-title: "Queries in GIFT API"
+title: "Queries in the API"
 author: "Pierre Denelle & Patrick Weigelt"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
- %\VignetteIndexEntry{Queries in GIFT API}
+ %\VignetteIndexEntry{Queries in the API}
  %\VignetteEncoding{UTF-8} 
  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
