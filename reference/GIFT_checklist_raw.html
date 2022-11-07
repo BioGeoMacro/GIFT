@@ -18,15 +18,17 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/GIFT.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in GIFT API</a>
-    <a class="dropdown-item" href="../articles/GIFT_Internal_functions.html">GIFT tutorial, advanced users</a>
-    <a class="dropdown-item" href="../articles/GIFT_tutorial.html">GIFT tutorial</a>
+    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in the API</a>
+    <a class="dropdown-item" href="../articles/GIFT_advanced_users.html">GIFT tutorial for advanced users</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -73,13 +75,13 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>ref_ID</dt>
 <dd><p>A vector defining the IDs of the references to retrieve.
-`NULL` by default.</p></dd>
+<code>NULL</code> by default.</p></dd>
 
 
 <dt>list_ID</dt>
 <dd><p>A vector defining the IDs of the lists to retrieve.
-`NULL` by default. These lists are retrieved in addition to the lists 
-contained in the references in `ref_ID`.</p></dd>
+<code>NULL</code> by default. These lists are retrieved in addition to the lists
+contained in the references in <code>ref_ID</code>.</p></dd>
 
 
 <dt>namesmatched</dt>
@@ -128,22 +130,22 @@ data frame contains the species checklist for a given reference/list.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Here is what each column refers to:</p>
 <p><em>ref_ID</em> - Identification number of each reference<br><em>list_ID</em> - Identification number of each list<br><em>orig_ID</em> - Identification number of each species name, unchanged from
- the sources<br><em>name_ID</em> - Identification number of each reference<br><em>genus</em> - Genus of each species<br><em>species_epithet</em> - Epithet of each species<br><em>subtaxon</em> - If needed, subtaxon of the species<br><em>author</em> - Name of the author who described the species<br><em>matched</em> - Whether a match was found when using a taxonomic
+the sources<br><em>name_ID</em> - Identification number of each reference<br><em>genus</em> - Genus of each species<br><em>species_epithet</em> - Epithet of each species<br><em>subtaxon</em> - If needed, subtaxon of the species<br><em>author</em> - Name of the author who described the species<br><em>matched</em> - Whether a match was found when using a taxonomic
 backbone<br><em>epithetscore</em> - Matching score for the epithet<br><em>overallscore</em> - Matching score for the overall species name<br><em>resolved</em> - Whether the species name was resolved<br><em>service</em> - Service used for the taxonomic harmonization<br><em>work_ID</em> - Identification number of each species name, after
- taxonomic  harmonization<br><em>genus_ID</em> - Identification number of each genus, after taxonomic
- harmonization<br><em>species</em> - Species name, after taxonomic harmonization<br><em>questionable</em> - Whether the species occurrence is questionable<br><em>native</em> - Whether the species is native<br><em>quest_native</em> - Whether the native information is questionable<br><em>naturalized</em> - Whether the species is naturalized<br><em>endemic_ref</em> - Whether the species is endemic within the reference<br><em>quest_end_ref</em> - Whether the endemic_ref information is
+taxonomic  harmonization<br><em>genus_ID</em> - Identification number of each genus, after taxonomic
+harmonization<br><em>species</em> - Species name, after taxonomic harmonization<br><em>questionable</em> - Whether the species occurrence is questionable<br><em>native</em> - Whether the species is native<br><em>quest_native</em> - Whether the native information is questionable<br><em>naturalized</em> - Whether the species is naturalized<br><em>endemic_ref</em> - Whether the species is endemic within the reference<br><em>quest_end_ref</em> - Whether the endemic_ref information is
 questionable<br><em>endemic_list</em>- Whether the species is endemic within the list<br><em>quest_end_list</em> - Whether the endemic_list information is
- questionable<br><em>cons_status</em> - Conservation status of the species</p>
+questionable<br><em>cons_status</em> - Conservation status of the species</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623</p>
+    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> Traits <span class="cf">for</span> macroecology and biogeography. J Biogeogr. <span class="dv">2020</span>; <span class="dv">47</span><span class="sc">:</span> 16– <span class="fl">43.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1111</span><span class="sc">/</span>jbi<span class="fl">.13623</span></span></code></pre><p></p></div>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>[GIFT::GIFT_checklist()]</p></div>
+    <div class="dont-index"><p><code><a href="GIFT_checklist.html">GIFT_checklist()</a></code></p></div>
     </div>
 
     <div class="section level2">

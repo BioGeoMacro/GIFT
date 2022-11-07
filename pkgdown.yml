@@ -2,8 +2,8 @@ pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  GIFT: GIFT.html
   GIFT_API: GIFT_API.html
-  GIFT_Internal_functions: GIFT_Internal_functions.html
-  GIFT_tutorial: GIFT_tutorial.html
-last_built: 2022-11-07T08:32Z
+  GIFT_advanced_users: GIFT_advanced_users.html
+last_built: 2022-11-07T09:33Z
 
