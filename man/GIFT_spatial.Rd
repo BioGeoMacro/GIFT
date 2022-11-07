@@ -38,9 +38,9 @@ retrieved.}
 }
 \value{
 A data frame with 3 columns: \emph{entity_ID} the identification
- number of a polygon, \emph{geo_entity_ref} its name, and \emph{coverage}
- which indicates the percentage of overlap between the provided shape and
- the different polygons of GIFT.
+number of a polygon, \emph{geo_entity_ref} its name, and \emph{coverage}
+which indicates the percentage of overlap between the provided shape and
+the different polygons of GIFT.
 }
 \description{
 Retrieve environmental data associated to each GIFT checklists.
@@ -79,10 +79,11 @@ ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklists()]
+\code{\link[=GIFT_checklists]{GIFT_checklists()}}
 }

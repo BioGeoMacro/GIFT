@@ -18,11 +18,11 @@ GIFT_checklist_raw(
 }
 \arguments{
 \item{ref_ID}{A vector defining the IDs of the references to retrieve.
-`NULL` by default.}
+\code{NULL} by default.}
 
 \item{list_ID}{A vector defining the IDs of the lists to retrieve.
-`NULL` by default. These lists are retrieved in addition to the lists 
-contained in the references in `ref_ID`.}
+\code{NULL} by default. These lists are retrieved in addition to the lists
+contained in the references in \code{ref_ID}.}
 
 \item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
 original species name as they came in the references as well as details on
@@ -58,7 +58,7 @@ Here is what each column refers to:
 \emph{ref_ID} - Identification number of each reference\cr
 \emph{list_ID} - Identification number of each list\cr
 \emph{orig_ID} - Identification number of each species name, unchanged from
- the sources\cr
+the sources\cr
 \emph{name_ID} - Identification number of each reference\cr
 \emph{genus} - Genus of each species\cr
 \emph{species_epithet} - Epithet of each species\cr
@@ -71,9 +71,9 @@ backbone\cr
 \emph{resolved} - Whether the species name was resolved\cr
 \emph{service} - Service used for the taxonomic harmonization\cr
 \emph{work_ID} - Identification number of each species name, after
- taxonomic  harmonization\cr
+taxonomic  harmonization\cr
 \emph{genus_ID} - Identification number of each genus, after taxonomic
- harmonization\cr
+harmonization\cr
 \emph{species} - Species name, after taxonomic harmonization\cr
 \emph{questionable} - Whether the species occurrence is questionable\cr
 \emph{native} - Whether the species is native\cr
@@ -84,7 +84,7 @@ backbone\cr
 questionable\cr
 \emph{endemic_list}- Whether the species is endemic within the list\cr
 \emph{quest_end_list} - Whether the endemic_list information is
- questionable\cr
+questionable\cr
 \emph{cons_status} - Conservation status of the species
 }
 \examples{
@@ -95,10 +95,11 @@ ex2 <- GIFT_checklist_raw(list_ID = c(1,5), namesmatched = TRUE)
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklist()]
+\code{\link[=GIFT_checklist]{GIFT_checklist()}}
 }

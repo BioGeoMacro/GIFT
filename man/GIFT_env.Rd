@@ -15,7 +15,7 @@ GIFT_env(
 }
 \arguments{
 \item{entity_ID}{A vector defining the ID of the lists to retrieve.
-`NULL` by default, in that case, every list from GIFT is retrieved.}
+\code{NULL} by default, in that case, every list from GIFT is retrieved.}
 
 \item{miscellaneous}{character vector or list defining the miscellaneous
 data to retrieve.}
@@ -23,12 +23,12 @@ data to retrieve.}
 \item{rasterlayer}{character vector or list defining the raster
 data to retrieve.}
 
-\item{sumstat}{Vector or list indicating the desired summary statistics out 
-of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
-"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H", 
-"n") used to aggregate the information coming from the raster layers. If 
-sumstat is a vector, the same summary statistics are used for all raster 
-layers. If sumstat is a list, the first element defines the summary 
+\item{sumstat}{Vector or list indicating the desired summary statistics out
+of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70",
+"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H",
+"n") used to aggregate the information coming from the raster layers. If
+sumstat is a vector, the same summary statistics are used for all raster
+layers. If sumstat is a list, the first element defines the summary
 statistics for the first raster layer, the second for the second and so
 on.\cr
 \strong{Important note} Some summary statistics may not be informative
@@ -81,10 +81,11 @@ ex <- GIFT_env(entity_ID = c(1,5),
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_env_meta_misc()] and [GIFT::GIFT_env_meta_raster()]
+\code{\link[=GIFT_env_meta_misc]{GIFT_env_meta_misc()}} and \code{\link[=GIFT_env_meta_raster]{GIFT_env_meta_raster()}}
 }

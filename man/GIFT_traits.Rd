@@ -35,8 +35,8 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,
-`trait_value`, `agreement` and `references`.
+A long-format data frame with 6 columns: \code{trait_ID}, \code{work_ID}, \code{species},
+\code{trait_value}, \code{agreement} and \code{references}.
 }
 \description{
 Retrieve specific trait values.
@@ -46,7 +46,7 @@ Here is the detail of each column:
 
 \emph{trait_ID} - Identification number of the trait\cr
 \emph{work_ID} - Identification number of the taxonomically harmonized
- species\cr
+species\cr
 \emph{species} - Species name\cr
 \emph{trait_value} - Value of the trait\cr
 \emph{agreement} - Agreement score between the different sources for that
@@ -61,10 +61,11 @@ bias_ref = FALSE, bias_deriv = FALSE)
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_traits_meta()]
+\code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}}
 }

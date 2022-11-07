@@ -83,7 +83,7 @@ Here is what each column refers to:
 \emph{subset} - What information regarding the status of species is
 available.\cr
 \emph{native_indicated} - Whether native status of species is available in
- the source.\cr
+the source.\cr
 \emph{natural_indicated} - Whether naturalized status of species is
 available in the source.\cr
 \emph{end_ref} - Whether endemism information is available in the source.\cr
@@ -117,10 +117,11 @@ type_ref = c("Account", "Catalogue", "Checklist","Flora",
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklist_raw()]
+\code{\link[=GIFT_checklist_raw]{GIFT_checklist_raw()}}
 }

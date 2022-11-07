@@ -31,12 +31,12 @@ Here is what each column refers to:
 \emph{geo_entity_ref} - Name of the location\cr
 \emph{type} - What type the source is\cr
 \emph{subset} - What information regarding the status of species is
- available\cr
+available\cr
 \emph{taxon_ID} - Identification number of the group of taxa available\cr
 \emph{taxon_name} - Name of the group of taxa available\cr
 \emph{checklist} - Is the source a checklist\cr
 \emph{native_indicated} - Whether native status of species is available in
- the source\cr
+the source\cr
 \emph{natural_indicated} - Whether naturalized status of species is
 available in the source\cr
 \emph{end_ref} - Whether endemism information is available in the source\cr
@@ -51,10 +51,11 @@ ex <- GIFT_references()
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklist()]
+\code{\link[=GIFT_checklist]{GIFT_checklist()}}
 }

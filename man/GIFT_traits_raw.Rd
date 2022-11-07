@@ -15,7 +15,7 @@ GIFT_traits_raw(
 }
 \arguments{
 \item{trait_IDs}{a character string indicating which traits you want to
-retrieve. Traits must belong to the available list of traits. See 
+retrieve. Traits must belong to the available list of traits. See
 GIFT_traits_meta()}
 
 \item{derived}{include logically derived traits.}
@@ -38,7 +38,7 @@ version.}
 A data.frame with 26 columns.
 }
 \description{
-Retrieve non-aggregated trait values at the level of the bibliographic 
+Retrieve non-aggregated trait values at the level of the bibliographic
 references and un-standardized species names in GIFT.
 }
 \details{
@@ -47,7 +47,7 @@ Here is the detail of each column:
 \emph{trait_derived_ID} - \cr
 \emph{ref_ID} - Identification number of the reference\cr
 \emph{orig_ID} - Identification number of the species, as it came in the
- source\cr
+source\cr
 \emph{trait_ID} - Identification number of the trait\cr
 \emph{trait_value} - Value of the trait\cr
 \emph{derived} - Is the trait value derived from another information (e.g.
@@ -82,10 +82,11 @@ succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_traits_meta()] and [GIFT::GIFT_traits()]
+\code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}} and \code{\link[=GIFT_traits]{GIFT_traits()}}
 }

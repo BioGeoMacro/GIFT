@@ -35,9 +35,9 @@ The columns of the data.frame are the following:
 
 \emph{entity_ID} - Identification number of the GIFT polygon\cr
 \emph{glonaf_ID} (or \emph{gmba_ID}) - Identification number of the polygon
- from the other resource\cr
+from the other resource\cr
 \emph{overlap12} - Spatial overlap in percentage between GIFT polygon and
- the external polygon\cr
+the external polygon\cr
 \emph{overlap21} - The other way around
 }
 \examples{
@@ -48,10 +48,11 @@ gmba <- GIFT_overlap(resource = "gmba")
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_lists()]
+\code{\link[=GIFT_lists]{GIFT_lists()}}
 }

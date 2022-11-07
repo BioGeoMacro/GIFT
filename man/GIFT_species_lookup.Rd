@@ -18,8 +18,8 @@ GIFT_species_lookup(
 \item{epithet}{character string defining the specific epithet to be looked
 for.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to 
-look for the species not only in the standardized species names but also 
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to
+look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 
 \item{api}{character string defining from which API the data will be
@@ -33,8 +33,8 @@ version.}
 A data frame with 19 columns (or 24 if namesmatched = TRUE).
 }
 \description{
-Retrieve all name matching information for one taxonomic name. All results 
-are returned, where the name is either found in the unstandardized or 
+Retrieve all name matching information for one taxonomic name. All results
+are returned, where the name is either found in the unstandardized or
 taxonomically standardized names.
 }
 \details{
@@ -49,10 +49,10 @@ harmonization\cr
 \emph{cf_species}- Whether the species' epithet is uncertain\cr
 \emph{aff_species}- Species' epithet uncertain\cr
 \emph{species_epithet}- Epithet of the species before taxonomic
- harmonization\cr
+harmonization\cr
 \emph{subtaxon}- Subtaxon of the species before taxonomic harmonization\cr
 \emph{author}- Author who described the species (before taxonomic
- harmonization)\cr
+harmonization)\cr
 \emph{matched}- Is the species matched in the taxonomic backbone\cr
 \emph{epithetscore}- Matching score for the epithet\cr
 \emph{overallscore}- Overall matching score for the species\cr
@@ -79,10 +79,11 @@ ex <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklist()]
+\code{\link[=GIFT_checklist]{GIFT_checklist()}}
 }

@@ -16,10 +16,10 @@ GIFT_taxgroup(
 }
 \arguments{
 \item{work_ID}{A vector defining the IDs of the species to retrieve
-taxonomic groups for. `Null` by default.}
+taxonomic groups for. \code{Null} by default.}
 
 \item{taxon_lvl}{taxonomic level to retrieve names for. "family" by default.
-Check `GIFT_taxonomy()` for available levels. In addition to the available
+Check \code{GIFT_taxonomy()} for available levels. In addition to the available
 levels one can put "higher_lvl" to retrieve the higher level groups
 "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
 "Monilophyta", "Gymnospermae", and "Angiospermae".}
@@ -34,19 +34,19 @@ version.}
 \item{api}{character string defining from which API the data will be
 retrieved.}
 
-\item{taxonomy}{option to supply taxonomy object here if loaded already to 
-avoid double loading. For internal use within GIFT functions. If `NULL` 
+\item{taxonomy}{option to supply taxonomy object here if loaded already to
+avoid double loading. For internal use within GIFT functions. If \code{NULL}
 (default) taxonomy will be loaded within this function.}
 
 \item{species}{option to supply species names object here if loaded already
-to avoid double loading. For internal use within GIFT functions. If `NULL` 
+to avoid double loading. For internal use within GIFT functions. If \code{NULL}
 (default) species will be loaded within this function.}
 }
 \value{
 A vector with the taxonomic group of the species used as input.
 }
 \description{
-Assign taxonomic groups of various hierarchical level to species from GIFT 
+Assign taxonomic groups of various hierarchical level to species from GIFT
 (work_ID)
 }
 \examples{
@@ -57,10 +57,11 @@ ex2 <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "higher_lvl")
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_taxonomy()]
+\code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}}
 }

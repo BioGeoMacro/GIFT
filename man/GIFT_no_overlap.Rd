@@ -45,7 +45,7 @@ A vector of entity_IDs (identification numbers of polygons)
 non-overlapping.
 }
 \description{
-Identify overlapping regions in a set of GIFT regions and choose only 
+Identify overlapping regions in a set of GIFT regions and choose only
 non-overlapping regions based on size and overlap criteria
 }
 \examples{
@@ -59,10 +59,11 @@ area_th_mainland = 100000) # since Andalusia is smaller than 100,000 km²
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklists()]
+\code{\link[=GIFT_checklists]{GIFT_checklists()}}
 }

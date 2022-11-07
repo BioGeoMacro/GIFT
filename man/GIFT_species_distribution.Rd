@@ -19,14 +19,14 @@ GIFT_species_distribution(
 )
 }
 \arguments{
-\item{genus}{Character string corresponding to the genus of the species 
+\item{genus}{Character string corresponding to the genus of the species
 of interest.}
 
-\item{epithet}{Character string corresponding to the epithet of the species 
+\item{epithet}{Character string corresponding to the epithet of the species
 of interest.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to 
-look for the species not only in the standardized species names but also 
+\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to
+look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 
 \item{remove_overlap}{a boolean stating whether you want to
@@ -74,14 +74,14 @@ Here is the detail of each data.frame and their columns:
 \emph{list_ID} - Identification number of the list\cr
 \emph{entity_ID} - Identification number of the polygon\cr
 \emph{name_ID} - Identification number of the genus before taxonomic
-harmonization\cr 
+harmonization\cr
 \emph{cf_genus} - Whether the genus name is uncertain\cr
-\emph{cf_species} - Whether the species' epithet is uncertain\cr 
+\emph{cf_species} - Whether the species' epithet is uncertain\cr
 \emph{aff_species} - Species' epithet uncertain\cr
 \emph{questionable} - Whether the species name is questionable\cr
-\emph{native} - Is the species native\cr 
+\emph{native} - Is the species native\cr
 \emph{quest_native} - Is the native status questionable\cr
-\emph{naturalized} - Is the species naturalized\cr 
+\emph{naturalized} - Is the species naturalized\cr
 \emph{endemic_ref} - Is the species endemic at the reference level\cr
 \emph{quest_end_ref} - Is the endemic_ref status questionable\cr
 \emph{endemic_list} - Is the species endemic at the list level\cr
@@ -90,14 +90,14 @@ harmonization\cr
 \emph{species_epithet} - Epithet before taxonomic harmonization\cr
 \emph{subtaxon} - Subtaxon name before taxonomic harmonization\cr
 \emph{author} - Author who described the species before taxonomic
- harmonization\cr
+harmonization\cr
 \emph{matched} - Is the species name matched in the taxonomic backbone\cr
 \emph{epithetscore} - Matching score for the epithet\cr
 \emph{overallscore} - Overall matching score for the species\cr
 \emph{resolved} - Is the species name resolved in the taxonomic backbone\cr
 \emph{synonym} -Is the species a synonym in the taxonomic backbone\cr
 \emph{matched_subtaxon} -Is the sub-species name matched in the taxonomic
- backbone\cr
+backbone\cr
 \emph{accepted} - Is the species name accepted in the taxonomic backbone\cr
 \emph{service} - Service use for the taxonomic harmonization\cr
 \emph{work_ID} -Identification number of the species after taxonomic
@@ -118,10 +118,11 @@ ex <- GIFT_species_distribution()
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_species_lookup()]
+\code{\link[=GIFT_species_lookup]{GIFT_species_lookup()}}
 }

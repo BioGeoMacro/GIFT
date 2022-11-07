@@ -43,7 +43,7 @@ as well incomplete lists.}
 
 \item{geo_type}{Character string, either 'Mainland', 'Island' or
 'All'. Island gets you to Island, Island Group &
-Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you 
+Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you
 all.}
 
 \item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
@@ -110,13 +110,13 @@ Here is the detail of each data.frame and their columns:
 \emph{ref_ID} - Identification number of each reference.\cr
 \emph{type}- What type the source is.\cr
 \emph{subset}- What information regarding the status of species is
- available.\cr
+available.\cr
 \emph{native_indicated}- Whether native status of species is available in
- the source.\cr
+the source.\cr
 \emph{natural_indicated} - Whether naturalized status of species is
- available in the source.\cr
+available in the source.\cr
 \emph{end_ref} - Whether endemism information is available in the
- source.\cr
+source.\cr
 \emph{restricted} - Whether the access to this reference is
 restricted.\cr
 \emph{taxon_ID}- Identification number of species.\cr
@@ -134,9 +134,9 @@ For the second data frame with the species, each column refers to:
 \emph{ref_ID} - Identification number of each reference.\cr
 \emph{list_ID} - Identification number of each list\cr
 \emph{work_ID} - Identification number of each species name, after taxonomic
- harmonization.\cr
+harmonization.\cr
 \emph{genus_ID} - Identification number of each genus, after taxonomic
- harmonization.\cr
+harmonization.\cr
 \emph{species} - Species name, after taxonomic harmonization.\cr
 \emph{questionable} - Whether the species occurrence is questionable.\cr
 \emph{native} - Whether the species is native.\cr
@@ -144,10 +144,10 @@ For the second data frame with the species, each column refers to:
 \emph{naturalized} - Whether the species is naturalized.\cr
 \emph{endemic_ref} - Whether the species is endemic within the reference.\cr
 \emph{quest_end_ref} - Whether the endemic_ref information is
- questionable.\cr
+questionable.\cr
 \emph{endemic_list} - Whether the species is endemic within the list.\cr
 \emph{quest_end_list} - Whether the endemic_list information is
- questionable.\cr
+questionable.\cr
 \emph{cons_status} - Conservation status of the species.\cr
 \emph{family} - Family of the species.\cr
 \emph{tax_group} - Taxonomic group of the species.
@@ -164,10 +164,11 @@ taxon_name = "Angiospermae", list_set_only = TRUE)
 
 }
 \references{
-Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+ Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+ https://doi.org/10.1111/jbi.13623
+}\if{html}{\out{</div>}}
 }
 \seealso{
-[GIFT::GIFT_checklist_raw()]
+\code{\link[=GIFT_checklist_raw]{GIFT_checklist_raw()}}
 }
