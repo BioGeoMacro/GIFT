@@ -65,5 +65,5 @@ area_th_mainland = 100000) # since Andalusia is smaller than 100,000 km²
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_checklists]{GIFT_checklists()}}
+\code{\link[=GIFT_checklist]{GIFT_checklist()}}
 }

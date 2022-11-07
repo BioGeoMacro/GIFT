@@ -52,5 +52,5 @@ ex <- GIFT_lists()
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_checklists]{GIFT_checklists()}}
+\code{\link[=GIFT_checklist]{GIFT_checklist()}}
 }

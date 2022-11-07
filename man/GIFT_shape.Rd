@@ -57,5 +57,5 @@ plot(st_geometry(ex), col = ex$entity_ID)
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_plot]{GIFT_plot()}}, \code{\link[=GIFT_env]{GIFT_env()}}
+\code{\link[=GIFT_env]{GIFT_env()}}
 }
