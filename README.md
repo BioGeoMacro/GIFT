@@ -8,7 +8,7 @@ Functions to extract data from Global Inventory of Floras and Traits (GIFT)
 
 Three vignettes are available: <br>
 - **[Main tutorial](https://biogeomacro.github.io/GIFT/articles/GIFT.html)**  
-- **[For advanced users](https://biogeomacro.github.io/GIFT/articles/GIFT_Internal_functions.html)**  
+- **[For advanced users](https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html)**  
 - **[API](https://biogeomacro.github.io/GIFT/articles/GIFT_API.html)**  
 
 # 2. Functions
