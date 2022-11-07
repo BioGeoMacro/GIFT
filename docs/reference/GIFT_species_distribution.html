@@ -18,15 +18,17 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/GIFT.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in GIFT API</a>
-    <a class="dropdown-item" href="../articles/GIFT_Internal_functions.html">GIFT tutorial, advanced users</a>
-    <a class="dropdown-item" href="../articles/GIFT_tutorial.html">GIFT tutorial</a>
+    <a class="dropdown-item" href="../articles/GIFT_advanced_users.html">GIFT tutorial for advanced users</a>
+    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in the API</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -74,18 +76,18 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>genus</dt>
-<dd><p>Character string corresponding to the genus of the species 
+<dd><p>Character string corresponding to the genus of the species
 of interest.</p></dd>
 
 
 <dt>epithet</dt>
-<dd><p>Character string corresponding to the epithet of the species 
+<dd><p>Character string corresponding to the epithet of the species
 of interest.</p></dd>
 
 
 <dt>namesmatched</dt>
-<dd><p>Boolean. FALSE by default, set to TRUE if you want to 
-look for the species not only in the standardized species names but also 
+<dd><p>Boolean. FALSE by default, set to TRUE if you want to
+look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.</p></dd>
 
 
@@ -149,8 +151,8 @@ retrieved.</p></dd>
     <p>Here is the detail of each data.frame and their columns:
 <em>ref_ID</em> - Identification number of the reference<br><em>list_ID</em> - Identification number of the list<br><em>entity_ID</em> - Identification number of the polygon<br><em>name_ID</em> - Identification number of the genus before taxonomic
 harmonization<br><em>cf_genus</em> - Whether the genus name is uncertain<br><em>cf_species</em> - Whether the species' epithet is uncertain<br><em>aff_species</em> - Species' epithet uncertain<br><em>questionable</em> - Whether the species name is questionable<br><em>native</em> - Is the species native<br><em>quest_native</em> - Is the native status questionable<br><em>naturalized</em> - Is the species naturalized<br><em>endemic_ref</em> - Is the species endemic at the reference level<br><em>quest_end_ref</em> - Is the endemic_ref status questionable<br><em>endemic_list</em> - Is the species endemic at the list level<br><em>quest_end_list</em> - Is the endemic_list status questionable<br><em>genus</em> - Genus name before taxonomic harmonization<br><em>species_epithet</em> - Epithet before taxonomic harmonization<br><em>subtaxon</em> - Subtaxon name before taxonomic harmonization<br><em>author</em> - Author who described the species before taxonomic
- harmonization<br><em>matched</em> - Is the species name matched in the taxonomic backbone<br><em>epithetscore</em> - Matching score for the epithet<br><em>overallscore</em> - Overall matching score for the species<br><em>resolved</em> - Is the species name resolved in the taxonomic backbone<br><em>synonym</em> -Is the species a synonym in the taxonomic backbone<br><em>matched_subtaxon</em> -Is the sub-species name matched in the taxonomic
- backbone<br><em>accepted</em> - Is the species name accepted in the taxonomic backbone<br><em>service</em> - Service use for the taxonomic harmonization<br><em>work_ID</em> -Identification number of the species after taxonomic
+harmonization<br><em>matched</em> - Is the species name matched in the taxonomic backbone<br><em>epithetscore</em> - Matching score for the epithet<br><em>overallscore</em> - Overall matching score for the species<br><em>resolved</em> - Is the species name resolved in the taxonomic backbone<br><em>synonym</em> -Is the species a synonym in the taxonomic backbone<br><em>matched_subtaxon</em> -Is the sub-species name matched in the taxonomic
+backbone<br><em>accepted</em> - Is the species name accepted in the taxonomic backbone<br><em>service</em> - Service use for the taxonomic harmonization<br><em>work_ID</em> -Identification number of the species after taxonomic
 harmonization<br><em>taxon_ID</em> -Identification number of the taxonomic group<br><em>work_genus</em> - Identification number of the genus after taxonomic
 harmonization<br><em>work_species_epithet</em> - Identification number of the species epithet
 after taxonomic harmonization<br><em>work_species</em> - Species name (after taxonomic harmonization)<br><em>work_author</em> - Author who described the species (after taxonomic
@@ -158,13 +160,13 @@ harmonization)</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623</p>
+    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> Traits <span class="cf">for</span> macroecology and biogeography. J Biogeogr. <span class="dv">2020</span>; <span class="dv">47</span><span class="sc">:</span> 16– <span class="fl">43.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1111</span><span class="sc">/</span>jbi<span class="fl">.13623</span></span></code></pre><p></p></div>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>[GIFT::GIFT_species_lookup()]</p></div>
+    <div class="dont-index"><p><code><a href="GIFT_species_lookup.html">GIFT_species_lookup()</a></code></p></div>
     </div>
 
     <div class="section level2">

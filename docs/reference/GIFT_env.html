@@ -20,15 +20,17 @@ They can come as rasters or shapefiles (miscellaneous)"><!-- mathjax --><script 
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/GIFT.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in GIFT API</a>
-    <a class="dropdown-item" href="../articles/GIFT_Internal_functions.html">GIFT tutorial, advanced users</a>
-    <a class="dropdown-item" href="../articles/GIFT_tutorial.html">GIFT tutorial</a>
+    <a class="dropdown-item" href="../articles/GIFT_advanced_users.html">GIFT tutorial for advanced users</a>
+    <a class="dropdown-item" href="../articles/GIFT_API.html">Queries in the API</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -73,7 +75,7 @@ They can come as rasters or shapefiles (miscellaneous)</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>entity_ID</dt>
 <dd><p>A vector defining the ID of the lists to retrieve.
-`NULL` by default, in that case, every list from GIFT is retrieved.</p></dd>
+<code>NULL</code> by default, in that case, every list from GIFT is retrieved.</p></dd>
 
 
 <dt>miscellaneous</dt>
@@ -87,12 +89,12 @@ data to retrieve.</p></dd>
 
 
 <dt>sumstat</dt>
-<dd><p>Vector or list indicating the desired summary statistics out 
-of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
-"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H", 
-"n") used to aggregate the information coming from the raster layers. If 
-sumstat is a vector, the same summary statistics are used for all raster 
-layers. If sumstat is a list, the first element defines the summary 
+<dd><p>Vector or list indicating the desired summary statistics out
+of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70",
+"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H",
+"n") used to aggregate the information coming from the raster layers. If
+sumstat is a vector, the same summary statistics are used for all raster
+layers. If sumstat is a list, the first element defines the summary
 statistics for the first raster layer, the second for the second and so
 on.<br><strong>Important note</strong> Some summary statistics may not be informative
 depending on the environmental layer you ask for. For example, it is not
@@ -125,13 +127,13 @@ The other columns relate to the environmental variables the user asked for.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-     https://doi.org/10.1111/jbi.13623</p>
+    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> Traits <span class="cf">for</span> macroecology and biogeography. J Biogeogr. <span class="dv">2020</span>; <span class="dv">47</span><span class="sc">:</span> 16– <span class="fl">43.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1111</span><span class="sc">/</span>jbi<span class="fl">.13623</span></span></code></pre><p></p></div>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>[GIFT::GIFT_env_meta_misc()] and [GIFT::GIFT_env_meta_raster()]</p></div>
+    <div class="dont-index"><p><code><a href="GIFT_env_meta_misc.html">GIFT_env_meta_misc()</a></code> and <code><a href="GIFT_env_meta_raster.html">GIFT_env_meta_raster()</a></code></p></div>
     </div>
 
     <div class="section level2">

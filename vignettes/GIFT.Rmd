@@ -101,9 +101,10 @@ ggplot(world) +
 ```
 
 <br>
-*Please note that the projection used in GIFT is the WGS84, and that all*
-*shapefiles provided should be in this CRS. You can check the coordinate*
-*reference system of a sf object by using* `sf::st_crs().`
+*Please note that shapes used in GIFT are unprojected (Geographic Coordinate *
+*System WGS84), and that all shapefiles provided should be in this CRS.*
+*You can check the coordinate reference system of a sf object by using*
+`sf::st_crs().`
 <br>
 
 ## 1.2. Main arguments
@@ -475,7 +476,7 @@ ggplot(world) +
   scale_fill_brewer("Status", palette = "Set2") +
   labs(title = expression(paste("Distribution map of ",
                                 italic("Anemone nemorosa"))),
-       subtitle = "Projection WGS84") +
+       subtitle = "Unprojected (GCS: WGS84)") +
   lims(x = c(-65, 170), y = c(-45, 70)) +
   theme_void()
 ```
