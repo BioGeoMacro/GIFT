@@ -55,10 +55,10 @@ phanerophytes are woody)\cr
 \emph{bias_deriv} - Is the derivation potentially introducing a bias\cr
 \emph{name_ID} - Identification number of the species before being
 resolved\cr
-\emph{cf_genus} - \cr
+\emph{cf_genus} - Whether the genus name is uncertain\cr
 \emph{genus} - Genus of the species\cr
-\emph{cf_species} - \cr
-\emph{aff_species} - \cr
+\emph{cf_species} - Whether the species' epithet is uncertain\cr
+\emph{aff_species} - Species' epithet uncertain\cr
 \emph{species_epithet} - Epithet of the species\cr
 \emph{subtaxon} - Sub-taxon name\cr
 \emph{author} - Author who described the species\cr
