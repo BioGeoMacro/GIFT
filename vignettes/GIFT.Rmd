@@ -135,7 +135,7 @@ knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
 In Figure 1, we want to retrieve checklists of Angiosperms. In the first region
 available, region A only one checklist is of interest. This checklist is then
 always retrieved. In region B, there is only a checklist of orchids, which is
-a subset only of Angiosperms. If `complete_taxon` is set to `FALSE`, then this
+a subset only of Angiosperms. If `complete_taxon` is set to `TRUE`, then this
 checklist won't be retrieved, otherwise yes. Finally, in region C, there is a
 checklist of vascular plants and one for orchids. In both cases, the checklist
 of vascular plants will be retrieved after filtering out the non-angiosperm
