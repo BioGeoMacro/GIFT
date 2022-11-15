@@ -10,6 +10,7 @@ GIFT_checklist(
   floristic_group = c("all", "native", "endemic", "naturalized")[2],
   complete_floristic = TRUE,
   geo_type = c("All", "Mainland", "Island")[1],
+  ref_excluded = NULL,
   suit_geo = FALSE,
   shp = NULL,
   coordinates = NULL,
@@ -45,6 +46,11 @@ as well incomplete lists.}
 'All'. Island gets you to Island, Island Group &
 Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you
 all.}
+
+\item{ref_excluded}{A vector listing potential ref_IDs that shall be ignored
+when assembling the set of regions and checklists fulfilling the given
+criteria. Checklists from these references will not be returned. NULL by
+default.}
 
 \item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
 

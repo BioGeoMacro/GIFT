@@ -9,6 +9,7 @@ GIFT_checklist_conditional(
   ref_included = c("all", "native", "native and naturalized",
     "native and historically introduced", "endangered", "endemic", "naturalized",
     "other subset")[1:4],
+  ref_excluded = NULL,
   type_ref = c("Account", "Catalogue", "Checklist", "Flora", "Herbarium collection",
     "Key", "Red list", "Report", "Species Database", "Survey"),
   entity_class = c("Island", "Island/Mainland", "Mainland", "Island Group",
@@ -32,6 +33,11 @@ of interest.}
 \item{ref_included}{Character, options are 'all', 'native',
 'native and naturalized', 'native and historically introduced',
 'endangered', 'endemic', 'naturalized', 'other subset'}
+
+\item{ref_excluded}{A vector listing potential ref_IDs that shall be ignored
+when assembling the set of regions and checklists fulfilling the given
+criteria. Checklists from these references will not be returned. NULL by
+default.}
 
 \item{type_ref}{Character, options are 'Account', 'Catalogue', 'Checklist',
 'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
@@ -73,7 +79,8 @@ GIFT_taxonomy()).}
 A data frame with 16 columns.
 }
 \description{
-Retrieve GIFT checklists that fulfill specific criteria.
+Retrieve meta data on GIFT checklists for regions that are covered by
+checklists jointly fulfilling specific criteria.
 }
 \details{
 Here is what each column refers to:

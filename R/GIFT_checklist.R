@@ -21,6 +21,11 @@
 #' Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you 
 #' all.
 #' 
+#' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
+#' when assembling the set of regions and checklists fulfilling the given 
+#' criteria. Checklists from these references will not be returned. NULL by 
+#' default.
+#'  
 #' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
 #' 
 #' @param shp Shapefile provided by the user.
@@ -148,7 +153,7 @@ GIFT_checklist <- function(
     taxon_name = "Tracheophyta", complete_taxon = TRUE,
     floristic_group = c("all", "native", "endemic", "naturalized")[2],
     complete_floristic = TRUE, geo_type = c("All", "Mainland", "Island")[1],
-    suit_geo = FALSE, shp = NULL, coordinates = NULL,
+    ref_excluded = NULL, suit_geo = FALSE, shp = NULL, coordinates = NULL,
     overlap = "centroid_inside", remove_overlap = FALSE, area_th_island = 0,
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
     taxonomic_group = TRUE, namesmatched = FALSE, list_set_only = FALSE,
@@ -189,6 +194,13 @@ GIFT_checklist <- function(
     stop(c("'geo_type' must be a character string stating what geographic
     type you want to retrieve. Available options are 'Mainland', 'Island' or
     'Mainland, Island')."))
+  }
+  
+  if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
+     !is.numeric(ref_excluded)){
+    stop("'ref_excluded' must be a character string or a numeric stating the
+         identification numbers of the references (ref_ID) that shall be 
+         ignored.")
   }
   
   if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
@@ -412,6 +424,7 @@ GIFT_checklist <- function(
     GIFT::GIFT_checklist_conditional(
       taxon_name = taxon_name,
       ref_included = arg_list[[floristic_group]],
+      ref_excluded = ref_excluded,
       entity_class = entity_class,
       native_indicated = (floristic_group == "native"),
       natural_indicated = (floristic_group == "naturalized"),
@@ -431,6 +444,7 @@ GIFT_checklist <- function(
       GIFT::GIFT_checklist_conditional(
         taxon_name = taxon_name,
         ref_included = arg_list_second[[floristic_group]],
+        ref_excluded = ref_excluded,
         entity_class = entity_class,
         native_indicated = (floristic_group == "native"),
         natural_indicated = (floristic_group == "naturalized"),

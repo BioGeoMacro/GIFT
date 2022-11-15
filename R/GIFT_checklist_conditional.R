@@ -1,6 +1,7 @@
 #' GIFT checklists
 #'
-#' Retrieve GIFT checklists that fulfill specific criteria.
+#' Retrieve meta data on GIFT checklists for regions that are covered by 
+#' checklists jointly fulfilling specific criteria.
 #'
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
@@ -8,7 +9,12 @@
 #' @param ref_included Character, options are 'all', 'native',
 #' 'native and naturalized', 'native and historically introduced',
 #' 'endangered', 'endemic', 'naturalized', 'other subset'
-#' 
+#'
+#' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
+#' when assembling the set of regions and checklists fulfilling the given 
+#' criteria. Checklists from these references will not be returned. NULL by 
+#' default.
+#'  
 #' @param type_ref Character, options are 'Account', 'Catalogue', 'Checklist',
 #' 'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
 #' 'Species Database', 'Survey'
@@ -105,6 +111,7 @@ GIFT_checklist_conditional <- function(
     ref_included = c("all", "native", "native and naturalized",
                      "native and historically introduced", "endangered",
                      "endemic", "naturalized", "other subset")[1:4],
+    ref_excluded = NULL,
     type_ref = c("Account", "Catalogue", "Checklist","Flora",
                  "Herbarium collection", "Key", "Red list", "Report",
                  "Species Database", "Survey"),
@@ -136,6 +143,13 @@ GIFT_checklist_conditional <- function(
            'native', 'native and naturalized',
            'native and historically introduced', 'endangered',
            'endemic', 'naturalized', 'other subset'"))
+  }
+  
+  if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
+     !is.numeric(ref_excluded)){
+    stop("'ref_excluded' must be a character string or a numeric stating the
+         identification numbers of the references (ref_ID) that shall be 
+         ignored.")
   }
   
   if(any(is.na(type_ref)) || !is.character(type_ref) || 
@@ -254,6 +268,12 @@ GIFT_checklist_conditional <- function(
                                           taxonomy$rgt > right_border),
                                   "taxon_ID"]
   included_taxa <- c(included_taxa_below, included_taxa_above)
+  
+  # Remove ref_IDs to be ignored
+  if(!is.null(ref_excluded)){
+    list_set <- list_set[which(!list_set$ref_ID %in% 
+                                 as.numeric(ref_excluded)), ]
+  }
   
   # Subset of lists based on the taxonomy
   list_set <- list_set[which(list_set$taxon_ID %in% included_taxa), ]
