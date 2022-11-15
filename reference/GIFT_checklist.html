@@ -64,6 +64,7 @@
 <span>  floristic_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"native"</span>, <span class="st">"endemic"</span>, <span class="st">"naturalized"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
 <span>  complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  geo_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span>, <span class="st">"Mainland"</span>, <span class="st">"Island"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  ref_excluded <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  suit_geo <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  shp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  coordinates <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -110,6 +111,13 @@ as well incomplete lists.</p></dd>
 'All'. Island gets you to Island, Island Group &amp;
 Island Part. Mainland gets you to Mainland &amp; Island/Mainland. 'All' gets you
 all.</p></dd>
+
+
+<dt>ref_excluded</dt>
+<dd><p>A vector listing potential ref_IDs that shall be ignored
+when assembling the set of regions and checklists fulfilling the given
+criteria. Checklists from these references will not be returned. NULL by
+default.</p></dd>
 
 
 <dt>suit_geo</dt>
