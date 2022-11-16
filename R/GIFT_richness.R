@@ -56,7 +56,8 @@ GIFT_richness <- function(
     api = "http://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(length(what) != 1 || is.na(what) || !is.character(what)){
+  if(length(what) != 1 || is.na(what) || !is.character(what) ||
+     !(all(what %in% c("species_richness", "trait_coverage")))){
     stop("'what' is incorrect. It must be a character string equal either to
          'species_richness' or 'trait_coverage'.")
   }
