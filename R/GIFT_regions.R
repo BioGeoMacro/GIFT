@@ -69,5 +69,8 @@ GIFT_regions <- function(api = "http://gift.uni-goettingen.de/api/extended/",
   tmp <- jsonlite::read_json(paste0(
     api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=regions"), simplifyVector = TRUE)
+  
+  tmp$entity_ID <- as.numeric(tmp$entity_ID)
+  
   return(tmp)
 }
