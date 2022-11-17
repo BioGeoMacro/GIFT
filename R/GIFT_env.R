@@ -112,7 +112,7 @@ GIFT_env <- function(
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
-
+  
   gift_env_meta_misc <- GIFT_env_meta_misc(api = api,
                                            GIFT_version = GIFT_version)
   if(!is.null(miscellaneous) &&
@@ -122,8 +122,9 @@ GIFT_env <- function(
            GIFT_env_meta_misc() to see available options."))
   }
   
-  gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
-                                               GIFT_version = GIFT_version)
+  suppressMessages(
+    gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
+                                                 GIFT_version = GIFT_version))
   if(!is.null(rasterlayer) &&
      !(all(rasterlayer %in% gift_env_meta_raster$layer_name))){
     stop(c("'rasterlayer' must be a character string stating what
@@ -194,8 +195,9 @@ GIFT_env <- function(
   if(!is.null(entity_ID)){
     tmp_misc <- tmp_misc[tmp_misc$entity_ID %in% entity_ID, ]
   }
-
-  tmp_misc <- tmp_misc[stats::complete.cases(tmp_misc), ]
+  
+  # Remove rows where all columns but entity_ID and geo_entity are NAs
+  tmp_misc <- tmp_misc[rowSums(is.na(tmp_misc)) != (ncol(tmp_misc)-2), ]
   
   return(tmp_misc)
 }
