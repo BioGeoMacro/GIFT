@@ -104,6 +104,7 @@
 
 * GIFT_species_distribution()
     - use simpler version of GIFT_species() for matchednames (Patrick)
+    - something is wrong when aggregated = TRUE and matchednames TRUE, Columns missing
 
 * GIFT_regions()
 
