@@ -54,7 +54,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
                           taxon_lvl = c("family", "order", "higher_lvl")[1], 
                           return_ID = FALSE,
                           GIFT_version = "latest",
-                          api = "http://gift.uni-goettingen.de/api/extended/",
+                          api = "https://gift.uni-goettingen.de/api/extended/",
                           taxonomy = NULL, species = NULL){
   
   # 1. Controls ----

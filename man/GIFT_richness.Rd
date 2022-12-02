@@ -9,7 +9,7 @@ GIFT_richness(
   taxon_name = "Embryophyta",
   trait_ID = "1.1.1",
   GIFT_version = "latest",
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  api = "https://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{

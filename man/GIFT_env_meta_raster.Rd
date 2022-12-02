@@ -5,7 +5,7 @@
 \title{Metadata for the environmental rasters in GIFT}
 \usage{
 GIFT_env_meta_raster(
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
 }

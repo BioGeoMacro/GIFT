@@ -76,7 +76,7 @@
 
 GIFT_species_lookup <-
   function(genus = "", epithet = "", namesmatched = FALSE, 
-           api = "http://gift.uni-goettingen.de/api/extended/",
+           api = "https://gift.uni-goettingen.de/api/extended/",
            GIFT_version = "latest"){
     # 1. Controls ----
     # Arguments

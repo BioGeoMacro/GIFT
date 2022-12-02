@@ -15,7 +15,7 @@ GIFT_species_distribution(
   by_ref_ID = FALSE,
   aggregation = FALSE,
   GIFT_version = "latest",
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  api = "https://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{

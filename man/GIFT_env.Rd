@@ -10,7 +10,7 @@ GIFT_env(
   rasterlayer = NULL,
   sumstat = "mean",
   GIFT_version = "latest",
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  api = "https://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{

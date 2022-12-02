@@ -59,7 +59,7 @@
 #' 
 GIFT_traits <- function(
     trait_IDs = "", agreement = 0.66, bias_ref = TRUE, bias_deriv = TRUE,
-    api = "http://gift.uni-goettingen.de/api/extended/",
+    api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
   # 1. Controls ----

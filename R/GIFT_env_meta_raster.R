@@ -43,7 +43,7 @@
 #' @export
 
 GIFT_env_meta_raster <- function(
-    api = "http://gift.uni-goettingen.de/api/extended/",
+    api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
   # 1. Controls ----

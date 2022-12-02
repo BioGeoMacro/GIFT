@@ -38,7 +38,7 @@
 #' 
 #' @export
 
-GIFT_species <- function(api = "http://gift.uni-goettingen.de/api/extended/",
+GIFT_species <- function(api = "https://gift.uni-goettingen.de/api/extended/",
                          GIFT_version = "latest"){
   # 1. Controls ----
   # Arguments

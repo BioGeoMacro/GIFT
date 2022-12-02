@@ -107,7 +107,7 @@ Some precisions:
 # traitid=1.1.1&biasref=1&biasderiv=1&startat=100000&limit=10
 
 # To retrieve the geojson
-paste0("http://gift.uni-goettingen.de/geojson/geojson_smaller", 
+paste0("https://gift.uni-goettingen.de/geojson/geojson_smaller", 
        ifelse(GIFT_version == "beta", "", GIFT_version), "/",
        entity_ID[i], ".geojson")
 ```

@@ -113,7 +113,7 @@ GIFT_species_distribution <- function(
     area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
     aggregation = FALSE,
     GIFT_version = "latest",
-    api = "http://gift.uni-goettingen.de/api/extended/"){
+    api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   if(length(genus) != 1 || is.na(genus) ||

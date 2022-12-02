@@ -6,7 +6,7 @@
 \usage{
 GIFT_shape(
   entity_ID = NULL,
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
 }

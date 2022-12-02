@@ -40,7 +40,7 @@
 #' @export
 
 GIFT_traits_meta <- function(
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"){
   # 1. Controls ----
   if(length(api) != 1 || !is.character(api)){

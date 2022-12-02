@@ -39,7 +39,7 @@
 #' @export
 
 GIFT_taxonomy <- function(GIFT_version = "latest", 
-                          api = "http://gift.uni-goettingen.de/api/extended/"){
+                          api = "https://gift.uni-goettingen.de/api/extended/"){
   # 1. Controls ----
   if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")

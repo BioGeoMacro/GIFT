@@ -24,7 +24,7 @@ GIFT_checklist(
   namesmatched = FALSE,
   list_set_only = FALSE,
   GIFT_version = "latest",
-  api = "http://gift.uni-goettingen.de/api/extended/"
+  api = "https://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{

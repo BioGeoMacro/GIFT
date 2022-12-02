@@ -121,7 +121,7 @@ GIFT_checklist_conditional <- function(
     end_list = FALSE, suit_geo = FALSE,
     complete_taxon = TRUE,
     GIFT_version = "latest", 
-    api = "http://gift.uni-goettingen.de/api/extended/",
+    api = "https://gift.uni-goettingen.de/api/extended/",
     list_set = NULL, taxonomy = NULL){
   
   # 1. Controls ----

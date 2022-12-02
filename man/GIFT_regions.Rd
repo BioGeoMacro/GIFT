@@ -5,7 +5,7 @@
 \title{GIFT regions}
 \usage{
 GIFT_regions(
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
 }

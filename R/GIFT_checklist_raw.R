@@ -91,7 +91,7 @@ GIFT_checklist_raw <- function(
     ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
     taxon_name = "Tracheophyta", floristic_group = "all",
     list_set = NULL, taxonomy = NULL, GIFT_version = "latest",
-    api = "http://gift.uni-goettingen.de/api/extended/"
+    api = "https://gift.uni-goettingen.de/api/extended/"
 ){
   
   # 1. Controls ----

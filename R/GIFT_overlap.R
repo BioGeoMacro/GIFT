@@ -46,7 +46,7 @@
 
 GIFT_overlap <- function(
     resource = "glonaf", GIFT_version = "latest",
-    api = "http://gift.uni-goettingen.de/api/extended/"){
+    api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   if(length(resource) != 1 || !is.character(resource) || 

@@ -55,7 +55,7 @@
 GIFT_no_overlap <- function(
     entity_IDs = NULL, area_th_island = 0, area_th_mainland = 100,
     overlap_th = 0.1, geoentities_overlap = NULL, 
-    api = "http://gift.uni-goettingen.de/api/extended/",
+    api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
   # 1. Controls ----

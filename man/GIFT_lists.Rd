@@ -5,7 +5,7 @@
 \title{References available in GIFT}
 \usage{
 GIFT_lists(
-  api = "http://gift.uni-goettingen.de/api/extended/",
+  api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
 }

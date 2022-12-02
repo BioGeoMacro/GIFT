@@ -81,7 +81,7 @@ GIFT_env <- function(
     miscellaneous = "area", rasterlayer = NULL,
     sumstat = "mean",
     GIFT_version = "latest",
-    api = "http://gift.uni-goettingen.de/api/extended/"){
+    api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
   if(!is.character(unlist(sumstat)) || 
