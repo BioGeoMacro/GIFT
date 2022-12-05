@@ -126,10 +126,20 @@ Make a clear error message in case of wrong API (have a clear error message for 
 # 5. GIFT admin/database
 * Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))
 * Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final
+* Traits: Agreement free text traits? Does not make sense. How is it handled
 * Phylogeny: V.Phylo.maker2 => update *phylogeny* table
 * exactextract
 * unrealistic heights and elevation ranges (+ flora of Gabon in feet)
+* check whats restricted once again
+* Add a bit more info to version table: beta, tpl-wcvp, numbers
+* Trait links Matthias
+* Check type_ref = 0
+* 4.15.1 combinations possible
+* New NDVI
+* Check regions with multiple polygon resources
+
 
 # 6. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
 * allow comparison restricted/extended (GIFT_references() _richness(), _lists())
+* GIFT website: link to package; Alumni, update, Pierre, Julian, etc.
