@@ -118,7 +118,7 @@ GIFT_env <- function(
   if(!is.null(miscellaneous) &&
      !(all(miscellaneous %in% gift_env_meta_misc$variable))){
     stop(c("'miscellaneous' must be a character string stating what
-           miscellaneous variable you want to retrieve. Run
+           miscellaneous variable(s) you want to retrieve. Run
            GIFT_env_meta_misc() to see available options."))
   }
   
@@ -128,7 +128,7 @@ GIFT_env <- function(
   if(!is.null(rasterlayer) &&
      !(all(rasterlayer %in% gift_env_meta_raster$layer_name))){
     stop(c("'rasterlayer' must be a character string stating what
-           raster layer you want to retrieve. Run
+           raster layer(s) you want to retrieve data from. Run
            GIFT_env_meta_raster() to see available options."))
   }
   
