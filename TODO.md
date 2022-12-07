@@ -130,7 +130,7 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * Phylogeny: V.Phylo.maker2 => update *phylogeny* table
 * exactextract
 * unrealistic heights and elevation ranges (+ flora of Gabon in feet)
-* Ref_ID 10173 hat native == 1 und naturalized == 1 ohne das questionable oder quest_native angezeigt ist
+* ~~Ref_ID 10173 hat native == 1 und naturalized == 1 ohne das questionable oder quest_native angezeigt ist~~
 * Heights Helena sent
 * check whats restricted once again
 * Add a bit more info to version table: beta, tpl-wcvp, numbers
@@ -140,7 +140,10 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * New NDVI
 * Check regions with multiple polygon resources
 * add environmental layers in GIFT:
+* Check Julians Polygons
 * Run counts again
+* cleanup_names_work_unique()
+
 https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_TC_v3
 https://glad.umd.edu/dataset/gedi
 https://www.hydrosheds.org/products/gloric
