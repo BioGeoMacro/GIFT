@@ -127,6 +127,7 @@ GIFT_traits <- function(
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))
   
+  message("Metadata for lists retrieved.\n")
   count <- 1
   utils::setTxtProgressBar(progress, count)
   
@@ -156,8 +157,8 @@ GIFT_traits <- function(
                                    is.na(trait_list$agreement)), ]
   
   # Make certain columns numeric
-  trait_list <- dplyr::mutate_at(trait_list, c("work_ID", "agreement"),
-                                 as.numeric)
+  trait_list <- dplyr::mutate_at(
+    trait_list, c("work_ID", "agreement", "coeff_var", "n"), as.numeric)
   
   # Add species names
   trait_list <- dplyr::left_join(trait_list,
@@ -171,15 +172,23 @@ GIFT_traits <- function(
   # Reordering columns
   trait_list <- trait_list[, c("work_ID", "work_species", "work_author",
                                "trait_ID", "trait_value", "agreement",
-                               "references")]
+                               "coeff_var", "n", "references")]
+  
+  # Renaming column
+  colnames(trait_list)[colnames(trait_list) == "coeff_var"] <- "cv"
   
   # Wider format
   trait_list <- tidyr::pivot_wider(
     trait_list, names_from = "trait_ID",
-    values_from = c("trait_value", "agreement", "references"))
+    values_from = c("trait_value", "agreement", "cv", "n", "references"))
   
   # Make data.frame
   trait_list <- as.data.frame(trait_list)
-  
+
+  # Remove agreement columns for continuous traits and coeff_var for
+  # categorical traits
+  numeric_traits <- tmp[which(tmp$type == "numeric"), "trait_ID"]
+  categorical_traits <- tmp[which(tmp$type != "numeric"), "trait_ID"]
+
   return(trait_list)
 }

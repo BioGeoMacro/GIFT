@@ -126,10 +126,11 @@ Make a clear error message in case of wrong API (have a clear error message for 
 # 5. GIFT admin/database
 * Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))
 * Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final
-* Traits: Agreement free text traits? Does not make sense. How is it handled
+* Traits: Agreement free text traits? Does not make sense. How is it handled=> remove empty values for free text traits
 * Phylogeny: V.Phylo.maker2 => update *phylogeny* table
 * exactextract
 * unrealistic heights and elevation ranges (+ flora of Gabon in feet)
+* missing trait values in traits_final (see 4.11.1 for example) 
 * ~~Ref_ID 10173 hat native == 1 und naturalized == 1 ohne das questionable oder quest_native angezeigt ist~~
 * Heights Helena sent
 * check whats restricted once again
