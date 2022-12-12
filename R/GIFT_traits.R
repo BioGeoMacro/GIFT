@@ -34,7 +34,10 @@
 #' \emph{species} - Species name\cr
 #' \emph{trait_value} - Value of the trait\cr
 #' \emph{agreement} - Agreement score between the different sources for that
-#' trait value\cr
+#' trait value, only for categorical traits\cr
+#' \emph{cv} - Coefficient of variation for the different sources for that
+#' trait value, only for numeric traits\cr
+#' \emph{n} - Number of sources leading to the trait value\cr
 #' \emph{references} - ref_ID from which we got the trait information
 #'
 #' @references
@@ -116,7 +119,7 @@ GIFT_traits <- function(
   
   
   # 2. Function ----
-
+  
   # Initiating list
   trait_list <- list()
   
@@ -184,11 +187,21 @@ GIFT_traits <- function(
   
   # Make data.frame
   trait_list <- as.data.frame(trait_list)
-
+  
   # Remove agreement columns for continuous traits and coeff_var for
   # categorical traits
-  numeric_traits <- tmp[which(tmp$type == "numeric"), "trait_ID"]
-  categorical_traits <- tmp[which(tmp$type != "numeric"), "trait_ID"]
-
+  numeric_traits <- tmp[which(tmp$type == "numeric"), "Lvl3"]
+  numeric_columns <-
+    paste("agreement", numeric_traits, sep = "_")[
+      paste("agreement", numeric_traits, sep = "_") %in% colnames(trait_list)]
+  
+  categorical_traits <- tmp[which(tmp$type != "numeric"), "Lvl3"]
+  categorical_columns <-
+    paste("cv", categorical_traits, sep = "_")[
+      paste("cv", categorical_traits, sep = "_") %in% colnames(trait_list)]
+  
+  trait_list <- trait_list[, !(colnames(trait_list) %in% numeric_columns)]
+  trait_list <- trait_list[, !(colnames(trait_list) %in% categorical_columns)]
+  
   return(trait_list)
 }
