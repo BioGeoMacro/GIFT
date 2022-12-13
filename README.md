@@ -12,10 +12,10 @@ This **R package** includes several functions to extract data from the
 Global Inventory of Floras and Traits (**GIFT**) database. <br> **GIFT**
 is a global database of plant checklists, covering several taxonomic
 groups and providing information about the floristic status and
-functional traits of plants as well as environmental information of each
-checklist. More details about the content of this database are available
-in the publication of [Weigelt et
-al. (2021)](https://doi.org/10.1111/jbi.13623).
+functional traits of plants as well as environmental information for
+each checklist. <br> More details about the content of this database are
+available in the publication of [Weigelt et al.,
+(2021)](https://doi.org/10.1111/jbi.13623).
 
 # :arrow_double_down: Installation
 
@@ -29,7 +29,7 @@ devtools::install_github("https://github.com/BioGeoMacro/GIFT")
 library("GIFT")
 ```
 
-# :document: Vignettes
+# :scroll: Vignettes
 
 We wrote several vignettes that will help you using the **GIFT R
 package**. So far, three vignettes are available: <br>
@@ -42,7 +42,7 @@ package**. So far, three vignettes are available: <br>
 
 Alternatively, if you prefer to view the vignettes in R, you could
 install the package with `build_vignettes = TRUE`. But be aware that
-some vignettes are slow to generate (the main one especially).
+some vignettes are very slow to generate (the main one especially).
 
 ``` r
 remotes::install_github("https://github.com/BioGeoMacro/GIFT", 
@@ -52,12 +52,12 @@ remotes::install_github("https://github.com/BioGeoMacro/GIFT",
 vignette("GIFT")
 ```
 
-# :tool: Functions
+# :desktop_computer: Functions
 
 An overview of all functions and data is given
 **[here](https://biogeomacro.github.io/GIFT/reference/index.html)**.
 
-# :bug: Find a bug? 🐛
+# :bug: Find a bug?
 
 Thank you for finding it. Head over to the GitHub Issues tab and let us
 know about it. Alternatively, you can also send us an e-mail. We will
