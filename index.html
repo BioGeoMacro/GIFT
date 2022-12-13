@@ -72,36 +72,57 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>Functions to extract data from Global Inventory of Floras and Traits (GIFT)</p>
-<div class="section level2">
-<h2 id="arrow_double_down-installation">
+<p>This <strong>R package</strong> includes several functions to extract data from the Global Inventory of Floras and Traits (<strong>GIFT</strong>) database. <br><strong>GIFT</strong> is a global database of plant checklists, covering several taxonomic groups and providing information about the floristic status and functional traits of plants as well as environmental information of each checklist. More details about the content of this database are available in the publication of <a href="https://doi.org/10.1111/jbi.13623" class="external-link">Weigelt et al. (2021)</a>.</p>
+</div>
+<div class="section level1">
+<h1 id="arrow_double_down-installation">
 <span class="emoji" data-emoji="arrow_double_down">⏬</span> Installation<a class="anchor" aria-label="anchor" href="#arrow_double_down-installation"></a>
-</h2>
-<p>You can install the development version of GIFT from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+</h1>
+<p>The package is not on CRAN yet and is still under active development. You can install the development version from the GitHub repository with the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"https://github.com/BioGeoMacro/GIFT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/BioGeoMacro/GIFT" class="external-link">"GIFT"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="id_1-vignettes">1. Vignettes<a class="anchor" aria-label="anchor" href="#id_1-vignettes"></a>
-</h2>
-<p>Three vignettes are available: <br> - <strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT.html" class="external-link">Main tutorial</a></strong><br>
-- <strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html" class="external-link">For advanced users</a></strong><br>
-- <strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT_API.html" class="external-link">API</a></strong></p>
+<div class="section level1">
+<h1 id="document-vignettes">:document: Vignettes<a class="anchor" aria-label="anchor" href="#document-vignettes"></a>
+</h1>
+<p>We wrote several vignettes that will help you using the <strong>GIFT R package</strong>. So far, three vignettes are available: <br></p>
+<ul>
+<li>
+<strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT.html" class="external-link">Main tutorial</a></strong><br>
+</li>
+<li>
+<strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html" class="external-link">For advanced users</a></strong><br>
+</li>
+<li><strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT_API.html" class="external-link">API</a></strong></li>
+</ul>
+<p>Alternatively, if you prefer to view the vignettes in R, you could install the package with <code>build_vignettes = TRUE</code>. But be aware that some vignettes are slow to generate (the main one especially).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"https://github.com/BioGeoMacro/GIFT"</span>, </span>
+<span>                        dependencies <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, </span>
+<span>                        build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"GIFT"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="id_2-functions">2. Functions<a class="anchor" aria-label="anchor" href="#id_2-functions"></a>
-</h2>
+<div class="section level1">
+<h1 id="tool-functions">:tool: Functions<a class="anchor" aria-label="anchor" href="#tool-functions"></a>
+</h1>
 <p>An overview of all functions and data is given <strong><a href="https://biogeomacro.github.io/GIFT/reference/index.html" class="external-link">here</a></strong>.</p>
 </div>
-<div class="section level2">
-<h2 id="references-and-dependencies">References and dependencies<a class="anchor" aria-label="anchor" href="#references-and-dependencies"></a>
-</h2>
+<div class="section level1">
+<h1 id="bug-find-a-bug-">
+<span class="emoji" data-emoji="bug">🐛</span> Find a bug? 🐛<a class="anchor" aria-label="anchor" href="#bug-find-a-bug-"></a>
+</h1>
+<p>Thank you for finding it. Head over to the GitHub Issues tab and let us know about it. Alternatively, you can also send us an e-mail. We will try to get to it as soon as we can!</p>
+</div>
+<div class="section level1">
+<h1 id="references-and-dependencies">References and dependencies<a class="anchor" aria-label="anchor" href="#references-and-dependencies"></a>
+</h1>
 <p><code>GIFT</code> depends on <code>dplyr</code>, <code>jsonlite</code>, <code>purrr</code>, <code>sf</code>, <code>stats</code>, <code>tidyr</code> and <code>utils</code>.</p>
 <p>Weigelt, P., König, C. &amp; Kreft, H. (2020) GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. <em>Journal of Biogeography</em>, <a href="https://doi.org/10.1111/jbi.13623" class="external-link uri">https://doi.org/10.1111/jbi.13623</a>.</p>
 </div>
-</div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
