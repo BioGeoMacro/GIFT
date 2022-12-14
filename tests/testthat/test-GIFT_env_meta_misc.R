@@ -5,7 +5,7 @@ test_that("data frame output format", {
   ex <- GIFT_env_meta_misc()
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(5L))
+  expect_identical(ncol(ex), c(6L))
   
 })
 

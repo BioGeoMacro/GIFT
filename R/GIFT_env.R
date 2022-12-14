@@ -72,7 +72,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom tidyr pivot_wider
 #' @importFrom purrr reduce
-#' @importFrom dplyr left_join full_join mutate_if
+#' @importFrom dplyr left_join full_join mutate_if mutate_at
 #' 
 #' @export
 
@@ -198,6 +198,13 @@ GIFT_env <- function(
   
   # Remove rows where all columns but entity_ID and geo_entity are NAs
   tmp_misc <- tmp_misc[rowSums(is.na(tmp_misc)) != (ncol(tmp_misc)-2), ]
+  
+  # Convert numeric miscellaneous layers to numeric
+  miscellaneous_num <-
+    gift_env_meta_misc[which(gift_env_meta_misc$variable %in% miscellaneous &
+                               gift_env_meta_misc$num == 1),
+                       "variable"]
+  tmp_misc <- dplyr::mutate_at(tmp_misc, miscellaneous_num, as.numeric)
   
   return(tmp_misc)
 }

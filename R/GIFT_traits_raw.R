@@ -27,7 +27,8 @@
 #'
 #' @details Here is the detail of each column:
 #' 
-#' \emph{trait_derived_ID} - \cr
+#' \emph{trait_derived_ID} - dentification number of the trait record in the
+#' database\cr
 #' \emph{ref_ID} - Identification number of the reference\cr
 #' \emph{orig_ID} - Identification number of the species, as it came in the
 #'  source\cr

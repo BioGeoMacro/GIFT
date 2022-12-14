@@ -18,7 +18,7 @@ database to use. The function retrieves by default the most up-to-date
 version.}
 }
 \value{
-A data frame with 5 columns.
+A data frame with 6 columns.
 }
 \description{
 Retrieve the metadata of miscellaneous environmental layers accessible in
@@ -31,6 +31,7 @@ Here is what each column refers to:
 \emph{variable} - Name of the environmental layer.\cr
 \emph{description}- Description.\cr
 \emph{unit} - Unit.\cr
+\emph{num} - Whether the environmental layer is numeric or not.\cr
 \emph{ref_long} - Full reference to cite when using an environmental layer.
 }
 \examples{
