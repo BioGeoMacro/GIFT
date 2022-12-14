@@ -127,10 +127,10 @@ western part of the Mediterranean basin. For this purpose, we can simply
 use a shapefile of the region of interest and feed it to the
 <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> function.</p>
 <p>We do provide a shapefile of this region in the <code>GIFT</code> R
-package, which you can access using the <code>data("med")</code>
-command.</p>
+package, which you can access using the
+<code>data("western_mediterranean")</code> command.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"med"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"western_mediterranean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_coastline.html" class="external-link">ne_coastline</a></span><span class="op">(</span>returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
 <span></span>
@@ -139,8 +139,8 @@ command.</p>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">med</span>, fill <span class="op">=</span> <span class="st">"darkblue"</span>, color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>          size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">western_mediterranean</span>, fill <span class="op">=</span> <span class="st">"darkblue"</span>, color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>          alpha <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Western Mediterranean basin"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">48</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -267,7 +267,8 @@ want to retrieve the metadata, you can set the argument
 <code>list_set_only</code> to <code>TRUE</code>. <br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
-<span>                          shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
+<span>                          shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                          overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
 <span>                          list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">medit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
@@ -275,7 +276,8 @@ want to retrieve the metadata, you can set the argument
 <span>                        floristic_group <span class="op">=</span> <span class="st">"native"</span>,</span>
 <span>                        complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                        geo_type <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                        shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>, </span>
+<span>                        shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                        overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>, </span>
 <span>                        remove_overlap <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                        taxonomic_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># this argument adds two</span></span></code></pre></div>
 <pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
@@ -302,7 +304,8 @@ above. When being stricter with some criteria, you can see that the
 number of checklists retrieved decreases. For example, when removing
 overlapping regions: <br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">med</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
+<code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                                   overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
 <span>                                   taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                                   remove_overlap <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
@@ -540,8 +543,8 @@ basin. <br></p>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">med</span>, fill <span class="op">=</span> <span class="st">"darkblue"</span>, color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>          size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>          fill <span class="op">=</span> <span class="st">"darkblue"</span>, color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">med_map</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="st">"Species number"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Angiosperms in the Western Mediterranean basin"</span><span class="op">)</span> <span class="op">+</span></span>
