@@ -50,7 +50,10 @@ species\cr
 \emph{species} - Species name\cr
 \emph{trait_value} - Value of the trait\cr
 \emph{agreement} - Agreement score between the different sources for that
-trait value\cr
+trait value, only for categorical traits\cr
+\emph{cv} - Coefficient of variation for the different sources for that
+trait value, only for numeric traits\cr
+\emph{n} - Number of sources leading to the trait value\cr
 \emph{references} - ref_ID from which we got the trait information
 }
 \examples{

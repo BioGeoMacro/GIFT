@@ -11,7 +11,7 @@
 #' retrieved.
 #' 
 #' @return
-#' A data frame with 5 columns.
+#' A data frame with 6 columns.
 #'
 #' @details Here is what each column refers to:
 #' 
@@ -19,6 +19,7 @@
 #' \emph{variable} - Name of the environmental layer.\cr
 #' \emph{description}- Description.\cr
 #' \emph{unit} - Unit.\cr
+#' \emph{num} - Whether the environmental layer is numeric or not.\cr
 #' \emph{ref_long} - Full reference to cite when using an environmental layer.
 #'
 #' @references
@@ -42,32 +43,9 @@ GIFT_env_meta_misc <- function(
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   # 1. Controls ----
-  # Arguments
-  if(length(api) != 1 || !is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
-  
-  # GIFT_version
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version) || 
-     !(GIFT_version %in% c(unique(gift_version$version),
-                           "latest", "beta"))){
-    stop(c("'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions."))
-  }
-  if(GIFT_version == "latest"){
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
-  }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
-  
+  check_api(api)
+  GIFT_version <- check_gift_version(GIFT_version)
+
   # 2. Function ----
   # Return the miscellaneous environmental information as a data frame
   tmp <- jsonlite::read_json(paste0(

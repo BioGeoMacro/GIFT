@@ -6,3 +6,72 @@ destination: docs
 
 toc:
   depth: 1
+
+reference:
+- title: Checklists
+
+- subtitle: Main function
+  desc: >
+  contents:
+  - GIFT_checklist
+
+- subtitle: Alternative functions
+  desc: >
+  contents:
+  - GIFT_checklist_conditional
+  - GIFT_checklist_raw
+  - GIFT_lists
+  - GIFT_references
+  
+- title: Species' distribution
+
+- subtitle: Main function
+  desc: >
+  contents:
+  - GIFT_species_distribution
+
+- subtitle: Alternative functions
+  desc: >
+  contents:
+  - GIFT_species_lookup
+  - GIFT_species
+  - GIFT_taxonomy
+  - GIFT_taxgroup
+  
+- title: Traits
+
+- subtitle: Main functions
+  desc: >
+  contents:
+  - GIFT_traits
+  - GIFT_traits_meta
+  - GIFT_traits_raw
+
+- subtitle: Alternative functions
+  desc: >
+  contents:
+  - GIFT_richness
+  
+- title: Spatial data
+
+- subtitle: Environmental data
+  desc: >
+  contents:
+  - GIFT_env
+  - GIFT_env_meta_misc
+  - GIFT_env_meta_raster
+  - GIFT_spatial
+
+- subtitle: Regions and shapes
+  desc: >
+  contents:
+  - GIFT_regions
+  - GIFT_shape
+  - GIFT_overlap
+  - GIFT_no_overlap
+
+- title: Utils
+  desc: >
+  contents:
+  - GIFT_version
+  - western_mediterranean

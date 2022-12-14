@@ -81,10 +81,10 @@ shapefile of the region of interest and feed it to the `GIFT_checklist()`
 function.  
 
 We do provide a shapefile of this region in the `GIFT` R package, which you
-can access using the `data("med")` command.
+can access using the `data("western_mediterranean")` command.
 
 ```{r, fig.width = 3, fig.height = 3}
-data("med")
+data("western_mediterranean")
 
 world <- ne_coastline(returnclass = "sf")
 
@@ -93,8 +93,8 @@ eckertIV <-
 
 ggplot(world) +
   geom_sf(color = "gray50") +
-  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.5,
-          size = 1) +
+  geom_sf(data = western_mediterranean, fill = "darkblue", color = "black",
+          alpha = 0.5, size = 1) +
   labs(title = "Western Mediterranean basin") +
   lims(x = c(-20, 20), y = c(24, 48)) +
   theme_void()
@@ -229,7 +229,8 @@ If you only want to retrieve the metadata, you can set the argument
 
 ```{r, eval=FALSE}
 ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
-                          shp = med, overlap = "centroid_inside",
+                          shp = western_mediterranean,
+                          overlap = "centroid_inside",
                           list_set_only = TRUE)
 ```
 
@@ -239,7 +240,8 @@ medit <- GIFT_checklist(taxon_name = "Angiospermae",
                         floristic_group = "native",
                         complete_floristic = TRUE,
                         geo_type = "All",
-                        shp = med, overlap = "centroid_inside", 
+                        shp = western_mediterranean,
+                        overlap = "centroid_inside", 
                         remove_overlap = FALSE,
                         taxonomic_group = TRUE) # this argument adds two
 # columns to the checklist: plant family and taxonomic group of each species
@@ -268,7 +270,8 @@ retrieved decreases. For example, when removing overlapping regions:
 <br>
 
 ```{r, message = FALSE}
-medit_no_overlap <- GIFT_checklist(shp = med, overlap = "centroid_inside",
+medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
+                                   overlap = "centroid_inside",
                                    taxon_name = "Angiospermae",
                                    remove_overlap = TRUE)
 
@@ -347,8 +350,8 @@ med_map <- dplyr::left_join(med_shape, med_rich, by = "entity_ID") %>%
 
 ggplot(world) +
   geom_sf(color = "gray50") +
-  geom_sf(data = med, fill = "darkblue", color = "black", alpha = 0.1,
-          size = 1) +
+  geom_sf(data = western_mediterranean,
+          fill = "darkblue", color = "black", alpha = 0.1, size = 1) +
   geom_sf(data = med_map, aes(fill = total)) +
   scale_fill_viridis_c("Species number") +
   labs(title = "Angiosperms in the Western Mediterranean basin") +
