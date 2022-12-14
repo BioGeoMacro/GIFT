@@ -48,11 +48,13 @@ They can come as rasters or shapefiles (miscellaneous)
 }
 \examples{
 \dontrun{
-data("med")
-ex <- GIFT_spatial(shp = med, overlap = "centroid_inside")
-ex2 <- GIFT_spatial(shp = med, overlap = "extent_intersect")
-ex3 <- GIFT_spatial(shp = med, overlap = "shape_intersect")
-ex4 <- GIFT_spatial(shp = med, overlap = "shape_inside")
+data("western_mediterranean")
+ex <- GIFT_spatial(shp = western_mediterranean, overlap = "centroid_inside")
+ex2 <- GIFT_spatial(shp = western_mediterranean,
+overlap = "extent_intersect")
+ex3 <- GIFT_spatial(shp = western_mediterranean,
+overlap = "shape_intersect")
+ex4 <- GIFT_spatial(shp = western_mediterranean, overlap = "shape_inside")
 
 custom_point <- cbind(9.9, 51)
 ex5 <- GIFT_spatial(coordinates = custom_point,
@@ -72,7 +74,7 @@ custom_linestring <- sf::st_as_sf(as.data.frame(custom_linestring),
 coords = c("V1", "V2"))
 custom_linestring <- dplyr::summarise(custom_linestring,
 geometry = sf::st_combine(geometry))
-sf::st_crs(custom_linestring) <- sf::st_crs(med)
+sf::st_crs(custom_linestring) <- sf::st_crs(western_mediterranean)
 ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
 
 }

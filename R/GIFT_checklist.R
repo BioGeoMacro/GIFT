@@ -137,12 +137,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' data("med")
-#' ex <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-#' taxon_name = "Angiospermae")
+#' data("western_mediterranean")
+#' ex <- GIFT_checklist(shp = western_mediterranean,
+#' overlap = "centroid_inside", taxon_name = "Angiospermae")
 #' 
-#' ex2 <- GIFT_checklist(shp = med, overlap = "centroid_inside",
-#' taxon_name = "Angiospermae", list_set_only = TRUE)
+#' ex2 <- GIFT_checklist(shp = western_mediterranean,
+#' overlap = "centroid_inside", taxon_name = "Angiospermae",
+#' list_set_only = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json

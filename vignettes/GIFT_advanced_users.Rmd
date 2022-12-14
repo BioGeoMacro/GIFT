@@ -146,7 +146,7 @@ falling into a provided shapefile, using the western Mediterranean basin
 provided with the GIFT R package.
 
 ```{r}
-data(med)
+data("western_mediterranean")
 ```
 
 We here provide more details on the different values the `overlap` argument
@@ -163,10 +163,14 @@ We now illustrate this by retrieving checklists falling in the western
 Mediterranean basin using the four options available.
 
 ```{r}
-med_centroid_inside  <- GIFT_spatial(shp = med, overlap = "centroid_inside")
-med_extent_intersect <- GIFT_spatial(shp = med, overlap = "extent_intersect")
-med_shape_intersect <- GIFT_spatial(shp = med, overlap = "shape_intersect")
-med_shape_inside <- GIFT_spatial(shp = med, overlap = "shape_inside")
+med_centroid_inside  <- GIFT_spatial(shp = western_mediterranean,
+                                     overlap = "centroid_inside")
+med_extent_intersect <- GIFT_spatial(shp = western_mediterranean,
+                                     overlap = "extent_intersect")
+med_shape_intersect <- GIFT_spatial(shp = western_mediterranean,
+                                    overlap = "shape_intersect")
+med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
+                                 overlap = "shape_inside")
 
 length(unique(med_extent_intersect$entity_ID))
 length(unique(med_shape_intersect$entity_ID))
@@ -219,7 +223,7 @@ plot(sf::st_geometry(geodata_shape_inside),
      main = paste("shape inside\n",
                   length(unique(med_shape_inside$entity_ID)),
                   "polygons"))
-plot(sf::st_geometry(med), lwd = 2, add = TRUE)
+plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 
 plot(sf::st_geometry(geodata_centroid_inside),
      col = geodata_centroid_inside$entity_ID,
@@ -227,21 +231,21 @@ plot(sf::st_geometry(geodata_centroid_inside),
                   length(unique(med_centroid_inside$entity_ID)),
                   "polygons"))
 points(geodata_centroid_inside$point_x, geodata_centroid_inside$point_y)
-plot(sf::st_geometry(med), lwd = 2, add = TRUE)
+plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 
 plot(sf::st_geometry(geodata_shape_intersect),
      col = geodata_shape_intersect$entity_ID,
      main = paste("shape intersect\n",
                   length(unique(med_shape_intersect$entity_ID)),
                   "polygons"))
-plot(sf::st_geometry(med), lwd = 2, add = TRUE)
+plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 
 plot(sf::st_geometry(geodata_extent_intersect),
      col = geodata_extent_intersect$entity_ID,
      main = paste("extent intersect\n",
                   length(unique(med_extent_intersect$entity_ID)),
                   "polygons"))
-plot(sf::st_geometry(med), lwd = 2, add = TRUE)
+plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 ```
 
 <br>

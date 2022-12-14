@@ -3,9 +3,10 @@
 # Output should be a list with two data frames
 test_that("data frame output format",
           {
-            data("med")
+            data("western_mediterranean")
             ex <-
-              GIFT_checklist(shp = med, overlap = "centroid_inside",
+              GIFT_checklist(shp = western_mediterranean,
+                             overlap = "centroid_inside",
                              taxon_name = "Angiospermae")
             
             expect_identical(class(ex), "list")
