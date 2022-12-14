@@ -31,7 +31,7 @@ check_api <- function(api) {
 #   GIFT_version a character
 #
 # Returns:
-#   nothing, shows an error message
+#   GIFT_version or shows an error message
 
 check_gift_version <- function(GIFT_version) {
   if (length(GIFT_version) != 1 || is.na(GIFT_version) ||
@@ -51,4 +51,5 @@ versions."))
 updates and edits. Consider using 'latest' for the latest stable
 version.")
   }
+  return(GIFT_version)
 }
