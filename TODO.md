@@ -137,17 +137,21 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * Trait links Matthias
 * Check type_ref = 0
 * 4.15.1 combinations possible
-* New NDVI
 * Check regions with multiple polygon resources
 * add environmental layers in GIFT:
 * Check Julians Polygons
 * Run counts again
 * cleanup_names_work_unique()
+* Lembrechts 2022 Global maps of soil temperature
+* Chelsa 2.1
 
 https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_TC_v3
 https://glad.umd.edu/dataset/gedi
 https://www.hydrosheds.org/products/gloric
 https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database
+
+
+
 
 # 6. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
