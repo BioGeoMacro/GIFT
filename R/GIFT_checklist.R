@@ -549,5 +549,5 @@ GIFT_checklist <- function(
     }
   }
   
-  return(list(lists, checklists))
+  return(list(lists = lists, checklists = checklists))
 }
