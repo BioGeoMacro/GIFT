@@ -84,7 +84,8 @@
 
 * 3.2. GIFT_env_meta_misc()    
     
-* 3.3. GIFT_env_meta_raster()  
+* 3.3. GIFT_env_meta_raster() 
+    - add argument available_only to allow for seeing unavailable layers
 
 * 4.1. GIFT_species()
 
