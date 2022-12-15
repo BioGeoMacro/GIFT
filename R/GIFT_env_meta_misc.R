@@ -42,11 +42,9 @@
 GIFT_env_meta_misc <- function(
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
-  # 1. Controls ----
   check_api(api)
   GIFT_version <- check_gift_version(GIFT_version)
 
-  # 2. Function ----
   # Return the miscellaneous environmental information as a data frame
   tmp <- jsonlite::read_json(paste0(
     api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),

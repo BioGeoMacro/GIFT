@@ -40,31 +40,9 @@
 
 GIFT_taxonomy <- function(GIFT_version = "latest", 
                           api = "https://gift.uni-goettingen.de/api/extended/"){
-  # 1. Controls ----
-  if(length(api) != 1 || !is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
+  check_api(api)
+  GIFT_version <- check_gift_version_simple(GIFT_version)
   
-  # GIFT_version
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version)){
-    stop(c("'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions."))
-  }
-  if(GIFT_version == "latest"){
-    gift_version <- jsonlite::read_json(
-      "https://gift.uni-goettingen.de/api/index.php?query=versions",
-      simplifyVector = TRUE)
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
-  }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
-  
-  # 2. Query ----
   taxonomy <- read_json(paste0(
     api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=taxonomy"), simplifyVector = TRUE)
@@ -72,6 +50,6 @@ GIFT_taxonomy <- function(GIFT_version = "latest",
   # Convert columns as numeric
   taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
                                as.numeric)
-
+  
   return(taxonomy)
 }

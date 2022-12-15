@@ -54,23 +54,8 @@ GIFT_shape <- function(entity_ID = NULL,
                        GIFT_version = "latest"){
   
   # 1. Controls ----
-  if(length(api) != 1 || !is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
-  
-  # GIFT_version
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version)){
-    stop(c("'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions."))
-  }
-  if(GIFT_version == "latest"){
-    gift_version <- jsonlite::read_json(
-      "https://gift.uni-goettingen.de/api/index.php?query=versions",
-      simplifyVector = TRUE)
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
-  }
+  check_api(api)
+  GIFT_version <- check_gift_version_simple(GIFT_version)
   
   # Visible binding for global variable
   suit_geo <- suit_geo_rst <- overlap_checked <- NULL

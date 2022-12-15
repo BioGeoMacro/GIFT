@@ -76,28 +76,8 @@ GIFT_richness <- function(
          'GIFT_traits_meta()'.")
   }
   
-  if(length(api) != 1 || !is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
-  
-  # GIFT_version
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version)){
-    stop(c("'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions."))
-  }
-  if(GIFT_version == "latest"){
-    gift_version <- jsonlite::read_json(
-      "https://gift.uni-goettingen.de/api/index.php?query=versions",
-      simplifyVector = TRUE)
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
-  }
-  if(GIFT_version == "beta"){
-    message("You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
-  }
+  check_api(api)
+  GIFT_version <- check_gift_version_simple(GIFT_version)
   
   # 2. Query ----
   # Taxonomy query

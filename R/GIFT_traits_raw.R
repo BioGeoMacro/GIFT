@@ -102,9 +102,8 @@ GIFT_traits_raw <- function(
     stop("traits_derived must be a logical.")
   }
   
-  if(length(api) != 1 || !is.character(api)){
-    stop("api must be a character string indicating which API to use.")
-  }
+  check_api(api)
+  GIFT_version <- suppressMessages(check_gift_version_simple(GIFT_version))
   
   # Load traits_metadata to check if the provided IDs are available
   tmp <- GIFT::GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
@@ -112,19 +111,6 @@ GIFT_traits_raw <- function(
     stop("trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'traits_meta() and look at column
            'Lvl3'.")
-  }
-  
-  if(length(GIFT_version) != 1 || is.na(GIFT_version) ||
-     !is.character(GIFT_version)){
-    stop(c("'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions."))
-  }
-  if(GIFT_version == "latest"){
-    gift_version <- jsonlite::read_json(
-      "https://gift.uni-goettingen.de/api/index.php?query=versions",
-      simplifyVector = TRUE)
-    GIFT_version <- gift_version[nrow(gift_version), "version"]
   }
   
   if(GIFT_version == "1.0" & (bias_ref == FALSE | bias_deriv == FALSE)){
