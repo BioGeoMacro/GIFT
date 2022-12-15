@@ -44,16 +44,16 @@
 #' @param remove_overlap a boolean stating whether you want to
 #' retrieve checklists that overlap or not.
 #' 
-#' @param area_th_island A number stating from which surface the smallest
-#' overlapping polygon is kept. By default set to 0 square kilometer
-#' (meaning that by default the smallest islands will be conserverd).
+#' @param area_threshold_island A number stating from which surface the
+#' smallest overlapping polygon is kept. By default set to 0 square kilometer
+#' (meaning that by default the smallest islands will be conserved).
 #' 
-#' @param area_th_mainland When two polygons overlap, the smallest or the
-#' biggest one can be kept. When the surface of the smallest polygon exceeds
-#' this number, the smallest polygon is kept. Otherwise, we keep the bigger
-#' one. Set by default 100 square-kilometers.
+#' @param area_threshold_mainland When two polygons overlap, the smallest or
+#' the biggest one can be kept. When the surface of the smallest polygon
+#' exceeds this number, the smallest polygon is kept. Otherwise, we keep the
+#' bigger one. Set by default 100 square-kilometers.
 #' 
-#' @param overlap_th A number ranging from 0 to 1, indicating at what
+#' @param overlap_threshold A number ranging from 0 to 1, indicating at what
 #' percentage of overlap, partially overlapping polygons should be kept. 
 #' 
 #' @param by_ref_ID logical indicating whether the removal of overlapping
@@ -155,8 +155,9 @@ GIFT_checklist <- function(
     floristic_group = c("all", "native", "endemic", "naturalized")[2],
     complete_floristic = TRUE, geo_type = c("All", "Mainland", "Island")[1],
     ref_excluded = NULL, suit_geo = FALSE, shp = NULL, coordinates = NULL,
-    overlap = "centroid_inside", remove_overlap = FALSE, area_th_island = 0,
-    area_th_mainland = 100, overlap_th = 0.1, by_ref_ID = FALSE,
+    overlap = "centroid_inside", remove_overlap = FALSE,
+    area_threshold_island = 0, area_threshold_mainland = 100,
+    overlap_threshold = 0.1, by_ref_ID = FALSE,
     taxonomic_group = TRUE, namesmatched = FALSE, list_set_only = FALSE,
     GIFT_version = "latest",
     api = "https://gift.uni-goettingen.de/api/extended/"
@@ -312,19 +313,20 @@ GIFT_checklist <- function(
     retrieve checklists that overlap or not.")
   }
   
-  if(!is.numeric(area_th_island) || area_th_island < 0){
-    stop("'area_th_island' is a surface in km^2 indicating from which
+  if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
+    stop("'area_threshold_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
   }
   
-  if(!is.numeric(area_th_mainland) || area_th_mainland < 0){
-    stop("'area_th_mainland' is a surface in km^2 indicating from which
+  if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
+    stop("'area_threshold_mainland' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
   }
   
-  if(!is.numeric(overlap_th) || overlap_th < 0 || overlap_th > 1){
-    stop("'overlap_th' is a number ranging from 0 to 1, indicating at what 
-         percentage of overlap, partially overlapping polygons should be
+  if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
+     overlap_threshold > 1){
+    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
+    what percentage of overlap, partially overlapping polygons should be
          kept.")
   }
   
@@ -356,7 +358,7 @@ GIFT_checklist <- function(
   
   check_api(api)
   GIFT_version <- check_gift_version(GIFT_version)
-
+  
   # 2. Function ----
   ## 2.1. GIFT_checklist_conditional ---- 
   GIFT_conditional_arg <- c("all", "native", "native and naturalized",
@@ -470,8 +472,10 @@ GIFT_checklist <- function(
     if(!by_ref_ID){
       no_overlap <- suppressMessages(
         GIFT::GIFT_no_overlap(
-          entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
-          area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
+          entity_IDs = lists$entity_ID,
+          area_threshold_island = area_threshold_island, 
+          area_threshold_mainland = area_threshold_mainland,
+          overlap_threshold = overlap_threshold, 
           geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
       
       lists <- lists[which(lists$entity_ID %in% no_overlap), ]
@@ -484,12 +488,13 @@ GIFT_checklist <- function(
       
       to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
         to_keep <- suppressMessages(
-          GIFT::GIFT_no_overlap(entity_IDs = x, 
-                                area_th_island = area_th_island, 
-                                area_th_mainland = area_th_mainland, 
-                                overlap_th = overlap_th, 
-                                geoentities_overlap = geoentities_overlap, 
-                                api = api, GIFT_version = GIFT_version))
+          GIFT::GIFT_no_overlap(
+            entity_IDs = x, 
+            area_threshold_island = area_threshold_island, 
+            area_threshold_mainland = area_threshold_mainland, 
+            overlap_threshold = overlap_threshold, 
+            geoentities_overlap = geoentities_overlap, 
+            api = api, GIFT_version = GIFT_version))
         to_remove <- x[which(!x %in% to_keep)]
       })
       to_remove <- unlist(to_remove)

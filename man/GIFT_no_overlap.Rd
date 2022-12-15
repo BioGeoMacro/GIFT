@@ -6,9 +6,9 @@
 \usage{
 GIFT_no_overlap(
   entity_IDs = NULL,
-  area_th_island = 0,
-  area_th_mainland = 100,
-  overlap_th = 0.1,
+  area_threshold_island = 0,
+  area_threshold_mainland = 100,
+  overlap_threshold = 0.1,
   geoentities_overlap = NULL,
   api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
@@ -18,16 +18,16 @@ GIFT_no_overlap(
 \item{entity_IDs}{A vector of IDs of the regions for which we want to check
 overlap}
 
-\item{area_th_island}{A number stating from which surface the smallest
-overlapping polygon is kept. By default set to 0 square kilometer
+\item{area_threshold_island}{A number stating from which surface the
+smallest overlapping polygon is kept. By default set to 0 square kilometer
 (meaning that by default the smallest islands will be conserved).}
 
-\item{area_th_mainland}{When two polygons overlap, the smallest or the
-biggest one can be kept. When the surface of the smallest polygon exceeds
-this number, the smallest polygon is kept. Otherwise, we keep the bigger
-one. Set by default 100 square-kilometers.}
+\item{area_threshold_mainland}{When two polygons overlap, the smallest or
+the biggest one can be kept. When the surface of the smallest polygon
+exceeds this number, the smallest polygon is kept. Otherwise, we keep the
+bigger one. Set by default 100 square-kilometers.}
 
-\item{overlap_th}{A number ranging from 0 to 1, indicating at what
+\item{overlap_threshold}{A number ranging from 0 to 1, indicating at what
 percentage of overlap, partially overlapping polygons should be kept.}
 
 \item{geoentities_overlap}{A table coming from GIFT indicating the
@@ -53,8 +53,8 @@ non-overlapping regions based on size and overlap criteria
 ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain. 
 # We get Andalusia because it is smaller than Spain and larger than 100 km²
 ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078), 
-area_th_mainland = 100000) # since Andalusia is smaller than 100,000 km² 
-# large, the larger entity (Spain) is chosen here.
+area_threshold_mainland = 100000) # since Andalusia is smaller than
+# 100,000 km² large, the larger entity (Spain) is chosen here.
 }
 
 }

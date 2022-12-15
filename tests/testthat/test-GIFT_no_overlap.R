@@ -2,12 +2,12 @@
 
 # Output should be a vector
 test_that("length of format inferior or equal to length of output", {
-            ex <- GIFT_no_overlap(entity_IDs = c(1, 2))
-            expect_identical(length(ex), c(2L))
-            
-            ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078))
-            expect_identical(length(ex2), c(1L))
-            
+  ex <- GIFT_no_overlap(entity_IDs = c(1, 2))
+  expect_identical(length(ex), c(2L))
+  
+  ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078))
+  expect_identical(length(ex2), c(1L))
+  
 })
 
 # Tests for invalid inputs ----
@@ -19,19 +19,19 @@ test_that("invalid inputs", {
          overlap of.", fixed = TRUE)
   
   expect_error(
-    GIFT_no_overlap(entity_IDs = c(1, 2), area_th_island = NULL),
-    "'area_th_island' is a surface in km^2 indicating from which
+    GIFT_no_overlap(entity_IDs = c(1, 2), area_threshold_island = NULL),
+    "'area_threshold_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.", fixed = TRUE)
   
   expect_error(
-    GIFT_no_overlap(entity_IDs = c(1, 2), area_th_mainland = NULL),
-    "'area_th_mainland' is a surface in km^2 indicating from which
+    GIFT_no_overlap(entity_IDs = c(1, 2), area_threshold_mainland = NULL),
+    "'area_threshold_mainland' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.", fixed = TRUE)
   
   expect_error(
-    GIFT_no_overlap(entity_IDs = c(1, 2), overlap_th = NULL),
-    "'overlap_th' is a number ranging from 0 to 1, indicating at what 
-         percentage of overlap, partially overlapping polygons should be
+    GIFT_no_overlap(entity_IDs = c(1, 2), overlap_threshold = NULL),
+    "'overlap_threshold' is a number ranging from 0 to 1, indicating at
+    what percentage of overlap, partially overlapping polygons should be
          kept.", fixed = TRUE)
   
   expect_error(
