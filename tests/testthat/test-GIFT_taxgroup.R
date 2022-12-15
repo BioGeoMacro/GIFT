@@ -10,19 +10,22 @@ test_that("data frame output format", {
 })
 
 # Tests for invalid inputs ----
-
-# Error message when ref_ID and list_ID are missing
-expect_error(
-  GIFT_taxgroup(work_ID = c(1:5), api = NA),
-  "api must be a character string indicating which API to use.", fixed = TRUE)
-
-expect_error(
-  GIFT_taxgroup(work_ID = c(1:5), GIFT_version = NA),
-  "'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions.", fixed = TRUE)
-
-expect_message(GIFT_taxgroup(work_ID = c(1:5), GIFT_version = "beta"),
-               "You are asking for the beta-version of GIFT which is subject to
-            updates and edits. Consider using 'latest' for the latest stable
-            version.")
+test_that("invalid inputs", {
+  # Error message when ref_ID and list_ID are missing
+  expect_error(
+    GIFT_taxgroup(work_ID = c(1:5), api = NA),
+    "api must be a character string indicating which API to use.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_taxgroup(work_ID = c(1:5), GIFT_version = NA),
+    "'GIFT_version' must be a character string stating what version
+of GIFT you want to use. Available options are 'latest' and the different
+versions.",
+    fixed = TRUE)
+  
+  expect_message(GIFT_taxgroup(work_ID = c(1:5), GIFT_version = "beta"),
+                 "You are asking for the beta-version of GIFT which is subject to
+updates and edits. Consider using 'latest' for the latest stable
+version.")
+})

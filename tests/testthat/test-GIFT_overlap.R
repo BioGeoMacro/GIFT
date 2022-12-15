@@ -10,7 +10,7 @@ test_that("data frame output format", {
 })
 
 # Tests for invalid inputs ----
-
+test_that("invalid inputs", {
 expect_error(
   GIFT_overlap(resource = NA),
   "resource must be a character string indicating from which external
@@ -24,5 +24,7 @@ expect_error(
 expect_error(
   GIFT_overlap(GIFT_version = NA),
   "'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions.", fixed = TRUE)
+of GIFT you want to use. Available options are 'latest' and the different
+versions.",
+  fixed = TRUE)
+})

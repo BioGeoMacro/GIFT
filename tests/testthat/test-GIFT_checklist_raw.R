@@ -19,10 +19,23 @@ test_that("data frame output format 2", {
 })
 
 # Tests for invalid inputs ----
-
-# Error message when ref_ID and list_ID are missing
-expect_error(
-  GIFT_checklist_raw(ref_ID = NULL, list_ID = NULL),
-  "Please provide the ID numbers of the references and/or lists you want 
-         to load.", fixed = TRUE
-)
+test_that("invalid inputs", {
+  # Error message when ref_ID and list_ID are missing
+  expect_error(
+    GIFT_checklist_raw(ref_ID = NULL, list_ID = NULL),
+    "Please provide the ID numbers of the references and/or lists you want 
+         to load.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist_raw(list_ID = 5, api = 1),
+    "api must be a character string indicating which API to use.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist_raw(list_ID = 5, GIFT_version = 1),
+    "'GIFT_version' must be a character string stating what version
+of GIFT you want to use. Available options are 'latest' and the different
+versions.",
+    fixed = TRUE)
+})

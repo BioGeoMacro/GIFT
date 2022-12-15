@@ -10,7 +10,7 @@ test_that("data frame output format", {
 })
 
 # Tests for invalid inputs ----
-
+test_that("invalid inputs", {
 # Error message when ref_ID and list_ID are missing
 expect_error(
   GIFT_traits_meta(api = NA),
@@ -19,5 +19,7 @@ expect_error(
 expect_error(
   GIFT_traits_meta(GIFT_version = NA),
   "'GIFT_version' must be a character string stating what version
-    of GIFT you want to use. Available options are 'latest' and the different
-           versions.", fixed = TRUE)
+of GIFT you want to use. Available options are 'latest' and the different
+versions.",
+  fixed = TRUE)
+})
