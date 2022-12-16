@@ -35,8 +35,9 @@ options(tinytex.verbose = TRUE)
 ```
 
 This vignette documents some functions and specificities that were not
-presented in the main vignette of the package. It is mainly targeted for
-advanced users of the GIFT database.
+presented in the
+[main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html) of the
+package. It is mainly targeted for advanced users of the GIFT database.
 
 # 1. Versions and metadata for checklists
 
@@ -141,9 +142,11 @@ unknown plant species in the taxonomic backbone used for harmonization.
 
 # 4. Spatial subset
 
-In the main vignette, we illustrated how to retrieve checklists that were
-falling into a provided shapefile, using the western Mediterranean basin
-provided with the GIFT R package.
+In the
+[main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html), we
+illustrated how to retrieve checklists that were falling into a provided
+shapefile, using the western Mediterranean basin provided with the GIFT R
+package.
 
 ```{r}
 data("western_mediterranean")
@@ -254,7 +257,9 @@ plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 
 GIFT comprises many polygons and for some regions, there are several polygons
 overlapping. How to remove overlapping polygons and the associated parameters
-are two things detailed in the main vignette. We here provide further details:
+are two things detailed in the
+[main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html).
+We here provide further details:
 
 ```{r, message=FALSE, fig.width = 8, fig.height = 4}
 length(med_shape_inside$entity_ID)
