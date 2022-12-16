@@ -368,7 +368,7 @@ focal plant species.
 <br>
 
 ## 2.1. Available species
-To know what plantspecies are available, you can first run the function
+To know what plant species are available, you can first run the function
 `GIFT_species()`.
 
 ```{r}

@@ -66,7 +66,7 @@ retrieved.}
 A data frame with 33 columns.
 }
 \description{
-Retrieve the distribution of one species from GIFT checklits.
+Retrieve the distribution of one species from GIFT checklists.
 }
 \details{
 Here is the detail of each data.frame and their columns:

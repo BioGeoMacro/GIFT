@@ -347,7 +347,7 @@ So far, only two resources are available: `glonaf` and `gmba`.
 `gmba` for
 [Global Mountain Biodiversity Assessment](https://www.gmba.unibe.ch/).
 
-`GIFT_overlap()` retunrs the spatial overlap in percentage for each pairwise
+`GIFT_overlap()` returns the spatial overlap in percentage for each pairwise
 combination of polygons between GIFT and the other resource.
 
 ```{r}

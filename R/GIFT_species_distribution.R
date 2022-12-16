@@ -1,6 +1,6 @@
 #' GIFT species distribution
 #'
-#' Retrieve the distribution of one species from GIFT checklits.
+#' Retrieve the distribution of one species from GIFT checklists.
 #'
 #' @param genus Character string corresponding to the genus of the species 
 #' of interest.
