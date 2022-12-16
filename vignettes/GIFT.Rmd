@@ -129,7 +129,7 @@ explaining the principle.
 <br><br>
 
 ```{r, fig.cap = "Figure 1. Complete taxon", out.width = "50%",echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_complete_taxon.png")
+knitr::include_graphics("../man/figures/GIFT_complete_taxon.svg")
 ```
 <br>
 In Figure 1, we want to retrieve checklists of Angiosperms. In the first region
@@ -156,7 +156,7 @@ argument shown before.
 
 <br>
 ```{r, fig.cap = "Figure 2. Complete floristic", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_complete_floristic.png")
+knitr::include_graphics("../man/figures/GIFT_complete_floristic.svg")
 ```
 <br>
 
@@ -170,7 +170,7 @@ of these options leading to a different outcome as explained in Figure 3.
 <br>
 
 ```{r, fig.cap = "Figure 3. GIFT spatial", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_spatial.png")
+knitr::include_graphics("../man/figures/GIFT_spatial.svg")
 ```
 <br>
 
@@ -189,7 +189,7 @@ polygons. If you do not care about overlapping polygons, you can simply set
 <br>
 
 ```{r, fig.cap = "Figure 4. No overlap", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_no_overlap.png")
+knitr::include_graphics("../man/figures/GIFT_no_overlap.svg")
 ```
 <br>
 
@@ -211,7 +211,7 @@ certain percentage of overlap. This percentage can be modified using the
 <br>
 
 ```{r, fig.cap = "Figure 5. Overlap threshold", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_overlap_th.png")
+knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 ```
 <br>
 

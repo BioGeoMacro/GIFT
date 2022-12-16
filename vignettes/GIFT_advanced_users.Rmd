@@ -155,7 +155,7 @@ how this argument works:
 
 <br>
 ```{r, fig.cap = "Figure 1. GIFT spatial", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_spatial.png")
+knitr::include_graphics("../man/figures/GIFT_spatial.svg")
 ```
 <br>
 
