@@ -21,8 +21,8 @@
 #' @details Here is what each column refers to:
 #' 
 #' \emph{taxon_label} - Name of the taxonomic group\cr
-#' \emph{work_ID} - If the taxon group is a species its identification
-#' number\cr
+#' \emph{work_ID} - Standardized species name IDs for the species at the tips 
+#' of the tree\cr
 #' \emph{edge_length} - Edge length\cr
 #' \emph{lft} - Left border of a given taxon in the Newick sequence\cr
 #' \emph{rgt} - Right border of a given taxon in the Newick sequence\cr
