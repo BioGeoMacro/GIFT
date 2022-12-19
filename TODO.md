@@ -46,8 +46,9 @@
 
 ## 0. General
 
-    - ~~all calls of GIFT functions inside of other functions need the version
+* ~~all calls of GIFT functions inside of other functions need the version
   and api forwarded!!!~~
+* We need to control for empty spaces in arguments passed on to the api
 
 
 ## 1. Details
@@ -113,8 +114,9 @@
 
 * GIFT_no_overlap()
 
-* GIFT_no_phylogeny()
+* GIFT_phylogeny()
     - additional columns needed?
+    - Give information on phylogeny and cite it below
 
 * versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)

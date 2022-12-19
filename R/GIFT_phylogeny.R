@@ -1,22 +1,22 @@
 #' Phylogeny of the species in GIFT
 #'
-#' Retrieve the whole set of plant species available in GIFT
+#' Retrieve a phylogeny of the plant species available in GIFT. 
 #'
-#' @param taxon_name Character string corresponding to the taxonomic group
-#' of interest.
+#' @param taxon_name Character string indicating the taxonomic group
+#' of interest corresponding to the node labels in the phylogeny.
 #' 
-#' @param as_newick Boolean, whether only you want the phylogeny to be in a
-#' Newick format. TRUE by default.
+#' @param as_newick Boolean, whether you want the phylogeny to be in 
+#' Newick tree format (TRUE) or in table format (FALSE). TRUE by default.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
+#'  database to use. The function retrieves by default the latest stable 
 #'  version.
 #' 
-#' @param api character string defining from which API the data will be
+#' @param api character string defining the API from which the data will be
 #' retrieved.
 #' 
 #' @return
-#' A data frame with 5 columns.
+#' A data frame with 5 columns or a tree object.
 #'
 #' @details Here is what each column refers to:
 #' 
@@ -42,6 +42,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows mutate_at
+#' @importFrom phytools read.newick
 #' 
 #' @export
 
@@ -60,14 +61,14 @@ GIFT_phylogeny <- function(
   
   if(length(taxon_name) != 1 || is.na(taxon_name) ||
      !is.character(taxon_name)){
-    stop("'taxon_name' is incorrect. It must be a character string among one of
-         the taxonomic groups available in GIFT. To check them all, run
-         'GIFT_taxonomy()'.")
+    stop("'taxon_name' must be a character string corresponding to the node 
+         labels in the phylogeny. Not all major taxonomic groups are 
+         labelled.")
   }
   
   if(length(as_newick) != 1 || !is.logical(as_newick) || is.na(as_newick)){
     stop("'as_newick' must be a boolean stating whether you want to retrieve
-         the phylogeny in a Newick format.")
+         the phylogeny as a tree object.")
   }
   
   # Return the phylogeny table
@@ -81,7 +82,8 @@ GIFT_phylogeny <- function(
   }
   phylogeny <- dplyr::bind_rows(phylogeny)
   
-  phylogeny <- dplyr::mutate_at(phylogeny, c("work_ID"), as.numeric)
+  if (nrow(phylogeny) > 1){
+    phylogeny <- dplyr::mutate_at(phylogeny, c("work_ID"), as.numeric)
   
   # Newick format
   if(as_newick){
@@ -102,9 +104,15 @@ GIFT_phylogeny <- function(
     # ; at the very end
     tax_newick <- paste0(tax_newick, ";")
     
+    tax_newick <- phytools::read.newick(text = tax_newick)
+    
     return(tax_newick)
   } else{
     return(phylogeny)
   }
-  
+  } else {
+    message("Taxon_name not found among the node labels of the phylogeny. 
+            Returning NULL")
+    return(NULL)
+  }
 }
