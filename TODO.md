@@ -117,6 +117,9 @@
 * GIFT_phylogeny()
     - additional columns needed?
     - Give information on phylogeny and cite it below
+    - rename arguments? taxon_name -> clade, as_newick -> as_tree
+    - make option for having work_IDs at tips
+    - make option to prune for set of species
 
 * versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)
