@@ -70,6 +70,11 @@ reference:
   - GIFT_overlap
   - GIFT_no_overlap
 
+- title: Phylogeny
+  desc: >
+  contents:
+  - GIFT_phylogeny
+
 - title: Utils
   desc: >
   contents:
