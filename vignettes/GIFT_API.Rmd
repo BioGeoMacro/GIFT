@@ -34,9 +34,33 @@ suppressPackageStartupMessages({
 options(tinytex.verbose = TRUE)
 ```
 
+The API endpoint is *https://gift.uni-goettingen.de/api/extended/index.php*.
+We then have different queries, listed in the table below, that allow
+retrieving distinct tables.
+The name in the column Query of the table below has to be used as the query
+argument. As an example, here is the query leading to the metadata table of the
+environmental rasters:
+<br>
+https://gift.uni-goettingen.de/api/extended/index.php?query=env_raster
 
-List of the 23 available queries, their arguments and in which GIFT R function
-they are called:
+<br>
+Please note that the endpoint changes depending on the GIFT version you ask
+for. For example, with the same table as above, we can retrieve the table as
+it was in GIFT version 2.0:
+<br>
+https://gift.uni-goettingen.de/api/extended/index2.0.php?query=env_raster
+
+<br>
+While for this API there is no authentication needed, there is a
+password-protected API leading to some restricted content in the different
+tables. Restricted content can for example be some checklists which need the
+approval of their provider before being used. This API can be communicated upon
+request.
+
+<br>
+Here is the list of the 24 available queries, their arguments and in which
+GIFT R function they are called. There is no rate-limitation for any of these
+queries except *species* and *phylogeny* which retrieved the data into chunks.
 
 ```{r, eval = FALSE, echo = FALSE}
 # GIFT_traits_raw => reference_traits traits_raw
@@ -59,6 +83,7 @@ they are called:
 # GIFT_checklist_raw => taxonomy, checklists
 # GIFT_checklist_conditional => lists, taxonomy
 # GIFT_checklist => lists, taxonomy, overlap
+# GIFT_phylogeny => phylogeny
 ```
 
 ```{r, echo = FALSE}
@@ -66,12 +91,14 @@ query_table <-
   data.frame(
     Query = c("checklists", "env_misc", "env_raster", "geoentities_env_misc",
               "geoentities_env_raster", "lists", "names_matched",
-              "names_matched_unique", "overlap", "overlap_misc",
+              "names_matched_unique", "overlap", "overlap_misc", "phylogeny",
               "references_citavi", "references", "reference_traits", "regions",
               "species", "species_distr", "species_num", "taxonomy", "traits",
               "traits_cov", "traits_meta", "traits_raw", "versions"),
-    Arguments = c("listid, taxonid, namesmatched, filter", "", "", "envvar",
+    Arguments = c("listid (integer)\n, taxonid, namesmatched, filter", "", "",
+                  "envvar",
                   "layername, sumstat", "", "genus, epithet", "genus, epithet",
+                  "taxon, statat",
                   "", "layer", "", "", "", "", "startat", "nameid", "taxonid",
                   "", "traitid, biasref, biasderiv, startat",
                   "traitid, taxonid", "", "traitid, deriv, biasderiv, refid",
@@ -83,7 +110,9 @@ query_table <-
       "GIFT_lists(), GIFT_checklist_conditional(), GIFT_checklist()",
       "GIFT_species_lookup()", "GIFT_species_lookup()",
       "GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklist()",
-      "GIFT_overlap()", "GIFT_env_meta_raster(), GIFT_env_meta_misc()",
+      "GIFT_overlap()",
+      "GIFT_phylogeny()",
+      "GIFT_env_meta_raster(), GIFT_env_meta_misc()",
       "GIFT_references()", "GIFT_traits_raw()", "GIFT_regions()",
       "GIFT_species()", "GIFT_species_distribution()", "GIFT_richness()",
       "GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(),
