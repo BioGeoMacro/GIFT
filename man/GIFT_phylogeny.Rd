@@ -12,31 +12,31 @@ GIFT_phylogeny(
 )
 }
 \arguments{
-\item{taxon_name}{Character string corresponding to the taxonomic group
-of interest.}
+\item{taxon_name}{Character string indicating the taxonomic group
+of interest corresponding to the node labels in the phylogeny.}
 
-\item{as_newick}{Boolean, whether only you want the phylogeny to be in a
-Newick format. TRUE by default.}
+\item{as_newick}{Boolean, whether you want the phylogeny to be in
+Newick tree format (TRUE) or in table format (FALSE). TRUE by default.}
 
-\item{api}{character string defining from which API the data will be
+\item{api}{character string defining the API from which the data will be
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
+database to use. The function retrieves by default the latest stable
 version.}
 }
 \value{
-A data frame with 5 columns.
+A data frame with 5 columns or a tree object.
 }
 \description{
-Retrieve the whole set of plant species available in GIFT
+Retrieve a phylogeny of the plant species available in GIFT.
 }
 \details{
 Here is what each column refers to:
 
 \emph{taxon_label} - Name of the taxonomic group\cr
-\emph{work_ID} - If the taxon group is a species its identification
-number\cr
+\emph{work_ID} - Standardized species name IDs for the species at the tips
+of the tree\cr
 \emph{edge_length} - Edge length\cr
 \emph{lft} - Left border of a given taxon in the Newick sequence\cr
 \emph{rgt} - Right border of a given taxon in the Newick sequence\cr
