@@ -113,6 +113,9 @@
 
 * GIFT_no_overlap()
 
+* GIFT_no_phylogeny()
+    - additional columns needed?
+
 * versions of GIFT:
     - restore old polygons for versions < 2.2 (Patrick)
 
@@ -125,12 +128,15 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * In queries.php (WinSCP) => put as a comment in which R function queries are used
 
 # 5. GIFT admin/database
-* Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))
-* Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final
+* ~~Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))~~
+* ~~Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final~~
 * Traits: Agreement free text traits? Does not make sense. How is it handled=> remove empty values for free text traits
-* Phylogeny: V.Phylo.maker2 => update *phylogeny* table
+* Traits: SCrutinize new traits workflow
+* ~~Phylogeny: V.Phylo.maker2 => update *phylogeny* table~~
+* Phylogeny: prune phylogeny for species in GIFT before upload and add Tracheophyta label
+* Phylogeny: Wait for new WCVP phylogeny in V.Phylo.maker2
 * exactextract
-* unrealistic heights and elevation ranges (+ flora of Gabon in feet)
+* unrealistic elevation ranges (+ flora of Gabon in feet)
 * missing trait values in traits_final (see 4.11.1 for example) 
 * ~~Ref_ID 10173 hat native == 1 und naturalized == 1 ohne das questionable oder quest_native angezeigt ist~~
 * Heights Helena sent
@@ -144,8 +150,9 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * Check Julians Polygons
 * Run counts again
 * cleanup_names_work_unique()
-* Lembrechts 2022 Global maps of soil temperature
-* Chelsa 2.1
+* ~~Lembrechts 2022 Global maps of soil temperature~~
+* ~~Chelsa 2.1~~
+* Cai et al.
 
 https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_TC_v3
 https://glad.umd.edu/dataset/gedi
