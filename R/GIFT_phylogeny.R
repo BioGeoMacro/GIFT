@@ -83,7 +83,7 @@ GIFT_phylogeny <- function(
   phylogeny <- dplyr::bind_rows(phylogeny)
   
   if (nrow(phylogeny) > 1){
-    phylogeny <- dplyr::mutate_at(phylogeny, c("work_ID"), as.numeric)
+    phylogeny <- dplyr::mutate_at(phylogeny, c("lft", "rgt","work_ID"), as.numeric)
   
   # Newick format
   if(as_newick){
@@ -108,6 +108,7 @@ GIFT_phylogeny <- function(
     
     return(tax_newick)
   } else{
+    phylogeny <- dplyr::mutate_at(phylogeny, c("edge_length"), as.numeric)
     return(phylogeny)
   }
   } else {
