@@ -17,6 +17,7 @@ LazyData: true
 Imports:
   dplyr,
   jsonlite,
+  phytools,
   purrr,
   sf,
   stats,
