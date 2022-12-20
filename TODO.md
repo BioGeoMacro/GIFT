@@ -159,6 +159,7 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * ~~Lembrechts 2022 Global maps of soil temperature~~
 * ~~Chelsa 2.1~~
 * ~~Cai et al.~~
+* Update citations Lembrechts, Brun, and Cai
 
 https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_TC_v3
 https://glad.umd.edu/dataset/gedi
