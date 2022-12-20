@@ -2,11 +2,15 @@
 #'
 #' Retrieve a phylogeny of the plant species available in GIFT. 
 #'
-#' @param taxon_name Character string indicating the taxonomic group
+#' @param clade Character string indicating the taxonomic group
 #' of interest corresponding to the node labels in the phylogeny.
 #' 
-#' @param as_newick Boolean, whether you want the phylogeny to be in 
-#' Newick tree format (TRUE) or in table format (FALSE). TRUE by default.
+#' @param as_tree Boolean, whether you want the phylogeny to be returned as a 
+#' phylogenetic tree  (TRUE) or in a table (FALSE). TRUE by default.
+#' 
+#' @param return_work_ID Boolean, whether you want to retrieve the species'
+#' names or their identification number (work_ID) in the GIFT database.
+#' FALSE by default.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the latest stable 
@@ -36,8 +40,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_phylogeny(taxon_name = "Tracheophyta", as_newick = TRUE)
-#' ex2 <- GIFT_phylogeny(taxon_name = "Tracheophyta", as_newick = FALSE)
+#' ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = TRUE,
+#' GIFT_version = "beta")
+#' ex2 <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
+#' GIFT_version = "beta")
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -47,8 +53,8 @@
 #' @export
 
 GIFT_phylogeny <- function(
-    taxon_name = "Tracheophyta",
-    as_newick = TRUE,
+    clade = "Tracheophyta", as_tree = TRUE,
+    return_work_ID = FALSE,
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
@@ -59,16 +65,22 @@ GIFT_phylogeny <- function(
     stop("Phylogeny table only available for GIFT_version = 'beta'.")
   }
   
-  if(length(taxon_name) != 1 || is.na(taxon_name) ||
-     !is.character(taxon_name)){
-    stop("'taxon_name' must be a character string corresponding to the node 
+  if(length(clade) != 1 || is.na(clade) ||
+     !is.character(clade)){
+    stop("'clade' must be a character string corresponding to the node 
          labels in the phylogeny. Not all major taxonomic groups are 
          labelled.")
   }
   
-  if(length(as_newick) != 1 || !is.logical(as_newick) || is.na(as_newick)){
-    stop("'as_newick' must be a boolean stating whether you want to retrieve
+  if(length(as_tree) != 1 || !is.logical(as_tree) || is.na(as_tree)){
+    stop("'as_tree' must be a boolean stating whether you want to retrieve
          the phylogeny as a tree object.")
+  }
+  
+  if(length(return_work_ID) != 1 || !is.logical(return_work_ID) ||
+     is.na(return_work_ID)){
+    stop("'return_work_ID' must be a boolean stating whether you want to
+    get the species names or their work_ID as tip labels.")
   }
   
   # Return the phylogeny table
@@ -76,41 +88,55 @@ GIFT_phylogeny <- function(
   for(i in seq_len(6)){
     phylogeny[[i]] <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=phylogeny&taxon=", taxon_name, "&startat=",
+      ".php?query=phylogeny&taxon=", clade, "&startat=",
       as.integer((i-1)*100000)), 
       simplifyVector = TRUE)
   }
   phylogeny <- dplyr::bind_rows(phylogeny)
   
   if (nrow(phylogeny) > 1){
-    phylogeny <- dplyr::mutate_at(phylogeny, c("lft", "rgt","work_ID"), as.numeric)
-  
-  # Newick format
-  if(as_newick){
-    phylogeny[which(is.na(phylogeny$taxon_label)), "taxon_label"] <- ""
-    phylogeny[which(is.na(phylogeny$edge_length)), "edge_length"] <- ""
+    phylogeny <- dplyr::mutate_at(phylogeny, c("lft", "rgt","work_ID"),
+                                  as.numeric)
     
-    tax_newick <- c()
-    tax_newick[phylogeny[, "lft"]] <- "("
-    tax_newick[phylogeny[, "rgt"]] <- paste0(phylogeny[, "taxon_label"], ":",
-                                             phylogeny[, "edge_length"], ")")
+    # Newick format
+    if(as_tree){
+      phylogeny[which(is.na(phylogeny$taxon_label)), "taxon_label"] <- ""
+      phylogeny[which(is.na(phylogeny$edge_length)), "edge_length"] <- ""
+      
+      tax_newick <- c()
+      tax_newick[phylogeny[, "lft"]] <- "("
+      tax_newick[phylogeny[, "rgt"]] <- paste0(phylogeny[, "taxon_label"], ":",
+                                               phylogeny[, "edge_length"], ")")
+      
+      # concatenate all vector
+      tax_newick <- paste0(tax_newick, collapse = "")
+      
+      # replace )( with ,
+      tax_newick <- gsub(")(", ",", x = tax_newick, fixed = TRUE)
+      
+      # ; at the very end
+      tax_newick <- paste0(tax_newick, ";")
+      
+      tree <- phytools::read.newick(text = tax_newick)
+      
+      if(return_work_ID){
+        message("Querying the species table from GIFT.")
+        gift_sp <- suppressMessages(
+          GIFT_species(api = api, GIFT_version = GIFT_version))
+        message("Replacing species names with work_ID.")
+        
+        tree$tip.label <- gsub(pattern = "_", replacement = " ",
+                               x = tree$tip.label, fixed = TRUE)
+        tree$tip.label <- gift_sp$work_ID[match(tree$tip.label,
+                                                gift_sp$work_species)]
+      }
+      
+      return(tree)
+    } else{
+      phylogeny <- dplyr::mutate_at(phylogeny, c("edge_length"), as.numeric)
+      return(phylogeny)
+    }
     
-    # concatenate all vector
-    tax_newick <- paste0(tax_newick, collapse = "")
-    
-    # replace )( with ,
-    tax_newick <- gsub(")(", ",", x = tax_newick, fixed = TRUE)
-    
-    # ; at the very end
-    tax_newick <- paste0(tax_newick, ";")
-    
-    tax_newick <- phytools::read.newick(text = tax_newick)
-    
-    return(tax_newick)
-  } else{
-    phylogeny <- dplyr::mutate_at(phylogeny, c("edge_length"), as.numeric)
-    return(phylogeny)
-  }
   } else {
     message("Taxon_name not found among the node labels of the phylogeny. 
             Returning NULL")

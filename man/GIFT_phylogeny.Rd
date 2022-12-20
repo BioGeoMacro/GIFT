@@ -5,18 +5,23 @@
 \title{Phylogeny of the species in GIFT}
 \usage{
 GIFT_phylogeny(
-  taxon_name = "Tracheophyta",
-  as_newick = TRUE,
+  clade = "Tracheophyta",
+  as_tree = TRUE,
+  return_work_ID = FALSE,
   api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
 }
 \arguments{
-\item{taxon_name}{Character string indicating the taxonomic group
+\item{clade}{Character string indicating the taxonomic group
 of interest corresponding to the node labels in the phylogeny.}
 
-\item{as_newick}{Boolean, whether you want the phylogeny to be in
-Newick tree format (TRUE) or in table format (FALSE). TRUE by default.}
+\item{as_tree}{Boolean, whether you want the phylogeny to be returned as a
+phylogenetic tree  (TRUE) or in a table (FALSE). TRUE by default.}
+
+\item{return_work_ID}{Boolean, whether you want to retrieve the species'
+names or their identification number (work_ID) in the GIFT database.
+FALSE by default.}
 
 \item{api}{character string defining the API from which the data will be
 retrieved.}
@@ -43,8 +48,10 @@ of the tree\cr
 }
 \examples{
 \dontrun{
-ex <- GIFT_phylogeny(taxon_name = "Tracheophyta", as_newick = TRUE)
-ex2 <- GIFT_phylogeny(taxon_name = "Tracheophyta", as_newick = FALSE)
+ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = TRUE,
+GIFT_version = "beta")
+ex2 <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
+GIFT_version = "beta")
 }
 
 }
