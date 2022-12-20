@@ -2,7 +2,7 @@
 
 # Output should be a list with two data frames
 test_that("data frame output format", {
-  ex <- GIFT_phylogeny(taxon_name = "Tracheophyta", as_newick = FALSE,
+  ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
                        GIFT_version = "beta")
   
   expect_identical(class(ex), "data.frame")
@@ -13,10 +13,10 @@ test_that("data frame output format", {
 # Tests for invalid inputs ----
 test_that("invalid inputs", {
   expect_error(
-    GIFT_phylogeny(taxon_name =  NA, GIFT_version = "beta"),
-    "'taxon_name' is incorrect. It must be a character string among one of
-         the taxonomic groups available in GIFT. To check them all, run
-         'GIFT_taxonomy()'.", fixed = TRUE)
+    GIFT_phylogeny(clade =  NA, GIFT_version = "beta"),
+    "'clade' must be a character string corresponding to the node 
+         labels in the phylogeny. Not all major taxonomic groups are 
+         labelled.", fixed = TRUE)
   
   expect_error(
     GIFT_phylogeny(api = 1, GIFT_version = "beta"),
@@ -31,8 +31,13 @@ versions.",
     fixed = TRUE)
   
   expect_error(
-    GIFT_phylogeny(as_newick = "zz", GIFT_version = "beta"),
-    "'as_newick' must be a boolean stating whether you want to retrieve
-         the phylogeny in a Newick format.", fixed = TRUE)
-
+    GIFT_phylogeny(as_tree = "zz", GIFT_version = "beta"),
+    "'as_tree' must be a boolean stating whether you want to retrieve
+         the phylogeny as a tree object.", fixed = TRUE)
+  
+  expect_error(
+    GIFT_phylogeny(return_work_ID = "zz", GIFT_version = "beta"),
+    "'return_work_ID' must be a boolean stating whether you want to
+    get the species names or their work_ID as tip labels.", fixed = TRUE)
+  
 })
