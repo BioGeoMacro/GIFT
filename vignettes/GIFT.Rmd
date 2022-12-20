@@ -196,18 +196,19 @@ knitr::include_graphics("../man/figures/GIFT_no_overlap.svg")
 But in case you want one polygon per region, then `remove_overlap` can be set
 to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
 smaller or the larger polygon. This will depend on the values set for the
-argument `area_th_mainland` as detailed in Figure 4. This argument takes a
-value in $km^2$. If the smaller polygon exceeds that threshold, then it will be
-retrieved (right column of Figure 4). In case the area of the smaller polygon
-is below the threshold, then the larger overlapping polygon will be retrieved
-(middle column in Figure 4).  
-There is a similar argument for islands, `area_th_island`, which is by default
-set to 0 $km^2$. That way, by default, the smaller islands are always
+argument `area_threshold_mainland` as detailed in Figure 4. This argument takes
+a value in $km^2$. If the smaller polygon exceeds that threshold, then it will
+be retrieved (right column of Figure 4). In case the area of the smaller
+polygon is below the threshold, then the larger overlapping polygon will be
+retrieved (middle column in Figure 4).  
+There is a similar argument for islands, `area_threshold_island`, which is by
+default set to 0 $km^2$. That way, by default, the smaller islands are always
 retrieved.
 <br>
 Please also note that polygons are considered as overlapping when the exceed a
 certain percentage of overlap. This percentage can be modified using the
-`overlap_th` argument (Figure 5). This argument is set by default to 10%.
+`overlap_threshold` argument (Figure 5). This argument is set by default to
+10%.
 <br>
 
 ```{r, fig.cap = "Figure 5. Overlap threshold", out.width = "50%", echo = FALSE}
