@@ -140,6 +140,7 @@ Make a clear error message in case of wrong API (have a clear error message for 
 * ~~Phylogeny: V.Phylo.maker2 => update *phylogeny* table~~
 * Phylogeny: prune phylogeny for species in GIFT before upload and add Tracheophyta label
 * Phylogeny: Wait for new WCVP phylogeny in V.Phylo.maker2
+* Phylogeny: Check phylogeny by Carta et al. 2022. NPH
 * ~~exactextract~~
 * unrealistic elevation ranges (+ flora of Gabon in feet)
 * missing trait values in traits_final (see 4.11.1 for example) 
