@@ -40,4 +40,9 @@ versions.",
     "'return_work_ID' must be a boolean stating whether you want to
     get the species names or their work_ID as tip labels.", fixed = TRUE)
   
+  expect_error(
+    GIFT_phylogeny(work_ID_subset = "zz", GIFT_version = "beta"),
+    "work_ID_subset must be a numeric vector listing the work_ID you
+           want to use to prune the phylogenetic tree.", fixed = TRUE)
+  
 })

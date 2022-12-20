@@ -8,6 +8,7 @@ GIFT_phylogeny(
   clade = "Tracheophyta",
   as_tree = TRUE,
   return_work_ID = FALSE,
+  work_ID_subset = NULL,
   api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"
 )
@@ -22,6 +23,9 @@ phylogenetic tree  (TRUE) or in a table (FALSE). TRUE by default.}
 \item{return_work_ID}{Boolean, whether you want to retrieve the species'
 names or their identification number (work_ID) in the GIFT database.
 FALSE by default.}
+
+\item{work_ID_subset}{A vector of work_ID to prune the phylogenetic tree.
+NULL by default.}
 
 \item{api}{character string defining the API from which the data will be
 retrieved.}
