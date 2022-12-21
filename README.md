@@ -6,8 +6,7 @@
 <!-- badges: start -->
 
 [![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)](https://www.r-project.org/Licenses/GPL-3)
-[![R build
-status](https://github.com/BioGeoMacro/GIFT/workflows/R-CMD-check/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions)
+[![R build status](https://github.com/BioGeoMacro/GIFT/workflows/R-CMD-check/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions)
 <!-- badges: end -->
 
 This **R package** includes several functions to extract data from the
