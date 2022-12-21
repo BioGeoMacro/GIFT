@@ -12,6 +12,9 @@
 #' names or their identification number (work_ID) in the GIFT database.
 #' FALSE by default.
 #' 
+#' @param work_ID_subset A vector of work_ID to prune the phylogenetic tree.
+#' NULL by default.
+#' 
 #' @param GIFT_version character string defining the version of the GIFT
 #'  database to use. The function retrieves by default the latest stable 
 #'  version.
@@ -49,12 +52,14 @@
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows mutate_at
 #' @importFrom phytools read.newick
+#' @importFrom ape keep.tip
 #' 
 #' @export
 
 GIFT_phylogeny <- function(
     clade = "Tracheophyta", as_tree = TRUE,
     return_work_ID = FALSE,
+    work_ID_subset = NULL,
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
@@ -81,6 +86,13 @@ GIFT_phylogeny <- function(
      is.na(return_work_ID)){
     stop("'return_work_ID' must be a boolean stating whether you want to
     get the species names or their work_ID as tip labels.")
+  }
+  
+  if(!is.null(work_ID_subset)){
+    if(!is.numeric(work_ID_subset)){
+      stop("work_ID_subset must be a numeric vector listing the work_ID you
+           want to use to prune the phylogenetic tree.")
+    }
   }
   
   # Return the phylogeny table
@@ -129,6 +141,10 @@ GIFT_phylogeny <- function(
                                x = tree$tip.label, fixed = TRUE)
         tree$tip.label <- gift_sp$work_ID[match(tree$tip.label,
                                                 gift_sp$work_species)]
+        
+        if(!is.null(work_ID_subset)){
+          tree <- ape::keep.tip(phy = tree, tip = work_ID_subset)
+        }
       }
       
       return(tree)
