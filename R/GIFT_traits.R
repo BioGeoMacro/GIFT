@@ -56,7 +56,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows left_join relocate mutate_at
 #' @importFrom tidyr pivot_wider
-#' @importFrom utils setTxtProgressBar txtProgressBar
+#' @importFrom purrr map
 #' 
 #' @export
 #' 
@@ -105,39 +105,46 @@ GIFT_traits <- function(
   
   
   # 2. Function ----
+  # Get species names
+  message("Retrieving species' names.\n")
+  
+  species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
+                                           api = api))
+  
+  message(paste0("Preparing the download of trait data (",
+                 length(unique(trait_IDs)),
+                 " traits asked).\n"))
   
   # Initiating list
   trait_list <- list()
   
   n <- ceiling(tmp$count[which(tmp$Lvl3 %in% trait_IDs)]/10000)
-  progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
   
-  # Get species names
-  species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
-                                           api = api))
+  trait_list <- purrr::map(
+    .x = seq_along(trait_IDs),
+    .f = function(x){
+      trait_list_x <- list()
+      
+      trait_list_x <- purrr::map(
+        .x = seq_len(n[x]),
+        .f = function(y){
+          jsonlite::read_json(
+            paste0(api, "index", ifelse(GIFT_version == "beta", "",
+                                        GIFT_version),
+                   ".php?query=traits&traitid=",
+                   trait_IDs[x], "&biasref=", as.numeric(bias_ref),
+                   "&biasderiv=", as.numeric(bias_deriv),
+                   "&startat=", as.integer((y-1)*10000)),
+            simplifyVector = TRUE)
+        },
+        .progress = paste0("Retrieving trait number ", x))
+      
+      trait_list_x <- dplyr::bind_rows(trait_list_x)
+      trait_list_x$trait_ID <- trait_IDs[x]
+      return(trait_list_x)
+    },
+    .progress = TRUE)
   
-  message("Metadata for lists retrieved.\n")
-  count <- 1
-  utils::setTxtProgressBar(progress, count)
-  
-  for(i in seq_along(trait_IDs)){
-    trait_list_i <- list()
-    
-    for (k in seq_len(n[i])){
-      trait_list_i[[k]] <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=traits&traitid=",
-               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-               "&biasderiv=", as.numeric(bias_deriv), 
-               "&startat=", as.integer((k-1)*10000)),
-        simplifyVector = TRUE)
-      count <- count + 1
-      utils::setTxtProgressBar(progress, count)
-    }
-    trait_list[[i]] <- dplyr::bind_rows(trait_list_i)
-    trait_list[[i]]$trait_ID <- trait_IDs[i]
-    
-  }
   message("\n")
   
   # Formatting trait_list as a data.frame
