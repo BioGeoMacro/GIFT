@@ -1010,17 +1010,16 @@ aggregated values for the maximal vegetative height of plants (trait_ID
 1.6.2). <br></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
-<span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">height_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">height_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Raw values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">height_raw</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">height_raw</span><span class="op">$</span><span class="va">work_species</span> <span class="op">==</span> <span class="st">"Fagus sylvatica"</span><span class="op">)</span>,</span>
 <span>                      <span class="st">"trait_value"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 35 30 50</span></span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Aggregated value</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">height</span><span class="op">$</span><span class="va">work_species</span> <span class="op">==</span> <span class="st">"Fagus sylvatica"</span><span class="op">)</span>,</span>
 <span>                  <span class="st">"trait_value_1.6.2"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -1036,7 +1035,7 @@ aggregated values for the maximal vegetative height of plants (trait_ID
 the same function as for species richness <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code>.
 <br> In combination with the shapes loaded previously, we can also map
 the trait coverage. <br></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">angio_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_richness.html">GIFT_richness</a></span><span class="op">(</span>what <span class="op">=</span> <span class="st">"trait_coverage"</span>,</span>
 <span>                              taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                              trait_ID <span class="op">=</span> <span class="st">"1.6.2"</span><span class="op">)</span></span>
@@ -1079,7 +1078,7 @@ the list of miscellaneous variables and raster layers available in the
 GIFT database. <br> The references to cite when using environmental
 variables are also available through these functions (column
 <code>ref_long</code> of the outputs).<br><br></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">misc_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">raster_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -1095,7 +1094,7 @@ statistics available, you can check the help page of
 <code><a href="../reference/GIFT_env.html">GIFT_env()</a></code> to see them all. Let’s here call for the mean
 and median of elevation and the maximal value of average temperature.
 <br></p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                    miscellaneous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"perimeter"</span>, <span class="st">"biome"</span><span class="op">)</span>,</span>
 <span>                    rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mn30_grd"</span>, <span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
@@ -1113,7 +1112,7 @@ and median of elevation and the maximal value of average temperature.
 </h3>
 <p>Using the shapes previously loaded, we can also map a particular
 environmental variable for all GIFT polygons.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">world_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">angio_rich</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                       rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
 <span>                       sumstat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span><span class="op">)</span><span class="op">)</span></span>
