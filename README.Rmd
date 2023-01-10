@@ -38,7 +38,8 @@ command:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("https://github.com/BioGeoMacro/GIFT")
+remotes::install_github("https://github.com/BioGeoMacro/GIFT",
+dependencies = TRUE)
 library("GIFT")
 ```
 

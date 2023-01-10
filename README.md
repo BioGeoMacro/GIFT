@@ -6,7 +6,8 @@
 <!-- badges: start -->
 
 [![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)](https://www.r-project.org/Licenses/GPL-3)
-[![R build status](https://github.com/BioGeoMacro/GIFT/workflows/R-CMD-check/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions)
+[![R build
+status](https://github.com/BioGeoMacro/GIFT/workflows/R-CMD-check/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions)
 <!-- badges: end -->
 
 This **R package** includes several functions to extract data from the
@@ -15,7 +16,7 @@ is a global database of plant checklists, covering several taxonomic
 groups and providing information about the floristic status and
 functional traits of plants as well as environmental information for
 each checklist. <br> More details about the content of this database are
-available in the publication of [Weigelt et al.
+available in the publication of [Weigelt et al.,
 (2020)](https://doi.org/10.1111/jbi.13623).
 
 # :arrow_double_down: Installation
@@ -26,7 +27,8 @@ the following command:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("https://github.com/BioGeoMacro/GIFT")
+remotes::install_github("https://github.com/BioGeoMacro/GIFT",
+dependencies = TRUE)
 library("GIFT")
 ```
 
