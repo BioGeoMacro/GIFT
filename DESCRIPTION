@@ -19,7 +19,7 @@ Imports:
   dplyr,
   jsonlite,
   phytools,
-  purrr,
+  purrr (>= 1.0.0),
   sf,
   stats,
   tidyr,
