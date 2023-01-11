@@ -83,7 +83,7 @@
 #' 
 #' @importFrom jsonlite read_json
 #' @importFrom dplyr bind_rows mutate_at relocate
-#' @importFrom purrr map
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
 
@@ -183,20 +183,34 @@ GIFT_checklist_raw <- function(
   ## 2.2. Loop ----
   list_raw <- list()
   if (length(unique(list_ID))>0){
-    list_raw <- purrr::map(
-      .x = seq_along(list_ID),
-      .f = function(x){
-        jsonlite::read_json(paste0(
-          api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-          ".php?query=checklists&listid=",
-          as.numeric(list_ID[x]), "&taxonid=", as.numeric(taxonid),
-          "&namesmatched=", as.numeric(namesmatched),
-          ifelse(floristic_group == "all",
-                 "", paste0("&filter=", floristic_group)))
-          , simplifyVector = TRUE)
-      },
-      .progress = paste0("Retrieving ", length(unique(list_ID)),
-                         " checklists"))
+    progress <- utils::txtProgressBar(min = 0, max = length(unique(list_ID)),
+                                      initial = 0) 
+    for(i in seq_along(list_ID)){
+      list_raw[[i]] <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+        ".php?query=checklists&listid=",
+        as.numeric(list_ID[i]), "&taxonid=", as.numeric(taxonid),
+        "&namesmatched=", as.numeric(namesmatched),
+        ifelse(floristic_group == "all",
+               "", paste0("&filter=", floristic_group)))
+        , simplifyVector = TRUE)
+      
+      utils::setTxtProgressBar(progress, i)
+    }
+    # list_raw <- purrr::map(
+    #   .x = seq_along(list_ID),
+    #   .f = function(x){
+    #     jsonlite::read_json(paste0(
+    #       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+    #       ".php?query=checklists&listid=",
+    #       as.numeric(list_ID[x]), "&taxonid=", as.numeric(taxonid),
+    #       "&namesmatched=", as.numeric(namesmatched),
+    #       ifelse(floristic_group == "all",
+    #              "", paste0("&filter=", floristic_group)))
+    #       , simplifyVector = TRUE)
+    #   },
+    #   .progress = paste0("Retrieving ", length(unique(list_ID)),
+    #                      " checklists"))
     
     message("\n")
   }
