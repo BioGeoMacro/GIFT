@@ -112,6 +112,11 @@ GIFT_phylogeny <- function(
     
     # Newick format
     if(as_tree){
+      # Starting the Newick string in the right place
+      start_phy <- min(phylogeny$lft, na.rm = TRUE)
+      phylogeny$lft <- phylogeny$lft - start_phy + 1
+      phylogeny$rgt <- phylogeny$rgt - start_phy + 1
+      
       phylogeny[which(is.na(phylogeny$taxon_label)), "taxon_label"] <- ""
       phylogeny[which(is.na(phylogeny$edge_length)), "edge_length"] <- ""
       
