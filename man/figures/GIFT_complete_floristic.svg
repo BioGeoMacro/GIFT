@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.696647"
-     inkscape:cx="543.31677"
-     inkscape:cy="512.45466"
+     inkscape:zoom="1.393294"
+     inkscape:cx="852.29679"
+     inkscape:cy="347.37823"
      inkscape:window-width="2560"
      inkscape:window-height="1334"
      inkscape:window-x="1909"
@@ -717,12 +717,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0.499523;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect54875"
-       width="297.18137"
-       height="59.441418"
-       x="0.1397464"
-       y="0.13375786" />
+       width="296.61215"
+       height="59.441895"
+       x="0.13950786"
+       y="0.13351932" />
     <path
        style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 148.64742,19.900704 7.75652,-11.8499546 42.25172,0.199011 4.39017,11.6509436 -23.8866,14.01333 -23.67053,-0.3062 z"
@@ -758,9 +758,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6388"><tspan
+             id="tspan1325"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6386">Naturalized plants</tspan></tspan></text>
+               id="tspan1323">Naturalized plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -783,9 +783,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6392"><tspan
+             id="tspan1329"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6390">Native plants</tspan></tspan></text>
+               id="tspan1327">Native plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -808,9 +808,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6396"><tspan
+             id="tspan1333"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6394">Endemics</tspan></tspan></text>
+               id="tspan1331">Endemics</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -833,9 +833,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6400"><tspan
+             id="tspan1337"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6398">All vascular plants</tspan></tspan></text>
+               id="tspan1335">All vascular plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -858,9 +858,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6404"><tspan
+             id="tspan1341"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6402">Endemics</tspan></tspan></text>
+               id="tspan1339">Endemics</tspan></tspan></text>
       </g>
     </g>
     <text
@@ -870,24 +870,24 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6408"><tspan
+         id="tspan1345"><tspan
            style="font-weight:bold"
-           id="tspan6406">Available </tspan></tspan><tspan
+           id="tspan1343">Available </tspan></tspan><tspan
          x="-70.335938"
          y="73.501211"
-         id="tspan6412"><tspan
+         id="tspan1349"><tspan
            style="font-weight:bold"
-           id="tspan6410">checklists </tspan></tspan><tspan
+           id="tspan1347">checklists </tspan></tspan><tspan
          x="-70.335938"
          y="113.50121"
-         id="tspan6416"><tspan
+         id="tspan1353"><tspan
            style="font-weight:bold"
-           id="tspan6414">in three </tspan></tspan><tspan
+           id="tspan1351">in three </tspan></tspan><tspan
          x="-70.335938"
          y="153.50121"
-         id="tspan6420"><tspan
+         id="tspan1357"><tspan
            style="font-weight:bold"
-           id="tspan6418">regions</tspan></tspan></text>
+           id="tspan1355">regions</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,23.730106,64.003423)"
@@ -895,17 +895,17 @@
        style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="38.366943"
-         id="tspan6432"><tspan
+         id="tspan1369"><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan6422">Output of</tspan><tspan
+           id="tspan1359">Output of</tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan6424"> </tspan><tspan
+           id="tspan1361"> </tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan6426">GIFT_checklist() </tspan><tspan
+           id="tspan1363">GIFT_checklist() </tspan><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan6428">if</tspan><tspan
+           id="tspan1365">if</tspan><tspan
            style="font-weight:bold"
-           id="tspan6430"> </tspan></tspan></text>
+           id="tspan1367"> </tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,78.736622,49.080455)"
@@ -913,7 +913,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6434">Region A</tspan></text>
+         id="tspan1371">Region A</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,162.01503,49.080455)"
@@ -921,7 +921,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6436">Region B</tspan></text>
+         id="tspan1373">Region B</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,226.70194,49.107397)"
@@ -929,7 +929,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6438">Region C</tspan></text>
+         id="tspan1375">Region C</tspan></text>
     <path
        style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 143.44922,120.12126 7.75652,-11.84998 42.25172,0.19901 4.39017,11.65097 -23.8866,14.01333 -23.67053,-0.3062 z"
@@ -965,9 +965,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6442"><tspan
+             id="tspan1379"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6440">Native plants</tspan></tspan></text>
+               id="tspan1377">Native plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -990,11 +990,11 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6448"><tspan
+             id="tspan1385"><tspan
                style="font-style:italic;font-weight:bold"
-               id="tspan6444">Native</tspan><tspan
+               id="tspan1381">Native</tspan><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6446"> plants</tspan></tspan></text>
+               id="tspan1383"> plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1017,9 +1017,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6452"><tspan
+             id="tspan1389"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6450">Endemics</tspan></tspan></text>
+               id="tspan1387">Endemics</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1071,9 +1071,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6456"><tspan
+             id="tspan1393"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6454">Native plants</tspan></tspan></text>
+               id="tspan1391">Native plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1096,13 +1096,13 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6464"><tspan
+             id="tspan1401"><tspan
                style="font-style:italic"
-               id="tspan6458">Native</tspan><tspan
+               id="tspan1395">Native</tspan><tspan
                style="font-weight:bold"
-               id="tspan6460"> </tspan><tspan
+               id="tspan1397"> </tspan><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6462">plants</tspan></tspan></text>
+               id="tspan1399">plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1125,9 +1125,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6468"><tspan
+             id="tspan1405"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6466">Endemics</tspan></tspan></text>
+               id="tspan1403">Endemics</tspan></tspan></text>
       </g>
     </g>
     <text
@@ -1137,13 +1137,13 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6476">floristic_group =<tspan
+         id="tspan1413">floristic_group =<tspan
    style="fill:#2a7500"
-   id="tspan6470"> &quot;native&quot; </tspan>&amp; complete_floristic =<tspan
+   id="tspan1407"> &quot;native&quot; </tspan>&amp; complete_floristic =<tspan
    style="fill:#2a7500"
-   id="tspan6472"> </tspan><tspan
+   id="tspan1409"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan6474">TRUE</tspan></tspan></text>
+   id="tspan1411">TRUE</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,35.806161,148.62208)"
@@ -1151,13 +1151,13 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan6484">floristic_group =<tspan
+         id="tspan1421">floristic_group =<tspan
    style="fill:#2a7500"
-   id="tspan6478"> &quot;native&quot; </tspan>&amp; complete_floristic =<tspan
+   id="tspan1415"> &quot;native&quot; </tspan>&amp; complete_floristic =<tspan
    style="fill:#2a7500"
-   id="tspan6480"> </tspan><tspan
+   id="tspan1417"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan6482">FALSE</tspan></tspan></text>
+   id="tspan1419">FALSE</tspan></tspan></text>
     <g
        id="g3233-4-2"
        transform="translate(-10.453953,167.27347)">
@@ -1178,9 +1178,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan6488"><tspan
+             id="tspan1425"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan6486">Endemics</tspan></tspan></text>
+               id="tspan1423">Endemics</tspan></tspan></text>
       </g>
     </g>
     <g

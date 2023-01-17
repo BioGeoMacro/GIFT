@@ -128,7 +128,7 @@ completely covering **the taxon of interest** should be retrieved. Figure 1 is
 explaining the principle.
 <br><br>
 
-```{r, fig.cap = "Figure 1. Complete taxon", out.width = "50%",echo = FALSE}
+```{r, fig.cap = "Figure 1. Principle of the complete_taxon argument", out.width = "50%",echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_complete_taxon.svg")
 ```
 <br>
@@ -155,7 +155,7 @@ not. The logic is detailed in Figure 2 and is similar to the `complete_taxon`
 argument shown before.  
 
 <br>
-```{r, fig.cap = "Figure 2. Complete floristic", out.width = "50%", echo = FALSE}
+```{r, fig.cap = "Figure 2. Principle of the complete_floristic argument", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_complete_floristic.svg")
 ```
 <br>
@@ -169,7 +169,7 @@ coordinates, is the `overlap` argument. This argument can get 4 options, each
 of these options leading to a different outcome as explained in Figure 3.
 <br>
 
-```{r, fig.cap = "Figure 3. GIFT spatial", out.width = "50%", echo = FALSE}
+```{r, fig.cap = "Figure 3. Principle of GIFT_spatial()", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_spatial.svg")
 ```
 <br>
@@ -183,35 +183,36 @@ not.
 
 Another important spatial feature we provide is the possibility to remove
 overlapping polygons. Indeed, for many regions in the world, there are several
-polygons in GIFT database that cover them. Since you may not want overlapping
-polygons. If you do not care about overlapping polygons, you can simply set
-`remove_overlap` to FALSE.
+polygons in GIFT database that cover them. If overlapping polygons are not an
+issue for your case study, you can simply set `remove_overlap` to FALSE (top
+right part of Figure 4). 
+But in case you want one polygon only per region, then `remove_overlap` can be
+set to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
+smaller or the larger polygon. This will depend on the values set for the
+argument `area_threshold_mainland` as detailed in Figure 4.
 <br>
 
-```{r, fig.cap = "Figure 4. No overlap", out.width = "50%", echo = FALSE}
+```{r, fig.cap = "Figure 4. Removing overlapping polygons with remove_overlap argument", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_no_overlap.svg")
 ```
 <br>
 
-But in case you want one polygon per region, then `remove_overlap` can be set
-to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
-smaller or the larger polygon. This will depend on the values set for the
-argument `area_threshold_mainland` as detailed in Figure 4. This argument takes
-a value in $km^2$. If the smaller polygon exceeds that threshold, then it will
-be retrieved (right column of Figure 4). In case the area of the smaller
-polygon is below the threshold, then the larger overlapping polygon will be
-retrieved (middle column in Figure 4).  
+`area_threshold_mainland` takes a value in $km^2$. In case the area of the
+smaller polygon is below the threshold, then the larger overlapping polygon
+will be retrieved (bottom left part in Figure 4). If the smaller polygon
+exceeds that threshold, then it will be retrieved (bottom right part of
+Figure 4).
 There is a similar argument for islands, `area_threshold_island`, which is by
 default set to 0 $km^2$. That way, by default, the smaller islands are always
 retrieved.
-<br>
+<br><br>
 Please also note that polygons are considered as overlapping when the exceed a
 certain percentage of overlap. This percentage can be modified using the
 `overlap_threshold` argument (Figure 5). This argument is set by default to
 10%.
 <br>
 
-```{r, fig.cap = "Figure 5. Overlap threshold", out.width = "50%", echo = FALSE}
+```{r, fig.cap = "Figure 5. Principle of the overlap_th argument", out.width = "50%", echo = FALSE}
 knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 ```
 <br>
