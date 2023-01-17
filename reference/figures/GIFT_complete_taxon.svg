@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.49260382"
-     inkscape:cx="228.37825"
-     inkscape:cy="466.90665"
+     inkscape:zoom="1.393294"
+     inkscape:cx="573.82002"
+     inkscape:cy="361.7327"
      inkscape:window-width="2560"
      inkscape:window-height="1334"
      inkscape:window-x="1909"
@@ -633,11 +633,11 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f0f0f0;stroke-width:0.5;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0.499391;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect54875"
-       width="297.18137"
+       width="296.45847"
        height="59.441418"
-       x="-0.26855588"
+       x="0.45435962"
        y="0.26855588" />
     <path
        style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -674,9 +674,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56364"><tspan
+             id="tspan1291"><tspan
                style="font-style:italic"
-               id="tspan56362">Ferns</tspan></tspan></text>
+               id="tspan1289">Ferns</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -699,9 +699,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56368"><tspan
+             id="tspan1295"><tspan
                style="font-style:italic"
-               id="tspan56366">Angiosperms</tspan></tspan></text>
+               id="tspan1293">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -724,9 +724,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56372"><tspan
+             id="tspan1299"><tspan
                style="font-style:italic"
-               id="tspan56370">Orchids</tspan></tspan></text>
+               id="tspan1297">Orchids</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -749,9 +749,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-33);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56376"><tspan
+             id="tspan1303"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan56374">All vascular plants</tspan></tspan></text>
+               id="tspan1301">All vascular plants</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -774,9 +774,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56380"><tspan
+             id="tspan1307"><tspan
                style="font-style:italic"
-               id="tspan56378">Orchids</tspan></tspan></text>
+               id="tspan1305">Orchids</tspan></tspan></text>
       </g>
     </g>
     <text
@@ -786,24 +786,24 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56384"><tspan
+         id="tspan1311"><tspan
            style="font-weight:bold"
-           id="tspan56382">Available </tspan></tspan><tspan
+           id="tspan1309">Available </tspan></tspan><tspan
          x="-70.335938"
          y="73.501211"
-         id="tspan56388"><tspan
+         id="tspan1315"><tspan
            style="font-weight:bold"
-           id="tspan56386">checklists </tspan></tspan><tspan
+           id="tspan1313">checklists </tspan></tspan><tspan
          x="-70.335938"
          y="113.50121"
-         id="tspan56392"><tspan
+         id="tspan1319"><tspan
            style="font-weight:bold"
-           id="tspan56390">in three </tspan></tspan><tspan
+           id="tspan1317">in three </tspan></tspan><tspan
          x="-70.335938"
          y="153.50121"
-         id="tspan56396"><tspan
+         id="tspan1323"><tspan
            style="font-weight:bold"
-           id="tspan56394">regions</tspan></tspan></text>
+           id="tspan1321">regions</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,23.730109,64.450216)"
@@ -811,17 +811,17 @@
        style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="38.366943"
-         id="tspan56408"><tspan
+         id="tspan1335"><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan56398">Output of</tspan><tspan
+           id="tspan1325">Output of</tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan56400"> </tspan><tspan
+           id="tspan1327"> </tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan56402">GIFT_checklist() </tspan><tspan
+           id="tspan1329">GIFT_checklist() </tspan><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan56404">if</tspan><tspan
+           id="tspan1331">if</tspan><tspan
            style="font-weight:bold"
-           id="tspan56406"> </tspan></tspan></text>
+           id="tspan1333"> </tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,78.736619,48.46891)"
@@ -829,7 +829,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-32);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56410">Region A</tspan></text>
+         id="tspan1337">Region A</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,162.01503,48.46891)"
@@ -837,7 +837,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56412">Region B</tspan></text>
+         id="tspan1339">Region B</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.20286227,0,0,0.20286227,226.70194,48.49586)"
@@ -845,7 +845,7 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56414">Region C</tspan></text>
+         id="tspan1341">Region C</tspan></text>
     <path
        style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 143.44922,117.92218 7.75652,-11.84998 42.25172,0.19901 4.39017,11.65097 -23.8866,14.01333 -23.67052,-0.3062 z"
@@ -881,9 +881,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56418"><tspan
+             id="tspan1345"><tspan
                style="font-style:italic"
-               id="tspan56416">Angiosperms</tspan></tspan></text>
+               id="tspan1343">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -906,9 +906,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56422"><tspan
+             id="tspan1349"><tspan
                style="font-style:italic;font-weight:bold"
-               id="tspan56420">Angiosperms</tspan></tspan></text>
+               id="tspan1347">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -931,9 +931,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56426"><tspan
+             id="tspan1353"><tspan
                style="font-style:italic"
-               id="tspan56424">Orchids</tspan></tspan></text>
+               id="tspan1351">Orchids</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -985,9 +985,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56430"><tspan
+             id="tspan1357"><tspan
                style="font-style:italic"
-               id="tspan56428">Angiosperms</tspan></tspan></text>
+               id="tspan1355">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1010,9 +1010,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56434"><tspan
+             id="tspan1361"><tspan
                style="font-style:italic;font-weight:bold"
-               id="tspan56432">Angiosperms</tspan></tspan></text>
+               id="tspan1359">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
@@ -1035,9 +1035,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56438"><tspan
+             id="tspan1365"><tspan
                style="font-style:italic"
-               id="tspan56436">Orchids</tspan></tspan></text>
+               id="tspan1363">Orchids</tspan></tspan></text>
       </g>
     </g>
     <text
@@ -1047,13 +1047,13 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56446">taxon_name =<tspan
+         id="tspan1373">taxon_name =<tspan
    style="fill:#2a7500"
-   id="tspan56440"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
+   id="tspan1367"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
    style="fill:#2a7500"
-   id="tspan56442"> </tspan><tspan
+   id="tspan1369"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan56444">TRUE</tspan></tspan></text>
+   id="tspan1371">TRUE</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,35.806159,148.01054)"
@@ -1061,13 +1061,13 @@
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan56454">taxon_name =<tspan
+         id="tspan1381">taxon_name =<tspan
    style="fill:#2a7500"
-   id="tspan56448"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
+   id="tspan1375"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
    style="fill:#2a7500"
-   id="tspan56450"> </tspan><tspan
+   id="tspan1377"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan56452">FALSE</tspan></tspan></text>
+   id="tspan1379">FALSE</tspan></tspan></text>
     <g
        id="g3233-4-2"
        transform="translate(-10.453951,166.66193)">
@@ -1088,9 +1088,9 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan56458"><tspan
+             id="tspan1385"><tspan
                style="font-style:italic"
-               id="tspan56456">Orchids</tspan></tspan></text>
+               id="tspan1383">Orchids</tspan></tspan></text>
       </g>
     </g>
     <g

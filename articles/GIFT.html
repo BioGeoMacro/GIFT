@@ -171,8 +171,8 @@ default to TRUE defines whether only regions represented by checklists
 in GIFT completely covering <strong>the taxon of interest</strong>
 should be retrieved. Figure 1 is explaining the principle. <br><br></p>
 <div class="figure" style="text-align: center">
-<img src="../reference/figures/GIFT_complete_taxon.svg" alt="Figure 1. Complete taxon" width="50%"><p class="caption">
-Figure 1. Complete taxon
+<img src="../reference/figures/GIFT_complete_taxon.svg" alt="Figure 1. Principle of the complete_taxon argument" width="50%"><p class="caption">
+Figure 1. Principle of the complete_taxon argument
 </p>
 </div>
 <p><br> In Figure 1, we want to retrieve checklists of Angiosperms. In
@@ -196,8 +196,8 @@ incomplete regions regarding the floristic group chosen should be
 retrieved or not. The logic is detailed in Figure 2 and is similar to
 the <code>complete_taxon</code> argument shown before.</p>
 <br><div class="figure" style="text-align: center">
-<img src="../reference/figures/GIFT_complete_floristic.svg" alt="Figure 2. Complete floristic" width="50%"><p class="caption">
-Figure 2. Complete floristic
+<img src="../reference/figures/GIFT_complete_floristic.svg" alt="Figure 2. Principle of the complete_floristic argument" width="50%"><p class="caption">
+Figure 2. Principle of the complete_floristic argument
 </p>
 </div>
 <p><br></p>
@@ -208,8 +208,8 @@ of coordinates, is the <code>overlap</code> argument. This argument can
 get 4 options, each of these options leading to a different outcome as
 explained in Figure 3. <br></p>
 <div class="figure" style="text-align: center">
-<img src="../reference/figures/GIFT_spatial.svg" alt="Figure 3. GIFT spatial" width="50%"><p class="caption">
-Figure 3. GIFT spatial
+<img src="../reference/figures/GIFT_spatial.svg" alt="Figure 3. Principle of GIFT_spatial()" width="50%"><p class="caption">
+Figure 3. Principle of GIFT_spatial()
 </p>
 </div>
 <p><br></p>
@@ -220,35 +220,35 @@ polygon is retrieved or not.</p>
 <p><br></p>
 <p>Another important spatial feature we provide is the possibility to
 remove overlapping polygons. Indeed, for many regions in the world,
-there are several polygons in GIFT database that cover them. Since you
-may not want overlapping polygons. If you do not care about overlapping
-polygons, you can simply set <code>remove_overlap</code> to FALSE.
-<br></p>
-<div class="figure" style="text-align: center">
-<img src="../reference/figures/GIFT_no_overlap.svg" alt="Figure 4. No overlap" width="50%"><p class="caption">
-Figure 4. No overlap
-</p>
-</div>
-<p><br></p>
-<p>But in case you want one polygon per region, then
+there are several polygons in GIFT database that cover them. If
+overlapping polygons are not an issue for your case study, you can
+simply set <code>remove_overlap</code> to FALSE (top right part of
+Figure 4). But in case you want one polygon only per region, then
 <code>remove_overlap</code> can be set to <code>TRUE</code>. In that
 case, the <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> will either retrieve the smaller
 or the larger polygon. This will depend on the values set for the
 argument <code>area_threshold_mainland</code> as detailed in Figure 4.
-This argument takes a value in <span class="math inline">\(km^2\)</span>. If the smaller polygon exceeds that
-threshold, then it will be retrieved (right column of Figure 4). In case
-the area of the smaller polygon is below the threshold, then the larger
-overlapping polygon will be retrieved (middle column in Figure 4).<br>
-There is a similar argument for islands,
+<br></p>
+<div class="figure" style="text-align: center">
+<img src="../reference/figures/GIFT_no_overlap.svg" alt="Figure 4. Removing overlapping polygons with remove_overlap argument" width="50%"><p class="caption">
+Figure 4. Removing overlapping polygons with remove_overlap argument
+</p>
+</div>
+<p><br></p>
+<p><code>area_threshold_mainland</code> takes a value in <span class="math inline">\(km^2\)</span>. In case the area of the smaller
+polygon is below the threshold, then the larger overlapping polygon will
+be retrieved (bottom left part in Figure 4). If the smaller polygon
+exceeds that threshold, then it will be retrieved (bottom right part of
+Figure 4). There is a similar argument for islands,
 <code>area_threshold_island</code>, which is by default set to 0 <span class="math inline">\(km^2\)</span>. That way, by default, the smaller
-islands are always retrieved. <br> Please also note that polygons are
-considered as overlapping when the exceed a certain percentage of
+islands are always retrieved. <br><br> Please also note that polygons
+are considered as overlapping when the exceed a certain percentage of
 overlap. This percentage can be modified using the
 <code>overlap_threshold</code> argument (Figure 5). This argument is set
 by default to 10%. <br></p>
 <div class="figure" style="text-align: center">
-<img src="../reference/figures/GIFT_overlap_th.svg" alt="Figure 5. Overlap threshold" width="50%"><p class="caption">
-Figure 5. Overlap threshold
+<img src="../reference/figures/GIFT_overlap_th.svg" alt="Figure 5. Principle of the overlap_th argument" width="50%"><p class="caption">
+Figure 5. Principle of the overlap_th argument
 </p>
 </div>
 <p><br></p>
