@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="297mm"
-   height="210mm"
-   viewBox="0 0 297 210"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.393294"
-     inkscape:cx="573.82002"
-     inkscape:cy="361.7327"
+     inkscape:zoom="0.49260382"
+     inkscape:cx="653.66931"
+     inkscape:cy="704.42004"
      inkscape:window-width="2560"
      inkscape:window-height="1334"
      inkscape:window-x="1909"
@@ -38,24 +38,24 @@
   <defs
      id="defs2">
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="Arrow1Lend"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow1Lend"
        inkscape:isstock="true">
       <path
-         transform="scale(0.8) rotate(180) translate(12.5,0)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path49785" />
     </marker>
     <rect
        x="-70.336914"
-       y="4.3063417"
-       width="295.70213"
-       height="84.691386"
+       y="4.3063416"
+       width="295.70212"
+       height="84.691383"
        id="rect8159" />
     <rect
        x="477.05679"
@@ -169,7 +169,7 @@
        x="-70.336914"
        y="4.3063416"
        width="163.15105"
-       height="79.859258"
+       height="79.859261"
        id="rect8159-8" />
     <rect
        x="-70.336914"
@@ -288,8 +288,8 @@
     <rect
        x="-70.336914"
        y="4.3063416"
-       width="589.99143"
-       height="76.931941"
+       width="589.99146"
+       height="76.931938"
        id="rect8159-5-8-5-67" />
     <rect
        x="-70.336914"
@@ -522,14 +522,14 @@
     <rect
        x="-70.336914"
        y="4.3063416"
-       width="1085.2208"
-       height="79.802834"
+       width="517.13025"
+       height="84.434995"
        id="rect8159-5-8-5-67-6-2" />
     <rect
        x="-70.336914"
        y="4.3063416"
-       width="1085.2208"
-       height="79.802834"
+       width="711.69547"
+       height="81.832863"
        id="rect8159-5-8-5-67-6" />
     <rect
        x="-70.336914"
@@ -594,8 +594,8 @@
     <rect
        x="-70.336914"
        y="4.3063416"
-       width="215.33974"
-       height="244.87927"
+       width="705.59173"
+       height="71.311794"
        id="rect8159-5-8-5-67-39" />
     <rect
        x="-70.336914"
@@ -627,36 +627,90 @@
        width="163.15105"
        height="79.859261"
        id="rect8159-8-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-0-0" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-0-0-6" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-0-0-2" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-17-1-6-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-6-3-1-5" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-8-9-6-8" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="625.50648"
+       height="84.435033"
+       id="rect8159-5-8-5-67-6-2-1" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-7-60-6-9-9" />
+    <rect
+       x="-70.336914"
+       y="4.3063416"
+       width="163.15105"
+       height="79.859261"
+       id="rect8159-8-6-33-9" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0.499391;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#f0f0f0;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect54875"
-       width="296.45847"
-       height="59.441418"
-       x="0.45435962"
-       y="0.26855588" />
+       width="209.05974"
+       height="72.368683"
+       x="0.51843399"
+       y="0.25026512" />
     <path
-       style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 148.64743,19.28916 7.75652,-11.84995 42.25172,0.19901 4.39017,11.65094 -23.8866,14.01333 -23.67053,-0.3062 z"
+       style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.464;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 67.75648,30.568508 7.75652,-11.84995 42.25171,0.19901 4.39017,11.65094 -23.886595,14.01333 -23.670525,-0.3062 z"
        id="path1017-6-5-3"
        sodipodi:nodetypes="ccccccc" />
     <path
        style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.529432;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 213.34812,29.01573 3.40945,-24.12578 31.78012,-2.4405601 15.84074,5.0740001 9.43753,8.35187 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.7306,0.41005 z"
+       d="m 129.17531,40.295078 3.40945,-24.12578 31.78012,-2.44056 15.84074,5.074 9.43753,8.35187 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.7306,0.41005 z"
        id="path1017-6-5-3-0"
        sodipodi:nodetypes="cccccccccc" />
     <path
-       style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 65.359709,33.3429 71.886929,3.8155499 117.93209,1.36379 130.21241,13.14656 141.6288,36.00147 81.126179,45.91064 Z"
+       style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.5739582,44.622248 5.5228599,-29.52735 38.9600739,-2.45176 10.390716,11.78277 9.659721,22.85491 -51.192928,9.90917 z"
        id="path1017-6-5-3-0-2"
        sodipodi:nodetypes="ccccccc" />
     <g
        id="g3219"
-       transform="translate(4.6524879,2.6167208)">
+       transform="translate(-56.871917,-1.9789311)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.580175"
          id="rect1630"
@@ -674,14 +728,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1291"><tspan
+             id="tspan29633"><tspan
                style="font-style:italic"
-               id="tspan1289">Ferns</tspan></tspan></text>
+               id="tspan29631">Ferns</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3226"
-       transform="translate(-1.5191811,1.85713)">
+       transform="translate(-69.276742,30.069813)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.874476"
          id="rect1630-2-4"
@@ -699,14 +753,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1295"><tspan
+             id="tspan29637"><tspan
                style="font-style:italic"
-               id="tspan1293">Angiosperms</tspan></tspan></text>
+               id="tspan29635">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3233"
-       transform="translate(-2.8484611,4.1359)">
+       transform="translate(-81.924522,15.415248)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.695458"
          id="rect1630-2"
@@ -724,14 +778,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1299"><tspan
+             id="tspan29641"><tspan
                style="font-style:italic"
-               id="tspan1297">Orchids</tspan></tspan></text>
+               id="tspan29639">Orchids</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3240"
-       transform="translate(-7.2161111,-2.13072)">
+       transform="translate(-90.966346,9.1486283)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:1.0274"
          id="rect1630-2-2-6"
@@ -749,14 +803,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-33);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1303"><tspan
+             id="tspan29645"><tspan
                style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-               id="tspan1301">All vascular plants</tspan></tspan></text>
+               id="tspan29643">All vascular plants</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3247"
-       transform="translate(-4.8015511,0.85033998)">
+       transform="translate(-90.396659,12.129688)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.695458"
          id="rect1630-2-2"
@@ -774,96 +828,82 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1307"><tspan
+             id="tspan29649"><tspan
                style="font-style:italic"
-               id="tspan1305">Orchids</tspan></tspan></text>
+               id="tspan29647">Orchids</tspan></tspan></text>
       </g>
     </g>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,24.056699,6.72431)"
+       transform="matrix(0.26458333,0,0,0.26458333,22.713919,0.27896815)"
        id="text8157-2-77-1-3-6"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1311"><tspan
+         id="tspan29659"><tspan
            style="font-weight:bold"
-           id="tspan1309">Available </tspan></tspan><tspan
-         x="-70.335938"
-         y="73.501211"
-         id="tspan1315"><tspan
+           id="tspan29651">Available </tspan><tspan
            style="font-weight:bold"
-           id="tspan1313">checklists </tspan></tspan><tspan
-         x="-70.335938"
-         y="113.50121"
-         id="tspan1319"><tspan
+           id="tspan29653">checklists </tspan><tspan
            style="font-weight:bold"
-           id="tspan1317">in three </tspan></tspan><tspan
-         x="-70.335938"
-         y="153.50121"
-         id="tspan1323"><tspan
+           id="tspan29655">in three </tspan><tspan
            style="font-weight:bold"
-           id="tspan1321">regions</tspan></tspan></text>
+           id="tspan29657">regions</tspan></tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,23.730109,64.450216)"
+       transform="matrix(0.26458333,0,0,0.26458333,22.387324,71.810879)"
        id="text8157-2-77-1-3-6-0"
        style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-39-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="38.366943"
-         id="tspan1335"><tspan
+         id="tspan29671"><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan1325">Output of</tspan><tspan
+           id="tspan29661">Output of</tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan1327"> </tspan><tspan
+           id="tspan29663"> </tspan><tspan
            style="font-weight:bold;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold'"
-           id="tspan1329">GIFT_checklist() </tspan><tspan
+           id="tspan29665">GIFT_checklist() </tspan><tspan
            style="font-weight:bold;font-size:32px;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan1331">if</tspan><tspan
+           id="tspan29667">if</tspan><tspan
            style="font-weight:bold"
-           id="tspan1333"> </tspan></tspan></text>
+           id="tspan29669"> </tspan></tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.20286227,0,0,0.20286227,78.736619,48.46891)"
+       transform="matrix(0.20286227,0,0,0.20286227,33.46517,59.748258)"
        id="text8157-2-77-1-3-0-4-6-8"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-32);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1337">Region A</tspan></text>
+         id="tspan29673">Region A</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.20286227,0,0,0.20286227,162.01503,48.46891)"
+       transform="matrix(0.20286227,0,0,0.20286227,94.630759,59.748258)"
        id="text8157-2-77-1-3-0-4-6-1-42"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1339">Region B</tspan></text>
+         id="tspan29675">Region B</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.20286227,0,0,0.20286227,226.70194,48.49586)"
+       transform="matrix(0.20286227,0,0,0.20286227,167.43421,59.775208)"
        id="text8157-2-77-1-3-0-4-6-1-4-1"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-3-1-6-9-7-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1341">Region C</tspan></text>
-    <path
-       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 143.44922,117.92218 7.75652,-11.84998 42.25172,0.19901 4.39017,11.65097 -23.8866,14.01333 -23.67052,-0.3062 z"
-       id="path1017-6-5-3-8"
-       sodipodi:nodetypes="ccccccc" />
+         id="tspan29677">Region C</tspan></text>
     <path
        style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.529432;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 208.14993,127.64875 3.40945,-24.12581 31.78012,-2.44056 15.84073,5.074 9.43753,8.3519 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.7306,0.41005 z"
+       d="m 129.18637,278.46136 3.40945,-24.12581 31.78012,-2.44056 15.84073,5.074 9.43753,8.3519 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.7306,0.41005 z"
        id="path1017-6-5-3-0-71"
        sodipodi:nodetypes="cccccccccc" />
     <path
-       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 60.161499,131.97592 6.52721,-29.52738 46.045181,-2.451757 12.28032,11.782797 11.41638,22.85491 -60.502621,9.90917 z"
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.426617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.6137262,282.78853 5.5228516,-29.52738 38.9600862,-2.45176 10.390711,11.7828 9.659707,22.85491 -51.192913,9.90917 z"
        id="path1017-6-5-3-0-2-0"
        sodipodi:nodetypes="ccccccc" />
     <g
        id="g3226-1"
-       transform="translate(-6.7173911,100.49012)">
+       transform="translate(-69.276742,268.23608)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.874476"
          id="rect1630-2-4-3"
@@ -881,14 +921,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1345"><tspan
+             id="tspan29681"><tspan
                style="font-style:italic"
-               id="tspan1343">Angiosperms</tspan></tspan></text>
+               id="tspan29679">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3240-2"
-       transform="translate(-12.414321,96.502277)">
+       transform="translate(-90.966346,247.31488)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.944538"
          id="rect1630-2-2-6-0"
@@ -906,14 +946,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1349"><tspan
+             id="tspan29685"><tspan
                style="font-style:italic;font-weight:bold"
-               id="tspan1347">Angiosperms</tspan></tspan></text>
+               id="tspan29683">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3247-5"
-       transform="translate(-11.844631,99.483333)">
+       transform="translate(-90.396659,250.29594)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.693105"
          id="rect1630-2-2-5"
@@ -931,14 +971,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1353"><tspan
+             id="tspan29689"><tspan
                style="font-style:italic"
-               id="tspan1351">Orchids</tspan></tspan></text>
+               id="tspan29687">Orchids</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g41536"
-       transform="translate(26.611019,-0.2519333)">
+       transform="translate(-49.07224,150.56061)">
       <path
          style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 138.64534,124.64782 149.42947,113.8637"
@@ -952,22 +992,77 @@
     </g>
     <path
        style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 139.42646,182.42786 7.75652,-11.84994 42.25172,0.19901 4.39017,11.65093 -23.8866,14.01333 -23.67052,-0.3062 z"
+       d="m 67.765969,127.92368 7.756517,-11.84994 42.251704,0.19901 4.39017,11.65093 -23.886599,14.01333 -23.670504,-0.3062 z"
        id="path1017-6-5-3-8-9"
        sodipodi:nodetypes="ccccccc" />
     <path
        style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.529432;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 204.12717,192.15443 3.40944,-24.12576 31.78013,-2.44056 15.84073,5.07399 9.43754,8.35186 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.73061,0.41005 z"
+       d="m 129.18636,137.65025 3.40944,-24.12576 31.78013,-2.44057 15.84073,5.074 9.43755,8.35186 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.73062,0.41005 z"
        id="path1017-6-5-3-0-71-4"
        sodipodi:nodetypes="cccccccccc" />
     <path
-       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 56.138739,196.4816 6.52721,-29.52733 46.045181,-2.45176 12.28032,11.78275 11.41638,22.85491 -60.502621,9.90918 z"
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.426617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.6137265,141.97742 5.5228512,-29.52734 38.9600883,-2.45176 10.39071,11.78276 9.659705,22.85491 -51.192913,9.90918 z"
        id="path1017-6-5-3-0-2-0-2"
        sodipodi:nodetypes="ccccccc" />
     <g
+       id="g3219-9"
+       transform="translate(-56.871917,95.283481)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.580175"
+         id="rect1630-9"
+         width="19.559464"
+         height="9.684783"
+         x="70.262154"
+         y="21.838236" />
+      <g
+         id="g28922-5-1"
+         transform="matrix(1.099603,0,0,1.099603,-68.550866,-101.26672)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.07549,111.26823)"
+           id="text8157-0-27-6"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-0-0);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29693"><tspan
+               style="font-style:italic"
+               id="tspan29691">Ferns</tspan></tspan></text>
+      </g>
+    </g>
+    <g
+       id="g3219-9-1"
+       transform="translate(-56.871917,234.9104)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.580175"
+         id="rect1630-9-2"
+         width="19.559464"
+         height="9.684783"
+         x="70.262154"
+         y="21.838236" />
+      <g
+         id="g28922-5-1-6"
+         transform="matrix(1.099603,0,0,1.099603,-68.550866,-101.26672)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.07549,111.26823)"
+           id="text8157-0-27-6-4"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-0-0-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29697"><tspan
+               style="font-style:italic"
+               id="tspan29695">Ferns</tspan></tspan></text>
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 30.795497,261.59103 H 15.54444"
+       id="path49780-9-2-5-4-1-5-9"
+       sodipodi:nodetypes="cc" />
+    <g
        id="g3226-1-6"
-       transform="translate(-10.740151,164.99585)">
+       transform="translate(-69.276742,127.42501)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.874476"
          id="rect1630-2-4-3-6"
@@ -985,39 +1080,14 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1357"><tspan
+             id="tspan29701"><tspan
                style="font-style:italic"
-               id="tspan1355">Angiosperms</tspan></tspan></text>
-      </g>
-    </g>
-    <g
-       id="g3240-2-9"
-       transform="translate(-16.437081,161.008)">
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke-width:0.941072"
-         id="rect1630-2-2-6-0-2"
-         width="51.46228"
-         height="9.684783"
-         x="229.11157"
-         y="27.060423" />
-      <g
-         id="g28922-1-1-9"
-         transform="matrix(1.099603,0,0,1.099603,91.169743,-96.026542)">
-        <text
-           xml:space="preserve"
-           transform="matrix(0.32565441,0,0,0.32882567,150.77836,111.25187)"
-           id="text8157-0-2-9-5"
-           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
-             x="-70.335938"
-             y="20.406716"
-             id="tspan1361"><tspan
-               style="font-style:italic;font-weight:bold"
-               id="tspan1359">Angiosperms</tspan></tspan></text>
+               id="tspan29699">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
        id="g3247-5-7"
-       transform="translate(-15.867391,163.98907)">
+       transform="translate(-90.396659,109.48488)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.702471"
          id="rect1630-2-2-5-7"
@@ -1035,42 +1105,48 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1365"><tspan
+             id="tspan29705"><tspan
                style="font-style:italic"
-               id="tspan1363">Orchids</tspan></tspan></text>
+               id="tspan29703">Orchids</tspan></tspan></text>
       </g>
     </g>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,35.806159,82.458547)"
+       transform="matrix(0.26458333,0,0,0.26458333,56.972827,226.92113)"
        id="text8157-2-77-1-3-7"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1373">taxon_name =<tspan
+         id="tspan29709">taxon_name =<tspan
    style="fill:#2a7500"
-   id="tspan1367"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
+   id="tspan29707"> &quot;Angiospermae&quot;</tspan> </tspan><tspan
+         x="-70.335938"
+         y="73.501211"
+         id="tspan29715">complete_taxon =<tspan
    style="fill:#2a7500"
-   id="tspan1369"> </tspan><tspan
+   id="tspan29711"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan1371">TRUE</tspan></tspan></text>
+   id="tspan29713">TRUE</tspan></tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,35.806159,148.01054)"
+       transform="matrix(0.26458333,0,0,0.26458333,56.972827,86.627177)"
        id="text8157-2-77-1-3-7-3"
        style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="-70.335938"
          y="33.501211"
-         id="tspan1381">taxon_name =<tspan
+         id="tspan29719">taxon_name =<tspan
    style="fill:#2a7500"
-   id="tspan1375"> &quot;Angiospermae&quot; </tspan>&amp; complete_taxon =<tspan
+   id="tspan29717"> &quot;Tracheophyta&quot; </tspan></tspan><tspan
+         x="-70.335938"
+         y="73.501211"
+         id="tspan29725">complete_taxon =<tspan
    style="fill:#2a7500"
-   id="tspan1377"> </tspan><tspan
+   id="tspan29721"> </tspan><tspan
    style="fill:#0000ff"
-   id="tspan1379">FALSE</tspan></tspan></text>
+   id="tspan29723">FALSE</tspan></tspan></text>
     <g
        id="g3233-4-2"
-       transform="translate(-10.453951,166.66193)">
+       transform="translate(-82.11442,112.15774)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke-width:0.700141"
          id="rect1630-2-8-1"
@@ -1088,38 +1164,197 @@
            style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-6-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
              x="-70.335938"
              y="20.406716"
-             id="tspan1385"><tspan
+             id="tspan29729"><tspan
                style="font-style:italic"
-               id="tspan1383">Orchids</tspan></tspan></text>
+               id="tspan29727">Orchids</tspan></tspan></text>
+      </g>
+    </g>
+    <path
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.463789;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 67.76597,199.52428 7.756517,-11.84994 42.251703,0.19901 4.39017,11.65093 -23.886598,14.01333 -23.670505,-0.3062 z"
+       id="path1017-6-5-3-8-9-2"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.529432;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 129.18636,209.25085 3.40944,-24.12576 31.78013,-2.44056 15.84073,5.07399 9.43755,8.35186 15.18691,9.40166 1.59533,8.86605 -19.29174,5.55236 -46.73062,0.41005 z"
+       id="path1017-6-5-3-0-71-4-8"
+       sodipodi:nodetypes="cccccccccc" />
+    <path
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:0.426617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.6137269,213.57802 5.5228504,-29.52733 38.9600877,-2.45176 10.390711,11.78275 9.659705,22.85491 -51.192913,9.90918 z"
+       id="path1017-6-5-3-0-2-0-2-2"
+       sodipodi:nodetypes="ccccccc" />
+    <g
+       id="g3219-9-6"
+       transform="translate(-56.871917,166.88409)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.580175"
+         id="rect1630-9-4"
+         width="19.559464"
+         height="9.684783"
+         x="70.262154"
+         y="21.838236" />
+      <g
+         id="g28922-5-1-9"
+         transform="matrix(1.099603,0,0,1.099603,-68.550866,-101.26672)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.07549,111.26823)"
+           id="text8157-0-27-6-0"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-0-0-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29733"><tspan
+               style="font-style:italic"
+               id="tspan29731">Ferns</tspan></tspan></text>
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 30.795496,193.56472 H 15.54444"
+       id="path49780-9-2-5-4-1-5-1"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g3226-1-6-7"
+       transform="translate(-69.276742,199.02562)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.874476"
+         id="rect1630-2-4-3-6-3"
+         width="44.436066"
+         height="9.684783"
+         x="76.433823"
+         y="5.222187" />
+      <g
+         id="g28922-2-1-8-2"
+         transform="matrix(1.099603,0,0,1.099603,-62.148815,-117.86478)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.59912,111.25187)"
+           id="text8157-0-1-3-5-2"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-17-1-6-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29737"><tspan
+               style="font-style:italic"
+               id="tspan29735">Angiosperms</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="g41536-8"
-       transform="translate(-52.102941,9.9717963)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 138.64534,124.64782 149.42947,113.8637"
-         id="path49780-9-2-5-4-0"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 149.42947,124.64782 138.64534,113.8637"
-         id="path49780-9-2-5-4-1-8"
-         sodipodi:nodetypes="cc" />
+       id="g3240-2-9-2"
+       transform="translate(-90.966346,178.10442)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.941072"
+         id="rect1630-2-2-6-0-2-3"
+         width="51.46228"
+         height="9.684783"
+         x="229.11157"
+         y="27.060423" />
+      <g
+         id="g28922-1-1-9-6"
+         transform="matrix(1.099603,0,0,1.099603,91.169743,-96.026542)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.77836,111.25187)"
+           id="text8157-0-2-9-5-2"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-3-1-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29741"><tspan
+               style="font-style:italic;font-weight:bold"
+               id="tspan29739">Angiosperms</tspan></tspan></text>
+      </g>
     </g>
     <g
-       id="g41536-3"
-       transform="translate(-56.125701,73.640787)">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 138.64534,124.64782 149.42947,113.8637"
-         id="path49780-9-2-5-4-6"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 149.42947,124.64782 138.64534,113.8637"
-         id="path49780-9-2-5-4-1-84"
-         sodipodi:nodetypes="cc" />
+       id="g3247-5-7-2"
+       transform="translate(-90.396659,181.08549)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.702471"
+         id="rect1630-2-2-5-7-4"
+         width="28.674555"
+         height="9.684783"
+         x="228.54189"
+         y="7.5009584" />
+      <g
+         id="g28922-9-0-1-5-4-2"
+         transform="matrix(1.099603,0,0,1.099603,90.700102,-114.99248)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+           id="text8157-0-6-9-1-7-1-1"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-8-9-6-8);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29745"><tspan
+               style="font-style:italic"
+               id="tspan29743">Orchids</tspan></tspan></text>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,56.972827,157.16947)"
+       id="text8157-2-77-1-3-7-3-6"
+       style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-5-8-5-67-6-2-1);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="-70.335938"
+         y="33.501211"
+         id="tspan29749">taxon_name =<tspan
+   style="fill:#2a7500"
+   id="tspan29747"> &quot;Angiospermae&quot;</tspan> </tspan><tspan
+         x="-70.335938"
+         y="73.501211"
+         id="tspan29755">complete_taxon =<tspan
+   style="fill:#2a7500"
+   id="tspan29751"> </tspan><tspan
+   style="fill:#0000ff"
+   id="tspan29753">FALSE</tspan></tspan></text>
+    <g
+       id="g3233-4-2-6"
+       transform="translate(-82.11442,183.75835)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.700141"
+         id="rect1630-2-8-1-1"
+         width="28.484657"
+         height="9.684783"
+         x="159.89388"
+         y="8.8302441" />
+      <g
+         id="g28922-9-0-8-1-3"
+         transform="matrix(1.099603,0,0,1.099603,28.167248,-111.916)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,144.55804,109.66294)"
+           id="text8157-0-6-9-10-1-6"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-7-60-6-9-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29759"><tspan
+               style="font-style:italic"
+               id="tspan29757">Orchids</tspan></tspan></text>
+      </g>
+    </g>
+    <g
+       id="g3240-8"
+       transform="translate(-90.966346,105.66776)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:1.0274"
+         id="rect1630-2-2-6-2"
+         width="61.33696"
+         height="9.684783"
+         x="229.11157"
+         y="27.060423" />
+      <g
+         id="g28922-1-9-2"
+         transform="matrix(1.099603,0,0,1.099603,91.169743,-96.026542)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.32565441,0,0,0.32882567,150.11928,111.25187)"
+           id="text8157-0-2-50-3"
+           style="font-style:normal;font-weight:normal;font-size:17.6472px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8159-8-6-33-9);fill:#000000;fill-opacity:1;stroke:none"><tspan
+             x="-70.335938"
+             y="20.406716"
+             id="tspan29763"><tspan
+               style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+               id="tspan29761">All vascular plants</tspan></tspan></text>
+      </g>
     </g>
   </g>
 </svg>
