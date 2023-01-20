@@ -100,7 +100,8 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   ## 2.0 species names query
   if(is.null(species)){
-    species <- GIFT_species(api = api, GIFT_version = GIFT_version)
+    species <- suppressMessages(
+      GIFT_species(api = api, GIFT_version = GIFT_version))
   }
   
   species <- dplyr::mutate_at(species, c("work_ID", "genus_ID"), as.numeric)
