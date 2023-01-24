@@ -98,7 +98,7 @@ query_table <-
     Arguments = c("listid (integer)\n, taxonid, namesmatched, filter", "", "",
                   "envvar",
                   "layername, sumstat", "", "genus, epithet", "genus, epithet",
-                  "taxon, statat",
+                  "taxon, startat",
                   "", "layer", "", "", "", "", "startat", "nameid", "taxonid",
                   "", "traitid, biasref, biasderiv, startat",
                   "traitid, taxonid", "", "traitid, deriv, biasderiv, refid",

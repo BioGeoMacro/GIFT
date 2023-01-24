@@ -49,6 +49,8 @@
 * ~~all calls of GIFT functions inside of other functions need the version
   and api forwarded!!!~~
 * We need to control for empty spaces in arguments passed on to the api
+* Harmonization of argument's names across functions (and no cryptic argument names)
+* convert GIFT_version from beta into 3.0
 
 
 ## 1. Details
@@ -125,9 +127,11 @@
     - restore old polygons for versions < 2.2 (Patrick)
 
 ## 1.2. Controls
-Make a clear error message in case of wrong API (have a clear error message for version)
+Make a clear error message in case of wrong API (have a clear error message for version) (httr or rcurl)
+Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)
 
 # 2. Vignette
+* API vignette: properly check the API arguments in the query table
 
 # 4. Queries
 * In queries.php (WinSCP) => put as a comment in which R function queries are used
@@ -166,10 +170,10 @@ https://glad.umd.edu/dataset/gedi
 https://www.hydrosheds.org/products/gloric
 https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database
 
+# 6. httr2
+check for proper APIs and internet connection
 
-
-
-# 6. Extra-stuff
+# 7. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
 * allow comparison restricted/extended (GIFT_references() _richness(), _lists())
 * GIFT website: link to package; Alumni, update, Pierre, Julian, etc.
