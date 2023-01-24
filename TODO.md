@@ -50,7 +50,7 @@
   and api forwarded!!!~~
 * We need to control for empty spaces in arguments passed on to the api
 * Harmonization of argument's names across functions (and no cryptic argument names)
-* convert GIFT_version from beta into 3.0
+* allow for a comparison of restricted vs non restricted meta data without having the restricted api
 
 
 ## 1. Details
@@ -93,11 +93,10 @@
 * 4.1. GIFT_species()
 
 * 4.2. GIFT_ranges()
-    - translate range_finder?
+    - translate range_finder? # not for now
 
 * 5.1. GIFT_shape()
     - give back warning if not all entity_IDs have polygons?
-    - Put old polygons of old versions into respective folders
     
 * 6.1. med()
 
@@ -127,8 +126,8 @@
     - restore old polygons for versions < 2.2 (Patrick)
 
 ## 1.2. Controls
-Make a clear error message in case of wrong API (have a clear error message for version) (httr or rcurl)
-Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)
+* Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)
+* Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)
 
 # 2. Vignette
 * API vignette: properly check the API arguments in the query table
@@ -139,41 +138,41 @@ Put controls for all arguments in not exported functions whenever possible (like
 # 5. GIFT admin/database
 * ~~Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))~~
 * ~~Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final~~
-* Traits: Agreement free text traits? Does not make sense. How is it handled=> remove empty values for free text traits
-* Traits: SCrutinize new traits workflow
-* ~~Phylogeny: V.Phylo.maker2 => update *phylogeny* table~~
-* Phylogeny: prune phylogeny for species in GIFT before upload and add Tracheophyta label
-* Phylogeny: Wait for new WCVP phylogeny in V.Phylo.maker2
-* Phylogeny: Check phylogeny by Carta et al. 2022. NPH
+* Traits: Agreement free text traits? Does not make sense. How is it handled => remove empty values for free text traits
+* Traits: Scrutinize new traits workflow
+* ~~Phylogeny: U.Phylo.maker => update *phylogeny* table~~
+* ~~Phylogeny: prune phylogeny for species in GIFT before upload and add Tracheophyta label~~
+* ~~Phylogeny: Wait for new WCVP phylogeny in U.Phylo.maker~~
+* Phylogeny: Check phylogeny by Carta et al. 2022. NPH or see upcoming Kew phylogeny
 * ~~exactextract~~
 * unrealistic elevation ranges (+ flora of Gabon in feet)
 * missing trait values in traits_final (see 4.11.1 for example) 
 * ~~Ref_ID 10173 hat native == 1 und naturalized == 1 ohne das questionable oder quest_native angezeigt ist~~
-* Heights Helena sent
+* Heights Helena sent (Patrick)
 * check whats restricted once again
 * Add a bit more info to version table: beta, tpl-wcvp, numbers
-* Trait links Matthias
+* Trait links Matthias; Need to be update for new Austraits version
 * Check type_ref = 0
 * 4.15.1 combinations possible
-* Check regions with multiple polygon resources
-* add environmental layers in GIFT:
+* Check regions with multiple polygon resources (Patrick)
+* ~~add environmental layers in GIFT:~~
 * Check Julians Polygons
 * Run counts again
-* cleanup_names_work_unique()
+* cleanup_names_work_unique() # I think we rather keep the old IDs
 * ~~Lembrechts 2022 Global maps of soil temperature~~
 * ~~Chelsa 2.1~~
 * ~~Cai et al.~~
-* Update citations Lembrechts, Brun, and Cai
+* ~~Zomer et al.~~
+* Update citations Lembrechts, Brun, Zomer and Cai
+* convert GIFT_version from beta into 3.0
 
 https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_TC_v3
 https://glad.umd.edu/dataset/gedi
 https://www.hydrosheds.org/products/gloric
 https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database
 
-# 6. httr2
-check for proper APIs and internet connection
 
-# 7. Extra-stuff
+# 6. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
 * allow comparison restricted/extended (GIFT_references() _richness(), _lists())
 * GIFT website: link to package; Alumni, update, Pierre, Julian, etc.
