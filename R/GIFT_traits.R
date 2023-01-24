@@ -67,10 +67,7 @@ GIFT_traits <- function(
   
   # 1. Controls ----
   # Arguments
-  if(!is.character(trait_IDs)){
-    stop("trait_IDs must be a character string indicating which trait you want
-         to retrieve.")
-  }
+  check_trait_IDs(trait_IDs)
   
   if(!is.numeric(agreement)){
     stop("agreement must be a numeric between 0 and 1 indicating .")

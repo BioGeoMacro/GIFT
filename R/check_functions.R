@@ -120,3 +120,21 @@ check_taxon_name <- function(taxon_name) {
   }
 }
 
+# Checking trait_IDs argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if trait_IDs argument is not having the right format
+#
+# Args:
+#   trait_IDs a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_trait_IDs <- function(trait_IDs) {
+  if(!is.character(trait_IDs)){
+    stop("trait_IDs must be a character string indicating which trait you want
+         to retrieve.")
+  }
+}

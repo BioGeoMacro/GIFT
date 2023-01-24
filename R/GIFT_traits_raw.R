@@ -85,10 +85,7 @@ GIFT_traits_raw <- function(
   
   # 1. Controls ----
   # Arguments
-  if(!is.character(trait_IDs)){
-    stop("trait_IDs must be a character string indicating which trait you want
-         to retrieve.")
-  }
+  check_trait_IDs(trait_IDs)
   
   if(!is.logical(bias_ref)){
     stop("bias_ref must be a logical.")
