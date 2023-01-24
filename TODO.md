@@ -123,7 +123,7 @@
     - make option to prune for set of species
 
 * versions of GIFT:
-    - restore old polygons for versions < 2.2 (Patrick)
+    - ~~restore old polygons for versions < 2.2~~
 
 ## 1.2. Controls
 * Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)
