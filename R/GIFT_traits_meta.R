@@ -43,8 +43,8 @@ GIFT_traits_meta <- function(
   api = "https://gift.uni-goettingen.de/api/extended/",
   GIFT_version = "latest"){
 
-    check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
+  check_api(api)
+  GIFT_version <- check_gift_version(GIFT_version)
   
   tmp <- jsonlite::read_json(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),

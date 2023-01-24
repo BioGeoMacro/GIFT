@@ -48,6 +48,9 @@ versions."))
   }
   if (GIFT_version == "latest") {
     GIFT_version <- gift_version[nrow(gift_version), "version"]
+    message(paste0(
+      "You are asking for the latest stable version of GIFT which is ",
+      GIFT_version, "."))
   }
   if (GIFT_version == "beta") {
     message("You are asking for the beta-version of GIFT which is subject to
@@ -83,6 +86,10 @@ versions."))
       "https://gift.uni-goettingen.de/api/index.php?query=versions",
       simplifyVector = TRUE)
     GIFT_version <- gift_version[nrow(gift_version), "version"]
+    
+    message(paste0(
+      "You are asking for the latest stable version of GIFT which is ",
+      GIFT_version, "."))
   }
   if (GIFT_version == "beta") {
     message("You are asking for the beta-version of GIFT which is subject to
