@@ -125,12 +125,7 @@ GIFT_checklist_conditional <- function(
     list_set = NULL, taxonomy = NULL){
   
   # 1. Controls ----
-  if(length(taxon_name) != 1 || is.na(taxon_name) ||
-     !is.character(taxon_name)){
-    stop("taxon_name is incorrect. It must be a character string among one of
-         the taxonomic groups available in GIFT. To check them all, run
-         'GIFT_taxonomy()'.")
-  }
+  check_taxon_name(taxon_name)
   
   if(any(is.na(ref_included)) || !is.character(ref_included) || 
      !(all(ref_included %in% c("all", "native", "native and naturalized",

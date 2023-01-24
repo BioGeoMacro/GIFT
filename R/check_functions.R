@@ -98,3 +98,25 @@ version.")
   }
   return(GIFT_version)
 }
+
+# Checking taxon_name argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if taxon_name argument is not having the right format
+#
+# Args:
+#   taxon_name a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_taxon_name <- function(taxon_name) {
+  if(length(taxon_name) != 1 || is.na(taxon_name) ||
+     !is.character(taxon_name)){
+    stop("'taxon_name' is incorrect. It must be a character string among one of
+         the taxonomic groups available in GIFT. To check them all, run
+         'GIFT_taxonomy()'.")
+  }
+}
+

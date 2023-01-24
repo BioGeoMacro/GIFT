@@ -117,10 +117,7 @@ GIFT_checklist_raw <- function(
          references.")
   }
   
-  if(!is.character(taxon_name)){
-    stop("'taxon_name' must be a character string stating what taxonomical
-         group you want to retrieve. Set to 'Tracheophyta' by default.")
-  }
+  check_taxon_name(taxon_name)
   
   taxon_check <- GIFT::GIFT_taxonomy(api = api, GIFT_version = GIFT_version)
   if(!(taxon_name %in% taxon_check$taxon_name)){

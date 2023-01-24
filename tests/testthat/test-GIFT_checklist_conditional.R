@@ -29,7 +29,7 @@ test_that("data frame output format", {
 test_that("invalid inputs", {
   expect_error(
     GIFT_checklist_conditional(taxon_name =  NA),
-    "taxon_name is incorrect. It must be a character string among one of
+    "'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.", fixed = TRUE)
   
@@ -55,13 +55,7 @@ test_that("invalid inputs", {
     polygons you want to retrieve. Available options are 'Island',
     'Island/Mainland', 'Mainland', 'Island Group', 'Island Part'.",
     fixed = TRUE)
-  
-  expect_error(
-    GIFT_checklist_conditional(taxon_name =  NA),
-    "taxon_name is incorrect. It must be a character string among one of
-         the taxonomic groups available in GIFT. To check them all, run
-         'GIFT_taxonomy()'.", fixed = TRUE)
-  
+
   expect_error(
     GIFT_checklist_conditional(native_indicated = NA),
     "'native_indicated' must be a boolean stating if you want the

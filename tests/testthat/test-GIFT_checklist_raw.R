@@ -38,4 +38,10 @@ test_that("invalid inputs", {
 of GIFT you want to use. Available options are 'latest' and the different
 versions.",
     fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist_raw(list_ID = 5, taxon_name =  NA),
+    "'taxon_name' is incorrect. It must be a character string among one of
+         the taxonomic groups available in GIFT. To check them all, run
+         'GIFT_taxonomy()'.", fixed = TRUE)
 })

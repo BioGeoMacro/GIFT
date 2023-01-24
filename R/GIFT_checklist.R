@@ -163,12 +163,7 @@ GIFT_checklist <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"
 ){
   # 1. Controls ----
-  if(length(taxon_name) != 1 || is.na(taxon_name) ||
-     !is.character(taxon_name)){
-    stop("'taxon_name' is incorrect. It must be a character string among one of
-         the taxonomic groups available in GIFT. To check them all, run
-         'GIFT_taxonomy()'.")
-  }
+  check_taxon_name(taxon_name)
   
   if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
      is.na(complete_taxon)){
