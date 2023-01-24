@@ -26,14 +26,19 @@ Imports:
   utils
 RoxygenNote: 7.2.3
 Suggests: 
+    ape,
+    BiocManager,
     covr,
     ggplot2,
+    ggtree,
+    ggtreeExtra,
     kableExtra,
     knitr,
     testthat (>= 3.0.0),
     rmarkdown,
     rnaturalearth,
-    rnaturalearthdata
+    rnaturalearthdata,
+    tidytree
 Config/testthat/edition: 3
 URL: https://github.com/BioGeoMacro/GIFT,
     https://biogeomacro.github.io/GIFT/

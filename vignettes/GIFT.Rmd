@@ -34,6 +34,13 @@ suppressPackageStartupMessages({
     library("rnaturalearth")
     library("rnaturalearthdata")
     library("tidyr")
+    library("ape")
+    library("BiocManager")
+    install("ggtree")
+    library("ggtree")
+    library("tidytree")
+    install("ggtreeExtra")
+    library("ggtreeExtra")
   })
 })
 
@@ -56,6 +63,7 @@ detailed examples.
 2. Getting the distribution of a plant species  
 3. Retrieving trait information for a subset of plant species  
 4. Retrieving environmental information for a list of polygons/regions  
+5. Retrieving a plant phylogeny and plotting a trait coverage on it  
 
 <br>
 
@@ -657,7 +665,127 @@ ggplot(world) +
 
 <br><br>
 
-# 5. References
+# 5. Phylogeny
+
+Phylogeny from [Jin & Qian (2022)](https://doi.org/10.1016/j.pld.2022.12.007)
+Matched to the taxonomy of GIFT.
+
+```{r}
+phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
+tax <- GIFT_taxonomy(GIFT_version = "beta")
+gift_sp <- GIFT_species(GIFT_version = "beta")
+```
+
+
+```{r}
+sp_fam <- GIFT_taxgroup(work_ID = unique(gift_sp$work_ID),
+                        taxon_lvl = "family", GIFT_version = "beta")
+sp_genus_fam <- data.frame(
+  work_ID = unique(gift_sp$work_ID),
+  work_species = unique(gift_sp$work_species),
+  family = sp_fam)
+sp_genus_fam <- left_join(sp_genus_fam,
+                          gift_sp[, c("work_ID", "work_genus")],
+                          by = "work_ID")
+colnames(sp_genus_fam)[colnames(sp_genus_fam) == "work_genus"] <- "genus"
+
+# Problem with hybrid species on the tip labels of the phylo tree
+phy$tip.label[substring(phy$tip.label, 1, 2) == "x_"] <-
+  substring(phy$tip.label[substring(phy$tip.label, 1, 2) == "x_"],
+            3,
+            nchar(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"]))
+
+phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"] <-
+  substring(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"],
+            3,
+            nchar(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"]))
+
+# Trait coverage
+sp_genus_fam <- left_join(sp_genus_fam,
+                          gf[, c("work_ID", "trait_value_1.2.1")],
+                          by = "work_ID")
+
+genus_gf <- sp_genus_fam %>%
+  group_by(genus) %>%
+  mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(), 2)) %>%
+  ungroup() %>%
+  dplyr::select(-work_ID, -work_species, -family, -trait_value_1.2.1) %>%
+  distinct(.keep_all = TRUE)
+
+fam_gf <- sp_genus_fam %>%
+  group_by(family) %>%
+  mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(), 2)) %>%
+  ungroup() %>%
+  dplyr::select(-work_ID, -work_species, -genus, -trait_value_1.2.1) %>%
+  distinct(.keep_all = TRUE)
+
+# 
+sp_genus_fam$species <- gsub("([[:punct:]])|\\s+", "_",
+                             sp_genus_fam$work_species)
+
+one_sp_per_gen <- data.frame()
+for(i in 1:n_distinct(sp_genus_fam$genus)){ # loop over families
+  # Focal genus
+  focal_gen <- unique(sp_genus_fam$genus)[i]
+  # All species in that genus
+  gen_sp_i <- sp_genus_fam[which(sp_genus_fam$genus == focal_gen),
+                           "species"]
+  # Species from the genus available in the phylogeny
+  gen_sp_i <- gen_sp_i[gen_sp_i %in% phy$tip.label]
+  # Taking the first one (if at least one is available)
+  gen_sp_i <- gen_sp_i[1]
+  
+  one_sp_per_gen <- rbind(one_sp_per_gen,
+                          data.frame(species = gen_sp_i,
+                                     genus = focal_gen))
+  
+  print(paste0(i, "/", n_distinct(sp_genus_fam$genus)))
+}
+
+# Adding the trait coverage per genus
+one_sp_per_gen <- left_join(one_sp_per_gen, genus_gf, by = "genus")
+
+# Ten most frequent families
+sort(table(one_sp_per_gen$family), decreasing = TRUE)[1:10]
+
+# Adding the trait coverage per family
+one_sp_per_gen <- left_join(one_sp_per_gen,
+                            sp_genus_fam[!duplicated(sp_genus_fam$genus),
+                                         c("genus", "family")],
+                            by = "genus")
+colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
+  "prop_gf_gen"
+one_sp_per_gen <- left_join(one_sp_per_gen, fam_gf, by = "family")
+colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
+  "prop_gf_fam"
+
+# Pruning the tree at the genus level
+length(one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"]) # 15396
+phy_gen <- ape::keep.tip(
+  phy = phy,
+  tip = one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"])
+```
+
+Plot
+```{r, fig.width = 6, fig.height = 6}
+ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = prop_gf_gen),
+             width = 50,
+             offset = 0.1) +
+  geom_fruit(geom = geom_tile,
+             mapping = aes(color = prop_gf_fam, fill = prop_gf_fam),
+             width = 50,
+             offset = 0.1,
+             show.legend = FALSE) +
+  scale_color_viridis_c() +
+  scale_fill_viridis_c("Growth form availability per genus (%)") +
+  theme(legend.position = "bottom")
+```
+
+<br><br>
+
+# 6. References
 
 When using the GIFT database and the GIFT R package, here are the two
 resources to cite:
