@@ -164,14 +164,8 @@ GIFT_checklist <- function(
 ){
   # 1. Controls ----
   check_taxon_name(taxon_name)
-  
-  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
-     is.na(complete_taxon)){
-    stop("'complete_taxon' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'taxon_name' argument or as well incomplete lists.")
-  }
-  
+  check_complete_taxon(complete_taxon)
+
   if(length(floristic_group) != 1 || is.na(floristic_group) ||
      !is.character(floristic_group) || 
      !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){

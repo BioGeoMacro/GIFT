@@ -120,6 +120,27 @@ check_taxon_name <- function(taxon_name) {
   }
 }
 
+# Checking complete_taxon argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if complete_taxon argument is not having the right format
+#
+# Args:
+#   complete_taxon a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_complete_taxon <- function(complete_taxon) {
+  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
+     is.na(complete_taxon)){
+    stop("'complete_taxon' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'taxon_name' argument or as well incomplete lists.")
+  }
+}
+
 # Checking trait_IDs argument
 #
 # Authors: Pierre Denelle

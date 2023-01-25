@@ -126,6 +126,7 @@ GIFT_checklist_conditional <- function(
   
   # 1. Controls ----
   check_taxon_name(taxon_name)
+  check_complete_taxon(complete_taxon)
   
   if(any(is.na(ref_included)) || !is.character(ref_included) || 
      !(all(ref_included %in% c("all", "native", "native and naturalized",
@@ -191,13 +192,7 @@ GIFT_checklist_conditional <- function(
     stop("'suit_geo' must be a boolean stating if you want to retrieve
          lists associated to a suitable polygon or not.")
   }
-  
-  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
-     is.na(complete_taxon)){
-    stop("'complete_taxon' must be a boolean stating if you want to retrieve
-         references that cover entirely or not the required taxonomic group.")
-  }
-  
+
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   

@@ -21,6 +21,12 @@ test_that("invalid inputs", {
          'GIFT_taxonomy()'.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(complete_taxon = NA),
+    "'complete_taxon' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'taxon_name' argument or as well incomplete lists.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)

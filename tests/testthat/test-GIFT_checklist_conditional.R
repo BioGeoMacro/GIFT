@@ -83,8 +83,9 @@ test_that("invalid inputs", {
   
   expect_error(
     GIFT_checklist_conditional(complete_taxon =  NA),
-    "'complete_taxon' must be a boolean stating if you want to retrieve
-         references that cover entirely or not the required taxonomic group.",
+    "'complete_taxon' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'taxon_name' argument or as well incomplete lists.",
     fixed = TRUE)
   
   expect_error(
