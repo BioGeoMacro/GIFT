@@ -21,6 +21,48 @@ check_api <- function(api) {
   }
 }
 
+# Checking complete_floristic argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if complete_floristic argument is not having the right format
+#
+# Args:
+#   complete_floristic a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_complete_floristic <- function(complete_floristic) {
+  if(length(complete_floristic) != 1 || !is.logical(complete_floristic) ||
+     is.na(complete_floristic)){
+    stop("'complete_floristic' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'floristic_group' argument or as well incomplete lists.")
+  }
+}
+
+# Checking complete_taxon argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if complete_taxon argument is not having the right format
+#
+# Args:
+#   complete_taxon a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_complete_taxon <- function(complete_taxon) {
+  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
+     is.na(complete_taxon)){
+    stop("'complete_taxon' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'taxon_name' argument or as well incomplete lists.")
+  }
+}
+
 # Checking GIFT_version argument
 #
 # Authors: Pierre Denelle & Matthias Grenié
@@ -138,27 +180,6 @@ check_taxon_name <- function(taxon_name) {
     stop("'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.")
-  }
-}
-
-# Checking complete_taxon argument
-#
-# Authors: Pierre Denelle
-#
-# Stop if complete_taxon argument is not having the right format
-#
-# Args:
-#   complete_taxon a boolean
-#
-# Returns:
-#   shows an error message if needed
-
-check_complete_taxon <- function(complete_taxon) {
-  if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
-     is.na(complete_taxon)){
-    stop("'complete_taxon' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'taxon_name' argument or as well incomplete lists.")
   }
 }
 

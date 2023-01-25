@@ -32,6 +32,12 @@ test_that("invalid inputs", {
     'all', 'native', 'endemic' and 'naturalized'.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(complete_floristic = NA),
+    "'complete_floristic' must be a boolean stating whether you want to
+    retrieve checklists that only contain the exhaustive list of the
+    'floristic_group' argument or as well incomplete lists.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)

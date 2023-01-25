@@ -166,14 +166,8 @@ GIFT_checklist <- function(
   check_taxon_name(taxon_name)
   check_complete_taxon(complete_taxon)
   check_floristic_group(floristic_group)
+  check_complete_floristic(complete_floristic)
 
-  if(length(complete_floristic) != 1 || !is.logical(complete_floristic) ||
-     is.na(complete_floristic)){
-    stop("'complete_floristic' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'floristic_group' argument or as well incomplete lists.")
-  }
-  
   if(is.na(geo_type) || !is.character(geo_type) || 
      !(geo_type %in% c("Mainland", "Island", "All"))){
     stop(c("'geo_type' must be a character string stating what geographic
