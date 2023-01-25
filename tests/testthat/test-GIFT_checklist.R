@@ -44,6 +44,13 @@ test_that("invalid inputs", {
     'Mainland, Island').", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(overlap = NA),
+    "overlap is a character string indicating whether you want to use
+         centroid or extent of GIFT polygons to overlap with your shapefile.\n
+         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+         'extent_intersect'.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)

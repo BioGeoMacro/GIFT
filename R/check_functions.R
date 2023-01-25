@@ -183,6 +183,29 @@ check_floristic_group <- function(floristic_group) {
   }
 }
 
+# Checking overlap argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if overlap argument is not having the right format
+#
+# Args:
+#   overlap a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_overlap <- function(overlap) {
+  if(!is.character(overlap) || length(overlap) != 1 ||
+     !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
+                          "extent_intersect")))){
+    stop("overlap is a character string indicating whether you want to use
+         centroid or extent of GIFT polygons to overlap with your shapefile.\n
+         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+         'extent_intersect'.")
+  }
+}
+
 # Checking taxon_name argument
 #
 # Authors: Pierre Denelle

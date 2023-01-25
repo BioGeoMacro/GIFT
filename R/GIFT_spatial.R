@@ -87,16 +87,7 @@ GIFT_spatial <- function(
   api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  
-  if(!is.character(overlap) || length(overlap) != 1 ||
-     !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
-                          "extent_intersect")))){
-    stop("overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
-         'extent_intersect'.")
-  }
-  
+  check_overlap(overlap)
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   

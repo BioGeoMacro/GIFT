@@ -181,15 +181,8 @@ GIFT_checklist <- function(
     retrieve only suitable polygons or not.")
   }
   
-  if(!is.character(overlap) || length(overlap) != 1 ||
-     !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
-                          "extent_intersect")))){
-    stop("overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
-         'extent_intersect'.")
-  }
-  
+  check_overlap(overlap)
+
   if(!is.null(shp) && !("sf" %in% class(shp))){
     stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
          set to WGS84 (EPSG: 4326).")
