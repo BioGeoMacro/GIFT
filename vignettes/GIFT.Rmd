@@ -671,6 +671,7 @@ Phylogeny from [Jin & Qian (2022)](https://doi.org/10.1016/j.pld.2022.12.007)
 Matched to the taxonomy of GIFT.
 
 ```{r}
+# Retrieving phylogeny, taxonomy and species from GIFT
 phy <- suppressMessages(GIFT_phylogeny(clade = "Tracheophyta",
                                        GIFT_version = "beta"))
 tax <- suppressMessages(GIFT_taxonomy(GIFT_version = "beta"))
@@ -681,11 +682,14 @@ gf <- suppressMessages(
               agreement = 0.66,
               bias_ref = FALSE, bias_deriv = FALSE,
               GIFT_version = "beta"))
+
+# Replacing space with _ for the species names
 gf$work_species <- gsub(" ", "_", gf$work_species, fixed = TRUE)
 ```
 
 
 ```{r}
+# Retrieving family of each species
 sp_fam <- GIFT_taxgroup(work_ID = unique(gift_sp$work_ID),
                         taxon_lvl = "family", GIFT_version = "beta")
 sp_genus_fam <- data.frame(
@@ -707,8 +711,12 @@ phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"] <-
   substring(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"],
             3,
             nchar(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"]))
+```
 
-# Trait coverage
+In the next chunk, we calculate the trait coverage (for growth form) at the
+genus and family level.
+
+```{r}
 sp_genus_fam <- left_join(sp_genus_fam,
                           gf[, c("work_ID", "trait_value_1.2.1")],
                           by = "work_ID")
@@ -727,7 +735,6 @@ fam_gf <- sp_genus_fam %>%
   dplyr::select(-work_ID, -work_species, -genus, -trait_value_1.2.1) %>%
   distinct(.keep_all = TRUE)
 
-# 
 sp_genus_fam$species <- gsub("([[:punct:]])|\\s+", "_",
                              sp_genus_fam$work_species)
 
@@ -747,15 +754,10 @@ for(i in 1:n_distinct(sp_genus_fam$genus)){ # loop over genera
   one_sp_per_gen <- rbind(one_sp_per_gen,
                           data.frame(species = gen_sp_i,
                                      genus = focal_gen))
-  
-  print(paste0(i, "/", n_distinct(sp_genus_fam$genus)))
 }
 
 # Adding the trait coverage per genus
 one_sp_per_gen <- left_join(one_sp_per_gen, genus_gf, by = "genus")
-
-# Ten most frequent families
-sort(table(one_sp_per_gen$family), decreasing = TRUE)[1:10]
 
 # Adding the trait coverage per family
 one_sp_per_gen <- left_join(one_sp_per_gen,
@@ -767,15 +769,21 @@ colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
 one_sp_per_gen <- left_join(one_sp_per_gen, fam_gf, by = "family")
 colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
   "prop_gf_fam"
+```
 
-# Pruning the tree at the genus level
-length(one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"]) # 15396
+Pruning the tree at the genus level.
+
+```{r}
 phy_gen <- ape::keep.tip(
   phy = phy,
   tip = one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"])
 ```
 
-Plot
+In the following plot, there is only one tip per genus. The two outer rings
+illustrate the coverage of growth form per genus and per family (outer ring).
+For the family ring, the width of each family is set by the number of genera
+they contain.
+
 ```{r, fig.width = 6, fig.height = 6}
 ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
   geom_fruit(geom = geom_tile,
