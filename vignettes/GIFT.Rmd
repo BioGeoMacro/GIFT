@@ -671,9 +671,17 @@ Phylogeny from [Jin & Qian (2022)](https://doi.org/10.1016/j.pld.2022.12.007)
 Matched to the taxonomy of GIFT.
 
 ```{r}
-phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
-tax <- GIFT_taxonomy(GIFT_version = "beta")
-gift_sp <- GIFT_species(GIFT_version = "beta")
+phy <- suppressMessages(GIFT_phylogeny(clade = "Tracheophyta",
+                                       GIFT_version = "beta"))
+tax <- suppressMessages(GIFT_taxonomy(GIFT_version = "beta"))
+gift_sp <- suppressMessages(GIFT_species(GIFT_version = "beta"))
+
+gf <- suppressMessages(
+  GIFT_traits(trait_IDs = "1.2.1",
+              agreement = 0.66,
+              bias_ref = FALSE, bias_deriv = FALSE,
+              GIFT_version = "beta"))
+gf$work_species <- gsub(" ", "_", gf$work_species, fixed = TRUE)
 ```
 
 
@@ -723,8 +731,9 @@ fam_gf <- sp_genus_fam %>%
 sp_genus_fam$species <- gsub("([[:punct:]])|\\s+", "_",
                              sp_genus_fam$work_species)
 
+# Keeping one species per genus only
 one_sp_per_gen <- data.frame()
-for(i in 1:n_distinct(sp_genus_fam$genus)){ # loop over families
+for(i in 1:n_distinct(sp_genus_fam$genus)){ # loop over genera
   # Focal genus
   focal_gen <- unique(sp_genus_fam$genus)[i]
   # All species in that genus
