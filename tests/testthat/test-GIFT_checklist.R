@@ -38,6 +38,12 @@ test_that("invalid inputs", {
     'floristic_group' argument or as well incomplete lists.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(geo_type = NA),
+    "'geo_type' must be a character string stating what geographic
+    type you want to retrieve. Available options are 'Mainland', 'Island' or
+    'Mainland, Island').", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)

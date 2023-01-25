@@ -63,6 +63,27 @@ check_complete_taxon <- function(complete_taxon) {
   }
 }
 
+# Checking geo_type argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if geo_type argument is not having the right format
+#
+# Args:
+#   geo_type a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_geo_type <- function(geo_type) {
+  if(is.na(geo_type) || !is.character(geo_type) || 
+     !(geo_type %in% c("Mainland", "Island", "All"))){
+    stop(c("'geo_type' must be a character string stating what geographic
+    type you want to retrieve. Available options are 'Mainland', 'Island' or
+    'Mainland, Island')."))
+  }
+}
+
 # Checking GIFT_version argument
 #
 # Authors: Pierre Denelle & Matthias Grenié

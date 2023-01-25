@@ -167,14 +167,8 @@ GIFT_checklist <- function(
   check_complete_taxon(complete_taxon)
   check_floristic_group(floristic_group)
   check_complete_floristic(complete_floristic)
+  check_geo_type(geo_type)
 
-  if(is.na(geo_type) || !is.character(geo_type) || 
-     !(geo_type %in% c("Mainland", "Island", "All"))){
-    stop(c("'geo_type' must be a character string stating what geographic
-    type you want to retrieve. Available options are 'Mainland', 'Island' or
-    'Mainland, Island')."))
-  }
-  
   if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
      !is.numeric(ref_excluded)){
     stop("'ref_excluded' must be a character string or a numeric stating the
