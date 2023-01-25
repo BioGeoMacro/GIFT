@@ -99,6 +99,27 @@ version.")
   return(GIFT_version)
 }
 
+# Checking floristic_group argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if floristic_group argument is not having the right format
+#
+# Args:
+#   floristic_group a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_floristic_group <- function(floristic_group) {
+  if(length(floristic_group) != 1 || is.na(floristic_group) ||
+     !is.character(floristic_group) || 
+     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
+    stop(c("'floristic_group' must be a character string. Available options are
+    'all', 'native', 'endemic' and 'naturalized'."))
+  }
+}
+
 # Checking taxon_name argument
 #
 # Authors: Pierre Denelle

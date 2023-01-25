@@ -165,14 +165,8 @@ GIFT_checklist <- function(
   # 1. Controls ----
   check_taxon_name(taxon_name)
   check_complete_taxon(complete_taxon)
+  check_floristic_group(floristic_group)
 
-  if(length(floristic_group) != 1 || is.na(floristic_group) ||
-     !is.character(floristic_group) || 
-     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
-    stop(c("'floristic_group' must be a character string. Available options are
-    'all', 'native', 'endemic' and 'naturalized'."))
-  }
-  
   if(length(complete_floristic) != 1 || !is.logical(complete_floristic) ||
      is.na(complete_floristic)){
     stop("'complete_floristic' must be a boolean stating whether you want to

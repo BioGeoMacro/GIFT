@@ -27,6 +27,11 @@ test_that("invalid inputs", {
     'taxon_name' argument or as well incomplete lists.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(floristic_group = NA),
+    "'floristic_group' must be a character string. Available options are
+    'all', 'native', 'endemic' and 'naturalized'.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)
