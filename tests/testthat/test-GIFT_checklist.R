@@ -51,6 +51,12 @@ test_that("invalid inputs", {
          'extent_intersect'.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(ref_excluded = NA),
+    "'ref_excluded' must be a character string or a numeric stating the
+         identification numbers of the references (ref_ID) that shall be 
+         ignored.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)

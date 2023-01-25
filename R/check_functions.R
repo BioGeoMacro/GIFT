@@ -188,6 +188,7 @@ check_floristic_group <- function(floristic_group) {
 # Authors: Pierre Denelle
 #
 # Stop if overlap argument is not having the right format
+# (GIFT_checklist and spatial)
 #
 # Args:
 #   overlap a character
@@ -203,6 +204,28 @@ check_overlap <- function(overlap) {
          centroid or extent of GIFT polygons to overlap with your shapefile.\n
          It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
          'extent_intersect'.")
+  }
+}
+
+# Checking ref_excluded argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if ref_excluded argument is not having the right format
+# GIFT_checklist and GIFT_checklist_conditional
+#
+# Args:
+#   ref_excluded a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_ref_excluded <- function(ref_excluded) {
+  if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
+     !is.numeric(ref_excluded)){
+    stop("'ref_excluded' must be a character string or a numeric stating the
+         identification numbers of the references (ref_ID) that shall be 
+         ignored.")
   }
 }
 

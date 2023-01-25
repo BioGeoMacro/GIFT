@@ -168,14 +168,8 @@ GIFT_checklist <- function(
   check_floristic_group(floristic_group)
   check_complete_floristic(complete_floristic)
   check_geo_type(geo_type)
+  check_ref_excluded(ref_excluded)
 
-  if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
-     !is.numeric(ref_excluded)){
-    stop("'ref_excluded' must be a character string or a numeric stating the
-         identification numbers of the references (ref_ID) that shall be 
-         ignored.")
-  }
-  
   if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
     stop("'suit_geo' must be a boolean stating whether you want to
     retrieve only suitable polygons or not.")

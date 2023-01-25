@@ -77,6 +77,12 @@ test_that("invalid inputs", {
          status at the list level to be available.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist_conditional(ref_excluded = NA),
+    "'ref_excluded' must be a character string or a numeric stating the
+         identification numbers of the references (ref_ID) that shall be 
+         ignored.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist_conditional(suit_geo =  NA),
     "'suit_geo' must be a boolean stating if you want to retrieve
          lists associated to a suitable polygon or not.", fixed = TRUE)

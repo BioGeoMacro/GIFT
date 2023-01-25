@@ -141,13 +141,8 @@ GIFT_checklist_conditional <- function(
            'endemic', 'naturalized', 'other subset'"))
   }
   
-  if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
-     !is.numeric(ref_excluded)){
-    stop("'ref_excluded' must be a character string or a numeric stating the
-         identification numbers of the references (ref_ID) that shall be 
-         ignored.")
-  }
-  
+  check_ref_excluded(ref_excluded)
+
   if(any(is.na(type_ref)) || !is.character(type_ref) || 
      !(all(type_ref %in% c("Account", "Catalogue", "Checklist","Flora",
                            "Herbarium collection", "Key", "Red list",
