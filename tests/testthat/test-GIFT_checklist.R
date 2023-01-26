@@ -94,4 +94,10 @@ versions.",
     what percentage of overlap, partially overlapping polygons should be
          kept.", fixed = TRUE)
   
+  expect_error(
+    GIFT_checklist(by_ref_ID = NA),
+    "'by_ref_ID' must be a boolean stating whether indicating whether the
+         removal of overlapping regions shall be applied only at the
+         reference level.", fixed = TRUE)
+  
 })

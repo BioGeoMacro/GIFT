@@ -57,6 +57,26 @@ check_bias_ref <- function(bias_ref) {
   }
 }
 
+# Checking by_ref_ID argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if by_ref_ID argument is not having the right format
+#
+# Args:
+#   by_ref_ID a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_by_ref_ID <- function(by_ref_ID) {
+  if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) || is.na(by_ref_ID)){
+    stop("'by_ref_ID' must be a boolean stating whether indicating whether the
+         removal of overlapping regions shall be applied only at the
+         reference level.")
+  }
+}
+
 # Checking complete_floristic argument
 #
 # Authors: Pierre Denelle

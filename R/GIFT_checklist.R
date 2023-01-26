@@ -171,7 +171,7 @@ GIFT_checklist <- function(
   check_ref_excluded(ref_excluded)
   check_suit_geo(suit_geo)
   check_overlap(overlap)
-
+  
   if(!is.null(shp) && !("sf" %in% class(shp))){
     stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
          set to WGS84 (EPSG: 4326).")
@@ -261,7 +261,7 @@ GIFT_checklist <- function(
   }
   
   check_remove_overlap(remove_overlap)
-
+  
   if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
     stop("'area_threshold_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
@@ -279,12 +279,7 @@ GIFT_checklist <- function(
          kept.")
   }
   
-  if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) ||
-     is.na(by_ref_ID)){
-    stop("'by_ref_ID' must be a boolean stating whether indicating whether the
-         removal of overlapping regions shall be applied only at the
-         reference level.")
-  }
+  check_by_ref_ID(by_ref_ID)
   
   if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
      is.na(taxonomic_group)){
