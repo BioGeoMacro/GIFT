@@ -84,18 +84,7 @@ GIFT_env <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(!is.character(unlist(sumstat)) || 
-     !(all(unlist(sumstat) %in% c(
-       "min", "q05", "q10", "q20", "q25", "q30", "q40", 
-       "med", "q60", "q70", "q75", "q80", "q90", "q95", 
-       "max", "mean", "sd", "modal", "unique_n", "H", "n")))
-  ){
-    stop('sumstat needs to be a character vector including one or more of the 
-         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
-         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
-         "modal", "unique_n", "H", "n")')
-  }
-  
+  check_sumstat(sumstat)
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   

@@ -249,6 +249,32 @@ check_remove_overlap <- function(remove_overlap) {
   }
 }
 
+# Checking sumstat argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if sumstat argument is not having the right format
+#
+# Args:
+#   sumstat a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_sumstat <- function(sumstat) {
+  if(!is.character(unlist(sumstat)) || 
+     !(all(unlist(sumstat) %in% c(
+       "min", "q05", "q10", "q20", "q25", "q30", "q40", 
+       "med", "q60", "q70", "q75", "q80", "q90", "q95", 
+       "max", "mean", "sd", "modal", "unique_n", "H", "n")))
+  ){
+    stop('sumstat needs to be a character vector including one or more of the 
+         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
+         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
+         "modal", "unique_n", "H", "n")')
+  }
+}
+
 # Checking taxon_name argument
 #
 # Authors: Pierre Denelle

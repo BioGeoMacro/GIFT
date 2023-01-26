@@ -18,6 +18,14 @@ test_that("invalid inputs", {
     fixed = TRUE)
   
   expect_error(
+    GIFT_env(sumstat = NA),
+    'sumstat needs to be a character vector including one or more of the 
+         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
+         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
+         "modal", "unique_n", "H", "n")',
+    fixed = TRUE)
+  
+  expect_error(
     GIFT_env(GIFT_version = NA),
     "'GIFT_version' must be a character string stating what version
 of GIFT you want to use. Available options are 'latest' and the different
