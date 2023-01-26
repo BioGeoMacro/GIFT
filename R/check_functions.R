@@ -285,6 +285,25 @@ check_remove_overlap <- function(remove_overlap) {
   }
 }
 
+# Checking suit_geo argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if suit_geo argument is not having the right format
+#
+# Args:
+#   suit_geo a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_suit_geo <- function(suit_geo) {
+  if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
+    stop("'suit_geo' must be a boolean stating whether you want to
+    retrieve only suitable polygons or not.")
+  }
+}
+
 # Checking sumstat argument
 #
 # Authors: Pierre Denelle

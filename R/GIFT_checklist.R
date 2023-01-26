@@ -169,12 +169,7 @@ GIFT_checklist <- function(
   check_complete_floristic(complete_floristic)
   check_geo_type(geo_type)
   check_ref_excluded(ref_excluded)
-
-  if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
-    stop("'suit_geo' must be a boolean stating whether you want to
-    retrieve only suitable polygons or not.")
-  }
-  
+  check_suit_geo(suit_geo)
   check_overlap(overlap)
 
   if(!is.null(shp) && !("sf" %in% class(shp))){

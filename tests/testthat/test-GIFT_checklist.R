@@ -62,6 +62,11 @@ test_that("invalid inputs", {
     retrieve checklists that overlap or not.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(suit_geo = NA),
+    "'suit_geo' must be a boolean stating whether you want to
+    retrieve only suitable polygons or not.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)
