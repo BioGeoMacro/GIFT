@@ -265,12 +265,8 @@ GIFT_checklist <- function(
     }
   }
   
-  if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
-     is.na(remove_overlap)){
-    stop("'remove_overlap' must be a boolean stating whether you want to
-    retrieve checklists that overlap or not.")
-  }
-  
+  check_remove_overlap(remove_overlap)
+
   if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
     stop("'area_threshold_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")

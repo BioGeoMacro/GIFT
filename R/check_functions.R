@@ -229,6 +229,26 @@ check_ref_excluded <- function(ref_excluded) {
   }
 }
 
+# Checking remove_overlap argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if remove_overlap argument is not having the right format
+#
+# Args:
+#   remove_overlap a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_remove_overlap <- function(remove_overlap) {
+  if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
+     is.na(remove_overlap)){
+    stop("'remove_overlap' must be a boolean stating whether you want to
+    retrieve checklists that overlap or not.")
+  }
+}
+
 # Checking taxon_name argument
 #
 # Authors: Pierre Denelle

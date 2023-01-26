@@ -57,6 +57,11 @@ test_that("invalid inputs", {
          ignored.", fixed = TRUE)
   
   expect_error(
+    GIFT_checklist(remove_overlap = NA),
+    "'remove_overlap' must be a boolean stating whether you want to
+    retrieve checklists that overlap or not.", fixed = TRUE)
+  
+  expect_error(
     GIFT_checklist(api = 1),
     "api must be a character string indicating which API to use.",
     fixed = TRUE)
@@ -67,12 +72,7 @@ test_that("invalid inputs", {
 of GIFT you want to use. Available options are 'latest' and the different
 versions.",
     fixed = TRUE)
-  
-  expect_error(
-    GIFT_checklist(remove_overlap = "zz"),
-    "'remove_overlap' must be a boolean stating whether you want to
-    retrieve checklists that overlap or not.", fixed = TRUE)
-  
+
   expect_error(
     GIFT_checklist(remove_overlap = TRUE, area_threshold_island = NULL),
     "'area_threshold_island' is a surface in km^2 indicating from which
