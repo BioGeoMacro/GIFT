@@ -21,6 +21,42 @@ check_api <- function(api) {
   }
 }
 
+# Checking bias_deriv argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if bias_deriv argument is not having the right format
+#
+# Args:
+#   bias_deriv a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_bias_deriv <- function(bias_deriv) {
+  if(length(bias_deriv) != 1 || !is.logical(bias_deriv) || is.na(bias_deriv)){
+    stop("bias_deriv must be a logical.")
+  }
+}
+
+# Checking bias_ref argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if bias_ref argument is not having the right format
+#
+# Args:
+#   bias_ref a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_bias_ref <- function(bias_ref) {
+  if(length(bias_ref) != 1 || !is.logical(bias_ref) || is.na(bias_ref)){
+    stop("bias_ref must be a logical.")
+  }
+}
+
 # Checking complete_floristic argument
 #
 # Authors: Pierre Denelle

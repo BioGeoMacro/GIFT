@@ -11,7 +11,16 @@ test_that("data frame output format", {
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {
-  # Error message when ref_ID and list_ID are missing
+  expect_error(
+    GIFT_traits_raw(bias_deriv = NA),
+    "bias_deriv must be a logical.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_traits_raw(bias_ref = NA),
+    "bias_ref must be a logical.",
+    fixed = TRUE)
+  
   expect_error(
     GIFT_traits_raw(trait_IDs = "4.10.1", api = NA),
     "api must be a character string indicating which API to use.",

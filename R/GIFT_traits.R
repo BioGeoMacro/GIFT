@@ -75,14 +75,8 @@ GIFT_traits <- function(
     stop("agreement must be a numeric between 0 and 1 indicating .")
   }
   
-  if(!is.logical(bias_ref)){
-    stop("bias_ref must be a logical.")
-  }
-  
-  if(!is.logical(bias_deriv)){
-    stop("bias_deriv must be a logical.")
-  }
-  
+  check_bias_ref(bias_ref)
+  check_bias_deriv(bias_deriv)
   check_api(api)
   GIFT_version <- suppressMessages(check_gift_version_simple(GIFT_version))
   

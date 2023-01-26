@@ -86,15 +86,9 @@ GIFT_traits_raw <- function(
   # 1. Controls ----
   # Arguments
   check_trait_IDs(trait_IDs)
-  
-  if(!is.logical(bias_ref)){
-    stop("bias_ref must be a logical.")
-  }
-  
-  if(!is.logical(bias_deriv)){
-    stop("bias_deriv must be a logical.")
-  }
-  
+  check_bias_ref(bias_ref)
+  check_bias_deriv(bias_deriv)
+
   if(!is.logical(derived)){
     stop("traits_derived must be a logical.")
   }
