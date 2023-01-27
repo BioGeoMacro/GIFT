@@ -261,45 +261,13 @@ GIFT_checklist <- function(
   }
   
   check_remove_overlap(remove_overlap)
-  
-  if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
-    stop("'area_threshold_island' is a surface in km^2 indicating from which
-    surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
-    stop("'area_threshold_mainland' is a surface in km^2 indicating from which
-    surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
-     overlap_threshold > 1){
-    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
-    what percentage of overlap, partially overlapping polygons should be
-         kept.")
-  }
-  
+  check_area_threshold_island(area_threshold_island)
+  check_area_threshold_mainland(area_threshold_mainland)
+  check_overlap_threshold(overlap_threshold)
   check_by_ref_ID(by_ref_ID)
-  
-  if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
-     is.na(taxonomic_group)){
-    stop("'taxonomic_group' must be a boolean. When set to TRUE, two additional
-    columns ('family' and 'tax_group') are available in the checklists.")
-  }
-  
-  if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
-     is.na(namesmatched)){
-    stop("'namesmatched' must be a boolean stating whether you only want the
-    standardized species names or if you also want to retrieve original species 
-         names and information on the name matching.")
-  }
-  
-  if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
-     is.na(list_set_only)){
-    stop("'list_set_only' must be a boolean stating whether you only want the
-    metadata or if you also want to retrieve the species lists.")
-  }
-  
+  check_taxonomic_group(taxonomic_group)
+  check_namesmatched(namesmatched)
+  check_list_set_only(list_set_only)
   check_api(api)
   GIFT_version <- check_gift_version(GIFT_version)
   

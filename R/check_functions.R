@@ -21,6 +21,44 @@ check_api <- function(api) {
   }
 }
 
+# Checking area_threshold_island argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if area_threshold_island argument is not having the right format
+#
+# Args:
+#   area_threshold_island a positive numeric
+#
+# Returns:
+#   shows an error message if needed
+
+check_area_threshold_island <- function(area_threshold_island) {
+  if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
+    stop("'area_threshold_island' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+}
+
+# Checking area_threshold_mainland argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if area_threshold_mainland argument is not having the right format
+#
+# Args:
+#   area_threshold_mainland a positive numeric
+#
+# Returns:
+#   shows an error message if needed
+
+check_area_threshold_mainland <- function(area_threshold_mainland) {
+  if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
+    stop("'area_threshold_mainland' is a surface in km^2 indicating from which
+    surface the smallest overlapping polygon is kept.")
+  }
+}
+
 # Checking bias_deriv argument
 #
 # Authors: Pierre Denelle
@@ -239,6 +277,47 @@ check_floristic_group <- function(floristic_group) {
   }
 }
 
+# Checking list_set_only argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if list_set_only argument is not having the right format
+#
+# Args:
+#   list_set_only a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_list_set_only <- function(list_set_only) {
+  if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
+     is.na(list_set_only)){
+    stop("'list_set_only' must be a boolean stating whether you only want the
+    metadata or if you also want to retrieve the species lists.")
+  }
+}
+
+# Checking namesmatched argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if namesmatched argument is not having the right format
+#
+# Args:
+#   namesmatched a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_namesmatched <- function(namesmatched) {
+  if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
+     is.na(namesmatched)){
+    stop("'namesmatched' must be a boolean stating whether you only want the
+    standardized species names or if you also want to retrieve original species 
+         names and information on the name matching.")
+  }
+}
+
 # Checking overlap argument
 #
 # Authors: Pierre Denelle
@@ -260,6 +339,27 @@ check_overlap <- function(overlap) {
          centroid or extent of GIFT polygons to overlap with your shapefile.\n
          It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
          'extent_intersect'.")
+  }
+}
+
+# Checking overlap_threshold argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if overlap_threshold argument is not having the right format
+#
+# Args:
+#   overlap_threshold a positive numeric
+#
+# Returns:
+#   shows an error message if needed
+
+check_overlap_threshold <- function(overlap_threshold) {
+  if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
+     overlap_threshold > 1){
+    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
+    what percentage of overlap, partially overlapping polygons should be
+         kept.")
   }
 }
 
@@ -368,6 +468,26 @@ check_taxon_name <- function(taxon_name) {
     stop("'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.")
+  }
+}
+
+# Checking taxonomic_group argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if taxonomic_group argument is not having the right format
+#
+# Args:
+#   taxonomic_group a boolean
+#
+# Returns:
+#   shows an error message if needed
+
+check_taxonomic_group <- function(taxonomic_group) {
+  if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
+     is.na(taxonomic_group)){
+    stop("'taxonomic_group' must be a boolean. When set to TRUE, two additional
+    columns ('family' and 'tax_group') are available in the checklists.")
   }
 }
 

@@ -100,4 +100,22 @@ versions.",
          removal of overlapping regions shall be applied only at the
          reference level.", fixed = TRUE)
   
+  expect_error(
+    GIFT_checklist(taxonomic_group = NA),
+    "'taxonomic_group' must be a boolean. When set to TRUE, two additional
+    columns ('family' and 'tax_group') are available in the checklists.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist(namesmatched = NA),
+    "'namesmatched' must be a boolean stating whether you only want the
+    standardized species names or if you also want to retrieve original species 
+         names and information on the name matching.",
+    fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist(list_set_only = NA),
+    "'list_set_only' must be a boolean stating whether you only want the
+    metadata or if you also want to retrieve the species lists.",
+    fixed = TRUE)
 })
