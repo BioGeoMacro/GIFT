@@ -118,4 +118,10 @@ versions.",
     "'list_set_only' must be a boolean stating whether you only want the
     metadata or if you also want to retrieve the species lists.",
     fixed = TRUE)
+  
+  expect_error(
+    GIFT_checklist(shp = NA),
+    "'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
+         set to WGS84 (EPSG: 4326).",
+    fixed = TRUE)
 })

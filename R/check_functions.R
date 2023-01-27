@@ -115,6 +115,63 @@ check_by_ref_ID <- function(by_ref_ID) {
   }
 }
 
+# Checking coordinates argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if coordinates argument is not having the right format
+#
+# Args:
+#   coordinates a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_coordinates <- function(coordinates) {
+  if(!is.null(coordinates)){
+    if(any(is.na(as.numeric(coordinates)))){
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
+    
+    if(nrow(coordinates) == 1){
+      if(overlap %in% c("shape_inside", "centroid_inside")){
+        stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+      }
+      
+      shp <- sf::st_point(coordinates)
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp) # making a sf object
+      coordinates <- NULL
+    } else if(nrow(coordinates) == 2){
+      message("4 coordinates provided: an extent box was drawn, assuming that
+            minimum X and Y are on row 1, and maximum X and Y on row 2.")
+      
+      shp <- make_box(xmin = coordinates[1, 1],
+                      xmax = coordinates[2, 1],
+                      ymin = coordinates[1, 2],
+                      ymax = coordinates[2, 2])
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp)
+      coordinates <- NULL
+    }else if(nrow(coordinates) > 2){
+      if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
+         (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
+        warning("Provided polygon did not have a closed shape.")
+        coordinates <- rbind(coordinates, coordinates[1, ])
+      }
+      shp <- sf::st_polygon(list(coordinates))
+      shp <- sf::st_sfc(shp, crs = 4326)
+      shp <- sf::st_sf(shp)
+      coordinates <- NULL
+    } else{
+      stop("'coordinates' object does not have the right format. It should be
+           a vector of XY coordinates. See help page.")
+    }
+  }
+}
+
 # Checking complete_floristic argument
 #
 # Authors: Pierre Denelle
@@ -154,6 +211,27 @@ check_complete_taxon <- function(complete_taxon) {
     stop("'complete_taxon' must be a boolean stating whether you want to
     retrieve checklists that only contain the exhaustive list of the
     'taxon_name' argument or as well incomplete lists.")
+  }
+}
+
+# Checking floristic_group argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if floristic_group argument is not having the right format
+#
+# Args:
+#   floristic_group a character
+#
+# Returns:
+#   shows an error message if needed
+
+check_floristic_group <- function(floristic_group) {
+  if(length(floristic_group) != 1 || is.na(floristic_group) ||
+     !is.character(floristic_group) || 
+     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
+    stop(c("'floristic_group' must be a character string. Available options are
+    'all', 'native', 'endemic' and 'naturalized'."))
   }
 }
 
@@ -254,27 +332,6 @@ updates and edits. Consider using 'latest' for the latest stable
 version.")
   }
   return(GIFT_version)
-}
-
-# Checking floristic_group argument
-#
-# Authors: Pierre Denelle
-#
-# Stop if floristic_group argument is not having the right format
-#
-# Args:
-#   floristic_group a character
-#
-# Returns:
-#   shows an error message if needed
-
-check_floristic_group <- function(floristic_group) {
-  if(length(floristic_group) != 1 || is.na(floristic_group) ||
-     !is.character(floristic_group) || 
-     !(floristic_group %in% c("all", "native", "endemic", "naturalized"))){
-    stop(c("'floristic_group' must be a character string. Available options are
-    'all', 'native', 'endemic' and 'naturalized'."))
-  }
 }
 
 # Checking list_set_only argument
@@ -405,6 +462,55 @@ check_remove_overlap <- function(remove_overlap) {
   }
 }
 
+# Checking shp argument
+#
+# Authors: Pierre Denelle
+#
+# Stop if shp argument is not having the right format
+#
+# Args:
+#   shp a shapefile
+#
+# Returns:
+#   shows an error message if needed
+
+check_shp <- function(shp) {
+  if(!is.null(shp) && !("sf" %in% class(shp))){
+    stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
+         set to WGS84 (EPSG: 4326).")
+  }
+  
+  if(!is.null(shp) && nrow(shp) > 1){
+    warning("Several polygons are passed in the shp object. They will be
+            treated at the same time. To know what polygon covers what
+            checklist, please use repeteadly GIFT_spatial().")
+  }
+  
+  if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a point, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_LINESTRING" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+  
+  if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(sf::st_as_sfc(shp)) &&
+     overlap %in% c("shape_inside", "centroid_inside")){
+    stop("With a linestring, use either 'shape_intersect' or
+             'extent_intersect' only.")
+  }
+}
+
 # Checking suit_geo argument
 #
 # Authors: Pierre Denelle
@@ -508,4 +614,26 @@ check_trait_IDs <- function(trait_IDs) {
     stop("trait_IDs must be a character string indicating which trait you want
          to retrieve.")
   }
+}
+
+# Making a bounding box
+#
+# Authors: Pierre Denelle
+#
+# Stop if trait_IDs argument is not having the right format
+#
+# Args:
+#   four corners
+#
+# Returns:
+#   an extent box
+
+make_box <- function(xmin, xmax, ymin, ymax){
+  x_shp <- sf::st_polygon(list(matrix(
+    c(xmin, ymin,
+      xmax, ymin,
+      xmax, ymax,
+      xmin, ymax,
+      xmin, ymin), ncol = 2, byrow = TRUE)))
+  return(x_shp)
 }
