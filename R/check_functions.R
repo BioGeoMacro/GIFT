@@ -122,12 +122,15 @@ check_by_ref_ID <- function(by_ref_ID) {
 # Stop if coordinates argument is not having the right format
 #
 # Args:
-#   coordinates a character
+#   shp         a shapefile
+#   coordinates set of numeric coordinates
+#   overlap     a character
 #
 # Returns:
 #   shows an error message if needed
+#   shp and coordinates
 
-check_coordinates <- function(coordinates) {
+check_coordinates <- function(coordinates, shp, overlap) {
   if(!is.null(coordinates)){
     if(any(is.na(as.numeric(coordinates)))){
       stop("'coordinates' object does not have the right format. It should be
@@ -170,6 +173,7 @@ check_coordinates <- function(coordinates) {
            a vector of XY coordinates. See help page.")
     }
   }
+  return(list(shp = shp, coordinates = coordinates))
 }
 
 # Checking complete_floristic argument
@@ -469,12 +473,13 @@ check_remove_overlap <- function(remove_overlap) {
 # Stop if shp argument is not having the right format
 #
 # Args:
-#   shp a shapefile
+#   shp     a shapefile
+#   overlap a character
 #
 # Returns:
 #   shows an error message if needed
 
-check_shp <- function(shp) {
+check_shp <- function(shp, overlap) {
   if(!is.null(shp) && !("sf" %in% class(shp))){
     stop("'shp' must be an object of classes 'sf' and 'data.frame', with a CRS
          set to WGS84 (EPSG: 4326).")

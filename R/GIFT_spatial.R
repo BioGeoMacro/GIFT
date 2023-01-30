@@ -101,13 +101,15 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
-  check_shp(shp)
+  check_shp(shp = shp, overlap = overlap)
 
   # Visible binding for global variable
   x_min <- x_max <- y_min <- y_max <- NULL
   
   # Define shp as coordinates, only one format accepted
-  check_coordinates(coordinates)
+  coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
+                                   overlap = overlap)
+  shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
 
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----

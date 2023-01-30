@@ -171,8 +171,10 @@ GIFT_checklist <- function(
   check_ref_excluded(ref_excluded)
   check_suit_geo(suit_geo)
   check_overlap(overlap)
-  check_shp(shp)
-  check_coordinates(coordinates)
+  check_shp(shp = shp, overlap = overlap)
+  coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
+                                   overlap = overlap)
+  shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
   check_remove_overlap(remove_overlap)
   check_area_threshold_island(area_threshold_island)
   check_area_threshold_mainland(area_threshold_mainland)
