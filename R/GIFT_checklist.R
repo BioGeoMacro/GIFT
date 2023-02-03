@@ -346,14 +346,15 @@ GIFT_checklist <- function(
     message("Preparing the download of checklists.\n")
     
     checklists <- 
-      GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
-                               taxon_name = taxon_name,
-                               namesmatched = namesmatched,
-                               floristic_group = floristic_group,
-                               GIFT_version = GIFT_version,
-                               api = api,
-                               list_set = list_set,
-                               taxonomy = taxonomy)
+      suppressMessages(
+        GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
+                                 taxon_name = taxon_name,
+                                 namesmatched = namesmatched,
+                                 floristic_group = floristic_group,
+                                 GIFT_version = GIFT_version,
+                                 api = api,
+                                 list_set = list_set,
+                                 taxonomy = taxonomy))
     if(taxonomic_group){
       species <- unique(checklists[, c("work_ID","genus_ID","work_species")])
       
