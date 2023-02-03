@@ -63,8 +63,9 @@ GIFT_shape <- function(entity_ID = NULL,
   overlap_gaptani_checked <- priority <- NULL
   
   # 2. Function ----
-  GIFT_entities <- GIFT_env(miscellaneous = "area",
-                            api = api, GIFT_version = GIFT_version)
+  GIFT_entities <- suppressMessages(
+    GIFT_env(miscellaneous = "area",
+             api = api, GIFT_version = GIFT_version))
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
   if(is.null(entity_ID)){
@@ -72,11 +73,22 @@ GIFT_shape <- function(entity_ID = NULL,
             downloaded, it may take a while.")
     entity_ID <- GIFT_entities$entity_ID
   }else{
+    initial_nb_asked <- length(entity_ID)
     entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
-  }
-  
-  if(length(entity_ID) == 0){
-    stop("The entity_ID provided are not available in GIFT database.")
+    
+    if(length(entity_ID) == 0){
+      stop("None of the provided entity_IDs has a shape available.")
+    }
+    
+    if(length(entity_ID) != initial_nb_asked){
+      if(length(entity_ID) == 1){
+        message(paste0("Only ", length(entity_ID), " entity_ID out of ",
+                       initial_nb_asked, " had a shape available."))
+      } else{
+        message(paste0("Only ", length(entity_ID), " entity_IDs out of ",
+                       initial_nb_asked, " had a shape available."))
+      }
+    }
   }
   
   # TODO give back warning if not all entity_IDs have polygons?
