@@ -88,8 +88,9 @@ GIFT_env <- function(
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   
-  gift_env_meta_misc <- GIFT_env_meta_misc(api = api,
-                                           GIFT_version = GIFT_version)
+  gift_env_meta_misc <- suppressMessages(
+    GIFT_env_meta_misc(api = api, GIFT_version = GIFT_version))
+  
   if(!is.null(miscellaneous) &&
      !(all(miscellaneous %in% gift_env_meta_misc$variable))){
     stop(c("'miscellaneous' must be a character string stating what
