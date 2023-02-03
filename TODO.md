@@ -124,6 +124,12 @@
 
 * versions of GIFT:
     - ~~restore old polygons for versions < 2.2~~
+    
+* GIFT_version()
+    - so far, not useful for a random user => put it as a not exported function
+    - later versions would give back a table with information on the different versions
+
+* &nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_geology()? generic queries?  
 
 ## 1.2. Controls
 * Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)
@@ -132,10 +138,10 @@
 # 2. Vignette
 * API vignette: properly check the API arguments in the query table
 
-# 4. Queries
+# 3. Queries
 * In queries.php (WinSCP) => put as a comment in which R function queries are used
 
-# 5. GIFT admin/database
+# 4. GIFT admin/database
 * ~~Traits: aggregation of categorical traits (agreement to revise (for ex. shrub and herb/shrub is NA so far))~~
 * ~~Traits: continuous traits: add a column coeff. of var (sd/mean) in traits_final~~
 * Traits: Agreement free text traits? Does not make sense. How is it handled => remove empty values for free text traits
@@ -172,7 +178,7 @@ https://www.hydrosheds.org/products/gloric
 https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database
 
 
-# 6. Extra-stuff
+# 5. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
 * allow comparison restricted/extended (GIFT_references() _richness(), _lists())
 * GIFT website: link to package; Alumni, update, Pierre, Julian, etc.
