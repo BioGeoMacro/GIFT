@@ -182,9 +182,10 @@ GIFT_species_distribution <- function(
   
   # 2. Function ----
   ## 2.1. Look up species ---- 
-  taxnames <- GIFT_species_lookup(genus = genus, epithet = epithet, 
-                                  GIFT_version = GIFT_version, api = api,
-                                  namesmatched = namesmatched)
+  taxnames <- suppressMessages(
+    GIFT_species_lookup(genus = genus, epithet = epithet, 
+                        GIFT_version = GIFT_version, api = api,
+                        namesmatched = namesmatched))
   # TODO: simplify names lookup to not look in orig genus? Or filter here
   taxnames <- unique(taxnames[,c("name_ID", "genus", "species_epithet", 
                                  "subtaxon", "author", "matched", 
