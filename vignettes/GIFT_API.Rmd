@@ -99,8 +99,10 @@ query_table <-
                   "envvar",
                   "layername, sumstat", "", "genus, epithet", "genus, epithet",
                   "taxon, startat",
-                  "", "layer", "", "", "", "", "startat", "nameid", "taxonid",
-                  "", "traitid, biasref, biasderiv, startat",
+                  "layer", "taxon, startat, limit", "", "", "", "",
+                  "startat, limit", "nameid",
+                  "taxonid",
+                  "", "traitid, biasref, biasderiv, startat, limit",
                   "traitid, taxonid", "", "traitid, deriv, biasderiv, refid",
                   ""
     ),
