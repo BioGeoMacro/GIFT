@@ -6,8 +6,7 @@
 <!-- badges: start -->
 
 [![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)](https://www.r-project.org/Licenses/GPL-3)
-[![R build
-status](https://github.com/BioGeoMacro/GIFT/workflows/R-CMD-check/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions)
+[![pkgdown](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml)  
 <!-- badges: end -->
 
 This **R package** includes several functions to extract data from the
@@ -17,7 +16,7 @@ groups and providing information about the floristic status and
 functional traits of plants as well as environmental information for
 each checklist. <br> More details about the content of this database are
 available in the publication of [Weigelt et al.,
-(2020)](https://doi.org/10.1111/jbi.13623).
+(2021)](https://doi.org/10.1111/jbi.13623).
 
 # :arrow_double_down: Installation
 
