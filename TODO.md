@@ -1,50 +1,11 @@
 # GIFT
 
-**<span style="color:blue"><font size="4">TO DO list</span></font>**
-
 # Table of Contents
 1. [Functions](#functions)
 2. [Vignette](#vignette)
 3. [Database](#Database)
 
-# 1. Functions
-
-*Final check*  
-1. Checklists  <br>
-&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">1.1. GIFT_checklist_raw()</span>  
-&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">1.2. GIFT_checklist_conditional()</span>   
-&nbsp;&nbsp;&nbsp;&nbsp; 1.3. GIFT_spatial()  
-&nbsp;&nbsp;&nbsp;&nbsp; 1.4. GIFT_taxonomy()   
-&nbsp;&nbsp;&nbsp;&nbsp; 1.5. GIFT_taxgroup()  
-&nbsp;&nbsp;&nbsp;&nbsp; 1.6. GIFT_no_overlap()  
-&nbsp;&nbsp;&nbsp;&nbsp; 1.7. GIFT_checklist()  
-  
-2. Trait functions <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 2.1. GIFT_traits_meta()  
-&nbsp;&nbsp;&nbsp;&nbsp; 2.2. GIFT_traits()  
-&nbsp;&nbsp;&nbsp;&nbsp; 2.3. GIFT_traits_raw()  
-
-3. Environment  
-&nbsp;&nbsp;&nbsp;&nbsp; 3.1. GIFT_env()  
-&nbsp;&nbsp;&nbsp;&nbsp; 3.2. GIFT_env_meta_misc()  
-&nbsp;&nbsp;&nbsp;&nbsp; 3.3. GIFT_env_meta_raster()  
-
-4. Species distribution  
-&nbsp;&nbsp;&nbsp;&nbsp; 4.1. GIFT_species()  
-&nbsp;&nbsp;&nbsp;&nbsp; 4.2. GIFT_ranges()  
-
-5. Plotting functions  
-&nbsp;&nbsp;&nbsp;&nbsp; 5.1. GIFT_shape()  
-&nbsp;&nbsp;&nbsp;&nbsp; 5.2. GIFT_plot() 
-
-6. Miscellaneous  
-&nbsp;&nbsp;&nbsp;&nbsp; 6.1. med()  
-&nbsp;&nbsp;&nbsp;&nbsp; 6.2. GIFT_references()  
-&nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_geology()? generic queries?  
-
-*To update from GIFT_admin*<br>
-
-## 0. General
+# 0. General
 
 * ~~all calls of GIFT functions inside of other functions need the version
   and api forwarded!!!~~
@@ -53,7 +14,7 @@
 * allow for a comparison of restricted vs non restricted meta data without having the restricted api
 
 
-## 1. Details
+# 1. Details
 * 1.1. GIFT_checklists_raw()
     
 * 1.2. GIFT_checklists_conditional()
@@ -83,7 +44,6 @@
     - Give back trait IDs that are not valid?
 
 * 3.1. GIFT_env()
-    - remove rows that are NA for all variables
 
 * 3.2. GIFT_env_meta_misc()    
     
@@ -96,9 +56,8 @@
     - translate range_finder? # not for now
 
 * 5.1. GIFT_shape()
-    - give back warning if not all entity_IDs have polygons?
-    
-* 6.1. med()
+
+* 6.1. western_mediterranean()
 
 * 6.2. GIFT_references()
 
@@ -176,7 +135,6 @@ https://developers.google.com/earth-engine/datasets/catalog/NASA_MEASURES_GFCC_T
 https://glad.umd.edu/dataset/gedi
 https://www.hydrosheds.org/products/gloric
 https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database
-
 
 # 5. Extra-stuff
 * tell bRacatus people to use this R package and not the API?
