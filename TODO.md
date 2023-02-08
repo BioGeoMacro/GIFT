@@ -90,6 +90,10 @@
 
 * &nbsp;&nbsp;&nbsp;&nbsp; 6.3. GIFT_geology()? generic queries?  
 
+* &nbsp;&nbsp;&nbsp;&nbsp; GIFT_traits_taxo() => retrieve trait at the taxono
+  mic level and/or include this in GIFT_traits() as an option (add a column
+  taxonomically_derived (and rename the current one derived trait_derived))
+
 ## 1.2. Controls
 * Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)
 * Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)
