@@ -46,6 +46,7 @@ reference:
   - GIFT_traits
   - GIFT_traits_meta
   - GIFT_traits_raw
+  - GIFT_traits_tax
 
 - subtitle: Alternative functions
   desc: >
