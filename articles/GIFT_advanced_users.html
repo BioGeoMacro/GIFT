@@ -76,7 +76,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2023-02-08</h4>
+            <h4 data-toc-skip class="date">2023-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_advanced_users.Rmd" class="external-link"><code>vignettes/GIFT_advanced_users.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_advanced_users.Rmd</code></div>
@@ -418,12 +418,11 @@ vignette</a>. We here provide further details:</p>
 <code class="sourceCode R"><span><span class="co"># The following polygons are overlapping:</span></span>
 <span><span class="fu"><a href="../reference/GIFT_no_overlap.html">GIFT_no_overlap</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span>, area_threshold_island <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                area_threshold_mainland <span class="op">=</span> <span class="fl">100</span>, overlap_threshold <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] "145"   "146"   "147"   "148"   "149"   "150"   "151"   "414"   "415"  </span></span>
-<span><span class="co">## [10] "416"   "417"   "547"   "548"   "549"   "550"   "551"   "552"   "586"  </span></span>
-<span><span class="co">## [19] "591"   "592"   "736"   "738"   "739"   "10001" "10072" "10104" "10184"</span></span>
-<span><span class="co">## [28] "10303" "10422" "10430" "10978" "11029" "11030" "11031" "11033" "11035"</span></span>
-<span><span class="co">## [37] "11038" "11039" "11042" "11044" "11045" "11046" "11434" "11474" "11477"</span></span>
-<span><span class="co">## [46] "11503" "12231" "12232" "12233" "12632" "12633" "12634" "12635"</span></span></code></pre>
+<pre><code><span><span class="co">##  [1]   145   146   147   148   149   150   151   414   415   416   417   547</span></span>
+<span><span class="co">## [13]   548   549   550   551   552   586   591   592   736   738   739 10001</span></span>
+<span><span class="co">## [25] 10072 10104 10184 10303 10422 10430 10978 11029 11030 11031 11033 11035</span></span>
+<span><span class="co">## [37] 11038 11039 11042 11044 11045 11046 11434 11474 11477 11503 12231 12232</span></span>
+<span><span class="co">## [49] 12233 12632 12633 12634 12635</span></span></code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example of two overlapping polygons: Spain mainland and Andalusia</span></span>
 <span><span class="va">overlap_shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shape.html">GIFT_shape</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10071</span>, <span class="fl">12078</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
