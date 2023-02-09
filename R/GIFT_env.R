@@ -182,5 +182,8 @@ GIFT_env <- function(
                        "variable"]
   tmp_misc <- dplyr::mutate_at(tmp_misc, miscellaneous_num, as.numeric)
   
+  # entity_ID numeric
+  tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
+  
   return(tmp_misc)
 }
