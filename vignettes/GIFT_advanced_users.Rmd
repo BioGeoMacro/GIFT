@@ -21,7 +21,7 @@ text-align: justify}
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
-                      fig.width = 8, fig.height = 8)
+                      fig.width = 8, fig.height = 8, fig.align = "center")
 # Packages --------------------------------------------------------------------
 suppressPackageStartupMessages({
   suppressWarnings({
@@ -261,7 +261,7 @@ are two things detailed in the
 [main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html).
 We here provide further details:
 
-```{r, message=FALSE, fig.width = 8, fig.height = 4}
+```{r, message=FALSE, fig.width = 10, fig.height = 6}
 length(med_shape_inside$entity_ID)
 length(GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
                        area_threshold_mainland = 100, overlap_threshold = 0.1))
