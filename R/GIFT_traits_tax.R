@@ -44,7 +44,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1",
+#' ex <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
 #' bias_ref = FALSE, bias_deriv = FALSE)
 #' }
 #' 
@@ -156,6 +156,18 @@ GIFT_traits_tax <- function(
   # trait_list <- trait_list[which(trait_list$agreement >= agreement |
   #                                  is.na(trait_list$agreement)), ]
   
+  # Message if some traits are not available at the family level
+  if(length(trait_IDs[trait_IDs %in% unique(trait_list$trait_ID)]) == 0){
+    stop("None of the traits asked was available at the taxonomic level.")
+  }
+  
+  if(length(trait_IDs[trait_IDs %in% unique(trait_list$trait_ID)]) !=
+     length(trait_IDs)){
+    message(paste0(
+      "The following traits were not available at the taxonomic level: ",
+      trait_IDs[!(trait_IDs %in% unique(trait_list$trait_ID))]))
+  }
+  
   # Make certain columns numeric
   trait_list <- dplyr::mutate_at(
     trait_list, c("taxon_ID", "agreement", "negative"), as.numeric)
@@ -189,14 +201,6 @@ GIFT_traits_tax <- function(
   
   # Make data.frame
   trait_list <- as.data.frame(trait_list)
-  
-  # Message if some traits are not available at the family level
-  if(length(trait_IDs[trait_IDs %in% colnames(trait_list)]) !=
-     length(trait_IDs)){
-    message(paste0(
-      "The following traits were not available at the taxonomic level: ",
-      trait_IDs[!(trait_IDs %in% colnames(trait_list))]))
-  }
   
   return(trait_list)
 }
