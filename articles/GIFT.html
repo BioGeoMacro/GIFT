@@ -135,11 +135,13 @@ package, which you can access using the
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"western_mediterranean"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_coastline.html" class="external-link">ne_coastline</a></span><span class="op">(</span>returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
-<span><span class="va">world_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span>returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_coastline.html" class="external-link">ne_coastline</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="va">world_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
 <span><span class="co"># Fixing polygons crossing dateline</span></span>
 <span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_wrap_dateline</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span></span>
+<span><span class="va">world_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_wrap_dateline</a></span><span class="op">(</span><span class="va">world_countries</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Eckert IV projection</span></span>
 <span><span class="va">eckertIV</span> <span class="op">&lt;-</span></span>
 <span>  <span class="st">"+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span></span>
 <span></span>
@@ -1018,8 +1020,8 @@ earlier using <code><a href="../reference/GIFT_shape.html">GIFT_shape()</a></cod
 <div class="section level2">
 <h2 id="trait-data">3. Trait data<a class="anchor" aria-label="anchor" href="#trait-data"></a>
 </h2>
-<p>Trait information at the species level are also made available in the
-<code>GIFT</code> R package. <br></p>
+<p>Trait information at the species or at a higher taxonomic level are
+also made available in the <code>GIFT</code> R package. <br></p>
 <div class="section level3">
 <h3 id="metadata">3.1. Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h3>
@@ -1045,6 +1047,9 @@ plant species using <code><a href="../reference/GIFT_traits.html">GIFT_traits()<
 <div class="section level3">
 <h3 id="trait-values">3.2. Trait values<a class="anchor" aria-label="anchor" href="#trait-values"></a>
 </h3>
+<div class="section level4">
+<h4 id="species-level">3.2.1. Species level<a class="anchor" aria-label="anchor" href="#species-level"></a>
+</h4>
 <p>There are two functions to access trait values. First,
 <code><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw()</a></code> gives all the trait values for a given
 species and a given trait. These trait values can then vary. <br>
@@ -1057,17 +1062,15 @@ aggregated values for the maximal vegetative height of plants (trait_ID
 1.6.2). <br></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
-<span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">height_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">height_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_raw.html">GIFT_traits_raw</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Raw values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">height_raw</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">height_raw</span><span class="op">$</span><span class="va">work_species</span> <span class="op">==</span> <span class="st">"Fagus sylvatica"</span><span class="op">)</span>,</span>
 <span>                      <span class="st">"trait_value"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 35 30 50</span></span></code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Aggregated value</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">height</span><span class="op">$</span><span class="va">work_species</span> <span class="op">==</span> <span class="st">"Fagus sylvatica"</span><span class="op">)</span>,</span>
 <span>                  <span class="st">"trait_value_1.6.2"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -1076,6 +1079,35 @@ aggregated values for the maximal vegetative height of plants (trait_ID
 30, 35 and 50 meters, which led to an aggregated value of 50 meters.</p>
 <p><br></p>
 </div>
+<div class="section level4">
+<h4 id="taxonomic-level">3.2.2. Taxonomic level<a class="anchor" aria-label="anchor" href="#taxonomic-level"></a>
+</h4>
+<p>Traits can also be retrieved at a higher taxonomic level, using
+<code><a href="../reference/GIFT_traits_tax.html">GIFT_traits_tax()</a></code>. <br> As an example, we here attempt to
+retrieve three traits at the family level. The three traits asked are
+woodiness (<code>trait_ID = "1.1.1"</code>), growth form
+(<code>trait_ID = "1.2.1"</code>) and whether the plant is a climber
+(<code>trait_ID = "1.4.1"</code>).</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trait_tax</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_tax.html">GIFT_traits_tax</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.1.1"</span>, <span class="st">"1.2.1"</span>, <span class="st">"1.4.1"</span><span class="op">)</span>,</span>
+<span>                             bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
+<p>Among the three traits asked, the growth form was not available at
+the family level. The output table therefore contains trait values for
+the two other traits at the family level.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trait_tax</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##   taxon_ID    taxon_name agreement references negative     1.1.1</span></span>
+<span><span class="co">## 1       81 Amborellaceae         1      10327        0     woody</span></span>
+<span><span class="co">## 2       82 Hydatellaceae         1      10327        0 non-woody</span></span>
+<span><span class="co">## 3       83   Cabombaceae         1      10327        0 non-woody</span></span>
+<span><span class="co">##             1.4.1</span></span>
+<span><span class="co">## 1 self-supporting</span></span>
+<span><span class="co">## 2 self-supporting</span></span>
+<span><span class="co">## 3 self-supporting</span></span></code></pre>
+<p><br></p>
+</div>
+</div>
 <div class="section level3">
 <h3 id="trait-coverage">3.3. Trait coverage<a class="anchor" aria-label="anchor" href="#trait-coverage"></a>
 </h3>
@@ -1083,7 +1115,7 @@ aggregated values for the maximal vegetative height of plants (trait_ID
 the same function as for species richness <code><a href="../reference/GIFT_richness.html">GIFT_richness()</a></code>.
 <br> In combination with the shapes loaded previously, we can also map
 the trait coverage. <br></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">angio_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_richness.html">GIFT_richness</a></span><span class="op">(</span>what <span class="op">=</span> <span class="st">"trait_coverage"</span>,</span>
 <span>                              taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                              trait_ID <span class="op">=</span> <span class="st">"1.6.2"</span><span class="op">)</span></span>
@@ -1116,20 +1148,19 @@ the trait coverage. <br></p>
 <span>             stat <span class="op">=</span> <span class="st">"sf_coordinates"</span>, size <span class="op">=</span> <span class="fl">1</span>, stroke <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_color_gradientn</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Coverage (%)"</span>, </span>
-<span>    colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, name <span class="op">=</span> <span class="st">"YlGnBu"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, name <span class="op">=</span> <span class="st">"PuBuGn"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>    na.value <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradientn</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Coverage (%)"</span>, </span>
-<span>    colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, name <span class="op">=</span> <span class="st">"YlGnBu"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, name <span class="op">=</span> <span class="st">"PuBuGn"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>    na.value <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="st">"Coverage (%)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Coverage for maximal vegetative height of Angiosperms"</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Projection EckertIV"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">eckertIV</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GIFT_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="GIFT_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;"></p>
 <p><br><br></p>
 </div>
 </div>
@@ -1152,7 +1183,7 @@ the list of miscellaneous variables and raster layers available in the
 GIFT database. <br> The references to cite when using environmental
 variables are also available through these functions (column
 <code>ref_long</code> of the outputs).<br><br></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">misc_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">raster_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -1168,7 +1199,7 @@ statistics available, you can check the help page of
 <code><a href="../reference/GIFT_env.html">GIFT_env()</a></code> to see them all. Let’s here call for the mean
 and median of elevation and the maximal value of average temperature.
 <br></p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                    miscellaneous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"perimeter"</span>, <span class="st">"biome"</span><span class="op">)</span>,</span>
 <span>                    rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mn30_grd"</span>, <span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
@@ -1186,7 +1217,7 @@ and median of elevation and the maximal value of average temperature.
 </h3>
 <p>Using the shapes previously loaded, we can also map a particular
 environmental variable for all GIFT polygons.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">world_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">angio_rich</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                       rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
 <span>                       sumstat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1228,7 +1259,7 @@ environmental variable for all GIFT polygons.</p>
 <span>       subtitle <span class="op">=</span> <span class="st">"Projection EckertIV"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">eckertIV</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GIFT_files/figure-html/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="GIFT_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;"></p>
 <p><br><br></p>
 </div>
 </div>
@@ -1237,7 +1268,7 @@ environmental variable for all GIFT polygons.</p>
 </h2>
 <p>Phylogeny from <a href="https://doi.org/10.1016/j.pld.2022.12.007" class="external-link">Jin &amp; Qian
 (2022)</a> Matched to the taxonomy of GIFT.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieving phylogeny, taxonomy and species from GIFT</span></span>
 <span><span class="va">phy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="../reference/GIFT_phylogeny.html">GIFT_phylogeny</a></span><span class="op">(</span>clade <span class="op">=</span> <span class="st">"Tracheophyta"</span>,</span>
 <span>                                       GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1250,10 +1281,10 @@ environmental variable for all GIFT polygons.</p>
 <span>              bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>              GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ================================================================================</span></span></code></pre>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Replacing space with _ for the species names</span></span>
 <span><span class="va">gf</span><span class="op">$</span><span class="va">work_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"_"</span>, <span class="va">gf</span><span class="op">$</span><span class="va">work_species</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieving family of each species</span></span>
 <span><span class="va">sp_fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup</a></span><span class="op">(</span>work_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">gift_sp</span><span class="op">$</span><span class="va">work_ID</span><span class="op">)</span>,</span>
 <span>                        taxon_lvl <span class="op">=</span> <span class="st">"family"</span>, GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
@@ -1278,7 +1309,7 @@ environmental variable for all GIFT polygons.</p>
 <span>            <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">==</span> <span class="st">"×_"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>In the next chunk, we calculate the trait coverage (for growth form)
 at the genus and family level.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_genus_fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">sp_genus_fam</span>,</span>
 <span>                          <span class="va">gf</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"work_ID"</span>, <span class="st">"trait_value_1.2.1"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>                          by <span class="op">=</span> <span class="st">"work_ID"</span><span class="op">)</span></span>
@@ -1332,7 +1363,7 @@ at the genus and family level.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">)</span> <span class="op">==</span> <span class="st">"prop_gf"</span><span class="op">]</span> <span class="op">&lt;-</span></span>
 <span>  <span class="st">"prop_gf_fam"</span></span></code></pre></div>
 <p>Pruning the tree at the genus level.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phy_gen</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/drop.tip.html" class="external-link">keep.tip</a></span><span class="op">(</span></span>
 <span>  phy <span class="op">=</span> <span class="va">phy</span>,</span>
 <span>  tip <span class="op">=</span> <span class="va">one_sp_per_gen</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html" class="external-link">complete.cases</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">$</span><span class="va">species</span><span class="op">)</span>, <span class="st">"species"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -1340,7 +1371,7 @@ at the genus and family level.</p>
 rings illustrate the coverage of growth form per genus and per family
 (outer ring). For the family ring, the width of each family is set by
 the number of genera they contain.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggtree</span><span class="op">(</span><span class="va">phy_gen</span>, color <span class="op">=</span> <span class="st">"grey70"</span>, layout <span class="op">=</span> <span class="st">"circular"</span><span class="op">)</span> <span class="op">%&lt;+%</span> <span class="va">one_sp_per_gen</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_fruit</span><span class="op">(</span>geom <span class="op">=</span> <span class="va">geom_tile</span>,</span>
 <span>             mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">prop_gf_gen</span><span class="op">)</span>,</span>
@@ -1354,7 +1385,7 @@ the number of genera they contain.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="st">"Growth form availability per genus (%)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GIFT_files/figure-html/unnamed-chunk-28-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="GIFT_files/figure-html/unnamed-chunk-32-1.png" width="576" style="display: block; margin: auto;"></p>
 <p><br><br></p>
 </div>
 <div class="section level2">

@@ -131,6 +131,11 @@
 <li>make option to prune for set of species</li>
 </ul></li>
 <li>
+<p>GIFT_traits_tax()</p>
+<ul><li>include this in GIFT_traits() as an option (add a column taxonomically_derived (and rename the current one derived trait_derived))?</li>
+<li>control for traits available at the taxonomic level <em>before</em> querying the species table</li>
+</ul></li>
+<li>
 <p>versions of GIFT:</p>
 <ul><li><del>restore old polygons for versions &lt; 2.2</del></li>
 </ul></li>
@@ -140,7 +145,6 @@
 <li>later versions would give back a table with information on the different versions</li>
 </ul></li>
 <li><p>     6.3. GIFT_geology()? generic queries?</p></li>
-<li><p>     GIFT_traits_taxo() =&gt; retrieve trait at the taxono mic level and/or include this in GIFT_traits() as an option (add a column taxonomically_derived (and rename the current one derived trait_derived))</p></li>
 </ul><div class="section level2">
 <h2 id="id_12-controls">1.2. Controls<a class="anchor" aria-label="anchor" href="#id_12-controls"></a></h2>
 <ul><li>Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)</li>
