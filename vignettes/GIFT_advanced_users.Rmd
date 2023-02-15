@@ -28,6 +28,8 @@ suppressPackageStartupMessages({
     library("GIFT")
     library("knitr")
     library("kableExtra")
+    library("ggplot2")
+    library("sf")
   })
 })
 
@@ -286,6 +288,57 @@ GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
 ```
 
 <br>
+
+## 5.2. By ref_ID
+In `GIFT_checklist()`, there is also the possibility to remove overlapping
+polygons only if they belong to the same reference (i.e. same `ref_ID`).  
+<br>
+We show how this works with the following example:  
+
+```{r}
+ex <- GIFT_checklist(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
+                     list_set_only = TRUE)
+ex2 <- GIFT_checklist(taxon_name = "Tracheophyta",
+                      remove_overlap = TRUE, by_ref_ID = TRUE,
+                      list_set_only = TRUE)
+ex3 <- GIFT_checklist(taxon_name = "Tracheophyta",
+                      remove_overlap = TRUE, by_ref_ID = FALSE,
+                      list_set_only = TRUE)
+
+length(unique(ex$lists$ref_ID))
+length(unique(ex2$lists$ref_ID))
+length(unique(ex3$lists$ref_ID))
+```
+
+Asking for checklists of vascular plants, we get 367 checklists without any
+overlapping criterion, 335 if we remove overlapping polygons and 360 if we
+remove overlapping polygons at the reference level.  
+<br>
+So what is the difference between the second and third case?  
+Let's look at the checklists that are present in the second but not in the
+third example.
+
+```{r}
+unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
+                             unique(ex3$lists$ref_ID))]
+```
+
+If we look at the `ref_ID = 10143`, we see that it is a checklist for the 
+Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
+website, we see that other regions can overlap with it.  
+<br>
+
+```{r}
+# Pilbara region Australy and overlapping shapes
+pilbara <- GIFT_shape(entity_ID = c(10043, 12172, 11398, 11391, 10918))
+
+ggplot(pilbara) +
+  geom_sf(aes(fill = as.factor(entity_ID)), alpha = 0.5) +
+  scale_fill_brewer("entity_ID", palette = "Set1")
+```
+
+Since these polygons do not belong to the same `ref_ID`, they are kept when
+`by_ref_ID = TRUE` but are not considered when `by_ref_ID = FALSE`.
 
 # 6. Species
 
