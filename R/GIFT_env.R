@@ -94,7 +94,7 @@ GIFT_env <- function(
   if(!is.null(miscellaneous)){
     if(length(miscellaneous[miscellaneous %in%
                             gift_env_meta_misc$variable]) == 0){
-      stop("None of the miscellaneous variable asked is available in GIFT.
+      stop("None of the miscellaneous variables asked for is available in GIFT.
            Run GIFT_env_meta_misc() to see available options.")
     }
     
@@ -116,7 +116,7 @@ GIFT_env <- function(
   if(!is.null(rasterlayer)){
     if(length(rasterlayer[rasterlayer %in%
                           gift_env_meta_raster$layer_name]) == 0){
-      stop("None of the raster layer asked is available in GIFT.
+      stop("None of the raster layers asked for is available in GIFT.
        Run GIFT_env_meta_raster() to see available options.")
     }
     
