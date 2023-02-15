@@ -39,15 +39,13 @@ version.")
   
   expect_error(
     GIFT_env(miscellaneous = "XX"),
-    "'miscellaneous' must be a character string stating what
-           miscellaneous variable(s) you want to retrieve. Run
-           GIFT_env_meta_misc() to see available options.",
+    "None of the miscellaneous variable asked is available in GIFT.
+           Run GIFT_env_meta_misc() to see available options.",
     fixed = TRUE)
   
   expect_error(
     GIFT_env(rasterlayer = "XX"),
-    "'rasterlayer' must be a character string stating what
-           raster layer(s) you want to retrieve data from. Run
-           GIFT_env_meta_raster() to see available options.",
+    "None of the raster layer asked is available in GIFT.
+       Run GIFT_env_meta_raster() to see available options.",
     fixed = TRUE)
 })

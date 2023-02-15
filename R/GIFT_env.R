@@ -91,21 +91,45 @@ GIFT_env <- function(
   gift_env_meta_misc <- suppressMessages(
     GIFT_env_meta_misc(api = api, GIFT_version = GIFT_version))
   
-  if(!is.null(miscellaneous) &&
-     !(all(miscellaneous %in% gift_env_meta_misc$variable))){
-    stop(c("'miscellaneous' must be a character string stating what
-           miscellaneous variable(s) you want to retrieve. Run
-           GIFT_env_meta_misc() to see available options."))
+  if(!is.null(miscellaneous)){
+    if(length(miscellaneous[miscellaneous %in%
+                            gift_env_meta_misc$variable]) == 0){
+      stop("None of the miscellaneous variable asked is available in GIFT.
+           Run GIFT_env_meta_misc() to see available options.")
+    }
+    
+    if(length(miscellaneous[miscellaneous %in%
+                            gift_env_meta_misc$variable]) !=
+       length(miscellaneous)){
+      message(paste0(
+        "The following miscellaneous variable are not available in GIFT: ",
+        miscellaneous[!(miscellaneous %in% gift_env_meta_misc$variable)]))
+      
+      miscellaneous <- miscellaneous[(miscellaneous %in%
+                                        gift_env_meta_misc$variable)]
+    }
   }
   
   suppressMessages(
     gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
                                                  GIFT_version = GIFT_version))
-  if(!is.null(rasterlayer) &&
-     !(all(rasterlayer %in% gift_env_meta_raster$layer_name))){
-    stop(c("'rasterlayer' must be a character string stating what
-           raster layer(s) you want to retrieve data from. Run
-           GIFT_env_meta_raster() to see available options."))
+  if(!is.null(rasterlayer)){
+    if(length(rasterlayer[rasterlayer %in%
+                          gift_env_meta_raster$layer_name]) == 0){
+      stop("None of the raster layer asked is available in GIFT.
+       Run GIFT_env_meta_raster() to see available options.")
+    }
+    
+    if(length(rasterlayer[rasterlayer %in%
+                          gift_env_meta_raster$layer_name]) !=
+       length(rasterlayer)){
+      message(paste0(
+        "The following raster layers are not available in GIFT: ",
+        rasterlayer[!(rasterlayer %in% gift_env_meta_raster$layer_name)]))
+      
+      rasterlayer <- rasterlayer[(rasterlayer %in%
+                                    gift_env_meta_raster$layer_name)]
+    }
   }
   
   # 2. Query ----
