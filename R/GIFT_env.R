@@ -78,7 +78,8 @@
 
 GIFT_env <- function(
     entity_ID = NULL,
-    miscellaneous = "area", rasterlayer = NULL,
+    miscellaneous = if (is.null(rasterlayer)) "area" else NULL, 
+    rasterlayer = NULL,
     sumstat = "mean",
     GIFT_version = "latest",
     api = "https://gift.uni-goettingen.de/api/extended/"){
