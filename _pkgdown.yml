@@ -52,6 +52,7 @@ reference:
   desc: >
   contents:
   - GIFT_richness
+  - GIFT_coverage
   
 - title: Spatial data
 
