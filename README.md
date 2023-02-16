@@ -18,6 +18,8 @@ each checklist. <br> More details about the content of this database are
 available in the publication of [Weigelt et al.,
 (2021)](https://doi.org/10.1111/jbi.13623).
 
+<img src="man/figures/rich_map_plot_islands.PNG" width="50%" />
+
 # :arrow_double_down: Installation
 
 The package is not on CRAN yet and is still under active development.
