@@ -3,6 +3,7 @@
 export(GIFT_checklist)
 export(GIFT_checklist_conditional)
 export(GIFT_checklist_raw)
+export(GIFT_coverage)
 export(GIFT_env)
 export(GIFT_env_meta_misc)
 export(GIFT_env_meta_raster)
