@@ -6,7 +6,7 @@
 \usage{
 GIFT_env(
   entity_ID = NULL,
-  miscellaneous = "area",
+  miscellaneous = if (is.null(rasterlayer)) "area" else NULL,
   rasterlayer = NULL,
   sumstat = "mean",
   GIFT_version = "latest",
