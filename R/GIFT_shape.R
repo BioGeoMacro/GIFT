@@ -73,8 +73,9 @@ GIFT_shape <- function(entity_ID = NULL,
             downloaded, it may take a while.")
     entity_ID <- GIFT_entities$entity_ID
   }else{
-    initial_nb_asked <- length(entity_ID)
-    entity_ID <- entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)]
+    initial_nb_asked <- length(unique(entity_ID))
+    entity_ID <- unique(
+      entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)])
     
     if(length(entity_ID) == 0){
       stop("None of the provided entity_IDs has a shape available.")
@@ -95,10 +96,10 @@ GIFT_shape <- function(entity_ID = NULL,
   
   geodata <- list()
   
-  progress <- utils::txtProgressBar(min = 0, max = length(unique(entity_ID)),
+  progress <- utils::txtProgressBar(min = 0, max = length(entity_ID),
                                     initial = 0)
   
-  for(i in seq_along(unique(entity_ID))) {
+  for(i in seq_along(entity_ID)) {
     # TODO Put old polygons of old versions into respective folders and paste
     # version here
     tmp_geo <- st_read(
@@ -117,6 +118,7 @@ GIFT_shape <- function(entity_ID = NULL,
   }
   
   geodata <- do.call(rbind, geodata)
+   # sort by area to plot small regions on top of large regions
   geodata <- geodata[order(geodata$area, decreasing = TRUE), ]
   
   geodata <- dplyr::select(geodata, -suit_geo, -suit_geo_rst, -overlap_checked,
