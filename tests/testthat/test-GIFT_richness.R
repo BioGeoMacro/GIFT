@@ -11,24 +11,12 @@ test_that("data frame output format", {
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {
-  # Error message when ref_ID and list_ID are missing
-  expect_error(
-    GIFT_richness(what = NA),
-    "'what' is incorrect. It must be a character string equal either to
-         'species_richness' or 'trait_coverage'.", fixed = TRUE)
-  
   expect_error(
     GIFT_richness(taxon_name = NA),
     "'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.", fixed = TRUE)
-  
-  expect_error(
-    GIFT_richness(trait_ID = NA),
-    "'trait_ID' is incorrect. It must be a character string of the
-    identification number of a trait. To check these IDs, run
-         'GIFT_traits_meta()'.", fixed = TRUE)
-  
+
   expect_error(
     GIFT_richness(api = NA),
     "api must be a character string indicating which API to use.",

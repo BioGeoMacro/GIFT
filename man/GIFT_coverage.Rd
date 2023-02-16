@@ -37,13 +37,10 @@ Retrieve either taxonomic or trait coverage (for a given trait) per polygon.
 The output has 5 columns:
 
 \emph{entity_ID} - Identification number of GIFT polygons\cr
-\emph{total} - total species richness or trait coverage\cr
-\emph{native} - number of native species or trait coverage for native
-species\cr
-\emph{naturalized} - number of naturalized species or trait coverage for
-naturalized species\cr
-\emph{endemic_min} - number of endemic species or trait coverage for endemic
-species
+\emph{total} - species richness or trait coverage\cr
+\emph{native} - native species or trait coverage\cr
+\emph{naturalized} - naturalized species or trait coverage\cr
+\emph{endemic_min} - endemic species or trait coverage
 }
 \examples{
 \dontrun{

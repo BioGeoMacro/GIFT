@@ -5,19 +5,13 @@
 \title{Species richness and trait coverage in GIFT}
 \usage{
 GIFT_richness(
-  what = "species_richness",
   taxon_name = "Embryophyta",
-  trait_ID = "1.1.1",
   GIFT_version = "latest",
   api = "https://gift.uni-goettingen.de/api/extended/"
 )
 }
 \arguments{
-\item{what}{Species richness or trait coverage.}
-
 \item{taxon_name}{Name of the taxonomic group you want to retrieve.}
-
-\item{trait_ID}{Identification number of the trait you want to retrieve.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the most up-to-date
@@ -27,8 +21,8 @@ version.}
 retrieved.}
 }
 \value{
-A data frame with either species richness or trait coverage per
-GIFT polygon.
+A data frame with species richness for different floristic statuses
+per GIFT polygon.
 }
 \description{
 Retrieve either species richness per polygon or trait coverage for a given
@@ -38,19 +32,14 @@ trait.
 The output has 5 columns:
 
 \emph{entity_ID} - Identification number of GIFT polygons\cr
-\emph{total} - total species richness or trait coverage\cr
-\emph{native} - number of native species or trait coverage for native
-species\cr
-\emph{naturalized} - number of naturalized species or trait coverage for
-naturalized species\cr
-\emph{endemic_min} - number of endemic species or trait coverage for endemic
-species
+\emph{total} - total species richness\cr
+\emph{native} - number of native species\cr
+\emph{naturalized} - number of naturalized species\cr
+\emph{endemic_min} - number of endemic species
 }
 \examples{
 \dontrun{
-ex <- GIFT_richness(what = "species_richness", taxon_name = "Angiospermae")
-ex2 <- GIFT_richness(what = "trait_coverage", taxon_name = "Angiospermae",
-trait_ID = "1.2.1")
+ex <- GIFT_richness(taxon_name = "Angiospermae")
 
 }
 
