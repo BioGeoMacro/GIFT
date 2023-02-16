@@ -349,7 +349,7 @@ rich_map <- dplyr::left_join(gift_shape, angio_rich, by = "entity_ID") %>%
 ggplot(world) +
   geom_sf(color = "gray50") +
   geom_sf(data = rich_map, aes(fill = total + 1)) +
-  scale_fill_viridis_c("Species number\n(log-transformed)", trans = "log",
+  scale_fill_viridis_c("Species number\n(log-transformed)", trans = "log10",
                        labels = scales::number_format(accuracy = 1)) +
   labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
   coord_sf(crs = eckertIV) +
@@ -394,14 +394,16 @@ ggplot(world) +
                  geometry = geometry),
              stat = "sf_coordinates", size = 1, stroke = 0.5) +
   scale_color_gradientn(
-    "Species number", trans = "log10", limits = c(1, 10000), 
-    colours = RColorBrewer::brewer.pal(4, name = "Greens"),
-    values = scales::rescale(log10(c(1, 10, 100, 1000, 10000))),
+    "Species number", trans = "log10", limits = c(1, 40000), 
+    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    breaks = c(1, 10, 100, 1000, 10000, 40000),
+    labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
   scale_fill_gradientn(
-    "Species number", trans = "log10", limits = c(1, 10000), 
-    colours = RColorBrewer::brewer.pal(4, name = "Greens"),
-    values = scales::rescale(log10(c(1, 10, 100, 1000, 10000))),
+    "Species number", trans = "log10", limits = c(1, 40000), 
+    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    breaks = c(1, 10, 100, 1000, 10000, 40000),
+    labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
   labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
   coord_sf(crs = eckertIV) +
@@ -434,20 +436,26 @@ ggplot(world) +
                  geometry = geometry),
              stat = "sf_coordinates", size = 1, stroke = 0.5) +
   scale_color_gradientn(
-    "Species number", trans = "log10", limits = c(1, 10000), 
-    colours = RColorBrewer::brewer.pal(4, name = "Greens"),
-    values = scales::rescale(log10(c(1, 10, 100, 1000, 10000))),
+    "Species number", trans = "log10", limits = c(1, 40000), 
+    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    breaks = c(1, 10, 100, 1000, 10000, 40000),
+    labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
   scale_fill_gradientn(
-    "Species number", trans = "log10", limits = c(1, 10000), 
-    colours = RColorBrewer::brewer.pal(4, name = "Greens"),
-    values = scales::rescale(log10(c(1, 10, 100, 1000, 10000))),
+    "Species number", trans = "log10", limits = c(1, 40000), 
+    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    breaks = c(1, 10, 100, 1000, 10000, 40000),
+    labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
   labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
   coord_sf(crs = eckertIV) +
   theme_void()
 ```
 </details>
+<br><br>
+
+We can also produce maps of richness at intermediate scales. Here is the code
+and the map of Angiosperms in the Western Mediterranean basin.  
 <br>
 
 ```{r, message=FALSE, fig.width = 8, fig.height = 4}
