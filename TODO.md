@@ -31,6 +31,12 @@
     - Failed to parse example for topic 'GIFT_no_overlap'
     
 * 1.7. GIFT_checklist()
+    - "all" vs. "All"
+    - work_genus?
+
+* 1.8. GIFT_lists()
+    - still has a restricted column; Either remove or include restricted lists?
+    - geo entity ref
 
 * 2.1. GIFT_traits_meta()
 
@@ -60,6 +66,7 @@
 * 6.1. western_mediterranean()
 
 * 6.2. GIFT_references()
+    - include or exclude restricted references?
 
 * GIFT_species_lookup()
     - get rid of orig ID to be faster? Make simple version at least. (Patrick)
