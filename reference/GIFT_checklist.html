@@ -121,7 +121,8 @@ default.</p></dd>
 
 
 <dt>suit_geo</dt>
-<dd><p>Boolean, whether only suitable polygons should be retrieved.</p></dd>
+<dd><p>Boolean, whether only regions classified as suit_geo should
+be considered (see details).</p></dd>
 
 
 <dt>shp</dt>
@@ -191,8 +192,9 @@ if you also want to retrieve the species lists.</p></dd>
 
 <dt>GIFT_version</dt>
 <dd><p>character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.</p></dd>
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.</p></dd>
 
 
 <dt>api</dt>
@@ -221,6 +223,16 @@ harmonization.<br><em>genus_ID</em> - Identification number of each genus, after
 harmonization.<br><em>species</em> - Species name, after taxonomic harmonization.<br><em>questionable</em> - Whether the species occurrence is questionable.<br><em>native</em> - Whether the species is native.<br><em>quest_native</em> - Whether the native information is questionable.<br><em>naturalized</em> - Whether the species is naturalized.<br><em>endemic_ref</em> - Whether the species is endemic within the reference.<br><em>quest_end_ref</em> - Whether the endemic_ref information is
 questionable.<br><em>endemic_list</em> - Whether the species is endemic within the list.<br><em>quest_end_list</em> - Whether the endemic_list information is
 questionable.<br><em>cons_status</em> - Conservation status of the species.<br><em>family</em> - Family of the species.<br><em>tax_group</em> - Taxonomic group of the species.</p>
+<p>While the arguments 'taxon_name' in combination with 'complete_taxon = TRUE'
+and 'floristic_group' in combination with 'complete_floristic = TRUE' make
+sure to only get back checklists for regions for which GIFT has lists
+aiming at covering both the entire taxonomic group and floristic subset (for
+example native vascular plants), it does not mean that the checklists are
+complete (include all species). We therefore flagged regions in GIFT for
+which the combination of all checklists is obviously incomplete as
+'suit_geo = 0'. This has however only been done only for native angiosperms
+and the assessment has been subjective. Set suit_geo = TRUE if you only want
+to consider regions classified as suit_geo.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
