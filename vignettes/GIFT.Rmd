@@ -77,6 +77,7 @@ library("sf")
 library("rnaturalearth")
 library("rnaturalearthdata")
 library("tidyr")
+library("patchwork")
 ```
 
 <br><br>
@@ -628,6 +629,88 @@ ggplot(world) +
   lims(x = c(-65, 170), y = c(-45, 70)) +
   theme_void()
 ```
+
+<br>
+By customizing the code above, you can also produce a nicer map:
+
+```{r, include = FALSE, fig.width = 8, fig.height = 4}
+anemone_map_plot_bg_parts <-
+  ggplot(world) +
+  geom_sf(data = bb, fill = "aliceblue", color = NA) +
+  geom_sf(data = equator, color = "gray50", linetype = "dashed",
+          linewidth = 0.1) +
+  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
+  geom_sf(color = "gray50", linewidth = 0.1) +
+  geom_sf(data = bb, fill = NA) +
+  geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
+  scale_fill_manual("Status",
+                    values = c("native" = "#2c7bb6",
+                               "naturalized" = "#d7191c",
+                               "non-native" = "#fdae61",
+                               "unknown" = "#abd9e9")) +
+  labs(title = expression(paste("b) Distribution map of ",
+                                italic("Anemone nemorosa")))) +
+  theme_void() +
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+(anemone_map_plot_bg_parts +
+     lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+     theme(panel.border = element_rect(fill = NA,
+                                       linewidth = 1)) +
+     theme(legend.position = "bottom")
+   |
+     anemone_map_plot_bg_parts +
+     lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+     labs(title = "") +
+     guides(fill = "none") +
+     theme(panel.border = element_rect(fill = NA,
+                                       linewidth = 1)))
+```
+
+<br>
+Below is the `R` code to produce the above map if interested.
+<br>
+
+<details><summary>Fancier code</summary>
+```{r, eval=FALSE}
+anemone_map_plot_bg_parts <-
+  ggplot(world) +
+  geom_sf(data = bb, fill = "aliceblue", color = NA) +
+  geom_sf(data = equator, color = "gray50", linetype = "dashed",
+          linewidth = 0.1) +
+  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
+  geom_sf(color = "gray50", linewidth = 0.1) +
+  geom_sf(data = bb, fill = NA) +
+  geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
+  scale_fill_manual("Status",
+                    values = c("native" = "#2c7bb6",
+                               "naturalized" = "#d7191c",
+                               "non-native" = "#fdae61",
+                               "unknown" = "#abd9e9")) +
+  labs(title = expression(paste("b) Distribution map of ",
+                                italic("Anemone nemorosa")))) +
+  theme_void() +
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+(anemone_map_plot_bg_parts +
+     lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+     theme(panel.border = element_rect(fill = NA,
+                                       linewidth = 1)) +
+     theme(legend.position = "bottom")
+   |
+     anemone_map_plot_bg_parts +
+     lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+     labs(title = "") +
+     guides(fill = "none") +
+     theme(panel.border = element_rect(fill = NA,
+                                       linewidth = 1)))
+```
+</details>
+<br>
 
 <br><br>
 
