@@ -235,8 +235,8 @@ knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 Now that we covered the main arguments of `GIFT_checklist()`, we can retrieve
 plant checklists for the Mediterranean region. `GIFT_checklist()` returns a
 list of two elements. First the metadata of checklists fulfilling the
-different criteria. The second element is a `data.frame` of all the checklists
-with the species composition per checklist.
+different criteria, named `$lists`. The second element is a `data.frame` of all
+the checklists with the species composition per checklist (`$checklists`).
 <br>
 If you only want to retrieve the metadata, you can set the argument
 `list_set_only` to `TRUE`.
@@ -249,7 +249,23 @@ ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
                           list_set_only = TRUE)
 ```
 
-```{r, eval = TRUE, message = FALSE}
+<br>
+And to retrieve the species composition:
+<br>
+
+```{r, include = FALSE}
+medit <- GIFT_checklist(taxon_name = "Angiospermae",
+                        complete_taxon = TRUE,
+                        floristic_group = "native",
+                        complete_floristic = TRUE,
+                        geo_type = "All",
+                        shp = western_mediterranean,
+                        overlap = "centroid_inside", 
+                        remove_overlap = FALSE,
+                        taxonomic_group = TRUE)
+```
+
+```{r, eval = FALSE, echo = TRUE}
 medit <- GIFT_checklist(taxon_name = "Angiospermae",
                         complete_taxon = TRUE,
                         floristic_group = "native",
@@ -284,12 +300,21 @@ stricter with some criteria, you can see that the number of checklists
 retrieved decreases. For example, when removing overlapping regions:
 <br>
 
-```{r, message = FALSE}
+```{r, include = FALSE}
 medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
                                    overlap = "centroid_inside",
                                    taxon_name = "Angiospermae",
                                    remove_overlap = TRUE)
+```
 
+```{r, eval = FALSE, echo = TRUE}
+medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
+                                   overlap = "centroid_inside",
+                                   taxon_name = "Angiospermae",
+                                   remove_overlap = TRUE)
+```
+
+```{r}
 # Number of references covered
 length(unique(medit[[2]]$ref_ID))
 length(unique(medit_no_overlap[[2]]$ref_ID))
@@ -688,7 +713,12 @@ The three traits asked are woodiness (`trait_ID = "1.1.1"`),
 growth form (`trait_ID = "1.2.1"`) and whether the plant is a climber
 (`trait_ID = "1.4.1"`).
 
-```{r}
+```{r, include=FALSE}
+trait_tax <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
+                             bias_ref = FALSE, bias_deriv = FALSE)
+```
+
+```{r, echo=TRUE, eval=FALSE}
 trait_tax <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
                              bias_ref = FALSE, bias_deriv = FALSE)
 ```
@@ -975,19 +1005,27 @@ ggplot(world) +
 Phylogeny from [Jin & Qian (2022)](https://doi.org/10.1016/j.pld.2022.12.007)
 Matched to the taxonomy of GIFT.
 
-```{r}
+```{r include=FALSE}
 # Retrieving phylogeny, taxonomy and species from GIFT
-phy <- suppressMessages(GIFT_phylogeny(clade = "Tracheophyta",
-                                       GIFT_version = "beta"))
-tax <- suppressMessages(GIFT_taxonomy(GIFT_version = "beta"))
-gift_sp <- suppressMessages(GIFT_species(GIFT_version = "beta"))
+phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
+tax <- GIFT_taxonomy(GIFT_version = "beta")
+gift_sp <- GIFT_species(GIFT_version = "beta")
 
-gf <- suppressMessages(
-  GIFT_traits(trait_IDs = "1.2.1",
-              agreement = 0.66,
-              bias_ref = FALSE, bias_deriv = FALSE,
-              GIFT_version = "beta"))
+gf <- GIFT_traits(trait_IDs = "1.2.1", agreement = 0.66, bias_ref = FALSE,
+                  bias_deriv = FALSE, GIFT_version = "beta")
+```
 
+```{r, eval=FALSE, echo=TRUE}
+# Retrieving phylogeny, taxonomy and species from GIFT
+phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
+tax <- GIFT_taxonomy(GIFT_version = "beta")
+gift_sp <- GIFT_species(GIFT_version = "beta")
+
+gf <- GIFT_traits(trait_IDs = "1.2.1", agreement = 0.66, bias_ref = FALSE,
+                  bias_deriv = FALSE, GIFT_version = "beta")
+```
+
+```{r}
 # Replacing space with _ for the species names
 gf$work_species <- gsub(" ", "_", gf$work_species, fixed = TRUE)
 ```
