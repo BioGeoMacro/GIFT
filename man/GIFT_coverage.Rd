@@ -2,7 +2,8 @@
 % Please edit documentation in R/GIFT_coverage.R
 \name{GIFT_coverage}
 \alias{GIFT_coverage}
-\title{Taxonomic and trait coverage in GIFT}
+\title{Taxonomic and trait coverage per geographic region and taxonomic group in
+GIFT}
 \usage{
 GIFT_coverage(
   what = "taxonomic_coverage",
@@ -13,15 +14,19 @@ GIFT_coverage(
 )
 }
 \arguments{
-\item{what}{Taxonomic or trait coverage.}
+\item{what}{character indicating whether 'taxonomic_coverage' or
+'trait_coverage' shall be retrieved.}
 
-\item{taxon_name}{Name of the taxonomic group you want to retrieve.}
+\item{taxon_name}{Name of the taxonomic group you want to retrieve coverage
+for. See \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}} for details.}
 
-\item{trait_ID}{Identification number of the trait you want to retrieve.}
+\item{trait_ID}{Identification number of the trait you want to retrieve
+coverage for. See \code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}} for details.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.}
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}
@@ -31,16 +36,36 @@ A data frame with either taxonomic or trait coverage per
 GIFT polygon.
 }
 \description{
-Retrieve either taxonomic or trait coverage (for a given trait) per polygon.
+Retrieve taxonomic or trait coverage (for a given trait) of all species,
+native species, naturalized species and endemic species per taxonomic group
+and geographic region combination.
 }
 \details{
 The output has 5 columns:
 
 \emph{entity_ID} - Identification number of GIFT polygons\cr
-\emph{total} - species richness or trait coverage\cr
-\emph{native} - native species or trait coverage\cr
-\emph{naturalized} - naturalized species or trait coverage\cr
-\emph{endemic_min} - endemic species or trait coverage
+\emph{total} - taxonomic or trait coverage for all species\cr
+\emph{total_rst} - taxonomic or coverage for all species considering
+restricted resources\cr
+\emph{native} - taxonomic or trait coverage for native species\cr
+\emph{native_rst} - taxonomic or trait coverage for native species
+considering restricted resources\cr
+\emph{naturalized} - taxonomic or trait coverage for naturalized species\cr
+\emph{naturalized_rst} - taxonomic or trait coverage for naturalized species
+considering restricted resources\cr
+\emph{endemic_min} - taxonomic or trait coverage for endemic species\cr
+\emph{endemic_min_rst} - taxonomic or trait coverage for endemic species
+considering restricted resources
+
+In the case of taxonomic coverage, a '1' means that species composition data
+is available for the given combination of taxonomic group and geographic
+region while 'NA' means that no data is available. This can differ depending
+on whether restricted data in GIFT is considered or not (columns with or
+without _rst at the end).
+
+In the case of trait coverage, the proportion of species of a given
+taxonomic group with information on the defined trait is reported per
+geographic region.
 }
 \examples{
 \dontrun{

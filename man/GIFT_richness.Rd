@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_richness.R
 \name{GIFT_richness}
 \alias{GIFT_richness}
-\title{Species richness and trait coverage in GIFT}
+\title{Species richness per geographic region and taxonomic group in GIFT}
 \usage{
 GIFT_richness(
   taxon_name = "Embryophyta",
@@ -11,31 +11,36 @@ GIFT_richness(
 )
 }
 \arguments{
-\item{taxon_name}{Name of the taxonomic group you want to retrieve.}
+\item{taxon_name}{Taxonomic group to retrieve species richness for.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.}
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}
 }
 \value{
-A data frame with species richness for different floristic statuses
-per GIFT polygon.
+A data frame with species richness values for different floristic
+subsets per geographic region in GIFT.
 }
 \description{
-Retrieve either species richness per polygon or trait coverage for a given
-trait.
+Retrieve species richness of all species, native species, naturalized
+species and endemic species per taxonomic group and geographic region
+combination.
 }
 \details{
 The output has 5 columns:
 
-\emph{entity_ID} - Identification number of GIFT polygons\cr
+\emph{entity_ID} - Identification number of the geographic region\cr
 \emph{total} - total species richness\cr
 \emph{native} - number of native species\cr
 \emph{naturalized} - number of naturalized species\cr
 \emph{endemic_min} - number of endemic species
+
+The number of endemic species is a conservative count not counting
+occurrences of species which go back to infraspecific taxa.
 }
 \examples{
 \dontrun{
