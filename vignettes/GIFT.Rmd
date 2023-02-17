@@ -775,14 +775,28 @@ height_raw <- GIFT_traits_raw(trait_IDs = c("1.6.2"))
 # Raw values
 as.numeric(height_raw[which(height_raw$work_species == "Fagus sylvatica"),
                       "trait_value"])
-
-# Aggregated value
-as.numeric(height[which(height$work_species == "Fagus sylvatica"),
-                  "trait_value_1.6.2"])
 ```
 
 Three maximal heights for *Fagus sylvatica* were available, 30, 35 and 50
-meters, which led to an aggregated value of 50 meters.
+meters, which led to an aggregated value of 50 meters.  
+<br>
+And if you want to look up the references that led to the aggregated trait
+value, you can run this chunk:  
+
+```{r, message=FALSE}
+# Aggregated value
+as.numeric(height[which(height$work_species == "Fagus sylvatica"),
+                  "trait_value_1.6.2"])
+
+references <- GIFT_references(GIFT_version = "beta")
+
+unique(unlist(strsplit(height$references_1.6.2, ",")))
+
+references <- references[
+  which(references$ref_ID %in% 
+          unique(unlist(strsplit(height$references_1.6.2, ",")))), ]
+references[1:2, ]
+```
 
 <br>
 
