@@ -5,14 +5,14 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param complete_taxon Boolean stating you want to retrieve checklists that
+#' @param complete_taxon logical stating you want to retrieve checklists that
 #' only contain the exhaustive list of the 'taxon_name' argument or as well
 #' incomplete lists.
 #' 
 #' @param floristic_group Character among the following options: 'all',
 #' 'native', 'endemic', 'naturalized'.
 #' 
-#' @param complete_floristic Boolean stating you want to retrieve checklists
+#' @param complete_floristic logical stating you want to retrieve checklists
 #' that only contain the exhaustive list of the 'floristic_group' argument or
 #' as well incomplete lists.
 #' 
@@ -26,8 +26,8 @@
 #' criteria. Checklists from these references will not be returned. NULL by 
 #' default.
 #'  
-#' @param suit_geo Boolean, whether only regions classified as suit_geo should 
-#' be considered (see details).
+#' @param suit_geo logical indicating whether only regions classified as 
+#' suit_geo should be considered (see details).
 #' 
 #' @param shp Shapefile provided by the user.
 #'
@@ -42,7 +42,7 @@
 #' 'extent_intersect' means that every polygon from GIFT for which the extent
 #' intersects the provided shape/coordinates will be retrieved.
 #' 
-#' @param remove_overlap a boolean stating whether you want to
+#' @param remove_overlap a logical stating whether you want to
 #' retrieve checklists that overlap or not.
 #' 
 #' @param area_threshold_island A number stating from which surface the
@@ -62,14 +62,14 @@
 #' other regions from the same resource will be removed even if there are other
 #' references available for those regions.
 #' 
-#' @param taxonomic_group Boolean. When set to TRUE, two additional columns
+#' @param taxonomic_group logical. When set to TRUE, two additional columns
 #' ('family' and 'tax_group') are available in the checklists.
 #' 
-#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
+#' @param namesmatched logical. FALSE by default, set to TRUE if you want the
 #' original species name as they came in the references as well as details on
 #' the taxonomic harmonization.
 #' 
-#' @param list_set_only Boolean. Stating whether you only want the metadata or
+#' @param list_set_only logical stating whether you only want the metadata or
 #' if you also want to retrieve the species lists.
 #'
 #' @template GIFT_version_api

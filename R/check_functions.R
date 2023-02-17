@@ -1,4 +1,4 @@
-# Internal functions to check inputs and outputs errors
+# Internal functions to check input and output errors
 #
 # Authors: Pierre Denelle & Patrick Weigelt
 #
@@ -7,7 +7,7 @@
 #
 # Authors: Pierre Denelle
 #
-# Stop if GIFT_version argument is not a proper version of the database
+# Stop if api argument does not have the right format
 #
 # Args:
 #   api a character
@@ -25,7 +25,7 @@ check_api <- function(api) {
 #
 # Authors: Pierre Denelle
 #
-# Stop if area_threshold_island argument is not having the right format
+# Stop if area_threshold_island argument does not have the right format
 #
 # Args:
 #   area_threshold_island a positive numeric
@@ -35,8 +35,9 @@ check_api <- function(api) {
 
 check_area_threshold_island <- function(area_threshold_island) {
   if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
-    stop("'area_threshold_island' is a surface in km^2 indicating from which
-    surface the smallest overlapping polygon is kept.")
+    stop("'area_threshold_island' must be a numeric value indicating the 
+    area threshold in km^2 above which smaller islands are preferred over 
+    larger islands.")
   }
 }
 
@@ -54,8 +55,9 @@ check_area_threshold_island <- function(area_threshold_island) {
 
 check_area_threshold_mainland <- function(area_threshold_mainland) {
   if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
-    stop("'area_threshold_mainland' is a surface in km^2 indicating from which
-    surface the smallest overlapping polygon is kept.")
+    stop("'area_threshold_mainland' must be a numeric value indicating the 
+    area threshold in km^2 above which smaller regions are preferred over 
+    larger regions.")
   }
 }
 
@@ -109,9 +111,9 @@ check_bias_ref <- function(bias_ref) {
 
 check_by_ref_ID <- function(by_ref_ID) {
   if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) || is.na(by_ref_ID)){
-    stop("'by_ref_ID' must be a boolean stating whether indicating whether the
+    stop("'by_ref_ID' must be a boolean indicating whether the
          removal of overlapping regions shall be applied only at the
-         reference level.")
+         reference level (i.e. within references).")
   }
 }
 
@@ -139,8 +141,8 @@ check_coordinates <- function(coordinates, shp, overlap) {
     
     if(nrow(coordinates) == 1){
       if(overlap %in% c("shape_inside", "centroid_inside")){
-        stop("With a point, use either 'shape_intersect' or
-             'extent_intersect' only.")
+        stop("With 'coordinates' being a point, 'overlap' should be either 
+        'shape_intersect' or 'extent_intersect'.")
       }
       
       shp <- sf::st_point(coordinates)
@@ -161,7 +163,7 @@ check_coordinates <- function(coordinates, shp, overlap) {
     }else if(nrow(coordinates) > 2){
       if((coordinates[1, 1] != coordinates[nrow(coordinates), 1]) &
          (coordinates[1, 2] != coordinates[nrow(coordinates), 2])){
-        warning("Provided polygon did not have a closed shape.")
+        warning("Provided polygon does not have a closed shape.")
         coordinates <- rbind(coordinates, coordinates[1, ])
       }
       shp <- sf::st_polygon(list(coordinates))
@@ -191,9 +193,10 @@ check_coordinates <- function(coordinates, shp, overlap) {
 check_complete_floristic <- function(complete_floristic) {
   if(length(complete_floristic) != 1 || !is.logical(complete_floristic) ||
      is.na(complete_floristic)){
-    stop("'complete_floristic' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'floristic_group' argument or as well incomplete lists.")
+    stop("'complete_floristic' must be a logical stating whether you want to
+    retrieve checklists only for regions for which the 'floristic_group' is 
+    entirely covered or also regions for which onla a subset of the 
+    the 'floristic_group' is covered.")
   }
 }
 
@@ -212,9 +215,10 @@ check_complete_floristic <- function(complete_floristic) {
 check_complete_taxon <- function(complete_taxon) {
   if(length(complete_taxon) != 1 || !is.logical(complete_taxon) ||
      is.na(complete_taxon)){
-    stop("'complete_taxon' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'taxon_name' argument or as well incomplete lists.")
+    stop("'complete_taxon' must be a logical stating whether you want to
+    retrieve checklists for regions for which the 'taxon_name' argument is 
+    entirely covered or also regions for which onla a subset of the 
+    the 'taxon_name' is covered.")
   }
 }
 
@@ -254,9 +258,9 @@ check_floristic_group <- function(floristic_group) {
 check_geo_type <- function(geo_type) {
   if(is.na(geo_type) || !is.character(geo_type) || 
      !(geo_type %in% c("Mainland", "Island", "All"))){
-    stop(c("'geo_type' must be a character string stating what geographic
-    type you want to retrieve. Available options are 'Mainland', 'Island' or
-    'Mainland, Island')."))
+    stop(c("'geo_type' must be a character string stating for what geographic
+    type of regions you want to retrieve checklists. Available options are 
+    'Mainland', 'Island' and 'Mainland, Island')."))
   }
 }
 
@@ -282,8 +286,8 @@ check_gift_version <- function(GIFT_version) {
       !(GIFT_version %in% c(unique(gift_version$version),
                             "latest", "beta"))) {
     stop(c("'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions."))
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT."))
   }
   if (GIFT_version == "latest") {
     GIFT_version <- gift_version[nrow(gift_version), "version"]
@@ -317,8 +321,8 @@ check_gift_version_simple <- function(GIFT_version) {
   if (length(GIFT_version) != 1 || is.na(GIFT_version) ||
       !is.character(GIFT_version)) {
     stop(c("'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions."))
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT."))
   }
   if (GIFT_version == "latest") {
     gift_version <- jsonlite::read_json(
@@ -353,8 +357,9 @@ version.")
 check_list_set_only <- function(list_set_only) {
   if(length(list_set_only) != 1 || !is.logical(list_set_only) ||
      is.na(list_set_only)){
-    stop("'list_set_only' must be a boolean stating whether you only want the
-    metadata or if you also want to retrieve the species lists.")
+    stop("'list_set_only' must be a logical stating whether you only want 
+    metadata of the checklists or if you also want to retrieve the species 
+    lists.")
   }
 }
 
@@ -373,9 +378,9 @@ check_list_set_only <- function(list_set_only) {
 check_namesmatched <- function(namesmatched) {
   if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
      is.na(namesmatched)){
-    stop("'namesmatched' must be a boolean stating whether you only want the
+    stop("'namesmatched' must be a logical stating whether you only want the
     standardized species names or if you also want to retrieve original species 
-         names and information on the name matching.")
+    names and information on the name matching.")
   }
 }
 
@@ -396,10 +401,11 @@ check_overlap <- function(overlap) {
   if(!is.character(overlap) || length(overlap) != 1 ||
      !(all(overlap %in% c("centroid_inside", "shape_inside", "shape_intersect",
                           "extent_intersect")))){
-    stop("overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
-         'extent_intersect'.")
+    stop("'overlap' must be a character string indicating whether you want to 
+    use the centroid or extent of the GIFT polygons to overlap with your 
+    shapefile or coordinates.\n 
+    It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+    'extent_intersect'.")
   }
 }
 
@@ -418,9 +424,9 @@ check_overlap <- function(overlap) {
 check_overlap_threshold <- function(overlap_threshold) {
   if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
      overlap_threshold > 1){
-    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
-    what percentage of overlap, partially overlapping polygons should be
-         kept.")
+    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating above
+    what proportion of overlap, only one of the partially overlapping polygons 
+    should be kept.")
   }
 }
 
@@ -440,8 +446,8 @@ check_overlap_threshold <- function(overlap_threshold) {
 check_ref_excluded <- function(ref_excluded) {
   if(!is.null(ref_excluded) & !is.character(ref_excluded) & 
      !is.numeric(ref_excluded)){
-    stop("'ref_excluded' must be a character string or a numeric stating the
-         identification numbers of the references (ref_ID) that shall be 
+    stop("'ref_excluded' must be a character string or a numeric giving the
+         identification numbers of references (ref_ID) that shall be 
          ignored.")
   }
 }
@@ -461,8 +467,8 @@ check_ref_excluded <- function(ref_excluded) {
 check_remove_overlap <- function(remove_overlap) {
   if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
      is.na(remove_overlap)){
-    stop("'remove_overlap' must be a boolean stating whether you want to
-    retrieve checklists that overlap or not.")
+    stop("'remove_overlap' must be a logical stating whether you want to
+    remove overlapping regions and their checklists from the output.")
   }
 }
 
@@ -486,33 +492,33 @@ check_shp <- function(shp, overlap) {
   }
   
   if(!is.null(shp) && nrow(shp) > 1){
-    warning("Several polygons are passed in the shp object. They will be
-            treated at the same time. To know what polygon covers what
-            checklist, please use repeteadly GIFT_spatial().")
+    warning("Several features are included in the 'shp' object. They will be
+            treated at once (not separately by ID). To retrieve checklists per 
+            feature separately, please run GIFT_spatial() repeteadly.")
   }
   
   if(!is.null(shp) && "sfc_POINT" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
-    stop("With a point, use either 'shape_intersect' or
-             'extent_intersect' only.")
+    stop("With 'shp' being a points layer, 'overlap' should be either 
+        'shape_intersect' or 'extent_intersect'.")
   }
   
   if(!is.null(shp) && "sfc_MULTIPOINT" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
-    stop("With a point, use either 'shape_intersect' or
-             'extent_intersect' only.")
+    stop("With 'shp' being a points layer, 'overlap' should be either 
+        'shape_intersect' or 'extent_intersect'.")
   }
   
   if(!is.null(shp) && "sfc_LINESTRING" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
-    stop("With a linestring, use either 'shape_intersect' or
-             'extent_intersect' only.")
+    stop("With shp being a linestring, 'overlap' should be either 
+        'shape_intersect' or 'extent_intersect'.")
   }
   
   if(!is.null(shp) && "sfc_MULTILINESTRING" %in% class(sf::st_as_sfc(shp)) &&
      overlap %in% c("shape_inside", "centroid_inside")){
-    stop("With a linestring, use either 'shape_intersect' or
-             'extent_intersect' only.")
+    stop("With shp being a linestring, 'overlap' should be either 
+        'shape_intersect' or 'extent_intersect'.")
   }
 }
 
@@ -530,8 +536,8 @@ check_shp <- function(shp, overlap) {
 
 check_suit_geo <- function(suit_geo) {
   if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
-    stop("'suit_geo' must be a boolean stating whether you want to
-    retrieve only suitable polygons or not.")
+    stop("'suit_geo' must be a logical stating whether only regions classified 
+    as suit_geo should be considered.")
   }
 }
 
@@ -554,10 +560,10 @@ check_sumstat <- function(sumstat) {
        "med", "q60", "q70", "q75", "q80", "q90", "q95", 
        "max", "mean", "sd", "modal", "unique_n", "H", "n")))
   ){
-    stop('sumstat needs to be a character vector including one or more of the 
-         following items: c("min", "q05", "q10", "q20", "q25", "q30", "q40", 
-         "med", "q60", "q70", "q75", "q80", "q90", "q95", "max", "mean", "sd", 
-         "modal", "unique_n", "H", "n")')
+    stop("'sumstat' needs to be a character vector including one or more of the 
+         following summary statistics: c('min', 'q05', 'q10', 'q20', 'q25', 
+         'q30', 'q40', 'med', 'q60', 'q70', 'q75', 'q80', 'q90', 'q95', 'max', 
+         'mean', 'sd', 'modal', 'unique_n', 'H', 'n')")
   }
 }
 
@@ -597,8 +603,8 @@ check_taxon_name <- function(taxon_name) {
 check_taxonomic_group <- function(taxonomic_group) {
   if(length(taxonomic_group) != 1 || !is.logical(taxonomic_group) ||
      is.na(taxonomic_group)){
-    stop("'taxonomic_group' must be a boolean. When set to TRUE, two additional
-    columns ('family' and 'tax_group') are available in the checklists.")
+    stop("'taxonomic_group' must be a logical. When set to TRUE, two additional
+    columns ('family' and 'tax_group') will be available in the checklists.")
   }
 }
 
@@ -617,7 +623,7 @@ check_taxonomic_group <- function(taxonomic_group) {
 check_trait_IDs <- function(trait_IDs) {
   if(!is.character(trait_IDs)){
     stop("trait_IDs must be a character string indicating which trait you want
-         to retrieve.")
+         to retrieve. To see all options, run 'GIFT_traits_meta()")
   }
 }
 
@@ -625,7 +631,7 @@ check_trait_IDs <- function(trait_IDs) {
 #
 # Authors: Pierre Denelle
 #
-# Stop if trait_IDs argument is not having the right format
+# Make bounding box out of user supplied coordinates
 #
 # Args:
 #   four corners
