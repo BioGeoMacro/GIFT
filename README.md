@@ -16,7 +16,7 @@ groups and providing information about the floristic status and
 functional traits of plants as well as environmental information for
 each checklist. <br> More details about the content of this database are
 available in the publication of [Weigelt et al.,
-(2021)](https://doi.org/10.1111/jbi.13623).
+(2020)](https://doi.org/10.1111/jbi.13623).
 
 <img src="man/figures/rich_map_plot_islands.png" width="70%" style="display: block; margin: auto;" />
 
