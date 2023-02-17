@@ -1,16 +1,23 @@
-#' Taxonomic and trait coverage in GIFT
+#' Taxonomic and trait coverage per geographic region and taxonomic group in 
+#' GIFT
 #'
-#' Retrieve either taxonomic or trait coverage (for a given trait) per polygon.
+#' Retrieve taxonomic or trait coverage (for a given trait) of all species, 
+#' native species, naturalized species and endemic species per taxonomic group 
+#' and geographic region combination.
 #' 
-#' @param what Taxonomic or trait coverage.
+#' @param what character indicating whether 'taxonomic_coverage' or 
+#' 'trait_coverage' shall be retrieved.
 #'
-#' @param taxon_name Name of the taxonomic group you want to retrieve.
+#' @param taxon_name Name of the taxonomic group you want to retrieve coverage 
+#' for. See [GIFT::GIFT_taxonomy()] for details.
 #'
-#' @param trait_ID Identification number of the trait you want to retrieve.
+#' @param trait_ID Identification number of the trait you want to retrieve 
+#' coverage for. See [GIFT::GIFT_traits_meta()] for details.
 #' 
 #' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
+#'  database to use. The function retrieves by default the "latest" stable 
+#'  version. If set to "beta", the most up-to-date version which is still 
+#'  subject to changes and edits is used.
 #' 
 #' @param api character string defining from which API the data will be
 #' retrieved.
@@ -21,10 +28,28 @@
 #' @details The output has 5 columns:
 #' 
 #' \emph{entity_ID} - Identification number of GIFT polygons\cr
-#' \emph{total} - species richness or trait coverage\cr
-#' \emph{native} - native species or trait coverage\cr
-#' \emph{naturalized} - naturalized species or trait coverage\cr
-#' \emph{endemic_min} - endemic species or trait coverage
+#' \emph{total} - taxonomic or trait coverage for all species\cr
+#' \emph{total_rst} - taxonomic or coverage for all species considering 
+#' restricted resources\cr
+#' \emph{native} - taxonomic or trait coverage for native species\cr
+#' \emph{native_rst} - taxonomic or trait coverage for native species 
+#' considering restricted resources\cr
+#' \emph{naturalized} - taxonomic or trait coverage for naturalized species\cr
+#' \emph{naturalized_rst} - taxonomic or trait coverage for naturalized species 
+#' considering restricted resources\cr
+#' \emph{endemic_min} - taxonomic or trait coverage for endemic species\cr
+#' \emph{endemic_min_rst} - taxonomic or trait coverage for endemic species 
+#' considering restricted resources
+#' 
+#' In the case of taxonomic coverage, a '1' means that species composition data
+#' is available for the given combination of taxonomic group and geographic 
+#' region while 'NA' means that no data is available. This can differ depending 
+#' on whether restricted data in GIFT is considered or not (columns with or 
+#' without _rst at the end).
+#' 
+#' In the case of trait coverage, the proportion of species of a given 
+#' taxonomic group with information on the defined trait is reported per 
+#' geographic region.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -54,7 +79,7 @@ GIFT_coverage <- function(
   # 1. Controls ----
   if(length(what) != 1 || is.na(what) || !is.character(what) ||
      !(all(what %in% c("taxonomic_coverage", "trait_coverage")))){
-    stop("'what' is incorrect. It must be a character string equal either to
+    stop("'what' is incorrect. It must be a character string equal to either 
          'taxonomic_coverage' or 'trait_coverage'.")
   }
   
@@ -66,7 +91,7 @@ GIFT_coverage <- function(
   }
   
   if(length(trait_ID) != 1){
-    stop("Please provide one trait only.")
+    stop("Please provide one trait_ID only.")
   }
   
   if(is.na(trait_ID) || !is.character(trait_ID)){
@@ -98,17 +123,10 @@ GIFT_coverage <- function(
   } else if(what == "taxonomic_coverage"){
     tmp <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
+      ".php?query=species_cov&taxonid=", tax_group), simplifyVector = TRUE)
   }
   
-  tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "native",
-                                 "naturalized", "endemic_min"), as.numeric)
-  
-  # Convert species number as 1
-  tmp[which(tmp$total > 1), "total"] <- 1
-  tmp[which(tmp$native > 1), "native"] <- 1
-  tmp[which(tmp$naturalized > 1), "naturalized"] <- 1
-  tmp[which(tmp$endemic_min > 1), "endemic_min"] <- 1
-  
+  tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "total_rst", "native", "native_rst",
+                                 "naturalized", "naturalized_rst", "endemic_min", "endemic_min_rst"), as.numeric)
   return(tmp)
 }
