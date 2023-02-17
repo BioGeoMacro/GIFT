@@ -26,7 +26,6 @@ Imports:
   utils
 RoxygenNote: 7.2.3
 Suggests: 
-    ape,
     BiocManager,
     covr,
     ggplot2,

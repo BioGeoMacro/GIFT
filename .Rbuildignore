@@ -7,3 +7,4 @@
 ^\.github$
 ^TODO.md
 ^man-roxygen
+^README.rmd
