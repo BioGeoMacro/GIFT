@@ -26,7 +26,8 @@
 #' criteria. Checklists from these references will not be returned. NULL by 
 #' default.
 #'  
-#' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
+#' @param suit_geo Boolean, whether only regions classified as suit_geo should 
+#' be considered (see details).
 #' 
 #' @param shp Shapefile provided by the user.
 #'
@@ -122,6 +123,17 @@
 #' \emph{cons_status} - Conservation status of the species.\cr
 #' \emph{family} - Family of the species.\cr
 #' \emph{tax_group} - Taxonomic group of the species.
+#'
+#' While the arguments 'taxon_name' in combination with 'complete_taxon = TRUE' 
+#' and 'floristic_group' in combination with 'complete_floristic = TRUE' make 
+#' sure to only get back checklists for regions for which GIFT has lists 
+#' aiming at covering both the entire taxonomic group and floristic subset (for 
+#' example native vascular plants), it does not mean that the checklists are 
+#' complete (include all species). We therefore flagged regions in GIFT for 
+#' which the combination of all checklists is obviously incomplete as 
+#' 'suit_geo = 0'. This has however only been done only for native angiosperms 
+#' and the assessment has been subjective. Set suit_geo = TRUE if you only want 
+#' to consider regions classified as suit_geo.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
