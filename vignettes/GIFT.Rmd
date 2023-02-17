@@ -633,7 +633,7 @@ ggplot(world) +
 <br>
 By customizing the code above, you can also produce a nicer map:
 
-```{r, include = FALSE, fig.width = 8, fig.height = 4}
+```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
 anemone_map_plot_bg_parts <-
   ggplot(world) +
   geom_sf(data = bb, fill = "aliceblue", color = NA) +
@@ -656,17 +656,15 @@ anemone_map_plot_bg_parts <-
         axis.ticks = element_blank())
 
 (anemone_map_plot_bg_parts +
-     lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-     theme(panel.border = element_rect(fill = NA,
-                                       linewidth = 1)) +
-     theme(legend.position = "bottom")
-   |
-     anemone_map_plot_bg_parts +
+    lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+    theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
+    theme(legend.position = "bottom")) +
+  (anemone_map_plot_bg_parts +
      lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
      labs(title = "") +
      guides(fill = "none") +
-     theme(panel.border = element_rect(fill = NA,
-                                       linewidth = 1)))
+     theme(panel.border = element_rect(fill = NA, linewidth = 1))) +
+  patchwork::plot_layout()
 ```
 
 <br>
@@ -698,16 +696,14 @@ anemone_map_plot_bg_parts <-
 
 (anemone_map_plot_bg_parts +
      lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-     theme(panel.border = element_rect(fill = NA,
-                                       linewidth = 1)) +
+     theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
      theme(legend.position = "bottom")
    |
      anemone_map_plot_bg_parts +
      lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
      labs(title = "") +
      guides(fill = "none") +
-     theme(panel.border = element_rect(fill = NA,
-                                       linewidth = 1)))
+     theme(panel.border = element_rect(fill = NA, linewidth = 1)))
 ```
 </details>
 <br>
