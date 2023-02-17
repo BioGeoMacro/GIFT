@@ -31,14 +31,14 @@ GIFT_checklist(
 \item{taxon_name}{Character string corresponding to the taxonomic group
 of interest.}
 
-\item{complete_taxon}{Boolean stating you want to retrieve checklists that
+\item{complete_taxon}{logical stating you want to retrieve checklists that
 only contain the exhaustive list of the 'taxon_name' argument or as well
 incomplete lists.}
 
 \item{floristic_group}{Character among the following options: 'all',
 'native', 'endemic', 'naturalized'.}
 
-\item{complete_floristic}{Boolean stating you want to retrieve checklists
+\item{complete_floristic}{logical stating you want to retrieve checklists
 that only contain the exhaustive list of the 'floristic_group' argument or
 as well incomplete lists.}
 
@@ -52,8 +52,8 @@ when assembling the set of regions and checklists fulfilling the given
 criteria. Checklists from these references will not be returned. NULL by
 default.}
 
-\item{suit_geo}{Boolean, whether only regions classified as suit_geo should
-be considered (see details).}
+\item{suit_geo}{logical indicating whether only regions classified as
+suit_geo should be considered (see details).}
 
 \item{shp}{Shapefile provided by the user.}
 
@@ -68,7 +68,7 @@ retrieve checklists. Available options are 'centroid_inside',
 'extent_intersect' means that every polygon from GIFT for which the extent
 intersects the provided shape/coordinates will be retrieved.}
 
-\item{remove_overlap}{a boolean stating whether you want to
+\item{remove_overlap}{a logical stating whether you want to
 retrieve checklists that overlap or not.}
 
 \item{area_threshold_island}{A number stating from which surface the
@@ -88,14 +88,14 @@ regions shall be applied by ref_ID only. Note that regions overlapping with
 other regions from the same resource will be removed even if there are other
 references available for those regions.}
 
-\item{taxonomic_group}{Boolean. When set to TRUE, two additional columns
+\item{taxonomic_group}{logical. When set to TRUE, two additional columns
 ('family' and 'tax_group') are available in the checklists.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
+\item{namesmatched}{logical. FALSE by default, set to TRUE if you want the
 original species name as they came in the references as well as details on
 the taxonomic harmonization.}
 
-\item{list_set_only}{Boolean. Stating whether you only want the metadata or
+\item{list_set_only}{logical stating whether you only want the metadata or
 if you also want to retrieve the species lists.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
