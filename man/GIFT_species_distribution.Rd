@@ -56,8 +56,9 @@ native and non-native. In that case, the aggregation would consider the
 species to be native. Reverse for naturalized and alien.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.}
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}

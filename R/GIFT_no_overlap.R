@@ -21,12 +21,7 @@
 #' @param geoentities_overlap A table coming from GIFT indicating the
 #' overlap in km^2 between pairs of polygons.
 #' 
-#' @param api Character string defining from which API the data will be
-#' retrieved.
-#' 
-#' @param GIFT_version Character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
+#' @template GIFT_version_api
 #' 
 #' @return A vector of entity_IDs (identification numbers of polygons)
 #' non-overlapping.

@@ -14,13 +14,7 @@
 #' @param trait_ID Identification number of the trait you want to retrieve 
 #' coverage for. See [GIFT::GIFT_traits_meta()] for details.
 #' 
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the "latest" stable 
-#'  version. If set to "beta", the most up-to-date version which is still 
-#'  subject to changes and edits is used.
-#' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
+#' @template GIFT_version_api
 #' 
 #' @return A data frame with either taxonomic or trait coverage per
 #' GIFT polygon.

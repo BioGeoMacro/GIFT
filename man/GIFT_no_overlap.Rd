@@ -33,12 +33,13 @@ percentage of overlap, partially overlapping polygons should be kept.}
 \item{geoentities_overlap}{A table coming from GIFT indicating the
 overlap in km^2 between pairs of polygons.}
 
-\item{api}{Character string defining from which API the data will be
+\item{api}{character string defining from which API the data will be
 retrieved.}
 
-\item{GIFT_version}{Character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.}
+\item{GIFT_version}{character string defining the version of the GIFT
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 }
 \value{
 A vector of entity_IDs (identification numbers of polygons)

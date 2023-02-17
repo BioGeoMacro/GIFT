@@ -45,12 +45,7 @@
 #' @param taxonomy default NULL. If not, it has to be the taxonomy table (see
 #' GIFT_taxonomy()).
 #' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
-#' 
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
+#' @template GIFT_version_api
 #' 
 #' @return
 #' A data frame with 16 columns.

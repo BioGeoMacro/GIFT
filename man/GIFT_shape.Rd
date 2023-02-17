@@ -17,8 +17,9 @@ GIFT_shape(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the most up-to-date
-version.}
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 }
 \value{
 A spatial data.frame with 21 columns.

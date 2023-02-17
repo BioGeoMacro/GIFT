@@ -16,11 +16,7 @@
 #' derivation that potentially introduces a bias (e.g. all phanerophytes being
 #' woody but some life forms being ambiguous).
 #' 
-#' @param api Character string with the API.
-#'
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
+#' @template GIFT_version_api
 #' 
 #' @return
 #' A long-format data frame with 6 columns: `trait_ID`, `work_ID`, `species`,

@@ -27,12 +27,13 @@ FALSE by default.}
 \item{work_ID_subset}{A vector of work_ID to prune the phylogenetic tree.
 NULL by default.}
 
-\item{api}{character string defining the API from which the data will be
+\item{api}{character string defining from which API the data will be
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the latest stable
-version.}
+database to use. The function retrieves by default the "latest" stable
+version. If set to "beta", the most up-to-date version which is still
+subject to changes and edits is used.}
 }
 \value{
 A data frame with 5 columns or a tree object.

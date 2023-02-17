@@ -70,13 +70,8 @@
 #' 
 #' @param list_set_only Boolean. Stating whether you only want the metadata or
 #' if you also want to retrieve the species lists.
-#' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
 #'
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
+#' @template GIFT_version_api
 #'
 #' @return
 #' List with two data frames: the checklist with species and the list of ID.
