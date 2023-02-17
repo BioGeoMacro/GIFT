@@ -98,7 +98,7 @@
 
 ## 1.2. Controls
 * Make a clear error message in case of wrong API or missing internet connection (httr, httr2 or rcurl)
-* Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)
+* ~~Put controls for all arguments in not exported functions whenever possible (like for api and GIFT_version)~~
 
 # 2. Vignette
 * API vignette: properly check the API arguments in the query table

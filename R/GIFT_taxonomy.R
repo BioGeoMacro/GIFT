@@ -2,12 +2,7 @@
 #'
 #' Retrieves the taxonomy of GIFT.
 #'
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
-#' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
+#' @template GIFT_version_api
 #' 
 #' @return A data frame with 6 columns.
 #'

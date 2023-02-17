@@ -6,13 +6,7 @@
 #'
 #' @param taxon_name Taxonomic group to retrieve species richness for.
 #'
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the "latest" stable 
-#'  version. If set to "beta", the most up-to-date version which is still 
-#'  subject to changes and edits is used.
-#' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
+#' @template GIFT_version_api
 #' 
 #' @return A data frame with species richness values for different floristic 
 #' subsets per geographic region in GIFT.

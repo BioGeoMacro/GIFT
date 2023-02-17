@@ -18,17 +18,12 @@
 #' 
 #' @param floristic_group Character string among these options:
 #' 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
-#' 
-#' @param GIFT_version character string defining the version of the GIFT
-#'  database to use. The function retrieves by default the most up-to-date
-#'  version.
-#' 
+#'
 #' @param list_set NULL by default
 #' 
 #' @param taxonomy NULL by default
 #' 
-#' @param api character string defining from which API the data will be
-#' retrieved.
+#' @template GIFT_version_api
 #' 
 #' @return
 #' A data frame with 15 or 29 columns (depending on namesmatched). This
