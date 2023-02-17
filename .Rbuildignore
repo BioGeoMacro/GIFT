@@ -6,3 +6,4 @@
 ^pkgdown$
 ^\.github$
 ^TODO.md
+^man-roxygen
