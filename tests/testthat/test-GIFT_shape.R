@@ -18,8 +18,8 @@ expect_error(
 expect_error(
   GIFT_shape(entity_ID = c(677, 200), GIFT_version = NA),
   "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
   fixed = TRUE)
 
 expect_message(GIFT_shape(entity_ID = c(677, 200), GIFT_version = "beta"),

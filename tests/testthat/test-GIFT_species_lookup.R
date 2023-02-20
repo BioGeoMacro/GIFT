@@ -24,7 +24,7 @@ test_that("invalid inputs", {
   expect_error(
     GIFT_species_lookup(GIFT_version = 1),
     "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
     fixed = TRUE)
 })

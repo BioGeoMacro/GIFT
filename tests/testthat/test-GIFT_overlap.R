@@ -24,7 +24,7 @@ expect_error(
 expect_error(
   GIFT_overlap(GIFT_version = NA),
   "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
   fixed = TRUE)
 })

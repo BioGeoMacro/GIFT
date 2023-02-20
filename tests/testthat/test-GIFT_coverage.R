@@ -14,7 +14,7 @@ test_that("invalid inputs", {
   # Error message when ref_ID and list_ID are missing
   expect_error(
     GIFT_coverage(what = NA),
-    "'what' is incorrect. It must be a character string equal either to
+    "'what' is incorrect. It must be a character string equal to either 
          'taxonomic_coverage' or 'trait_coverage'.", fixed = TRUE)
   
   expect_error(
@@ -31,7 +31,7 @@ test_that("invalid inputs", {
   
   expect_error(
     GIFT_coverage(trait_ID = c("1.1.1", "1.2.1")),
-    "Please provide one trait only.", fixed = TRUE)
+    "Please provide one trait_ID only.", fixed = TRUE)
   
   expect_error(
     GIFT_coverage(api = NA),
@@ -41,8 +41,8 @@ test_that("invalid inputs", {
   expect_error(
     GIFT_coverage(GIFT_version = NA),
     "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
     fixed = TRUE)
   
   expect_message(GIFT_coverage(GIFT_version = "beta"),

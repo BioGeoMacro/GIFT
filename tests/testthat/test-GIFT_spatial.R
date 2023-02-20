@@ -20,10 +20,11 @@ test_that("data frame output format", {
   
   expect_error(
     GIFT_spatial(shp = western_mediterranean, overlap = "error"),
-    "overlap is a character string indicating whether you want to use
-         centroid or extent of GIFT polygons to overlap with your shapefile.\n
-         It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
-         'extent_intersect'.",
+    "'overlap' must be a character string indicating whether you want to 
+    use the centroid or extent of the GIFT polygons to overlap with your 
+    shapefile or coordinates.\n 
+    It has to be 'centroid_inside', 'shape_inside', 'shape_intersect' or
+    'extent_intersect'.",
     fixed = TRUE)
   
   expect_error(
@@ -34,8 +35,8 @@ test_that("data frame output format", {
   expect_error(
     GIFT_spatial(shp = western_mediterranean, GIFT_version = NA),
     "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
     fixed = TRUE)
   
   expect_message(

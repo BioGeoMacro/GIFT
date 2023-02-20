@@ -78,8 +78,8 @@ test_that("invalid inputs", {
   
   expect_error(
     GIFT_checklist_conditional(ref_excluded = NA),
-    "'ref_excluded' must be a character string or a numeric stating the
-         identification numbers of the references (ref_ID) that shall be 
+    "'ref_excluded' must be a character string or a numeric giving the
+         identification numbers of references (ref_ID) that shall be 
          ignored.", fixed = TRUE)
   
   expect_error(
@@ -89,9 +89,10 @@ test_that("invalid inputs", {
   
   expect_error(
     GIFT_checklist_conditional(complete_taxon =  NA),
-    "'complete_taxon' must be a boolean stating whether you want to
-    retrieve checklists that only contain the exhaustive list of the
-    'taxon_name' argument or as well incomplete lists.",
+    "'complete_taxon' must be a logical stating whether you want to
+    retrieve checklists for regions for which the 'taxon_name' argument is 
+    entirely covered or also regions for which only a subset of the 
+    the 'taxon_name' is covered.",
     fixed = TRUE)
   
   expect_error(
@@ -102,8 +103,8 @@ test_that("invalid inputs", {
   expect_error(
     GIFT_checklist_conditional(GIFT_version =  NA),
     "'GIFT_version' must be a character string stating what version
-of GIFT you want to use. Available options are 'latest' and the different
-versions.",
+of GIFT you want to use. Available options are 'latest', 'beta' and the 
+different named stable versions of GIFT.",
     fixed = TRUE)
   
   expect_error(

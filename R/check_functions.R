@@ -195,7 +195,7 @@ check_complete_floristic <- function(complete_floristic) {
      is.na(complete_floristic)){
     stop("'complete_floristic' must be a logical stating whether you want to
     retrieve checklists only for regions for which the 'floristic_group' is 
-    entirely covered or also regions for which onla a subset of the 
+    entirely covered or also regions for which only a subset of the 
     the 'floristic_group' is covered.")
   }
 }
@@ -217,7 +217,7 @@ check_complete_taxon <- function(complete_taxon) {
      is.na(complete_taxon)){
     stop("'complete_taxon' must be a logical stating whether you want to
     retrieve checklists for regions for which the 'taxon_name' argument is 
-    entirely covered or also regions for which onla a subset of the 
+    entirely covered or also regions for which only a subset of the 
     the 'taxon_name' is covered.")
   }
 }
