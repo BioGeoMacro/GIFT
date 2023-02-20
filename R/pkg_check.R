@@ -1,46 +1,46 @@
-devtools::load_all()
+# devtools::load_all()
 
 # To generate the documentation of functions and NAMESPACE
-roxygen2::roxygenise()
+# roxygen2::roxygenise()
 
 # Create Rmd README
-usethis::use_readme_rmd()
+# usethis::use_readme_rmd()
 # Render it to README .md
-devtools::build_readme()
+# devtools::build_readme()
 
 # Build the website
 # usethis::use_pkgdown() # Run once to configure your package to use pkgdown
-pkgdown::build_site()
+# pkgdown::build_site()
 
 # Misspellings
-devtools::spell_check()
-spelling::spell_check_package()
+# devtools::spell_check()
+# spelling::spell_check_package()
 
 # Practice improvements
-goodpractice::gp()
+# goodpractice::gp()
 
 # Tests # https://r-pkgs.org/testing-basics.html
 # usethis::use_testthat() # setting up the tests structure
 # Open a new test file
-usethis::use_test("name_of_the_function_to_test")
+# usethis::use_test("name_of_the_function_to_test")
 
 # Test coverage of the package
-covr::package_coverage()
-devtools::test()
+# covr::package_coverage()
+# devtools::test()
 
 # library(checkmate)
 # ?build_site
 
 # Checking the package
-devtools::check()
-devtools::check(args = "--as-cran")
+# devtools::check()
+# devtools::check(args = "--as-cran")
 
 # Markdown in the development of the pages
-usethis::use_roxygen_md()
+# usethis::use_roxygen_md()
 
 # Hexagon logo
-hexSticker::sticker("man/figures/GIFT.png",
-                    package = "", p_size = 20,
-                    s_x = 1, s_y = 1, s_width = 0.8,
-                    h_fill = "white",
-                    filename = "man/figures/GIFT_hexlogo.png")
+# hexSticker::sticker("man/figures/GIFT.png",
+#                     package = "", p_size = 20,
+#                     s_x = 1, s_y = 1, s_width = 0.8,
+#                     h_fill = "white",
+#                     filename = "man/figures/GIFT_hexlogo.png")
