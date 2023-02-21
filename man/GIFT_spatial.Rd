@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_spatial.R
 \name{GIFT_spatial}
 \alias{GIFT_spatial}
-\title{Environmental data for GIFT checklists}
+\title{Spatial selection of GIFT checklists}
 \usage{
 GIFT_spatial(
   shp = NULL,
@@ -44,8 +44,7 @@ which indicates the percentage of overlap between the provided shape and
 the different polygons of GIFT.
 }
 \description{
-Retrieve environmental data associated to each GIFT checklists.
-They can come as rasters or shapefiles (miscellaneous)
+Retrieve checklists overlapping with a shape file or a set of coordinates
 }
 \examples{
 \dontrun{

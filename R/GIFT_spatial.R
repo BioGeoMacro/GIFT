@@ -1,7 +1,6 @@
-#' Environmental data for GIFT checklists
+#' Spatial selection of GIFT checklists
 #'
-#' Retrieve environmental data associated to each GIFT checklists.
-#' They can come as rasters or shapefiles (miscellaneous)
+#' Retrieve checklists overlapping with a shape file or a set of coordinates
 #'
 #' @param shp Shapefile provided by the user.
 #'
