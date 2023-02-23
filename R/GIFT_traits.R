@@ -100,7 +100,7 @@ GIFT_traits <- function(
   
   message(paste0("Preparing the download of trait data (",
                  length(unique(trait_IDs)),
-                 " traits asked).\n"))
+                 " traits requested).\n"))
   
   # Initiating list
   trait_list <- list()
