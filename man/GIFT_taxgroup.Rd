@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_taxgroup.R
 \name{GIFT_taxgroup}
 \alias{GIFT_taxgroup}
-\title{GIFT taxgroup}
+\title{Taxonomic group of species}
 \usage{
 GIFT_taxgroup(
   work_ID = NULL,
@@ -48,12 +48,12 @@ A vector with the taxonomic group of the species used as input.
 }
 \description{
 Assign taxonomic groups of various hierarchical level to species from GIFT
-(work_ID)
+(\code{work_ID})
 }
 \examples{
 \dontrun{
-ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
-ex2 <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "higher_lvl")
+ex <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "family")
+ex2 <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "higher_lvl")
 }
 
 }
