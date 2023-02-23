@@ -34,6 +34,13 @@ suppressPackageStartupMessages({
 options(tinytex.verbose = TRUE)
 ```
 
+```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
+knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../man/figures/GIFT.png")
+```
+
+<br>
+
 The API endpoint is *https://gift.uni-goettingen.de/api/extended/index.php*.
 We then have different queries, listed in the table below, that allow
 retrieving distinct tables.
