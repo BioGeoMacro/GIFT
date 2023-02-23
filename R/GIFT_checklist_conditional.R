@@ -1,6 +1,6 @@
-#' GIFT checklists
+#' GIFT checklists meta data
 #'
-#' Retrieve meta data on GIFT checklists for regions that are covered by 
+#' Retrieve meta data of GIFT checklists for regions that are covered by 
 #' checklists jointly fulfilling specific criteria.
 #'
 #' @param taxon_name Character string corresponding to the taxonomic group
