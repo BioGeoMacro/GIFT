@@ -114,7 +114,8 @@ GIFT_checklist_raw <- function(
   
   check_taxon_name(taxon_name)
   
-  taxon_check <- GIFT::GIFT_taxonomy(api = api, GIFT_version = GIFT_version)
+  taxon_check <- suppressMessages(
+    GIFT::GIFT_taxonomy(api = api, GIFT_version = GIFT_version))
   if(!(taxon_name %in% taxon_check$taxon_name)){
     stop("The 'taxon_name' you specified is not available in GIFT. Run
          GIFT_taxonomy() to look at the available options (column 'taxon_name'
