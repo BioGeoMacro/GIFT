@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits_tax.R
 \name{GIFT_traits_tax}
 \alias{GIFT_traits_tax}
-\title{GIFT_traits_tax}
+\title{Traits at the taxonomic level}
 \usage{
 GIFT_traits_tax(
   trait_IDs = "",
@@ -47,7 +47,8 @@ Here is the detail of each column:
 \emph{agreement} - Agreement score between the different sources for that
 trait value, only for categorical traits\cr
 \emph{references} - Source of the trait values (ref_ID)\cr
-\emph{negative} - Value of the trait\cr
+\emph{negative} - Does the record indicate the absence of trait value in
+taxon_ID\cr
 
 and then one column per trait with the respective trait values
 }
