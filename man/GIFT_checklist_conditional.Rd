@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_checklist_conditional.R
 \name{GIFT_checklist_conditional}
 \alias{GIFT_checklist_conditional}
-\title{GIFT checklists}
+\title{GIFT checklists meta data}
 \usage{
 GIFT_checklist_conditional(
   taxon_name = "Tracheophyta",
@@ -80,7 +80,7 @@ GIFT_taxonomy()).}
 A data frame with 16 columns.
 }
 \description{
-Retrieve meta data on GIFT checklists for regions that are covered by
+Retrieve meta data of GIFT checklists for regions that are covered by
 checklists jointly fulfilling specific criteria.
 }
 \details{
