@@ -22,6 +22,7 @@ reference:
   - GIFT_checklist_raw
   - GIFT_lists
   - GIFT_references
+  - GIFT_richness
   
 - title: Species' distribution
 
@@ -51,7 +52,6 @@ reference:
 - subtitle: Alternative functions
   desc: >
   contents:
-  - GIFT_richness
   - GIFT_coverage
   
 - title: Spatial data
