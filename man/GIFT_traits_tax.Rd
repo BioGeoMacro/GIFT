@@ -46,7 +46,7 @@ Here is the detail of each column:
 \emph{taxon_name} - Name of the taxon\cr
 \emph{agreement} - Agreement score between the different sources for that
 trait value, only for categorical traits\cr
-\emph{references} - Source of the trait values (ref_ID)\cr
+\emph{references} - Source of the trait values (\code{ref_ID})\cr
 \emph{negative} - Does the record indicate the absence of trait value in
 taxon_ID\cr
 

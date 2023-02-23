@@ -1,4 +1,4 @@
-#' GIFT_traits
+#' Trait values at the species level
 #'
 #' Retrieve specific trait values.
 #'
@@ -55,7 +55,7 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
-#' 
+
 GIFT_traits <- function(
     trait_IDs = "", agreement = 0.66, bias_ref = TRUE, bias_deriv = TRUE,
     api = "https://gift.uni-goettingen.de/api/extended/",

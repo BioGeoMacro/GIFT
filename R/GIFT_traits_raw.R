@@ -1,4 +1,4 @@
-#' GIFT_traits_raw
+#' Raw trait values
 #'
 #' Retrieve non-aggregated trait values at the level of the bibliographic 
 #' references and un-standardized species names in GIFT.
@@ -73,7 +73,7 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
-#' 
+ 
 GIFT_traits_raw <- function(
     trait_IDs = "", derived = TRUE, bias_ref = TRUE, bias_deriv = TRUE,
     api = "https://gift.uni-goettingen.de/api/extended/",

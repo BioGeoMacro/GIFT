@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits_raw.R
 \name{GIFT_traits_raw}
 \alias{GIFT_traits_raw}
-\title{GIFT_traits_raw}
+\title{Raw trait values}
 \usage{
 GIFT_traits_raw(
   trait_IDs = "",

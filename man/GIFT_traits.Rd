@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits.R
 \name{GIFT_traits}
 \alias{GIFT_traits}
-\title{GIFT_traits}
+\title{Trait values at the species level}
 \usage{
 GIFT_traits(
   trait_IDs = "",
