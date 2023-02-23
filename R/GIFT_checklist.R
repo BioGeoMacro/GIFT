@@ -229,7 +229,7 @@ GIFT_checklist <- function(
     paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
            ".php?query=lists"), simplifyVector = TRUE)
   
-  message("Metadata for lists retrieved.\n")
+  message("\nMetadata for lists retrieved.\n")
   
   # Taxonomy query
   taxonomy <- jsonlite::read_json(
