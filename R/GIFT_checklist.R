@@ -243,7 +243,7 @@ GIFT_checklist <- function(
   lists <- suppressMessages(
     GIFT::GIFT_checklist_conditional(
       taxon_name = taxon_name,
-      ref_included = arg_list[[floristic_group]],
+      floristic_scope = arg_list[[floristic_group]],
       ref_excluded = ref_excluded,
       entity_class = entity_class,
       native_indicated = (floristic_group == "native"),
@@ -263,7 +263,7 @@ GIFT_checklist <- function(
     floristic_subset <- suppressMessages(
       GIFT::GIFT_checklist_conditional(
         taxon_name = taxon_name,
-        ref_included = arg_list_second[[floristic_group]],
+        floristic_scope = arg_list_second[[floristic_group]],
         ref_excluded = ref_excluded,
         entity_class = entity_class,
         native_indicated = (floristic_group == "native"),

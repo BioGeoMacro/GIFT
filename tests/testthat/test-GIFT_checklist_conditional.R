@@ -5,10 +5,10 @@ test_that("data frame output format", {
   ex <-
     GIFT_checklist_conditional(
       taxon_name = "Embryophyta",
-      ref_included = c("all", "native", "native and naturalized",
-                       "native and historically introduced",
-                       "endangered", "endemic", "naturalized",
-                       "other subset")[1:4],
+      floristic_scope = c("all", "native", "native and naturalized",
+                          "native and historically introduced",
+                          "endangered", "endemic", "naturalized",
+                          "other subset")[1:4],
       type_ref = c("Account", "Catalogue", "Checklist","Flora",
                    "Herbarium collection", "Key", "Red list",
                    "Report", "Species Database",
@@ -34,13 +34,12 @@ test_that("invalid inputs", {
          'GIFT_taxonomy()'.", fixed = TRUE)
   
   expect_error(
-    GIFT_checklist_conditional(ref_included = NA),
-    "'ref_included' must be a character string stating what information
-           should be available in the lists you retrieve (e.g. only references
-           where endemic status is indicated). Available options are 'all',
-           'native', 'native and naturalized',
-           'native and historically introduced', 'endangered',
-           'endemic', 'naturalized', 'other subset'", fixed = TRUE)
+    GIFT_checklist_conditional(floristic_scope = NA),
+    "'floristic_scope' must be a character string stating what
+    information should be available in the lists you retrieve (e.g. only
+    references where endemic status is indicated). Available options are 'all',
+    'native', 'native and naturalized', 'native and historically introduced',
+    'endangered', 'endemic', 'naturalized', 'other subset'.", fixed = TRUE)
   
   expect_error(
     GIFT_checklist_conditional(type_ref =  NA),

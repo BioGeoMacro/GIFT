@@ -6,7 +6,7 @@
 \usage{
 GIFT_checklist_conditional(
   taxon_name = "Tracheophyta",
-  ref_included = c("all", "native", "native and naturalized",
+  floristic_scope = c("all", "native", "native and naturalized",
     "native and historically introduced", "endangered", "endemic", "naturalized",
     "other subset")[1:4],
   ref_excluded = NULL,
@@ -30,9 +30,11 @@ GIFT_checklist_conditional(
 \item{taxon_name}{Character string corresponding to the taxonomic group
 of interest.}
 
-\item{ref_included}{Character, options are 'all', 'native',
-'native and naturalized', 'native and historically introduced',
-'endangered', 'endemic', 'naturalized', 'other subset'}
+\item{floristic_scope}{A vector listing floristic scopes of the references
+to be considered.
+Options are: 'all', 'native', 'native and naturalized',
+'native and historically introduced',#' 'endangered', 'endemic',
+'naturalized', 'other subset'}
 
 \item{ref_excluded}{A vector listing potential ref_IDs that shall be ignored
 when assembling the set of regions and checklists fulfilling the given
@@ -109,7 +111,7 @@ available in the source.\cr
 \examples{
 \dontrun{
 ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
-ref_included = c("all", "native", "native and naturalized",
+floristic_scope = c("all", "native", "native and naturalized",
 "native and historically introduced", "endangered",
 "endemic", "naturalized", "other subset")[1:4],
 type_ref = c("Account", "Catalogue", "Checklist","Flora",

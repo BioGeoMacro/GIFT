@@ -6,9 +6,11 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param ref_included Character, options are 'all', 'native',
-#' 'native and naturalized', 'native and historically introduced',
-#' 'endangered', 'endemic', 'naturalized', 'other subset'
+#' @param floristic_scope A vector listing floristic scopes of the references
+#' to be considered.
+#' Options are: 'all', 'native', 'native and naturalized',
+#' 'native and historically introduced',#' 'endangered', 'endemic',
+#' 'naturalized', 'other subset'
 #'
 #' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
 #' when assembling the set of regions and checklists fulfilling the given 
@@ -82,7 +84,7 @@
 #' @examples
 #' \dontrun{
 #' ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
-#' ref_included = c("all", "native", "native and naturalized",
+#' floristic_scope = c("all", "native", "native and naturalized",
 #' "native and historically introduced", "endangered",
 #' "endemic", "naturalized", "other subset")[1:4],
 #' type_ref = c("Account", "Catalogue", "Checklist","Flora",
@@ -103,9 +105,9 @@
 
 GIFT_checklist_conditional <- function(
     taxon_name = "Tracheophyta",
-    ref_included = c("all", "native", "native and naturalized",
-                     "native and historically introduced", "endangered",
-                     "endemic", "naturalized", "other subset")[1:4],
+    floristic_scope = c("all", "native", "native and naturalized",
+                        "native and historically introduced", "endangered",
+                        "endemic", "naturalized", "other subset")[1:4],
     ref_excluded = NULL,
     type_ref = c("Account", "Catalogue", "Checklist","Flora",
                  "Herbarium collection", "Key", "Red list", "Report",
@@ -123,21 +125,20 @@ GIFT_checklist_conditional <- function(
   check_taxon_name(taxon_name)
   check_complete_taxon(complete_taxon)
   
-  if(any(is.na(ref_included)) || !is.character(ref_included) || 
-     !(all(ref_included %in% c("all", "native", "native and naturalized",
-                               "native and historically introduced",
-                               "endangered", "endemic", "naturalized",
-                               "other subset")))){
-    stop(c("'ref_included' must be a character string stating what information
-           should be available in the lists you retrieve (e.g. only references
-           where endemic status is indicated). Available options are 'all',
-           'native', 'native and naturalized',
-           'native and historically introduced', 'endangered',
-           'endemic', 'naturalized', 'other subset'"))
+  if(any(is.na(floristic_scope)) || !is.character(floristic_scope) || 
+     !(all(floristic_scope %in% c("all", "native", "native and naturalized",
+                                  "native and historically introduced",
+                                  "endangered", "endemic", "naturalized",
+                                  "other subset")))){
+    stop(c("'floristic_scope' must be a character string stating what
+    information should be available in the lists you retrieve (e.g. only
+    references where endemic status is indicated). Available options are 'all',
+    'native', 'native and naturalized', 'native and historically introduced',
+    'endangered', 'endemic', 'naturalized', 'other subset'."))
   }
   
   check_ref_excluded(ref_excluded)
-
+  
   if(any(is.na(type_ref)) || !is.character(type_ref) || 
      !(all(type_ref %in% c("Account", "Catalogue", "Checklist","Flora",
                            "Herbarium collection", "Key", "Red list",
@@ -182,7 +183,7 @@ GIFT_checklist_conditional <- function(
     stop("'suit_geo' must be a boolean stating if you want to retrieve
          lists associated to a suitable polygon or not.")
   }
-
+  
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   
@@ -240,7 +241,7 @@ GIFT_checklist_conditional <- function(
   list_set <- list_set[which(list_set$taxon_ID %in% included_taxa), ]
   
   # Subset of lists based on floristic coverage (alien, endemics, etc)
-  list_set <- list_set[which(list_set$subset %in% ref_included), ]
+  list_set <- list_set[which(list_set$subset %in% floristic_scope), ]
   
   # Subset of lists based on reference type (checklist, flora, etc)
   list_set <- list_set[which(list_set$type %in% type_ref), ]
