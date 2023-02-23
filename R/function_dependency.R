@@ -8,7 +8,7 @@
 # 
 # gift_graph <- gift_report$FunctionReporter$pkg_graph$igraph
 # gift_graph2 <- igraph::delete.vertices(gift_graph, c(check_fct, "make_box",
-#                                                      "GIFT_version"))
+#                                                      "GIFT_versions"))
 # 
 # igraph::V(gift_graph2)$type <- c(
 #   "Checklists/distribution", # GIFT_checklist
@@ -29,7 +29,7 @@
 #   "Metadata", # GIFT_references
 #   "Spatial", # GIFT_regions
 #   "Metadata", # GIFT_richness
-#   "Spatial", # GIFT_shape
+#   "Spatial", # GIFT_shapes
 #   "Checklists/distribution", # GIFT_species_distribution
 #   "Species taxonomy/phylogeny", # GIFT_species_lookup
 #   "Traits", # GIFT_traits
@@ -49,8 +49,9 @@
 #      vertex.frame.color = "black", vertex.label.color = "black",
 #      pt.cex = 20,
 #      vertex.label.cex = 1, vertex.label.dist = 2, edge.curved = 0.2)
-# legend(x = 1.5, y = -0.5,
+# legend(x = 1.0, y = -0.5,
 #        c("Checklists/distribution", "Metadata", "Phylogeny", "Spatial data",
 #          "Species taxonomy/phylogeny", "Traits"),
 #        pch = 21, col = "#777777", pt.bg = colrs, pt.cex = 2, cex = 0.8,
 #        bty = "n", ncol = 1)
+# width 1500 height 1000
