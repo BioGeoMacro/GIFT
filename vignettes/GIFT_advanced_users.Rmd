@@ -61,7 +61,7 @@ To access all the available versions of the database, you can run the
 following function:
 
 ```{r}
-versions <- GIFT_version()
+versions <- GIFT_versions()
 kable(versions, "html") %>%
   kable_styling(full_width = FALSE)
 ```

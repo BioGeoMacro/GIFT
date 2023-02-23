@@ -1,4 +1,4 @@
-#' Version of GIFT available
+#' Versions of GIFT available
 #'
 #' Returns a table with information on the different versions of the database
 #'
@@ -20,14 +20,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_version()
+#' ex <- GIFT_versions()
 #' }
 #' 
 #' @importFrom jsonlite read_json
 #' 
 #' @export
 
-GIFT_version <- function(){
+GIFT_versions <- function(){
   gift_version <- jsonlite::read_json(
     "https://gift.uni-goettingen.de/api/index.php?query=versions",
     simplifyVector = TRUE)
