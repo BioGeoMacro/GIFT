@@ -96,7 +96,7 @@ GIFT_spatial <- function(
   }
   
   check_shp(shp = shp, overlap = overlap)
-
+  
   # Visible binding for global variable
   x_min <- x_max <- y_min <- y_max <- NULL
   
@@ -104,16 +104,16 @@ GIFT_spatial <- function(
   coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
                                    overlap = overlap)
   shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
-
+  
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----
   # Depending upon the overlap argument, we either query the centroids or
   # the extent from GIFT
   if(overlap == "centroid_inside"){
     # Query the centroid using GIFT_env()
-    GIFT_centroids <-
+    GIFT_centroids <- suppressMessages(
       GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
-                     api = api, GIFT_version = GIFT_version)
+                     api = api, GIFT_version = GIFT_version))
     # Removing NAs
     GIFT_centroids <-
       GIFT_centroids[stats::complete.cases(GIFT_centroids$longitude), ]
