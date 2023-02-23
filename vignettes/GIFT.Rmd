@@ -354,7 +354,7 @@ To cite properly the references retrieved, you can run the function
 Once we downloaded a set of checklists, it is possible to map the species
 richness of the taxonomic group of interest. For this purpose, we use a
 combination of two functions: `GIFT_richness()` which either retrieves species
-richness or trait coverage per polygon and `GIFT_shape()` which retrieves the
+richness or trait coverage per polygon and `GIFT_shapes()` which retrieves the
 shapefile of a list of GIFT polygons.
 <br>
 The next two chunks illustrate this for the Angiosperms in the World and in the
@@ -362,17 +362,17 @@ Western part of the Mediterranean basin.
 <br>
 
 ```{r, include=FALSE}
-gift_shape <- GIFT_shape() # retrieves all shapefiles by default
+gift_shapes <- GIFT_shapes() # retrieves all shapefiles by default
 ```
 
 ```{r, eval=FALSE, echo = TRUE}
-gift_shape <- GIFT_shape() # retrieves all shapefiles by default
+gift_shapes <- GIFT_shapes() # retrieves all shapefiles by default
 ```
 
 ```{r, message=FALSE, fig.width = 8, fig.height = 4}
 angio_rich <- GIFT_richness(taxon_name = "Angiospermae")
 
-rich_map <- dplyr::left_join(gift_shape, angio_rich, by = "entity_ID") %>%
+rich_map <- dplyr::left_join(gift_shapes, angio_rich, by = "entity_ID") %>%
   dplyr::filter(stats::complete.cases(total))
 
 ggplot(world) +
@@ -488,8 +488,8 @@ and the map of Angiosperms in the Western Mediterranean basin.
 <br>
 
 ```{r, message=FALSE, fig.width = 8, fig.height = 4}
-med_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                unique(medit[[2]]$entity_ID)), ]
+med_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                 unique(medit[[2]]$entity_ID)), ]
 
 med_rich <- angio_rich[which(angio_rich$entity_ID %in% 
                                unique(medit[[2]]$entity_ID)), ]
@@ -601,7 +601,7 @@ naturalized.
 
 Now that we know in which polygons the species occur and with what status, we
 can map its distribution using the GIFT shapes we retrieved earlier using
-`GIFT_shape()`.
+`GIFT_shapes()`.
 
 ```{r, fig.width = 8, fig.height = 4}
 # We rename the statuses based on the distinct combinations
@@ -616,8 +616,8 @@ anemone_statuses <- anemone_statuses %>%
   ))
 
 # Merge with the shapes
-anemone_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                    unique(anemone_distr$entity_ID)), ]
+anemone_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                     unique(anemone_distr$entity_ID)), ]
 anemone_map <- dplyr::left_join(anemone_shape, anemone_statuses,
                                 by = "entity_ID")
 
@@ -698,15 +698,15 @@ anemone_map_plot_bg_parts <-
         axis.ticks = element_blank())
 
 (anemone_map_plot_bg_parts +
-     lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-     theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
-     theme(legend.position = "bottom")
-   |
-     anemone_map_plot_bg_parts +
-     lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
-     labs(title = "") +
-     guides(fill = "none") +
-     theme(panel.border = element_rect(fill = NA, linewidth = 1)))
+    lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+    theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
+    theme(legend.position = "bottom")
+  |
+    anemone_map_plot_bg_parts +
+    lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+    labs(title = "") +
+    guides(fill = "none") +
+    theme(panel.border = element_rect(fill = NA, linewidth = 1)))
 ```
 </details>
 <br>
@@ -843,8 +843,8 @@ angio_height <- GIFT_coverage(what = "trait_coverage",
                               taxon_name = "Angiospermae",
                               trait_ID = "1.6.2")
 
-angio_height_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                         unique(angio_height$entity_ID)), ]
+angio_height_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                          unique(angio_height$entity_ID)), ]
 
 angio_height_map <- dplyr::left_join(
   angio_height_shape, angio_height, by = "entity_ID")
@@ -999,8 +999,8 @@ world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
                        rasterlayer = c("wc2.0_bio_30s_01"),
                        sumstat = c("mean"))
 
-temp_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                 unique(angio_rich$entity_ID)), ]
+temp_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                  unique(angio_rich$entity_ID)), ]
 
 temp_map <- dplyr::left_join(temp_shape, world_temp, by = "entity_ID")
 

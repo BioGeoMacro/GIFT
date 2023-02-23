@@ -73,7 +73,7 @@ reference:
   desc: >
   contents:
   - GIFT_regions
-  - GIFT_shape
+  - GIFT_shapes
   - GIFT_overlap
   - GIFT_no_overlap
 

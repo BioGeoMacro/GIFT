@@ -34,7 +34,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_shape(entity_ID = c(677, 200))
+#' ex <- GIFT_shapes(entity_ID = c(677, 200))
 #' plot(st_geometry(ex), col = ex$entity_ID)
 #' }
 #' 
@@ -44,9 +44,9 @@
 #' 
 #' @export
 
-GIFT_shape <- function(entity_ID = NULL, 
-                       api = "https://gift.uni-goettingen.de/api/extended/", 
-                       GIFT_version = "latest"){
+GIFT_shapes <- function(entity_ID = NULL, 
+                        api = "https://gift.uni-goettingen.de/api/extended/", 
+                        GIFT_version = "latest"){
   
   # 1. Controls ----
   check_api(api)
