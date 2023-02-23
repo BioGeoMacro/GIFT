@@ -129,7 +129,7 @@ kable(query_table, "html") %>%
 ```
 
 <br>
-Some precisions:
+Some more details:
 
 ```{r, eval=FALSE}
 # Query for trait and chunks
@@ -141,6 +141,13 @@ Some precisions:
 paste0("https://gift.uni-goettingen.de/geojson/geojson_smaller", 
        ifelse(GIFT_version == "beta", "", GIFT_version), "/",
        entity_ID[i], ".geojson")
+```
+
+Dependency graph of the main functions of the package:
+<br>
+
+```{r, fig.cap = "", out.width = "100%",echo = FALSE}
+knitr::include_graphics("../man/figures/GIFT_network_functions.png")
 ```
 
 What to cite: 
