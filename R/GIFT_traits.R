@@ -93,7 +93,7 @@ GIFT_traits <- function(
   
   # 2. Function ----
   # Get species names
-  message("Retrieving species' names.\n")
+  message("\nRetrieving species' names.\n")
   
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))
