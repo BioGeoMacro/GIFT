@@ -44,3 +44,6 @@
 #                     s_x = 1, s_y = 1, s_width = 0.8,
 #                     h_fill = "white",
 #                     filename = "man/figures/GIFT_hexlogo.png")
+
+# Favicon for the website
+# pkgdown::build_favicons(pkg = ".", overwrite = FALSE)

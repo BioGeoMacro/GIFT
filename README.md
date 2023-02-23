@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# GIFT <img src="man/figures/GIFT_hexlogo.png" align="right" alt="" width="200" />
+# GIFT <img src="man/figures/logo.png" align="right" alt="" width="200" />
 
 <!-- badges: start -->
 
