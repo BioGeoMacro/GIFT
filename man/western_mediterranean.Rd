@@ -5,7 +5,7 @@
 \alias{western_mediterranean}
 \title{Shape file of the western Mediterranean basin}
 \format{
-An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+An object of class \code{"sf"}
 }
 \usage{
 data("western_mediterranean")
