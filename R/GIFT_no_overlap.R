@@ -1,4 +1,4 @@
-#' GIFT_no_overlap
+#' Select non-overlapping regions
 #' 
 #' Identify overlapping regions in a set of GIFT regions and choose only 
 #' non-overlapping regions based on size and overlap criteria

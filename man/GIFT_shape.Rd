@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_shape.R
 \name{GIFT_shape}
 \alias{GIFT_shape}
-\title{GIFT shape}
+\title{Shape files of GIFT regions}
 \usage{
 GIFT_shape(
   entity_ID = NULL,
@@ -25,7 +25,7 @@ subject to changes and edits is used.}
 A spatial data.frame with 21 columns.
 }
 \description{
-Get shapefile of GIFT regions for selected entities
+Get shapefile of GIFT regions for selected regions
 }
 \details{
 Here is the detail of each column:

@@ -1,6 +1,6 @@
-#' GIFT shape
+#' Shape files of GIFT regions
 #'
-#' Get shapefile of GIFT regions for selected entities
+#' Get shapefile of GIFT regions for selected regions
 #'
 #' @param entity_ID A vector defining the IDs of the regions.
 #' 

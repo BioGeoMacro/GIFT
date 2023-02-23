@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_no_overlap.R
 \name{GIFT_no_overlap}
 \alias{GIFT_no_overlap}
-\title{GIFT_no_overlap}
+\title{Select non-overlapping regions}
 \usage{
 GIFT_no_overlap(
   entity_IDs = NULL,

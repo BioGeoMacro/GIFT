@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_regions.R
 \name{GIFT_regions}
 \alias{GIFT_regions}
-\title{GIFT regions}
+\title{Metadata for GIFT regions}
 \usage{
 GIFT_regions(
   api = "https://gift.uni-goettingen.de/api/extended/",
