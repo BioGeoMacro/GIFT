@@ -19,7 +19,7 @@
 #' 
 #' @template GIFT_version_api
 #'
-#' @return A data.frame with 26 columns.
+#' @return A data.frame with 28 columns.
 #'
 #' @details Here is the detail of each column:
 #' 
@@ -29,10 +29,12 @@
 #' \emph{orig_ID} - Identification number of the species, as it came in the
 #'  source\cr
 #' \emph{trait_ID} - Identification number of the trait\cr
-#' \emph{trait_value} - Value of the trait\cr
+#' \emph{trait_value} - Value of the trait (coded as character, even for
+#' continuous trait)\cr
 #' \emph{derived} - Is the trait value derived from another information (e.g.
 #' phanerophytes are woody)\cr
 #' \emph{bias_deriv} - Is the derivation potentially introducing a bias\cr
+#' \emph{bias_ref} - Is the resource potentially introducing a bias\cr
 #' \emph{name_ID} - Identification number of the species before being
 #' resolved\cr
 #' \emph{cf_genus} - Whether the genus name is uncertain\cr
@@ -50,8 +52,11 @@
 #' \emph{service} - Taxonomic backbone used for taxonomic harmonization\cr
 #' \emph{work_ID} - Identification number of the taxonomically harmonized
 #' species\cr
-#' \emph{bias_ref} - Is the resource potentially introducing a bias\cr
-#' \emph{species} - Species name\cr
+#' \emph{genus_ID} - Identification number of the taxonomically harmonized
+#' genus\cr
+#' \emph{work_genus} - Genus name (after taxonomic harmonization)\cr
+#' \emph{work_species} - Species name (after taxonomic harmonization)\cr
+#' \emph{work_author} - Name of the author who described the species\cr
 #' \emph{geo_entity} _ref - Name of the region of the reference\cr
 #' \emph{ref_long} - Full reference to cite
 #'

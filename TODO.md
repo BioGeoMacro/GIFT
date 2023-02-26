@@ -45,8 +45,9 @@
     - Give back trait IDs that are not valid?
 
 * 2.3. GIFT_traits_raw()
-    - write into help that trait values are character values (even if numbers)
-    - make orig_names/names matched info optional? Add the three new matching columns
+    - ~~write into help that trait values are character values (even if numbers)~~
+    - make orig_names/names matched info optional?
+    - ~~Add the three new matching columns in the description~~
     - Give back trait IDs that are not valid?
 
 * 3.1. GIFT_env()
