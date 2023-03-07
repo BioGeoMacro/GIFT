@@ -85,9 +85,9 @@ contained in the references in <code>ref_ID</code>.</p></dd>
 
 
 <dt>namesmatched</dt>
-<dd><p>Boolean. FALSE by default, set to TRUE if you want the
-original species name as they came in the references as well as details on
-the taxonomic harmonization.</p></dd>
+<dd><p>Boolean. <code>FALSE</code> by default, set to <code>TRUE</code> if you want
+the original species name as they came in the references as well as details
+on the taxonomic harmonization.</p></dd>
 
 
 <dt>taxon_name</dt>
@@ -97,15 +97,19 @@ of interest.</p></dd>
 
 <dt>floristic_group</dt>
 <dd><p>Character string among these options:
-'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.</p></dd>
+<code>all</code>, <code>native</code>, <code>naturalized</code>, <code>endemic_list</code>, <code>endemic_ref</code>.</p></dd>
 
 
 <dt>list_set</dt>
-<dd><p>NULL by default</p></dd>
+<dd><p><code>NULL</code> by default. If not, it has to be the list table
+(see <code><a href="GIFT_lists.html">GIFT_lists()</a></code>). Used internally in <code><a href="GIFT_checklist.html">GIFT_checklist()</a></code> to
+avoid downloading the table of lists many times.</p></dd>
 
 
 <dt>taxonomy</dt>
-<dd><p>NULL by default</p></dd>
+<dd><p><code>NULL</code> by default. If not, it has to be the taxonomy table
+(see <code><a href="GIFT_taxonomy.html">GIFT_taxonomy()</a></code>). Used internally in <code><a href="GIFT_checklist.html">GIFT_checklist()</a></code>
+to avoid downloading the taxonomy table many times.</p></dd>
 
 
 <dt>GIFT_version</dt>

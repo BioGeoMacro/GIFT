@@ -91,26 +91,26 @@ of interest.</p></dd>
 
 <dt>complete_taxon</dt>
 <dd><p>logical stating you want to retrieve checklists that
-only contain the exhaustive list of the 'taxon_name' argument or as well
+only contain the exhaustive list of the <code>taxon_name</code> argument or as well
 incomplete lists.</p></dd>
 
 
 <dt>floristic_group</dt>
-<dd><p>Character among the following options: 'all',
-'native', 'endemic', 'naturalized'.</p></dd>
+<dd><p>Character among the following options: <code>all</code>,
+<code>native</code>, <code>endemic</code>, <code>naturalized</code>.</p></dd>
 
 
 <dt>complete_floristic</dt>
 <dd><p>logical stating you want to retrieve checklists
-that only contain the exhaustive list of the 'floristic_group' argument or
+that only contain the exhaustive list of the <code>floristic_group</code> argument or
 as well incomplete lists.</p></dd>
 
 
 <dt>geo_type</dt>
-<dd><p>Character string, either 'Mainland', 'Island' or
-'All'. Island gets you to Island, Island Group &amp;
-Island Part. Mainland gets you to Mainland &amp; Island/Mainland. 'All' gets you
-all.</p></dd>
+<dd><p>Character string, either <code>Mainland</code>, <code>Island</code> or
+<code>All</code>. <code>Island</code> gets you to Island, Island Group &amp;
+Island Part. <code>Mainland</code> gets you to Mainland &amp; Island/Mainland. <code>All</code> gets
+you all types.</p></dd>
 
 
 <dt>ref_excluded</dt>
@@ -138,9 +138,9 @@ of a bounding box.</p></dd>
 
 <dt>overlap</dt>
 <dd><p>A character string defining the criteria to use in order to
-retrieve checklists. Available options are 'centroid_inside',
-'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-'extent_intersect' means that every polygon from GIFT for which the extent
+retrieve checklists. Available options are <code>centroid_inside</code>,
+<code>extent_intersect</code>, <code>shape_intersect</code> and <code>shape_inside</code>. For example,
+<code>extent_intersect</code> means that every polygon from GIFT for which the extent
 intersects the provided shape/coordinates will be retrieved.</p></dd>
 
 
@@ -169,20 +169,20 @@ percentage of overlap, partially overlapping polygons should be kept.</p></dd>
 
 <dt>by_ref_ID</dt>
 <dd><p>logical indicating whether the removal of overlapping
-regions shall be applied by ref_ID only. Note that regions overlapping with
-other regions from the same resource will be removed even if there are other
-references available for those regions.</p></dd>
+regions shall be applied by <em>ref_ID</em> only. Note that regions
+overlapping with other regions from the same resource will be removed even
+if there are other references available for those regions.</p></dd>
 
 
 <dt>taxonomic_group</dt>
-<dd><p>logical. When set to TRUE, two additional columns
-('family' and 'tax_group') are available in the checklists.</p></dd>
+<dd><p>logical. When set to <code>TRUE</code>, two additional columns
+(<em>family</em> and <em>tax_group</em>) are available in the checklists.</p></dd>
 
 
 <dt>namesmatched</dt>
-<dd><p>logical. FALSE by default, set to TRUE if you want the
-original species name as they came in the references as well as details on
-the taxonomic harmonization.</p></dd>
+<dd><p>logical. <code>FALSE</code> by default, set to <code>TRUE</code> if you want
+the original species name as they came in the references as well as details
+on the taxonomic harmonization.</p></dd>
 
 
 <dt>list_set_only</dt>
@@ -223,16 +223,16 @@ harmonization.<br><em>genus_ID</em> - Identification number of each genus, after
 harmonization.<br><em>species</em> - Species name, after taxonomic harmonization.<br><em>questionable</em> - Whether the species occurrence is questionable.<br><em>native</em> - Whether the species is native.<br><em>quest_native</em> - Whether the native information is questionable.<br><em>naturalized</em> - Whether the species is naturalized.<br><em>endemic_ref</em> - Whether the species is endemic within the reference.<br><em>quest_end_ref</em> - Whether the endemic_ref information is
 questionable.<br><em>endemic_list</em> - Whether the species is endemic within the list.<br><em>quest_end_list</em> - Whether the endemic_list information is
 questionable.<br><em>cons_status</em> - Conservation status of the species.<br><em>family</em> - Family of the species.<br><em>tax_group</em> - Taxonomic group of the species.</p>
-<p>While the arguments 'taxon_name' in combination with 'complete_taxon = TRUE'
-and 'floristic_group' in combination with 'complete_floristic = TRUE' make
+<p>While the arguments <code>taxon_name</code> in combination with <code>complete_taxon = TRUE</code>
+and <code>floristic_group</code> in combination with <code>complete_floristic = TRUE</code> make
 sure to only get back checklists for regions for which GIFT has lists
 aiming at covering both the entire taxonomic group and floristic subset (for
 example native vascular plants), it does not mean that the checklists are
 complete (include all species). We therefore flagged regions in GIFT for
 which the combination of all checklists is obviously incomplete as
-'suit_geo = 0'. This has however only been done only for native angiosperms
-and the assessment has been subjective. Set suit_geo = TRUE if you only want
-to consider regions classified as suit_geo.</p>
+<code>suit_geo = 0</code>. This has however only been done only for native angiosperms
+and the assessment has been subjective. Set <code>suit_geo = TRUE</code> if you only
+want to consider regions classified as <code>suit_geo</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

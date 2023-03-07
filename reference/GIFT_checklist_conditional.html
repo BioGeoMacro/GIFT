@@ -94,27 +94,27 @@ of interest.</p></dd>
 <dt>floristic_scope</dt>
 <dd><p>A vector listing floristic scopes of the references
 to be considered.
-Options are: 'all', 'native', 'native and naturalized',
-'native and historically introduced',#' 'endangered', 'endemic',
-'naturalized', 'other subset'</p></dd>
+Options are: <code>all</code>, <code>native</code>, <code>native and naturalized</code>,
+<code>native and historically introduced</code>, <code>endangered</code>, <code>endemic</code>,
+<code>naturalized</code>, <code>other subset</code>.</p></dd>
 
 
 <dt>ref_excluded</dt>
 <dd><p>A vector listing potential ref_IDs that shall be ignored
 when assembling the set of regions and checklists fulfilling the given
-criteria. Checklists from these references will not be returned. NULL by
+criteria. Checklists from these references will not be returned. <code>NULL</code> by
 default.</p></dd>
 
 
 <dt>type_ref</dt>
-<dd><p>Character, options are 'Account', 'Catalogue', 'Checklist',
-'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
-'Species Database', 'Survey'</p></dd>
+<dd><p>Character, options are <code>Account</code>, <code>Catalogue</code>, <code>Checklist</code>,
+<code>Flora</code>, <code>Herbarium collection</code>, <code>Key</code>, <code>Red list</code>, <code>Report</code>,
+<code>Species Database</code>, <code>Survey</code>.</p></dd>
 
 
 <dt>entity_class</dt>
-<dd><p>Character, options are 'Island', 'Island/Mainland',
-'Mainland', 'Island Group', 'Island Part'</p></dd>
+<dd><p>Character, options are <code>Island</code>, <code>Island/Mainland</code>,
+<code>Mainland</code>, <code>Island Group</code>, <code>Island Part</code>.</p></dd>
 
 
 <dt>native_indicated</dt>
@@ -138,11 +138,12 @@ is available should be retrieved.</p></dd>
 
 
 <dt>suit_geo</dt>
-<dd><p>Boolean, whether only suitable polygons should be retrieved.</p></dd>
+<dd><p>logical indicating whether only regions classified as
+suit_geo should be considered (see details).</p></dd>
 
 
 <dt>complete_taxon</dt>
-<dd><p>Boolean, default TRUE.</p></dd>
+<dd><p>Boolean, default <code>TRUE</code>.</p></dd>
 
 
 <dt>GIFT_version</dt>
@@ -158,13 +159,14 @@ retrieved.</p></dd>
 
 
 <dt>list_set</dt>
-<dd><p>default NULL. If not, a vector of identification numbers of
-GIFT checklists.</p></dd>
+<dd><p>list_set <code>NULL</code> by default. If not, it has to be the list
+table (see <code><a href="GIFT_lists.html">GIFT_lists()</a></code>). Used internally in
+<code><a href="GIFT_checklist.html">GIFT_checklist()</a></code> to avoid downloading the table of lists many times.</p></dd>
 
 
 <dt>taxonomy</dt>
-<dd><p>default NULL. If not, it has to be the taxonomy table (see
-GIFT_taxonomy()).</p></dd>
+<dd><p>default <code>NULL</code>. If not, it has to be the taxonomy table
+(see <code><a href="GIFT_taxonomy.html">GIFT_taxonomy()</a></code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
