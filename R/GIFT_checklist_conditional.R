@@ -76,9 +76,7 @@
 #' \emph{taxon_name} - Name of the group of taxa available.
 #' 
 #' @references
-#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-#'      https://doi.org/10.1111/jbi.13623
+#' \insertRef{Weigelt2020}{GIFT}
 #'
 #' @seealso [GIFT::GIFT_checklist_raw()]
 #'
