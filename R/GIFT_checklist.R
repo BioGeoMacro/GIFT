@@ -6,20 +6,20 @@
 #' of interest.
 #' 
 #' @param complete_taxon logical stating you want to retrieve checklists that
-#' only contain the exhaustive list of the 'taxon_name' argument or as well
+#' only contain the exhaustive list of the `taxon_name` argument or as well
 #' incomplete lists.
 #' 
-#' @param floristic_group Character among the following options: 'all',
-#' 'native', 'endemic', 'naturalized'.
+#' @param floristic_group Character among the following options: `all`,
+#' `native`, `endemic`, `naturalized`.
 #' 
 #' @param complete_floristic logical stating you want to retrieve checklists
-#' that only contain the exhaustive list of the 'floristic_group' argument or
+#' that only contain the exhaustive list of the `floristic_group` argument or
 #' as well incomplete lists.
 #' 
-#' @param geo_type Character string, either 'Mainland', 'Island' or
-#' 'All'. Island gets you to Island, Island Group &
-#' Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you 
-#' all.
+#' @param geo_type Character string, either `Mainland`, `Island` or
+#' `All`. `Island` gets you to Island, Island Group &
+#' Island Part. `Mainland` gets you to Mainland & Island/Mainland. `All` gets
+#' you all types.
 #' 
 #' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
 #' when assembling the set of regions and checklists fulfilling the given 
@@ -37,9 +37,9 @@
 #' of a bounding box.
 #' 
 #' @param overlap A character string defining the criteria to use in order to
-#' retrieve checklists. Available options are 'centroid_inside',
-#' 'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-#' 'extent_intersect' means that every polygon from GIFT for which the extent
+#' retrieve checklists. Available options are `centroid_inside`,
+#' `extent_intersect`, `shape_intersect` and `shape_inside`. For example,
+#' `extent_intersect` means that every polygon from GIFT for which the extent
 #' intersects the provided shape/coordinates will be retrieved.
 #' 
 #' @param remove_overlap a logical stating whether you want to
@@ -58,16 +58,16 @@
 #' percentage of overlap, partially overlapping polygons should be kept. 
 #' 
 #' @param by_ref_ID logical indicating whether the removal of overlapping
-#' regions shall be applied by ref_ID only. Note that regions overlapping with
-#' other regions from the same resource will be removed even if there are other
-#' references available for those regions.
+#' regions shall be applied by \emph{ref_ID} only. Note that regions
+#' overlapping with other regions from the same resource will be removed even
+#' if there are other references available for those regions.
 #' 
-#' @param taxonomic_group logical. When set to TRUE, two additional columns
-#' ('family' and 'tax_group') are available in the checklists.
+#' @param taxonomic_group logical. When set to `TRUE`, two additional columns
+#' (\emph{family} and \emph{tax_group}) are available in the checklists.
 #' 
-#' @param namesmatched logical. FALSE by default, set to TRUE if you want the
-#' original species name as they came in the references as well as details on
-#' the taxonomic harmonization.
+#' @param namesmatched logical. `FALSE` by default, set to `TRUE` if you want
+#' the original species name as they came in the references as well as details
+#' on the taxonomic harmonization.
 #' 
 #' @param list_set_only logical stating whether you only want the metadata or
 #' if you also want to retrieve the species lists.
@@ -124,16 +124,16 @@
 #' \emph{family} - Family of the species.\cr
 #' \emph{tax_group} - Taxonomic group of the species.
 #'
-#' While the arguments 'taxon_name' in combination with 'complete_taxon = TRUE' 
-#' and 'floristic_group' in combination with 'complete_floristic = TRUE' make 
+#' While the arguments `taxon_name` in combination with `complete_taxon = TRUE` 
+#' and `floristic_group` in combination with `complete_floristic = TRUE` make 
 #' sure to only get back checklists for regions for which GIFT has lists 
 #' aiming at covering both the entire taxonomic group and floristic subset (for 
 #' example native vascular plants), it does not mean that the checklists are 
 #' complete (include all species). We therefore flagged regions in GIFT for 
 #' which the combination of all checklists is obviously incomplete as 
-#' 'suit_geo = 0'. This has however only been done only for native angiosperms 
-#' and the assessment has been subjective. Set suit_geo = TRUE if you only want 
-#' to consider regions classified as suit_geo.
+#' `suit_geo = 0`. This has however only been done only for native angiosperms 
+#' and the assessment has been subjective. Set `suit_geo = TRUE` if you only
+#' want to consider regions classified as `suit_geo`.
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and

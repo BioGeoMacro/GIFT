@@ -24,19 +24,23 @@ GIFT_checklist_raw(
 \code{NULL} by default. These lists are retrieved in addition to the lists
 contained in the references in \code{ref_ID}.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want the
-original species name as they came in the references as well as details on
-the taxonomic harmonization.}
+\item{namesmatched}{Boolean. \code{FALSE} by default, set to \code{TRUE} if you want
+the original species name as they came in the references as well as details
+on the taxonomic harmonization.}
 
 \item{taxon_name}{Character string corresponding to the taxonomic group
 of interest.}
 
 \item{floristic_group}{Character string among these options:
-'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.}
+\code{all}, \code{native}, \code{naturalized}, \code{endemic_list}, \code{endemic_ref}.}
 
-\item{list_set}{NULL by default}
+\item{list_set}{\code{NULL} by default. If not, it has to be the list table
+(see \code{\link[=GIFT_lists]{GIFT_lists()}}). Used internally in \code{\link[=GIFT_checklist]{GIFT_checklist()}} to
+avoid downloading the table of lists many times.}
 
-\item{taxonomy}{NULL by default}
+\item{taxonomy}{\code{NULL} by default. If not, it has to be the taxonomy table
+(see \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}}). Used internally in \code{\link[=GIFT_checklist]{GIFT_checklist()}}
+to avoid downloading the taxonomy table many times.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the "latest" stable

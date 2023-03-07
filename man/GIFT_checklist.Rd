@@ -32,20 +32,20 @@ GIFT_checklist(
 of interest.}
 
 \item{complete_taxon}{logical stating you want to retrieve checklists that
-only contain the exhaustive list of the 'taxon_name' argument or as well
+only contain the exhaustive list of the \code{taxon_name} argument or as well
 incomplete lists.}
 
-\item{floristic_group}{Character among the following options: 'all',
-'native', 'endemic', 'naturalized'.}
+\item{floristic_group}{Character among the following options: \code{all},
+\code{native}, \code{endemic}, \code{naturalized}.}
 
 \item{complete_floristic}{logical stating you want to retrieve checklists
-that only contain the exhaustive list of the 'floristic_group' argument or
+that only contain the exhaustive list of the \code{floristic_group} argument or
 as well incomplete lists.}
 
-\item{geo_type}{Character string, either 'Mainland', 'Island' or
-'All'. Island gets you to Island, Island Group &
-Island Part. Mainland gets you to Mainland & Island/Mainland. 'All' gets you
-all.}
+\item{geo_type}{Character string, either \code{Mainland}, \code{Island} or
+\code{All}. \code{Island} gets you to Island, Island Group &
+Island Part. \code{Mainland} gets you to Mainland & Island/Mainland. \code{All} gets
+you all types.}
 
 \item{ref_excluded}{A vector listing potential ref_IDs that shall be ignored
 when assembling the set of regions and checklists fulfilling the given
@@ -63,9 +63,9 @@ coordinates are given, the function assumes that these are the four corners
 of a bounding box.}
 
 \item{overlap}{A character string defining the criteria to use in order to
-retrieve checklists. Available options are 'centroid_inside',
-'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-'extent_intersect' means that every polygon from GIFT for which the extent
+retrieve checklists. Available options are \code{centroid_inside},
+\code{extent_intersect}, \code{shape_intersect} and \code{shape_inside}. For example,
+\code{extent_intersect} means that every polygon from GIFT for which the extent
 intersects the provided shape/coordinates will be retrieved.}
 
 \item{remove_overlap}{a logical stating whether you want to
@@ -84,16 +84,16 @@ bigger one. Set by default 100 square-kilometers.}
 percentage of overlap, partially overlapping polygons should be kept.}
 
 \item{by_ref_ID}{logical indicating whether the removal of overlapping
-regions shall be applied by ref_ID only. Note that regions overlapping with
-other regions from the same resource will be removed even if there are other
-references available for those regions.}
+regions shall be applied by \emph{ref_ID} only. Note that regions
+overlapping with other regions from the same resource will be removed even
+if there are other references available for those regions.}
 
-\item{taxonomic_group}{logical. When set to TRUE, two additional columns
-('family' and 'tax_group') are available in the checklists.}
+\item{taxonomic_group}{logical. When set to \code{TRUE}, two additional columns
+(\emph{family} and \emph{tax_group}) are available in the checklists.}
 
-\item{namesmatched}{logical. FALSE by default, set to TRUE if you want the
-original species name as they came in the references as well as details on
-the taxonomic harmonization.}
+\item{namesmatched}{logical. \code{FALSE} by default, set to \code{TRUE} if you want
+the original species name as they came in the references as well as details
+on the taxonomic harmonization.}
 
 \item{list_set_only}{logical stating whether you only want the metadata or
 if you also want to retrieve the species lists.}
@@ -160,16 +160,16 @@ questionable.\cr
 \emph{family} - Family of the species.\cr
 \emph{tax_group} - Taxonomic group of the species.
 
-While the arguments 'taxon_name' in combination with 'complete_taxon = TRUE'
-and 'floristic_group' in combination with 'complete_floristic = TRUE' make
+While the arguments \code{taxon_name} in combination with \code{complete_taxon = TRUE}
+and \code{floristic_group} in combination with \code{complete_floristic = TRUE} make
 sure to only get back checklists for regions for which GIFT has lists
 aiming at covering both the entire taxonomic group and floristic subset (for
 example native vascular plants), it does not mean that the checklists are
 complete (include all species). We therefore flagged regions in GIFT for
 which the combination of all checklists is obviously incomplete as
-'suit_geo = 0'. This has however only been done only for native angiosperms
-and the assessment has been subjective. Set suit_geo = TRUE if you only want
-to consider regions classified as suit_geo.
+\code{suit_geo = 0}. This has however only been done only for native angiosperms
+and the assessment has been subjective. Set \code{suit_geo = TRUE} if you only
+want to consider regions classified as \code{suit_geo}.
 }
 \examples{
 \dontrun{

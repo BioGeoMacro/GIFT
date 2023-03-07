@@ -12,16 +12,22 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
-#' original species name as they came in the references as well as details on
-#' the taxonomic harmonization.
+#' @param namesmatched Boolean. `FALSE` by default, set to `TRUE` if you want
+#' the original species name as they came in the references as well as details
+#' on the taxonomic harmonization.
 #' 
 #' @param floristic_group Character string among these options:
-#' 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
+#' `all`, `native`, `naturalized`, `endemic_list`, `endemic_ref`.
 #'
-#' @param list_set NULL by default
+#' @param list_set `NULL` by default. If not, it has to be the list table
+#' (see [GIFT::GIFT_lists()]). Used internally in [GIFT::GIFT_checklist()] to
+#' avoid downloading the table of lists many times.
 #' 
-#' @param taxonomy NULL by default
+#' @param taxonomy `NULL` by default. If not, it has to be the taxonomy table
+#' (see [GIFT::GIFT_taxonomy()]). Used internally in [GIFT::GIFT_checklist()]
+#' to avoid downloading the taxonomy table many times.
+#' 
+#' 
 #' 
 #' @template GIFT_version_api
 #' 
@@ -147,7 +153,6 @@ GIFT_checklist_raw <- function(
   GIFT_version <- check_gift_version_simple(GIFT_version)
   
   # 2. Query ----
-  
   ## 2.0 Lists query
   if(!is.null(ref_ID)){
     if(is.null(list_set)){

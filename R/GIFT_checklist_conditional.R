@@ -8,44 +8,45 @@
 #' 
 #' @param floristic_scope A vector listing floristic scopes of the references
 #' to be considered.
-#' Options are: 'all', 'native', 'native and naturalized',
-#' 'native and historically introduced',#' 'endangered', 'endemic',
-#' 'naturalized', 'other subset'
+#' Options are: `all`, `native`, `native and naturalized`,
+#' `native and historically introduced`, `endangered`, `endemic`,
+#' `naturalized`, `other subset`.
 #'
 #' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
 #' when assembling the set of regions and checklists fulfilling the given 
-#' criteria. Checklists from these references will not be returned. NULL by 
+#' criteria. Checklists from these references will not be returned. `NULL` by 
 #' default.
 #'  
-#' @param type_ref Character, options are 'Account', 'Catalogue', 'Checklist',
-#' 'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
-#' 'Species Database', 'Survey'
+#' @param type_ref Character, options are `Account`, `Catalogue`, `Checklist`,
+#' `Flora`, `Herbarium collection`, `Key`, `Red list`, `Report`,
+#' `Species Database`, `Survey`.
 #' 
-#' @param entity_class Character, options are 'Island', 'Island/Mainland',
-#' 'Mainland', 'Island Group', 'Island Part'
+#' @param entity_class Character, options are `Island`, `Island/Mainland`,
+#' `Mainland`, `Island Group`, `Island Part`.
 #' 
 #' @param native_indicated Boolean, whether only lists where native status
 #' is available should be retrieved.
 #' 
 #' @param natural_indicated Boolean, whether only lists where natural status
 #' is available should be retrieved.
-#' 
-#' 
+#'  
 #' @param end_ref Boolean, whether only lists where endemism at the reference
 #' level is available should be retrieved.
 #'  
 #' @param end_list Boolean, whether only lists where endemism at the list level
 #' is available should be retrieved.
 #' 
-#' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
+#' @param suit_geo logical indicating whether only regions classified as 
+#' suit_geo should be considered (see details).
 #' 
-#' @param complete_taxon Boolean, default TRUE.
+#' @param complete_taxon Boolean, default `TRUE`.
 #' 
-#' @param list_set default NULL. If not, a vector of identification numbers of
-#' GIFT checklists.
+#' @param list_set list_set `NULL` by default. If not, it has to be the list
+#' table (see [GIFT::GIFT_lists()]). Used internally in
+#' [GIFT::GIFT_checklist()] to avoid downloading the table of lists many times.
 #' 
-#' @param taxonomy default NULL. If not, it has to be the taxonomy table (see
-#' GIFT_taxonomy()).
+#' @param taxonomy default `NULL`. If not, it has to be the taxonomy table
+#' (see [GIFT::GIFT_taxonomy()]).
 #' 
 #' @template GIFT_version_api
 #' 

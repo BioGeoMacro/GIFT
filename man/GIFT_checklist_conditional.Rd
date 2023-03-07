@@ -32,21 +32,21 @@ of interest.}
 
 \item{floristic_scope}{A vector listing floristic scopes of the references
 to be considered.
-Options are: 'all', 'native', 'native and naturalized',
-'native and historically introduced',#' 'endangered', 'endemic',
-'naturalized', 'other subset'}
+Options are: \code{all}, \code{native}, \verb{native and naturalized},
+\verb{native and historically introduced}, \code{endangered}, \code{endemic},
+\code{naturalized}, \verb{other subset}.}
 
 \item{ref_excluded}{A vector listing potential ref_IDs that shall be ignored
 when assembling the set of regions and checklists fulfilling the given
-criteria. Checklists from these references will not be returned. NULL by
+criteria. Checklists from these references will not be returned. \code{NULL} by
 default.}
 
-\item{type_ref}{Character, options are 'Account', 'Catalogue', 'Checklist',
-'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
-'Species Database', 'Survey'}
+\item{type_ref}{Character, options are \code{Account}, \code{Catalogue}, \code{Checklist},
+\code{Flora}, \verb{Herbarium collection}, \code{Key}, \verb{Red list}, \code{Report},
+\verb{Species Database}, \code{Survey}.}
 
-\item{entity_class}{Character, options are 'Island', 'Island/Mainland',
-'Mainland', 'Island Group', 'Island Part'}
+\item{entity_class}{Character, options are \code{Island}, \code{Island/Mainland},
+\code{Mainland}, \verb{Island Group}, \verb{Island Part}.}
 
 \item{native_indicated}{Boolean, whether only lists where native status
 is available should be retrieved.}
@@ -60,9 +60,10 @@ level is available should be retrieved.}
 \item{end_list}{Boolean, whether only lists where endemism at the list level
 is available should be retrieved.}
 
-\item{suit_geo}{Boolean, whether only suitable polygons should be retrieved.}
+\item{suit_geo}{logical indicating whether only regions classified as
+suit_geo should be considered (see details).}
 
-\item{complete_taxon}{Boolean, default TRUE.}
+\item{complete_taxon}{Boolean, default \code{TRUE}.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the "latest" stable
@@ -72,11 +73,12 @@ subject to changes and edits is used.}
 \item{api}{character string defining from which API the data will be
 retrieved.}
 
-\item{list_set}{default NULL. If not, a vector of identification numbers of
-GIFT checklists.}
+\item{list_set}{list_set \code{NULL} by default. If not, it has to be the list
+table (see \code{\link[=GIFT_lists]{GIFT_lists()}}). Used internally in
+\code{\link[=GIFT_checklist]{GIFT_checklist()}} to avoid downloading the table of lists many times.}
 
-\item{taxonomy}{default NULL. If not, it has to be the taxonomy table (see
-GIFT_taxonomy()).}
+\item{taxonomy}{default \code{NULL}. If not, it has to be the taxonomy table
+(see \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}}).}
 }
 \value{
 A data frame with 16 columns.
