@@ -90,7 +90,7 @@ library("patchwork")
 ## 1.1. Shapefile
 Let's assume we are interested in having a floristic knowledge of the western
 part of the Mediterranean basin. For this purpose, we can simply use a
-shapefile of the region of interest and feed it to the `GIFT_checklist()`
+shapefile of the region of interest and feed it to the `GIFT_checklists()`
 function.  
 
 We do provide a shapefile of this region in the `GIFT` R package, which you
@@ -128,7 +128,7 @@ ggplot(world) +
 ## 1.2. Main arguments
 
 Now that we have a shape for the region of interest, let's call
-`GIFT_checklist()`. This wrapper function has many arguments which we detail
+`GIFT_checklists()`. This wrapper function has many arguments which we detail
 in this subsection.
 <br>
 First, the taxonomic group of interest. We can be interested in a particular
@@ -162,7 +162,7 @@ the only one available and as it can complete the floristic knowledge for
 Angiosperms in this region.
 <br>
 <br>
-Following arguments of `GIFT_checklist()` relate to the floristic statuses of
+Following arguments of `GIFT_checklists()` relate to the floristic statuses of
 plant species. We can for example only be interested in endemic species, or
 naturalized species. Default value is retrieving all native species.
 <br>
@@ -205,7 +205,7 @@ polygons in GIFT database that cover them. If overlapping polygons are not an
 issue for your case study, you can simply set `remove_overlap` to FALSE (top
 right part of Figure 4). 
 But in case you want one polygon only per region, then `remove_overlap` can be
-set to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
+set to `TRUE`. In that case, the `GIFT_checklists()` will either retrieve the
 smaller or the larger polygon. This will depend on the values set for the
 argument `area_threshold_mainland` as detailed in Figure 4.
 <br>
@@ -235,10 +235,10 @@ knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 ```
 <br>
 
-## 1.3. GIFT_checklist()
+## 1.3. GIFT_checklists()
 
-Now that we covered the main arguments of `GIFT_checklist()`, we can retrieve
-plant checklists for the Mediterranean region. `GIFT_checklist()` returns a
+Now that we covered the main arguments of `GIFT_checklists()`, we can retrieve
+plant checklists for the Mediterranean region. `GIFT_checklists()` returns a
 list of two elements. First the metadata of checklists fulfilling the
 different criteria, named `$lists`. The second element is a `data.frame` of all
 the checklists with the species composition per checklist (`$checklists`).
@@ -248,10 +248,10 @@ If you only want to retrieve the metadata, you can set the argument
 <br>
 
 ```{r, eval=FALSE}
-ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
-                          shp = western_mediterranean,
-                          overlap = "centroid_inside",
-                          list_set_only = TRUE)
+ex_meta <- GIFT_checklists(taxon_name = "Angiospermae",
+                           shp = western_mediterranean,
+                           overlap = "centroid_inside",
+                           list_set_only = TRUE)
 ```
 
 <br>
@@ -259,27 +259,27 @@ And to retrieve the species composition:
 <br>
 
 ```{r, include = FALSE}
-medit <- GIFT_checklist(taxon_name = "Angiospermae",
-                        complete_taxon = TRUE,
-                        floristic_group = "native",
-                        complete_floristic = TRUE,
-                        geo_type = "All",
-                        shp = western_mediterranean,
-                        overlap = "centroid_inside", 
-                        remove_overlap = FALSE,
-                        taxonomic_group = TRUE)
+medit <- GIFT_checklists(taxon_name = "Angiospermae",
+                         complete_taxon = TRUE,
+                         floristic_group = "native",
+                         complete_floristic = TRUE,
+                         geo_type = "All",
+                         shp = western_mediterranean,
+                         overlap = "centroid_inside", 
+                         remove_overlap = FALSE,
+                         taxonomic_group = TRUE)
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
-medit <- GIFT_checklist(taxon_name = "Angiospermae",
-                        complete_taxon = TRUE,
-                        floristic_group = "native",
-                        complete_floristic = TRUE,
-                        geo_type = "All",
-                        shp = western_mediterranean,
-                        overlap = "centroid_inside", 
-                        remove_overlap = FALSE,
-                        taxonomic_group = TRUE) # this argument adds two
+medit <- GIFT_checklists(taxon_name = "Angiospermae",
+                         complete_taxon = TRUE,
+                         floristic_group = "native",
+                         complete_floristic = TRUE,
+                         geo_type = "All",
+                         shp = western_mediterranean,
+                         overlap = "centroid_inside", 
+                         remove_overlap = FALSE,
+                         taxonomic_group = TRUE) # this argument adds two
 # columns to the checklist: plant family and taxonomic group of each species
 ```
 
@@ -306,17 +306,17 @@ retrieved decreases. For example, when removing overlapping regions:
 <br>
 
 ```{r, include = FALSE}
-medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
-                                   overlap = "centroid_inside",
-                                   taxon_name = "Angiospermae",
-                                   remove_overlap = TRUE)
+medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
+                                    overlap = "centroid_inside",
+                                    taxon_name = "Angiospermae",
+                                    remove_overlap = TRUE)
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
-medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
-                                   overlap = "centroid_inside",
-                                   taxon_name = "Angiospermae",
-                                   remove_overlap = TRUE)
+medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
+                                    overlap = "centroid_inside",
+                                    taxon_name = "Angiospermae",
+                                    remove_overlap = TRUE)
 ```
 
 ```{r}
@@ -333,11 +333,11 @@ retrieve GIFT checklists intersecting the coordinates of Göttingen.
 ```{r}
 custom_point <- cbind(9.9, 51) # coordinates of Göttingen
 
-got <- GIFT_checklist(coordinates = custom_point,
-                      overlap = "extent_intersect",
-                      taxon_name = "Angiospermae",
-                      remove_overlap = TRUE,
-                      list_set_only = TRUE)
+got <- GIFT_checklists(coordinates = custom_point,
+                       overlap = "extent_intersect",
+                       taxon_name = "Angiospermae",
+                       remove_overlap = TRUE,
+                       list_set_only = TRUE)
 
 kable(got[[1]], "html") %>%
   kable_styling(full_width = FALSE)

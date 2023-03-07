@@ -392,7 +392,7 @@ check_namesmatched <- function(namesmatched) {
 # Authors: Pierre Denelle
 #
 # Stop if overlap argument is not having the right format
-# (GIFT_checklist and spatial)
+# (GIFT_checklists and spatial)
 #
 # Args:
 #   overlap a character
@@ -438,7 +438,7 @@ check_overlap_threshold <- function(overlap_threshold) {
 # Authors: Pierre Denelle
 #
 # Stop if ref_excluded argument is not having the right format
-# GIFT_checklist and GIFT_checklist_conditional
+# GIFT_checklists and GIFT_checklists_conditional
 #
 # Args:
 #   ref_excluded a character

@@ -13,13 +13,13 @@ reference:
 - subtitle: Main function
   desc: >
   contents:
-  - GIFT_checklist
+  - GIFT_checklists
 
 - subtitle: Alternative functions
   desc: >
   contents:
-  - GIFT_checklist_conditional
-  - GIFT_checklist_raw
+  - GIFT_checklists_conditional
+  - GIFT_checklists_raw
   - GIFT_lists
   - GIFT_references
   - GIFT_richness

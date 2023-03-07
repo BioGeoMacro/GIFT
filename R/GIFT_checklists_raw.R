@@ -1,6 +1,6 @@
 #' GIFT checklists
 #'
-#' Raw checklist, to combine with other functions
+#' Raw checklists, to combine with other functions.
 #'
 #' @param ref_ID A vector defining the IDs of the references to retrieve.
 #' `NULL` by default.
@@ -20,11 +20,11 @@
 #' `all`, `native`, `naturalized`, `endemic_list`, `endemic_ref`.
 #'
 #' @param list_set `NULL` by default. If not, it has to be the list table
-#' (see [GIFT::GIFT_lists()]). Used internally in [GIFT::GIFT_checklist()] to
+#' (see [GIFT::GIFT_lists()]). Used internally in [GIFT::GIFT_checklists()] to
 #' avoid downloading the table of lists many times.
 #' 
 #' @param taxonomy `NULL` by default. If not, it has to be the taxonomy table
-#' (see [GIFT::GIFT_taxonomy()]). Used internally in [GIFT::GIFT_checklist()]
+#' (see [GIFT::GIFT_taxonomy()]). Used internally in [GIFT::GIFT_checklists()]
 #' to avoid downloading the taxonomy table many times.
 #' 
 #' 
@@ -74,12 +74,12 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_raw(list_ID = c(1,5))
-#' ex2 <- GIFT_checklist_raw(list_ID = c(1,5), namesmatched = TRUE)
+#' ex <- GIFT_checklists_raw(list_ID = c(1,5))
+#' ex2 <- GIFT_checklists_raw(list_ID = c(1,5), namesmatched = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -88,7 +88,7 @@
 #' 
 #' @export
 
-GIFT_checklist_raw <- function(
+GIFT_checklists_raw <- function(
     ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
     taxon_name = "Tracheophyta", floristic_group = "all",
     list_set = NULL, taxonomy = NULL, GIFT_version = "latest",

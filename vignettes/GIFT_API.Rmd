@@ -96,9 +96,9 @@ queries except *species* and *phylogeny* which retrieved the data into chunks.
 # GIFT_env_meta_raster => env_raster, references_citavi
 # GIFT_env_meta_misc => env_misc, references_citavi
 # GIFT_env => geoentities_env_misc, geoentities_env_raster
-# GIFT_checklist_raw => taxonomy, checklists
-# GIFT_checklist_conditional => lists, taxonomy
-# GIFT_checklist => lists, taxonomy, overlap
+# GIFT_checklists_raw => taxonomy, checklists
+# GIFT_checklists_conditional => lists, taxonomy
+# GIFT_checklists => lists, taxonomy, overlap
 # GIFT_phylogeny => phylogeny
 ```
 
@@ -123,18 +123,18 @@ query_table <-
                   ""
     ),
     R_function = c(
-      "GIFT_checklist_raw()",  "GIFT_env_meta_misc()",
+      "GIFT_checklists_raw()",  "GIFT_env_meta_misc()",
       "GIFT_env_meta_raster()", "GIFT_env()", "GIFT_env()",
-      "GIFT_lists(), GIFT_checklist_conditional(), GIFT_checklist()",
+      "GIFT_lists(), GIFT_checklists_conditional(), GIFT_checklists()",
       "GIFT_species_lookup()", "GIFT_species_lookup()",
-      "GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklist()",
+      "GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklists()",
       "GIFT_overlap()",
       "GIFT_phylogeny()",
       "GIFT_env_meta_raster(), GIFT_env_meta_misc()",
       "GIFT_references()", "GIFT_traits_raw()", "GIFT_regions()",
       "GIFT_species()", "GIFT_species_distribution()", "GIFT_richness()",
       "GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(),
-      GIFT_checklist_raw(), GIFT_checklist(), GIFT_checklist_conditional()",
+      GIFT_checklists_raw(), GIFT_checklists(), GIFT_checklists_conditional()",
       "GIFT_traits()", "GIFT_richness()", "GIFT_traits_meta()",
       "GIFT_traits_raw()", "All GIFT functions"
     )

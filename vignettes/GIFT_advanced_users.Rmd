@@ -107,8 +107,8 @@ kable(ref[1:3, c("ref_ID", "ref_long", "geo_entity_ref")], "html") %>%
 # 3. Checklist data
 
 The main wrapper function to retrieve checklists and their species composition
-is `GIFT_checklist()` but you also have the possibility to retrieve individual
-checklists using `GIFT_checklist_raw()`. You would need to know the
+is `GIFT_checklists()` but you also have the possibility to retrieve individual
+checklists using `GIFT_checklists_raw()`. You would need to know the
 identification number `list_ID` of the checklists you want to retrieve.
 <br>
 To quickly see all the `list_ID` available in the database, you can run:
@@ -119,18 +119,18 @@ length(unique(gift_lists$list_ID))
 ```
 
 <br>
-When calling `GIFT_checklist_raw()`, you can set the argument `namesmatched`
+When calling `GIFT_checklists_raw()`, you can set the argument `namesmatched`
 to `TRUE` in order to get extra columns informing about the taxonomic
 harmonization that was performed when uploading the list to GIFT database.
 
 ```{r, eval = TRUE, include = FALSE}
-listID_1 <- GIFT_checklist_raw(list_ID = c(11926))
-listID_1_tax <- GIFT_checklist_raw(list_ID = c(11926), namesmatched = TRUE)
+listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
+listID_1_tax <- GIFT_checklists_raw(list_ID = c(11926), namesmatched = TRUE)
 ```
 
 ```{r, echo = TRUE, eval = FALSE}
-listID_1 <- GIFT_checklist_raw(list_ID = c(11926))
-listID_1_tax <- GIFT_checklist_raw(list_ID = c(11926), namesmatched = TRUE)
+listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
+listID_1_tax <- GIFT_checklists_raw(list_ID = c(11926), namesmatched = TRUE)
 ```
 
 ```{r}
@@ -298,20 +298,20 @@ GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
 <br>
 
 ## 5.2. By ref_ID
-In `GIFT_checklist()`, there is also the possibility to remove overlapping
+In `GIFT_checklists()`, there is also the possibility to remove overlapping
 polygons only if they belong to the same reference (i.e. same `ref_ID`).  
 <br>
 We show how this works with the following example:  
 
 ```{r}
-ex <- GIFT_checklist(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
-                     list_set_only = TRUE)
-ex2 <- GIFT_checklist(taxon_name = "Tracheophyta",
-                      remove_overlap = TRUE, by_ref_ID = TRUE,
+ex <- GIFT_checklists(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
                       list_set_only = TRUE)
-ex3 <- GIFT_checklist(taxon_name = "Tracheophyta",
-                      remove_overlap = TRUE, by_ref_ID = FALSE,
-                      list_set_only = TRUE)
+ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
+                       remove_overlap = TRUE, by_ref_ID = TRUE,
+                       list_set_only = TRUE)
+ex3 <- GIFT_checklists(taxon_name = "Tracheophyta",
+                       remove_overlap = TRUE, by_ref_ID = FALSE,
+                       list_set_only = TRUE)
 
 length(unique(ex$lists$ref_ID))
 length(unique(ex2$lists$ref_ID))

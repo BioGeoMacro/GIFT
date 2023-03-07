@@ -43,7 +43,7 @@
 #' 
 #' @param list_set list_set `NULL` by default. If not, it has to be the list
 #' table (see [GIFT::GIFT_lists()]). Used internally in
-#' [GIFT::GIFT_checklist()] to avoid downloading the table of lists many times.
+#' [GIFT::GIFT_checklists()] to avoid downloading the table of lists many times.
 #' 
 #' @param taxonomy default `NULL`. If not, it has to be the taxonomy table
 #' (see [GIFT::GIFT_taxonomy()]).
@@ -78,11 +78,11 @@
 #' @references
 #' \insertRef{Weigelt2020}{GIFT}
 #'
-#' @seealso [GIFT::GIFT_checklist_raw()]
+#' @seealso [GIFT::GIFT_checklists_raw()]
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
+#' ex <- GIFT_checklists_conditional(taxon_name = "Embryophyta", 
 #' floristic_scope = c("all", "native", "native and naturalized",
 #' "native and historically introduced", "endangered",
 #' "endemic", "naturalized", "other subset")[1:4],
@@ -102,7 +102,7 @@
 #' 
 #' @export
 
-GIFT_checklist_conditional <- function(
+GIFT_checklists_conditional <- function(
     taxon_name = "Tracheophyta",
     floristic_scope = c("all", "native", "native and naturalized",
                         "native and historically introduced", "endangered",

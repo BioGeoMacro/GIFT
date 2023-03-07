@@ -11,9 +11,9 @@
 #                                                      "GIFT_versions"))
 # 
 # igraph::V(gift_graph2)$type <- c(
-#   "Checklists/distribution", # GIFT_checklist
-#   "Checklists/distribution", # GIFT_checklist_conditional
-#   "Checklists/distribution", # GIFT_checklist_raw
+#   "Checklists/distribution", # GIFT_checklists
+#   "Checklists/distribution", # GIFT_checklists_conditional
+#   "Checklists/distribution", # GIFT_checklists_raw
 #   "Spatial", # GIFT_no_overlap
 #   "Spatial", # GIFT_spatial
 #   "Species taxonomy/phylogeny", # GIFT_taxgroup

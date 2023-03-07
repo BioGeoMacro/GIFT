@@ -140,15 +140,15 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist_raw()]
+#' @seealso [GIFT::GIFT_checklists_raw()]
 #'
 #' @examples
 #' \dontrun{
 #' data("western_mediterranean")
-#' ex <- GIFT_checklist(shp = western_mediterranean,
+#' ex <- GIFT_checklists(shp = western_mediterranean,
 #' overlap = "centroid_inside", taxon_name = "Angiospermae")
 #' 
-#' ex2 <- GIFT_checklist(shp = western_mediterranean,
+#' ex2 <- GIFT_checklists(shp = western_mediterranean,
 #' overlap = "centroid_inside", taxon_name = "Angiospermae",
 #' list_set_only = TRUE)
 #' }
@@ -157,7 +157,7 @@
 #' 
 #' @export
 
-GIFT_checklist <- function(
+GIFT_checklists <- function(
     taxon_name = "Tracheophyta", complete_taxon = TRUE,
     floristic_group = c("all", "native", "endemic", "naturalized")[2],
     complete_floristic = TRUE, geo_type = c("All", "Mainland", "Island")[1],
@@ -194,7 +194,7 @@ GIFT_checklist <- function(
   GIFT_version <- check_gift_version(GIFT_version)
   
   # 2. Function ----
-  ## 2.1. GIFT_checklist_conditional ---- 
+  ## 2.1. GIFT_checklists_conditional ---- 
   GIFT_conditional_arg <- c("all", "native", "native and naturalized",
                             "native and historically introduced", "endangered",
                             "endemic", "naturalized", "other subset")
@@ -239,9 +239,9 @@ GIFT_checklist <- function(
   message("GIFT taxonomy downloaded.\n")
   
   # If the user asks for floristic_group = native & geo_type = Island
-  # In GIFT_checklist_conditional()
+  # In GIFT_checklists_conditional()
   lists <- suppressMessages(
-    GIFT::GIFT_checklist_conditional(
+    GIFT::GIFT_checklists_conditional(
       taxon_name = taxon_name,
       floristic_scope = arg_list[[floristic_group]],
       ref_excluded = ref_excluded,
@@ -261,7 +261,7 @@ GIFT_checklist <- function(
   # subsetting first call with the entity_IDs got in the second one
   if(complete_floristic == TRUE){
     floristic_subset <- suppressMessages(
-      GIFT::GIFT_checklist_conditional(
+      GIFT::GIFT_checklists_conditional(
         taxon_name = taxon_name,
         floristic_scope = arg_list_second[[floristic_group]],
         ref_excluded = ref_excluded,
@@ -343,7 +343,7 @@ GIFT_checklist <- function(
   # When downloading the species, whole filtering process has to happen again
   # Output of the function: species distribution in lists & metadata for lists
   
-  # Match argument name with GIFT_checklist_raw()
+  # Match argument name with GIFT_checklists_raw()
   if(floristic_group == "endemic"){
     floristic_group <- "endemic_ref"
   }
@@ -354,7 +354,7 @@ GIFT_checklist <- function(
     
     checklists <- 
       suppressMessages(
-        GIFT::GIFT_checklist_raw(list_ID = unique(lists$list_ID),
+        GIFT::GIFT_checklists_raw(list_ID = unique(lists$list_ID),
                                  taxon_name = taxon_name,
                                  namesmatched = namesmatched,
                                  floristic_group = floristic_group,

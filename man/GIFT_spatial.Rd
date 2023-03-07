@@ -87,5 +87,5 @@ ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_checklist]{GIFT_checklist()}}
+\code{\link[=GIFT_checklists]{GIFT_checklists()}}
 }
