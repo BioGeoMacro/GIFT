@@ -20,6 +20,7 @@ Imports:
   jsonlite,
   phytools,
   purrr,
+  Rdpack,
   sf,
   stats,
   tidyr,
@@ -42,6 +43,8 @@ Suggests:
     scales,
     tidytree
 Config/testthat/edition: 3
+RdMacros: 
+    Rdpack
 URL: https://github.com/BioGeoMacro/GIFT,
     https://biogeomacro.github.io/GIFT/
 BugReports: https://github.com/BioGeoMacro/GIFT/issues
