@@ -5,8 +5,8 @@
 #' native species, naturalized species and endemic species per taxonomic group 
 #' and geographic region combination.
 #' 
-#' @param what character indicating whether 'taxonomic_coverage' or 
-#' 'trait_coverage' shall be retrieved.
+#' @param what character indicating whether `taxonomic_coverage` or 
+#' `trait_coverage` shall be retrieved.
 #'
 #' @param taxon_name Name of the taxonomic group you want to retrieve coverage 
 #' for. See [GIFT::GIFT_taxonomy()] for details.
@@ -57,7 +57,6 @@
 #' ex <- GIFT_coverage(what = "taxonomic_coverage", taxon_name = "Angiospermae")
 #' ex2 <- GIFT_coverage(what = "trait_coverage", taxon_name = "Angiospermae",
 #' trait_ID = "1.2.1")
-#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json

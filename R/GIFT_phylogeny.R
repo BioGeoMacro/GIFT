@@ -6,14 +6,14 @@
 #' of interest corresponding to the node labels in the phylogeny.
 #' 
 #' @param as_tree Boolean, whether you want the phylogeny to be returned as a 
-#' phylogenetic tree  (TRUE) or in a table (FALSE). TRUE by default.
+#' phylogenetic tree  (`TRUE`) or in a table (`FALSE`). `TRUE` by default.
 #' 
 #' @param return_work_ID Boolean, whether you want to retrieve the species'
 #' names or their identification number (work_ID) in the GIFT database.
-#' FALSE by default.
+#' `FALSE` by default.
 #' 
 #' @param work_ID_subset A vector of work_ID to prune the phylogenetic tree.
-#' NULL by default.
+#' `NULL` by default.
 #' 
 #' @template GIFT_version_api
 #' 

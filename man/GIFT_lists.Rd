@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_lists.R
 \name{GIFT_lists}
 \alias{GIFT_lists}
-\title{References available in GIFT}
+\title{Metadata for checklists available in GIFT}
 \usage{
 GIFT_lists(
   api = "https://gift.uni-goettingen.de/api/extended/",
@@ -14,15 +14,15 @@ GIFT_lists(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
 A data frame with 15 columns.
 }
 \description{
-Retrieves the metadata of each reference within GIFT.
+Retrieves the metadata of each checklist within GIFT.
 }
 \details{
 Here is what each column refers to:

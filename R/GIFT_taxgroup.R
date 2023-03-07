@@ -1,14 +1,14 @@
 #' Taxonomic group of species
 #'
 #' Assign taxonomic groups of various hierarchical level to species from GIFT 
-#' (`work_ID`)
+#' (`work_ID`).
 #'
 #' @param work_ID A vector defining the IDs of the species to retrieve
-#' taxonomic groups for. `Null` by default. 
+#' taxonomic groups for. `NULL` by default. 
 #' 
-#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default.
+#' @param taxon_lvl taxonomic level to retrieve names for. `family` by default.
 #' Check `GIFT_taxonomy()` for available levels. In addition to the available
-#' levels one can put "higher_lvl" to retrieve the higher level groups
+#' levels one can put `higher_lvl` to retrieve the higher level groups
 #' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
 #' "Monilophyta", "Gymnospermae", and "Angiospermae".
 #' 

@@ -32,7 +32,6 @@
 #' @examples
 #' \dontrun{
 #' ex <- GIFT_richness(taxon_name = "Angiospermae")
-#' 
 #' }
 #' 
 #' @importFrom jsonlite read_json

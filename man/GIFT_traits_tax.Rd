@@ -16,11 +16,11 @@ GIFT_traits_tax(
 \item{trait_IDs}{a character string indicating which trait you want to
 retrieve. Traits must belong to the available list of traits.}
 
-\item{bias_ref}{When FALSE, exclude entries that are only based on a
+\item{bias_ref}{When \code{FALSE}, exclude entries that are only based on a
 resource that potentially introduces a bias (e.g. a resource only including
 trees).}
 
-\item{bias_deriv}{When FALSE, exclude entries that are only based on a
+\item{bias_deriv}{When \code{FALSE}, exclude entries that are only based on a
 derivation that potentially introduces a bias (e.g. all phanerophytes being
 woody but some life forms being ambiguous).}
 
@@ -28,8 +28,8 @@ woody but some life forms being ambiguous).}
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{

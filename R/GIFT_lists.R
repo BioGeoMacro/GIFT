@@ -1,6 +1,6 @@
-#' References available in GIFT
+#' Metadata for checklists available in GIFT
 #'
-#' Retrieves the metadata of each reference within GIFT.
+#' Retrieves the metadata of each checklist within GIFT.
 #'
 #' @template GIFT_version_api
 #' 

@@ -17,15 +17,15 @@ GIFT_shapes(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
-A spatial data.frame with 21 columns.
+A spatial data.frame with 13 columns.
 }
 \description{
-Get shapefile of GIFT regions for selected regions
+Get shapefile of GIFT regions for selected regions.
 }
 \details{
 Here is the detail of each column:

@@ -16,11 +16,11 @@ GIFT_taxgroup(
 }
 \arguments{
 \item{work_ID}{A vector defining the IDs of the species to retrieve
-taxonomic groups for. \code{Null} by default.}
+taxonomic groups for. \code{NULL} by default.}
 
-\item{taxon_lvl}{taxonomic level to retrieve names for. "family" by default.
+\item{taxon_lvl}{taxonomic level to retrieve names for. \code{family} by default.
 Check \code{GIFT_taxonomy()} for available levels. In addition to the available
-levels one can put "higher_lvl" to retrieve the higher level groups
+levels one can put \code{higher_lvl} to retrieve the higher level groups
 "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
 "Monilophyta", "Gymnospermae", and "Angiospermae".}
 
@@ -28,8 +28,8 @@ levels one can put "higher_lvl" to retrieve the higher level groups
 of names.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
@@ -48,7 +48,7 @@ A vector with the taxonomic group of the species used as input.
 }
 \description{
 Assign taxonomic groups of various hierarchical level to species from GIFT
-(\code{work_ID})
+(\code{work_ID}).
 }
 \examples{
 \dontrun{

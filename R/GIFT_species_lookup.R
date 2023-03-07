@@ -9,8 +9,8 @@
 #' @param epithet character string defining the specific epithet to be looked
 #' for.
 #' 
-#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want to 
-#' look for the species not only in the standardized species names but also 
+#' @param namesmatched Boolean. `FALSE` by default, set to `TRUE` if you want
+#' to look for the species not only in the standardized species names but also 
 #' in the original species names as they came in the original resources.
 #' 
 #' @template GIFT_version_api

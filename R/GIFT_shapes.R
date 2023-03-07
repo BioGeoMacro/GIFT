@@ -1,13 +1,13 @@
 #' Shape files of GIFT regions
 #'
-#' Get shapefile of GIFT regions for selected regions
+#' Get shapefile of GIFT regions for selected regions.
 #'
 #' @param entity_ID A vector defining the IDs of the regions.
 #' 
 #' @template GIFT_version_api
 #' 
 #' @return
-#' A spatial data.frame with 21 columns.
+#' A spatial data.frame with 13 columns.
 #'
 #' @details Here is the detail of each column:
 #' 

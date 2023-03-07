@@ -8,12 +8,12 @@
 #' @param epithet Character string corresponding to the epithet of the species 
 #' of interest.
 #'  
-#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want to 
+#' @param namesmatched Boolean. `FALSE` by default, set to TRUE if you want to 
 #' look for the species not only in the standardized species names but also 
 #' in the original species names as they came in the original resources. 
 #' 
 #' @param remove_overlap a boolean stating whether you want to
-#' retrieve checklists that overlap or not.
+#' retrieve checklists that overlap or not. `FALSE` by default.
 #' 
 #' @param area_th_island A number stating from which surface the smallest
 #' overlapping polygon is kept. By default set to 0 square kilometer

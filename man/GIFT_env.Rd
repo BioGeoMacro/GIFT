@@ -24,21 +24,20 @@ data to retrieve.}
 data to retrieve.}
 
 \item{sumstat}{Vector or list indicating the desired summary statistics out
-of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70",
-"q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H",
-"n") used to aggregate the information coming from the raster layers. If
-sumstat is a vector, the same summary statistics are used for all raster
-layers. If sumstat is a list, the first element defines the summary
+of \code{c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70",  "q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H",  "n")} used to aggregate the information coming from the raster layers. If
+\code{sumstat} is a vector, the same summary statistics are used for all raster
+layers. If \code{sumstat} is a list, the first element defines the summary
 statistics for the first raster layer, the second for the second and so
 on.\cr
-\strong{Important note} Some summary statistics may not be informative
+
+\strong{Important note}\cr Some summary statistics may not be informative
 depending on the environmental layer you ask for. For example, it is not
 relevant to retrieve the mean of soil classes for a polygon. The mode or
 Shannon index are more suitable in that case.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
@@ -49,7 +48,10 @@ A data frame with the environmental values per polygon (entity_ID).
 }
 \description{
 Retrieve environmental data associated to each GIFT checklists.
-They can come as rasters or shapefiles (miscellaneous)
+Sources of environmental variables can come from raster layers or
+from shape files (miscellaneous). Users need to define what variables they
+are interested in and then ask for a set of summary statistics (in case of
+raster layers).
 }
 \details{
 The columns of the data.frame are the following:

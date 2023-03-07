@@ -4,7 +4,7 @@
 #' from other resources
 #'
 #' @param resource A character string indicating from which resource the
-#' spatial overlap is calculated. Available options are 'glonaf' and 'gmba'.
+#' spatial overlap is calculated. Available options are `glonaf` and `gmba`.
 #' glonaf stands for Global Naturalized Alien Flora and gmba for Global
 #' Mountain Biodiversity Assessment.
 #' 

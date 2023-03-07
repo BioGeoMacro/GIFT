@@ -1,6 +1,6 @@
 #' Species list in GIFT
 #'
-#' Retrieve the whole set of plant species available in GIFT
+#' Retrieve the whole set of plant species available in GIFT.
 #'
 #' @template GIFT_version_api
 #' 

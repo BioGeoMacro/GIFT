@@ -1,6 +1,6 @@
 #' Spatial selection of GIFT checklists
 #'
-#' Retrieve checklists overlapping with a shape file or a set of coordinates
+#' Retrieve checklists overlapping with a shape file or a set of coordinates.
 #'
 #' @param shp Shapefile provided by the user.
 #'
@@ -10,9 +10,9 @@
 #' of a bounding box.
 #' 
 #' @param overlap A character string defining the criteria to use in order to
-#' retrieve checklists. Available options are 'centroid_inside',
-#' 'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-#' 'extent_intersect' means that every polygon from GIFT for which the extent
+#' retrieve checklists. Available options are `centroid_inside`,
+#' `extent_intersect`, `shape_intersect` and `shape_inside`. For example,
+#' `extent_intersect` means that every polygon from GIFT for which the extent
 #' intersects the provided shape/coordinates will be retrieved.
 #' 
 #' @param entity_ID List of entity_ID to retrieve.

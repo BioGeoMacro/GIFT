@@ -22,16 +22,16 @@ coordinates are given, the function assumes that these are the four corners
 of a bounding box.}
 
 \item{overlap}{A character string defining the criteria to use in order to
-retrieve checklists. Available options are 'centroid_inside',
-'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-'extent_intersect' means that every polygon from GIFT for which the extent
+retrieve checklists. Available options are \code{centroid_inside},
+\code{extent_intersect}, \code{shape_intersect} and \code{shape_inside}. For example,
+\code{extent_intersect} means that every polygon from GIFT for which the extent
 intersects the provided shape/coordinates will be retrieved.}
 
 \item{entity_ID}{List of entity_ID to retrieve.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
@@ -44,7 +44,7 @@ which indicates the percentage of overlap between the provided shape and
 the different polygons of GIFT.
 }
 \description{
-Retrieve checklists overlapping with a shape file or a set of coordinates
+Retrieve checklists overlapping with a shape file or a set of coordinates.
 }
 \examples{
 \dontrun{

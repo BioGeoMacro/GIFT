@@ -1,6 +1,6 @@
-#' References available in GIFT
+#' Metadata for references available in GIFT
 #'
-#' Retrieve the metadata of every reference accessible in GIFT
+#' Retrieve the metadata of every reference accessible in GIFT.
 #'
 #' @template GIFT_version_api
 #' 

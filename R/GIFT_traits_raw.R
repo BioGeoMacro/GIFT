@@ -5,15 +5,15 @@
 #'
 #' @param trait_IDs a character string indicating which traits you want to
 #' retrieve. Traits must belong to the available list of traits. See 
-#' GIFT_traits_meta()
+#' [GIFT::GIFT_traits_meta()].
 #' 
 #' @param derived include logically derived traits.
 #' 
-#' @param bias_ref When FALSE, exclude entries that are only based on a
+#' @param bias_ref When `FALSE`, exclude entries that are only based on a
 #' resource that potentially introduces a bias (e.g. a resource only including
 #' trees).
 #' 
-#' @param bias_deriv When FALSE, exclude entries that are only based on a
+#' @param bias_deriv When `FALSE`, exclude entries that are only based on a
 #' derivation that potentially introduces a bias (e.g. all phanerophytes being
 #' woody but some life forms being ambiguous).
 #' 

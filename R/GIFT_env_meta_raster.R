@@ -1,6 +1,6 @@
 #' Metadata for the environmental rasters in GIFT
 #'
-#' Retrieve the metadata of every environmental raster accessible in GIFT
+#' Retrieve the metadata of every environmental raster accessible in GIFT.
 #'
 #' @template GIFT_version_api
 #' 
