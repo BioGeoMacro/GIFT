@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
+bibliography: REFERENCES.bib
 vignette: >
  %\VignetteIndexEntry{Queries in the API}
  %\VignetteEncoding{UTF-8} 
@@ -40,6 +41,14 @@ knitr::include_graphics("../man/figures/GIFT.png")
 ```
 
 <br>
+
+This vignette shows how to work with the API, how it is related to the
+GIFT R package [@Weigelt2020], and how are the R functions of the package
+interdependent.
+
+<br>
+
+# API
 
 The API endpoint is *https://gift.uni-goettingen.de/api/extended/index.php*.
 We then have different queries, listed in the table below, that allow
@@ -150,6 +159,8 @@ paste0("https://gift.uni-goettingen.de/geojson/geojson_smaller",
        entity_ID[i], ".geojson")
 ```
 
+# Dependency graph of R functions
+
 Dependency graph of the main functions of the package:
 <br>
 
@@ -157,6 +168,4 @@ Dependency graph of the main functions of the package:
 knitr::include_graphics("../man/figures/GIFT_network_functions.png")
 ```
 
-What to cite: 
-
-[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
+# References

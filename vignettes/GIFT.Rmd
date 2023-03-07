@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
+bibliography: REFERENCES.bib
 vignette: >
  %\VignetteIndexEntry{GIFT tutorial}
  %\VignetteEncoding{UTF-8} 
@@ -56,8 +57,8 @@ knitr::include_graphics("../man/figures/GIFT.png")
 
 The Global Inventory of Floras and Traits (GIFT) is a database of floras and
 plant checklists, distributed worldwide. It also includes trait and
-phylogenetic information. The GIFT R package grants an access to the GIFT
-database.
+phylogenetic information [@Weigelt2020]. The GIFT R package grants an access to
+the GIFT database.
 <br>
 This vignette illustrates the most common usages of the package through
 detailed examples.
