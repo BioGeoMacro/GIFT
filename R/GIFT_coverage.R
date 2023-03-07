@@ -19,7 +19,7 @@
 #' @return A data frame with either taxonomic or trait coverage per
 #' GIFT polygon.
 #'
-#' @details The output has 5 columns:
+#' @details The output has 9 columns:
 #' 
 #' \emph{entity_ID} - Identification number of GIFT polygons\cr
 #' \emph{total} - taxonomic or trait coverage for all species\cr

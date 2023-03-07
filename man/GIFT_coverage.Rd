@@ -41,7 +41,7 @@ native species, naturalized species and endemic species per taxonomic group
 and geographic region combination.
 }
 \details{
-The output has 5 columns:
+The output has 9 columns:
 
 \emph{entity_ID} - Identification number of GIFT polygons\cr
 \emph{total} - taxonomic or trait coverage for all species\cr
