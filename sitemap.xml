@@ -25,13 +25,16 @@
     <loc>https://biogeomacro.github.io/GIFT/index.html</loc>
   </url>
   <url>
-    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklist.html</loc>
+    <loc>https://biogeomacro.github.io/GIFT/news/index.html</loc>
   </url>
   <url>
-    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklist_conditional.html</loc>
+    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.html</loc>
   </url>
   <url>
-    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklist_raw.html</loc>
+    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklists_conditional.html</loc>
+  </url>
+  <url>
+    <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_checklists_raw.html</loc>
   </url>
   <url>
     <loc>https://biogeomacro.github.io/GIFT/reference/GIFT_coverage.html</loc>

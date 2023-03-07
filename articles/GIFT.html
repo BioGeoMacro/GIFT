@@ -55,6 +55,9 @@
     <a class="dropdown-item" href="../articles/GIFT_advanced_users.html">GIFT tutorial for advanced users</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -138,7 +141,7 @@ it</li>
 <p>Let’s assume we are interested in having a floristic knowledge of the
 western part of the Mediterranean basin. For this purpose, we can simply
 use a shapefile of the region of interest and feed it to the
-<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> function.</p>
+<code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> function.</p>
 <p>We do provide a shapefile of this region in the <code>GIFT</code> R
 package, which you can access using the
 <code>data("western_mediterranean")</code> command.</p>
@@ -173,7 +176,7 @@ reference system of a sf object by using</em> <code>sf::st_crs().</code>
 <h3 id="main-arguments">1.2. Main arguments<a class="anchor" aria-label="anchor" href="#main-arguments"></a>
 </h3>
 <p>Now that we have a shape for the region of interest, let’s call
-<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>. This wrapper function has many arguments
+<code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code>. This wrapper function has many arguments
 which we detail in this subsection. <br> First, the taxonomic group of
 interest. We can be interested in a particular group of plants, for
 example only Angiosperms. In that case, we would set the
@@ -204,7 +207,7 @@ the checklist of vascular plants will be retrieved after filtering out
 the non-angiosperm species. The species of Orchids is also retrieved in
 both cases as it is not the only one available and as it can complete
 the floristic knowledge for Angiosperms in this region. <br><br>
-Following arguments of <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> relate to the
+Following arguments of <code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> relate to the
 floristic statuses of plant species. We can for example only be
 interested in endemic species, or naturalized species. Default value is
 retrieving all native species. <br> Similarly, two arguments are needed
@@ -243,10 +246,10 @@ overlapping polygons are not an issue for your case study, you can
 simply set <code>remove_overlap</code> to FALSE (top right part of
 Figure 4). But in case you want one polygon only per region, then
 <code>remove_overlap</code> can be set to <code>TRUE</code>. In that
-case, the <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> will either retrieve the smaller
-or the larger polygon. This will depend on the values set for the
-argument <code>area_threshold_mainland</code> as detailed in Figure 4.
-<br></p>
+case, the <code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> will either retrieve the
+smaller or the larger polygon. This will depend on the values set for
+the argument <code>area_threshold_mainland</code> as detailed in Figure
+4. <br></p>
 <div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_no_overlap.svg" alt="Figure 4. Removing overlapping polygons with remove_overlap argument" width="50%"><p class="caption">
 Figure 4. Removing overlapping polygons with remove_overlap argument
@@ -272,11 +275,11 @@ Figure 5. Principle of the overlap_th argument
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="gift_checklist">1.3. GIFT_checklist()<a class="anchor" aria-label="anchor" href="#gift_checklist"></a>
+<h3 id="gift_checklists">1.3. GIFT_checklists()<a class="anchor" aria-label="anchor" href="#gift_checklists"></a>
 </h3>
 <p>Now that we covered the main arguments of
-<code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code>, we can retrieve plant checklists for the
-Mediterranean region. <code><a href="../reference/GIFT_checklist.html">GIFT_checklist()</a></code> returns a list of
+<code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code>, we can retrieve plant checklists for the
+Mediterranean region. <code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> returns a list of
 two elements. First the metadata of checklists fulfilling the different
 criteria, named <code>$lists</code>. The second element is a
 <code>data.frame</code> of all the checklists with the species
@@ -284,21 +287,21 @@ composition per checklist (<code>$checklists</code>). <br> If you only
 want to retrieve the metadata, you can set the argument
 <code>list_set_only</code> to <code>TRUE</code>. <br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ex_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
-<span>                          shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
-<span>                          overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
-<span>                          list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ex_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
+<span>                           shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                           overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
+<span>                           list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><br> And to retrieve the species composition: <br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">medit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
-<span>                        complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                        floristic_group <span class="op">=</span> <span class="st">"native"</span>,</span>
-<span>                        complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                        geo_type <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                        shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
-<span>                        overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>, </span>
-<span>                        remove_overlap <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                        taxonomic_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># this argument adds two</span></span>
+<code class="sourceCode R"><span><span class="va">medit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
+<span>                         complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                         floristic_group <span class="op">=</span> <span class="st">"native"</span>,</span>
+<span>                         complete_floristic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                         geo_type <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                         shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                         overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>, </span>
+<span>                         remove_overlap <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                         taxonomic_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># this argument adds two</span></span>
 <span><span class="co"># columns to the checklist: plant family and taxonomic group of each species</span></span></code></pre></div>
 <p><br></p>
 <p>We can now have an estimation on the number of checklists with native
@@ -321,10 +324,10 @@ above. When being stricter with some criteria, you can see that the
 number of checklists retrieved decreases. For example, when removing
 overlapping regions: <br></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
-<span>                                   overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
-<span>                                   taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
-<span>                                   remove_overlap <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
+<span>                                    overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
+<span>                                    taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
+<span>                                    remove_overlap <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Number of references covered</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -339,11 +342,11 @@ of Göttingen. <br></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span> <span class="co"># coordinates of Göttingen</span></span>
 <span></span>
-<span><span class="va">got</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklist.html">GIFT_checklist</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
-<span>                      overlap <span class="op">=</span> <span class="st">"extent_intersect"</span>,</span>
-<span>                      taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
-<span>                      remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                      list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">got</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
+<span>                       overlap <span class="op">=</span> <span class="st">"extent_intersect"</span>,</span>
+<span>                       taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
+<span>                       remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                       list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">got</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
