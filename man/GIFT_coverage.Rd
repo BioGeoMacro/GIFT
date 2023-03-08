@@ -14,8 +14,8 @@ GIFT_coverage(
 )
 }
 \arguments{
-\item{what}{character indicating whether 'taxonomic_coverage' or
-'trait_coverage' shall be retrieved.}
+\item{what}{character indicating whether \code{taxonomic_coverage} or
+\code{trait_coverage} shall be retrieved.}
 
 \item{taxon_name}{Name of the taxonomic group you want to retrieve coverage
 for. See \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}} for details.}
@@ -24,8 +24,8 @@ for. See \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}} for details.}
 coverage for. See \code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}} for details.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be
@@ -41,7 +41,7 @@ native species, naturalized species and endemic species per taxonomic group
 and geographic region combination.
 }
 \details{
-The output has 5 columns:
+The output has 9 columns:
 
 \emph{entity_ID} - Identification number of GIFT polygons\cr
 \emph{total} - taxonomic or trait coverage for all species\cr
@@ -72,7 +72,6 @@ geographic region.
 ex <- GIFT_coverage(what = "taxonomic_coverage", taxon_name = "Angiospermae")
 ex2 <- GIFT_coverage(what = "trait_coverage", taxon_name = "Angiospermae",
 trait_ID = "1.2.1")
-
 }
 
 }

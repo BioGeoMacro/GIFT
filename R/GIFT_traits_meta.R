@@ -1,6 +1,6 @@
-#' GIFT_traits_meta
+#' Trait metadata
 #'
-#' Retrieve metadata of the functional traits.
+#' Retrieve metadata of the functional traits coming from GIFT.
 #'
 #' @param api Character string corresponding to the API.
 #' 

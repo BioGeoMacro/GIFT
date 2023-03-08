@@ -1,7 +1,7 @@
 #' Metadata for the environmental miscellaneous variables in GIFT
 #'
-#' Retrieve the metadata of miscellaneous environmental layers accessible in
-#' GIFT
+#' Retrieve the metadata of all miscellaneous environmental layers accessible
+#' in GIFT.
 #'
 #' @template GIFT_version_api
 #' 

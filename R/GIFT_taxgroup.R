@@ -1,14 +1,14 @@
-#' GIFT taxgroup
+#' Taxonomic group of species
 #'
 #' Assign taxonomic groups of various hierarchical level to species from GIFT 
-#' (work_ID)
+#' (`work_ID`).
 #'
 #' @param work_ID A vector defining the IDs of the species to retrieve
-#' taxonomic groups for. `Null` by default. 
+#' taxonomic groups for. `NULL` by default. 
 #' 
-#' @param taxon_lvl taxonomic level to retrieve names for. "family" by default.
+#' @param taxon_lvl taxonomic level to retrieve names for. `family` by default.
 #' Check `GIFT_taxonomy()` for available levels. In addition to the available
-#' levels one can put "higher_lvl" to retrieve the higher level groups
+#' levels one can put `higher_lvl` to retrieve the higher level groups
 #' "Anthocerotophyta", "Marchantiophyta", "Bryophyta", "Lycopodiophyta",
 #' "Monilophyta", "Gymnospermae", and "Angiospermae".
 #' 
@@ -36,8 +36,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
-#' ex2 <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "higher_lvl")
+#' ex <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "family")
+#' ex2 <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "higher_lvl")
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -92,7 +92,6 @@ GIFT_taxgroup <- function(work_ID = NULL,
   }
   
   # 2. Queries ----
-  
   ## 2.0 species names query
   if(is.null(species)){
     species <- suppressMessages(
@@ -101,7 +100,15 @@ GIFT_taxgroup <- function(work_ID = NULL,
   
   species <- dplyr::mutate_at(species, c("work_ID", "genus_ID"), as.numeric)
   
-  if(!all(work_ID %in% species$work_ID)) stop("Not all work_IDs found!")
+  if(!all(work_ID %in% species$work_ID)){
+    if(length(work_ID[work_ID %in% species$work_ID]) <= 20){
+      stop(paste0("The following work_IDs were not found:",
+                  paste(work_ID[!(work_ID %in% species$work_ID)],
+                        collapse = " ")))
+    } else{
+      stop("More than 20 work_IDs were not found!")
+    }
+  } 
   
   species <- species[match(work_ID,species$work_ID), ]
   genera <- unique(species$genus_ID)

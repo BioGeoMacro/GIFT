@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits_tax.R
 \name{GIFT_traits_tax}
 \alias{GIFT_traits_tax}
-\title{GIFT_traits_tax}
+\title{Traits at the taxonomic level}
 \usage{
 GIFT_traits_tax(
   trait_IDs = "",
@@ -16,11 +16,11 @@ GIFT_traits_tax(
 \item{trait_IDs}{a character string indicating which trait you want to
 retrieve. Traits must belong to the available list of traits.}
 
-\item{bias_ref}{When FALSE, exclude entries that are only based on a
+\item{bias_ref}{When \code{FALSE}, exclude entries that are only based on a
 resource that potentially introduces a bias (e.g. a resource only including
 trees).}
 
-\item{bias_deriv}{When FALSE, exclude entries that are only based on a
+\item{bias_deriv}{When \code{FALSE}, exclude entries that are only based on a
 derivation that potentially introduces a bias (e.g. all phanerophytes being
 woody but some life forms being ambiguous).}
 
@@ -28,8 +28,8 @@ woody but some life forms being ambiguous).}
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
@@ -46,8 +46,9 @@ Here is the detail of each column:
 \emph{taxon_name} - Name of the taxon\cr
 \emph{agreement} - Agreement score between the different sources for that
 trait value, only for categorical traits\cr
-\emph{references} - Source of the trait values (ref_ID)\cr
-\emph{negative} - Value of the trait\cr
+\emph{references} - Source of the trait values (\code{ref_ID})\cr
+\emph{negative} - Does the record indicate the absence of trait value in
+taxon_ID\cr
 
 and then one column per trait with the respective trait values
 }

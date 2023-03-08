@@ -6,22 +6,25 @@
 #' 
 #' @return A data frame with 6 columns.
 #'
-#' @details Column \emph{taxon_ID} indicates the identification number of each
-#' taxonomic entry. The names describing taxa are in the column
-#' \emph{taxon_name}.The third column spells the author name for a given taxon.
-#' The column \emph{taxon_lvl} splits every taxon in genus, family, order or
+#' @details Here is what each column refers to:
+#' 
+#' \emph{taxon_ID} - the identification number of each taxonomic entry.\cr
+#' \emph{taxon_name} - names describing taxa.\cr
+#' \emph{taxon_name} - author name for a given taxon.\cr
+#' \emph{taxon_lvl} - splits every taxon in genus, family, order or
 #' superior orders. Taxonomy is a linear sequence of left and right borders
 #' for each taxon. This is nested, for example left and right borders of a
 #' genus would fall between the left and right borders of the corresponding
-#' family. Columns \emph{lft} and \emph{rgt} respectively refer to these left
-#' and right borders.
+#' family. \cr
+#' \emph{lft} - left border of one taxon in the taxonomic sequence.\cr
+#' \emph{rgt} - right border of one taxon in the taxonomic sequence.\cr
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{
@@ -33,8 +36,9 @@
 #' 
 #' @export
 
-GIFT_taxonomy <- function(GIFT_version = "latest", 
-                          api = "https://gift.uni-goettingen.de/api/extended/"){
+GIFT_taxonomy <- function(
+    GIFT_version = "latest", 
+    api = "https://gift.uni-goettingen.de/api/extended/"){
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   

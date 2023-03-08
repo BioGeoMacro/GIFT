@@ -14,15 +14,15 @@ GIFT_species(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
 A data frame with 5 columns.
 }
 \description{
-Retrieve the whole set of plant species available in GIFT
+Retrieve the whole set of plant species available in GIFT.
 }
 \details{
 Here is what each column refers to:
@@ -47,5 +47,5 @@ ex <- GIFT_species()
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_checklist]{GIFT_checklist()}}
+\code{\link[=GIFT_checklists]{GIFT_checklists()}}
 }

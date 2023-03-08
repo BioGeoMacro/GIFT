@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits_meta.R
 \name{GIFT_traits_meta}
 \alias{GIFT_traits_meta}
-\title{GIFT_traits_meta}
+\title{Trait metadata}
 \usage{
 GIFT_traits_meta(
   api = "https://gift.uni-goettingen.de/api/extended/",
@@ -20,7 +20,7 @@ version.}
 A data frame with 10 columns.
 }
 \description{
-Retrieve metadata of the functional traits.
+Retrieve metadata of the functional traits coming from GIFT.
 }
 \details{
 Here is what each column refers to:

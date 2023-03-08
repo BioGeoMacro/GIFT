@@ -35,6 +35,19 @@
 # devtools::check()
 # devtools::check(args = "--as-cran")
 
+# CRAN specific requirements
+# rhub::check_for_cran()
+# devtools::check_rhub()
+
+# Check win-builder
+# devtools::check_win_devel()
+
+# Update your manuals
+# devtools::document()
+
+# Create tar.gz
+# devtools::build()
+
 # Markdown in the development of the pages
 # usethis::use_roxygen_md()
 
@@ -44,3 +57,6 @@
 #                     s_x = 1, s_y = 1, s_width = 0.8,
 #                     h_fill = "white",
 #                     filename = "man/figures/GIFT_hexlogo.png")
+
+# Favicon for the website
+# pkgdown::build_favicons(pkg = ".", overwrite = FALSE)

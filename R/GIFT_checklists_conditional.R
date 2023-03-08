@@ -6,44 +6,47 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param ref_included Character, options are 'all', 'native',
-#' 'native and naturalized', 'native and historically introduced',
-#' 'endangered', 'endemic', 'naturalized', 'other subset'
+#' @param floristic_scope A vector listing floristic scopes of the references
+#' to be considered.
+#' Options are: `all`, `native`, `native and naturalized`,
+#' `native and historically introduced`, `endangered`, `endemic`,
+#' `naturalized`, `other subset`.
 #'
 #' @param ref_excluded A vector listing potential ref_IDs that shall be ignored 
 #' when assembling the set of regions and checklists fulfilling the given 
-#' criteria. Checklists from these references will not be returned. NULL by 
+#' criteria. Checklists from these references will not be returned. `NULL` by 
 #' default.
 #'  
-#' @param type_ref Character, options are 'Account', 'Catalogue', 'Checklist',
-#' 'Flora', 'Herbarium collection', 'Key', 'Red list', 'Report',
-#' 'Species Database', 'Survey'
+#' @param type_ref Character, options are `Account`, `Catalogue`, `Checklist`,
+#' `Flora`, `Herbarium collection`, `Key`, `Red list`, `Report`,
+#' `Species Database`, `Survey`.
 #' 
-#' @param entity_class Character, options are 'Island', 'Island/Mainland',
-#' 'Mainland', 'Island Group', 'Island Part'
+#' @param entity_class Character, options are `Island`, `Island/Mainland`,
+#' `Mainland`, `Island Group`, `Island Part`.
 #' 
 #' @param native_indicated Boolean, whether only lists where native status
 #' is available should be retrieved.
 #' 
 #' @param natural_indicated Boolean, whether only lists where natural status
 #' is available should be retrieved.
-#' 
-#' 
+#'  
 #' @param end_ref Boolean, whether only lists where endemism at the reference
 #' level is available should be retrieved.
 #'  
 #' @param end_list Boolean, whether only lists where endemism at the list level
 #' is available should be retrieved.
 #' 
-#' @param suit_geo Boolean, whether only suitable polygons should be retrieved.
+#' @param suit_geo logical indicating whether only regions classified as 
+#' suit_geo should be considered (see details).
 #' 
-#' @param complete_taxon Boolean, default TRUE.
+#' @param complete_taxon Boolean, default `TRUE`.
 #' 
-#' @param list_set default NULL. If not, a vector of identification numbers of
-#' GIFT checklists.
+#' @param list_set list_set `NULL` by default. If not, it has to be the list
+#' table (see [GIFT::GIFT_lists()]). Used internally in
+#' [GIFT::GIFT_checklists()] to avoid downloading the table of lists many times.
 #' 
-#' @param taxonomy default NULL. If not, it has to be the taxonomy table (see
-#' GIFT_taxonomy()).
+#' @param taxonomy default `NULL`. If not, it has to be the taxonomy table
+#' (see [GIFT::GIFT_taxonomy()]).
 #' 
 #' @template GIFT_version_api
 #' 
@@ -73,16 +76,14 @@
 #' \emph{taxon_name} - Name of the group of taxa available.
 #' 
 #' @references
-#'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
-#'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
-#'      https://doi.org/10.1111/jbi.13623
+#' \insertRef{Weigelt2020}{GIFT}
 #'
-#' @seealso [GIFT::GIFT_checklist_raw()]
+#' @seealso [GIFT::GIFT_checklists_raw()]
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_conditional(taxon_name = "Embryophyta", 
-#' ref_included = c("all", "native", "native and naturalized",
+#' ex <- GIFT_checklists_conditional(taxon_name = "Embryophyta", 
+#' floristic_scope = c("all", "native", "native and naturalized",
 #' "native and historically introduced", "endangered",
 #' "endemic", "naturalized", "other subset")[1:4],
 #' type_ref = c("Account", "Catalogue", "Checklist","Flora",
@@ -101,11 +102,11 @@
 #' 
 #' @export
 
-GIFT_checklist_conditional <- function(
+GIFT_checklists_conditional <- function(
     taxon_name = "Tracheophyta",
-    ref_included = c("all", "native", "native and naturalized",
-                     "native and historically introduced", "endangered",
-                     "endemic", "naturalized", "other subset")[1:4],
+    floristic_scope = c("all", "native", "native and naturalized",
+                        "native and historically introduced", "endangered",
+                        "endemic", "naturalized", "other subset")[1:4],
     ref_excluded = NULL,
     type_ref = c("Account", "Catalogue", "Checklist","Flora",
                  "Herbarium collection", "Key", "Red list", "Report",
@@ -123,21 +124,20 @@ GIFT_checklist_conditional <- function(
   check_taxon_name(taxon_name)
   check_complete_taxon(complete_taxon)
   
-  if(any(is.na(ref_included)) || !is.character(ref_included) || 
-     !(all(ref_included %in% c("all", "native", "native and naturalized",
-                               "native and historically introduced",
-                               "endangered", "endemic", "naturalized",
-                               "other subset")))){
-    stop(c("'ref_included' must be a character string stating what information
-           should be available in the lists you retrieve (e.g. only references
-           where endemic status is indicated). Available options are 'all',
-           'native', 'native and naturalized',
-           'native and historically introduced', 'endangered',
-           'endemic', 'naturalized', 'other subset'"))
+  if(any(is.na(floristic_scope)) || !is.character(floristic_scope) || 
+     !(all(floristic_scope %in% c("all", "native", "native and naturalized",
+                                  "native and historically introduced",
+                                  "endangered", "endemic", "naturalized",
+                                  "other subset")))){
+    stop(c("'floristic_scope' must be a character string stating what
+    information should be available in the lists you retrieve (e.g. only
+    references where endemic status is indicated). Available options are 'all',
+    'native', 'native and naturalized', 'native and historically introduced',
+    'endangered', 'endemic', 'naturalized', 'other subset'."))
   }
   
   check_ref_excluded(ref_excluded)
-
+  
   if(any(is.na(type_ref)) || !is.character(type_ref) || 
      !(all(type_ref %in% c("Account", "Catalogue", "Checklist","Flora",
                            "Herbarium collection", "Key", "Red list",
@@ -182,7 +182,7 @@ GIFT_checklist_conditional <- function(
     stop("'suit_geo' must be a boolean stating if you want to retrieve
          lists associated to a suitable polygon or not.")
   }
-
+  
   check_api(api)
   GIFT_version <- check_gift_version_simple(GIFT_version)
   
@@ -240,7 +240,7 @@ GIFT_checklist_conditional <- function(
   list_set <- list_set[which(list_set$taxon_ID %in% included_taxa), ]
   
   # Subset of lists based on floristic coverage (alien, endemics, etc)
-  list_set <- list_set[which(list_set$subset %in% ref_included), ]
+  list_set <- list_set[which(list_set$subset %in% floristic_scope), ]
   
   # Subset of lists based on reference type (checklist, flora, etc)
   list_set <- list_set[which(list_set$type %in% type_ref), ]

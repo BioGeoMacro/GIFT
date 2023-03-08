@@ -14,16 +14,16 @@ GIFT_env_meta_misc(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
 A data frame with 6 columns.
 }
 \description{
-Retrieve the metadata of miscellaneous environmental layers accessible in
-GIFT
+Retrieve the metadata of all miscellaneous environmental layers accessible
+in GIFT.
 }
 \details{
 Here is what each column refers to:

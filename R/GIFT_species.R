@@ -1,6 +1,6 @@
 #' Species list in GIFT
 #'
-#' Retrieve the whole set of plant species available in GIFT
+#' Retrieve the whole set of plant species available in GIFT.
 #'
 #' @template GIFT_version_api
 #' 
@@ -21,7 +21,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{

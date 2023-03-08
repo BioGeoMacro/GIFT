@@ -1,15 +1,15 @@
-#' GIFT_traits_tax
+#' Traits at the taxonomic level
 #'
 #' Retrieve specific trait values at a high taxonomic level.
 #'
 #' @param trait_IDs a character string indicating which trait you want to
 #' retrieve. Traits must belong to the available list of traits.
 #' 
-#' @param bias_ref When FALSE, exclude entries that are only based on a
+#' @param bias_ref When `FALSE`, exclude entries that are only based on a
 #' resource that potentially introduces a bias (e.g. a resource only including
 #' trees).
 #' 
-#' @param bias_deriv When FALSE, exclude entries that are only based on a
+#' @param bias_deriv When `FALSE`, exclude entries that are only based on a
 #' derivation that potentially introduces a bias (e.g. all phanerophytes being
 #' woody but some life forms being ambiguous).
 #' 
@@ -25,11 +25,11 @@
 #' \emph{taxon_name} - Name of the taxon\cr
 #' \emph{agreement} - Agreement score between the different sources for that
 #' trait value, only for categorical traits\cr
-#' \emph{references} - Source of the trait values (ref_ID)\cr
-#' \emph{negative} - Value of the trait\cr
+#' \emph{references} - Source of the trait values (`ref_ID`)\cr
+#' \emph{negative} - Does the record indicate the absence of trait value in
+#' taxon_ID\cr
 #' 
 #' and then one column per trait with the respective trait values
-#' 
 #'
 #' @references
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
@@ -51,7 +51,7 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
-#' 
+ 
 GIFT_traits_tax <- function(
     trait_IDs = "", bias_ref = TRUE, bias_deriv = TRUE,
     api = "https://gift.uni-goettingen.de/api/extended/",
@@ -80,9 +80,11 @@ GIFT_traits_tax <- function(
       values for biases. bias_ref and bias_deriv arguments are ignored.")
   }
   
+  trait_ID <- NULL
+  
   # 2. Function ----
   # Get species names
-  message("Retrieving species' names.\n")
+  message("\nRetrieving species' names.\n")
   
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))

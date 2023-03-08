@@ -13,15 +13,16 @@ reference:
 - subtitle: Main function
   desc: >
   contents:
-  - GIFT_checklist
+  - GIFT_checklists
 
 - subtitle: Alternative functions
   desc: >
   contents:
-  - GIFT_checklist_conditional
-  - GIFT_checklist_raw
+  - GIFT_checklists_conditional
+  - GIFT_checklists_raw
   - GIFT_lists
   - GIFT_references
+  - GIFT_richness
   
 - title: Species' distribution
 
@@ -35,9 +36,14 @@ reference:
   contents:
   - GIFT_species_lookup
   - GIFT_species
+
+- title: Taxonomy and phylogeny
+  desc: >
+  contents:
   - GIFT_taxonomy
   - GIFT_taxgroup
-  
+  - GIFT_phylogeny
+
 - title: Traits
 
 - subtitle: Main functions
@@ -51,7 +57,6 @@ reference:
 - subtitle: Alternative functions
   desc: >
   contents:
-  - GIFT_richness
   - GIFT_coverage
   
 - title: Spatial data
@@ -68,17 +73,12 @@ reference:
   desc: >
   contents:
   - GIFT_regions
-  - GIFT_shape
+  - GIFT_shapes
   - GIFT_overlap
   - GIFT_no_overlap
-
-- title: Phylogeny
-  desc: >
-  contents:
-  - GIFT_phylogeny
 
 - title: Utils
   desc: >
   contents:
-  - GIFT_version
+  - GIFT_versions
   - western_mediterranean

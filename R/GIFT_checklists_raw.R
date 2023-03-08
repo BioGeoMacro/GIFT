@@ -1,6 +1,6 @@
 #' GIFT checklists
 #'
-#' Raw checklist, to combine with other functions
+#' Raw checklists, to combine with other functions.
 #'
 #' @param ref_ID A vector defining the IDs of the references to retrieve.
 #' `NULL` by default.
@@ -12,16 +12,22 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param namesmatched Boolean. FALSE by default, set to TRUE if you want the
-#' original species name as they came in the references as well as details on
-#' the taxonomic harmonization.
+#' @param namesmatched Boolean. `FALSE` by default, set to `TRUE` if you want
+#' the original species name as they came in the references as well as details
+#' on the taxonomic harmonization.
 #' 
 #' @param floristic_group Character string among these options:
-#' 'all', 'native', 'naturalized', 'endemic_list', 'endemic_ref'.
+#' `all`, `native`, `naturalized`, `endemic_list`, `endemic_ref`.
 #'
-#' @param list_set NULL by default
+#' @param list_set `NULL` by default. If not, it has to be the list table
+#' (see [GIFT::GIFT_lists()]). Used internally in [GIFT::GIFT_checklists()] to
+#' avoid downloading the table of lists many times.
 #' 
-#' @param taxonomy NULL by default
+#' @param taxonomy `NULL` by default. If not, it has to be the taxonomy table
+#' (see [GIFT::GIFT_taxonomy()]). Used internally in [GIFT::GIFT_checklists()]
+#' to avoid downloading the taxonomy table many times.
+#' 
+#' 
 #' 
 #' @template GIFT_version_api
 #' 
@@ -68,12 +74,12 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_checklist_raw(list_ID = c(1,5))
-#' ex2 <- GIFT_checklist_raw(list_ID = c(1,5), namesmatched = TRUE)
+#' ex <- GIFT_checklists_raw(list_ID = c(1,5))
+#' ex2 <- GIFT_checklists_raw(list_ID = c(1,5), namesmatched = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json
@@ -82,7 +88,7 @@
 #' 
 #' @export
 
-GIFT_checklist_raw <- function(
+GIFT_checklists_raw <- function(
     ref_ID = NULL, list_ID = NULL, namesmatched = FALSE,
     taxon_name = "Tracheophyta", floristic_group = "all",
     list_set = NULL, taxonomy = NULL, GIFT_version = "latest",
@@ -114,7 +120,8 @@ GIFT_checklist_raw <- function(
   
   check_taxon_name(taxon_name)
   
-  taxon_check <- GIFT::GIFT_taxonomy(api = api, GIFT_version = GIFT_version)
+  taxon_check <- suppressMessages(
+    GIFT::GIFT_taxonomy(api = api, GIFT_version = GIFT_version))
   if(!(taxon_name %in% taxon_check$taxon_name)){
     stop("The 'taxon_name' you specified is not available in GIFT. Run
          GIFT_taxonomy() to look at the available options (column 'taxon_name'
@@ -146,7 +153,6 @@ GIFT_checklist_raw <- function(
   GIFT_version <- check_gift_version_simple(GIFT_version)
   
   # 2. Query ----
-  
   ## 2.0 Lists query
   if(!is.null(ref_ID)){
     if(is.null(list_set)){

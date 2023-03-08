@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits_raw.R
 \name{GIFT_traits_raw}
 \alias{GIFT_traits_raw}
-\title{GIFT_traits_raw}
+\title{Raw trait values}
 \usage{
 GIFT_traits_raw(
   trait_IDs = "",
@@ -16,15 +16,15 @@ GIFT_traits_raw(
 \arguments{
 \item{trait_IDs}{a character string indicating which traits you want to
 retrieve. Traits must belong to the available list of traits. See
-GIFT_traits_meta()}
+\code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}}.}
 
 \item{derived}{include logically derived traits.}
 
-\item{bias_ref}{When FALSE, exclude entries that are only based on a
+\item{bias_ref}{When \code{FALSE}, exclude entries that are only based on a
 resource that potentially introduces a bias (e.g. a resource only including
 trees).}
 
-\item{bias_deriv}{When FALSE, exclude entries that are only based on a
+\item{bias_deriv}{When \code{FALSE}, exclude entries that are only based on a
 derivation that potentially introduces a bias (e.g. all phanerophytes being
 woody but some life forms being ambiguous).}
 
@@ -32,12 +32,12 @@ woody but some life forms being ambiguous).}
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
-A data.frame with 26 columns.
+A data.frame with 28 columns.
 }
 \description{
 Retrieve non-aggregated trait values at the level of the bibliographic
@@ -52,10 +52,12 @@ database\cr
 \emph{orig_ID} - Identification number of the species, as it came in the
 source\cr
 \emph{trait_ID} - Identification number of the trait\cr
-\emph{trait_value} - Value of the trait\cr
+\emph{trait_value} - Value of the trait (coded as character, even for
+continuous trait)\cr
 \emph{derived} - Is the trait value derived from another information (e.g.
 phanerophytes are woody)\cr
 \emph{bias_deriv} - Is the derivation potentially introducing a bias\cr
+\emph{bias_ref} - Is the resource potentially introducing a bias\cr
 \emph{name_ID} - Identification number of the species before being
 resolved\cr
 \emph{cf_genus} - Whether the genus name is uncertain\cr
@@ -73,8 +75,11 @@ backbone\cr
 \emph{service} - Taxonomic backbone used for taxonomic harmonization\cr
 \emph{work_ID} - Identification number of the taxonomically harmonized
 species\cr
-\emph{bias_ref} - Is the resource potentially introducing a bias\cr
-\emph{species} - Species name\cr
+\emph{genus_ID} - Identification number of the taxonomically harmonized
+genus\cr
+\emph{work_genus} - Genus name (after taxonomic harmonization)\cr
+\emph{work_species} - Species name (after taxonomic harmonization)\cr
+\emph{work_author} - Name of the author who described the species\cr
 \emph{geo_entity} _ref - Name of the region of the reference\cr
 \emph{ref_long} - Full reference to cite
 }

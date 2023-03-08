@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
+bibliography: REFERENCES.bib
 vignette: >
  %\VignetteIndexEntry{GIFT tutorial}
  %\VignetteEncoding{UTF-8} 
@@ -35,26 +36,23 @@ suppressPackageStartupMessages({
     library("rnaturalearthdata")
     library("tidyr")
     library("ape")
-    library("BiocManager")
-    install("ggtree")
-    library("ggtree")
-    library("tidytree")
-    install("ggtreeExtra")
-    library("ggtreeExtra")
   })
 })
 
 options(tinytex.verbose = TRUE)
 ```
 
-```{r gottingen_logo, out.width = "20%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_biodiv_gottingen_logo.png")
+```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
+knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../man/figures/GIFT.png")
 ```
+
+<br>
 
 The Global Inventory of Floras and Traits (GIFT) is a database of floras and
 plant checklists, distributed worldwide. It also includes trait and
-phylogenetic information. The GIFT R package grants an access to the GIFT
-database.
+phylogenetic information [@Weigelt2020]. The GIFT R package grants an access to
+the GIFT database.
 <br>
 This vignette illustrates the most common usages of the package through
 detailed examples.
@@ -86,7 +84,7 @@ library("patchwork")
 ## 1.1. Shapefile
 Let's assume we are interested in having a floristic knowledge of the western
 part of the Mediterranean basin. For this purpose, we can simply use a
-shapefile of the region of interest and feed it to the `GIFT_checklist()`
+shapefile of the region of interest and feed it to the `GIFT_checklists()`
 function.  
 
 We do provide a shapefile of this region in the `GIFT` R package, which you
@@ -124,7 +122,7 @@ ggplot(world) +
 ## 1.2. Main arguments
 
 Now that we have a shape for the region of interest, let's call
-`GIFT_checklist()`. This wrapper function has many arguments which we detail
+`GIFT_checklists()`. This wrapper function has many arguments which we detail
 in this subsection.
 <br>
 First, the taxonomic group of interest. We can be interested in a particular
@@ -158,7 +156,7 @@ the only one available and as it can complete the floristic knowledge for
 Angiosperms in this region.
 <br>
 <br>
-Following arguments of `GIFT_checklist()` relate to the floristic statuses of
+Following arguments of `GIFT_checklists()` relate to the floristic statuses of
 plant species. We can for example only be interested in endemic species, or
 naturalized species. Default value is retrieving all native species.
 <br>
@@ -201,7 +199,7 @@ polygons in GIFT database that cover them. If overlapping polygons are not an
 issue for your case study, you can simply set `remove_overlap` to FALSE (top
 right part of Figure 4). 
 But in case you want one polygon only per region, then `remove_overlap` can be
-set to `TRUE`. In that case, the `GIFT_checklist()` will either retrieve the
+set to `TRUE`. In that case, the `GIFT_checklists()` will either retrieve the
 smaller or the larger polygon. This will depend on the values set for the
 argument `area_threshold_mainland` as detailed in Figure 4.
 <br>
@@ -231,10 +229,10 @@ knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 ```
 <br>
 
-## 1.3. GIFT_checklist()
+## 1.3. GIFT_checklists()
 
-Now that we covered the main arguments of `GIFT_checklist()`, we can retrieve
-plant checklists for the Mediterranean region. `GIFT_checklist()` returns a
+Now that we covered the main arguments of `GIFT_checklists()`, we can retrieve
+plant checklists for the Mediterranean region. `GIFT_checklists()` returns a
 list of two elements. First the metadata of checklists fulfilling the
 different criteria, named `$lists`. The second element is a `data.frame` of all
 the checklists with the species composition per checklist (`$checklists`).
@@ -244,10 +242,10 @@ If you only want to retrieve the metadata, you can set the argument
 <br>
 
 ```{r, eval=FALSE}
-ex_meta <- GIFT_checklist(taxon_name = "Angiospermae",
-                          shp = western_mediterranean,
-                          overlap = "centroid_inside",
-                          list_set_only = TRUE)
+ex_meta <- GIFT_checklists(taxon_name = "Angiospermae",
+                           shp = western_mediterranean,
+                           overlap = "centroid_inside",
+                           list_set_only = TRUE)
 ```
 
 <br>
@@ -255,27 +253,27 @@ And to retrieve the species composition:
 <br>
 
 ```{r, include = FALSE}
-medit <- GIFT_checklist(taxon_name = "Angiospermae",
-                        complete_taxon = TRUE,
-                        floristic_group = "native",
-                        complete_floristic = TRUE,
-                        geo_type = "All",
-                        shp = western_mediterranean,
-                        overlap = "centroid_inside", 
-                        remove_overlap = FALSE,
-                        taxonomic_group = TRUE)
+medit <- GIFT_checklists(taxon_name = "Angiospermae",
+                         complete_taxon = TRUE,
+                         floristic_group = "native",
+                         complete_floristic = TRUE,
+                         geo_type = "All",
+                         shp = western_mediterranean,
+                         overlap = "centroid_inside", 
+                         remove_overlap = FALSE,
+                         taxonomic_group = TRUE)
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
-medit <- GIFT_checklist(taxon_name = "Angiospermae",
-                        complete_taxon = TRUE,
-                        floristic_group = "native",
-                        complete_floristic = TRUE,
-                        geo_type = "All",
-                        shp = western_mediterranean,
-                        overlap = "centroid_inside", 
-                        remove_overlap = FALSE,
-                        taxonomic_group = TRUE) # this argument adds two
+medit <- GIFT_checklists(taxon_name = "Angiospermae",
+                         complete_taxon = TRUE,
+                         floristic_group = "native",
+                         complete_floristic = TRUE,
+                         geo_type = "All",
+                         shp = western_mediterranean,
+                         overlap = "centroid_inside", 
+                         remove_overlap = FALSE,
+                         taxonomic_group = TRUE) # this argument adds two
 # columns to the checklist: plant family and taxonomic group of each species
 ```
 
@@ -302,17 +300,17 @@ retrieved decreases. For example, when removing overlapping regions:
 <br>
 
 ```{r, include = FALSE}
-medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
-                                   overlap = "centroid_inside",
-                                   taxon_name = "Angiospermae",
-                                   remove_overlap = TRUE)
+medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
+                                    overlap = "centroid_inside",
+                                    taxon_name = "Angiospermae",
+                                    remove_overlap = TRUE)
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
-medit_no_overlap <- GIFT_checklist(shp = western_mediterranean,
-                                   overlap = "centroid_inside",
-                                   taxon_name = "Angiospermae",
-                                   remove_overlap = TRUE)
+medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
+                                    overlap = "centroid_inside",
+                                    taxon_name = "Angiospermae",
+                                    remove_overlap = TRUE)
 ```
 
 ```{r}
@@ -329,11 +327,11 @@ retrieve GIFT checklists intersecting the coordinates of Göttingen.
 ```{r}
 custom_point <- cbind(9.9, 51) # coordinates of Göttingen
 
-got <- GIFT_checklist(coordinates = custom_point,
-                      overlap = "extent_intersect",
-                      taxon_name = "Angiospermae",
-                      remove_overlap = TRUE,
-                      list_set_only = TRUE)
+got <- GIFT_checklists(coordinates = custom_point,
+                       overlap = "extent_intersect",
+                       taxon_name = "Angiospermae",
+                       remove_overlap = TRUE,
+                       list_set_only = TRUE)
 
 kable(got[[1]], "html") %>%
   kable_styling(full_width = FALSE)
@@ -351,25 +349,21 @@ To cite properly the references retrieved, you can run the function
 Once we downloaded a set of checklists, it is possible to map the species
 richness of the taxonomic group of interest. For this purpose, we use a
 combination of two functions: `GIFT_richness()` which either retrieves species
-richness or trait coverage per polygon and `GIFT_shape()` which retrieves the
+richness or trait coverage per polygon and `GIFT_shapes()` which retrieves the
 shapefile of a list of GIFT polygons.
 <br>
 The next two chunks illustrate this for the Angiosperms in the World and in the
 Western part of the Mediterranean basin.
 <br>
 
-```{r, include=FALSE}
-gift_shape <- GIFT_shape() # retrieves all shapefiles by default
-```
-
 ```{r, eval=FALSE, echo = TRUE}
-gift_shape <- GIFT_shape() # retrieves all shapefiles by default
+gift_shapes <- GIFT_shapes() # retrieves all shapefiles by default
 ```
 
-```{r, message=FALSE, fig.width = 8, fig.height = 4}
+```{r, echo = TRUE, eval = FALSE, message=FALSE, fig.width = 8, fig.height = 4}
 angio_rich <- GIFT_richness(taxon_name = "Angiospermae")
 
-rich_map <- dplyr::left_join(gift_shape, angio_rich, by = "entity_ID") %>%
+rich_map <- dplyr::left_join(gift_shapes, angio_rich, by = "entity_ID") %>%
   dplyr::filter(stats::complete.cases(total))
 
 ggplot(world) +
@@ -382,10 +376,23 @@ ggplot(world) +
   theme_void()
 ```
 
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/angio_rich_map.png")
+```
+
 <br>
 By customizing the code above, you can also produce a nicer map:
 
-```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/angio_rich_map2.png")
+```
+
+<br>
+Below is the `R` code to produce the above map if interested.
+<br>
+
+<details><summary>Fancier code</summary>
+```{r, echo = TRUE, eval=FALSE}
 # Background box
 xmin <- st_bbox(world)[["xmin"]]; xmax <- st_bbox(world)[["xmax"]]
 ymin <- st_bbox(world)[["ymin"]]; ymax <- st_bbox(world)[["ymax"]]
@@ -435,48 +442,6 @@ ggplot(world) +
   coord_sf(crs = eckertIV) +
   theme_void()
 ```
-
-<br>
-Below is the `R` code to produce the above map if interested.
-<br>
-
-<details><summary>Fancier code</summary>
-```{r, eval=FALSE}
-ggplot(world) +
-  geom_sf(data = bb, fill = "aliceblue") +
-  geom_sf(data = equator, color = "gray50", linetype = "dashed",
-          linewidth = 0.1) +
-  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-  geom_sf(color = "gray50", linewidth = 0.1) +
-  geom_sf(data = bb, fill = NA) +
-  geom_sf(data = rich_map,
-          aes(fill = ifelse(rich_map$entity_class %in%
-                              c("Island/Mainland", "Mainland",
-                                "Island Group", "Island Part"),
-                            total + 1, NA)),
-          size = 0.1) +
-  geom_point(data = rich_map,
-             aes(color = ifelse(rich_map$entity_class %in%
-                                  c("Island"),
-                                total + 1, NA),
-                 geometry = geometry),
-             stat = "sf_coordinates", size = 1, stroke = 0.5) +
-  scale_color_gradientn(
-    "Species number", trans = "log10", limits = c(1, 40000), 
-    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
-    breaks = c(1, 10, 100, 1000, 10000, 40000),
-    labels = c(1, 10, 100, 1000, 10000, 40000),
-    na.value = "transparent") +
-  scale_fill_gradientn(
-    "Species number", trans = "log10", limits = c(1, 40000), 
-    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
-    breaks = c(1, 10, 100, 1000, 10000, 40000),
-    labels = c(1, 10, 100, 1000, 10000, 40000),
-    na.value = "transparent") +
-  labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
-  coord_sf(crs = eckertIV) +
-  theme_void()
-```
 </details>
 <br><br>
 
@@ -484,9 +449,9 @@ We can also produce maps of richness at intermediate scales. Here is the code
 and the map of Angiosperms in the Western Mediterranean basin.  
 <br>
 
-```{r, message=FALSE, fig.width = 8, fig.height = 4}
-med_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                unique(medit[[2]]$entity_ID)), ]
+```{r, echo = TRUE, eval = FALSE, message=FALSE, fig.width = 8, fig.height = 4}
+med_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                 unique(medit[[2]]$entity_ID)), ]
 
 med_rich <- angio_rich[which(angio_rich$entity_ID %in% 
                                unique(medit[[2]]$entity_ID)), ]
@@ -503,6 +468,10 @@ ggplot(world) +
   labs(title = "Angiosperms in the Western Mediterranean basin") +
   lims(x = c(-20, 20), y = c(24, 48)) +
   theme_void()
+```
+
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/angio_medit.png")
 ```
 
 <br><br>
@@ -598,9 +567,9 @@ naturalized.
 
 Now that we know in which polygons the species occur and with what status, we
 can map its distribution using the GIFT shapes we retrieved earlier using
-`GIFT_shape()`.
+`GIFT_shapes()`.
 
-```{r, fig.width = 8, fig.height = 4}
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 4}
 # We rename the statuses based on the distinct combinations
 anemone_statuses <- anemone_statuses %>%
   mutate(Status = case_when(
@@ -613,8 +582,8 @@ anemone_statuses <- anemone_statuses %>%
   ))
 
 # Merge with the shapes
-anemone_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                    unique(anemone_distr$entity_ID)), ]
+anemone_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                     unique(anemone_distr$entity_ID)), ]
 anemone_map <- dplyr::left_join(anemone_shape, anemone_statuses,
                                 by = "entity_ID")
 
@@ -630,41 +599,15 @@ ggplot(world) +
   theme_void()
 ```
 
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/anemone_map.png")
+```
+
 <br>
 By customizing the code above, you can also produce a nicer map:
 
-```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
-anemone_map_plot_bg_parts <-
-  ggplot(world) +
-  geom_sf(data = bb, fill = "aliceblue", color = NA) +
-  geom_sf(data = equator, color = "gray50", linetype = "dashed",
-          linewidth = 0.1) +
-  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-  geom_sf(color = "gray50", linewidth = 0.1) +
-  geom_sf(data = bb, fill = NA) +
-  geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
-  scale_fill_manual("Status",
-                    values = c("native" = "#2c7bb6",
-                               "naturalized" = "#d7191c",
-                               "non-native" = "#fdae61",
-                               "unknown" = "#abd9e9")) +
-  labs(title = expression(paste("b) Distribution map of ",
-                                italic("Anemone nemorosa")))) +
-  theme_void() +
-  theme(axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-(anemone_map_plot_bg_parts +
-    lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-    theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
-    theme(legend.position = "bottom")) +
-  (anemone_map_plot_bg_parts +
-     lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
-     labs(title = "") +
-     guides(fill = "none") +
-     theme(panel.border = element_rect(fill = NA, linewidth = 1))) +
-  patchwork::plot_layout()
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/anemone_map2.png")
 ```
 
 <br>
@@ -695,15 +638,15 @@ anemone_map_plot_bg_parts <-
         axis.ticks = element_blank())
 
 (anemone_map_plot_bg_parts +
-     lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-     theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
-     theme(legend.position = "bottom")
-   |
-     anemone_map_plot_bg_parts +
-     lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
-     labs(title = "") +
-     guides(fill = "none") +
-     theme(panel.border = element_rect(fill = NA, linewidth = 1)))
+    lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+    theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
+    theme(legend.position = "bottom")
+  |
+    anemone_map_plot_bg_parts +
+    lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+    labs(title = "") +
+    guides(fill = "none") +
+    theme(panel.border = element_rect(fill = NA, linewidth = 1)))
 ```
 </details>
 <br>
@@ -835,13 +778,13 @@ In combination with the shapes loaded previously, we can also map the trait
 coverage.
 <br>
 
-```{r, fig.width = 8, fig.height = 4}
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 4}
 angio_height <- GIFT_coverage(what = "trait_coverage",
                               taxon_name = "Angiospermae",
                               trait_ID = "1.6.2")
 
-angio_height_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                         unique(angio_height$entity_ID)), ]
+angio_height_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                          unique(angio_height$entity_ID)), ]
 
 angio_height_map <- dplyr::left_join(
   angio_height_shape, angio_height, by = "entity_ID")
@@ -855,45 +798,19 @@ ggplot(world) +
   scale_fill_viridis_c("Coverage (%)") +
   labs(title = "Coverage for maximal vegetative height of Angiosperms",
        subtitle = "Projection EckertIV") +
+  coord_sf(crs = eckertIV) +
   theme_void()
+```
+
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/angio_height_plot.png")
 ```
 
 <br>
 By customizing the code above, you can also produce a nicer map:
 
-```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
-ggplot(world) +
-  geom_sf(data = bb, fill = "aliceblue") +
-  geom_sf(data = equator, color = "gray50", linetype = "dashed",
-          linewidth = 0.1) +
-  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-  geom_sf(color = "gray50", linewidth = 0.1) +
-  geom_sf(data = bb, fill = NA) +
-  geom_sf(data = angio_height_map,
-          aes(fill = ifelse(angio_height_map$entity_class %in%
-                              c("Island/Mainland", "Mainland",
-                                "Island Group", "Island Part"),
-                            100*native, NA)), size = 0.1) +
-  geom_point(data = angio_height_map,
-             aes(color = ifelse(angio_height_map$entity_class %in%
-                                  c("Island"),
-                                100*native, NA),
-                 geometry = geometry),
-             stat = "sf_coordinates", size = 1, stroke = 0.5) +
-  scale_color_gradientn(
-    "Coverage (%)", 
-    colours = rev(RColorBrewer::brewer.pal(9, name = "PuBuGn")),
-    limits = c(0, 100),
-    na.value = "transparent") +
-  scale_fill_gradientn(
-    "Coverage (%)", 
-    colours = rev(RColorBrewer::brewer.pal(9, name = "PuBuGn")),
-    limits = c(0, 100),
-    na.value = "transparent") +
-  labs(title = "Coverage for maximal vegetative height of Angiosperms",
-       subtitle = "Projection EckertIV") +
-  coord_sf(crs = eckertIV) +
-  theme_void()
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/angio_height_plot2.png")
 ```
 
 <br>
@@ -991,13 +908,13 @@ med_env[1, ]
 Using the shapes previously loaded, we can also map a particular environmental
 variable for all GIFT polygons.
 
-```{r, fig.width = 8, fig.height = 4}
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 4}
 world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
                        rasterlayer = c("wc2.0_bio_30s_01"),
                        sumstat = c("mean"))
 
-temp_shape <- gift_shape[which(gift_shape$entity_ID %in% 
-                                 unique(angio_rich$entity_ID)), ]
+temp_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
+                                  unique(angio_rich$entity_ID)), ]
 
 temp_map <- dplyr::left_join(temp_shape, world_temp, by = "entity_ID")
 
@@ -1011,42 +928,15 @@ ggplot(world) +
   theme_void()
 ```
 
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/temp_plot.png")
+```
+
 <br>
 By customizing the code above, you can also produce a nicer map:
 
-```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
-ggplot(world) +
-  geom_sf(data = bb, fill = "aliceblue") +
-  geom_sf(data = equator, color = "gray50", linetype = "dashed",
-          linewidth = 0.1) +
-  geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-  geom_sf(color = "gray50", linewidth = 0.1) +
-  geom_sf(data = bb, fill = NA) +
-  geom_sf(data = temp_map,
-          aes(fill = ifelse(temp_map$entity_class %in%
-                              c("Island/Mainland", "Mainland",
-                                "Island Group", "Island Part"),
-                            mean_wc2.0_bio_30s_01, NA)), size = 0.1) +
-  geom_point(data = temp_map,
-             aes(color = ifelse(temp_map$entity_class %in%
-                                  c("Island"),
-                                mean_wc2.0_bio_30s_01, NA),
-                 geometry = geometry),
-             stat = "sf_coordinates", size = 1, stroke = 0.5) +
-  scale_color_gradientn(
-    "°C", 
-    colours = RColorBrewer::brewer.pal(9, name = "Reds"),
-    limits = c(-20, 30),
-    na.value = "transparent") +
-  scale_fill_gradientn(
-    "°C", 
-    colours = RColorBrewer::brewer.pal(9, name = "Reds"),
-    limits = c(-20, 30),
-    na.value = "transparent") +
-  labs(title = "Average temperature",
-       subtitle = "Projection EckertIV") +
-  coord_sf(crs = eckertIV) +
-  theme_void()
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/temp_plot2.png")
 ```
 
 <br>
@@ -1098,16 +988,6 @@ ggplot(world) +
 Phylogeny from [Jin & Qian (2022)](https://doi.org/10.1016/j.pld.2022.12.007)
 Matched to the taxonomy of GIFT.
 
-```{r include=FALSE}
-# Retrieving phylogeny, taxonomy and species from GIFT
-phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
-tax <- GIFT_taxonomy(GIFT_version = "beta")
-gift_sp <- GIFT_species(GIFT_version = "beta")
-
-gf <- GIFT_traits(trait_IDs = "1.2.1", agreement = 0.66, bias_ref = FALSE,
-                  bias_deriv = FALSE, GIFT_version = "beta")
-```
-
 ```{r, eval=FALSE, echo=TRUE}
 # Retrieving phylogeny, taxonomy and species from GIFT
 phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
@@ -1118,13 +998,13 @@ gf <- GIFT_traits(trait_IDs = "1.2.1", agreement = 0.66, bias_ref = FALSE,
                   bias_deriv = FALSE, GIFT_version = "beta")
 ```
 
-```{r}
+```{r, eval=FALSE, echo=TRUE}
 # Replacing space with _ for the species names
 gf$work_species <- gsub(" ", "_", gf$work_species, fixed = TRUE)
 ```
 
 
-```{r}
+```{r, eval=FALSE, echo=TRUE}
 # Retrieving family of each species
 sp_fam <- GIFT_taxgroup(work_ID = unique(gift_sp$work_ID),
                         taxon_lvl = "family", GIFT_version = "beta")
@@ -1152,7 +1032,7 @@ phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"] <-
 In the next chunk, we calculate the trait coverage (for growth form) at the
 genus and family level.
 
-```{r}
+```{r, eval=FALSE, echo=TRUE}
 sp_genus_fam <- left_join(sp_genus_fam,
                           gf[, c("work_ID", "trait_value_1.2.1")],
                           by = "work_ID")
@@ -1209,7 +1089,7 @@ colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
 
 Pruning the tree at the genus level.
 
-```{r}
+```{r, eval=FALSE, echo=TRUE}
 phy_gen <- ape::keep.tip(
   phy = phy,
   tip = one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"])
@@ -1219,8 +1099,21 @@ In the following plot, there is only one tip per genus. The two outer rings
 illustrate the coverage of growth form per genus and per family (outer ring).
 For the family ring, the width of each family is set by the number of genera
 they contain.
+<br>
+To get the following plot, you need to install/load the following packages:
 
-```{r, fig.width = 6, fig.height = 6}
+```{r, echo=TRUE, eval = FALSE}
+library("BiocManager")
+install("ggtree")
+library("ggtree")
+library("tidytree")
+install("ggtreeExtra")
+library("ggtreeExtra")
+```
+
+<br>
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 6}
 ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
   geom_fruit(geom = geom_tile,
              mapping = aes(fill = prop_gf_gen),
@@ -1236,13 +1129,15 @@ ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
   theme(legend.position = "bottom")
 ```
 
+```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+knitr::include_graphics("../man/figures/phy_tree_plot.png")
+```
+
 <br><br>
 
 # 6. References
 
 When using the GIFT database and the GIFT R package, here are the two
 resources to cite:
-
-[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
 
 [GIFT R package](https://biogeomacro.github.io/GIFT/)

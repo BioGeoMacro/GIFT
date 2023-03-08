@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_traits.R
 \name{GIFT_traits}
 \alias{GIFT_traits}
-\title{GIFT_traits}
+\title{Trait values at the species level}
 \usage{
 GIFT_traits(
   trait_IDs = "",
@@ -32,8 +32,8 @@ woody but some life forms being ambiguous).}
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{

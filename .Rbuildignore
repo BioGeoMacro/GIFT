@@ -9,3 +9,4 @@
 ^man-roxygen
 ^README.rmd
 ^pkg_check.R
+^function_dependency.R

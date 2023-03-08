@@ -1,4 +1,4 @@
-#' GIFT regions
+#' Metadata for GIFT regions
 #'
 #' Retrieves miscellaneous information for GIFT regions.
 #'

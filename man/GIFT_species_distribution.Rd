@@ -25,12 +25,12 @@ of interest.}
 \item{epithet}{Character string corresponding to the epithet of the species
 of interest.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to
+\item{namesmatched}{Boolean. \code{FALSE} by default, set to TRUE if you want to
 look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 
 \item{remove_overlap}{a boolean stating whether you want to
-retrieve checklists that overlap or not.}
+retrieve checklists that overlap or not. \code{FALSE} by default.}
 
 \item{area_th_island}{A number stating from which surface the smallest
 overlapping polygon is kept. By default set to 0 square kilometer
@@ -56,8 +56,8 @@ native and non-native. In that case, the aggregation would consider the
 species to be native. Reverse for naturalized and alien.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 
 \item{api}{character string defining from which API the data will be

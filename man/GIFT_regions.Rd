@@ -2,7 +2,7 @@
 % Please edit documentation in R/GIFT_regions.R
 \name{GIFT_regions}
 \alias{GIFT_regions}
-\title{GIFT regions}
+\title{Metadata for GIFT regions}
 \usage{
 GIFT_regions(
   api = "https://gift.uni-goettingen.de/api/extended/",
@@ -14,8 +14,8 @@ GIFT_regions(
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{

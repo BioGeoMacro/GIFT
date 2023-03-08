@@ -1,6 +1,6 @@
 #' Spatial selection of GIFT checklists
 #'
-#' Retrieve checklists overlapping with a shape file or a set of coordinates
+#' Retrieve checklists overlapping with a shape file or a set of coordinates.
 #'
 #' @param shp Shapefile provided by the user.
 #'
@@ -10,9 +10,9 @@
 #' of a bounding box.
 #' 
 #' @param overlap A character string defining the criteria to use in order to
-#' retrieve checklists. Available options are 'centroid_inside',
-#' 'extent_intersect', 'shape_intersect' and 'shape_inside'. For example,
-#' 'extent_intersect' means that every polygon from GIFT for which the extent
+#' retrieve checklists. Available options are `centroid_inside`,
+#' `extent_intersect`, `shape_intersect` and `shape_inside`. For example,
+#' `extent_intersect` means that every polygon from GIFT for which the extent
 #' intersects the provided shape/coordinates will be retrieved.
 #' 
 #' @param entity_ID List of entity_ID to retrieve.
@@ -29,7 +29,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{
@@ -96,7 +96,7 @@ GIFT_spatial <- function(
   }
   
   check_shp(shp = shp, overlap = overlap)
-
+  
   # Visible binding for global variable
   x_min <- x_max <- y_min <- y_max <- NULL
   
@@ -104,16 +104,16 @@ GIFT_spatial <- function(
   coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
                                    overlap = overlap)
   shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
-
+  
   # 2. Query ----
   ## 2.0. GIFT_env() & subset entity_ID ----
   # Depending upon the overlap argument, we either query the centroids or
   # the extent from GIFT
   if(overlap == "centroid_inside"){
     # Query the centroid using GIFT_env()
-    GIFT_centroids <-
+    GIFT_centroids <- suppressMessages(
       GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
-                     api = api, GIFT_version = GIFT_version)
+                     api = api, GIFT_version = GIFT_version))
     # Removing NAs
     GIFT_centroids <-
       GIFT_centroids[stats::complete.cases(GIFT_centroids$longitude), ]

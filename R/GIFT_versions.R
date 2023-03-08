@@ -1,4 +1,4 @@
-#' Version of GIFT available
+#' Versions of GIFT available
 #'
 #' Returns a table with information on the different versions of the database
 #'
@@ -16,18 +16,18 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{
-#' ex <- GIFT_version()
+#' ex <- GIFT_versions()
 #' }
 #' 
 #' @importFrom jsonlite read_json
 #' 
 #' @export
 
-GIFT_version <- function(){
+GIFT_versions <- function(){
   gift_version <- jsonlite::read_json(
     "https://gift.uni-goettingen.de/api/index.php?query=versions",
     simplifyVector = TRUE)

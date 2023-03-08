@@ -1,4 +1,4 @@
-#' GIFT_traits
+#' Trait values at the species level
 #'
 #' Retrieve specific trait values.
 #'
@@ -55,7 +55,7 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
-#' 
+
 GIFT_traits <- function(
     trait_IDs = "", agreement = 0.66, bias_ref = TRUE, bias_deriv = TRUE,
     api = "https://gift.uni-goettingen.de/api/extended/",
@@ -93,7 +93,7 @@ GIFT_traits <- function(
   
   # 2. Function ----
   # Get species names
-  message("Retrieving species' names.\n")
+  message("\nRetrieving species' names.\n")
   
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))
@@ -101,7 +101,7 @@ GIFT_traits <- function(
   message(paste0("Preparing the download of trait data for ",
                  length(unique(trait_IDs)),
                  " trait(s)).\n"))
-  
+
   # Initiating list
   trait_list <- list()
   

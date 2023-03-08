@@ -1,4 +1,4 @@
-#' GIFT_no_overlap
+#' Select non-overlapping regions
 #' 
 #' Identify overlapping regions in a set of GIFT regions and choose only 
 #' non-overlapping regions based on size and overlap criteria
@@ -31,7 +31,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{

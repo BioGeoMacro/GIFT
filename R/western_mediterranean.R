@@ -8,7 +8,7 @@
 #'
 #' @usage data("western_mediterranean")
 #'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+#' @format An object of class \code{"sf"}
 #'
 #' @keywords datasets
 #'

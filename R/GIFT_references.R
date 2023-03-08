@@ -1,6 +1,6 @@
-#' References available in GIFT
+#' Metadata for references available in GIFT
 #'
-#' Retrieve the metadata of every reference accessible in GIFT
+#' Retrieve the metadata of every reference accessible in GIFT.
 #'
 #' @template GIFT_version_api
 #' 
@@ -32,7 +32,7 @@
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623
 #'
-#' @seealso [GIFT::GIFT_checklist()]
+#' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
 #' \dontrun{

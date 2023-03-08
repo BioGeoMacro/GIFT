@@ -1,7 +1,10 @@
 #' Environmental data for GIFT checklists
 #'
 #' Retrieve environmental data associated to each GIFT checklists.
-#' They can come as rasters or shapefiles (miscellaneous)
+#' Sources of environmental variables can come from raster layers or
+#' from shape files (miscellaneous). Users need to define what variables they
+#' are interested in and then ask for a set of summary statistics (in case of
+#' raster layers).
 #'
 #' @param entity_ID A vector defining the ID of the lists to retrieve.
 #' `NULL` by default, in that case, every list from GIFT is retrieved.
@@ -13,14 +16,15 @@
 #' data to retrieve.
 #' 
 #' @param sumstat Vector or list indicating the desired summary statistics out 
-#' of c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
+#' of `c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
 #' "q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H", 
-#' "n") used to aggregate the information coming from the raster layers. If 
-#' sumstat is a vector, the same summary statistics are used for all raster 
-#' layers. If sumstat is a list, the first element defines the summary 
+#' "n")` used to aggregate the information coming from the raster layers. If 
+#' `sumstat` is a vector, the same summary statistics are used for all raster 
+#' layers. If `sumstat` is a list, the first element defines the summary 
 #' statistics for the first raster layer, the second for the second and so
 #' on.\cr
-#' \strong{Important note} Some summary statistics may not be informative
+#' 
+#' \strong{Important note}\cr Some summary statistics may not be informative
 #' depending on the environmental layer you ask for. For example, it is not
 #' relevant to retrieve the mean of soil classes for a polygon. The mode or
 #' Shannon index are more suitable in that case.

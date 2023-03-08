@@ -18,16 +18,16 @@ GIFT_species_lookup(
 \item{epithet}{character string defining the specific epithet to be looked
 for.}
 
-\item{namesmatched}{Boolean. FALSE by default, set to TRUE if you want to
-look for the species not only in the standardized species names but also
+\item{namesmatched}{Boolean. \code{FALSE} by default, set to \code{TRUE} if you want
+to look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 
 \item{api}{character string defining from which API the data will be
 retrieved.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
-database to use. The function retrieves by default the "latest" stable
-version. If set to "beta", the most up-to-date version which is still
+database to use. The function retrieves by default the \code{latest} stable
+version. If set to \code{beta}, the most up-to-date version which is still
 subject to changes and edits is used.}
 }
 \value{
@@ -86,5 +86,5 @@ ex <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=GIFT_checklist]{GIFT_checklist()}}
+\code{\link[=GIFT_checklists]{GIFT_checklists()}}
 }
