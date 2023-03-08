@@ -98,9 +98,9 @@ GIFT_traits <- function(
   species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
                                            api = api))
   
-  message(paste0("Preparing the download of trait data (",
+  message(paste0("Preparing the download of trait data for ",
                  length(unique(trait_IDs)),
-                 " traits asked).\n"))
+                 " trait(s)).\n"))
   
   # Initiating list
   trait_list <- list()
