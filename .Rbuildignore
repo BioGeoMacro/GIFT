@@ -10,3 +10,4 @@
 ^README.rmd
 ^pkg_check.R
 ^function_dependency.R
+^figures_vignette.R

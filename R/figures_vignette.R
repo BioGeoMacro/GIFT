@@ -1,5 +1,8 @@
 
 figures_vignettes <- function(eval = FALSE){
+  # Visible global definition
+  ne_coastline <- ne_countries <- st_wrapNULL
+  
   if(isTRUE(eval)){
     # Needed objects ----------------------------------------------------------
     library("dplyr")
@@ -10,19 +13,20 @@ figures_vignettes <- function(eval = FALSE){
     library("tidyr")
     library("patchwork")
     
-    world <- ne_coastline(scale = "medium", returnclass = "sf")
-    world_countries <- ne_countries(scale = "medium", returnclass = "sf")
+    world <- rnaturalearth::ne_coastline(scale = "medium", returnclass = "sf")
+    world_countries <- rnaturalearth::ne_countries(scale = "medium",
+                                                   returnclass = "sf")
     # Fixing polygons crossing dateline
-    world <- st_wrap_dateline(world)
-    world_countries <- st_wrap_dateline(world_countries)
+    world <- sf::st_wrap_dateline(world)
+    world_countries <- sf::st_wrap_dateline(world_countries)
     
     # Eckert IV projection
     eckertIV <-
       "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
     
     # Background box
-    xmin <- st_bbox(world)[["xmin"]]; xmax <- st_bbox(world)[["xmax"]]
-    ymin <- st_bbox(world)[["ymin"]]; ymax <- st_bbox(world)[["ymax"]]
+    xmin <- sf::st_bbox(world)[["xmin"]]; xmax <- st_bbox(world)[["xmax"]]
+    ymin <- sf::st_bbox(world)[["ymin"]]; ymax <- st_bbox(world)[["ymax"]]
     bb <- sf::st_union(sf::st_make_grid(st_bbox(c(xmin = xmin,
                                                   xmax = xmax,
                                                   ymax = ymax,
@@ -31,8 +35,9 @@ figures_vignettes <- function(eval = FALSE){
                                         n = 100))
     
     # Equator line
-    equator <- st_linestring(matrix(c(-180, 0, 180, 0), ncol = 2, byrow = TRUE))
-    equator <- st_sfc(equator, crs = st_crs(world))
+    equator <- sf::st_linestring(matrix(c(-180, 0, 180, 0), ncol = 2,
+                                        byrow = TRUE))
+    equator <- sf::st_sfc(equator, crs = st_crs(world))
     
     # Retrieving all shapefiles -----------------------------------------------
     gift_shapes <- GIFT_shapes()
@@ -43,58 +48,62 @@ figures_vignettes <- function(eval = FALSE){
     rich_map <- dplyr::left_join(gift_shapes, angio_rich, by = "entity_ID") %>%
       dplyr::filter(stats::complete.cases(total))
     
-    angio_rich_map <- ggplot(world) +
-      geom_sf(color = "gray50") +
-      geom_sf(data = rich_map, aes(fill = total + 1)) +
-      scale_fill_viridis_c("Species number\n(log-transformed)", trans = "log10",
-                           labels = scales::number_format(accuracy = 1)) +
-      labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+    angio_rich_map <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(color = "gray50") +
+      ggplot2::geom_sf(data = rich_map, aes(fill = total + 1)) +
+      ggplot2::scale_fill_viridis_c(
+        "Species number\n(log-transformed)", 
+        trans = "log10", labels = scales::number_format(accuracy = 1)) +
+      ggplot2::labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/angio_rich_map.png",
-           plot = angio_rich_map,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/angio_rich_map.png",
+                    plot = angio_rich_map,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     ## Fancy version ----
-    angio_rich_map2 <- ggplot(world) +
-      geom_sf(data = bb, fill = "aliceblue") +
-      geom_sf(data = equator, color = "gray50", linetype = "dashed",
-              linewidth = 0.1) +
-      geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-      geom_sf(color = "gray50", linewidth = 0.1) +
-      geom_sf(data = bb, fill = NA) +
-      geom_sf(data = rich_map,
-              aes(fill = ifelse(rich_map$entity_class %in%
-                                  c("Island/Mainland", "Mainland",
-                                    "Island Group", "Island Part"),
-                                total + 1, NA)),
-              size = 0.1) +
-      geom_point(data = rich_map,
-                 aes(color = ifelse(rich_map$entity_class %in%
-                                      c("Island"),
-                                    total + 1, NA),
-                     geometry = geometry),
-                 stat = "sf_coordinates", size = 1, stroke = 0.5) +
-      scale_color_gradientn(
+    angio_rich_map2 <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(data = bb, fill = "aliceblue") +
+      ggplot2::geom_sf(data = equator, color = "gray50", linetype = "dashed",
+                       linewidth = 0.1) +
+      ggplot2::geom_sf(data = world_countries, fill = "antiquewhite1",
+                       color = NA) +
+      ggplot2::geom_sf(color = "gray50", linewidth = 0.1) +
+      ggplot2::geom_sf(data = bb, fill = NA) +
+      ggplot2::geom_sf(data = rich_map,
+                       aes(fill = ifelse(rich_map$entity_class %in%
+                                           c("Island/Mainland", "Mainland",
+                                             "Island Group", "Island Part"),
+                                         total + 1, NA)),
+                       size = 0.1) +
+      ggplot2::geom_point(data = rich_map,
+                          aes(color = ifelse(rich_map$entity_class %in%
+                                               c("Island"),
+                                             total + 1, NA),
+                              geometry = geometry),
+                          stat = "sf_coordinates", size = 1, stroke = 0.5) +
+      ggplot2::scale_color_gradientn(
         "Species number", trans = "log10", limits = c(1, 40000), 
         colours = RColorBrewer::brewer.pal(5, name = "Greens"),
         breaks = c(1, 10, 100, 1000, 10000, 40000),
         labels = c(1, 10, 100, 1000, 10000, 40000),
         na.value = "transparent") +
-      scale_fill_gradientn(
+      ggplot2::scale_fill_gradientn(
         "Species number", trans = "log10", limits = c(1, 40000), 
         colours = RColorBrewer::brewer.pal(5, name = "Greens"),
         breaks = c(1, 10, 100, 1000, 10000, 40000),
         labels = c(1, 10, 100, 1000, 10000, 40000),
         na.value = "transparent") +
-      labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+      ggplot2::labs(title = "Angiosperms", subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/angio_rich_map2.png",
-           plot = angio_rich_map2,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/angio_rich_map2.png",
+                    plot = angio_rich_map2,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     ## Mediterranean subset ---------------------------------------------------
     med_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
@@ -106,35 +115,37 @@ figures_vignettes <- function(eval = FALSE){
     med_map <- dplyr::left_join(med_shape, med_rich, by = "entity_ID") %>%
       dplyr::filter(stats::complete.cases(total))
     
-    angio_medit <- ggplot(world) +
-      geom_sf(color = "gray50") +
-      geom_sf(data = western_mediterranean,
-              fill = "darkblue", color = "black", alpha = 0.1, size = 1) +
-      geom_sf(data = med_map, aes(fill = total)) +
-      scale_fill_viridis_c("Species number") +
-      labs(title = "Angiosperms in the Western Mediterranean basin") +
-      lims(x = c(-20, 20), y = c(24, 48)) +
-      theme_void()
+    angio_medit <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(color = "gray50") +
+      ggplot2::geom_sf(data = western_mediterranean,
+                       fill = "darkblue", color = "black", alpha = 0.1,
+                       size = 1) +
+      ggplot2::geom_sf(data = med_map, aes(fill = total)) +
+      ggplot2::scale_fill_viridis_c("Species number") +
+      ggplot2::labs(title = "Angiosperms in the Western Mediterranean basin") +
+      ggplot2::lims(x = c(-20, 20), y = c(24, 48)) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/angio_medit.png",
-           plot = angio_medit,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/angio_medit.png",
+                    plot = angio_medit,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     # Anemone nemorosa --------------------------------------------------------
     anemone_distr <- GIFT_species_distribution(
       genus = "Anemone", epithet = "nemorosa", aggregation = TRUE)
     
     anemone_statuses <- anemone_distr %>%
-      mutate(native = ifelse(native == 1, "native", "non-native"),
-             naturalized = ifelse(naturalized == 1, "naturalized",
-                                  "non-naturalized"),
-             endemic_list = ifelse(endemic_list == 1, "endemic_list",
-                                   "non-endemic_list")) %>%
+      dplyr::mutate(native = ifelse(native == 1, "native", "non-native"),
+                    naturalized = ifelse(naturalized == 1, "naturalized",
+                                         "non-naturalized"),
+                    endemic_list = ifelse(endemic_list == 1, "endemic_list",
+                                          "non-endemic_list")) %>%
       dplyr::select(entity_ID, native, naturalized, endemic_list)
     
     # We rename the statuses based on the distinct combinations
     anemone_statuses <- anemone_statuses %>%
-      mutate(Status = case_when(
+      dplyr::mutate(Status = case_when(
         native == "native" & naturalized == "non-naturalized" ~ "native",
         native == "native" & is.na(naturalized) ~ "native",
         native == "non-native" & is.na(naturalized) ~ "non-native",
@@ -150,58 +161,64 @@ figures_vignettes <- function(eval = FALSE){
                                     by = "entity_ID")
     
     # Area of distribution with floristic status
-    anemone_plot <- ggplot(world) +
-      geom_sf(color = "gray70") +
-      geom_sf(data = anemone_map, color = "black",
-              aes(fill = as.factor(Status))) +
-      scale_fill_brewer("Status", palette = "Set2") +
-      labs(title = expression(paste("Distribution map of ",
-                                    italic("Anemone nemorosa"))),
-           subtitle = "Unprojected (GCS: WGS84)") +
-      lims(x = c(-65, 170), y = c(-45, 70)) +
-      theme_void()
+    anemone_plot <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(color = "gray70") +
+      ggplot2::geom_sf(data = anemone_map, color = "black",
+                       aes(fill = as.factor(Status))) +
+      ggplot2::scale_fill_brewer("Status", palette = "Set2") +
+      ggplot2::labs(title = expression(paste("Distribution map of ",
+                                             italic("Anemone nemorosa"))),
+                    subtitle = "Unprojected (GCS: WGS84)") +
+      ggplot2::lims(x = c(-65, 170), y = c(-45, 70)) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/anemone_map.png",
-           plot = anemone_plot,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/anemone_map.png",
+                    plot = anemone_plot,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     ## Fancy version ----------------------------------------------------------
     anemone_map_plot_bg_parts <-
-      ggplot(world) +
-      geom_sf(data = bb, fill = "aliceblue", color = NA) +
-      geom_sf(data = equator, color = "gray50", linetype = "dashed",
-              linewidth = 0.1) +
-      geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-      geom_sf(color = "gray50", linewidth = 0.1) +
-      geom_sf(data = bb, fill = NA) +
-      geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
-      scale_fill_manual("Status",
-                        values = c("native" = "#2c7bb6",
-                                   "naturalized" = "#d7191c",
-                                   "non-native" = "#fdae61",
-                                   "unknown" = "#abd9e9")) +
-      labs(title = expression(paste("b) Distribution map of ",
-                                    italic("Anemone nemorosa")))) +
-      theme_void() +
-      theme(axis.title = element_blank(),
-            axis.text = element_blank(),
-            axis.ticks = element_blank())
+      ggplot2::ggplot(world) +
+      ggplot2::geom_sf(data = bb, fill = "aliceblue", color = NA) +
+      ggplot2::geom_sf(data = equator, color = "gray50", linetype = "dashed",
+                       linewidth = 0.1) +
+      ggplot2::geom_sf(data = world_countries, fill = "antiquewhite1",
+                       color = NA) +
+      ggplot2::geom_sf(color = "gray50", linewidth = 0.1) +
+      ggplot2::geom_sf(data = bb, fill = NA) +
+      ggplot2::geom_sf(data = anemone_map, color = "black",
+                       aes(fill = as.factor(Status))) +
+      ggplot2::scale_fill_manual("Status",
+                                 values = c("native" = "#2c7bb6",
+                                            "naturalized" = "#d7191c",
+                                            "non-native" = "#fdae61",
+                                            "unknown" = "#abd9e9")) +
+      ggplot2::labs(title = expression(paste("b) Distribution map of ",
+                                             italic("Anemone nemorosa")))) +
+      ggplot2::theme_void() +
+      ggplot2::theme(axis.title = element_blank(),
+                     axis.text = element_blank(),
+                     axis.ticks = element_blank())
     
     anemone_plot2 <-
       (anemone_map_plot_bg_parts +
-         lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
-         theme(panel.border = element_rect(fill = NA, linewidth = 1)) +
-         theme(legend.position = "bottom")) +
+         ggplot2::lims(x = c(-69, 61), y = c(37, 70)) + # Europe & Newfoundland
+         ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                    linewidth = 1)) +
+         ggplot2::theme(legend.position = "bottom")) +
       (anemone_map_plot_bg_parts +
-         lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
-         labs(title = "") +
-         guides(fill = "none") +
-         theme(panel.border = element_rect(fill = NA, linewidth = 1))) +
+         ggplot2::lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+         ggplot2::labs(title = "") +
+         ggplot2::guides(fill = "none") +
+         ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                    linewidth = 1))) +
       patchwork::plot_layout()
     
-    ggsave("man/figures/anemone_map2.png",
-           plot = anemone_plot2,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/anemone_map2.png",
+                    plot = anemone_plot2,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     # Height coverage ---------------------------------------------------------
     angio_height <- GIFT_coverage(what = "trait_coverage",
@@ -218,57 +235,62 @@ figures_vignettes <- function(eval = FALSE){
     angio_height_map <-
       angio_height_map[complete.cases(angio_height_map$native), ]
     
-    angio_height_plot <- ggplot(world) +
-      geom_sf(color = "gray50") +
-      geom_sf(data = angio_height_map[complete.cases(angio_height_map$native), ],
-              aes(fill = native)) +
-      scale_fill_viridis_c("Coverage (%)") +
-      labs(title = "Coverage for maximal vegetative height of Angiosperms",
-           subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+    angio_height_plot <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(color = "gray50") +
+      ggplot2::geom_sf(data = angio_height_map[complete.cases(
+        angio_height_map$native), ],
+        aes(fill = native)) +
+      ggplot2::scale_fill_viridis_c("Coverage (%)") +
+      ggplot2::labs(
+        title = "Coverage for maximal vegetative height of Angiosperms",
+        subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/angio_height_plot.png",
-           plot = angio_height_plot,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/angio_height_plot.png",
+                    plot = angio_height_plot,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     ## Fancy version ----------------------------------------------------------
-    angio_height_plot2 <- ggplot(world) +
-      geom_sf(data = bb, fill = "aliceblue") +
-      geom_sf(data = equator, color = "gray50", linetype = "dashed",
-              linewidth = 0.1) +
-      geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-      geom_sf(color = "gray50", linewidth = 0.1) +
-      geom_sf(data = bb, fill = NA) +
-      geom_sf(data = angio_height_map,
-              aes(fill = ifelse(angio_height_map$entity_class %in%
-                                  c("Island/Mainland", "Mainland",
-                                    "Island Group", "Island Part"),
-                                100*native, NA)), size = 0.1) +
-      geom_point(data = angio_height_map,
-                 aes(color = ifelse(angio_height_map$entity_class %in%
-                                      c("Island"),
-                                    100*native, NA),
-                     geometry = geometry),
-                 stat = "sf_coordinates", size = 1, stroke = 0.5) +
-      scale_color_gradientn(
+    angio_height_plot2 <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(data = bb, fill = "aliceblue") +
+      ggplot2::geom_sf(data = equator, color = "gray50", linetype = "dashed",
+                       linewidth = 0.1) +
+      ggplot2::geom_sf(data = world_countries, fill = "antiquewhite1",
+                       color = NA) +
+      ggplot2::geom_sf(color = "gray50", linewidth = 0.1) +
+      ggplot2::geom_sf(data = bb, fill = NA) +
+      ggplot2::geom_sf(data = angio_height_map,
+                       aes(fill = ifelse(angio_height_map$entity_class %in%
+                                           c("Island/Mainland", "Mainland",
+                                             "Island Group", "Island Part"),
+                                         100*native, NA)), size = 0.1) +
+      ggplot2::geom_point(data = angio_height_map,
+                          aes(color = ifelse(angio_height_map$entity_class %in%
+                                               c("Island"),
+                                             100*native, NA),
+                              geometry = geometry),
+                          stat = "sf_coordinates", size = 1, stroke = 0.5) +
+      ggplot2::scale_color_gradientn(
         "Coverage (%)", 
         colours = rev(RColorBrewer::brewer.pal(9, name = "PuBuGn")),
         limits = c(0, 100),
         na.value = "transparent") +
-      scale_fill_gradientn(
+      ggplot2::scale_fill_gradientn(
         "Coverage (%)", 
         colours = rev(RColorBrewer::brewer.pal(9, name = "PuBuGn")),
         limits = c(0, 100),
         na.value = "transparent") +
-      labs(title = "Coverage for maximal vegetative height of Angiosperms",
-           subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+      ggplot2::labs(title = "Coverage for maximal vegetative height of Angiosperms",
+                    subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/angio_height_plot2.png",
-           plot = angio_height_plot2,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/angio_height_plot2.png",
+                    plot = angio_height_plot2,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     # MAT ---------------------------------------------------------------------
     world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
@@ -280,57 +302,60 @@ figures_vignettes <- function(eval = FALSE){
     
     temp_map <- dplyr::left_join(temp_shape, world_temp, by = "entity_ID")
     
-    temp_plot <- ggplot(world) +
-      geom_sf(color = "gray50") +
-      geom_sf(data = temp_map, aes(fill = mean_wc2.0_bio_30s_01)) +
-      scale_fill_viridis_c("Celsius degrees") +
-      labs(title = "Average temperature",
-           subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+    temp_plot <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(color = "gray50") +
+      ggplot2::geom_sf(data = temp_map, aes(fill = mean_wc2.0_bio_30s_01)) +
+      ggplot2::scale_fill_viridis_c("Celsius degrees") +
+      ggplot2::labs(title = "Average temperature",
+                    subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/temp_plot.png",
-           plot = temp_plot,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/temp_plot.png",
+                    plot = temp_plot,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     ## Fancy version ----------------------------------------------------------
     
-    temp_plot2 <- ggplot(world) +
-      geom_sf(data = bb, fill = "aliceblue") +
-      geom_sf(data = equator, color = "gray50", linetype = "dashed",
-              linewidth = 0.1) +
-      geom_sf(data = world_countries, fill = "antiquewhite1", color = NA) +
-      geom_sf(color = "gray50", linewidth = 0.1) +
-      geom_sf(data = bb, fill = NA) +
-      geom_sf(data = temp_map,
-              aes(fill = ifelse(temp_map$entity_class %in%
-                                  c("Island/Mainland", "Mainland",
-                                    "Island Group", "Island Part"),
-                                mean_wc2.0_bio_30s_01, NA)), size = 0.1) +
-      geom_point(data = temp_map,
-                 aes(color = ifelse(temp_map$entity_class %in%
-                                      c("Island"),
-                                    mean_wc2.0_bio_30s_01, NA),
-                     geometry = geometry),
-                 stat = "sf_coordinates", size = 1, stroke = 0.5) +
-      scale_color_gradientn(
+    temp_plot2 <- ggplot2::ggplot(world) +
+      ggplot2::geom_sf(data = bb, fill = "aliceblue") +
+      ggplot2::geom_sf(data = equator, color = "gray50", linetype = "dashed",
+                       linewidth = 0.1) +
+      ggplot2::geom_sf(data = world_countries, fill = "antiquewhite1",
+                       color = NA) +
+      ggplot2::geom_sf(color = "gray50", linewidth = 0.1) +
+      ggplot2::geom_sf(data = bb, fill = NA) +
+      ggplot2::geom_sf(data = temp_map,
+                       aes(fill = ifelse(temp_map$entity_class %in%
+                                           c("Island/Mainland", "Mainland",
+                                             "Island Group", "Island Part"),
+                                         mean_wc2.0_bio_30s_01, NA)), size = 0.1) +
+      ggplot2::geom_point(data = temp_map,
+                          aes(color = ifelse(temp_map$entity_class %in%
+                                               c("Island"),
+                                             mean_wc2.0_bio_30s_01, NA),
+                              geometry = geometry),
+                          stat = "sf_coordinates", size = 1, stroke = 0.5) +
+      ggplot2::scale_color_gradientn(
         "°C", 
         colours = RColorBrewer::brewer.pal(9, name = "Reds"),
         limits = c(-20, 30),
         na.value = "transparent") +
-      scale_fill_gradientn(
+      ggplot2::scale_fill_gradientn(
         "°C", 
         colours = RColorBrewer::brewer.pal(9, name = "Reds"),
         limits = c(-20, 30),
         na.value = "transparent") +
-      labs(title = "Average temperature",
-           subtitle = "Projection EckertIV") +
-      coord_sf(crs = eckertIV) +
-      theme_void()
+      ggplot2::labs(title = "Average temperature",
+                    subtitle = "Projection EckertIV") +
+      ggplot2::coord_sf(crs = eckertIV) +
+      ggplot2::theme_void()
     
-    ggsave("man/figures/temp_plot2.png",
-           plot = temp_plot2,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/temp_plot2.png",
+                    plot = temp_plot2,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     # Phylogeny ---------------------------------------------------------------
     phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
@@ -350,9 +375,9 @@ figures_vignettes <- function(eval = FALSE){
       work_ID = unique(gift_sp$work_ID),
       work_species = unique(gift_sp$work_species),
       family = sp_fam)
-    sp_genus_fam <- left_join(sp_genus_fam,
-                              gift_sp[, c("work_ID", "work_genus")],
-                              by = "work_ID")
+    sp_genus_fam <- dplyr::left_join(sp_genus_fam,
+                                     gift_sp[, c("work_ID", "work_genus")],
+                                     by = "work_ID")
     colnames(sp_genus_fam)[colnames(sp_genus_fam) == "work_genus"] <- "genus"
     
     # Problem with hybrid species on the tip labels of the phylo tree
@@ -366,23 +391,25 @@ figures_vignettes <- function(eval = FALSE){
                 3,
                 nchar(phy$tip.label[substring(phy$tip.label, 1, 2) == "×_"]))
     
-    sp_genus_fam <- left_join(sp_genus_fam,
-                              gf[, c("work_ID", "trait_value_1.2.1")],
-                              by = "work_ID")
+    sp_genus_fam <- dplyr::left_join(sp_genus_fam,
+                                     gf[, c("work_ID", "trait_value_1.2.1")],
+                                     by = "work_ID")
     
     genus_gf <- sp_genus_fam %>%
-      group_by(genus) %>%
-      mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(), 2)) %>%
-      ungroup() %>%
+      dplyr::group_by(genus) %>%
+      dplyr::mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(),
+                                    2)) %>%
+      dplyr::ungroup() %>%
       dplyr::select(-work_ID, -work_species, -family, -trait_value_1.2.1) %>%
-      distinct(.keep_all = TRUE)
+      dplyr::distinct(.keep_all = TRUE)
     
     fam_gf <- sp_genus_fam %>%
-      group_by(family) %>%
-      mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(), 2)) %>%
-      ungroup() %>%
+      dplyr::group_by(family) %>%
+      dplyr::mutate(prop_gf = round(100*sum(is.na(trait_value_1.2.1))/n(),
+                                    2)) %>%
+      dplyr::ungroup() %>%
       dplyr::select(-work_ID, -work_species, -genus, -trait_value_1.2.1) %>%
-      distinct(.keep_all = TRUE)
+      dplyr::distinct(.keep_all = TRUE)
     
     sp_genus_fam$species <- gsub("([[:punct:]])|\\s+", "_",
                                  sp_genus_fam$work_species)
@@ -406,13 +433,14 @@ figures_vignettes <- function(eval = FALSE){
     }
     
     # Adding the trait coverage per genus
-    one_sp_per_gen <- left_join(one_sp_per_gen, genus_gf, by = "genus")
+    one_sp_per_gen <- dplyr::left_join(one_sp_per_gen, genus_gf, by = "genus")
     
     # Adding the trait coverage per family
-    one_sp_per_gen <- left_join(one_sp_per_gen,
-                                sp_genus_fam[!duplicated(sp_genus_fam$genus),
-                                             c("genus", "family")],
-                                by = "genus")
+    one_sp_per_gen <- dplyr::left_join(
+      one_sp_per_gen,
+      sp_genus_fam[!duplicated(sp_genus_fam$genus),
+                   c("genus", "family")],
+      by = "genus")
     colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
       "prop_gf_gen"
     one_sp_per_gen <- left_join(one_sp_per_gen, fam_gf, by = "family")
@@ -445,9 +473,10 @@ figures_vignettes <- function(eval = FALSE){
       scale_fill_viridis_c("Growth form availability per genus (%)") +
       theme(legend.position = "bottom")
     
-    ggsave("man/figures/phy_tree_plot.png",
-           plot = phy_tree_plot,
-           width = 20, height = 10, dpi = 150, units = "cm", bg = "white")
+    ggplot2::ggsave("man/figures/phy_tree_plot.png",
+                    plot = phy_tree_plot,
+                    width = 20, height = 10, dpi = 150, units = "cm",
+                    bg = "white")
     
     
   }
