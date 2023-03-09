@@ -8,7 +8,7 @@ Authors@R: c(
   person("Pierre", "Denelle", email = "pierre.denelle@gmail.com",
     role = c("aut"), comment = c(ORCID = "0000-0001-5037-2281"))
   )
-Description: Retrieving environmental, traits and distribution for plant species worldwide.
+Description: Retrieving regional plant checklists, species traits and distributions, and environmental data from the Global Inventory of Floras and Traits (GIFT).
 Depends:
   R (>= 3.5.3)
 License: GPL (>= 2)
