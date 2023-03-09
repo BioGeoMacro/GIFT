@@ -499,7 +499,7 @@ Since GIFT is a collection of checklists in which authors use their own
 taxonomic knowledge to describe species, there is a step of taxonomic
 harmonization when including checklists into the database. The most frequent
 backbone used is the
-[World Checklists of Vascular Plants (WCVP)](https://wcvp.science.kew.org/).
+[World Checklists of Vascular Plants (WCVP)](https://powo.science.kew.org/).
 <br>
 Both original and harmonized names are stored in the database and you can use
 the function `GIFT_species_lookup()` to look at the differences for particular
