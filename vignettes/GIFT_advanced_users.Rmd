@@ -96,9 +96,10 @@ References are documented in the column `ref_long`.
 
 ```{r}
 ref <- GIFT_references()
+ref <- ref[which(ref$ref_ID %in% c(22,10333,10649)),c("ref_ID", "ref_long", "geo_entity_ref")]
 
 # 3 first rows of that table
-kable(ref[1:3, c("ref_ID", "ref_long", "geo_entity_ref")], "html") %>%
+kable(ref, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
