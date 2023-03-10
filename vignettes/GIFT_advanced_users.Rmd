@@ -266,9 +266,21 @@ length(GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
 # The following polygons are overlapping:
 GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
                 area_threshold_mainland = 100, overlap_threshold = 0.1)
+```
 
+
+```{r, eval=FALSE, echo = TRUE}
 # Example of two overlapping polygons: Spain mainland and Andalusia
 overlap_shape <- GIFT_shapes(entity_ID = c(10071, 12078))
+```
+
+
+```{r, include=FALSE, eval = TRUE}
+overlap_shape <- GIFT_shapes(entity_ID = c(10071, 12078))
+```
+
+
+```{r, message=FALSE, fig.width = 10, fig.height = 6}
 par(mfrow = c(1, 1))
 plot(sf::st_geometry(overlap_shape),
      col = c(rgb(red = 1, green = 0, blue = 0, alpha = 0.5),
@@ -320,16 +332,14 @@ ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
 ex3 <- GIFT_checklists(taxon_name = "Tracheophyta",
                        remove_overlap = TRUE, by_ref_ID = FALSE,
                        list_set_only = TRUE)
-```
 
-
-```{r}
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
-                             unique(ex3$lists$ref_ID))]
+                             unique(ex3$lists$ref_ID))] # 25 references
 ```
 
-If we look at the `ref_ID = 10143`, we see that it is a checklist for the 
-Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
+25 references are in the second and not in the third example.If we look at one
+of the references listed `ref_ID = 10143`, we see that it is a checklist for
+the Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
 website, we see that other regions can overlap with it.  
 <br>
 
