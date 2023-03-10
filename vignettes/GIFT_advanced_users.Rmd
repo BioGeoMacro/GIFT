@@ -176,7 +176,7 @@ knitr::include_graphics("../man/figures/GIFT_spatial.svg")
 We now illustrate this by retrieving checklists falling in the western
 Mediterranean basin using the four options available.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 med_centroid_inside  <- GIFT_spatial(shp = western_mediterranean,
                                      overlap = "centroid_inside")
 med_extent_intersect <- GIFT_spatial(shp = western_mediterranean,
@@ -185,7 +185,15 @@ med_shape_intersect <- GIFT_spatial(shp = western_mediterranean,
                                     overlap = "shape_intersect")
 med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
                                  overlap = "shape_inside")
+```
 
+```{r, echo = FALSE, eval = TRUE}
+med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
+                                 overlap = "shape_inside")
+```
+
+
+```{r, echo = TRUE, eval = FALSE}
 length(unique(med_extent_intersect$entity_ID))
 length(unique(med_shape_intersect$entity_ID))
 length(unique(med_centroid_inside$entity_ID))
@@ -194,25 +202,13 @@ length(unique(med_shape_inside$entity_ID))
 
 We here see that we progressively lose lists as we apply more selective
 criterion on the spatial overlap. The most restrictive option being
-`overlap = "shape_inside"` and the less restrictive one being
-`overlap = "extent_intersect"`.
+`overlap = "shape_inside"` with 72 regions, then
+`overlap = "centroid_inside"` with 84 regions,
+`overlap = "shape_intersect"` with 104 regions and finally the less
+restrictive one being `overlap = "extent_intersect"` with 108 regions.
 <br>
 Using the functions `GIFT_shapes()` and calling it for the entity_IDs retrieved
-in each instance, we can download the shapefiles for each region.
-
-```{r, eval= TRUE, include = FALSE}
-geodata_extent_intersect <- GIFT_shapes(med_extent_intersect$entity_ID)
-
-geodata_shape_inside <-
-  geodata_extent_intersect[which(geodata_extent_intersect$entity_ID %in%
-                                   med_shape_inside$entity_ID), ]
-geodata_centroid_inside <-
-  geodata_extent_intersect[which(geodata_extent_intersect$entity_ID %in%
-                                   med_centroid_inside$entity_ID), ]
-geodata_shape_intersect <-
-  geodata_extent_intersect[which(geodata_extent_intersect$entity_ID %in%
-                                   med_shape_intersect$entity_ID), ]
-```
+in each instance, we can download the shape files for each region.
 
 ```{r, echo = TRUE, eval = FALSE}
 geodata_extent_intersect <- GIFT_shapes(med_extent_intersect$entity_ID)
@@ -230,7 +226,7 @@ geodata_shape_intersect <-
 
 And then make a map.
 
-```{r, message=FALSE, fig.width = 8, fig.height = 4}
+```{r, echo = TRUE, eval=FALSE, fig.width = 8, fig.height = 4}
 par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
 plot(sf::st_geometry(geodata_shape_inside),
      col = geodata_shape_inside$entity_ID,
@@ -260,6 +256,10 @@ plot(sf::st_geometry(geodata_extent_intersect),
                   length(unique(med_extent_intersect$entity_ID)),
                   "polygons"))
 plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
+```
+
+```{r, fig.cap = "", out.width = "100%",echo = FALSE}
+knitr::include_graphics("../man/figures/advanced_overlap.png")
 ```
 
 <br>
