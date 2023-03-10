@@ -355,19 +355,25 @@ Since these polygons do not belong to the same `ref_ID`, they are kept when
 # 6. Species
 
 All the plant species present in GIFT database can be retrieved using
-`GIFT_species()`. To add additional information, like their order or family,
-we can call `GIFT_taxgroup()`.
+`GIFT_species()`.  
 
 ```{r}
 species <- GIFT_species()
+```
+
+To add additional information, like their order or family,
+we can call `GIFT_taxgroup()`.
+
+```{r, eval = FALSE, echo = TRUE}
 # Add Family
 species$Family <- GIFT_taxgroup(
   as.numeric(species$work_ID), taxon_lvl = "family", return_ID = FALSE, 
   species = species)
+```
 
-kable(species[1:5, ], "html") %>%
-  kable_styling(full_width = FALSE)
+Order or higher levels can also be retrieved.
 
+```{r, eval = FALSE, echo = TRUE}
 GIFT_taxgroup(as.numeric(species$work_ID[1:5]), taxon_lvl = "order",
               return_ID = FALSE)
 GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
@@ -383,13 +389,13 @@ harmonization procedure. Looking-up for a species and the different steps of
 the taxonomic harmonization is possible with the function
 `GIFT_species_lookup()`.
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
 Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
                              namesmatched = TRUE)
-
-kable(Fagus[1:5, ], "html") %>%
-  kable_styling(full_width = FALSE)
 ```
+
+In this table, we can see that the first entry *Fagus silvatica* was later
+converted as the accepted name *Fagus sylvatica*.
 
 <br>
 
@@ -397,11 +403,8 @@ kable(Fagus[1:5, ], "html") %>%
 
 The taxonomy used in GIFT database can be downloaded using `GIFT_taxonomy()`.
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
 taxo <- GIFT_taxonomy()
-
-kable(taxo[1:20, ], "html") %>%
-  kable_styling(full_width = FALSE)
 ```
 
 <br>

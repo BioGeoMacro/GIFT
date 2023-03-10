@@ -679,11 +679,6 @@ Let's retrieve the raw and aggregated values for the maximal vegetative height
 of plants (trait_ID 1.6.2).
 <br>
 
-```{r, include=FALSE}
-height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
-                      bias_ref = FALSE, bias_deriv = FALSE)
-```
-
 ```{r, echo = TRUE, eval = FALSE}
 height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
                       bias_ref = FALSE, bias_deriv = FALSE)
@@ -693,6 +688,10 @@ height_raw <- GIFT_traits_raw(trait_IDs = c("1.6.2"))
 # Raw values
 as.numeric(height_raw[which(height_raw$work_species == "Fagus sylvatica"),
                       "trait_value"])
+
+# Aggregated value
+as.numeric(height[which(height$work_species == "Fagus sylvatica"),
+                  "trait_value_1.6.2"])
 ```
 
 Three maximal heights for *Fagus sylvatica* were available, 30, 35 and 50
@@ -701,11 +700,7 @@ meters, which led to an aggregated value of 50 meters.
 And if you want to look up the references that led to the aggregated trait
 value, you can run this chunk:  
 
-```{r, message=FALSE}
-# Aggregated value
-as.numeric(height[which(height$work_species == "Fagus sylvatica"),
-                  "trait_value_1.6.2"])
-
+```{r, echo = TRUE, eval=FALSE}
 references <- GIFT_references(GIFT_version = "beta")
 
 unique(unlist(strsplit(height$references_1.6.2, ",")))
@@ -728,23 +723,16 @@ The three traits asked are woodiness (`trait_ID = "1.1.1"`),
 growth form (`trait_ID = "1.2.1"`) and whether the plant is a climber
 (`trait_ID = "1.4.1"`).
 
-```{r, include=FALSE}
-trait_tax <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
-                             bias_ref = FALSE, bias_deriv = FALSE)
-```
-
 ```{r, echo=TRUE, eval=FALSE}
 trait_tax <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
                              bias_ref = FALSE, bias_deriv = FALSE)
+
+trait_tax[1:3, ]
 ```
 
 Among the three traits asked, the growth form was not available at the family
 level. The output table therefore contains trait values for the two other
 traits at the family level.
-
-```{r}
-trait_tax[1:3, ]
-```
 
 <br>
 
