@@ -1,6 +1,4 @@
 
-#' @importFrom Rdpack reprompt
-
 # Internal functions to check input and output errors
 #
 # Authors: Pierre Denelle & Patrick Weigelt

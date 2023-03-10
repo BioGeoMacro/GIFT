@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
-bibliography: REFERENCES.bib
 vignette: >
  %\VignetteIndexEntry{GIFT tutorial for advanced users}
  %\VignetteEncoding{UTF-8} 
@@ -54,7 +53,7 @@ package. It is mainly targeted for advanced users of the GIFT database.
 In all the functions from the package, there is a `version` argument. This
 argument allows for retrieving different instances of the GIFT database and
 therefore make all previous studies using the GIFT database reproducible. For
-example, the version used in [@Weigelt2020] is `"1.0"`. To get more
+example, the version used in Weigelt et al. (2020) is `"1.0"`. To get more
 information about the content of the different versions, you can go
 [here](https://gift.uni-goettingen.de/about) and click on the tab Version Log.
 
@@ -432,3 +431,6 @@ kable(gmba[1:5, ], "html") %>%
 <br>
 
 # References
+
+[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
+

@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
-bibliography: REFERENCES.bib
 vignette: >
  %\VignetteIndexEntry{Queries in the API}
  %\VignetteEncoding{UTF-8} 
@@ -43,7 +42,7 @@ knitr::include_graphics("../man/figures/GIFT.png")
 <br>
 
 This vignette shows how to work with the API, how it is related to the
-GIFT R package [@Weigelt2020], and how are the R functions of the package
+GIFT R package, and how are the R functions of the package
 interdependent.
 
 <br>
@@ -169,3 +168,5 @@ knitr::include_graphics("../man/figures/GIFT_network_functions.png")
 ```
 
 # References
+
+[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
