@@ -5,7 +5,6 @@
 ^docs$
 ^pkgdown$
 ^\.github$
-^TODO.md
 ^man-roxygen
 ^README.rmd
 ^pkg_check.R
