@@ -27,11 +27,8 @@ Imports:
   utils
 RoxygenNote: 7.2.3
 Suggests: 
-    BiocManager,
     covr,
     ggplot2,
-    ggtree,
-    ggtreeExtra,
     kableExtra,
     knitr,
     patchwork,
@@ -40,8 +37,7 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     rnaturalearthdata,
-    scales,
-    tidytree
+    scales
 Config/testthat/edition: 3
 RdMacros: 
     Rdpack
