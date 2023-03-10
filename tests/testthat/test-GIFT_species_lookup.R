@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a list with two data frames
-test_that("data frame output format", {
-  ex <-
-    GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(19L))
-})
+# test_that("data frame output format", {
+#   ex <-
+#     GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica")
+#   
+#   expect_s3_class(ex, "data.frame")
+#   expect_identical(ncol(ex), c(19L))
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

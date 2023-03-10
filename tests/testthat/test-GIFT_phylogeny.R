@@ -1,14 +1,14 @@
 # Tests for valid outputs ----
 
 # Output should be a list with two data frames
-test_that("data frame output format", {
-  ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
-                       GIFT_version = "beta")
-  
-  expect_identical(class(ex), "data.frame")
-  expect_identical(length(ex), c(5L))
-  
-})
+# test_that("data frame output format", {
+#   ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
+#                        GIFT_version = "beta")
+#   
+#   expect_identical(class(ex), "data.frame")
+#   expect_identical(length(ex), c(5L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

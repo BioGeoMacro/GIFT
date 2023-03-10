@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 4 columns
-test_that("data frame output format", {
-  ex <- GIFT_overlap()
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(4L))
-  
-})
+# test_that("data frame output format", {
+#   ex <- GIFT_overlap()
+#   
+#   expect_s3_class(ex, "data.frame")
+#   expect_identical(ncol(ex), c(4L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

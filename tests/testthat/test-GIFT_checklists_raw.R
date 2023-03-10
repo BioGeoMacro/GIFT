@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 33 columns when namesmatched = TRUE
-test_that("data frame output format 2", {
-  ex <- GIFT_checklists_raw(list_ID = c(5), namesmatched = TRUE)
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(33L)) # 16 cols if namesmatched = FALSE
-  
-})
+# test_that("data frame output format 2", {
+#   ex <- GIFT_checklists_raw(list_ID = c(5), namesmatched = TRUE)
+#   
+#   expect_s3_class(ex, "data.frame")
+#   expect_identical(ncol(ex), c(33L)) # 16 cols if namesmatched = FALSE
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

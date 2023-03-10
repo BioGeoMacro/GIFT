@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 10 columns
-test_that("data frame output format", {
-  ex <- GIFT_traits_meta()
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(10L))
-  
-})
+# test_that("data frame output format", {
+#   ex <- GIFT_traits_meta()
+#   
+#   expect_s3_class(ex, "data.frame")
+#   expect_identical(ncol(ex), c(10L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

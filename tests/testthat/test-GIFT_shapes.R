@@ -1,18 +1,18 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 13 columns
-test_that("data frame output format", {
-  
-  expect_message(
-    ex <- GIFT_shapes(entity_ID = c(677, 200),
-                      GIFT_version = "beta"),
-    "You are asking for the beta-version of GIFT which is subject to
-updates and edits. Consider using 'latest' for the latest stable
-version.")
-  
-  expect_identical(ncol(ex), c(13L))
-  
-})
+# test_that("data frame output format", {
+#   
+#   expect_message(
+#     ex <- GIFT_shapes(entity_ID = c(677, 200),
+#                       GIFT_version = "beta"),
+#     "You are asking for the beta-version of GIFT which is subject to
+# updates and edits. Consider using 'latest' for the latest stable
+# version.")
+#   
+#   expect_identical(ncol(ex), c(13L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

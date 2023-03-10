@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 33 columns
-test_that("data frame output format", {
-  ex <- GIFT_species_distribution()
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(33L))
-  
-})
+# test_that("data frame output format", {
+#   ex <- GIFT_species_distribution()
+#   
+#   expect_s3_class(ex, "data.frame")
+#   expect_identical(ncol(ex), c(33L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

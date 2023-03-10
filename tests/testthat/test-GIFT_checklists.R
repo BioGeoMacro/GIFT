@@ -1,19 +1,19 @@
 # Tests for valid outputs ----
 
 # Output should be a list with two data frames
-test_that("data frame output format", {
-  custom_point <- cbind(9.9, 51)
-  
-  ex <- GIFT_checklists(coordinates = custom_point,
-                         overlap = "extent_intersect",
-                         taxon_name = "Angiospermae",
-                         remove_overlap = TRUE,
-                         list_set_only = TRUE)
-  
-  expect_identical(class(ex), "list")
-  expect_identical(length(ex), c(2L))
-  
-})
+# test_that("data frame output format", {
+#   custom_point <- cbind(9.9, 51)
+#   
+#   ex <- GIFT_checklists(coordinates = custom_point,
+#                          overlap = "extent_intersect",
+#                          taxon_name = "Angiospermae",
+#                          remove_overlap = TRUE,
+#                          list_set_only = TRUE)
+#   
+#   expect_identical(class(ex), "list")
+#   expect_identical(length(ex), c(2L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

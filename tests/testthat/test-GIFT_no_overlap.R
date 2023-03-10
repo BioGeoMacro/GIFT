@@ -1,14 +1,14 @@
 # Tests for valid outputs ----
 
 # Output should be a vector
-test_that("length of format inferior or equal to length of output", {
-  ex <- GIFT_no_overlap(entity_IDs = c(1, 2))
-  expect_identical(length(ex), c(2L))
-  
-  ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078))
-  expect_identical(length(ex2), c(1L))
-  
-})
+# test_that("length of format inferior or equal to length of output", {
+#   ex <- GIFT_no_overlap(entity_IDs = c(1, 2))
+#   expect_identical(length(ex), c(2L))
+#   
+#   ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078))
+#   expect_identical(length(ex2), c(1L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {

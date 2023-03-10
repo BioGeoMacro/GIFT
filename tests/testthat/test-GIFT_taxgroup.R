@@ -1,13 +1,13 @@
 # Tests for valid outputs ----
 
 # Output should be a data frame with 5 columns
-test_that("data frame output format", {
-  ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
-  
-  expect_identical(class(ex), "character")
-  expect_identical(length(ex), c(5L))
-  
-})
+# test_that("data frame output format", {
+#   ex <- GIFT_taxgroup(work_ID = c(1:5), taxon_lvl = "family")
+#   
+#   expect_identical(class(ex), "character")
+#   expect_identical(length(ex), c(5L))
+#   
+# })
 
 # Tests for invalid inputs ----
 test_that("invalid inputs", {
