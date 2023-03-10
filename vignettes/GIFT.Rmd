@@ -83,10 +83,10 @@ library("patchwork")
 ## 1.1. Shapefile
 Let's assume we are interested in having a floristic knowledge of the western
 part of the Mediterranean basin. For this purpose, we can simply use a
-shapefile of the region of interest and feed it to the `GIFT_checklists()`
+shape file of the region of interest and feed it to the `GIFT_checklists()`
 function.  
 
-We do provide a shapefile of this region in the `GIFT` R package, which you
+We do provide a shape file of this region in the `GIFT` R package, which you
 can access using the `data("western_mediterranean")` command.
 
 ```{r, fig.width = 3, fig.height = 3}
@@ -251,18 +251,6 @@ ex_meta <- GIFT_checklists(taxon_name = "Angiospermae",
 And to retrieve the species composition:
 <br>
 
-```{r, include = FALSE}
-medit <- GIFT_checklists(taxon_name = "Angiospermae",
-                         complete_taxon = TRUE,
-                         floristic_group = "native",
-                         complete_floristic = TRUE,
-                         geo_type = "All",
-                         shp = western_mediterranean,
-                         overlap = "centroid_inside", 
-                         remove_overlap = FALSE,
-                         taxonomic_group = TRUE)
-```
-
 ```{r, eval = FALSE, echo = TRUE}
 medit <- GIFT_checklists(taxon_name = "Angiospermae",
                          complete_taxon = TRUE,
@@ -283,13 +271,18 @@ Angiosperm species in the western part of the Mediterranean basin, as well as
 of the number of species.
 <br>
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 # Number of references covered
 length(unique(medit[[2]]$ref_ID))
+#   22 references
+
 # Number of checklists covered (one reference can have several lists inside)
 length(unique(medit[[2]]$list_ID))
+#   115 checklists
+
 # Number of species
 length(unique(medit[[2]]$work_species))
+#   12840 plant species
 ```
 
 <br>
@@ -298,24 +291,15 @@ stricter with some criteria, you can see that the number of checklists
 retrieved decreases. For example, when removing overlapping regions:
 <br>
 
-```{r, include = FALSE}
-medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
-                                    overlap = "centroid_inside",
-                                    taxon_name = "Angiospermae",
-                                    remove_overlap = TRUE)
-```
-
 ```{r, eval = FALSE, echo = TRUE}
 medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
                                     overlap = "centroid_inside",
                                     taxon_name = "Angiospermae",
                                     remove_overlap = TRUE)
-```
 
-```{r}
 # Number of references covered
-length(unique(medit[[2]]$ref_ID))
-length(unique(medit_no_overlap[[2]]$ref_ID))
+length(unique(medit[[2]]$ref_ID)) # 23 references
+length(unique(medit_no_overlap[[2]]$ref_ID)) # 22 references
 ```
 
 Please note that the function not only works with a shape file but can accept a
@@ -323,7 +307,7 @@ set of coordinates. The example below illustrates a case in which you want to
 retrieve GIFT checklists intersecting the coordinates of Göttingen.
 <br>
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 custom_point <- cbind(9.9, 51) # coordinates of Göttingen
 
 got <- GIFT_checklists(coordinates = custom_point,
@@ -331,9 +315,6 @@ got <- GIFT_checklists(coordinates = custom_point,
                        taxon_name = "Angiospermae",
                        remove_overlap = TRUE,
                        list_set_only = TRUE)
-
-kable(got[[1]], "html") %>%
-  kable_styling(full_width = FALSE)
 ```
 <br><br>
 
@@ -701,8 +682,6 @@ of plants (trait_ID 1.6.2).
 ```{r, include=FALSE}
 height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
                       bias_ref = FALSE, bias_deriv = FALSE)
-
-height_raw <- GIFT_traits_raw(trait_IDs = c("1.6.2"))
 ```
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -710,9 +689,7 @@ height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
                       bias_ref = FALSE, bias_deriv = FALSE)
 
 height_raw <- GIFT_traits_raw(trait_IDs = c("1.6.2"))
-```
 
-```{r, message=FALSE}
 # Raw values
 as.numeric(height_raw[which(height_raw$work_species == "Fagus sylvatica"),
                       "trait_value"])
@@ -894,7 +871,7 @@ They are many summary statistics available, you can check the help page of
 `GIFT_env()` to see them all. Let's here call for the mean and median of
 elevation and the maximal value of average temperature.
 <br>
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 med_env <- GIFT_env(entity_ID = unique(medit[[2]]$entity_ID),
                     miscellaneous = c("perimeter", "biome"),
                     rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
@@ -902,6 +879,9 @@ med_env <- GIFT_env(entity_ID = unique(medit[[2]]$entity_ID),
 
 med_env[1, ]
 ```
+
+We see here that the region El Hierro has an average altitude of 579 meters
+above sea level and an average annual temperature of 21.6 Celsius degrees. 
 
 <br>
 
@@ -1131,7 +1111,7 @@ ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
   theme(legend.position = "bottom")
 ```
 
-```{r, fig.cap = "", out.width = "90%",echo = FALSE}
+```{r, fig.cap = "", out.width = "100%",echo = FALSE}
 knitr::include_graphics("../man/figures/phy_tree_plot.png")
 ```
 
