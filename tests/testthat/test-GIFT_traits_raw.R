@@ -1,9 +1,14 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 5 columns
+# Output should be a data frame with 28 columns
 test_that("data frame output format", {
-  ex <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
   
+  expect_message(
+    ex <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"),
+                          GIFT_version = "beta"),
+    "You are asking for the beta-version of GIFT which is subject to
+updates and edits. Consider using 'latest' for the latest stable
+version.")
   expect_s3_class(ex, "data.frame")
   expect_identical(ncol(ex), c(28L))
   
@@ -33,9 +38,4 @@ of GIFT you want to use. Available options are 'latest', 'beta' and the
 different named stable versions of GIFT.",
     fixed = TRUE)
   
-  expect_message(
-    GIFT_traits_raw(trait_IDs = "4.10.1", GIFT_version = "beta"),
-    "You are asking for the beta-version of GIFT which is subject to
-updates and edits. Consider using 'latest' for the latest stable
-version.")
 })

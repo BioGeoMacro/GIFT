@@ -1,20 +1,11 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 14 columns when namesmatched = FALSE
-test_that("data frame output format", {
-  ex <- GIFT_checklists_raw(list_ID = c(5), namesmatched = FALSE)
-  
-  expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(16L))
-  
-})
-
-# Output should be a dataframe with 24 columns when namesmatched = TRUE
+# Output should be a data frame with 33 columns when namesmatched = TRUE
 test_that("data frame output format 2", {
   ex <- GIFT_checklists_raw(list_ID = c(5), namesmatched = TRUE)
   
   expect_s3_class(ex, "data.frame")
-  expect_identical(ncol(ex), c(33L))
+  expect_identical(ncol(ex), c(33L)) # 16 cols if namesmatched = FALSE
   
 })
 

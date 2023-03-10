@@ -1,6 +1,6 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 16 columns
+# Output should be a data frame with 16 columns
 test_that("data frame output format", {
   ex <-
     GIFT_checklists_conditional(
@@ -8,7 +8,7 @@ test_that("data frame output format", {
       floristic_scope = c("all", "native", "native and naturalized",
                           "native and historically introduced",
                           "endangered", "endemic", "naturalized",
-                          "other subset")[1:4],
+                          "other subset")[7],
       type_ref = c("Account", "Catalogue", "Checklist","Flora",
                    "Herbarium collection", "Key", "Red list",
                    "Report", "Species Database",

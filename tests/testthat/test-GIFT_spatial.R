@@ -1,10 +1,17 @@
 # Tests for valid outputs ----
-# Western mediterranean basin shape
+# Western Mediterranean basin shape
 data("western_mediterranean")
 
 # Output should be a list with two data frames
 test_that("data frame output format", {
-  ex <- GIFT_spatial(shp = western_mediterranean, overlap = "centroid_inside")
+  
+  expect_message(
+    ex <- GIFT_spatial(shp = western_mediterranean,
+                       overlap = "centroid_inside",
+                       GIFT_version = "beta"),
+    "You are asking for the beta-version of GIFT which is subject to
+updates and edits. Consider using 'latest' for the latest stable
+version.")
   
   expect_s3_class(ex, "data.frame")
   expect_identical(ncol(ex), c(3L))
@@ -38,11 +45,5 @@ test_that("data frame output format", {
 of GIFT you want to use. Available options are 'latest', 'beta' and the 
 different named stable versions of GIFT.",
     fixed = TRUE)
-  
-  expect_message(
-    GIFT_spatial(shp = western_mediterranean, GIFT_version = "beta"),
-    "You are asking for the beta-version of GIFT which is subject to
-updates and edits. Consider using 'latest' for the latest stable
-version.")
   
 })

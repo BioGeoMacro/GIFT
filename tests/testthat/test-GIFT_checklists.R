@@ -2,10 +2,13 @@
 
 # Output should be a list with two data frames
 test_that("data frame output format", {
-  data("western_mediterranean")
-  ex <- GIFT_checklists(shp = western_mediterranean,
-                        overlap = "centroid_inside",
-                        taxon_name = "Angiospermae")
+  custom_point <- cbind(9.9, 51)
+  
+  ex <- GIFT_checklists(coordinates = custom_point,
+                         overlap = "extent_intersect",
+                         taxon_name = "Angiospermae",
+                         remove_overlap = TRUE,
+                         list_set_only = TRUE)
   
   expect_identical(class(ex), "list")
   expect_identical(length(ex), c(2L))

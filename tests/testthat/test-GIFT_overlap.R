@@ -1,6 +1,6 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 5 columns
+# Output should be a data frame with 4 columns
 test_that("data frame output format", {
   ex <- GIFT_overlap()
   

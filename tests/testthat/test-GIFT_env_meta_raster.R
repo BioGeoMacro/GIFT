@@ -1,6 +1,6 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 5 columns
+# Output should be a data frame with 10 columns
 test_that("data frame output format", {
   ex <- GIFT_env_meta_raster()
   

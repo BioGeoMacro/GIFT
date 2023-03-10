@@ -1,9 +1,12 @@
 # Tests for valid outputs ----
 
-# Output should be a dataframe with 5 columns
+# Output should be a data frame with 5 columns
 test_that("data frame output format", {
-  ex <- GIFT_richness()
   
+  expect_message(ex <- GIFT_richness(GIFT_version = "beta"),
+                 "You are asking for the beta-version of GIFT which is subject to
+updates and edits. Consider using 'latest' for the latest stable
+version.")
   expect_s3_class(ex, "data.frame")
   expect_identical(ncol(ex), c(5L))
   
@@ -16,7 +19,7 @@ test_that("invalid inputs", {
     "'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.", fixed = TRUE)
-
+  
   expect_error(
     GIFT_richness(api = NA),
     "api must be a character string indicating which API to use.",
@@ -29,8 +32,4 @@ of GIFT you want to use. Available options are 'latest', 'beta' and the
 different named stable versions of GIFT.",
     fixed = TRUE)
   
-  expect_message(GIFT_richness(GIFT_version = "beta"),
-                 "You are asking for the beta-version of GIFT which is subject to
-updates and edits. Consider using 'latest' for the latest stable
-version.")
 })
