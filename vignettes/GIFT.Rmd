@@ -485,12 +485,15 @@ focal plant species.
 To know what plant species are available, you can first run the function
 `GIFT_species()`.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 all_sp <- GIFT_species()
 ```
 
-`r length(unique(all_sp$work_ID))` species are currently available in the
-database. This number may increase with new releases of the database.
+364571 species are currently available in the database. This number may
+increase with new releases of the database.
+See the
+[dedicated section](https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html#species)
+in the advanced vignettes for more details.
 
 ## 2.2. Species names and taxonomic harmonization
 

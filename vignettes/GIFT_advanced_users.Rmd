@@ -48,7 +48,7 @@ presented in the
 [main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html) of the
 package. It is mainly targeted for advanced users of the GIFT database.
 
-# 1. Versions and metadata for checklists
+# 1. Versions and metadata for checklists {#section1}
 
 In all the functions from the package, there is a `version` argument. This
 argument allows for retrieving different instances of the GIFT database and
@@ -75,14 +75,13 @@ The function `GIFT_lists()` can be run to retrieve metadata about the GIFT
 checklists. In the next chunk, we call it with different values for the
 `GIFT_version` argument.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 list_latest <- GIFT_lists(GIFT_version = "latest") # default value
 list_1 <- GIFT_lists(GIFT_version = "1.0")
 ```
 
-The number of checklists available was `r length(unique(list_1$list_ID))` in
-the version 1.0 and equals `r length(unique(list_latest$list_ID))` in the
-version 2.0.
+The number of checklists available was 3122 in the version 1.0 and equals 4475
+in the version 2.0.
 
 <br>
 
@@ -111,36 +110,24 @@ is `GIFT_checklists()` but you also have the possibility to retrieve individual
 checklists using `GIFT_checklists_raw()`. You would need to know the
 identification number `list_ID` of the checklists you want to retrieve.
 <br>
-To quickly see all the `list_ID` available in the database, you can run:
-
-```{r}
-gift_lists <- GIFT_lists()
-length(unique(gift_lists$list_ID))
-```
+To quickly see all the `list_ID` available in the database, you can run `GIFT_lists()` as shown in [Section 1](#section1).
 
 <br>
 When calling `GIFT_checklists_raw()`, you can set the argument `namesmatched`
 to `TRUE` in order to get extra columns informing about the taxonomic
 harmonization that was performed when uploading the list to GIFT database.
 
-```{r, eval = TRUE, include = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
 listID_1_tax <- GIFT_checklists_raw(list_ID = c(11926), namesmatched = TRUE)
-```
 
-```{r, echo = TRUE, eval = FALSE}
-listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
-listID_1_tax <- GIFT_checklists_raw(list_ID = c(11926), namesmatched = TRUE)
-```
-
-```{r}
-ncol(listID_1); ncol(listID_1_tax)
+ncol(listID_1) # 16 columns
+ncol(listID_1_tax) # 33 columns
 length(unique(listID_1$work_ID)); length(unique(listID_1_tax$orig_ID))
 ```
 
 In the list we called, you can see that we "lost" some species after taxonomic
-harmonization as we went from `r length(unique(listID_1_tax$orig_ID))` in the
-source to `r length(unique(listID_1_tax$work_ID))` after the taxonomic
+harmonization as we went from 1331 in the source to 1106 after the taxonomic
 harmonization. This means that several species were considered as synonyms or
 unknown plant species in the taxonomic backbone used for harmonization.
 <br><br>
@@ -303,7 +290,7 @@ polygons only if they belong to the same reference (i.e. same `ref_ID`).
 <br>
 We show how this works with the following example:  
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 ex <- GIFT_checklists(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
                       list_set_only = TRUE)
 ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
@@ -326,6 +313,16 @@ So what is the difference between the second and third case?
 Let's look at the checklists that are present in the second but not in the
 third example.
 
+```{r, eval = TRUE, echo = FALSE}
+ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
+                       remove_overlap = TRUE, by_ref_ID = TRUE,
+                       list_set_only = TRUE)
+ex3 <- GIFT_checklists(taxon_name = "Tracheophyta",
+                       remove_overlap = TRUE, by_ref_ID = FALSE,
+                       list_set_only = TRUE)
+```
+
+
 ```{r}
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
                              unique(ex3$lists$ref_ID))]
@@ -336,10 +333,17 @@ Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
 website, we see that other regions can overlap with it.  
 <br>
 
-```{r}
+```{r, include = FALSE, eval = TRUE}
+pilbara <- GIFT_shapes(entity_ID = c(10043, 12172, 11398, 11391, 10918))
+```
+
+```{r, echo = TRUE, eval = FALSE}
 # Pilbara region Australy and overlapping shapes
 pilbara <- GIFT_shapes(entity_ID = c(10043, 12172, 11398, 11391, 10918))
+```
 
+
+```{r}
 ggplot(pilbara) +
   geom_sf(aes(fill = as.factor(entity_ID)), alpha = 0.5) +
   scale_fill_brewer("entity_ID", palette = "Set1")
