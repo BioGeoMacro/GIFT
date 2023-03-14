@@ -8,7 +8,11 @@ Authors@R: c(
   person("Pierre", "Denelle", email = "pierre.denelle@gmail.com",
     role = c("aut"), comment = c(ORCID = "0000-0001-5037-2281"))
   )
-Description: Retrieving regional plant checklists, species traits and distributions, and environmental data from the Global Inventory of Floras and Traits (GIFT).
+Description: Retrieving regional plant checklists, species traits and
+  distributions, and environmental data from the Global Inventory of Floras and
+  Traits (GIFT). More information about the GIFT database can be found at
+  <https://gift.uni-goettingen.de/about> and the map of available floras can be
+  visualized at <https://gift.uni-goettingen.de/map>.
 Depends:
   R (>= 3.5.3)
 License: GPL (>= 2)
