@@ -214,7 +214,7 @@ geodata_shape_intersect <-
 And then make a map.
 
 ```{r, echo = TRUE, eval=FALSE, fig.width = 8, fig.height = 4}
-par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
+par_overlap <- par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
 plot(sf::st_geometry(geodata_shape_inside),
      col = geodata_shape_inside$entity_ID,
      main = paste("shape inside\n",
@@ -243,6 +243,7 @@ plot(sf::st_geometry(geodata_extent_intersect),
                   length(unique(med_extent_intersect$entity_ID)),
                   "polygons"))
 plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
+par(par_overlap)
 ```
 
 ```{r, fig.cap = "", out.width = "100%",echo = FALSE}
@@ -295,12 +296,13 @@ overlap_shape <- GIFT_shapes(entity_ID = c(10071, 12078))
 
 
 ```{r, message=FALSE, fig.width = 10, fig.height = 6}
-par(mfrow = c(1, 1))
+par_overlap_shp <- par(mfrow = c(1, 1))
 plot(sf::st_geometry(overlap_shape),
      col = c(rgb(red = 1, green = 0, blue = 0, alpha = 0.5),
              rgb(red = 0, green = 0, blue = 1, alpha = 0.3)),
      lwd = c(2, 1),
      main = "Overlapping polygons")
+par(par_overlap_shp)
 
 GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
                 area_threshold_mainland = 100, overlap_threshold = 0.1)

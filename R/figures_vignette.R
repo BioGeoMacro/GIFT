@@ -501,7 +501,7 @@
 # png("man/figures/advanced_overlap.png",
 #     width = 1440, height = 1440, units = "px",
 #     bg = "white")
-# par(mfrow = c(2, 2), mai = c(0, 0.5, 1.5, 0.5))
+# par_overlap <- par(mfrow = c(2, 2), mai = c(0, 0.5, 1.5, 0.5))
 # plot(sf::st_geometry(geodata_shape_inside),
 #      col = geodata_shape_inside$entity_ID,
 #      main = paste("shape inside\n",
@@ -534,4 +534,5 @@
 #                   "polygons"),
 #      cex.main = 5)
 # plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
+# par(par_overlap)
 # dev.off()
