@@ -12,7 +12,9 @@ Description: Retrieving regional plant checklists, species traits and
   distributions, and environmental data from the Global Inventory of Floras and
   Traits (GIFT). More information about the GIFT database can be found at
   <https://gift.uni-goettingen.de/about> and the map of available floras can be
-  visualized at <https://gift.uni-goettingen.de/map>.
+  visualized at <https://gift.uni-goettingen.de/map>. The API and associated
+  queries can be accessed according the following scheme:
+  <https://gift.uni-goettingen.de/api/extended/index2.0.php?query=env_raster>.
 Depends:
   R (>= 3.5.3)
 License: GPL (>= 2)

@@ -94,7 +94,8 @@ References are documented in the column `ref_long`.
 
 ```{r}
 ref <- GIFT_references()
-ref <- ref[which(ref$ref_ID %in% c(22,10333,10649)),c("ref_ID", "ref_long", "geo_entity_ref")]
+ref <- ref[which(ref$ref_ID %in% c(22, 10333, 10649)),
+           c("ref_ID", "ref_long", "geo_entity_ref")]
 
 # 3 first rows of that table
 kable(ref, "html") %>%
@@ -173,7 +174,7 @@ med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
                                  overlap = "shape_inside")
 ```
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = FALSE}
 med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
                                  overlap = "shape_inside")
 ```
@@ -258,6 +259,19 @@ are two things detailed in the
 [main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html).
 We here provide further details:
 
+```{r, echo = FALSE, eval = TRUE}
+med_shape_inside <- data.frame(
+  entity_ID = c(145, 146, 147, 148, 149, 150, 151, 414, 415, 416, 417, 547, 548,
+                549, 550, 551, 552, 586, 591, 592, 736, 738, 739, 1033, 1036,
+                10001, 10034, 10071, 10072, 10104, 10184, 10303, 10422, 10430,
+                10751, 10860, 10978, 11028, 11029, 11030, 11031, 11033, 11035,
+                11036, 11037, 11038, 11039, 11040, 11041, 11042, 11043, 11044,
+                11045, 11046, 11434, 11455, 11461, 11474, 11477, 11503, 12065,
+                12071, 12078, 12230, 12231, 12232, 12233, 12551, 12632, 12633,
+                12634, 12635))
+```
+
+
 ```{r, message=FALSE, fig.width = 10, fig.height = 6}
 length(med_shape_inside$entity_ID)
 length(GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
@@ -325,14 +339,7 @@ So what is the difference between the second and third case?
 Let's look at the checklists that are present in the second but not in the
 third example.
 
-```{r, eval = TRUE, echo = FALSE}
-ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
-                       remove_overlap = TRUE, by_ref_ID = TRUE,
-                       list_set_only = TRUE)
-ex3 <- GIFT_checklists(taxon_name = "Tracheophyta",
-                       remove_overlap = TRUE, by_ref_ID = FALSE,
-                       list_set_only = TRUE)
-
+```{r, eval = FALSE, echo = TRUE}
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
                              unique(ex3$lists$ref_ID))] # 25 references
 ```
@@ -367,7 +374,7 @@ Since these polygons do not belong to the same `ref_ID`, they are kept when
 All the plant species present in GIFT database can be retrieved using
 `GIFT_species()`.  
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
 species <- GIFT_species()
 ```
 
