@@ -69,7 +69,7 @@
 #'
 #' @examples
 #' \donttest{
-#' succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
+#' succulence <- GIFT_traits_raw(trait_IDs = c("4.10.1"))
 #' }
 #' 
 #' @importFrom jsonlite read_json

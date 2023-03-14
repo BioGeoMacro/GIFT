@@ -35,23 +35,18 @@
 #' \donttest{
 #' data("western_mediterranean")
 #' ex <- GIFT_spatial(shp = western_mediterranean, overlap = "centroid_inside")
-#' ex2 <- GIFT_spatial(shp = western_mediterranean,
-#' overlap = "extent_intersect")
-#' ex3 <- GIFT_spatial(shp = western_mediterranean,
-#' overlap = "shape_intersect")
-#' ex4 <- GIFT_spatial(shp = western_mediterranean, overlap = "shape_inside")
 #' 
 #' custom_point <- cbind(9.9, 51)
-#' ex5 <- GIFT_spatial(coordinates = custom_point,
+#' ex2 <- GIFT_spatial(coordinates = custom_point,
 #' overlap = "extent_intersect")
 #' 
 #' custom_extent <- cbind(c(-13, -18), c(27.5, 29.3))
-#' ex6 <- GIFT_spatial(coordinates = custom_extent,
+#' ex3 <- GIFT_spatial(coordinates = custom_extent,
 #' overlap = "extent_intersect")
 #' 
 #' custom_polygon <- cbind(c(-18, -16.9, -13, -13, -18, -18),
 #' c(29.3, 33, 29.3, 27.5, 27.5, 29.3))
-#' ex7 <- GIFT_spatial(coordinates = custom_polygon,
+#' ex4 <- GIFT_spatial(coordinates = custom_polygon,
 #' overlap = "extent_intersect")
 #' 
 #' custom_linestring <- rbind(c(9.9, 51), c(2.35, 48.9))
@@ -60,7 +55,7 @@
 #' custom_linestring <- dplyr::summarise(custom_linestring,
 #' geometry = sf::st_combine(geometry))
 #' sf::st_crs(custom_linestring) <- sf::st_crs(western_mediterranean)
-#' ex8 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
+#' ex5 <- GIFT_spatial(shp = custom_linestring, overlap = "extent_intersect")
 #' 
 #' }
 #' 

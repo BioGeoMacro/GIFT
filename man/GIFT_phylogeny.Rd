@@ -53,9 +53,7 @@ of the tree\cr
 }
 \examples{
 \donttest{
-ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = TRUE,
-GIFT_version = "beta")
-ex2 <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
+ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,
 GIFT_version = "beta")
 }
 

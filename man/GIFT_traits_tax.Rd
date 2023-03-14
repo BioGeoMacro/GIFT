@@ -54,7 +54,7 @@ and then one column per trait with the respective trait values
 }
 \examples{
 \donttest{
-ex <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
+ex <- GIFT_traits_tax(trait_IDs = c("1.2.1", "1.4.1"),
 bias_ref = FALSE, bias_deriv = FALSE)
 }
 

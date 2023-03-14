@@ -45,7 +45,7 @@
 #'
 #' @examples
 #' \donttest{
-#' wood <- GIFT_traits(trait_IDs = "1.1.1", agreement = 0.66,
+#' self_fertilization <- GIFT_traits(trait_IDs = "3.1.1", agreement = 0.66,
 #' bias_ref = FALSE, bias_deriv = FALSE)
 #' }
 #' 

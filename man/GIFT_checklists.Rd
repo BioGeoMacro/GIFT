@@ -175,11 +175,8 @@ want to consider regions classified as \code{suit_geo}.
 \donttest{
 data("western_mediterranean")
 ex <- GIFT_checklists(shp = western_mediterranean,
-overlap = "centroid_inside", taxon_name = "Angiospermae")
-
-ex2 <- GIFT_checklists(shp = western_mediterranean,
 overlap = "centroid_inside", taxon_name = "Angiospermae",
-list_set_only = TRUE)
+list_set_only = TRUE) # set to FALSE to get species composition
 }
 
 }
