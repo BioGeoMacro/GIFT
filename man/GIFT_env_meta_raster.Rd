@@ -39,7 +39,7 @@ Here is what each column refers to:
 \emph{ref_long} - Full reference to cite when using an environmental layer
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_env_meta_raster()
 }
 

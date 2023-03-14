@@ -61,7 +61,7 @@ The columns of the data.frame are the following:
 The other columns relate to the environmental variables the user asked for.
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_env(miscellaneous = "perimeter")
 ex <- GIFT_env(entity_ID = c(1,5), miscellaneous = c("perimeter", "biome"))
 

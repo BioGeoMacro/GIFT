@@ -84,7 +84,7 @@ genus\cr
 \emph{ref_long} - Full reference to cite
 }
 \examples{
-\dontrun{
+\donttest{
 succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 }
 

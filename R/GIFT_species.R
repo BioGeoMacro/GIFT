@@ -24,7 +24,7 @@
 #' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_species()
 #' }
 #' 

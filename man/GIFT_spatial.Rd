@@ -47,7 +47,7 @@ the different polygons of GIFT.
 Retrieve checklists overlapping with a shape file or a set of coordinates.
 }
 \examples{
-\dontrun{
+\donttest{
 data("western_mediterranean")
 ex <- GIFT_spatial(shp = western_mediterranean, overlap = "centroid_inside")
 ex2 <- GIFT_spatial(shp = western_mediterranean,

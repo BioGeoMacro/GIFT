@@ -52,7 +52,7 @@ of the tree\cr
 \emph{rgt} - Right border of a given taxon in the Newick sequence\cr
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = TRUE,
 GIFT_version = "beta")
 ex2 <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,

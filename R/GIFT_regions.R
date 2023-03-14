@@ -26,7 +26,7 @@
 #' @seealso [GIFT::GIFT_env_meta_misc()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_regions()
 #' }
 #' 

@@ -25,7 +25,7 @@
 #' @seealso [GIFT::GIFT_env()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_env_meta_misc()
 #' }
 #' 

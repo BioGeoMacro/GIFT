@@ -45,7 +45,7 @@ Here is the detail of each column:
 \emph{geometry} - Geometry column from sf
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_shapes(entity_ID = c(677, 200))
 plot(st_geometry(ex), col = ex$entity_ID)
 }

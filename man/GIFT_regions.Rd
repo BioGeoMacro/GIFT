@@ -37,7 +37,7 @@ https://www.tdwg.org/)\cr
 \emph{country} - Whether the polygon is a country
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_regions()
 }
 

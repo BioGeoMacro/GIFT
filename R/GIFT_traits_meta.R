@@ -31,7 +31,7 @@
 #' @seealso [GIFT::GIFT_traits()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_traits_meta()
 #' }
 #' 

@@ -42,7 +42,7 @@ the external polygon\cr
 \emph{overlap21} - The other way around
 }
 \examples{
-\dontrun{
+\donttest{
 glonaf <- GIFT_overlap(resource = "glonaf")
 gmba <- GIFT_overlap(resource = "gmba")
 }

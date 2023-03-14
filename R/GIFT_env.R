@@ -47,7 +47,7 @@
 #' @seealso [GIFT::GIFT_env_meta_misc()] and [GIFT::GIFT_env_meta_raster()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_env(miscellaneous = "perimeter")
 #' ex <- GIFT_env(entity_ID = c(1,5), miscellaneous = c("perimeter", "biome"))
 #' 

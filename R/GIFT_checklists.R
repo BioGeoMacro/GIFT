@@ -143,7 +143,7 @@
 #' @seealso [GIFT::GIFT_checklists_raw()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data("western_mediterranean")
 #' ex <- GIFT_checklists(shp = western_mediterranean,
 #' overlap = "centroid_inside", taxon_name = "Angiospermae")

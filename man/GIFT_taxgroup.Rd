@@ -51,7 +51,7 @@ Assign taxonomic groups of various hierarchical level to species from GIFT
 (\code{work_ID}).
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "family")
 ex2 <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "higher_lvl")
 }

@@ -83,11 +83,11 @@
 #' @seealso [GIFT::GIFT_checklists_raw()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_checklists_conditional(taxon_name = "Embryophyta", 
 #' floristic_scope = c("all", "native", "native and naturalized",
 #' "native and historically introduced", "endangered",
-#' "endemic", "naturalized", "other subset")[1:4],
+#' "endemic", "naturalized", "other subset")[7],
 #' type_ref = c("Account", "Catalogue", "Checklist","Flora",
 #' "Herbarium collection", "Key", "Red list", "Report", "Species Database",
 #'  "Survey"),

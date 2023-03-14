@@ -37,7 +37,7 @@ Here is what each column refers to:
 \emph{count} - How many entries for that traits are in the database
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_traits_meta()
 }
 

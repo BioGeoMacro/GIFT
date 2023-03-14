@@ -93,9 +93,8 @@ questionable\cr
 \emph{cons_status} - Conservation status of the species
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_checklists_raw(list_ID = c(1,5))
-ex2 <- GIFT_checklists_raw(list_ID = c(1,5), namesmatched = TRUE)
 }
 
 }

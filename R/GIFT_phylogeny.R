@@ -37,7 +37,7 @@
 #' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = TRUE,
 #' GIFT_version = "beta")
 #' ex2 <- GIFT_phylogeny(clade = "Tracheophyta", as_tree = FALSE,

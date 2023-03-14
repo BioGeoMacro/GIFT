@@ -35,7 +35,7 @@
 #' @seealso [GIFT::GIFT_taxonomy()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "family")
 #' ex2 <- GIFT_taxgroup(work_ID = c(1, 4, 7, 8), taxon_lvl = "higher_lvl")
 #' }

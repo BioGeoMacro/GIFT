@@ -77,9 +77,8 @@
 #' @seealso [GIFT::GIFT_checklists()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_checklists_raw(list_ID = c(1,5))
-#' ex2 <- GIFT_checklists_raw(list_ID = c(1,5), namesmatched = TRUE)
 #' }
 #' 
 #' @importFrom jsonlite read_json

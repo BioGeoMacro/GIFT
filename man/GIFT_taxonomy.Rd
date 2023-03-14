@@ -39,7 +39,7 @@ family. \cr
 \emph{rgt} - right border of one taxon in the taxonomic sequence.\cr
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_taxonomy()
 }
 

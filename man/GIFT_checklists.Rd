@@ -172,7 +172,7 @@ and the assessment has been subjective. Set \code{suit_geo = TRUE} if you only
 want to consider regions classified as \code{suit_geo}.
 }
 \examples{
-\dontrun{
+\donttest{
 data("western_mediterranean")
 ex <- GIFT_checklists(shp = western_mediterranean,
 overlap = "centroid_inside", taxon_name = "Angiospermae")

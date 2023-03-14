@@ -20,7 +20,7 @@ Here is what each column refers to:
 \emph{description} - What were the major updates about
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_versions()
 }
 

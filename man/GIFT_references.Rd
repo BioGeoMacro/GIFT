@@ -46,7 +46,7 @@ available in the source\cr
 \emph{proc_date} - When the source was processed
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_references()
 }
 

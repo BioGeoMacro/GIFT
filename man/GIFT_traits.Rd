@@ -59,8 +59,8 @@ trait value, only for numeric traits\cr
 \emph{references} - ref_ID from which we got the trait information
 }
 \examples{
-\dontrun{
-wood <- GIFT_traits(trait_IDs = c("1.1.1", "1.2.1"), agreement = 0.66,
+\donttest{
+wood <- GIFT_traits(trait_IDs = "1.1.1", agreement = 0.66,
 bias_ref = FALSE, bias_deriv = FALSE)
 }
 

@@ -92,7 +92,7 @@
 #' @seealso [GIFT::GIFT_species_lookup()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_species_distribution()
 #' }
 #' 

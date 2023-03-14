@@ -68,7 +68,7 @@
 #' @seealso [GIFT::GIFT_traits_meta()] and [GIFT::GIFT_traits()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' succulence_carnivory <- GIFT_traits_raw(trait_IDs = c("4.10.1", "4.16.1"))
 #' }
 #' 

@@ -53,7 +53,7 @@
 #' @seealso [GIFT::GIFT_traits_meta()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_coverage(what = "taxonomic_coverage", taxon_name = "Angiospermae")
 #' ex2 <- GIFT_coverage(what = "trait_coverage", taxon_name = "Angiospermae",
 #' trait_ID = "1.2.1")

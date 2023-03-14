@@ -43,7 +43,7 @@ The number of endemic species is a conservative count not counting
 occurrences of species which go back to infraspecific taxa.
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_richness(taxon_name = "Angiospermae")
 }
 

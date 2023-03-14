@@ -35,7 +35,7 @@ Here is what each column refers to:
 harmonization)
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_species()
 }
 

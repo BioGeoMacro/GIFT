@@ -41,7 +41,7 @@ whether the checklist is suitable for use, \emph{entity_class} and
 \emph{entity_unit} give additional details about the polygon.
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_lists()
 }
 

@@ -30,7 +30,7 @@
 #' @seealso [GIFT::GIFT_traits_meta()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ex <- GIFT_richness(taxon_name = "Angiospermae")
 #' }
 #' 

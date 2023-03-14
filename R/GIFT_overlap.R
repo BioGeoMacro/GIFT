@@ -29,7 +29,7 @@
 #' @seealso [GIFT::GIFT_lists()]
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' glonaf <- GIFT_overlap(resource = "glonaf")
 #' gmba <- GIFT_overlap(resource = "gmba")
 #' }

@@ -50,7 +50,7 @@ Identify overlapping regions in a set of GIFT regions and choose only
 non-overlapping regions based on size and overlap criteria
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain. 
 # We get Andalusia because it is smaller than Spain and larger than 100 km²
 ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078), 

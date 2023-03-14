@@ -113,7 +113,7 @@ after taxonomic harmonization\cr
 harmonization)
 }
 \examples{
-\dontrun{
+\donttest{
 ex <- GIFT_species_distribution()
 }
 
