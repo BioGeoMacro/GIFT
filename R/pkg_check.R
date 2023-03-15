@@ -60,3 +60,9 @@
 
 # Favicon for the website
 # pkgdown::build_favicons(pkg = ".", overwrite = FALSE)
+
+# When resubmitting:
+# \donttest in the function headers and not \dontrun
+# resetting graphical parameters e.g. par_overlap_shp <- par(mfrow = c(1, 1))
+# par(par_overlap_shp)
+# overall check time ~10mins
