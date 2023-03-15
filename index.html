@@ -103,8 +103,12 @@
 <h1 id="arrow_double_down-installation">
 <span class="emoji" data-emoji="arrow_double_down">⏬</span> Installation<a class="anchor" aria-label="anchor" href="#arrow_double_down-installation"></a>
 </h1>
-<p>The package is not on CRAN yet and is still under active development. You can install the development version from the GitHub repository with the following command:</p>
+<p>The package is now on CRAN, you can install and load it with the following commands:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"GIFT"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/BioGeoMacro/GIFT" class="external-link">"GIFT"</a></span><span class="op">)</span></span></code></pre></div>
+<p>GIFT is still under active development. You can install the development version from the GitHub repository with the following commands:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"https://github.com/BioGeoMacro/GIFT"</span>,</span>
 <span>dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -125,7 +129,7 @@
 <li><strong><a href="https://biogeomacro.github.io/GIFT/articles/GIFT_API.html">API</a></strong></li>
 </ul>
 <p>Alternatively, if you prefer to view the vignettes in R, you could install the package with <code>build_vignettes = TRUE</code>. But be aware that some vignettes are very slow to generate (the main one especially).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"https://github.com/BioGeoMacro/GIFT"</span>, </span>
 <span>                        dependencies <span class="op">=</span> <span class="cn">TRUE</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, </span>
 <span>                        build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
