@@ -6,8 +6,8 @@
 <!-- badges: start -->
 
 [![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)](https://www.r-project.org/Licenses/GPL-3)
-[![pkgdown](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml)  
-![](https://www.r-pkg.org/badges/version/GIFT)  
+[![pkgdown](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml)
+![](https://www.r-pkg.org/badges/version/GIFT)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/GIFT)  
 <!-- badges: end -->
 
