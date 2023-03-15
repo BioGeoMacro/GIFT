@@ -24,9 +24,16 @@ available in the publication of [Weigelt et al.,
 
 # :arrow_double_down: Installation
 
-The package is not on CRAN yet and is still under active development.
-You can install the development version from the GitHub repository with
-the following command:
+The package is now on CRAN, you can install and load it with the
+following commands:
+
+``` r
+install.packages("GIFT")
+library("GIFT")
+```
+
+GIFT is still under active development. You can install the development
+version from the GitHub repository with the following commands:
 
 ``` r
 # install.packages("devtools")
