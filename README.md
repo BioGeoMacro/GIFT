@@ -79,8 +79,8 @@ try to get to it as soon as we can!
 
 # References and dependencies
 
-`GIFT` depends on `dplyr`, `jsonlite`, `purrr`, `sf`, `stats`, `tidyr`
-and `utils`.
+`GIFT` depends on `ape`, `dplyr`, `jsonlite`, `phytools`, `purrr`, `sf`,
+`stats`, `tidyr` and `utils`.
 
 Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of
 Floras and Traits for macroecology and biogeography. *Journal of
