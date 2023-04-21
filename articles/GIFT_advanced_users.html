@@ -102,18 +102,18 @@ text-align: justify}
 <p><br></p>
 <p>This vignette documents some functions and specificities that were
 not presented in the <a href="https://biogeomacro.github.io/GIFT/articles/GIFT.html">main
-vignette</a> of the package. It is mainly targeted for advanced users of
+vignette</a> of the package. It is mainly intended for advanced users of
 the GIFT database.</p>
 <div class="section level2">
 <h2 id="section1">1. Versions and metadata for checklists<a class="anchor" aria-label="anchor" href="#section1"></a>
 </h2>
-<p>In all the functions from the package, there is a
-<code>version</code> argument. This argument allows for retrieving
-different instances of the GIFT database and therefore make all previous
-studies using the GIFT database reproducible. For example, the version
-used in Weigelt et al. (2020) is <code>"1.0"</code>. To get more
-information about the content of the different versions, you can go <a href="https://gift.uni-goettingen.de/about" class="external-link">here</a> and click on the
-tab Version Log.</p>
+<p>All functions in the package have a <code>version</code> argument.
+This argument allows you to retrieve different instances of the GIFT
+database and thus make all previous studies using the GIFT database
+reproducible. For example, the version used in Weigelt et al. (2020) is
+<code>"1.0"</code>. To get more information about the contents of the
+different versions, you can go <a href="https://gift.uni-goettingen.de/about" class="external-link">here</a> and click on the
+Version Log tab.</p>
 <p>To access all the available versions of the database, you can run the
 following function:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -195,29 +195,29 @@ regions (Equatorial Guinea and the entire former USSR in sub-regions).
 </tr>
 </tbody>
 </table>
-<p>The column <code>version</code> of this table is the one to use when
+<p>The <code>version</code> column of this table is the one to use if
 you want to retrieve past versions of the GIFT database. By default, the
 argument used is <code>GIFT_version = "latest"</code> which leads to the
 current latest stable version of the database (“2.0” in October
 2022).</p>
-<p>The function <code><a href="../reference/GIFT_lists.html">GIFT_lists()</a></code> can be run to retrieve
+<p>The <code><a href="../reference/GIFT_lists.html">GIFT_lists()</a></code> function can be run to retrieve
 metadata about the GIFT checklists. In the next chunk, we call it with
 different values for the <code>GIFT_version</code> argument.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">list_latest</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"latest"</span><span class="op">)</span> <span class="co"># default value</span></span>
 <span><span class="va">list_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"1.0"</span><span class="op">)</span></span></code></pre></div>
-<p>The number of checklists available was 3122 in the version 1.0 and
+<p>The number of available checklists was 3122 in the version 1.0 and
 equals 4475 in the version 2.0.</p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="references">2. References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>When using GIFT database in a research article, it is a good practice
-to cite the references used, and list them in an Appendix. The following
-function retrieves the reference for each checklist, as well as some
-metadata. References are documented in the column
-<code>ref_long</code>.</p>
+<p>When using the GIFT database in a research article, it is a good
+practice to cite the references used, and list them in an Appendix. The
+following function retrieves the reference for each checklist, as well
+as some metadata. References are documented in the <code>ref_long</code>
+column.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_references.html">GIFT_references</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="va">ref</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">ref</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">10333</span>, <span class="fl">10649</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -293,17 +293,18 @@ Kazakhstan
 <div class="section level2">
 <h2 id="checklist-data">3. Checklist data<a class="anchor" aria-label="anchor" href="#checklist-data"></a>
 </h2>
-<p>The main wrapper function to retrieve checklists and their species
-composition is <code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> but you also have the
-possibility to retrieve individual checklists using
-<code><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw()</a></code>. You would need to know the
-identification number <code>list_ID</code> of the checklists you want to
-retrieve. <br> To quickly see all the <code>list_ID</code> available in
-the database, you can run <code><a href="../reference/GIFT_lists.html">GIFT_lists()</a></code> as shown in <a href="#section1">Section 1</a>.</p>
+<p>The main wrapper function for retrieving checklists and their species
+composition is <code><a href="../reference/GIFT_checklists.html">GIFT_checklists()</a></code> but you can also retrieve
+individual checklists using <code><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw()</a></code>. You
+would need to know the identification number <code>list_ID</code> of the
+checklists you want to retrieve. <br> To quickly see all the
+<code>list_ID</code> available in the database, you can run
+<code><a href="../reference/GIFT_lists.html">GIFT_lists()</a></code> as shown in <a href="#section1">Section
+1</a>.</p>
 <p><br> When calling <code><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw()</a></code>, you can set the
 argument <code>namesmatched</code> to <code>TRUE</code> in order to get
-extra columns informing about the taxonomic harmonization that was
-performed when uploading the list to GIFT database.</p>
+additional columns informing about the taxonomic harmonization that was
+performed when the list was uploaded to the GIFT database.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">listID_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw</a></span><span class="op">(</span>list_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11926</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">listID_1_tax</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw</a></span><span class="op">(</span>list_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11926</span><span class="op">)</span>, namesmatched <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -311,29 +312,29 @@ performed when uploading the list to GIFT database.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">listID_1</span><span class="op">)</span> <span class="co"># 16 columns</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">listID_1_tax</span><span class="op">)</span> <span class="co"># 33 columns</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">listID_1</span><span class="op">$</span><span class="va">work_ID</span><span class="op">)</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">listID_1_tax</span><span class="op">$</span><span class="va">orig_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>In the list we called, you can see that we “lost” some species after
-taxonomic harmonization as we went from 1331 in the source to 1106 after
-the taxonomic harmonization. This means that several species were
-considered as synonyms or unknown plant species in the taxonomic
-backbone used for harmonization. <br><br><em>Note: the service mainly
-used to taxonomically harmonize the species’ names</em> <em>was The
-Plant List up to version 2.0 and World checklist of Vascular Plants</em>
-<em>afterwards.</em></p>
+<p>In the list we called up, you can see that we “lost” some species
+after the taxonomic harmonization since we went from 1331 in the source
+to 1106 after the taxonomic harmonization. This means that several
+species were considered as synonyms or unknown plant species in the
+taxonomic backbone used for harmonization. <br><br><em>Note: the main
+service used for taxonomic harmonization of species names</em> <em>was
+The Plant List up to version 2.0 and World checklist of Vascular
+Plants</em> <em>afterwards.</em></p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="spatial-subset">4. Spatial subset<a class="anchor" aria-label="anchor" href="#spatial-subset"></a>
 </h2>
 <p>In the <a href="https://biogeomacro.github.io/GIFT/articles/GIFT.html">main
-vignette</a>, we illustrated how to retrieve checklists that were
-falling into a provided shapefile, using the western Mediterranean basin
-provided with the GIFT R package.</p>
+vignette</a>, we illustrated how to retrieve checklists that fall into a
+provided shapefile, using the western Mediterranean basin provided with
+the GIFT R package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"western_mediterranean"</span><span class="op">)</span></span></code></pre></div>
-<p>We here provide more details on the different values the
-<code>overlap</code> argument can take, using the function
-<code><a href="../reference/GIFT_spatial.html">GIFT_spatial()</a></code>. The following figure illustrates how this
-argument works:</p>
+<p>Here we provide more details on the different values the
+<code>overlap</code> argument can take, using the
+<code><a href="../reference/GIFT_spatial.html">GIFT_spatial()</a></code> function. The following figure illustrates
+how this argument works:</p>
 <br><div class="figure" style="text-align: center">
 <img src="../reference/figures/GIFT_spatial.svg" alt="Figure 1. GIFT spatial" width="50%"><p class="caption">
 Figure 1. GIFT spatial
@@ -356,7 +357,7 @@ western Mediterranean basin using the four options available.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_intersect</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_centroid_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">med_shape_inside</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We here see that we progressively lose lists as we apply more
+<p>We see here that we progressively lose lists as we apply more
 selective criterion on the spatial overlap. The most restrictive option
 being <code>overlap = "shape_inside"</code> with 72 regions, then
 <code>overlap = "centroid_inside"</code> with 84 regions,
@@ -479,15 +480,15 @@ remove overlapping polygons only if they belong to the same reference
 <p>Asking for checklists of vascular plants, we get 367 checklists
 without any overlapping criterion, 335 if we remove overlapping polygons
 and 360 if we remove overlapping polygons at the reference level.<br><br> So what is the difference between the second and third case?<br>
-Let’s look at the checklists that are present in the second but not in
-the third example.</p>
+Let’s look at the checklists that are present in the second example but
+not in the third.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span></span>
 <span>                             <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="co"># 25 references</span></span></code></pre></div>
-<p>25 references are in the second and not in the third example.If we
-look at one of the references listed <code>ref_ID = 10143</code>, we see
+<p>25 references are in the second example and not in the third. If we
+look at one of the listed references <code>ref_ID = 10143</code>, we see
 that it is a checklist for the Pilbara region in Australia. Its
-<code>entity_ID</code> is 10043. Looking at the GIFT website, we see
+<code>entity_ID</code> is 10043. Looking at the GIFT web site, we see
 that other regions can overlap with it.<br><br></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pilbara region Australy and overlapping shapes</span></span>
@@ -498,15 +499,15 @@ that other regions can overlap with it.<br><br></p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span><span class="st">"entity_ID"</span>, palette <span class="op">=</span> <span class="st">"Set1"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GIFT_advanced_users_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Since these polygons do not belong to the same <code>ref_ID</code>,
-they are kept when <code>by_ref_ID = TRUE</code> but are not considered
-when <code>by_ref_ID = FALSE</code>.</p>
+they are kept if <code>by_ref_ID = TRUE</code> but are ignored if
+<code>by_ref_ID = FALSE</code>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="species">6. Species<a class="anchor" aria-label="anchor" href="#species"></a>
 </h2>
-<p>All the plant species present in GIFT database can be retrieved using
-<code><a href="../reference/GIFT_species.html">GIFT_species()</a></code>.</p>
+<p>All the plant species present in the GIFT database can be retrieved
+using <code><a href="../reference/GIFT_species.html">GIFT_species()</a></code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>To add additional information, like their order or family, we can
@@ -524,16 +525,16 @@ call <code><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup()</a></code>.
 <span>              taxon_lvl <span class="op">=</span> <span class="st">"higher_lvl"</span>, return_ID <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>              species <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<p>As said above, plant species names can vary from the original sources
-they come from to the final <code>work_species</code> name they get, due
-to the taxonomic harmonization procedure. Looking-up for a species and
-the different steps of the taxonomic harmonization is possible with the
-function <code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code>.</p>
+<p>As mentioned above, plant species names may vary from the original
+sources they come from to the final <code>work_species</code> name they
+get, due to the taxonomic harmonization procedure. Looking up a species
+and the different steps of taxonomic harmonization is possible with the
+<code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code> function.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Fagus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Fagus"</span>, epithet <span class="op">=</span> <span class="st">"sylvatica"</span>,</span>
 <span>                             namesmatched <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>In this table, we can see that the first entry <em>Fagus
-silvatica</em> was later converted as the accepted name <em>Fagus
+silvatica</em> was later changed to the accepted name <em>Fagus
 sylvatica</em>.</p>
 <p><br></p>
 </div>
@@ -549,15 +550,15 @@ sylvatica</em>.</p>
 <div class="section level2">
 <h2 id="overlap_glonaf-tables-and-others">8. Overlap_GloNAF tables (and others)<a class="anchor" aria-label="anchor" href="#overlap_glonaf-tables-and-others"></a>
 </h2>
-<p>As other global databases of plant diversity exist and may rely on
-different polygons, we provide a function <code><a href="../reference/GIFT_overlap.html">GIFT_overlap()</a></code>
-than can look at the spatial overlap between GIFT polygons and polygons
-coming from other databases. <br> So far, only two resources are
-available: <code>glonaf</code> and <code>gmba</code>.
-<code>glonaf</code> stands for <a href="https://glonaf.org/" class="external-link">Global
-Naturalized Alien Flora</a> and <code>gmba</code> for <a href="https://www.gmba.unibe.ch/" class="external-link">Global Mountain Biodiversity
-Assessment</a>.</p>
-<p><code><a href="../reference/GIFT_overlap.html">GIFT_overlap()</a></code> returns the spatial overlap in percentage
+<p>Since other global databases of plant diversity exist and may be
+based on different polygons, we provide a function
+<code><a href="../reference/GIFT_overlap.html">GIFT_overlap()</a></code> than can look at the spatial overlap between
+GIFT polygons and polygons coming from other databases. <br> So far,
+only two resources are available: <code>glonaf</code> and
+<code>gmba</code>. <code>glonaf</code> stands for <a href="https://glonaf.org/" class="external-link">Global Naturalized Alien Flora</a> and
+<code>gmba</code> for <a href="https://www.gmba.unibe.ch/" class="external-link">Global
+Mountain Biodiversity Assessment</a>.</p>
+<p><code><a href="../reference/GIFT_overlap.html">GIFT_overlap()</a></code> returns the spatial overlap in percent
 for each pairwise combination of polygons between GIFT and the other
 resource.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
