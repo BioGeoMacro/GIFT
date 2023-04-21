@@ -48,22 +48,22 @@ default.}
 \item{entity_class}{Character, options are \code{Island}, \code{Island/Mainland},
 \code{Mainland}, \verb{Island Group}, \verb{Island Part}.}
 
-\item{native_indicated}{Boolean, whether only lists where native status
+\item{native_indicated}{Logical, whether only lists where native status
 is available should be retrieved.}
 
-\item{natural_indicated}{Boolean, whether only lists where natural status
+\item{natural_indicated}{Logical, whether only lists where natural status
 is available should be retrieved.}
 
-\item{end_ref}{Boolean, whether only lists where endemism at the reference
+\item{end_ref}{Logical, whether only lists where endemism at the reference
 level is available should be retrieved.}
 
-\item{end_list}{Boolean, whether only lists where endemism at the list level
+\item{end_list}{Logical, whether only lists where endemism at the list level
 is available should be retrieved.}
 
 \item{suit_geo}{logical indicating whether only regions classified as
 suit_geo should be considered (see details).}
 
-\item{complete_taxon}{Boolean, default \code{TRUE}.}
+\item{complete_taxon}{Logical, default \code{TRUE}.}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the \code{latest} stable

@@ -18,7 +18,7 @@ GIFT_species_lookup(
 \item{epithet}{character string defining the specific epithet to be looked
 for.}
 
-\item{namesmatched}{Boolean. \code{FALSE} by default, set to \code{TRUE} if you want
+\item{namesmatched}{Logical \code{FALSE} by default, set to \code{TRUE} if you want
 to look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 

@@ -9,7 +9,7 @@
 #' @param epithet character string defining the specific epithet to be looked
 #' for.
 #' 
-#' @param namesmatched Boolean. `FALSE` by default, set to `TRUE` if you want
+#' @param namesmatched Logical `FALSE` by default, set to `TRUE` if you want
 #' to look for the species not only in the standardized species names but also 
 #' in the original species names as they came in the original resources.
 #' 
@@ -88,7 +88,7 @@ GIFT_species_lookup <-
     
     if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
        is.na(namesmatched)){
-      stop("'namesmatched' must be a boolean stating whether you only want to 
+      stop("'namesmatched' must be a logical stating whether you only want to 
     look for the species not only in the standardized species names or also 
     in the original species names as they came in the original resources")
     }

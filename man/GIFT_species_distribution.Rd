@@ -25,11 +25,11 @@ of interest.}
 \item{epithet}{Character string corresponding to the epithet of the species
 of interest.}
 
-\item{namesmatched}{Boolean. \code{FALSE} by default, set to TRUE if you want to
+\item{namesmatched}{Logical \code{FALSE} by default, set to TRUE if you want to
 look for the species not only in the standardized species names but also
 in the original species names as they came in the original resources.}
 
-\item{remove_overlap}{a boolean stating whether you want to
+\item{remove_overlap}{a logical stating whether you want to
 retrieve checklists that overlap or not. \code{FALSE} by default.}
 
 \item{area_th_island}{A number stating from which surface the smallest
@@ -49,7 +49,7 @@ regions shall be applied by ref_ID only. Note that regions overlapping with
 other regions from the same resource will be removed even if there are other
 references available for those regions.}
 
-\item{aggregation}{A Boolean stating whether you want to aggregate in a
+\item{aggregation}{A logical stating whether you want to aggregate in a
 simpler way the floristic status of species per entity_ID. For example, two
 lists associated to the same entity_ID could describe a species both as
 native and non-native. In that case, the aggregation would consider the

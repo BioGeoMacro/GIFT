@@ -8,11 +8,11 @@
 #' @param epithet Character string corresponding to the epithet of the species 
 #' of interest.
 #'  
-#' @param namesmatched Boolean. `FALSE` by default, set to TRUE if you want to 
+#' @param namesmatched Logical `FALSE` by default, set to TRUE if you want to 
 #' look for the species not only in the standardized species names but also 
 #' in the original species names as they came in the original resources. 
 #' 
-#' @param remove_overlap a boolean stating whether you want to
+#' @param remove_overlap a logical stating whether you want to
 #' retrieve checklists that overlap or not. `FALSE` by default.
 #' 
 #' @param area_th_island A number stating from which surface the smallest
@@ -32,7 +32,7 @@
 #' other regions from the same resource will be removed even if there are other
 #' references available for those regions.
 #'
-#' @param aggregation A Boolean stating whether you want to aggregate in a
+#' @param aggregation A logical stating whether you want to aggregate in a
 #' simpler way the floristic status of species per entity_ID. For example, two
 #' lists associated to the same entity_ID could describe a species both as
 #' native and non-native. In that case, the aggregation would consider the
@@ -124,14 +124,14 @@ GIFT_species_distribution <- function(
   
   if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
      is.na(namesmatched)){
-    stop("'namesmatched' must be a boolean stating whether you only want to 
+    stop("'namesmatched' must be a logical stating whether you only want to 
     look for the species not only in the standardized species names or also 
     in the original species names as they came in the original resources")
   }
   
   if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
      is.na(remove_overlap)){
-    stop("'remove_overlap' must be a boolean stating whether you want to
+    stop("'remove_overlap' must be a logical stating whether you want to
     retrieve checklists that overlap or not.")
   }
   
@@ -153,14 +153,14 @@ GIFT_species_distribution <- function(
   
   if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) ||
      is.na(by_ref_ID)){
-    stop("'by_ref_ID' must be a boolean stating whether indicating whether the
+    stop("'by_ref_ID' must be a logical stating whether indicating whether the
          removal of overlapping regions shall be applied only at the
          reference level.")
   }
   
   if(length(aggregation) != 1 || !is.logical(aggregation) ||
      is.na(aggregation)){
-    stop("'aggregation' must be a boolean stating whether you want to
+    stop("'aggregation' must be a logical stating whether you want to
     aggregate in a simpler way the floristic status of species per entity_ID.")
   }
   

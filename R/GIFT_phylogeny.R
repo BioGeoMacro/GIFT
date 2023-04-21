@@ -5,10 +5,10 @@
 #' @param clade Character string indicating the taxonomic group
 #' of interest corresponding to the node labels in the phylogeny.
 #' 
-#' @param as_tree Boolean, whether you want the phylogeny to be returned as a 
+#' @param as_tree Logical, whether you want the phylogeny to be returned as a 
 #' phylogenetic tree  (`TRUE`) or in a table (`FALSE`). `TRUE` by default.
 #' 
-#' @param return_work_ID Boolean, whether you want to retrieve the species'
+#' @param return_work_ID Logical, whether you want to retrieve the species'
 #' names or their identification number (work_ID) in the GIFT database.
 #' `FALSE` by default.
 #' 
@@ -71,13 +71,13 @@ GIFT_phylogeny <- function(
   }
   
   if(length(as_tree) != 1 || !is.logical(as_tree) || is.na(as_tree)){
-    stop("'as_tree' must be a boolean stating whether you want to retrieve
+    stop("'as_tree' must be a logical stating whether you want to retrieve
          the phylogeny as a tree object.")
   }
   
   if(length(return_work_ID) != 1 || !is.logical(return_work_ID) ||
      is.na(return_work_ID)){
-    stop("'return_work_ID' must be a boolean stating whether you want to
+    stop("'return_work_ID' must be a logical stating whether you want to
     get the species names or their work_ID as tip labels.")
   }
   

@@ -32,12 +32,12 @@ different named stable versions of GIFT.",
   
   expect_error(
     GIFT_phylogeny(as_tree = "zz", GIFT_version = "beta"),
-    "'as_tree' must be a boolean stating whether you want to retrieve
+    "'as_tree' must be a logical stating whether you want to retrieve
          the phylogeny as a tree object.", fixed = TRUE)
   
   expect_error(
     GIFT_phylogeny(return_work_ID = "zz", GIFT_version = "beta"),
-    "'return_work_ID' must be a boolean stating whether you want to
+    "'return_work_ID' must be a logical stating whether you want to
     get the species names or their work_ID as tip labels.", fixed = TRUE)
   
   expect_error(

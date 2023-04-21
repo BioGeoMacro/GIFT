@@ -24,22 +24,22 @@
 #' @param entity_class Character, options are `Island`, `Island/Mainland`,
 #' `Mainland`, `Island Group`, `Island Part`.
 #' 
-#' @param native_indicated Boolean, whether only lists where native status
+#' @param native_indicated Logical, whether only lists where native status
 #' is available should be retrieved.
 #' 
-#' @param natural_indicated Boolean, whether only lists where natural status
+#' @param natural_indicated Logical, whether only lists where natural status
 #' is available should be retrieved.
 #'  
-#' @param end_ref Boolean, whether only lists where endemism at the reference
+#' @param end_ref Logical, whether only lists where endemism at the reference
 #' level is available should be retrieved.
 #'  
-#' @param end_list Boolean, whether only lists where endemism at the list level
+#' @param end_list Logical, whether only lists where endemism at the list level
 #' is available should be retrieved.
 #' 
 #' @param suit_geo logical indicating whether only regions classified as 
 #' suit_geo should be considered (see details).
 #' 
-#' @param complete_taxon Boolean, default `TRUE`.
+#' @param complete_taxon Logical, default `TRUE`.
 #' 
 #' @param list_set list_set `NULL` by default. If not, it has to be the list
 #' table (see [GIFT::GIFT_lists()]). Used internally in
@@ -160,28 +160,28 @@ GIFT_checklists_conditional <- function(
   
   if(length(native_indicated) != 1 || !is.logical(native_indicated) ||
      is.na(native_indicated)){
-    stop("'native_indicated' must be a boolean stating if you want the
+    stop("'native_indicated' must be a logical stating if you want the
          native status of species to be available.")
   }
   
   if(length(natural_indicated) != 1 || !is.logical(natural_indicated) ||
      is.na(natural_indicated)){
-    stop("'natural_indicated' must be a boolean stating if you want to
+    stop("'natural_indicated' must be a logical stating if you want to
          know whether species were naturalized or not.")
   }
   
   if(length(end_ref) != 1 || !is.logical(end_ref) || is.na(end_ref)){
-    stop("'end_ref' must be a boolean stating if you want the endemic
+    stop("'end_ref' must be a logical stating if you want the endemic
          status at the reference level to be available.")
   }
   
   if(length(end_list) != 1 || !is.logical(end_list) || is.na(end_list)){
-    stop("'end_list' must be a boolean stating if you want the endemic
+    stop("'end_list' must be a logical stating if you want the endemic
          status at the list level to be available.")
   }
   
   if(length(suit_geo) != 1 || !is.logical(suit_geo) || is.na(suit_geo)){
-    stop("'suit_geo' must be a boolean stating if you want to retrieve
+    stop("'suit_geo' must be a logical stating if you want to retrieve
          lists associated to a suitable polygon or not.")
   }
   

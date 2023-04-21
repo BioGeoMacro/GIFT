@@ -12,7 +12,7 @@
 #' @param taxon_name Character string corresponding to the taxonomic group
 #' of interest.
 #' 
-#' @param namesmatched Boolean. `FALSE` by default, set to `TRUE` if you want
+#' @param namesmatched Logical. `FALSE` by default, set to `TRUE` if you want
 #' the original species name as they came in the references as well as details
 #' on the taxonomic harmonization.
 #' 

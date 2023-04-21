@@ -24,7 +24,7 @@ GIFT_checklists_raw(
 \code{NULL} by default. These lists are retrieved in addition to the lists
 contained in the references in \code{ref_ID}.}
 
-\item{namesmatched}{Boolean. \code{FALSE} by default, set to \code{TRUE} if you want
+\item{namesmatched}{Logical. \code{FALSE} by default, set to \code{TRUE} if you want
 the original species name as they came in the references as well as details
 on the taxonomic harmonization.}
 

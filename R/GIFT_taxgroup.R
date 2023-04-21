@@ -66,7 +66,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
   }
   
   if(length(return_ID) != 1 || !is.logical(return_ID)){
-    stop(c("'return_ID' must be a boolean stating whether you want taxonomic
+    stop(c("'return_ID' must be a logical stating whether you want taxonomic
            names of IDs."))
   }
   

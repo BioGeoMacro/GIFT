@@ -57,22 +57,22 @@ test_that("invalid inputs", {
 
   expect_error(
     GIFT_checklists_conditional(native_indicated = NA),
-    "'native_indicated' must be a boolean stating if you want the
+    "'native_indicated' must be a logical stating if you want the
          native status of species to be available.", fixed = TRUE)
   
   expect_error(
     GIFT_checklists_conditional(natural_indicated = NA),
-    "'natural_indicated' must be a boolean stating if you want to
+    "'natural_indicated' must be a logical stating if you want to
          know whether species were naturalized or not.", fixed = TRUE)
   
   expect_error(
     GIFT_checklists_conditional(end_ref =  NA),
-    "'end_ref' must be a boolean stating if you want the endemic
+    "'end_ref' must be a logical stating if you want the endemic
          status at the reference level to be available.", fixed = TRUE)
   
   expect_error(
     GIFT_checklists_conditional(end_list =  NA),
-    "'end_list' must be a boolean stating if you want the endemic
+    "'end_list' must be a logical stating if you want the endemic
          status at the list level to be available.", fixed = TRUE)
   
   expect_error(
@@ -83,7 +83,7 @@ test_that("invalid inputs", {
   
   expect_error(
     GIFT_checklists_conditional(suit_geo =  NA),
-    "'suit_geo' must be a boolean stating if you want to retrieve
+    "'suit_geo' must be a logical stating if you want to retrieve
          lists associated to a suitable polygon or not.", fixed = TRUE)
   
   expect_error(

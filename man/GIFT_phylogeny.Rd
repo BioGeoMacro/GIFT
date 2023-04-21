@@ -17,10 +17,10 @@ GIFT_phylogeny(
 \item{clade}{Character string indicating the taxonomic group
 of interest corresponding to the node labels in the phylogeny.}
 
-\item{as_tree}{Boolean, whether you want the phylogeny to be returned as a
+\item{as_tree}{Logical, whether you want the phylogeny to be returned as a
 phylogenetic tree  (\code{TRUE}) or in a table (\code{FALSE}). \code{TRUE} by default.}
 
-\item{return_work_ID}{Boolean, whether you want to retrieve the species'
+\item{return_work_ID}{Logical, whether you want to retrieve the species'
 names or their identification number (work_ID) in the GIFT database.
 \code{FALSE} by default.}
 

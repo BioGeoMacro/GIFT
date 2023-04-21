@@ -69,7 +69,7 @@ check_area_threshold_mainland <- function(area_threshold_mainland) {
 # Stop if bias_deriv argument is not having the right format
 #
 # Args:
-#   bias_deriv a boolean
+#   bias_deriv a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -87,7 +87,7 @@ check_bias_deriv <- function(bias_deriv) {
 # Stop if bias_ref argument is not having the right format
 #
 # Args:
-#   bias_ref a boolean
+#   bias_ref a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -105,14 +105,14 @@ check_bias_ref <- function(bias_ref) {
 # Stop if by_ref_ID argument is not having the right format
 #
 # Args:
-#   by_ref_ID a boolean
+#   by_ref_ID a logical
 #
 # Returns:
 #   shows an error message if needed
 
 check_by_ref_ID <- function(by_ref_ID) {
   if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) || is.na(by_ref_ID)){
-    stop("'by_ref_ID' must be a boolean indicating whether the
+    stop("'by_ref_ID' must be a logical indicating whether the
          removal of overlapping regions shall be applied only at the
          reference level (i.e. within references).")
   }
@@ -186,7 +186,7 @@ check_coordinates <- function(coordinates, shp, overlap) {
 # Stop if complete_floristic argument is not having the right format
 #
 # Args:
-#   complete_floristic a boolean
+#   complete_floristic a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -208,7 +208,7 @@ check_complete_floristic <- function(complete_floristic) {
 # Stop if complete_taxon argument is not having the right format
 #
 # Args:
-#   complete_taxon a boolean
+#   complete_taxon a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -350,7 +350,7 @@ version.")
 # Stop if list_set_only argument is not having the right format
 #
 # Args:
-#   list_set_only a boolean
+#   list_set_only a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -371,7 +371,7 @@ check_list_set_only <- function(list_set_only) {
 # Stop if namesmatched argument is not having the right format
 #
 # Args:
-#   namesmatched a boolean
+#   namesmatched a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -460,7 +460,7 @@ check_ref_excluded <- function(ref_excluded) {
 # Stop if remove_overlap argument is not having the right format
 #
 # Args:
-#   remove_overlap a boolean
+#   remove_overlap a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -530,7 +530,7 @@ check_shp <- function(shp, overlap) {
 # Stop if suit_geo argument is not having the right format
 #
 # Args:
-#   suit_geo a boolean
+#   suit_geo a logical
 #
 # Returns:
 #   shows an error message if needed
@@ -596,7 +596,7 @@ check_taxon_name <- function(taxon_name) {
 # Stop if taxonomic_group argument is not having the right format
 #
 # Args:
-#   taxonomic_group a boolean
+#   taxonomic_group a logical
 #
 # Returns:
 #   shows an error message if needed

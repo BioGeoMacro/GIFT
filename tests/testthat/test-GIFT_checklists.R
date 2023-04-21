@@ -105,7 +105,7 @@ different named stable versions of GIFT.",
   
   expect_error(
     GIFT_checklists(by_ref_ID = NA),
-    "'by_ref_ID' must be a boolean indicating whether the
+    "'by_ref_ID' must be a logical indicating whether the
          removal of overlapping regions shall be applied only at the
          reference level (i.e. within references).", fixed = TRUE)
   
