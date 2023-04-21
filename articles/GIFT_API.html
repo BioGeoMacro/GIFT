@@ -100,30 +100,30 @@ text-align: justify}
 </style>
 <p><img src="../reference/figures/biodiv_gottingen_logo.png" width="20%"><img src="../reference/figures/GIFT.png" width="20%"></p>
 <p><br></p>
-<p>This vignette shows how to work with the API, how it is related to
-the GIFT R package, and how are the R functions of the package
+<p>This vignette shows how to work with the API, how it relates to the
+GIFT R package, and how the R functions in the package are
 interdependent.</p>
 <p><br></p>
 <div class="section level2">
 <h2 id="api">API<a class="anchor" aria-label="anchor" href="#api"></a>
 </h2>
 <p>The API endpoint is <em><a href="https://gift.uni-goettingen.de/api/extended/index.php" class="external-link uri">https://gift.uni-goettingen.de/api/extended/index.php</a></em>.
-We then have different queries, listed in the table below, that allow
-retrieving distinct tables. The name in the column Query of the table
+We then have several queries, listed in the table below, that allow
+retrieving distinct tables. The name in the Query column of the table
 below has to be used as the query argument. As an example, here is the
-query leading to the metadata table of the environmental rasters: <br><a href="https://gift.uni-goettingen.de/api/extended/index.php?query=env_raster" class="external-link uri">https://gift.uni-goettingen.de/api/extended/index.php?query=env_raster</a></p>
-<p><br> Please note that the endpoint changes depending on the GIFT
-version you ask for. For example, with the same table as above, we can
+query that leads to the environmental raster metadata table: <br><a href="https://gift.uni-goettingen.de/api/extended/index.php?query=env_raster" class="external-link uri">https://gift.uni-goettingen.de/api/extended/index.php?query=env_raster</a></p>
+<p><br> Note that the endpoint changes depending on the version of GIFT
+you are querying. For example, with the same table as above, we can
 retrieve the table as it was in GIFT version 2.0: <br><a href="https://gift.uni-goettingen.de/api/extended/index2.0.php?query=env_raster" class="external-link uri">https://gift.uni-goettingen.de/api/extended/index2.0.php?query=env_raster</a></p>
-<p><br> While for this API there is no authentication needed, there is a
+<p><br> While this API does not require authentication, there is a
 password-protected API leading to some restricted content in the
-different tables. Restricted content can for example be some checklists
-which need the approval of their provider before being used. This API
-can be communicated upon request.</p>
+different tables. Restricted content can be,for example, some checklists
+that need the approval of their provider before being used. This API can
+be communicated upon request.</p>
 <p><br> Here is the list of the 24 available queries, their arguments
-and in which GIFT R function they are called. There is no
-rate-limitation for any of these queries except <em>species</em> and
-<em>phylogeny</em> which retrieved the data into chunks.</p>
+and the GIFT R functions in which they are called. There is no
+rate-limitation for any of these queries except for <em>species</em> and
+<em>phylogeny</em>, which retrieves the data in chunks.</p>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -409,7 +409,9 @@ All GIFT functions
 <div class="section level2">
 <h2 id="dependency-graph-of-r-functions">Dependency graph of R functions<a class="anchor" aria-label="anchor" href="#dependency-graph-of-r-functions"></a>
 </h2>
-<p>Dependency graph of the main functions of the package: <br></p>
+<p>Arrows in the figure below connect interdependent functions,
+i.e. functions that call other functions. Function names are colored
+according to the larger category to which they belong. <br></p>
 <p><img src="../reference/figures/GIFT_network_functions.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -419,6 +421,9 @@ All GIFT functions
 &amp; Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits
 for macroecology and biogeography. Journal of Biogeography, 47(1),
 16–43.</a></p>
+<p><a href="https://CRAN.R-project.org/package=GIFT" class="external-link">Weigelt, Patrick,
+and Pierre Denelle. “GIFT: Access to the Global Inventory of Floras and
+Traits (GIFT),” March 15, 2023.</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
