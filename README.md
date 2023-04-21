@@ -15,17 +15,17 @@
 This **R package** includes several functions to extract data from the
 Global Inventory of Floras and Traits (**GIFT**) database. <br> **GIFT**
 is a global database of plant checklists, covering several taxonomic
-groups and providing information about the floristic status and
-functional traits of plants as well as environmental information for
-each checklist. <br> More details about the content of this database are
-available in the publication of [Weigelt et al.,
+groups and providing information on the floristic status and functional
+traits of plants as well as environmental information for each
+checklist. <br> More details on the contents of this database can be
+found in the publication by [Weigelt et al.,
 (2020)](https://doi.org/10.1111/jbi.13623).
 
 <img src="man/figures/rich_map_plot_islands.png" width="70%" style="display: block; margin: auto;" />
 
 # :arrow_double_down: Installation
 
-The package is now on CRAN, you can install and load it with the
+The package is available on CRAN, you can install and load it using the
 following commands:
 
 ``` r
@@ -34,7 +34,7 @@ library("GIFT")
 ```
 
 GIFT is still under active development. You can install the development
-version from the GitHub repository with the following commands:
+version from the GitHub repository using the following commands:
 
 ``` r
 # install.packages("devtools")
@@ -45,8 +45,8 @@ library("GIFT")
 
 # :scroll: Vignettes
 
-We wrote several vignettes that will help you using the **GIFT R
-package**. So far, three vignettes are available: <br>
+We have written several vignettes to help you use the **GIFT R
+package**. Three vignettes are available: <br>
 
 - **[Main
   tutorial](https://biogeomacro.github.io/GIFT/articles/GIFT.html)**  
@@ -54,9 +54,8 @@ package**. So far, three vignettes are available: <br>
   users](https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html)**  
 - **[API](https://biogeomacro.github.io/GIFT/articles/GIFT_API.html)**
 
-Alternatively, if you prefer to view the vignettes in R, you could
-install the package with `build_vignettes = TRUE`. But be aware that
-some vignettes are very slow to generate (the main one especially).
+Alternatively, if you prefer to view the vignettes in R, you can install
+the package with `build_vignettes = TRUE`.
 
 ``` r
 remotes::install_github("https://github.com/BioGeoMacro/GIFT", 
@@ -74,8 +73,8 @@ An overview of all functions and data is given
 # :bug: Find a bug?
 
 Thank you for finding it. Head over to the GitHub Issues tab and let us
-know about it. Alternatively, you can also send us an e-mail. We will
-try to get to it as soon as we can!
+know about it. Alternatively, you can also send us an email. We will try
+to get to it as soon as possible!
 
 # References and dependencies
 
