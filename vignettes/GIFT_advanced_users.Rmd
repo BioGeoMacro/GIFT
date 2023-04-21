@@ -46,16 +46,16 @@ knitr::include_graphics("../man/figures/GIFT.png")
 This vignette documents some functions and specificities that were not
 presented in the
 [main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html) of the
-package. It is mainly targeted for advanced users of the GIFT database.
+package. It is mainly intended for advanced users of the GIFT database.
 
 # 1. Versions and metadata for checklists {#section1}
 
-In all the functions from the package, there is a `version` argument. This
-argument allows for retrieving different instances of the GIFT database and
-therefore make all previous studies using the GIFT database reproducible. For
-example, the version used in Weigelt et al. (2020) is `"1.0"`. To get more
-information about the content of the different versions, you can go
-[here](https://gift.uni-goettingen.de/about) and click on the tab Version Log.
+All functions in the package have a `version` argument. This argument allows
+you to retrieve different instances of the GIFT database and thus make all
+previous studies using the GIFT database reproducible.  For example, the
+version used in Weigelt et al. (2020) is `"1.0"`. To get more
+information about the contents of the different versions, you can go
+[here](https://gift.uni-goettingen.de/about) and click on the Version Log tab.
 
 To access all the available versions of the database, you can run the
 following function:
@@ -66,12 +66,12 @@ kable(versions, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
-The column `version` of this table is the one to use when you want to retrieve
+The `version` column of this table is the one to use if you want to retrieve
 past versions of the GIFT database. By default, the argument used is
 `GIFT_version = "latest"` which leads to the current latest stable version of
 the database ("2.0" in October 2022).
 
-The function `GIFT_lists()` can be run to retrieve metadata about the GIFT
+The `GIFT_lists()` function can be run to retrieve metadata about the GIFT
 checklists. In the next chunk, we call it with different values for the
 `GIFT_version` argument.
 
@@ -80,17 +80,17 @@ list_latest <- GIFT_lists(GIFT_version = "latest") # default value
 list_1 <- GIFT_lists(GIFT_version = "1.0")
 ```
 
-The number of checklists available was 3122 in the version 1.0 and equals 4475
+The number of available checklists was 3122 in the version 1.0 and equals 4475
 in the version 2.0.
 
 <br>
 
 # 2. References
 
-When using GIFT database in a research article, it is a good practice to cite
+When using the GIFT database in a research article, it is a good practice to cite
 the references used, and list them in an Appendix. The following function
 retrieves the reference for each checklist, as well as some metadata.
-References are documented in the column `ref_long`.
+References are documented in the `ref_long` column.
 
 ```{r}
 ref <- GIFT_references()
@@ -106,17 +106,19 @@ kable(ref, "html") %>%
 
 # 3. Checklist data
 
-The main wrapper function to retrieve checklists and their species composition
-is `GIFT_checklists()` but you also have the possibility to retrieve individual
+The main wrapper function for retrieving checklists and their species
+composition is `GIFT_checklists()` but you can also retrieve individual
 checklists using `GIFT_checklists_raw()`. You would need to know the
 identification number `list_ID` of the checklists you want to retrieve.
 <br>
-To quickly see all the `list_ID` available in the database, you can run `GIFT_lists()` as shown in [Section 1](#section1).
+To quickly see all the `list_ID` available in the database, you can run
+`GIFT_lists()` as shown in [Section 1](#section1).
 
 <br>
 When calling `GIFT_checklists_raw()`, you can set the argument `namesmatched`
-to `TRUE` in order to get extra columns informing about the taxonomic
-harmonization that was performed when uploading the list to GIFT database.
+to `TRUE` in order to get additional columns informing about the taxonomic
+harmonization that was performed when the list was uploaded to the GIFT
+database.
 
 ```{r, eval = FALSE, echo = TRUE}
 listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
@@ -127,12 +129,13 @@ ncol(listID_1_tax) # 33 columns
 length(unique(listID_1$work_ID)); length(unique(listID_1_tax$orig_ID))
 ```
 
-In the list we called, you can see that we "lost" some species after taxonomic
-harmonization as we went from 1331 in the source to 1106 after the taxonomic
-harmonization. This means that several species were considered as synonyms or
-unknown plant species in the taxonomic backbone used for harmonization.
+In the list we called up, you can see that we "lost" some species after the
+taxonomic harmonization since we went from 1331 in the source to 1106 after the
+taxonomic harmonization. This means that several species were considered as
+synonyms or unknown plant species in the taxonomic backbone used for
+harmonization.
 <br><br>
-*Note: the service mainly used to taxonomically harmonize the species' names*
+*Note: the main service used for taxonomic harmonization of species names*
 *was The Plant List up to version 2.0 and World checklist of Vascular Plants*
 *afterwards.*
 
@@ -142,7 +145,7 @@ unknown plant species in the taxonomic backbone used for harmonization.
 
 In the
 [main vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html), we
-illustrated how to retrieve checklists that were falling into a provided
+illustrated how to retrieve checklists that fall into a provided
 shapefile, using the western Mediterranean basin provided with the GIFT R
 package.
 
@@ -150,8 +153,8 @@ package.
 data("western_mediterranean")
 ```
 
-We here provide more details on the different values the `overlap` argument
-can take, using the function `GIFT_spatial()`. The following figure illustrates
+Here we provide more details on the different values the `overlap` argument
+can take, using the `GIFT_spatial()` function. The following figure illustrates
 how this argument works:
 
 <br>
@@ -187,7 +190,7 @@ length(unique(med_centroid_inside$entity_ID))
 length(unique(med_shape_inside$entity_ID))
 ```
 
-We here see that we progressively lose lists as we apply more selective
+We see here that we progressively lose lists as we apply more selective
 criterion on the spatial overlap. The most restrictive option being
 `overlap = "shape_inside"` with 72 regions, then
 `overlap = "centroid_inside"` with 84 regions,
@@ -338,18 +341,18 @@ overlapping criterion, 335 if we remove overlapping polygons and 360 if we
 remove overlapping polygons at the reference level.  
 <br>
 So what is the difference between the second and third case?  
-Let's look at the checklists that are present in the second but not in the
-third example.
+Let's look at the checklists that are present in the second example but not in
+the third.
 
 ```{r, eval = FALSE, echo = TRUE}
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
                              unique(ex3$lists$ref_ID))] # 25 references
 ```
 
-25 references are in the second and not in the third example.If we look at one
-of the references listed `ref_ID = 10143`, we see that it is a checklist for
+25 references are in the second example and not in the third. If we look at one
+of the listed references `ref_ID = 10143`, we see that it is a checklist for
 the Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
-website, we see that other regions can overlap with it.  
+web site, we see that other regions can overlap with it.  
 <br>
 
 ```{r, include = FALSE, eval = TRUE}
@@ -368,12 +371,12 @@ ggplot(pilbara) +
   scale_fill_brewer("entity_ID", palette = "Set1")
 ```
 
-Since these polygons do not belong to the same `ref_ID`, they are kept when
-`by_ref_ID = TRUE` but are not considered when `by_ref_ID = FALSE`.
+Since these polygons do not belong to the same `ref_ID`, they are kept if
+`by_ref_ID = TRUE` but are ignored if `by_ref_ID = FALSE`.
 
 # 6. Species
 
-All the plant species present in GIFT database can be retrieved using
+All the plant species present in the GIFT database can be retrieved using
 `GIFT_species()`.  
 
 ```{r, eval = FALSE, echo = TRUE}
@@ -402,11 +405,10 @@ GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
 
 <br>
 
-As said above, plant species names can vary from the original sources they come
-from to the final `work_species` name they get, due to the taxonomic
-harmonization procedure. Looking-up for a species and the different steps of
-the taxonomic harmonization is possible with the function
-`GIFT_species_lookup()`.
+As mentioned above, plant species names may vary from the original sources they
+come from to the final `work_species` name they get, due to the taxonomic
+harmonization procedure. Looking up a species and the different steps of
+taxonomic harmonization is possible with the `GIFT_species_lookup()` function.
 
 ```{r, eval = FALSE, echo = TRUE}
 Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
@@ -414,7 +416,7 @@ Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
 ```
 
 In this table, we can see that the first entry *Fagus silvatica* was later
-converted as the accepted name *Fagus sylvatica*.
+changed to the accepted name *Fagus sylvatica*.
 
 <br>
 
@@ -430,16 +432,16 @@ taxo <- GIFT_taxonomy()
 
 # 8. Overlap_GloNAF tables (and others)
 
-As other global databases of plant diversity exist and may rely on different
-polygons, we provide a function `GIFT_overlap()` than can look at the spatial
-overlap between GIFT polygons and polygons coming from other databases.
+Since other global databases of plant diversity exist and may be based on
+different polygons, we provide a function `GIFT_overlap()` than can look at the
+spatial overlap between GIFT polygons and polygons coming from other databases.
 <br>
 So far, only two resources are available: `glonaf` and `gmba`.
 `glonaf` stands for [Global Naturalized Alien Flora](https://glonaf.org/) and
 `gmba` for
 [Global Mountain Biodiversity Assessment](https://www.gmba.unibe.ch/).
 
-`GIFT_overlap()` returns the spatial overlap in percentage for each pairwise
+`GIFT_overlap()` returns the spatial overlap in percent for each pairwise
 combination of polygons between GIFT and the other resource.
 
 ```{r}
