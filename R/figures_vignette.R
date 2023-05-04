@@ -536,3 +536,27 @@
 # plot(sf::st_geometry(western_mediterranean), lwd = 2, add = TRUE)
 # par(par_overlap)
 # dev.off()
+## Overlap GMBA ---------------------------------------------------------------
+# library("GIFT")
+# 
+# # Overlap table between GIFT and GMBA regions
+# gmba_overlap <- GIFT_overlap(resource = "gmba", GIFT_version = "beta")
+# library("sf")
+# gmba <- st_read(
+#   "../../polygon_resources/GMBA/GMBA_mountain_inventory_V1.0_ID.shp")
+# geoentities <- st_read(
+#   "../../polygon_resources/geoentities/geoentities_simple.shp")
+# 
+# st_crs(gmba) <- st_crs(geoentities)
+# 
+# gmba_overlap[which(gmba_overlap$entity_ID == 11861 &
+#                      gmba_overlap$gmba_ID == 731), ]
+# 
+# library("ggplot2")
+# ggplot(gmba[which(gmba$ID == 731), ]) +
+#   geom_sf(color = "black", linewidth = 1) +
+#   geom_sf(data = geoentities[which(geoentities$entt_ID == 11861), ],
+#           fill = "black", alpha = 0.5) +
+#   labs(title = paste0("GIFT region: ",
+#                       geoentities[which(geoentities$entt_ID == 11861), ]$ge_ntty)) +
+#   theme_void()
