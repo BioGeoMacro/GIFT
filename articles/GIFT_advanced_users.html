@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2023-05-02</h4>
+            <h4 data-toc-skip class="date">2023-05-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_advanced_users.Rmd" class="external-link"><code>vignettes/GIFT_advanced_users.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_advanced_users.Rmd</code></div>
@@ -243,22 +243,22 @@ geo_entity_ref
 <tbody>
 <tr>
 <td style="text-align:left;">
-22
+4
 </td>
 <td style="text-align:right;">
-22
+10649
 </td>
 <td style="text-align:left;">
-Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
-Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
+Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
+Kazakhstan.
 </td>
 <td style="text-align:left;">
-La Réunion
+Kazakhstan
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-663
+179
 </td>
 <td style="text-align:right;">
 10333
@@ -273,17 +273,17 @@ Easter Island
 </tr>
 <tr>
 <td style="text-align:left;">
-875
+772
 </td>
 <td style="text-align:right;">
-10649
+22
 </td>
 <td style="text-align:left;">
-Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
-Kazakhstan.
+Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
+Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
 </td>
 <td style="text-align:left;">
-Kazakhstan
+La Réunion
 </td>
 </tr>
 </tbody>
@@ -561,103 +561,11 @@ Mountain Biodiversity Assessment</a>.</p>
 <p><code><a href="../reference/GIFT_overlap.html">GIFT_overlap()</a></code> returns the spatial overlap in percent
 for each pairwise combination of polygons between GIFT and the other
 resource.</p>
+<p>Let’s illustrate this with the GMBA shapefile.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">glonaf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"glonaf"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">gmba_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"gmba"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">glonaf</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:right;">
-entity_ID
-</th>
-<th style="text-align:right;">
-glonaf_ID
-</th>
-<th style="text-align:right;">
-overlap12
-</th>
-<th style="text-align:right;">
-overlap21
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-10535
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-0.0000234
-</td>
-<td style="text-align:right;">
-0.0003414
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10535
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-0.0000063
-</td>
-<td style="text-align:right;">
-0.0001627
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10535
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-0.0000133
-</td>
-<td style="text-align:right;">
-0.0031738
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10535
-</td>
-<td style="text-align:right;">
-86
-</td>
-<td style="text-align:right;">
-0.9960670
-</td>
-<td style="text-align:right;">
-0.9923370
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10535
-</td>
-<td style="text-align:right;">
-112
-</td>
-<td style="text-align:right;">
-0.0000112
-</td>
-<td style="text-align:right;">
-0.0002035
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gmba</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"gmba"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">gmba</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -747,6 +655,25 @@ overlap21
 </tr>
 </tbody>
 </table>
+<p>We see that two overlap columns are returned: <code>overlap12</code>
+and <code>overlap21</code>.<br>
+The first column returns the overlap between the GIFT region and the
+other resource. The second column returns the overlap between the other
+resource and the GIFT region.<br>
+For example, if we look at the polygon 11861 of GIFT:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op">==</span> <span class="fl">11861</span> <span class="op">&amp;</span></span>
+<span>                     <span class="va">gmba_overlap</span><span class="op">$</span><span class="va">gmba_ID</span> <span class="op">==</span> <span class="fl">731</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##      entity_ID gmba_ID overlap12 overlap21</span></span>
+<span><span class="co">## 4884     11861     731 0.9493551 0.1270431</span></span></code></pre>
+<p>The corresponding region is the Aisen province in Chile and it
+overlaps at 95% with the GMBA polygon number 731.<br>
+At the same time the GMBA polygon 731 only overlaps at 13% with the
+Aisen province of Chile.<br>
+This is because the corresponding mountain region is larger than the
+GIFT region and encompasses it as we can see on this plot (the dark
+polygon is the GIFT region):</p>
+<p><img src="../reference/figures/Aisen_Chile_GMBA_overlap.png" width="50%" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level2">
