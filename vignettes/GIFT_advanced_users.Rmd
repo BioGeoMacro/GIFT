@@ -444,16 +444,36 @@ So far, only two resources are available: `glonaf` and `gmba`.
 `GIFT_overlap()` returns the spatial overlap in percent for each pairwise
 combination of polygons between GIFT and the other resource.
 
+Let's illustrate this with the GMBA shapefile.
+
 ```{r}
-glonaf <- GIFT_overlap(resource = "glonaf")
+gmba_overlap <- GIFT_overlap(resource = "gmba")
 
-kable(glonaf[1:5, ], "html") %>%
+kable(gmba_overlap[1:5, ], "html") %>%
   kable_styling(full_width = FALSE)
+```
 
-gmba <- GIFT_overlap(resource = "gmba")
+We see that two overlap columns are returned: `overlap12` and `overlap21`.  
+The first column returns the overlap between the GIFT region and the other
+resource. The second column returns the overlap between the other resource and
+the GIFT region.  
+For example, if we look at the polygon 11861 of GIFT:  
 
-kable(gmba[1:5, ], "html") %>%
-  kable_styling(full_width = FALSE)
+```{r}
+gmba_overlap[which(gmba_overlap$entity_ID == 11861 &
+                     gmba_overlap$gmba_ID == 731), ]
+```
+
+The corresponding region is the Aisen province in Chile and it overlaps at 95%
+with the GMBA polygon number 731.  
+At the same time the GMBA polygon 731 only overlaps at 13% with the Aisen
+province of Chile.  
+This is because the corresponding mountain region is larger than the GIFT
+region and encompasses it as we can see on this plot (the dark polygon is the
+GIFT region):  
+
+```{r, fig.cap = "", out.width = "50%",echo = FALSE}
+knitr::include_graphics("../man/figures/Aisen_Chile_GMBA_overlap.png")
 ```
 
 <br>
