@@ -34,6 +34,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -45,5 +46,11 @@ GIFT_lists <- function(api = "https://gift.uni-goettingen.de/api/extended/",
   tmp <- jsonlite::read_json(paste0(
     api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=lists"), simplifyVector = TRUE)
+  
+  tmp <- dplyr::mutate_at(
+    tmp, c("ref_ID", "native_indicated", "natural_indicated", "end_ref",
+           "restricted", "taxon_ID", "list_ID", "end_list", "entity_ID",      
+           "suit_geo"), as.numeric)
+  
   return(tmp)
 }

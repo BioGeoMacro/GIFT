@@ -302,8 +302,8 @@ GIFT_checklists_conditional <- function(
   list_set <- dplyr::select(list_set, -taxon_author, -taxon_lvl, -lft, -rgt)
   
   list_set <- dplyr::mutate_at(
-    list_set, c("ref_ID","native_indicated","natural_indicated","end_ref",
-                "restricted","taxon_ID","list_ID","end_list","entity_ID",      
+    list_set, c("ref_ID", "native_indicated", "natural_indicated", "end_ref",
+                "restricted", "taxon_ID", "list_ID", "end_list", "entity_ID",      
                 "suit_geo"), as.numeric)
   
   # Output
