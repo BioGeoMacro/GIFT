@@ -31,6 +31,7 @@
 #' }
 #' 
 #' @importFrom jsonlite read_json
+#' @importFrom dplyr mutate_at
 #' 
 #' @export
 
@@ -43,7 +44,8 @@ GIFT_regions <- function(api = "https://gift.uni-goettingen.de/api/extended/",
     api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
     ".php?query=regions"), simplifyVector = TRUE)
   
-  tmp$entity_ID <- as.numeric(tmp$entity_ID)
-  
+  tmp <- dplyr::mutate_at(
+    tmp, c("entity_ID", "suit_geo", "country"), as.numeric)
+
   return(tmp)
 }
