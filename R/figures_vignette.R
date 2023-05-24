@@ -1,6 +1,6 @@
 # 
 # # Visible global definition
-# ne_coastline <- ne_countries <- st_wrapNULL
+# ne_coastline <- ne_countries <- st_wrap <- NULL
 # 
 # # Needed objects ----------------------------------------------------------
 # library("dplyr")
@@ -36,6 +36,11 @@
 # equator <- sf::st_linestring(matrix(c(-180, 0, 180, 0), ncol = 2,
 #                                     byrow = TRUE))
 # equator <- sf::st_sfc(equator, crs = st_crs(world))
+# 
+# # Color code from Barthlott 2007
+# hexcode_barthlott2007 <- c("#fbf9ed", "#f3efcc", "#f6e39e", "#cbe784",
+#                            "#65c66a", "#0e8d4a", "#4a6fbf",
+#                            "#b877c2", "#f24dae", "#ed1c24")
 # 
 # # Retrieving all shapefiles -----------------------------------------------
 # gift_shapes <- GIFT_shapes()
@@ -84,13 +89,15 @@
 #                       stat = "sf_coordinates", size = 1, stroke = 0.5) +
 #   ggplot2::scale_color_gradientn(
 #     "Species number", trans = "log10", limits = c(1, 40000),
-#     colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+#     colours = hexcode_barthlott2007,
+#     # colours = RColorBrewer::brewer.pal(5, name = "Greens"),
 #     breaks = c(1, 10, 100, 1000, 10000, 40000),
 #     labels = c(1, 10, 100, 1000, 10000, 40000),
 #     na.value = "transparent") +
 #   ggplot2::scale_fill_gradientn(
 #     "Species number", trans = "log10", limits = c(1, 40000),
-#     colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+#     colours = hexcode_barthlott2007,
+#     # colours = RColorBrewer::brewer.pal(5, name = "Greens"),
 #     breaks = c(1, 10, 100, 1000, 10000, 40000),
 #     labels = c(1, 10, 100, 1000, 10000, 40000),
 #     na.value = "transparent") +

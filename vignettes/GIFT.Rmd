@@ -157,7 +157,7 @@ floristic knowledge for Angiosperms in this region.
 <br>
 The following arguments of `GIFT_checklists()` refer to the floristic status of
 plant species. For example, we may be interested only in endemic or
-naturalized species.The default value is to get all native species.
+naturalized species. The default value is to get all native species.
 <br>
 Similarly, two arguments are needed in the function. First, `floristic_group`
 defines the group of interest. Second, `complete_floristic` indicates whether
