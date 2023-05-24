@@ -386,6 +386,11 @@ bb <- sf::st_union(sf::st_make_grid(st_bbox(c(xmin = xmin,
 equator <- st_linestring(matrix(c(-180, 0, 180, 0), ncol = 2, byrow = TRUE))
 equator <- st_sfc(equator, crs = st_crs(world))
 
+# Color code from Barthlott 2007
+hexcode_barthlott2007 <- c("#fbf9ed", "#f3efcc", "#f6e39e", "#cbe784",
+                           "#65c66a", "#0e8d4a", "#4a6fbf",
+                           "#b877c2", "#f24dae", "#ed1c24")
+
 ggplot(world) +
   geom_sf(data = bb, fill = "aliceblue") +
   geom_sf(data = equator, color = "gray50", linetype = "dashed",
@@ -407,13 +412,13 @@ ggplot(world) +
              stat = "sf_coordinates", size = 1, stroke = 0.5) +
   scale_color_gradientn(
     "Species number", trans = "log10", limits = c(1, 40000), 
-    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    colours = hexcode_barthlott2007,
     breaks = c(1, 10, 100, 1000, 10000, 40000),
     labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
   scale_fill_gradientn(
     "Species number", trans = "log10", limits = c(1, 40000), 
-    colours = RColorBrewer::brewer.pal(5, name = "Greens"),
+    colours = hexcode_barthlott2007,
     breaks = c(1, 10, 100, 1000, 10000, 40000),
     labels = c(1, 10, 100, 1000, 10000, 40000),
     na.value = "transparent") +
