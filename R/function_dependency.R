@@ -43,7 +43,10 @@
 # colrs <- c("#e41a1c", "gray80", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00")
 # igraph::V(gift_graph3)$color <- colrs[as.factor(igraph::V(gift_graph3)$type)]
 # 
-# par(mar = rep(0, 4) + 0.1)
+# png("man/figures/GIFT_network_functions.png",
+#     width = 100, height = 50, units = "cm", res = 600)
+# 
+# par(mar = c(3, 0, 0, 3) + 0.1) # bottom, left, top, right
 # set.seed(1)
 # plot(gift_graph3,
 #      edge.arrow.size = 0.2,
@@ -52,11 +55,14 @@
 #      vertex.frame.color = "black", vertex.label.color = "black",
 #      pt.cex = 20,
 #      vertex.label.cex = 2, vertex.label.dist = 2, edge.curved = 0.2)
-# legend(x = 1.0, y = -0.5,
+# legend(x = 0.8, y = -0.7,
 #        c("Regional checklists and species distributions",
 #          "Spatial and environmental data",
 #          "Species names, taxonomy and phylogeny",
 #          "Traits", "Utils"),
-#        pch = 21, col = "#777777", pt.bg = colrs, pt.cex = 2, cex = 0.8,
+#        pch = 21, col = "#777777", pt.bg = colrs, pt.cex = 6, cex = 2,
 #        bty = "n", ncol = 1)
+# 
+# dev.off()
+# 
 # width 1600 height 1100
