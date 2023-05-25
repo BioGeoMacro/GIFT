@@ -44,7 +44,7 @@
 # igraph::V(gift_graph3)$color <- colrs[as.factor(igraph::V(gift_graph3)$type)]
 # 
 # png("man/figures/GIFT_network_functions.png",
-#     width = 100, height = 50, units = "cm", res = 600)
+#     width = 100, height = 50, units = "cm", res = 100) # res = 600
 # 
 # par(mar = c(3, 0, 0, 3) + 0.1) # bottom, left, top, right
 # set.seed(1)
