@@ -105,7 +105,7 @@ GIFT_traits <- function(
   # Initiating list
   trait_list <- list()
   
-  n <- ceiling(tmp$count[which(tmp$Lvl3 %in% trait_IDs)]/10000)
+  n <- ceiling(tmp$count[match(trait_IDs, tmp$Lvl3)]/10000)
   
   progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
   
@@ -206,6 +206,12 @@ GIFT_traits <- function(
   
   trait_list <- trait_list[, !(colnames(trait_list) %in% numeric_columns)]
   trait_list <- trait_list[, !(colnames(trait_list) %in% categorical_columns)]
+  
+  # Make numeric trait values numeric
+  numeric_columns <-
+    paste("trait_value", numeric_traits, sep = "_")[
+      paste("trait_value", numeric_traits, sep = "_") %in% colnames(trait_list)]
+  trait_list <- dplyr::mutate_at(trait_list, numeric_columns, as.numeric)
   
   return(trait_list)
 }
