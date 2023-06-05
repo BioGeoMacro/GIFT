@@ -66,9 +66,13 @@ GIFT_traits <- function(
   check_trait_IDs(trait_IDs)
   
   if(!is.numeric(agreement)){
-    stop("agreement must be a numeric between 0 and 1 indicating .")
+    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+         of original trait values that needs to support the aggregated value in 
+         case of categorical traits.")
   } else if(agreement > 1 | agreement < 0){
-    stop("agreement must be a numeric between 0 and 1 indicating .")
+    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+         of original trait values that needs to support the aggregated value in 
+         case of categorical traits.")
   }
   
   check_bias_ref(bias_ref)
@@ -100,7 +104,7 @@ GIFT_traits <- function(
   
   message(paste0("Preparing the download of trait data for ",
                  length(unique(trait_IDs)),
-                 " trait(s)).\n"))
+                 " trait(s).\n"))
 
   # Initiating list
   trait_list <- list()
