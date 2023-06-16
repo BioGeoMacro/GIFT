@@ -45,10 +45,10 @@ GIFT_overlap <- function(
   
   # 1. Controls ----
   if(length(resource) != 1 || !is.character(resource) || 
-     !(resource %in% c("glonaf","gmba","gaptani"))){
+     !(resource %in% c("glonaf", "gmba", "gaptani", "wdpa"))){
     stop("resource must be a character string indicating from which external
          resource you want to calculate the spatial overlap. Available options
-         are 'glonaf' or 'gmba'.")
+         are 'glonaf', 'gmba' or 'wdpa'.")
   }
   
   check_api(api)
