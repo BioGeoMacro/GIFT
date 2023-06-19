@@ -16,9 +16,38 @@
 # Returns:
 #   nothing, shows an error message
 
+# Run the API and see if we get 'no query selected'
 check_api <- function(api) {
   if(length(api) != 1 || !is.character(api)){
     stop("api must be a character string indicating which API to use.")
+  }
+  
+  # First check: internet connection
+  if(!curl::has_internet()) {
+    stop("No internet connection found.")
+  }
+  
+  # Second check: web API available
+  req <- httr2::request(api)
+  resp <- httr2::req_error(req, is_error = function(resp) FALSE)
+  
+  # test for non-existing APIs
+  tryCatch(expr = httr2::req_perform(resp),
+           error = function(expr) {
+             stop("Either the API is wrongly specified or the server is down.")
+           })
+  
+  # If the server was found, check for status
+  resp_status <- httr2::resp_status_desc(httr2::req_perform(resp))
+  if(resp_status == "Unauthorized"){
+    stop("A password is needed for this restricted API.")
+  } else if(resp_status != "OK"){
+    stop("Either the API is wrongly specified or the server is down.")
+  } else{
+    resp <- httr2::req_perform(req)
+    if(httr2::resp_body_string(resp) != "No query selected."){
+      stop("Either the API is wrongly specified or the server is down.")
+    }
   }
 }
 
@@ -278,9 +307,15 @@ check_geo_type <- function(geo_type) {
 #   GIFT_version or shows an error message
 
 check_gift_version <- function(GIFT_version) {
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
+  tryCatch({
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+  },
+  error = function(expr) {
+    stop("The API is correctly specified and the server is not down BUT the
+           database is not responsive at the moment.")
+  })
   
   if (length(GIFT_version) != 1 || is.na(GIFT_version) ||
       !is.character(GIFT_version) || 
