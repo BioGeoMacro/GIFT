@@ -23,6 +23,7 @@ LazyData: true
 Imports:
   ape,
   dplyr,
+  httr2,
   jsonlite,
   phytools,
   purrr,
