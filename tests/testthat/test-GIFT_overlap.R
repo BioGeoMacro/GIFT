@@ -15,7 +15,7 @@ expect_error(
   GIFT_overlap(resource = NA),
   "resource must be a character string indicating from which external
          resource you want to calculate the spatial overlap. Available options
-         are 'glonaf' or 'gmba'.", fixed = TRUE)
+         are 'glonaf', 'gmba' or 'wdpa'.", fixed = TRUE)
 
 expect_error(
   GIFT_overlap(api = NA),
