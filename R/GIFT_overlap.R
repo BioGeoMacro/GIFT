@@ -52,7 +52,7 @@ GIFT_overlap <- function(
   }
   
   check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
+  GIFT_version <- check_gift_version(GIFT_version)
   
   ID <- NULL
   
