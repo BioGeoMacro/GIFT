@@ -135,17 +135,17 @@ the different polygons of GIFT.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"western_mediterranean"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu">GIFT_spatial</span><span class="op">(</span>shp <span class="op">=</span> <span class="va">western_mediterranean</span>, overlap <span class="op">=</span> <span class="st">"centroid_inside"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 2.2.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 3.0.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">custom_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ex2</span> <span class="op">&lt;-</span> <span class="fu">GIFT_spatial</span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span></span>
 <span class="r-in"><span>overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 2.2.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 3.0.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">custom_extent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">13</span>, <span class="op">-</span><span class="fl">18</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">27.5</span>, <span class="fl">29.3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ex3</span> <span class="op">&lt;-</span> <span class="fu">GIFT_spatial</span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_extent</span>,</span></span>
 <span class="r-in"><span>overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 2.2.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 3.0.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 4 coordinates provided: an extent box was drawn, assuming that</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             minimum X and Y are on row 1, and maximum X and Y on row 2.</span>
 <span class="r-in"><span></span></span>
@@ -153,7 +153,7 @@ the different polygons of GIFT.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29.3</span>, <span class="fl">33</span>, <span class="fl">29.3</span>, <span class="fl">27.5</span>, <span class="fl">27.5</span>, <span class="fl">29.3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ex4</span> <span class="op">&lt;-</span> <span class="fu">GIFT_spatial</span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_polygon</span>,</span></span>
 <span class="r-in"><span>overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 2.2.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 3.0.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">custom_linestring</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.35</span>, <span class="fl">48.9</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">custom_linestring</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">custom_linestring</span><span class="op">)</span>,</span></span>
@@ -162,7 +162,7 @@ the different polygons of GIFT.</p>
 <span class="r-in"><span>geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">st_combine</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">custom_linestring</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">western_mediterranean</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ex5</span> <span class="op">&lt;-</span> <span class="fu">GIFT_spatial</span><span class="op">(</span>shp <span class="op">=</span> <span class="va">custom_linestring</span>, overlap <span class="op">=</span> <span class="st">"extent_intersect"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 2.2.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are asking for the latest stable version of GIFT which is 3.0.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>

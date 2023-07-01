@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2023-06-26</h4>
+            <h4 data-toc-skip class="date">2023-07-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT.Rmd" class="external-link"><code>vignettes/GIFT.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT.Rmd</code></div>
@@ -558,8 +558,7 @@ work_species
 work_author
 </th>
 </tr></thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td style="text-align:right;">
 3718
 </td>
@@ -582,7 +581,7 @@ NA
 1
 </td>
 <td style="text-align:right;">
-0.8421053
+1
 </td>
 <td style="text-align:right;">
 1
@@ -597,7 +596,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-tpl
+TNRS_wfo
 </td>
 <td style="text-align:right;">
 2293
@@ -617,185 +616,7 @@ Anemone nemorosa
 <td style="text-align:left;">
 NA
 </td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3719
-</td>
-<td style="text-align:left;">
-Anemone
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-L.
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-tpl
-</td>
-<td style="text-align:right;">
-2293
-</td>
-<td style="text-align:right;">
-1303
-</td>
-<td style="text-align:left;">
-Anemone
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-Anemone nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-526917
-</td>
-<td style="text-align:left;">
-Anemonoides
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-(L.) Holub
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-tpl
-</td>
-<td style="text-align:right;">
-2293
-</td>
-<td style="text-align:right;">
-1303
-</td>
-<td style="text-align:left;">
-Anemone
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-Anemone nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-772823
-</td>
-<td style="text-align:left;">
-Anemonoides
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.6451613
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-tpl
-</td>
-<td style="text-align:right;">
-2293
-</td>
-<td style="text-align:right;">
-1303
-</td>
-<td style="text-align:left;">
-Anemone
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-Anemone nemorosa
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 <p>Looking at the output table, you can see the original species names
 and their identification numbers (<code>name_ID</code>)
@@ -828,7 +649,7 @@ more details. <br></p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">endemic_list</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## non-endemic_list </span></span>
-<span><span class="co">##               53</span></span></code></pre>
+<span><span class="co">##                7</span></span></code></pre>
 <p>This species is not listed as endemic in any of the GIFT polygons.
 Let’s check the places where it is listed as native or naturalized.
 <br></p>
@@ -836,12 +657,10 @@ Let’s check the places where it is listed as native or naturalized.
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">native</span>, <span class="va">anemone_statuses</span><span class="op">$</span><span class="va">naturalized</span>,</span>
 <span>            sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##                      NA_NA                  native_NA </span></span>
-<span><span class="co">##                         13                         17 </span></span>
-<span><span class="co">##     native_non-naturalized              non-native_NA </span></span>
-<span><span class="co">##                        113                          3 </span></span>
-<span><span class="co">##     non-native_naturalized non-native_non-naturalized </span></span>
-<span><span class="co">##                          5                          2</span></span></code></pre>
+<span><span class="co">##                  NA_NA              native_NA native_non-naturalized </span></span>
+<span><span class="co">##                      7                      6                     16 </span></span>
+<span><span class="co">##          non-native_NA non-native_naturalized </span></span>
+<span><span class="co">##                      3                      1</span></span></code></pre>
 <p>Looking at the different combinations of statuses, we can distinguish
 several situations: in 13 polygons, there is no status available. The
 species is listed as native and non-naturalized (or naturalized status
@@ -947,7 +766,7 @@ vegetative heights of plant species. <br></p>
 <pre><code><span><span class="co">##    Lvl1   Category Lvl2       Trait1  Lvl3           Trait2 Units    type</span></span>
 <span><span class="co">## 12    1 Morphology  1.6 Plant height 1.6.2 Plant_height_max     m numeric</span></span>
 <span><span class="co">##    comment count</span></span>
-<span><span class="co">## 12    &lt;NA&gt; 71258</span></span></code></pre>
+<span><span class="co">## 12    &lt;NA&gt; 70231</span></span></code></pre>
 <p><br> We can see that the ID of this trait is <code>1.6.2</code>. Now
 that we have the ID, we can use <code><a href="../reference/GIFT_traits.html">GIFT_traits()</a></code> to retrieve
 the growth form values for different plant species.</p>

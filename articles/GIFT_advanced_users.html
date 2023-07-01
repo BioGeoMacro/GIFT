@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2023-06-26</h4>
+            <h4 data-toc-skip class="date">2023-07-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_advanced_users.Rmd" class="external-link"><code>vignettes/GIFT_advanced_users.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_advanced_users.Rmd</code></div>
@@ -247,6 +247,37 @@ gaptani (version: okt2005, ID_column: UNITID); glonaf (version:
 rownames)
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+3.0
+</td>
+<td style="text-align:left;">
+2023-06-30: New data and updated workflows as described in: Denelle, P.,
+Weigelt, P. &amp; Kreft, H. (2023) GIFT - an R package to access the
+Global Inventory of Floras and Traits. BioRxiv, doi:
+10.1101/2023.06.27.546704. Updated workflows include: (1) New taxonomic
+name standardization based on WCVP; (2) More statistics on species level
+trait aggregation; (3) Updated extraction of raster layer values per
+GIFT region and new raster resources; (4) Updated phylogeny.
+</td>
+<td style="text-align:left;">
+World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS
+at the time
+</td>
+<td style="text-align:left;">
+Phylogeny built using U.PhyloMaker R-package (Jin &amp; Qian, 2022)
+based on the GBOTB megatree from Smith &amp; Brown (2018) and Zanne et
+al. (2014), standardized according to WCVP.
+</td>
+<td style="text-align:left;">
+gaptani (version: okt2005, ID_column: UNITID); glonaf (version:
+2021-07-02; ID_column: OBJIDsic); gmba (version: 1.2, ID_column:
+rownames)
+</td>
+</tr>
 </tbody>
 </table>
 <p>The <code>version</code> column of this table is the one to use if
@@ -312,7 +343,7 @@ La Réunion
 </tr>
 <tr>
 <td style="text-align:left;">
-663
+667
 </td>
 <td style="text-align:right;">
 10333
@@ -327,7 +358,7 @@ Easter Island
 </tr>
 <tr>
 <td style="text-align:left;">
-875
+880
 </td>
 <td style="text-align:right;">
 10649
@@ -639,72 +670,72 @@ overlap21
 <tbody>
 <tr>
 <td style="text-align:right;">
-10529
+12094
 </td>
 <td style="text-align:right;">
-231
+636
 </td>
 <td style="text-align:right;">
-0.0000026
+0.0105393
 </td>
 <td style="text-align:right;">
-0.0031734
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10529
-</td>
-<td style="text-align:right;">
-234
-</td>
-<td style="text-align:right;">
-0.0000274
-</td>
-<td style="text-align:right;">
-0.0042164
+0.8570323
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-10529
+12094
 </td>
 <td style="text-align:right;">
-236
+775
 </td>
 <td style="text-align:right;">
-0.0002481
+0.0076719
 </td>
 <td style="text-align:right;">
-0.5110019
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10529
-</td>
-<td style="text-align:right;">
-237
-</td>
-<td style="text-align:right;">
-0.0007120
-</td>
-<td style="text-align:right;">
-1.0000002
+1.0000000
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-10529
+12094
 </td>
 <td style="text-align:right;">
-238
+776
 </td>
 <td style="text-align:right;">
-0.0006033
+0.0017706
 </td>
 <td style="text-align:right;">
-1.0000003
+0.8985741
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12094
+</td>
+<td style="text-align:right;">
+777
+</td>
+<td style="text-align:right;">
+0.0022548
+</td>
+<td style="text-align:right;">
+0.9909929
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12094
+</td>
+<td style="text-align:right;">
+778
+</td>
+<td style="text-align:right;">
+0.0055371
+</td>
+<td style="text-align:right;">
+0.9941616
 </td>
 </tr>
 </tbody>
@@ -718,8 +749,8 @@ For example, if we look at the polygon 11861 of GIFT:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op">==</span> <span class="fl">11861</span> <span class="op">&amp;</span></span>
 <span>                     <span class="va">gmba_overlap</span><span class="op">$</span><span class="va">gmba_ID</span> <span class="op">==</span> <span class="fl">731</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">##      entity_ID gmba_ID overlap12 overlap21</span></span>
-<span><span class="co">## 4884     11861     731 0.9493551 0.1270431</span></span></code></pre>
+<pre><code><span><span class="co">## [1] entity_ID gmba_ID   overlap12 overlap21</span></span>
+<span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre>
 <p>The corresponding region is the Aisen province in Chile and it
 overlaps at 95% with the GMBA polygon number 731.<br>
 At the same time the GMBA polygon 731 only overlaps at 13% with the
