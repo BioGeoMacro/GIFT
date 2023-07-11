@@ -59,8 +59,9 @@ GIFT_phylogeny <- function(
   check_api(api)
   GIFT_version <- check_gift_version(GIFT_version)
   
-  if(GIFT_version != "beta"){
-    stop("Phylogeny table only available for GIFT_version = 'beta'.")
+  if(GIFT_version %in% c("1.0", "2.0", "2.1", "2.2")){
+    stop("The phylogeny table is not available for GIFT_version 1.0, 2.0,
+         2.1 and 2.2.")
   }
   
   if(length(clade) != 1 || is.na(clade) ||
