@@ -391,8 +391,8 @@ islands.</p>
 <span></span>
 <span><span class="co"># What sources</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">ref</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">ref</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">can_ref</span><span class="op">)</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:right;">
 ref_ID
@@ -655,13 +655,41 @@ and the different steps of taxonomic harmonization is possible with the
 silvatica</em> was later changed to the accepted name <em>Fagus
 sylvatica</em>.</p>
 <p><br></p>
+<div class="section level3">
+<h3 id="retrieve-work_ids-for-external-species-list">6.2. Retrieve work_IDs for external species list<a class="anchor" aria-label="anchor" href="#retrieve-work_ids-for-external-species-list"></a>
+</h3>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sp_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Anemone nemorosa"</span>, <span class="st">"Fagus sylvatica"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gift_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">sp_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">gift_sp</span><span class="op">$</span><span class="va">work_species</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">gift_sp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">sp_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">gift_sp</span><span class="op">$</span><span class="va">work_species</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># With fuzzy matching</span></span>
+<span><span class="co"># library("fuzzyjoin")</span></span>
+<span><span class="co"># library("dplyr")</span></span>
+<span><span class="va">sp_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>work_species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Anemona nemorosa"</span>, <span class="st">"Fagus sylvaticaaa"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fuzz</span> <span class="op">&lt;-</span> <span class="fu">stringdist_join</span><span class="op">(</span><span class="va">sp_list</span>, <span class="va">gift_sp</span>,</span>
+<span>                        by <span class="op">=</span> <span class="st">"work_species"</span>,</span>
+<span>                        mode <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>                        ignore_case <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                        method <span class="op">=</span> <span class="st">"jw"</span>, </span>
+<span>                        max_dist <span class="op">=</span> <span class="fl">99</span>, </span>
+<span>                        distance_col <span class="op">=</span> <span class="st">"dist"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">fuzz</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">work_species.x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_min</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">dist</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="taxonomy">7. Taxonomy<a class="anchor" aria-label="anchor" href="#taxonomy"></a>
 </h2>
 <p>The taxonomy used in GIFT database can be downloaded using
 <code><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy()</a></code>.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">taxo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -680,7 +708,7 @@ Mountain Biodiversity Assessment</a>.</p>
 for each pairwise combination of polygons between GIFT and the other
 resource.</p>
 <p>Let’s illustrate this with the GMBA shapefile.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gmba_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"gmba"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -779,7 +807,7 @@ The first column returns the overlap between the GIFT region and the
 other resource. The second column returns the overlap between the other
 resource and the GIFT region.<br>
 For example, if we look at the polygon 11861 of GIFT:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op">==</span> <span class="fl">11861</span> <span class="op">&amp;</span></span>
 <span>                     <span class="va">gmba_overlap</span><span class="op">$</span><span class="va">gmba_ID</span> <span class="op">==</span> <span class="fl">731</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] entity_ID gmba_ID   overlap12 overlap21</span></span>
