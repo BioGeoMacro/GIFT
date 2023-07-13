@@ -104,6 +104,28 @@ kable(ref, "html") %>%
 
 <br>
 
+The next chunk describes the steps to retrieve the publication sources when
+you start from specific regions, let's say the Canary islands.  
+
+```{r}
+# List of all regions
+regions <- GIFT_regions()
+
+# Example
+can <- 1036 # entity ID for Canary islands
+
+# What references
+gift_lists <- GIFT_lists()
+
+can_ref <- gift_lists[which(gift_lists$entity_ID %in% c(can)), "ref_ID"]
+
+# What sources
+kable(ref[which(ref$ref_ID %in% can_ref), ], "html") %>%
+  kable_styling(full_width = FALSE)
+```
+
+<br>
+
 # 3. Checklist data
 
 The main wrapper function for retrieving checklists and their species
