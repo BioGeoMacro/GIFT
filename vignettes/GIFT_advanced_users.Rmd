@@ -121,7 +121,7 @@ can_ref <- gift_lists[which(gift_lists$entity_ID %in% c(can)), "ref_ID"]
 
 # What sources
 kable(ref[which(ref$ref_ID %in% can_ref), ], "html") %>%
-  kable_styling(full_width = FALSE)
+  kable_styling(full_width = TRUE)
 ```
 
 <br>
@@ -441,6 +441,35 @@ In this table, we can see that the first entry *Fagus silvatica* was later
 changed to the accepted name *Fagus sylvatica*.
 
 <br>
+
+## 6.2. Retrieve work_IDs for external species list
+
+```{r, echo = TRUE, eval = FALSE}
+sp_list <- c("Anemone nemorosa", "Fagus sylvatica")
+
+gift_sp <- GIFT_species()
+
+sapply(sp_list, function(x) grep(x, gift_sp$work_species))
+gift_sp[sapply(sp_list, function(x) grep(x, gift_sp$work_species)), ]
+
+# With fuzzy matching
+# library("fuzzyjoin")
+# library("dplyr")
+sp_list <- data.frame(work_species = c("Anemona nemorosa", "Fagus sylvaticaaa"))
+
+fuzz <- stringdist_join(sp_list, gift_sp,
+                        by = "work_species",
+                        mode = "left",
+                        ignore_case = FALSE, 
+                        method = "jw", 
+                        max_dist = 99, 
+                        distance_col = "dist") 
+
+fuzz %>%
+  group_by(work_species.x) %>%
+  slice_min(order_by = dist, n = 1)
+```
+
 
 # 7. Taxonomy
 
