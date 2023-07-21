@@ -116,9 +116,9 @@ GIFT_shapes <- function(entity_ID = NULL,
    # sort by area to plot small regions on top of large regions
   geodata <- geodata[order(geodata$area, decreasing = TRUE), ]
   
-  geodata <- dplyr::select(geodata, geo_entity, point_x, point_y, area, x_min,
-                           x_max, y_min, y_max, entity_class, entity_type,
-                           polygon_source, geometry)
+  geodata <- dplyr::select(entity_ID, geodata, geo_entity, point_x, point_y,
+                           area, x_min, x_max, y_min, y_max, entity_class,
+                           entity_type, polygon_source, geometry)
   
   return(geodata)
 }
