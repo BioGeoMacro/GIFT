@@ -14,7 +14,8 @@ GIFT_spatial(
 )
 }
 \arguments{
-\item{shp}{Shapefile provided by the user.}
+\item{shp}{Shapefile provided by the user. Its Coordinate Reference System
+(CRS) must be set to WGS84 (EPSG code 4326).}
 
 \item{coordinates}{Custom set of coordinates. The format is a two columns,
 the first one being longitudes and the second being latitudes. If 4

@@ -2,7 +2,8 @@
 #'
 #' Retrieve checklists overlapping with a shape file or a set of coordinates.
 #'
-#' @param shp Shapefile provided by the user.
+#' @param shp Shapefile provided by the user. Its Coordinate Reference System
+#' (CRS) must be set to WGS84 (EPSG code 4326).
 #'
 #' @param coordinates Custom set of coordinates. The format is a two columns,
 #' the first one being longitudes and the second being latitudes. If 4
@@ -90,7 +91,7 @@ GIFT_spatial <- function(
             set 'coordinates = NULL'.")
   }
   
-  check_shp(shp = shp, overlap = overlap)
+  shp <- check_shp(shp = shp, overlap = overlap)
   
   # Visible binding for global variable
   x_min <- x_max <- y_min <- y_max <- NULL
