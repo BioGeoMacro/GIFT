@@ -9,11 +9,13 @@
 #' @param entity_ID A vector defining the ID of the lists to retrieve.
 #' `NULL` by default, in that case, every list from GIFT is retrieved.
 #'
-#' @param miscellaneous character vector or list defining the miscellaneous
-#' data to retrieve.
+#' @param miscellaneous character vector or list specifying the miscellaneous
+#' data to retrieve. All options can be viewed in the output table returned by
+#' GIFT_env_meta_misc().
 #' 
-#' @param rasterlayer character vector or list defining the raster
-#' data to retrieve.
+#' @param rasterlayer character vector or list specifying the raster
+#' data to retrieve. All options can be viewed in the output table returned by
+#' GIFT_env_meta_raster().
 #' 
 #' @param sumstat Vector or list indicating the desired summary statistics out 
 #' of `c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70", 
