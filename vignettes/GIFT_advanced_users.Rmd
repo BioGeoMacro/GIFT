@@ -345,21 +345,21 @@ We show how this works with the following example:
 
 ```{r, echo = TRUE, eval = FALSE}
 ex <- GIFT_checklists(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
-                      list_set_only = TRUE)
+                      list_set_only = TRUE, GIFT_version = "3.0")
 ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
                        remove_overlap = TRUE, by_ref_ID = TRUE,
-                       list_set_only = TRUE)
+                       list_set_only = TRUE, GIFT_version = "3.0")
 ex3 <- GIFT_checklists(taxon_name = "Tracheophyta",
                        remove_overlap = TRUE, by_ref_ID = FALSE,
-                       list_set_only = TRUE)
+                       list_set_only = TRUE, GIFT_version = "3.0")
 
-length(unique(ex$lists$ref_ID))
-length(unique(ex2$lists$ref_ID))
-length(unique(ex3$lists$ref_ID))
+length(unique(ex$lists$ref_ID)) # 369 checklists
+length(unique(ex2$lists$ref_ID)) # 364 checklists
+length(unique(ex3$lists$ref_ID)) # 336 checklists
 ```
 
-Asking for checklists of vascular plants, we get 367 checklists without any
-overlapping criterion, 335 if we remove overlapping polygons and 360 if we
+Asking for checklists of vascular plants, we get 369 checklists without any
+overlapping criterion, 336 if we remove overlapping polygons and 364 if we
 remove overlapping polygons at the reference level.  
 <br>
 So what is the difference between the second and third case?  
@@ -368,13 +368,14 @@ the third.
 
 ```{r, eval = FALSE, echo = TRUE}
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
-                             unique(ex3$lists$ref_ID))] # 25 references
+                             unique(ex3$lists$ref_ID))] # 28 references
 ```
 
-25 references are in the second example and not in the third. If we look at one
-of the listed references `ref_ID = 10143`, we see that it is a checklist for
-the Pilbara region in Australia. Its `entity_ID` is 10043. Looking at the GIFT
-web site, we see that other regions can overlap with it.  
+28 references are in the second example (overlapping regions removed at the
+reference level) and not in the third (all overlapping regions removed).
+If we look at one of the listed references `ref_ID = 10143`, we see that it is
+a checklist for the Pilbara region in Australia. Its `entity_ID` is 10043.
+Looking at the GIFT web site, we see that other regions can overlap with it.  
 <br>
 
 ```{r, include = FALSE, eval = TRUE}
@@ -394,7 +395,7 @@ ggplot(pilbara) +
 ```
 
 Since these polygons do not belong to the same `ref_ID`, they are kept if
-`by_ref_ID = TRUE` but are ignored if `by_ref_ID = FALSE`.
+`by_ref_ID = TRUE` but are removed if `by_ref_ID = FALSE`.
 
 # 6. Species
 
