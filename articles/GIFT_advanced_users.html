@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2023-07-31</h4>
+            <h4 data-toc-skip class="date">2023-08-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT_advanced_users.Rmd" class="external-link"><code>vignettes/GIFT_advanced_users.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_advanced_users.Rmd</code></div>
@@ -584,30 +584,32 @@ remove overlapping polygons only if they belong to the same reference
 (i.e. same <code>ref_ID</code>).<br><br> We show how this works with the following example:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Tracheophyta"</span>, by_ref_ID <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                      list_set_only <span class="op">=</span> <span class="cn">TRUE</span>, GIFT_version <span class="op">=</span> <span class="st">"3.0"</span><span class="op">)</span></span>
 <span><span class="va">ex2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Tracheophyta"</span>,</span>
 <span>                       remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>, by_ref_ID <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                       list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                       list_set_only <span class="op">=</span> <span class="cn">TRUE</span>, GIFT_version <span class="op">=</span> <span class="st">"3.0"</span><span class="op">)</span></span>
 <span><span class="va">ex3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Tracheophyta"</span>,</span>
 <span>                       remove_overlap <span class="op">=</span> <span class="cn">TRUE</span>, by_ref_ID <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                       list_set_only <span class="op">=</span> <span class="cn">TRUE</span>, GIFT_version <span class="op">=</span> <span class="st">"3.0"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Asking for checklists of vascular plants, we get 367 checklists
-without any overlapping criterion, 335 if we remove overlapping polygons
-and 360 if we remove overlapping polygons at the reference level.<br><br> So what is the difference between the second and third case?<br>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span> <span class="co"># 369 checklists</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span> <span class="co"># 364 checklists</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span> <span class="co"># 336 checklists</span></span></code></pre></div>
+<p>Asking for checklists of vascular plants, we get 369 checklists
+without any overlapping criterion, 336 if we remove overlapping polygons
+and 364 if we remove overlapping polygons at the reference level.<br><br> So what is the difference between the second and third case?<br>
 Let’s look at the checklists that are present in the second example but
 not in the third.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span></span>
-<span>                             <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="co"># 25 references</span></span></code></pre></div>
-<p>25 references are in the second example and not in the third. If we
-look at one of the listed references <code>ref_ID = 10143</code>, we see
-that it is a checklist for the Pilbara region in Australia. Its
-<code>entity_ID</code> is 10043. Looking at the GIFT web site, we see
-that other regions can overlap with it.<br><br></p>
+<span>                             <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lists</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="co"># 28 references</span></span></code></pre></div>
+<p>28 references are in the second example (overlapping regions removed
+at the reference level) and not in the third (all overlapping regions
+removed). If we look at one of the listed references
+<code>ref_ID = 10143</code>, we see that it is a checklist for the
+Pilbara region in Australia. Its <code>entity_ID</code> is 10043.
+Looking at the GIFT web site, we see that other regions can overlap with
+it.<br><br></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pilbara region Australy and overlapping shapes</span></span>
 <span><span class="va">pilbara</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shapes.html">GIFT_shapes</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10043</span>, <span class="fl">12172</span>, <span class="fl">11398</span>, <span class="fl">11391</span>, <span class="fl">10918</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -617,7 +619,7 @@ that other regions can overlap with it.<br><br></p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span><span class="st">"entity_ID"</span>, palette <span class="op">=</span> <span class="st">"Set1"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GIFT_advanced_users_files/figure-html/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Since these polygons do not belong to the same <code>ref_ID</code>,
-they are kept if <code>by_ref_ID = TRUE</code> but are ignored if
+they are kept if <code>by_ref_ID = TRUE</code> but are removed if
 <code>by_ref_ID = FALSE</code>.</p>
 </div>
 </div>
