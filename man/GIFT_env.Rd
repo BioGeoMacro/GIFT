@@ -19,11 +19,11 @@ GIFT_env(
 
 \item{miscellaneous}{character vector or list specifying the miscellaneous
 data to retrieve. All options can be viewed in the output table returned by
-GIFT_env_meta_misc().}
+\code{GIFT_env_meta_misc()}.}
 
 \item{rasterlayer}{character vector or list specifying the raster
 data to retrieve. All options can be viewed in the output table returned by
-GIFT_env_meta_raster().}
+\code{GIFT_env_meta_raster()}.}
 
 \item{sumstat}{Vector or list indicating the desired summary statistics out
 of \code{c("min", "q05", "q10", "q20", "q25", "q30", "q40", "med", "q60", "q70",  "q75", "q80", "q90", "q95", "max", "mean", "sd", "modal", "unique_n", "H",  "n")} used to aggregate the information coming from the raster layers. If
