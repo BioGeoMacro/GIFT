@@ -39,7 +39,8 @@ subject to changes and edits is used.}
 A data frame with 5 columns or a tree object.
 }
 \description{
-Retrieve a phylogeny of the plant species available in GIFT.
+Retrieve a phylogeny of the plant species available in GIFT. The phylogeny
+table is not available for GIFT_version 1.0, 2.0, 2.1 and 2.2.
 }
 \details{
 Here is what each column refers to:

@@ -1,6 +1,7 @@
 #' Phylogeny of the species in GIFT
 #'
-#' Retrieve a phylogeny of the plant species available in GIFT. 
+#' Retrieve a phylogeny of the plant species available in GIFT. The phylogeny
+#' table is not available for GIFT_version 1.0, 2.0, 2.1 and 2.2. 
 #'
 #' @param clade Character string indicating the taxonomic group
 #' of interest corresponding to the node labels in the phylogeny.
