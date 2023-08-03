@@ -94,7 +94,8 @@ GIFT_phylogeny <- function(
   phylogeny <- list()
   for(i in seq_len(6)){
     phylogeny[[i]] <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      api, "index",
+      ifelse(GIFT_version %in% c("beta", "3.0"), "", GIFT_version),
       ".php?query=phylogeny&taxon=", clade, "&startat=",
       as.integer((i-1)*100000)), 
       simplifyVector = TRUE)
@@ -102,7 +103,7 @@ GIFT_phylogeny <- function(
   phylogeny <- dplyr::bind_rows(phylogeny)
   
   if (nrow(phylogeny) > 1){
-    phylogeny <- dplyr::mutate_at(phylogeny, c("lft", "rgt","work_ID"),
+    phylogeny <- dplyr::mutate_at(phylogeny, c("lft", "rgt", "work_ID"),
                                   as.numeric)
     
     # Newick format
