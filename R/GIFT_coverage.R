@@ -4,14 +4,14 @@
 #' Retrieve taxonomic or trait coverage (for a given trait) of all species, 
 #' native species, naturalized species and endemic species per taxonomic group 
 #' and geographic region combination. This function works with taxonomic groups
-#' above the Genus level.
+#' above the genus level.
 #' 
 #' @param what character indicating whether `taxonomic_coverage` or 
 #' `trait_coverage` shall be retrieved.
 #'
 #' @param taxon_name Name of the taxonomic group you want to retrieve coverage 
-#' for. See [GIFT::GIFT_taxonomy()] for details. The function does not accept
-#' names of genera.
+#' for. See [GIFT::GIFT_taxonomy()] for options. The function accepts family
+#' names and higher taxonomic groups.
 #'
 #' @param trait_ID Identification number of the trait you want to retrieve 
 #' coverage for. See [GIFT::GIFT_traits_meta()] for details.

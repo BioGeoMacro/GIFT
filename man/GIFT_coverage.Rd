@@ -18,8 +18,8 @@ GIFT_coverage(
 \code{trait_coverage} shall be retrieved.}
 
 \item{taxon_name}{Name of the taxonomic group you want to retrieve coverage
-for. See \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}} for details. The function does not accept
-names of genera.}
+for. See \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}} for options. The function accepts family
+names and higher taxonomic groups.}
 
 \item{trait_ID}{Identification number of the trait you want to retrieve
 coverage for. See \code{\link[=GIFT_traits_meta]{GIFT_traits_meta()}} for details.}
@@ -40,7 +40,7 @@ GIFT polygon.
 Retrieve taxonomic or trait coverage (for a given trait) of all species,
 native species, naturalized species and endemic species per taxonomic group
 and geographic region combination. This function works with taxonomic groups
-above the Genus level.
+above the genus level.
 }
 \details{
 The output has 9 columns:
