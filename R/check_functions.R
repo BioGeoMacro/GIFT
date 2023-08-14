@@ -566,7 +566,7 @@ check_shp <- function(shp, overlap) {
       warning(paste0(
         "The CRS of the supplied shapefile is not equal to sf::st_crs(4326) as
         it should be.\n
-        We have reprojected your shapefile accordingly in the function."))
+        Your shapefile will be reprojected accordingly."))
       
       shp <- sf::st_transform(shp, crs = 4326)
     }
