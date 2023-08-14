@@ -64,7 +64,7 @@ GIFT_shapes <- function(entity_ID = NULL,
   GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
   
   if(is.null(entity_ID)){
-    message("No entity_IDs provided. A shapefile for all GIFT regions will be
+    message("No entity_ID provided. A shapefile for all GIFT regions will be
             downloaded. It may take a while.")
     entity_ID <- GIFT_entities$entity_ID
   }else{
