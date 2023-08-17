@@ -79,6 +79,16 @@ library("patchwork")
 
 <br><br>
 
+**Side-note**  
+Some of the following queries may take a long time to complete Increasing the
+timeout makes it easier to complete larger downloads. This can be done as
+follows:  
+```{r, echo = TRUE, eval = FALSE}
+options(timeout = max(1000, getOption("timeout")))
+```
+
+<br><br>
+
 # 1. Checklists for a region
 ## 1.1. Shapefile
 Let's assume we are interested in having a floristic knowledge of the western
