@@ -131,6 +131,13 @@ it</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com" class="external-link">"patchwork"</a></span><span class="op">)</span></span></code></pre></div>
 <p><br><br></p>
+<p><strong>Side-note</strong><br>
+Some of the following queries may take a long time to complete
+Increasing the timeout makes it easier to complete larger downloads.
+This can be done as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>timeout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"timeout"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><br><br></p>
 <div class="section level2">
 <h2 id="checklists-for-a-region">1. Checklists for a region<a class="anchor" aria-label="anchor" href="#checklists-for-a-region"></a>
 </h2>
@@ -144,7 +151,7 @@ use a shape file of the region of interest and feed it to the
 <p>We do provide a shape file of this region in the <code>GIFT</code> R
 package, which you can access using the
 <code>data("western_mediterranean")</code> command.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"western_mediterranean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_coastline.html" class="external-link">ne_coastline</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
@@ -164,7 +171,7 @@ package, which you can access using the
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Western Mediterranean basin"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">48</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GIFT_files/figure-html/unnamed-chunk-2-1.png" width="288" style="display: block; margin: auto;"></p>
+<p><img src="GIFT_files/figure-html/unnamed-chunk-3-1.png" width="288" style="display: block; margin: auto;"></p>
 <p><br><em>Please note that shapes used in GIFT are unprojected
 (Geographic Coordinate </em> <em>System WGS84), and that all shapefiles
 provided should be in this CRS.</em> <em>You can check the coordinate
@@ -285,13 +292,13 @@ different criteria, named <code>$lists</code>. The second element is a
 composition per checklist (<code>$checklists</code>). <br> If you only
 want to retrieve the metadata, you can set the
 <code>list_set_only</code> argument to <code>TRUE</code>. <br></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                           shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
 <span>                           overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
 <span>                           list_set_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><br> And to retrieve the species composition: <br></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">medit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                         complete_taxon <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                         floristic_group <span class="op">=</span> <span class="st">"native"</span>,</span>
@@ -306,7 +313,7 @@ want to retrieve the metadata, you can set the
 <p>We can now have an estimation on the number of checklists with native
 Angiosperm species in the western part of the Mediterranean basin, as
 well as of the number of species. <br></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Number of references covered</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ref_ID</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#   22 references</span></span>
@@ -322,7 +329,7 @@ well as of the number of species. <br></p>
 above. As you can see, the number of checklists retrieved decreases as
 you become stricter on some criteria. For example, when removing
 overlapping regions: <br></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">medit_no_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>shp <span class="op">=</span> <span class="va">western_mediterranean</span>,</span>
 <span>                                    overlap <span class="op">=</span> <span class="st">"centroid_inside"</span>,</span>
 <span>                                    taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
@@ -335,7 +342,7 @@ overlapping regions: <br></p>
 accept a set of coordinates. The example below illustrates a case where
 you want to retrieve GIFT checklists that intersect the coordinates of
 Göttingen. <br></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">9.9</span>, <span class="fl">51</span><span class="op">)</span> <span class="co"># coordinates of Göttingen</span></span>
 <span></span>
 <span><span class="va">got</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists.html">GIFT_checklists</a></span><span class="op">(</span>coordinates <span class="op">=</span> <span class="va">custom_point</span>,</span>
@@ -361,9 +368,9 @@ returns either species richness or trait coverage per polygon, and
 polygons. <br> The next two chunks illustrate this for the Angiosperms
 in the World and in the Western part of the Mediterranean basin.
 <br></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gift_shapes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shapes.html">GIFT_shapes</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># retrieves all shapefiles by default</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gift_shapes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_shapes.html">GIFT_shapes</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># retrieves all shapefiles by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">angio_rich</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_richness.html">GIFT_richness</a></span><span class="op">(</span>taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rich_map</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">gift_shapes</span>, <span class="va">angio_rich</span>, by <span class="op">=</span> <span class="st">"entity_ID"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -385,7 +392,7 @@ map:</p>
 interested. <br></p>
 <details><summary>
 Fancier code
-</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Background box</span></span>
 <span><span class="va">xmin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span><span class="op">[[</span><span class="st">"xmin"</span><span class="op">]</span><span class="op">]</span>; <span class="va">xmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span><span class="op">[[</span><span class="st">"xmax"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">ymin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span><span class="op">[[</span><span class="st">"ymin"</span><span class="op">]</span><span class="op">]</span>; <span class="va">ymax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span><span class="op">[[</span><span class="st">"ymax"</span><span class="op">]</span><span class="op">]</span></span>
@@ -443,7 +450,7 @@ Fancier code
 <p>We can also produce maps of richness at intermediate scales. Here is
 the code and the map of Angiosperms in the Western Mediterranean
 basin.<br><br></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_shape</span> <span class="op">&lt;-</span> <span class="va">gift_shapes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">gift_shapes</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> </span>
 <span>                                 <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></span>
 <span></span>
@@ -476,7 +483,7 @@ retrieving the spatial distribution of a focal plant species. <br></p>
 </h3>
 <p>To know what plant species are available, you can first run the
 function <code><a href="../reference/GIFT_species.html">GIFT_species()</a></code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species.html">GIFT_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>364571 species are currently available in the database. This number
 may increase with new releases of the database. See the <a href="https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html#species">dedicated
@@ -493,7 +500,7 @@ most commonly used backbone is the <a href="https://powo.science.kew.org/" class
 database and you can use the <code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code> function
 to look up the differences for particular species. For example, the wood
 anemone <em>Anemone nemorosa</em>. <br></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">anemone_lookup</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -634,7 +641,7 @@ retrieve its distribution using
 <code>aggregation</code> argument to <code>TRUE</code> in order to have
 only one floristic status per polygon. See the function’s help page for
 more details. <br></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_distr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution</a></span><span class="op">(</span></span>
 <span>  genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -653,7 +660,7 @@ more details. <br></p>
 <p>This species is not listed as endemic in any of the GIFT polygons.
 Let’s check the places where it is listed as native or naturalized.
 <br></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">native</span>, <span class="va">anemone_statuses</span><span class="op">$</span><span class="va">naturalized</span>,</span>
 <span>            sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -672,7 +679,7 @@ in the process of becoming naturalized. <br></p>
 <p>Now that we know in which polygons the species occurs and with what
 status, we can map its distribution using the GIFT shapes we retrieved
 earlier with <code><a href="../reference/GIFT_shapes.html">GIFT_shapes()</a></code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We rename the statuses based on the distinct combinations</span></span>
 <span><span class="va">anemone_statuses</span> <span class="op">&lt;-</span> <span class="va">anemone_statuses</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Status <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
@@ -708,7 +715,7 @@ map:</p>
 interested. <br></p>
 <details><summary>
 Fancier code
-</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_map_plot_bg_parts</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bb</span>, fill <span class="op">=</span> <span class="st">"aliceblue"</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
@@ -760,7 +767,7 @@ these IDs, the first step is to call the function
 <code><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta()</a></code> to know what the ID of the desired trait
 is. <br> For example, let’s say we want to retrieve the maximum
 vegetative heights of plant species. <br></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trait_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_meta.html">GIFT_traits_meta</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">trait_meta</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">trait_meta</span><span class="op">$</span><span class="va">Trait2</span> <span class="op">==</span> <span class="st">"Plant_height_max"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##    Lvl1   Category Lvl2       Trait1  Lvl3           Trait2 Units    type</span></span>
@@ -788,7 +795,7 @@ some specific cases, the aggregation takes either the minimum or the
 maximum, as for the trait we chose. <br> Let’s retrieve the raw and
 aggregated values for the maximum vegetative height of plants (trait_ID
 1.6.2). <br></p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.6.2"</span><span class="op">)</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>,</span>
 <span>                      bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -805,7 +812,7 @@ aggregated values for the maximum vegetative height of plants (trait_ID
 35, and 50 meters, which led to an aggregated value of 50 meters. <br>
 And if you want to look up the references that led to the aggregated
 trait value, you can run this chunk:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">references</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_references.html">GIFT_references</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">height</span><span class="op">$</span><span class="va">references_1.6.2</span>, <span class="st">","</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -825,7 +832,7 @@ retrieve three traits at the family level. The three traits asked are
 woodiness (<code>trait_ID = "1.1.1"</code>), growth form
 (<code>trait_ID = "1.2.1"</code>) and whether the plant is a climber
 (<code>trait_ID = "1.4.1"</code>).</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trait_tax</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits_tax.html">GIFT_traits_tax</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1.1.1"</span>, <span class="st">"1.2.1"</span>, <span class="st">"1.4.1"</span><span class="op">)</span>,</span>
 <span>                             bias_ref <span class="op">=</span> <span class="cn">FALSE</span>, bias_deriv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -843,7 +850,7 @@ the other two traits at the family level.</p>
 the same function as for species richness <code><a href="../reference/GIFT_coverage.html">GIFT_coverage()</a></code>.
 <br> In combination with the previously loaded shapes, we can also map
 the trait coverage. <br></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">angio_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_coverage.html">GIFT_coverage</a></span><span class="op">(</span>what <span class="op">=</span> <span class="st">"trait_coverage"</span>,</span>
 <span>                              taxon_name <span class="op">=</span> <span class="st">"Angiospermae"</span>,</span>
 <span>                              trait_ID <span class="op">=</span> <span class="st">"1.6.2"</span><span class="op">)</span></span>
@@ -873,7 +880,7 @@ map:</p>
 interested. <br></p>
 <details><summary>
 Fancier code
-</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bb</span>, fill <span class="op">=</span> <span class="st">"aliceblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">equator</span>, color <span class="op">=</span> <span class="st">"gray50"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>,</span>
@@ -929,7 +936,7 @@ the list of miscellaneous variables and raster layers available in the
 GIFT database. <br> The references to cite when using environmental
 variables are also available through these functions (column
 <code>ref_long</code> of the outputs).<br><br></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">misc_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_misc.html">GIFT_env_meta_misc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">raster_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env_meta_raster.html">GIFT_env_meta_raster</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -945,7 +952,7 @@ statistics available, you can check the help page of
 <code><a href="../reference/GIFT_env.html">GIFT_env()</a></code> to see them all. Let’s get the mean and median
 of the elevation and the maximal value of the average temperature.
 <br></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">medit</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                    miscellaneous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"perimeter"</span>, <span class="st">"biome"</span><span class="op">)</span>,</span>
 <span>                    rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mn30_grd"</span>, <span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
@@ -962,7 +969,7 @@ degrees Celsius.</p>
 </h3>
 <p>Using the previously loaded shapes, we can also map a specific
 environmental variable for all GIFT polygons.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">world_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_env.html">GIFT_env</a></span><span class="op">(</span>entity_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">angio_rich</span><span class="op">$</span><span class="va">entity_ID</span><span class="op">)</span>,</span>
 <span>                       rasterlayer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wc2.0_bio_30s_01"</span><span class="op">)</span>,</span>
 <span>                       sumstat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span><span class="op">)</span><span class="op">)</span></span>
@@ -988,7 +995,7 @@ map:</p>
 interested. <br></p>
 <details><summary>
 Fancier code
-</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">world</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bb</span>, fill <span class="op">=</span> <span class="st">"aliceblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">equator</span>, color <span class="op">=</span> <span class="st">"gray50"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>,</span>
@@ -1034,7 +1041,7 @@ used the U.PhyloMaker R package <a href="https://doi.org/10.1016/j.pld.2022.12.0
 GBOTB.extended.WP.tre by <a href="https://doi.org/10.1002/ajb2.1019" class="external-link">Smith and Brown (2018)</a> and
 the phylogeny for pteridophytes in <a href="https://www.nature.com/articles/nature12872" class="external-link">Zanne et
 al. (2014)</a>.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieving phylogeny, taxonomy and species from GIFT</span></span>
 <span><span class="va">phy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_phylogeny.html">GIFT_phylogeny</a></span><span class="op">(</span>clade <span class="op">=</span> <span class="st">"Tracheophyta"</span>, GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
 <span><span class="va">tax</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxonomy.html">GIFT_taxonomy</a></span><span class="op">(</span>GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
@@ -1042,10 +1049,10 @@ al. (2014)</a>.</p>
 <span></span>
 <span><span class="va">gf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_traits.html">GIFT_traits</a></span><span class="op">(</span>trait_IDs <span class="op">=</span> <span class="st">"1.2.1"</span>, agreement <span class="op">=</span> <span class="fl">0.66</span>, bias_ref <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                  bias_deriv <span class="op">=</span> <span class="cn">FALSE</span>, GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Replacing space with _ for the species names</span></span>
 <span><span class="va">gf</span><span class="op">$</span><span class="va">work_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"_"</span>, <span class="va">gf</span><span class="op">$</span><span class="va">work_species</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieving family of each species</span></span>
 <span><span class="va">sp_fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_taxgroup.html">GIFT_taxgroup</a></span><span class="op">(</span>work_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">gift_sp</span><span class="op">$</span><span class="va">work_ID</span><span class="op">)</span>,</span>
 <span>                        taxon_lvl <span class="op">=</span> <span class="st">"family"</span>, GIFT_version <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
@@ -1070,7 +1077,7 @@ al. (2014)</a>.</p>
 <span>            <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">==</span> <span class="st">"×_"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>In the next chunk, we calculate the trait coverage (for growth form)
 at the genus and family level.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_genus_fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">sp_genus_fam</span>,</span>
 <span>                          <span class="va">gf</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"work_ID"</span>, <span class="st">"trait_value_1.2.1"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>                          by <span class="op">=</span> <span class="st">"work_ID"</span><span class="op">)</span></span>
@@ -1124,7 +1131,7 @@ at the genus and family level.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">)</span> <span class="op">==</span> <span class="st">"prop_gf"</span><span class="op">]</span> <span class="op">&lt;-</span></span>
 <span>  <span class="st">"prop_gf_fam"</span></span></code></pre></div>
 <p>We now prune the tree at the genus level.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phy_gen</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/drop.tip.html" class="external-link">keep.tip</a></span><span class="op">(</span></span>
 <span>  phy <span class="op">=</span> <span class="va">phy</span>,</span>
 <span>  tip <span class="op">=</span> <span class="va">one_sp_per_gen</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html" class="external-link">complete.cases</a></span><span class="op">(</span><span class="va">one_sp_per_gen</span><span class="op">$</span><span class="va">species</span><span class="op">)</span>, <span class="st">"species"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -1133,7 +1140,7 @@ rings illustrate the coverage of growth form per genus and per family
 (outer ring). For the family ring, the width of each family is set by
 the number of genera it contains. <br> To get the following plot, you
 need to install/load the following packages:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span><span class="op">)</span></span>
 <span><span class="fu">install</span><span class="op">(</span><span class="st">"ggtree"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"ggtree"</span><span class="op">)</span></span>
@@ -1141,7 +1148,7 @@ need to install/load the following packages:</p>
 <span><span class="fu">install</span><span class="op">(</span><span class="st">"ggtreeExtra"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"ggtreeExtra"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggtree</span><span class="op">(</span><span class="va">phy_gen</span>, color <span class="op">=</span> <span class="st">"grey70"</span>, layout <span class="op">=</span> <span class="st">"circular"</span><span class="op">)</span> <span class="op">%&lt;+%</span> <span class="va">one_sp_per_gen</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_fruit</span><span class="op">(</span>geom <span class="op">=</span> <span class="va">geom_tile</span>,</span>
 <span>             mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">prop_gf_gen</span><span class="op">)</span>,</span>
