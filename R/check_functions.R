@@ -563,7 +563,7 @@ check_shp <- function(shp, overlap) {
       warning("There is no CRS defined for your shapefile.
           We define it as being WGS 84 (EPSG 4326).")
       sf::st_crs(shp) <- 4326
-    } else if(sf::st_crs(shp) != st_crs(4326)){
+    } else if(sf::st_crs(shp) != sf::st_crs(4326)){
       warning(paste0(
         "The CRS of the supplied shapefile is not equal to sf::st_crs(4326) as
         it should be.\n
