@@ -9,7 +9,7 @@
 [![pkgdown](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml)
 ![](https://www.r-pkg.org/badges/version/GIFT)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/GIFT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8087130.svg)](https://zenodo.org/record/8087130)  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8256512.svg)](https://doi.org/10.5281/zenodo.8256512)  
 <!-- badges: end -->
 
 This **R package** includes several functions to extract data from the
@@ -18,7 +18,7 @@ is a global database of plant checklists, covering several taxonomic
 groups and providing information on the floristic status and functional
 traits of plants as well as environmental information for each
 checklist. <br> More details on the contents of this database can be
-found in the publication by [Weigelt et al.
+found in the publication by [Weigelt et al.,
 (2020)](https://doi.org/10.1111/jbi.13623).
 
 <img src="man/figures/rich_map_plot_islands.png" width="70%" style="display: block; margin: auto;" />
