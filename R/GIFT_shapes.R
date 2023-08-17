@@ -56,7 +56,7 @@ GIFT_shapes <- function(entity_ID = NULL,
   suit_geo <- suit_geo_rst <- overlap_checked <- NULL
   overlap_glonaf_checked <- overlap_gmba_checked <- NULL
   overlap_gaptani_checked <- priority <- NULL
-  entity_ID <- geo_entity <- point_x <- point_y <- area <- x_min <- NULL
+  geo_entity <- point_x <- point_y <- area <- x_min <- NULL
   x_max <- y_min <- y_max <- entity_class <- entity_type <- NULL
   polygon_source <- geometry <- NULL
   
