@@ -81,6 +81,10 @@ to get to it as soon as possible!
 `GIFT` depends on `ape`, `dplyr`, `jsonlite`, `phytools`, `purrr`, `sf`,
 `stats`, `tidyr` and `utils`.
 
+Denelle, P., Weigelt, P. & Kreft, H. (2020) GIFT – an R package to
+access the Global Inventory of Floras and Traits. *BioRXiv*,
+<https://doi.org/10.1101/2023.06.27.546704>.
+
 Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of
 Floras and Traits for macroecology and biogeography. *Journal of
 Biogeography*, <https://doi.org/10.1111/jbi.13623>.
