@@ -84,7 +84,7 @@ GIFT_traits <- function(
   tmp <- GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
   if(!all(trait_IDs %in% tmp$Lvl3)){
     stop("trait_IDs must belong to the available list of traits. To see which
-           traits are available, run 'traits_meta() and look at column
+           traits are available, run 'GIFT_traits_meta() and look at column
            'Lvl3'.")
   }
   
