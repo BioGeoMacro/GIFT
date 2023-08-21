@@ -94,7 +94,6 @@ GIFT_traits <- function(
       values for biases. bias_ref and bias_deriv arguments are ignored.")
   }
   
-  
   # 2. Function ----
   # Get species names
   message("\nRetrieving species' names.\n")

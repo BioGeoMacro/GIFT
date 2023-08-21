@@ -5,6 +5,9 @@
 #' @param trait_IDs a character string indicating which trait you want to
 #' retrieve. Traits must belong to the available list of traits.
 #' 
+#' @param agreement Percentage of resources that agree on an aggregated trait
+#' value, entries below this threshold will be omitted. 
+#' 
 #' @param bias_ref When `FALSE`, exclude entries that are only based on a
 #' resource that potentially introduces a bias (e.g. a resource only including
 #' trees).
@@ -51,15 +54,26 @@
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @export
- 
+
 GIFT_traits_tax <- function(
-    trait_IDs = "", bias_ref = TRUE, bias_deriv = TRUE,
+    trait_IDs = "", agreement = 0.66, bias_ref = TRUE, bias_deriv = TRUE,
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
   
   # 1. Controls ----
   # Arguments
   check_trait_IDs(trait_IDs)
+  
+  if(!is.numeric(agreement)){
+    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+         of original trait values that needs to support the aggregated value in 
+         case of categorical traits.")
+  } else if(agreement > 1 | agreement < 0){
+    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+         of original trait values that needs to support the aggregated value in 
+         case of categorical traits.")
+  }
+  
   check_bias_ref(bias_ref)
   check_bias_deriv(bias_deriv)
   check_api(api)
@@ -163,12 +177,17 @@ GIFT_traits_tax <- function(
      length(trait_IDs)){
     message(paste0(
       "The following traits were not available at the taxonomic level: ",
-      trait_IDs[!(trait_IDs %in% unique(trait_list$trait_ID))]))
+      paste0(trait_IDs[!(trait_IDs %in% unique(trait_list$trait_ID))],
+             sep = " ", collapse = "")))
   }
   
   # Make certain columns numeric
   trait_list <- dplyr::mutate_at(
     trait_list, c("taxon_ID", "agreement", "negative"), as.numeric)
+  
+  # Removing values below the agreement threshold
+  trait_list <- trait_list[which(trait_list$agreement >= agreement |
+                                   is.na(trait_list$agreement)), ]
   
   # Add species names
   # trait_list <- dplyr::left_join(trait_list,

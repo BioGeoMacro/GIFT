@@ -6,6 +6,7 @@
 \usage{
 GIFT_traits_tax(
   trait_IDs = "",
+  agreement = 0.66,
   bias_ref = TRUE,
   bias_deriv = TRUE,
   api = "https://gift.uni-goettingen.de/api/extended/",
@@ -15,6 +16,9 @@ GIFT_traits_tax(
 \arguments{
 \item{trait_IDs}{a character string indicating which trait you want to
 retrieve. Traits must belong to the available list of traits.}
+
+\item{agreement}{Percentage of resources that agree on an aggregated trait
+value, entries below this threshold will be omitted.}
 
 \item{bias_ref}{When \code{FALSE}, exclude entries that are only based on a
 resource that potentially introduces a bias (e.g. a resource only including
