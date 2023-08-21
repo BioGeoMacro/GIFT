@@ -333,7 +333,7 @@ GIFT_checklists <- function(
       lists <- lists[which(!lists$entity_ID %in% to_remove),]
     }
     
-    message("Overlapping polygons removed.\n")
+    message("Overlapping and nested regions removed.\n")
   }
   
   ## 2.4. Downloading ----
@@ -347,7 +347,7 @@ GIFT_checklists <- function(
   
   checklists <- NA
   if (!list_set_only){
-    message("Preparing the download of checklists.\n")
+    message("Downloading checklists.\n")
     
     checklists <- 
       suppressMessages(
