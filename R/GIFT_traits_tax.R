@@ -147,7 +147,7 @@ GIFT_traits_tax <- function(
   #         jsonlite::read_json(
   #           paste0(api, "index", ifelse(GIFT_version == "beta", "",
   #                                       GIFT_version),
-  #                  ".php?query=traits&traitid=",
+  #                  ".php?query=traits_tax&traitid=",
   #                  trait_IDs[x], "&biasref=", as.numeric(bias_ref),
   #                  "&biasderiv=", as.numeric(bias_deriv),
   #                  "&startat=", as.integer((y-1)*10000)),
