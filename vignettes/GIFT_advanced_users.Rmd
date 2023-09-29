@@ -532,6 +532,11 @@ knitr::include_graphics("../man/figures/Aisen_Chile_GMBA_overlap.png")
 
 # References
 
-[Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43.](https://doi.org/10.1111/jbi.13623)
-
-[Weigelt, Patrick, and Pierre Denelle. “GIFT: Access to the Global Inventory of Floras and Traits (GIFT),” March 15, 2023.](https://CRAN.R-project.org/package=GIFT)
+Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to access the
+Global Inventory of Floras and Traits. *Methods in Ecology and Evolution*,
+00, 1–11.
+[https://doi.org/10.1111/2041-210X.14213](https://doi.org/10.1111/2041-210X.14213). 
+  
+Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of Floras
+and Traits for macroecology and biogeography. *Journal of Biogeography*, 
+[https://doi.org/10.1111/jbi.13623](https://doi.org/10.1111/jbi.13623).
