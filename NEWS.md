@@ -1,5 +1,13 @@
 # GIFT
 
+# GIFT 1.3.0
+
+* Better handling of functions when the Internet or the GIFT server are down
+
+## Minor changes
+
+* Example changed in `GIFT_phylogeny()`
+
 # GIFT 1.2.0
 
 * GIFT_version = "latest" now corresponds to GIFT 3.0

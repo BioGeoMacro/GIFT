@@ -49,79 +49,83 @@ GIFT_shapes <- function(entity_ID = NULL,
                         GIFT_version = "latest"){
   
   # 1. Controls ----
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  # Visible binding for global variable
-  suit_geo <- suit_geo_rst <- overlap_checked <- NULL
-  overlap_glonaf_checked <- overlap_gmba_checked <- NULL
-  overlap_gaptani_checked <- priority <- NULL
-  geo_entity <- point_x <- point_y <- area <- x_min <- NULL
-  x_max <- y_min <- y_max <- entity_class <- entity_type <- NULL
-  polygon_source <- geometry <- NULL
-  
-  # 2. Function ----
-  GIFT_entities <- suppressMessages(
-    GIFT_env(miscellaneous = "area",
-             api = api, GIFT_version = GIFT_version))
-  GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
-  
-  if(is.null(entity_ID)){
-    message("No entity_ID provided. A shapefile for all GIFT regions will be
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    # Visible binding for global variable
+    suit_geo <- suit_geo_rst <- overlap_checked <- NULL
+    overlap_glonaf_checked <- overlap_gmba_checked <- NULL
+    overlap_gaptani_checked <- priority <- NULL
+    geo_entity <- point_x <- point_y <- area <- x_min <- NULL
+    x_max <- y_min <- y_max <- entity_class <- entity_type <- NULL
+    polygon_source <- geometry <- NULL
+    
+    # 2. Function ----
+    GIFT_entities <- suppressMessages(
+      GIFT_env(miscellaneous = "area",
+               api = api, GIFT_version = GIFT_version))
+    GIFT_entities <- GIFT_entities[complete.cases(GIFT_entities$area), ]
+    
+    if(is.null(entity_ID)){
+      message("No entity_ID provided. A shapefile for all GIFT regions will be
             downloaded. It may take a while.")
-    entity_ID <- GIFT_entities$entity_ID
-  }else{
-    initial_nb_asked <- length(unique(entity_ID))
-    entity_ID <- unique(
-      entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)])
-    
-    if(length(entity_ID) == 0){
-      stop("None of the provided entity_IDs has a shape available.")
-    }
-    
-    if(length(entity_ID) != initial_nb_asked){
-      if(length(entity_ID) == 1){
-        message(paste0("Only ", length(entity_ID), " entity_ID out of ",
-                       initial_nb_asked, " had a shape available."))
-      } else{
-        message(paste0("Only ", length(entity_ID), " entity_IDs out of ",
-                       initial_nb_asked, " had a shape available."))
+      entity_ID <- GIFT_entities$entity_ID
+    }else{
+      initial_nb_asked <- length(unique(entity_ID))
+      entity_ID <- unique(
+        entity_ID[which(entity_ID %in% GIFT_entities$entity_ID)])
+      
+      if(length(entity_ID) == 0){
+        stop("None of the provided entity_IDs has a shape available.")
+      }
+      
+      if(length(entity_ID) != initial_nb_asked){
+        if(length(entity_ID) == 1){
+          message(paste0("Only ", length(entity_ID), " entity_ID out of ",
+                         initial_nb_asked, " had a shape available."))
+        } else{
+          message(paste0("Only ", length(entity_ID), " entity_IDs out of ",
+                         initial_nb_asked, " had a shape available."))
+        }
       }
     }
-  }
-  
-  # TODO give back warning if not all entity_IDs have polygons?
-  
-  geodata <- list()
-  
-  progress <- utils::txtProgressBar(min = 0, max = length(entity_ID),
-                                    initial = 0)
-  
-  for(i in seq_along(entity_ID)) {
-    # TODO Put old polygons of old versions into respective folders and paste
-    # version here
-    tmp_geo <- st_read(
-      paste0("https://gift.uni-goettingen.de/geojson/geojson_smaller", 
-             ifelse(GIFT_version == "beta", "", GIFT_version), "/",
-             entity_ID[i], ".geojson"), quiet = TRUE)
     
-    # Control if sf geometry is not valid (i = 68 & 257)
-    if(!(sf::st_is_valid(tmp_geo))){
-      tmp_geo <- sf::st_make_valid(sf::st_set_precision(
-        tmp_geo, 1e2))
+    # TODO give back warning if not all entity_IDs have polygons?
+    
+    geodata <- list()
+    
+    progress <- utils::txtProgressBar(min = 0, max = length(entity_ID),
+                                      initial = 0)
+    
+    for(i in seq_along(entity_ID)) {
+      # TODO Put old polygons of old versions into respective folders and paste
+      # version here
+      tmp_geo <- st_read(
+        paste0("https://gift.uni-goettingen.de/geojson/geojson_smaller", 
+               ifelse(GIFT_version == "beta", "", GIFT_version), "/",
+               entity_ID[i], ".geojson"), quiet = TRUE)
+      
+      # Control if sf geometry is not valid (i = 68 & 257)
+      if(!(sf::st_is_valid(tmp_geo))){
+        tmp_geo <- sf::st_make_valid(sf::st_set_precision(
+          tmp_geo, 1e2))
+      }
+      geodata[[i]] <- tmp_geo
+      
+      utils::setTxtProgressBar(progress, i)
     }
-    geodata[[i]] <- tmp_geo
     
-    utils::setTxtProgressBar(progress, i)
+    geodata <- do.call(rbind, geodata)
+    # sort by area to plot small regions on top of large regions
+    geodata <- geodata[order(geodata$area, decreasing = TRUE), ]
+    
+    geodata <- dplyr::select(geodata, entity_ID, geo_entity, point_x, point_y,
+                             area, x_min, x_max, y_min, y_max, entity_class,
+                             entity_type, polygon_source, geometry)
+    
+    return(geodata)
   }
-  
-  geodata <- do.call(rbind, geodata)
-   # sort by area to plot small regions on top of large regions
-  geodata <- geodata[order(geodata$area, decreasing = TRUE), ]
-  
-  geodata <- dplyr::select(geodata, entity_ID, geo_entity, point_x, point_y,
-                           area, x_min, x_max, y_min, y_max, entity_class,
-                           entity_type, polygon_source, geometry)
-  
-  return(geodata)
 }

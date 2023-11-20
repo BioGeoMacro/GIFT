@@ -72,56 +72,64 @@ GIFT_coverage <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(length(what) != 1 || is.na(what) || !is.character(what) ||
-     !(all(what %in% c("taxonomic_coverage", "trait_coverage")))){
-    stop("'what' is incorrect. It must be a character string equal to either 
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    
+    if(length(what) != 1 || is.na(what) || !is.character(what) ||
+       !(all(what %in% c("taxonomic_coverage", "trait_coverage")))){
+      stop("'what' is incorrect. It must be a character string equal to either 
          'taxonomic_coverage' or 'trait_coverage'.")
-  }
-  
-  if(length(taxon_name) != 1 || is.na(taxon_name) ||
-     !is.character(taxon_name)){
-    stop("'taxon_name' is incorrect. It must be a character string among one of
+    }
+    
+    if(length(taxon_name) != 1 || is.na(taxon_name) ||
+       !is.character(taxon_name)){
+      stop(
+        "'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.")
-  }
-  
-  if(length(trait_ID) != 1){
-    stop("Please provide one trait_ID only.")
-  }
-  
-  if(is.na(trait_ID) || !is.character(trait_ID)){
-    stop("'trait_ID' is incorrect. It must be a character string of the
+    }
+    
+    if(length(trait_ID) != 1){
+      stop("Please provide one trait_ID only.")
+    }
+    
+    if(is.na(trait_ID) || !is.character(trait_ID)){
+      stop("'trait_ID' is incorrect. It must be a character string of the
     identification number of a trait. To check these IDs, run
          'GIFT_traits_meta()'.")
-  }
-  
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  # 2. Query ----
-  # Taxonomy query
-  taxonomy <- jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=taxonomy"), simplifyVector = TRUE)
-  
-  # Define tax_group
-  tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
-  
-  # Query
-  if(what == "trait_coverage"){
-    tmp <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=traits_cov&traitid=",
-      paste(trait_ID, collapse = ","), "&taxonid=", tax_group),
-      simplifyVector = TRUE)
+    }
     
-  } else if(what == "taxonomic_coverage"){
-    tmp <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species_cov&taxonid=", tax_group), simplifyVector = TRUE)
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    # 2. Query ----
+    # Taxonomy query
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=taxonomy"), simplifyVector = TRUE)
+    
+    # Define tax_group
+    tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
+    
+    # Query
+    if(what == "trait_coverage"){
+      tmp <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=traits_cov&traitid=",
+        paste(trait_ID, collapse = ","), "&taxonid=", tax_group),
+        simplifyVector = TRUE)
+      
+    } else if(what == "taxonomic_coverage"){
+      tmp <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=species_cov&taxonid=", tax_group), simplifyVector = TRUE)
+    }
+    
+    tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "total_rst", "native",
+                                   "native_rst", "naturalized",
+                                   "naturalized_rst", "endemic_min",
+                                   "endemic_min_rst"), as.numeric)
+    return(tmp)
   }
-  
-  tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "total_rst", "native", "native_rst",
-                                 "naturalized", "naturalized_rst", "endemic_min", "endemic_min_rst"), as.numeric)
-  return(tmp)
 }

@@ -74,130 +74,135 @@ GIFT_env <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  check_sumstat(sumstat)
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  gift_env_meta_misc <- suppressMessages(
-    GIFT_env_meta_misc(api = api, GIFT_version = GIFT_version))
-  
-  if(!is.null(miscellaneous)){
-    if(length(miscellaneous[miscellaneous %in%
-                            gift_env_meta_misc$variable]) == 0){
-      stop("None of the miscellaneous variables asked for is available in GIFT.
-           Run GIFT_env_meta_misc() to see available options.")
-    }
-    
-    if(length(miscellaneous[miscellaneous %in%
-                            gift_env_meta_misc$variable]) !=
-       length(miscellaneous)){
-      message(paste0(
-        "The following miscellaneous variable(s) are not available in GIFT: ",
-        miscellaneous[!(miscellaneous %in% gift_env_meta_misc$variable)]))
-      
-      miscellaneous <- miscellaneous[(miscellaneous %in%
-                                        gift_env_meta_misc$variable)]
-    }
-  }
-  
-  suppressMessages(
-    gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
-                                                 GIFT_version = GIFT_version))
-  if(!is.null(rasterlayer)){
-    if(length(rasterlayer[rasterlayer %in%
-                          gift_env_meta_raster$layer_name]) == 0){
-      stop("None of the raster layers asked for is available in GIFT.
-       Run GIFT_env_meta_raster() to see available options.")
-    }
-    
-    if(length(rasterlayer[rasterlayer %in%
-                          gift_env_meta_raster$layer_name]) !=
-       length(rasterlayer)){
-      message(paste0(
-        "The following raster layer(s) are not available in GIFT: ",
-        rasterlayer[!(rasterlayer %in% gift_env_meta_raster$layer_name)]))
-      
-      rasterlayer <- rasterlayer[(rasterlayer %in%
-                                    gift_env_meta_raster$layer_name)]
-    }
-  }
-  
-  # 2. Query ----
-  ## 2.1. Miscellaneous data ----
-  if(is.null(miscellaneous) | length(miscellaneous) == 0){
-    tmp_misc <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=geoentities_env_misc"),
-      simplifyVector = TRUE)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
   } else{
-    tmp_misc <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=geoentities_env_misc&envvar=",
-      paste(miscellaneous, collapse = ",")),
-      simplifyVector = TRUE)
-  }
-  
-  ## 2.2. Raster data ----
-  
-  # Query
-  if(!(is.null(rasterlayer) | length(rasterlayer) == 0 |
-       is.null(sumstat) | length(sumstat) == 0)){
+    check_sumstat(sumstat)
+    GIFT_version <- check_gift_version_simple(GIFT_version)
     
-    # Preparing sumstat => list with sumstats repeated
-    if(is.vector(sumstat) & !is.list(sumstat)){
-      sumstat <- list(sumstat)
-      sumstat <- rep(sumstat, length(rasterlayer))
+    gift_env_meta_misc <- suppressMessages(
+      GIFT_env_meta_misc(api = api, GIFT_version = GIFT_version))
+    
+    if(!is.null(miscellaneous)){
+      if(length(miscellaneous[miscellaneous %in%
+                              gift_env_meta_misc$variable]) == 0){
+        stop(
+          "None of the miscellaneous variables asked for is available in GIFT.
+           Run GIFT_env_meta_misc() to see available options.")
+      }
+      
+      if(length(miscellaneous[miscellaneous %in%
+                              gift_env_meta_misc$variable]) !=
+         length(miscellaneous)){
+        message(paste0(
+          "The following miscellaneous variable(s) are not available in GIFT: ",
+          miscellaneous[!(miscellaneous %in% gift_env_meta_misc$variable)]))
+        
+        miscellaneous <- miscellaneous[(miscellaneous %in%
+                                          gift_env_meta_misc$variable)]
+      }
     }
     
-    # Collapsing summary statistics together
-    sumstat_collapse <- lapply(sumstat,
-                               function(x) paste(x, collapse = ","))
-    tmp_raster <- list()
+    suppressMessages(
+      gift_env_meta_raster <- GIFT_env_meta_raster(api = api,
+                                                   GIFT_version = GIFT_version))
+    if(!is.null(rasterlayer)){
+      if(length(rasterlayer[rasterlayer %in%
+                            gift_env_meta_raster$layer_name]) == 0){
+        stop("None of the raster layers asked for is available in GIFT.
+       Run GIFT_env_meta_raster() to see available options.")
+      }
+      
+      if(length(rasterlayer[rasterlayer %in%
+                            gift_env_meta_raster$layer_name]) !=
+         length(rasterlayer)){
+        message(paste0(
+          "The following raster layer(s) are not available in GIFT: ",
+          rasterlayer[!(rasterlayer %in% gift_env_meta_raster$layer_name)]))
+        
+        rasterlayer <- rasterlayer[(rasterlayer %in%
+                                      gift_env_meta_raster$layer_name)]
+      }
+    }
     
-    for(i in seq_along(rasterlayer)){
-      tmp_raster[[i]] <- jsonlite::read_json(paste0(
+    # 2. Query ----
+    ## 2.1. Miscellaneous data ----
+    if(is.null(miscellaneous) | length(miscellaneous) == 0){
+      tmp_misc <- jsonlite::read_json(paste0(
         api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
-        "&sumstat=", sumstat_collapse[[i]]),
+        ".php?query=geoentities_env_misc"),
         simplifyVector = TRUE)
-      
-      # Spreading tmp
-      tmp_raster[[i]] <- tidyr::pivot_wider(
-        tmp_raster[[i]],
-        names_from = "layer_name",
-        values_from = sumstat[[i]],
-        names_glue = "{.value}_{layer_name}")
-      
-      # Numeric raster columns
-      tmp_raster[[i]] <- dplyr::mutate_if(tmp_raster[[i]], is.character,
-                                          as.numeric)
+    } else{
+      tmp_misc <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=geoentities_env_misc&envvar=",
+        paste(miscellaneous, collapse = ",")),
+        simplifyVector = TRUE)
     }
     
-    # Join list elements together
-    tmp_raster <- purrr::reduce(tmp_raster, dplyr::full_join, by = "entity_ID")
+    ## 2.2. Raster data ----
+    # Query
+    if(!(is.null(rasterlayer) | length(rasterlayer) == 0 |
+         is.null(sumstat) | length(sumstat) == 0)){
+      
+      # Preparing sumstat => list with sumstats repeated
+      if(is.vector(sumstat) & !is.list(sumstat)){
+        sumstat <- list(sumstat)
+        sumstat <- rep(sumstat, length(rasterlayer))
+      }
+      
+      # Collapsing summary statistics together
+      sumstat_collapse <- lapply(sumstat,
+                                 function(x) paste(x, collapse = ","))
+      tmp_raster <- list()
+      
+      for(i in seq_along(rasterlayer)){
+        tmp_raster[[i]] <- jsonlite::read_json(paste0(
+          api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+          ".php?query=geoentities_env_raster&layername=", rasterlayer[i],
+          "&sumstat=", sumstat_collapse[[i]]),
+          simplifyVector = TRUE)
+        
+        # Spreading tmp
+        tmp_raster[[i]] <- tidyr::pivot_wider(
+          tmp_raster[[i]],
+          names_from = "layer_name",
+          values_from = sumstat[[i]],
+          names_glue = "{.value}_{layer_name}")
+        
+        # Numeric raster columns
+        tmp_raster[[i]] <- dplyr::mutate_if(tmp_raster[[i]], is.character,
+                                            as.numeric)
+      }
+      
+      # Join list elements together
+      tmp_raster <- purrr::reduce(tmp_raster, dplyr::full_join,
+                                  by = "entity_ID")
+      
+      # Combining with tmp_misc
+      tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
+      tmp_misc <- dplyr::left_join(tmp_misc, tmp_raster, by = "entity_ID")
+    }
     
-    # Combining with tmp_misc
+    # Sub-setting the entity_ID
+    if(!is.null(entity_ID)){
+      tmp_misc <- tmp_misc[tmp_misc$entity_ID %in% entity_ID, ]
+    }
+    
+    # Remove rows where all columns but entity_ID and geo_entity are NAs
+    tmp_misc <- tmp_misc[rowSums(is.na(tmp_misc)) != (ncol(tmp_misc)-2), ]
+    
+    # Convert numeric miscellaneous layers to numeric
+    miscellaneous_num <-
+      gift_env_meta_misc[which(gift_env_meta_misc$variable %in% miscellaneous &
+                                 gift_env_meta_misc$num == 1),
+                         "variable"]
+    tmp_misc <- dplyr::mutate_at(tmp_misc, miscellaneous_num, as.numeric)
+    
+    # entity_ID numeric
     tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
-    tmp_misc <- dplyr::left_join(tmp_misc, tmp_raster, by = "entity_ID")
+    
+    return(tmp_misc)
   }
-  
-  # Sub-setting the entity_ID
-  if(!is.null(entity_ID)){
-    tmp_misc <- tmp_misc[tmp_misc$entity_ID %in% entity_ID, ]
-  }
-  
-  # Remove rows where all columns but entity_ID and geo_entity are NAs
-  tmp_misc <- tmp_misc[rowSums(is.na(tmp_misc)) != (ncol(tmp_misc)-2), ]
-  
-  # Convert numeric miscellaneous layers to numeric
-  miscellaneous_num <-
-    gift_env_meta_misc[which(gift_env_meta_misc$variable %in% miscellaneous &
-                               gift_env_meta_misc$num == 1),
-                       "variable"]
-  tmp_misc <- dplyr::mutate_at(tmp_misc, miscellaneous_num, as.numeric)
-  
-  # entity_ID numeric
-  tmp_misc$entity_ID <- as.numeric(tmp_misc$entity_ID)
-  
-  return(tmp_misc)
 }

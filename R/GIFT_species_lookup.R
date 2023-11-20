@@ -74,86 +74,91 @@ GIFT_species_lookup <-
            api = "https://gift.uni-goettingen.de/api/extended/",
            GIFT_version = "latest"){
     # 1. Controls ----
-    check_api(api)
-    GIFT_version <- check_gift_version(GIFT_version)
-    
-    if(!is.character(genus)){
-      stop("genus must be a character string indicating genus to look for.")
-    }
-    
-    if(!is.character(epithet)){
-      stop("epithet must be a character string indicating the specific epithet
+    api_check <- check_api(api)
+    if(is.null(api_check)){
+      return(NULL)
+    } else{
+      GIFT_version <- check_gift_version(GIFT_version)
+      
+      if(!is.character(genus)){
+        stop("genus must be a character string indicating genus to look for.")
+      }
+      
+      if(!is.character(epithet)){
+        stop(
+          "epithet must be a character string indicating the specific epithet
       to look for.")
-    }
-    
-    if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
-       is.na(namesmatched)){
-      stop("'namesmatched' must be a logical stating whether you only want to 
+      }
+      
+      if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
+         is.na(namesmatched)){
+        stop("'namesmatched' must be a logical stating whether you only want to 
     look for the species not only in the standardized species names or also 
     in the original species names as they came in the original resources")
-    }
-    
-    # 2. Function ----
-    # Return the name matching information
-    if(namesmatched){
-      tmp <- jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=names_matched&genus=", genus, "&epithet=", epithet
-      ), simplifyVector = TRUE)
-      
-      if(length(tmp)>0){
-        tmp <- dplyr::mutate_at(
-          tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species", "aff_species",
-                 "matched", "epithetscore", "overallscore", "resolved",
-                 "synonym", "matched_subtaxon", "accepted", "work_ID",
-                 "taxon_ID"),
-          as.numeric)
-      } else {
-        tmp <- data.frame(orig_ID = numeric(), orig_genus = character(), 
-                          name_ID = numeric(), cf_genus = numeric(), 
-                          genus = character(), cf_species = numeric(), 
-                          aff_species = numeric(), 
-                          species_epithet = character(),
-                          subtaxon = character(), author = character(),
-                          matched = numeric(), epithetscore = numeric(),
-                          overallscore = numeric(), resolved = numeric(),
-                          synonym = numeric(), matched_subtaxon = numeric(), 
-                          accepted = numeric(),
-                          service = character(), work_ID = numeric(),
-                          taxon_ID = numeric(), work_genus = character(),
-                          work_species_epithet = character(), 
-                          work_species = character(),
-                          work_author = character())
       }
-    } else {
-      tmp <- jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-        ".php?query=names_matched_unique&genus=", genus, "&epithet=", epithet
-      ), simplifyVector = TRUE)
       
-      if(length(tmp)>0){
-        tmp <- dplyr::mutate_at(
-          tmp, c("name_ID", "matched", "epithetscore", "overallscore", 
-                 "resolved", "synonym", "matched_subtaxon", "accepted", 
-                 "work_ID", "taxon_ID"),
-          as.numeric)
+      # 2. Function ----
+      # Return the name matching information
+      if(namesmatched){
+        tmp <- jsonlite::read_json(paste0(
+          api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+          ".php?query=names_matched&genus=", genus, "&epithet=", epithet
+        ), simplifyVector = TRUE)
+        
+        if(length(tmp)>0){
+          tmp <- dplyr::mutate_at(
+            tmp, c("orig_ID", "name_ID", "cf_genus", "cf_species",
+                   "aff_species", "matched", "epithetscore", "overallscore",
+                   "resolved", "synonym", "matched_subtaxon", "accepted",
+                   "work_ID", "taxon_ID"),
+            as.numeric)
+        } else {
+          tmp <- data.frame(orig_ID = numeric(), orig_genus = character(), 
+                            name_ID = numeric(), cf_genus = numeric(), 
+                            genus = character(), cf_species = numeric(), 
+                            aff_species = numeric(), 
+                            species_epithet = character(),
+                            subtaxon = character(), author = character(),
+                            matched = numeric(), epithetscore = numeric(),
+                            overallscore = numeric(), resolved = numeric(),
+                            synonym = numeric(), matched_subtaxon = numeric(), 
+                            accepted = numeric(),
+                            service = character(), work_ID = numeric(),
+                            taxon_ID = numeric(), work_genus = character(),
+                            work_species_epithet = character(), 
+                            work_species = character(),
+                            work_author = character())
+        }
       } else {
-        tmp <- data.frame(name_ID = numeric(), genus = character(),
-                          species_epithet = character(),
-                          subtaxon = character(), author = character(),
-                          matched = numeric(), epithetscore = numeric(),
-                          overallscore = numeric(), resolved = numeric(),
-                          synonym = numeric(), matched_subtaxon = numeric(), 
-                          accepted = numeric(),
-                          service = character(), work_ID = numeric(),
-                          taxon_ID = numeric(), work_genus = character(),
-                          work_species_epithet = character(), 
-                          work_species = character(),
-                          work_author = character())
+        tmp <- jsonlite::read_json(paste0(
+          api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+          ".php?query=names_matched_unique&genus=", genus, "&epithet=", epithet
+        ), simplifyVector = TRUE)
+        
+        if(length(tmp)>0){
+          tmp <- dplyr::mutate_at(
+            tmp, c("name_ID", "matched", "epithetscore", "overallscore", 
+                   "resolved", "synonym", "matched_subtaxon", "accepted", 
+                   "work_ID", "taxon_ID"),
+            as.numeric)
+        } else {
+          tmp <- data.frame(name_ID = numeric(), genus = character(),
+                            species_epithet = character(),
+                            subtaxon = character(), author = character(),
+                            matched = numeric(), epithetscore = numeric(),
+                            overallscore = numeric(), resolved = numeric(),
+                            synonym = numeric(), matched_subtaxon = numeric(), 
+                            accepted = numeric(),
+                            service = character(), work_ID = numeric(),
+                            taxon_ID = numeric(), work_genus = character(),
+                            work_species_epithet = character(), 
+                            work_species = character(),
+                            work_author = character())
+        }
       }
+      if(nrow(tmp)== 0){
+        message("No species names found.")
+      }
+      return(tmp)
     }
-    if(nrow(tmp)== 0){
-      message("No species names found.")
-    }
-    return(tmp)
   }

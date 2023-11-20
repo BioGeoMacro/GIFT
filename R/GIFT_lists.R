@@ -40,17 +40,21 @@
 
 GIFT_lists <- function(api = "https://gift.uni-goettingen.de/api/extended/",
                        GIFT_version = "latest"){
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  tmp <- jsonlite::read_json(paste0(
-    api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=lists"), simplifyVector = TRUE)
-  
-  tmp <- dplyr::mutate_at(
-    tmp, c("ref_ID", "native_indicated", "natural_indicated", "end_ref",
-           "restricted", "taxon_ID", "list_ID", "end_list", "entity_ID",      
-           "suit_geo"), as.numeric)
-  
-  return(tmp)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    tmp <- jsonlite::read_json(paste0(
+      api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=lists"), simplifyVector = TRUE)
+    
+    tmp <- dplyr::mutate_at(
+      tmp, c("ref_ID", "native_indicated", "natural_indicated", "end_ref",
+             "restricted", "taxon_ID", "list_ID", "end_list", "entity_ID",      
+             "suit_geo"), as.numeric)
+    
+    return(tmp)
+  }
 }

@@ -24,7 +24,8 @@ check_api <- function(api) {
   
   # First check: internet connection
   if(!curl::has_internet()) {
-    stop("No internet connection found.")
+    message("No internet connection found.")
+    return(NULL)
   }
   
   # Second check: web API available
@@ -34,19 +35,26 @@ check_api <- function(api) {
   # test for non-existing APIs
   tryCatch(expr = httr2::req_perform(resp),
            error = function(expr) {
-             stop("Either the API is wrongly specified or the server is down.")
+             message(
+               "Either the API is wrongly specified or the server is down.")
+             return(NULL)
            })
   
   # If the server was found, check for status
   resp_status <- httr2::resp_status_desc(httr2::req_perform(resp))
   if(resp_status == "Unauthorized"){
-    stop("A password is needed for this restricted API.")
+    message("A password is needed for this restricted API.")
+    return(NULL)
   } else if(resp_status != "OK"){
-    stop("Either the API is wrongly specified or the server is down.")
+    message("Either the API is wrongly specified or the server is down.")
+    return(NULL)
   } else{
     resp <- httr2::req_perform(req)
     if(httr2::resp_body_string(resp) != "No query selected."){
-      stop("Either the API is wrongly specified or the server is down.")
+      message("Either the API is wrongly specified or the server is down.")
+      return(NULL)
+    }else{
+      return("API ok.")
     }
   }
 }

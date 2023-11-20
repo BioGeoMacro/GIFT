@@ -111,192 +111,199 @@ GIFT_species_distribution <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(length(genus) != 1 || is.na(genus) ||
-     !is.character(genus)){
-    stop("'genus' is incorrect. It must be a character string indicating the 
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    if(length(genus) != 1 || is.na(genus) ||
+       !is.character(genus)){
+      stop("'genus' is incorrect. It must be a character string indicating the 
       genus of the species you're looking for.")
-  }
-  if(length(epithet) != 1 || is.na(epithet) ||
-     !is.character(epithet)){
-    stop("'epithet' is incorrect. It must be a character string indicating the 
+    }
+    if(length(epithet) != 1 || is.na(epithet) ||
+       !is.character(epithet)){
+      stop(
+        "'epithet' is incorrect. It must be a character string indicating the 
       epithet of the species you're looking for.")
-  }
-  
-  if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
-     is.na(namesmatched)){
-    stop("'namesmatched' must be a logical stating whether you only want to 
+    }
+    
+    if(length(namesmatched) != 1 || !is.logical(namesmatched) ||
+       is.na(namesmatched)){
+      stop("'namesmatched' must be a logical stating whether you only want to 
     look for the species not only in the standardized species names or also 
     in the original species names as they came in the original resources")
-  }
-  
-  if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
-     is.na(remove_overlap)){
-    stop("'remove_overlap' must be a logical stating whether you want to
+    }
+    
+    if(length(remove_overlap) != 1 || !is.logical(remove_overlap) ||
+       is.na(remove_overlap)){
+      stop("'remove_overlap' must be a logical stating whether you want to
     retrieve checklists that overlap or not.")
-  }
-  
-  if(!is.numeric(area_th_island) || area_th_island < 0){
-    stop("'area_th_island' is a surface in km^2 indicating from which
+    }
+    
+    if(!is.numeric(area_th_island) || area_th_island < 0){
+      stop("'area_th_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(area_th_mainland) || area_th_mainland < 0){
-    stop("'area_th_mainland' is a surface in km^2 indicating from which
+    }
+    
+    if(!is.numeric(area_th_mainland) || area_th_mainland < 0){
+      stop("'area_th_mainland' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(overlap_th) || overlap_th < 0 || overlap_th > 1){
-    stop("'overlap_th' is a number ranging from 0 to 1, indicating at what 
+    }
+    
+    if(!is.numeric(overlap_th) || overlap_th < 0 || overlap_th > 1){
+      stop("'overlap_th' is a number ranging from 0 to 1, indicating at what 
          percentage of overlap, partially overlapping polygons should be
          kept.")
-  }
-  
-  if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) ||
-     is.na(by_ref_ID)){
-    stop("'by_ref_ID' must be a logical stating whether indicating whether the
+    }
+    
+    if(length(by_ref_ID) != 1 || !is.logical(by_ref_ID) ||
+       is.na(by_ref_ID)){
+      stop(
+        "'by_ref_ID' must be a logical stating whether indicating whether the
          removal of overlapping regions shall be applied only at the
          reference level.")
-  }
-  
-  if(length(aggregation) != 1 || !is.logical(aggregation) ||
-     is.na(aggregation)){
-    stop("'aggregation' must be a logical stating whether you want to
+    }
+    
+    if(length(aggregation) != 1 || !is.logical(aggregation) ||
+       is.na(aggregation)){
+      stop("'aggregation' must be a logical stating whether you want to
     aggregate in a simpler way the floristic status of species per entity_ID.")
-  }
-  
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  endemic_list <- entity_ID <- native <- naturalized <- NULL
-  cf_species <- aff_species <- questionable <- quest_native <- NULL
-  endemic_ref <- quest_end_ref <- quest_end_list <- matched <- NULL
-  epithetscore <- overallscore <- resolved <- synonym <- NULL
-  matched_subtaxon <- accepted <- service <- NULL
-  cf_genus <- author <- name_ID <- work_ID <- NULL
-  ref_ID <- list_ID <- species_epithet <- subtaxon <- NULL
-  
-  # 2. Function ----
-  ## 2.1. Look up species ---- 
-  taxnames <- suppressMessages(
-    GIFT_species_lookup(genus = genus, epithet = epithet, 
-                        GIFT_version = GIFT_version, api = api,
-                        namesmatched = namesmatched))
-  # TODO: simplify names lookup to not look in orig genus? Or filter here
-  taxnames <- unique(taxnames[,c("name_ID", "genus", "species_epithet", 
-                                 "subtaxon", "author", "matched", 
-                                 "epithetscore", "overallscore", "resolved", 
-                                 "synonym", "matched_subtaxon", "accepted", 
-                                 "service", "work_ID", "taxon_ID", 
-                                 "work_genus", "work_species_epithet", 
-                                 "work_species", "work_author" )])
-  
-  name_IDs <- unique(taxnames$name_ID)
-  
-  lists <- list()
-  
-  if(length(name_IDs)>0){
-    ## 2.2. Get distribution ---- 
-    
-    for(i in seq_along(name_IDs)){
-      lists[[i]] <- jsonlite::read_json(paste0(
-        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
-        ".php?query=species_distr&nameid=", as.integer(name_IDs[i])), 
-        simplifyVector = TRUE)
     }
-    lists <- dplyr::bind_rows(lists)
     
-    # Data.frame
-    lists <- as.data.frame(lists)
-    lists <- dplyr::mutate_all(lists, as.numeric)
-  } 
-  
-  if (length(lists) > 0){
-    ## 2.3. Overlapping entities ----
-    # overlapped entities are removed => subset lists based on entity_ID again)
-    if(remove_overlap == TRUE){
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    endemic_list <- entity_ID <- native <- naturalized <- NULL
+    cf_species <- aff_species <- questionable <- quest_native <- NULL
+    endemic_ref <- quest_end_ref <- quest_end_list <- matched <- NULL
+    epithetscore <- overallscore <- resolved <- synonym <- NULL
+    matched_subtaxon <- accepted <- service <- NULL
+    cf_genus <- author <- name_ID <- work_ID <- NULL
+    ref_ID <- list_ID <- species_epithet <- subtaxon <- NULL
+    
+    # 2. Function ----
+    ## 2.1. Look up species ---- 
+    taxnames <- suppressMessages(
+      GIFT_species_lookup(genus = genus, epithet = epithet, 
+                          GIFT_version = GIFT_version, api = api,
+                          namesmatched = namesmatched))
+    # TODO: simplify names lookup to not look in orig genus? Or filter here
+    taxnames <- unique(taxnames[,c("name_ID", "genus", "species_epithet", 
+                                   "subtaxon", "author", "matched", 
+                                   "epithetscore", "overallscore", "resolved", 
+                                   "synonym", "matched_subtaxon", "accepted", 
+                                   "service", "work_ID", "taxon_ID", 
+                                   "work_genus", "work_species_epithet", 
+                                   "work_species", "work_author" )])
+    
+    name_IDs <- unique(taxnames$name_ID)
+    
+    lists <- list()
+    
+    if(length(name_IDs)>0){
+      ## 2.2. Get distribution ---- 
       
-      if(!by_ref_ID){
-        no_overlap <- suppressMessages(
-          GIFT::GIFT_no_overlap(
-            entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
-            area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
-            geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
-        
-        lists <- lists[which(lists$entity_ID %in% no_overlap), ]
-        
-      } else {
-        
-        geoentities_overlap <- jsonlite::read_json(
-          paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-                 ".php?query=overlap"), simplifyVector = TRUE)
-        
-        to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
-          to_keep <- suppressMessages(
-            GIFT::GIFT_no_overlap(entity_IDs = x, 
-                                  area_th_island = area_th_island, 
-                                  area_th_mainland = area_th_mainland, 
-                                  overlap_th = overlap_th, 
-                                  geoentities_overlap = geoentities_overlap, 
-                                  api = api, GIFT_version = GIFT_version))
-          to_remove <- x[which(!x %in% to_keep)]
-        })
-        to_remove <- unlist(to_remove)
-        
-        lists <- lists[which(!lists$entity_ID %in% to_remove),]
+      for(i in seq_along(name_IDs)){
+        lists[[i]] <- jsonlite::read_json(paste0(
+          api, "index", ifelse(GIFT_version == "beta", "", GIFT_version), 
+          ".php?query=species_distr&nameid=", as.integer(name_IDs[i])), 
+          simplifyVector = TRUE)
       }
+      lists <- dplyr::bind_rows(lists)
+      
+      # Data.frame
+      lists <- as.data.frame(lists)
+      lists <- dplyr::mutate_all(lists, as.numeric)
+    } 
+    
+    if (length(lists) > 0){
+      ## 2.3. Overlapping entities ----
+      # overlapped entities are removed => subset lists based on entity_ID again)
+      if(remove_overlap == TRUE){
+        
+        if(!by_ref_ID){
+          no_overlap <- suppressMessages(
+            GIFT::GIFT_no_overlap(
+              entity_IDs = lists$entity_ID, area_th_island = area_th_island, 
+              area_th_mainland = area_th_mainland, overlap_th = overlap_th, 
+              geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
+          
+          lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+          
+        } else {
+          
+          geoentities_overlap <- jsonlite::read_json(
+            paste0(api, "index", ifelse(GIFT_version == "beta", "",
+                                        GIFT_version),
+                   ".php?query=overlap"), simplifyVector = TRUE)
+          
+          to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
+            to_keep <- suppressMessages(
+              GIFT::GIFT_no_overlap(entity_IDs = x, 
+                                    area_th_island = area_th_island, 
+                                    area_th_mainland = area_th_mainland, 
+                                    overlap_th = overlap_th, 
+                                    geoentities_overlap = geoentities_overlap, 
+                                    api = api, GIFT_version = GIFT_version))
+            to_remove <- x[which(!x %in% to_keep)]
+          })
+          to_remove <- unlist(to_remove)
+          
+          lists <- lists[which(!lists$entity_ID %in% to_remove),]
+        }
+      }
+      
+      ## 2.4. Join lists and names ----
+      lists <- dplyr::left_join(lists, taxnames, by="name_ID")
+    } else {
+      lists <- data.frame(ref_ID = numeric(), list_ID = numeric(),
+                          entity_ID = numeric(), name_ID = numeric(), 
+                          cf_genus = numeric(), cf_species = numeric(), 
+                          aff_species = numeric(), 
+                          questionable = numeric(), native = numeric(),
+                          quest_native = numeric(), naturalized = numeric(),
+                          endemic_ref = numeric(),
+                          quest_end_ref = numeric(),
+                          endemic_list = numeric(),
+                          quest_end_list = numeric(),
+                          genus = character(),species_epithet = character(),
+                          subtaxon = character(), author = character(),
+                          matched = numeric(), epithetscore = numeric(),
+                          overallscore = numeric(), resolved = numeric(),
+                          synonym = numeric(), matched_subtaxon = numeric(), 
+                          accepted = numeric(),
+                          service = character(), work_ID = numeric(),
+                          taxon_ID = numeric(), work_genus = character(),
+                          work_species_epithet = character(), 
+                          work_species = character(),
+                          work_author = character())
     }
     
-    ## 2.4. Join lists and names ----
-    lists <- dplyr::left_join(lists, taxnames, by="name_ID")
-  } else {
-    lists <- data.frame(ref_ID = numeric(), list_ID = numeric(),
-                        entity_ID = numeric(), name_ID = numeric(), 
-                        cf_genus = numeric(), cf_species = numeric(), 
-                        aff_species = numeric(), 
-                        questionable = numeric(), native = numeric(),
-                        quest_native = numeric(), naturalized = numeric(),
-                        endemic_ref = numeric(),
-                        quest_end_ref = numeric(),
-                        endemic_list = numeric(),
-                        quest_end_list = numeric(),
-                        genus = character(),species_epithet = character(),
-                        subtaxon = character(), author = character(),
-                        matched = numeric(), epithetscore = numeric(),
-                        overallscore = numeric(), resolved = numeric(),
-                        synonym = numeric(), matched_subtaxon = numeric(), 
-                        accepted = numeric(),
-                        service = character(), work_ID = numeric(),
-                        taxon_ID = numeric(), work_genus = character(),
-                        work_species_epithet = character(), 
-                        work_species = character(),
-                        work_author = character())
+    ## 2.5. Aggregation ----
+    if(aggregation){
+      lists <- dplyr::group_by(lists, entity_ID, work_ID)
+      lists <- dplyr::mutate(
+        lists,
+        conflict_native = ifelse(length(unique(native)) > 1, 1, 0),
+        conflict_naturalized = ifelse(length(unique(naturalized)) > 1, 1, 0),
+        conflict_endemic_list = ifelse(length(unique(endemic_list)) > 1, 1, 0),
+        native = ifelse(1 %in% native, 1, ifelse(0 %in% native, 0, NA)),
+        naturalized = ifelse(0 %in% naturalized, 0,
+                             ifelse(1 %in% naturalized, 1, NA)),
+        endemic_list = ifelse(0 %in% endemic_list, 0,
+                              ifelse(1 %in% endemic_list, 1, NA))
+      )
+      lists <- dplyr::distinct(lists, native, naturalized, endemic_list,
+                               .keep_all = TRUE)
+      lists <-  dplyr::ungroup(lists)
+      lists <- dplyr::select(lists, -cf_genus, -name_ID, -cf_species,
+                             -aff_species, -questionable, -quest_native,
+                             -endemic_ref, -quest_end_ref, -quest_end_list,
+                             -author, -matched, -epithetscore, -overallscore,
+                             -resolved, -synonym, -matched_subtaxon, -accepted,
+                             -service, -ref_ID, -list_ID, -species_epithet, 
+                             -subtaxon)
+      
+    }
+    return(lists)
   }
-  
-  ## 2.5. Aggregation ----
-  if(aggregation){
-    lists <- dplyr::group_by(lists, entity_ID, work_ID)
-    lists <- dplyr::mutate(
-      lists,
-      conflict_native = ifelse(length(unique(native)) > 1, 1, 0),
-      conflict_naturalized = ifelse(length(unique(naturalized)) > 1, 1, 0),
-      conflict_endemic_list = ifelse(length(unique(endemic_list)) > 1, 1, 0),
-      native = ifelse(1 %in% native, 1, ifelse(0 %in% native, 0, NA)),
-      naturalized = ifelse(0 %in% naturalized, 0,
-                           ifelse(1 %in% naturalized, 1, NA)),
-      endemic_list = ifelse(0 %in% endemic_list, 0,
-                            ifelse(1 %in% endemic_list, 1, NA))
-    )
-    lists <- dplyr::distinct(lists, native, naturalized, endemic_list,
-                             .keep_all = TRUE)
-    lists <-  dplyr::ungroup(lists)
-    lists <- dplyr::select(lists, -cf_genus, -name_ID, -cf_species,
-                           -aff_species, -questionable, -quest_native,
-                           -endemic_ref, -quest_end_ref, -quest_end_list,
-                           -author, -matched, -epithetscore, -overallscore,
-                           -resolved, -synonym, -matched_subtaxon, -accepted,
-                           -service, -ref_ID, -list_ID, -species_epithet, 
-                           -subtaxon)
-    
-  }
-  return(lists)
 }

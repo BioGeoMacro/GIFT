@@ -39,16 +39,20 @@
 GIFT_taxonomy <- function(
     GIFT_version = "latest", 
     api = "https://gift.uni-goettingen.de/api/extended/"){
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  taxonomy <- read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=taxonomy"), simplifyVector = TRUE)
-  
-  # Convert columns as numeric
-  taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
-                               as.numeric)
-  
-  return(taxonomy)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    taxonomy <- read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=taxonomy"), simplifyVector = TRUE)
+    
+    # Convert columns as numeric
+    taxonomy <- dplyr::mutate_at(taxonomy, c("taxon_ID", "lft", "rgt"),
+                                 as.numeric)
+    
+    return(taxonomy)
+  }
 }

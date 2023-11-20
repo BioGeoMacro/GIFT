@@ -37,25 +37,29 @@
 GIFT_env_meta_misc <- function(
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
-  check_api(api)
-  GIFT_version <- check_gift_version(GIFT_version)
-
-  # Return the miscellaneous environmental information as a data frame
-  tmp <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=env_misc"), simplifyVector = TRUE)
-  
-  # Extract Citavi number from each list element
-  tmp$citavi_ID <- gsub("^.*\\#", "", tmp$citavi_ID)
-  tmp$citavi_ID <- substr(tmp$citavi_ID, 1, (nchar(tmp$citavi_ID)-1))
-  
-  # Merging complete reference names
-  refs <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=references_citavi"), simplifyVector = TRUE)
-  
-  tmp <- dplyr::left_join(tmp,refs, by = c("citavi_ID" = "citavi_seq_no"))
-  tmp$citavi_ID <- NULL
-  
-  return(tmp)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version(GIFT_version)
+    
+    # Return the miscellaneous environmental information as a data frame
+    tmp <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=env_misc"), simplifyVector = TRUE)
+    
+    # Extract Citavi number from each list element
+    tmp$citavi_ID <- gsub("^.*\\#", "", tmp$citavi_ID)
+    tmp$citavi_ID <- substr(tmp$citavi_ID, 1, (nchar(tmp$citavi_ID)-1))
+    
+    # Merging complete reference names
+    refs <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=references_citavi"), simplifyVector = TRUE)
+    
+    tmp <- dplyr::left_join(tmp,refs, by = c("citavi_ID" = "citavi_seq_no"))
+    tmp$citavi_ID <- NULL
+    
+    return(tmp)
+  }
 }

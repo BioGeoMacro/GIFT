@@ -47,20 +47,24 @@
 GIFT_references <- function(
     api = "https://gift.uni-goettingen.de/api/extended/",
     GIFT_version = "latest"){
-  check_api(api)
-  GIFT_version <- check_gift_version(GIFT_version)
-  
-  tmp <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=references"), simplifyVector = TRUE)
-  
-  tmp <- dplyr::mutate_at(
-    tmp, c("ref_ID","taxon_ID","checklist","native_indicated",
-           "natural_indicated","end_ref","traits"), as.numeric)
-  
-  if("restricted" %in% names(tmp)){
-    tmp$restricted <- as.numeric(tmp$restricted)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version(GIFT_version)
+    
+    tmp <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=references"), simplifyVector = TRUE)
+    
+    tmp <- dplyr::mutate_at(
+      tmp, c("ref_ID","taxon_ID","checklist","native_indicated",
+             "natural_indicated","end_ref","traits"), as.numeric)
+    
+    if("restricted" %in% names(tmp)){
+      tmp$restricted <- as.numeric(tmp$restricted)
+    }
+    
+    return(tmp)
   }
-  
-  return(tmp)
 }

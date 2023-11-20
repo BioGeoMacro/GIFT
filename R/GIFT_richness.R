@@ -43,31 +43,36 @@ GIFT_richness <- function(taxon_name = "Embryophyta", GIFT_version = "latest",
                           api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  if(length(taxon_name) != 1 || is.na(taxon_name) ||
-     !is.character(taxon_name)){
-    stop("'taxon_name' is incorrect. It must be a character string among one of
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    if(length(taxon_name) != 1 || is.na(taxon_name) ||
+       !is.character(taxon_name)){
+      stop(
+        "'taxon_name' is incorrect. It must be a character string among one of
          the taxonomic groups available in GIFT. To check them all, run
          'GIFT_taxonomy()'.")
+    }
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    # 2. Query ----
+    # Taxonomy query
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=taxonomy"), simplifyVector = TRUE)
+    
+    # Define tax_group
+    tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
+    
+    # Query
+    tmp <- jsonlite::read_json(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
+    
+    tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "native",
+                                   "naturalized", "endemic_min"), as.numeric)
+    
+    return(tmp)
   }
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  # 2. Query ----
-  # Taxonomy query
-  taxonomy <- jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=taxonomy"), simplifyVector = TRUE)
-  
-  # Define tax_group
-  tax_group <- taxonomy[which(taxonomy$taxon_name == taxon_name), "taxon_ID"]
-  
-  # Query
-  tmp <- jsonlite::read_json(paste0(
-    api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=species_num&taxonid=", tax_group), simplifyVector = TRUE)
-  
-  tmp <- dplyr::mutate_at(tmp, c("entity_ID", "total", "native",
-                                 "naturalized", "endemic_min"), as.numeric)
-  
-  return(tmp)
 }

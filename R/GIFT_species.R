@@ -35,21 +35,25 @@
 
 GIFT_species <- function(api = "https://gift.uni-goettingen.de/api/extended/",
                          GIFT_version = "latest"){
-  check_api(api)
-  GIFT_version <- check_gift_version(GIFT_version)
-  
-  # Return the species names
-  tmp <- list()
-  for (i in seq_len(6)){
-    tmp[[i]] <- jsonlite::read_json(paste0(
-      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-      ".php?query=species&startat=", as.integer((i-1)*100000)), 
-      simplifyVector = TRUE)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version(GIFT_version)
+    
+    # Return the species names
+    tmp <- list()
+    for (i in seq_len(6)){
+      tmp[[i]] <- jsonlite::read_json(paste0(
+        api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+        ".php?query=species&startat=", as.integer((i-1)*100000)), 
+        simplifyVector = TRUE)
+    }
+    tmp <- dplyr::bind_rows(tmp)
+    
+    tmp <- dplyr::mutate_at(tmp, c("work_ID", "genus_ID"), as.numeric)
+    tmp$work_author <- as.character(tmp$work_author)
+    
+    return(tmp)
   }
-  tmp <- dplyr::bind_rows(tmp)
-  
-  tmp <- dplyr::mutate_at(tmp, c("work_ID", "genus_ID"), as.numeric)
-  tmp$work_author <- as.character(tmp$work_author)
-  
-  return(tmp)
 }

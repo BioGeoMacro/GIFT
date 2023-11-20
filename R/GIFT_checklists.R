@@ -167,100 +167,84 @@ GIFT_checklists <- function(
     api = "https://gift.uni-goettingen.de/api/extended/"
 ){
   # 1. Controls ----
-  check_taxon_name(taxon_name)
-  check_complete_taxon(complete_taxon)
-  check_floristic_group(floristic_group)
-  check_complete_floristic(complete_floristic)
-  check_geo_type(geo_type)
-  check_ref_excluded(ref_excluded)
-  check_suit_geo(suit_geo)
-  check_overlap(overlap)
-  check_shp(shp = shp, overlap = overlap)
-  coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
-                                   overlap = overlap)
-  shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
-  check_remove_overlap(remove_overlap)
-  check_area_threshold_island(area_threshold_island)
-  check_area_threshold_mainland(area_threshold_mainland)
-  check_overlap_threshold(overlap_threshold)
-  check_by_ref_ID(by_ref_ID)
-  check_taxonomic_group(taxonomic_group)
-  check_namesmatched(namesmatched)
-  check_list_set_only(list_set_only)
-  check_api(api)
-  GIFT_version <- check_gift_version(GIFT_version)
-  
-  # 2. Function ----
-  ## 2.1. GIFT_checklists_conditional ---- 
-  GIFT_conditional_arg <- c("all", "native", "native and naturalized",
-                            "native and historically introduced", "endangered",
-                            "endemic", "naturalized", "other subset")
-  
-  arg_list <-
-    list("all" = GIFT_conditional_arg,
-         "native" = GIFT_conditional_arg[c(1:6, 8)],
-         "endemic" = GIFT_conditional_arg[c(1:6, 8)],
-         "naturalized" = GIFT_conditional_arg[c(1, 3, 4, 7, 8)])
-  
-  arg_list_second <-
-    list("all" = GIFT_conditional_arg[1], # double check
-         "native" = GIFT_conditional_arg[c(1:4)],
-         "endemic" = GIFT_conditional_arg[c(1:4, 6)],
-         "naturalized" = GIFT_conditional_arg[c(1, 3, 7)])
-  
-  # Converting geo_type
-  entity_class <- c()
-  if(geo_type == "Mainland"){
-    entity_class <- append(entity_class, c("Island/Mainland", "Mainland"))
-  } else if(geo_type == "Island"){
-    entity_class <- append(entity_class, c("Island", "Island Group",
-                                           "Island Part"))
-  } else if(geo_type == "All"){
-    entity_class <- append(entity_class, c("Island/Mainland", "Mainland",
-                                           "Island", "Island Group",
-                                           "Island Part"))
-  } 
-  
-  # List_set query
-  list_set <- jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=lists"), simplifyVector = TRUE)
-  
-  message("\nMetadata for lists retrieved.\n")
-  
-  # Taxonomy query
-  taxonomy <- jsonlite::read_json(
-    paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-           ".php?query=taxonomy"), simplifyVector = TRUE)
-  
-  message("GIFT taxonomy downloaded.\n")
-  
-  # If the user asks for floristic_group = native & geo_type = Island
-  # In GIFT_checklists_conditional()
-  lists <- suppressMessages(
-    GIFT::GIFT_checklists_conditional(
-      taxon_name = taxon_name,
-      floristic_scope = arg_list[[floristic_group]],
-      ref_excluded = ref_excluded,
-      entity_class = entity_class,
-      native_indicated = (floristic_group == "native"),
-      natural_indicated = (floristic_group == "naturalized"),
-      end_ref = (floristic_group == "endemic"),
-      end_list = FALSE,
-      suit_geo = suit_geo,
-      complete_taxon = complete_taxon,
-      GIFT_version = GIFT_version,
-      api = api,
-      list_set = list_set,
-      taxonomy = taxonomy))
-  
-  # If complete_floristic == TRUE => running _conditional() a second time
-  # subsetting first call with the entity_IDs got in the second one
-  if(complete_floristic == TRUE){
-    floristic_subset <- suppressMessages(
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    check_taxon_name(taxon_name)
+    check_complete_taxon(complete_taxon)
+    check_floristic_group(floristic_group)
+    check_complete_floristic(complete_floristic)
+    check_geo_type(geo_type)
+    check_ref_excluded(ref_excluded)
+    check_suit_geo(suit_geo)
+    check_overlap(overlap)
+    check_shp(shp = shp, overlap = overlap)
+    coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
+                                     overlap = overlap)
+    shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
+    check_remove_overlap(remove_overlap)
+    check_area_threshold_island(area_threshold_island)
+    check_area_threshold_mainland(area_threshold_mainland)
+    check_overlap_threshold(overlap_threshold)
+    check_by_ref_ID(by_ref_ID)
+    check_taxonomic_group(taxonomic_group)
+    check_namesmatched(namesmatched)
+    check_list_set_only(list_set_only)
+    GIFT_version <- check_gift_version(GIFT_version)
+    
+    # 2. Function ----
+    ## 2.1. GIFT_checklists_conditional ---- 
+    GIFT_conditional_arg <- c("all", "native", "native and naturalized",
+                              "native and historically introduced",
+                              "endangered", "endemic", "naturalized",
+                              "other subset")
+    
+    arg_list <-
+      list("all" = GIFT_conditional_arg,
+           "native" = GIFT_conditional_arg[c(1:6, 8)],
+           "endemic" = GIFT_conditional_arg[c(1:6, 8)],
+           "naturalized" = GIFT_conditional_arg[c(1, 3, 4, 7, 8)])
+    
+    arg_list_second <-
+      list("all" = GIFT_conditional_arg[1], # double check
+           "native" = GIFT_conditional_arg[c(1:4)],
+           "endemic" = GIFT_conditional_arg[c(1:4, 6)],
+           "naturalized" = GIFT_conditional_arg[c(1, 3, 7)])
+    
+    # Converting geo_type
+    entity_class <- c()
+    if(geo_type == "Mainland"){
+      entity_class <- append(entity_class, c("Island/Mainland", "Mainland"))
+    } else if(geo_type == "Island"){
+      entity_class <- append(entity_class, c("Island", "Island Group",
+                                             "Island Part"))
+    } else if(geo_type == "All"){
+      entity_class <- append(entity_class, c("Island/Mainland", "Mainland",
+                                             "Island", "Island Group",
+                                             "Island Part"))
+    } 
+    
+    # List_set query
+    list_set <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=lists"), simplifyVector = TRUE)
+    
+    message("\nMetadata for lists retrieved.\n")
+    
+    # Taxonomy query
+    taxonomy <- jsonlite::read_json(
+      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+             ".php?query=taxonomy"), simplifyVector = TRUE)
+    
+    message("GIFT taxonomy downloaded.\n")
+    
+    # If the user asks for floristic_group = native & geo_type = Island
+    # In GIFT_checklists_conditional()
+    lists <- suppressMessages(
       GIFT::GIFT_checklists_conditional(
         taxon_name = taxon_name,
-        floristic_scope = arg_list_second[[floristic_group]],
+        floristic_scope = arg_list[[floristic_group]],
         ref_excluded = ref_excluded,
         entity_class = entity_class,
         native_indicated = (floristic_group == "native"),
@@ -274,112 +258,136 @@ GIFT_checklists <- function(
         list_set = list_set,
         taxonomy = taxonomy))
     
-    # Subset
-    lists <- lists[which(lists$entity_ID %in% floristic_subset$entity_ID), ]
-  }
-  
-  ## 2.2. Spatial filtering ----
-  if(!is.null(shp) | !is.null(coordinates)){
-    spatial_filter <- 
-      suppressMessages(GIFT::GIFT_spatial(shp = shp,
-                                          coordinates = coordinates,
-                                          overlap = overlap,
-                                          entity_ID = unique(lists$entity_ID),
-                                          api = api,
-                                          GIFT_version = GIFT_version))
-    
-    lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]
-    
-    if(nrow(lists) == 0){
-      message("No checklist match your spatial criteria.")
-      return(lists)
+    # If complete_floristic == TRUE => running _conditional() a second time
+    # subsetting first call with the entity_IDs got in the second one
+    if(complete_floristic == TRUE){
+      floristic_subset <- suppressMessages(
+        GIFT::GIFT_checklists_conditional(
+          taxon_name = taxon_name,
+          floristic_scope = arg_list_second[[floristic_group]],
+          ref_excluded = ref_excluded,
+          entity_class = entity_class,
+          native_indicated = (floristic_group == "native"),
+          natural_indicated = (floristic_group == "naturalized"),
+          end_ref = (floristic_group == "endemic"),
+          end_list = FALSE,
+          suit_geo = suit_geo,
+          complete_taxon = complete_taxon,
+          GIFT_version = GIFT_version,
+          api = api,
+          list_set = list_set,
+          taxonomy = taxonomy))
+      
+      # Subset
+      lists <- lists[which(lists$entity_ID %in% floristic_subset$entity_ID), ]
     }
-  }
-  
-  ## 2.3. Overlapping entities ----
-  # overlapped entities are removed => subset lists based on entity_ID again)
-  if(remove_overlap == TRUE){
     
-    if(!by_ref_ID){
-      no_overlap <- suppressMessages(
-        GIFT::GIFT_no_overlap(
-          entity_IDs = lists$entity_ID,
-          area_threshold_island = area_threshold_island, 
-          area_threshold_mainland = area_threshold_mainland,
-          overlap_threshold = overlap_threshold, 
-          geoentities_overlap = NULL, api = api, GIFT_version = GIFT_version))
+    ## 2.2. Spatial filtering ----
+    if(!is.null(shp) | !is.null(coordinates)){
+      spatial_filter <- 
+        suppressMessages(GIFT::GIFT_spatial(
+          shp = shp,
+          coordinates = coordinates,
+          overlap = overlap,
+          entity_ID = unique(lists$entity_ID),
+          api = api,
+          GIFT_version = GIFT_version))
       
-      lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+      lists <- lists[which(lists$entity_ID %in% spatial_filter$entity_ID), ]
       
-    } else {
+      if(nrow(lists) == 0){
+        message("No checklist match your spatial criteria.")
+        return(lists)
+      }
+    }
+    
+    ## 2.3. Overlapping entities ----
+    # overlapped entities are removed => subset lists based on entity_ID again)
+    if(remove_overlap == TRUE){
       
-      geoentities_overlap <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=overlap"), simplifyVector = TRUE)
-      
-      to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
-        to_keep <- suppressMessages(
+      if(!by_ref_ID){
+        no_overlap <- suppressMessages(
           GIFT::GIFT_no_overlap(
-            entity_IDs = x, 
+            entity_IDs = lists$entity_ID,
             area_threshold_island = area_threshold_island, 
-            area_threshold_mainland = area_threshold_mainland, 
+            area_threshold_mainland = area_threshold_mainland,
             overlap_threshold = overlap_threshold, 
-            geoentities_overlap = geoentities_overlap, 
-            api = api, GIFT_version = GIFT_version))
-        to_remove <- x[which(!x %in% to_keep)]
-      })
-      to_remove <- unlist(to_remove)
+            geoentities_overlap = NULL, api = api,
+            GIFT_version = GIFT_version))
+        
+        lists <- lists[which(lists$entity_ID %in% no_overlap), ]
+        
+      } else {
+        
+        geoentities_overlap <- jsonlite::read_json(
+          paste0(api, "index", ifelse(GIFT_version == "beta", "",
+                                      GIFT_version),
+                 ".php?query=overlap"), simplifyVector = TRUE)
+        
+        to_remove <- tapply(lists$entity_ID, lists$ref_ID, function(x) { 
+          to_keep <- suppressMessages(
+            GIFT::GIFT_no_overlap(
+              entity_IDs = x, 
+              area_threshold_island = area_threshold_island, 
+              area_threshold_mainland = area_threshold_mainland, 
+              overlap_threshold = overlap_threshold, 
+              geoentities_overlap = geoentities_overlap, 
+              api = api, GIFT_version = GIFT_version))
+          to_remove <- x[which(!x %in% to_keep)]
+        })
+        to_remove <- unlist(to_remove)
+        
+        lists <- lists[which(!lists$entity_ID %in% to_remove),]
+      }
       
-      lists <- lists[which(!lists$entity_ID %in% to_remove),]
+      message("Overlapping and nested regions removed.\n")
     }
     
-    message("Overlapping and nested regions removed.\n")
-  }
-  
-  ## 2.4. Downloading ----
-  # When downloading the species, whole filtering process has to happen again
-  # Output of the function: species distribution in lists & metadata for lists
-  
-  # Match argument name with GIFT_checklists_raw()
-  if(floristic_group == "endemic"){
-    floristic_group <- "endemic_ref"
-  }
-  
-  checklists <- NA
-  if (!list_set_only){
-    message("Downloading checklists.\n")
+    ## 2.4. Downloading ----
+    # When downloading the species, whole filtering process has to happen again
+    # Output of the function: species distribution in lists & metadata for lists
     
-    checklists <- 
-      suppressMessages(
-        GIFT::GIFT_checklists_raw(list_ID = unique(lists$list_ID),
-                                 taxon_name = taxon_name,
-                                 namesmatched = namesmatched,
-                                 floristic_group = floristic_group,
-                                 GIFT_version = GIFT_version,
-                                 api = api,
-                                 list_set = list_set,
-                                 taxonomy = taxonomy))
-    if(taxonomic_group){
-      species <- unique(checklists[, c("work_ID","genus_ID","work_species")])
-      
-      checklists$family <-
-        suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
-                                             taxon_lvl = "family",
-                                             return_ID = FALSE,
-                                             GIFT_version = GIFT_version,
-                                             api = api,
-                                             taxonomy = taxonomy,
-                                             species = species))
-      checklists$tax_group <-
-        suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
-                                             taxon_lvl = "higher_lvl",
-                                             return_ID = FALSE,
-                                             GIFT_version = GIFT_version,
-                                             api = api,
-                                             taxonomy = taxonomy,
-                                             species = species))
+    # Match argument name with GIFT_checklists_raw()
+    if(floristic_group == "endemic"){
+      floristic_group <- "endemic_ref"
     }
+    
+    checklists <- NA
+    if (!list_set_only){
+      message("Downloading checklists.\n")
+      
+      checklists <- 
+        suppressMessages(
+          GIFT::GIFT_checklists_raw(list_ID = unique(lists$list_ID),
+                                    taxon_name = taxon_name,
+                                    namesmatched = namesmatched,
+                                    floristic_group = floristic_group,
+                                    GIFT_version = GIFT_version,
+                                    api = api,
+                                    list_set = list_set,
+                                    taxonomy = taxonomy))
+      if(taxonomic_group){
+        species <- unique(checklists[, c("work_ID","genus_ID","work_species")])
+        
+        checklists$family <-
+          suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
+                                               taxon_lvl = "family",
+                                               return_ID = FALSE,
+                                               GIFT_version = GIFT_version,
+                                               api = api,
+                                               taxonomy = taxonomy,
+                                               species = species))
+        checklists$tax_group <-
+          suppressMessages(GIFT::GIFT_taxgroup(work_ID = checklists$work_ID,
+                                               taxon_lvl = "higher_lvl",
+                                               return_ID = FALSE,
+                                               GIFT_version = GIFT_version,
+                                               api = api,
+                                               taxonomy = taxonomy,
+                                               species = species))
+      }
+    }
+    
+    return(list(lists = lists, checklists = checklists))
   }
-  
-  return(list(lists = lists, checklists = checklists))
 }

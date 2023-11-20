@@ -77,191 +77,199 @@ GIFT_spatial <- function(
   api = "https://gift.uni-goettingen.de/api/extended/"){
   
   # 1. Controls ----
-  check_overlap(overlap)
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  if(is.null(shp) & is.null(coordinates)){
-    stop("Please provide a shapefile or a set of XY coordinates.")
-  }
-  
-  if(!is.null(shp) & !is.null(coordinates)){
-    warning("Both shapefile and coordinates are provided. We use the XY
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    check_overlap(overlap)
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    if(is.null(shp) & is.null(coordinates)){
+      stop("Please provide a shapefile or a set of XY coordinates.")
+    }
+    
+    if(!is.null(shp) & !is.null(coordinates)){
+      warning("Both shapefile and coordinates are provided. We use the XY
     coordinates. If you want to use the shapefile instead,
             set 'coordinates = NULL'.")
-  }
-  
-  shp <- check_shp(shp = shp, overlap = overlap)
-  
-  # Visible binding for global variable
-  x_min <- x_max <- y_min <- y_max <- NULL
-  
-  # Define shp as coordinates, only one format accepted
-  coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
-                                   overlap = overlap)
-  shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
-  
-  # 2. Query ----
-  ## 2.0. GIFT_env() & subset entity_ID ----
-  # Depending upon the overlap argument, we either query the centroids or
-  # the extent from GIFT
-  if(overlap == "centroid_inside"){
-    # Query the centroid using GIFT_env()
-    GIFT_centroids <- suppressMessages(
-      GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
-                     api = api, GIFT_version = GIFT_version))
-    # Removing NAs
-    GIFT_centroids <-
-      GIFT_centroids[stats::complete.cases(GIFT_centroids$longitude), ]
-    
-    # Numeric columns
-    GIFT_centroids <- dplyr::mutate_at(
-      GIFT_centroids, c("longitude", "latitude"), as.numeric)
-    
-    # Filter for entity_ID
-    if(!is.null(entity_ID)){
-      GIFT_centroids <- GIFT_centroids[which(GIFT_centroids$entity_ID %in%
-                                               entity_ID), ]
-    }
-    if(nrow(GIFT_centroids) == 0){
-      message("No polygon matches the shape provided.")
-      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
-                        coverage = character()))
     }
     
-  } else if(overlap %in% c("extent_intersect", "shape_intersect",
-                           "shape_inside")){
-    # Query the extent using GIFT_env()
-    GIFT_extents <- GIFT::GIFT_env(
-      miscellaneous = c("x_min", "x_max", "y_min", "y_max"),
-      api = api, GIFT_version = GIFT_version)
+    shp <- check_shp(shp = shp, overlap = overlap)
     
-    # Removing NAs
-    GIFT_extents <- GIFT_extents[stats::complete.cases(GIFT_extents$x_max), ]
+    # Visible binding for global variable
+    x_min <- x_max <- y_min <- y_max <- NULL
     
-    # Filter for entity_ID
-    if(!is.null(entity_ID)){
-      GIFT_extents <- GIFT_extents[which(GIFT_extents$entity_ID %in%
-                                           entity_ID), ]
-    }
-    if(nrow(GIFT_extents) == 0){
-      message("No polygon matches the shape provided.")
-      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
-                        coverage = character()))
-    }
+    # Define shp as coordinates, only one format accepted
+    coord_check <- check_coordinates(coordinates = coordinates, shp = shp,
+                                     overlap = overlap)
+    shp <- coord_check[["shp"]]; coordinates <- coord_check[["coordinates"]]
     
-    # If all coordinates are equal, extend a bit the coordinates
-    GIFT_extents <- dplyr::mutate_at(
-      GIFT_extents, c("x_min", "x_max", "y_min", "y_max"), as.numeric)
-    
-    GIFT_extents <- dplyr::mutate(GIFT_extents,
-                                  x_min = ifelse((x_min - x_max) == 0,
-                                                 x_min - 0.005, x_min),
-                                  y_min = ifelse((y_min - y_max) == 0,
-                                                 y_min - 0.005, y_min))
-  }
-  
-  ## 2.1. centroid_inside ----
-  if(overlap == "centroid_inside"){
-    # Subset: only GIFT centroids overlapping with provided shape file
-    GIFT_centroids_sf <- sf::st_as_sf(GIFT_centroids,
-                                      coords = c("longitude", "latitude"),
-                                      crs = 4326)
-    
-    sf::st_agr(GIFT_centroids_sf) <- "constant"
-    sf::st_agr(shp) <- "constant"
-    
-    tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
-    sf::st_geometry(tmp) <- NULL
-    
-    if(nrow(tmp) == 0){
-      message("No polygon matches the shape provided.")
-      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
-                        coverage = character()))
-    }
-    
-    gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
-    
-    # Add coverage column
-    gift_overlap$coverage <- NA
-    
-  } else if(overlap %in% c("extent_intersect", "shape_intersect",
-                           "shape_inside")){
-    # Checking what extent boxes overlap
-    GIFT_extents$keep <- 0
-    for(i in seq_len(nrow(GIFT_extents))){
-      tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
-                      xmax = as.numeric(GIFT_extents[i, "x_max"]),
-                      ymin = as.numeric(GIFT_extents[i, "y_min"]),
-                      ymax = as.numeric(GIFT_extents[i, "y_max"]))
+    # 2. Query ----
+    ## 2.0. GIFT_env() & subset entity_ID ----
+    # Depending upon the overlap argument, we either query the centroids or
+    # the extent from GIFT
+    if(overlap == "centroid_inside"){
+      # Query the centroid using GIFT_env()
+      GIFT_centroids <- suppressMessages(
+        GIFT::GIFT_env(miscellaneous = c("longitude", "latitude"),
+                       api = api, GIFT_version = GIFT_version))
+      # Removing NAs
+      GIFT_centroids <-
+        GIFT_centroids[stats::complete.cases(GIFT_centroids$longitude), ]
       
-      tmp <- sf::st_sfc(tmp, crs = 4326)
+      # Numeric columns
+      GIFT_centroids <- dplyr::mutate_at(
+        GIFT_centroids, c("longitude", "latitude"), as.numeric)
       
-      tmp <- sf::st_intersection(tmp, shp)
-      if(length(tmp) > 0){
-        GIFT_extents[i, "keep"] <- 1
+      # Filter for entity_ID
+      if(!is.null(entity_ID)){
+        GIFT_centroids <- GIFT_centroids[which(GIFT_centroids$entity_ID %in%
+                                                 entity_ID), ]
       }
+      if(nrow(GIFT_centroids) == 0){
+        message("No polygon matches the shape provided.")
+        return(data.frame(entity_ID = character(), geo_entity_ref = character(),
+                          coverage = character()))
+      }
+      
+    } else if(overlap %in% c("extent_intersect", "shape_intersect",
+                             "shape_inside")){
+      # Query the extent using GIFT_env()
+      GIFT_extents <- GIFT::GIFT_env(
+        miscellaneous = c("x_min", "x_max", "y_min", "y_max"),
+        api = api, GIFT_version = GIFT_version)
+      
+      # Removing NAs
+      GIFT_extents <- GIFT_extents[stats::complete.cases(GIFT_extents$x_max), ]
+      
+      # Filter for entity_ID
+      if(!is.null(entity_ID)){
+        GIFT_extents <- GIFT_extents[which(GIFT_extents$entity_ID %in%
+                                             entity_ID), ]
+      }
+      if(nrow(GIFT_extents) == 0){
+        message("No polygon matches the shape provided.")
+        return(data.frame(entity_ID = character(),
+                          geo_entity_ref = character(),
+                          coverage = character()))
+      }
+      
+      # If all coordinates are equal, extend a bit the coordinates
+      GIFT_extents <- dplyr::mutate_at(
+        GIFT_extents, c("x_min", "x_max", "y_min", "y_max"), as.numeric)
+      
+      GIFT_extents <- dplyr::mutate(GIFT_extents,
+                                    x_min = ifelse((x_min - x_max) == 0,
+                                                   x_min - 0.005, x_min),
+                                    y_min = ifelse((y_min - y_max) == 0,
+                                                   y_min - 0.005, y_min))
     }
     
-    # Subset: only boxes that overlap with provided shape
-    GIFT_extents <- GIFT_extents[which(GIFT_extents$keep == 1), ]
-    
-    if(nrow(GIFT_extents) == 0){
-      message("No polygon matches the shape provided.")
-      return(data.frame(entity_ID = character(), geo_entity_ref = character(),
-                        coverage = character()))
-    }
-    
-    if(overlap == "extent_intersect"){
-      ## 2.2. extent_intersect ----
-      gift_overlap <- GIFT_extents[, c("entity_ID", "geo_entity")]
+    ## 2.1. centroid_inside ----
+    if(overlap == "centroid_inside"){
+      # Subset: only GIFT centroids overlapping with provided shape file
+      GIFT_centroids_sf <- sf::st_as_sf(GIFT_centroids,
+                                        coords = c("longitude", "latitude"),
+                                        crs = 4326)
+      
+      sf::st_agr(GIFT_centroids_sf) <- "constant"
+      sf::st_agr(shp) <- "constant"
+      
+      tmp <- sf::st_intersection(GIFT_centroids_sf, shp)
+      sf::st_geometry(tmp) <- NULL
+      
+      if(nrow(tmp) == 0){
+        message("No polygon matches the shape provided.")
+        return(data.frame(entity_ID = character(),
+                          geo_entity_ref = character(),
+                          coverage = character()))
+      }
+      
+      gift_overlap <- as.data.frame(tmp[, c("entity_ID", "geo_entity")])
       
       # Add coverage column
       gift_overlap$coverage <- NA
       
-    } else if(overlap %in% c("shape_intersect", "shape_inside")){
-      # Add coverage column
-      GIFT_extents$coverage <- NA
-      
-      # Downloading geojson for which extent boxes overlap with provided shape
+    } else if(overlap %in% c("extent_intersect", "shape_intersect",
+                             "shape_inside")){
+      # Checking what extent boxes overlap
+      GIFT_extents$keep <- 0
       for(i in seq_len(nrow(GIFT_extents))){
-        tmp_geo <- sf::st_read(paste0(
-          "https://gift.uni-goettingen.de/geojson/geojson_smaller", 
-          ifelse(GIFT_version == "beta", "", GIFT_version), "/",
-          GIFT_extents[i, "entity_ID"],
-          ".geojson"), quiet = TRUE)
+        tmp <- make_box(xmin = as.numeric(GIFT_extents[i, "x_min"]),
+                        xmax = as.numeric(GIFT_extents[i, "x_max"]),
+                        ymin = as.numeric(GIFT_extents[i, "y_min"]),
+                        ymax = as.numeric(GIFT_extents[i, "y_max"]))
         
-        # Control if sf geometry is not valid (i = 68 & 257)
-        if(!(sf::st_is_valid(tmp_geo))){
-          tmp_geo <- sf::st_make_valid(sf::st_set_precision(
-            tmp_geo, 1e2))
-        }
+        tmp <- sf::st_sfc(tmp, crs = 4326)
         
-        # Calculate overlap
-        sf::st_agr(tmp_geo) <- "constant"
-        
-        sf::st_agr(shp) <- "constant"
-        tmp <- sf::st_intersection(tmp_geo, shp)
-        
-        if(nrow(tmp) > 0){
-          GIFT_extents[i, "coverage"] <- round(100*sf::st_area(tmp)/
-                                                 sf::st_area(tmp_geo), 2)
-        } else{
-          GIFT_extents[i, "coverage"] <- NA
+        tmp <- sf::st_intersection(tmp, shp)
+        if(length(tmp) > 0){
+          GIFT_extents[i, "keep"] <- 1
         }
       }
       
-      if(overlap == "shape_intersect"){
-        ## 2.3. shape_intersect ----
-        GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage > 0), ]
-        
-      } else if(overlap == "shape_inside"){
-        ## 2.4. shape_inside ----
-        GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage == 100), ]
+      # Subset: only boxes that overlap with provided shape
+      GIFT_extents <- GIFT_extents[which(GIFT_extents$keep == 1), ]
+      
+      if(nrow(GIFT_extents) == 0){
+        message("No polygon matches the shape provided.")
+        return(data.frame(entity_ID = character(),
+                          geo_entity_ref = character(),
+                          coverage = character()))
       }
       
-      gift_overlap <- GIFT_extents[, c("entity_ID", "geo_entity", "coverage")]
+      if(overlap == "extent_intersect"){
+        ## 2.2. extent_intersect ----
+        gift_overlap <- GIFT_extents[, c("entity_ID", "geo_entity")]
+        
+        # Add coverage column
+        gift_overlap$coverage <- NA
+        
+      } else if(overlap %in% c("shape_intersect", "shape_inside")){
+        # Add coverage column
+        GIFT_extents$coverage <- NA
+        
+        # Downloading geojson for which extent boxes overlap with provided shape
+        for(i in seq_len(nrow(GIFT_extents))){
+          tmp_geo <- sf::st_read(paste0(
+            "https://gift.uni-goettingen.de/geojson/geojson_smaller", 
+            ifelse(GIFT_version == "beta", "", GIFT_version), "/",
+            GIFT_extents[i, "entity_ID"],
+            ".geojson"), quiet = TRUE)
+          
+          # Control if sf geometry is not valid (i = 68 & 257)
+          if(!(sf::st_is_valid(tmp_geo))){
+            tmp_geo <- sf::st_make_valid(sf::st_set_precision(
+              tmp_geo, 1e2))
+          }
+          
+          # Calculate overlap
+          sf::st_agr(tmp_geo) <- "constant"
+          
+          sf::st_agr(shp) <- "constant"
+          tmp <- sf::st_intersection(tmp_geo, shp)
+          
+          if(nrow(tmp) > 0){
+            GIFT_extents[i, "coverage"] <- round(100*sf::st_area(tmp)/
+                                                   sf::st_area(tmp_geo), 2)
+          } else{
+            GIFT_extents[i, "coverage"] <- NA
+          }
+        }
+        
+        if(overlap == "shape_intersect"){
+          ## 2.3. shape_intersect ----
+          GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage > 0), ]
+          
+        } else if(overlap == "shape_inside"){
+          ## 2.4. shape_inside ----
+          GIFT_extents <- GIFT_extents[which(GIFT_extents$coverage == 100), ]
+        }
+        
+        gift_overlap <- GIFT_extents[, c("entity_ID", "geo_entity",
+                                         "coverage")]
+      }
     }
+    return(gift_overlap)
   }
-  return(gift_overlap)
 }

@@ -62,159 +62,170 @@ GIFT_traits <- function(
     GIFT_version = "latest"){
   
   # 1. Controls ----
-  # Arguments
-  check_trait_IDs(trait_IDs)
-  
-  if(!is.numeric(agreement)){
-    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    # Arguments
+    check_trait_IDs(trait_IDs)
+    
+    if(!is.numeric(agreement)){
+      stop(
+        "agreement must be a numeric between 0 and 1 indicating the proportion 
          of original trait values that needs to support the aggregated value in 
          case of categorical traits.")
-  } else if(agreement > 1 | agreement < 0){
-    stop("agreement must be a numeric between 0 and 1 indicating the proportion 
+    } else if(agreement > 1 | agreement < 0){
+      stop(
+        "agreement must be a numeric between 0 and 1 indicating the proportion 
          of original trait values that needs to support the aggregated value in 
          case of categorical traits.")
-  }
-  
-  check_bias_ref(bias_ref)
-  check_bias_deriv(bias_deriv)
-  check_api(api)
-  GIFT_version <- suppressMessages(check_gift_version_simple(GIFT_version))
-  
-  # Load traits_metadata to check if the provided IDs are available
-  tmp <- GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
-  if(!all(trait_IDs %in% tmp$Lvl3)){
-    stop("trait_IDs must belong to the available list of traits. To see which
+    }
+    
+    check_bias_ref(bias_ref)
+    check_bias_deriv(bias_deriv)
+    GIFT_version <- suppressMessages(check_gift_version_simple(GIFT_version))
+    
+    # Load traits_metadata to check if the provided IDs are available
+    tmp <- GIFT_traits_meta(api = api, GIFT_version = GIFT_version)
+    if(!all(trait_IDs %in% tmp$Lvl3)){
+      stop(
+        "trait_IDs must belong to the available list of traits. To see which
            traits are available, run 'GIFT_traits_meta() and look at column
            'Lvl3'.")
-  }
-  
-  if(GIFT_version == "1.0" & (bias_ref == FALSE | bias_deriv == FALSE)){
-    message(
-      "Warning: In GIFT version 1.0 it is not yet possible to filter trait 
-      values for biases. bias_ref and bias_deriv arguments are ignored.")
-  }
-  
-  # 2. Function ----
-  # Get species names
-  message("\nRetrieving species' names.\n")
-  
-  species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
-                                           api = api))
-  
-  message(paste0("Preparing the download of trait data for ",
-                 length(unique(trait_IDs)),
-                 " trait(s).\n"))
-
-  # Initiating list
-  trait_list <- list()
-  
-  n <- ceiling(tmp$count[match(trait_IDs, tmp$Lvl3)]/10000)
-  
-  progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
-  
-  count <- 1
-  utils::setTxtProgressBar(progress, count)
-  
-  for(i in seq_along(trait_IDs)){
-    trait_list_i <- list()
-    
-    for (k in seq_len(n[i])){
-      trait_list_i[[k]] <- jsonlite::read_json(
-        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-               ".php?query=traits&traitid=",
-               trait_IDs[i], "&biasref=", as.numeric(bias_ref),
-               "&biasderiv=", as.numeric(bias_deriv), 
-               "&startat=", as.integer((k-1)*10000)),
-        simplifyVector = TRUE)
-      count <- count + 1
-      utils::setTxtProgressBar(progress, count)
     }
-    trait_list[[i]] <- dplyr::bind_rows(trait_list_i)
-    trait_list[[i]]$trait_ID <- trait_IDs[i]
     
+    if(GIFT_version == "1.0" & (bias_ref == FALSE | bias_deriv == FALSE)){
+      message(
+        "Warning: In GIFT version 1.0 it is not yet possible to filter trait 
+      values for biases. bias_ref and bias_deriv arguments are ignored.")
+    }
+    
+    # 2. Function ----
+    # Get species names
+    message("\nRetrieving species' names.\n")
+    
+    species <- suppressMessages(GIFT_species(GIFT_version = GIFT_version, 
+                                             api = api))
+    
+    message(paste0("Preparing the download of trait data for ",
+                   length(unique(trait_IDs)),
+                   " trait(s).\n"))
+    
+    # Initiating list
+    trait_list <- list()
+    
+    n <- ceiling(tmp$count[match(trait_IDs, tmp$Lvl3)]/10000)
+    
+    progress <- utils::txtProgressBar(min = 0, max = sum(n)+1, initial = 0) 
+    
+    count <- 1
+    utils::setTxtProgressBar(progress, count)
+    
+    for(i in seq_along(trait_IDs)){
+      trait_list_i <- list()
+      
+      for (k in seq_len(n[i])){
+        trait_list_i[[k]] <- jsonlite::read_json(
+          paste0(api, "index", ifelse(GIFT_version == "beta", "",
+                                      GIFT_version),
+                 ".php?query=traits&traitid=",
+                 trait_IDs[i], "&biasref=", as.numeric(bias_ref),
+                 "&biasderiv=", as.numeric(bias_deriv), 
+                 "&startat=", as.integer((k-1)*10000)),
+          simplifyVector = TRUE)
+        count <- count + 1
+        utils::setTxtProgressBar(progress, count)
+      }
+      trait_list[[i]] <- dplyr::bind_rows(trait_list_i)
+      trait_list[[i]]$trait_ID <- trait_IDs[i]
+      
+    }
+    
+    # trait_list <- purrr::map(
+    #   .x = seq_along(trait_IDs),
+    #   .f = function(x){
+    #     trait_list_x <- list()
+    #     
+    #     trait_list_x <- purrr::map(
+    #       .x = seq_len(n[x]),
+    #       .f = function(y){
+    #         jsonlite::read_json(
+    #           paste0(api, "index", ifelse(GIFT_version == "beta", "",
+    #                                       GIFT_version),
+    #                  ".php?query=traits&traitid=",
+    #                  trait_IDs[x], "&biasref=", as.numeric(bias_ref),
+    #                  "&biasderiv=", as.numeric(bias_deriv),
+    #                  "&startat=", as.integer((y-1)*10000)),
+    #           simplifyVector = TRUE)
+    #       },
+    #       .progress = paste0("Retrieving trait number ", x))
+    #     
+    #     trait_list_x <- dplyr::bind_rows(trait_list_x)
+    #     trait_list_x$trait_ID <- trait_IDs[x]
+    #     return(trait_list_x)
+    #   },
+    #   .progress = TRUE)
+    
+    message("\n")
+    
+    # Formatting trait_list as a data.frame
+    trait_list <- dplyr::bind_rows(trait_list)
+    trait_list <- trait_list[which(trait_list$agreement >= agreement |
+                                     is.na(trait_list$agreement)), ]
+    
+    # Make certain columns numeric
+    trait_list <- dplyr::mutate_at(
+      trait_list, c("work_ID", "agreement", "coeff_var", "n"), as.numeric)
+    
+    # Add species names
+    trait_list <- dplyr::left_join(trait_list,
+                                   species[, c("work_ID", "work_species", 
+                                               "work_author")],
+                                   by = "work_ID")
+    
+    # Round agreement score
+    trait_list$agreement <- round(trait_list$agreement, 3)
+    
+    # Reordering columns
+    trait_list <- trait_list[, c("work_ID", "work_species", "work_author",
+                                 "trait_ID", "trait_value", "agreement",
+                                 "coeff_var", "n", "references")]
+    
+    # Renaming column
+    colnames(trait_list)[colnames(trait_list) == "coeff_var"] <- "cv"
+    
+    # Wider format
+    trait_list <- tidyr::pivot_wider(
+      trait_list, names_from = "trait_ID",
+      values_from = c("trait_value", "agreement", "cv", "n", "references"))
+    
+    # Make data.frame
+    trait_list <- as.data.frame(trait_list)
+    
+    # Remove agreement columns for continuous traits and coeff_var for
+    # categorical traits
+    numeric_traits <- tmp[which(tmp$type == "numeric"), "Lvl3"]
+    numeric_columns <-
+      paste("agreement", numeric_traits, sep = "_")[
+        paste("agreement", numeric_traits, sep = "_") %in%
+          colnames(trait_list)]
+    
+    categorical_traits <- tmp[which(tmp$type != "numeric"), "Lvl3"]
+    categorical_columns <-
+      paste("cv", categorical_traits, sep = "_")[
+        paste("cv", categorical_traits, sep = "_") %in% colnames(trait_list)]
+    
+    trait_list <- trait_list[, !(colnames(trait_list) %in% numeric_columns)]
+    trait_list <- trait_list[, !(colnames(trait_list) %in%
+                                   categorical_columns)]
+    
+    # Make numeric trait values numeric
+    numeric_columns <-
+      paste("trait_value", numeric_traits, sep = "_")[
+        paste("trait_value", numeric_traits, sep = "_") %in%
+          colnames(trait_list)]
+    trait_list <- dplyr::mutate_at(trait_list, numeric_columns, as.numeric)
+    
+    return(trait_list)
   }
-  
-  # trait_list <- purrr::map(
-  #   .x = seq_along(trait_IDs),
-  #   .f = function(x){
-  #     trait_list_x <- list()
-  #     
-  #     trait_list_x <- purrr::map(
-  #       .x = seq_len(n[x]),
-  #       .f = function(y){
-  #         jsonlite::read_json(
-  #           paste0(api, "index", ifelse(GIFT_version == "beta", "",
-  #                                       GIFT_version),
-  #                  ".php?query=traits&traitid=",
-  #                  trait_IDs[x], "&biasref=", as.numeric(bias_ref),
-  #                  "&biasderiv=", as.numeric(bias_deriv),
-  #                  "&startat=", as.integer((y-1)*10000)),
-  #           simplifyVector = TRUE)
-  #       },
-  #       .progress = paste0("Retrieving trait number ", x))
-  #     
-  #     trait_list_x <- dplyr::bind_rows(trait_list_x)
-  #     trait_list_x$trait_ID <- trait_IDs[x]
-  #     return(trait_list_x)
-  #   },
-  #   .progress = TRUE)
-  
-  message("\n")
-  
-  # Formatting trait_list as a data.frame
-  trait_list <- dplyr::bind_rows(trait_list)
-  trait_list <- trait_list[which(trait_list$agreement >= agreement |
-                                   is.na(trait_list$agreement)), ]
-  
-  # Make certain columns numeric
-  trait_list <- dplyr::mutate_at(
-    trait_list, c("work_ID", "agreement", "coeff_var", "n"), as.numeric)
-  
-  # Add species names
-  trait_list <- dplyr::left_join(trait_list,
-                                 species[, c("work_ID", "work_species", 
-                                             "work_author")],
-                                 by = "work_ID")
-  
-  # Round agreement score
-  trait_list$agreement <- round(trait_list$agreement, 3)
-  
-  # Reordering columns
-  trait_list <- trait_list[, c("work_ID", "work_species", "work_author",
-                               "trait_ID", "trait_value", "agreement",
-                               "coeff_var", "n", "references")]
-  
-  # Renaming column
-  colnames(trait_list)[colnames(trait_list) == "coeff_var"] <- "cv"
-  
-  # Wider format
-  trait_list <- tidyr::pivot_wider(
-    trait_list, names_from = "trait_ID",
-    values_from = c("trait_value", "agreement", "cv", "n", "references"))
-  
-  # Make data.frame
-  trait_list <- as.data.frame(trait_list)
-  
-  # Remove agreement columns for continuous traits and coeff_var for
-  # categorical traits
-  numeric_traits <- tmp[which(tmp$type == "numeric"), "Lvl3"]
-  numeric_columns <-
-    paste("agreement", numeric_traits, sep = "_")[
-      paste("agreement", numeric_traits, sep = "_") %in% colnames(trait_list)]
-  
-  categorical_traits <- tmp[which(tmp$type != "numeric"), "Lvl3"]
-  categorical_columns <-
-    paste("cv", categorical_traits, sep = "_")[
-      paste("cv", categorical_traits, sep = "_") %in% colnames(trait_list)]
-  
-  trait_list <- trait_list[, !(colnames(trait_list) %in% numeric_columns)]
-  trait_list <- trait_list[, !(colnames(trait_list) %in% categorical_columns)]
-  
-  # Make numeric trait values numeric
-  numeric_columns <-
-    paste("trait_value", numeric_traits, sep = "_")[
-      paste("trait_value", numeric_traits, sep = "_") %in% colnames(trait_list)]
-  trait_list <- dplyr::mutate_at(trait_list, numeric_columns, as.numeric)
-  
-  return(trait_list)
 }

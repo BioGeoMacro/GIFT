@@ -28,9 +28,15 @@
 #' @export
 
 GIFT_versions <- function(){
-  gift_version <- jsonlite::read_json(
-    "https://gift.uni-goettingen.de/api/index.php?query=versions",
-    simplifyVector = TRUE)
-  
-  return(gift_version)
+  if(!curl::has_internet()) {
+    message("No internet connection found.")
+    return(NULL)
+  } else{
+    
+    gift_version <- jsonlite::read_json(
+      "https://gift.uni-goettingen.de/api/index.php?query=versions",
+      simplifyVector = TRUE)
+    
+    return(gift_version)
+  }
 }

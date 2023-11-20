@@ -37,15 +37,19 @@
 
 GIFT_regions <- function(api = "https://gift.uni-goettingen.de/api/extended/",
                          GIFT_version = "latest"){
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  tmp <- jsonlite::read_json(paste0(
-    api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
-    ".php?query=regions"), simplifyVector = TRUE)
-  
-  tmp <- dplyr::mutate_at(
-    tmp, c("entity_ID", "suit_geo", "country"), as.numeric)
-
-  return(tmp)
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    tmp <- jsonlite::read_json(paste0(
+      api,"index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=regions"), simplifyVector = TRUE)
+    
+    tmp <- dplyr::mutate_at(
+      tmp, c("entity_ID", "suit_geo", "country"), as.numeric)
+    
+    return(tmp)
+  }
 }

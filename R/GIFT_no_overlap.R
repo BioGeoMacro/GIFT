@@ -55,96 +55,102 @@ GIFT_no_overlap <- function(
     GIFT_version = "latest"){
   
   # 1. Controls ----
-  if(is.null(entity_IDs) || length(entity_IDs) == 0){
-    stop("Please provide the ID numbers of the regions you want to check the
+  api_check <- check_api(api)
+  if(is.null(api_check)){
+    return(NULL)
+  } else{
+    if(is.null(entity_IDs) || length(entity_IDs) == 0){
+      stop("Please provide the ID numbers of the regions you want to check the
          overlap of.")
-  }
-  
-  if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
-    stop("'area_threshold_island' is a surface in km^2 indicating from which
+    }
+    
+    if(!is.numeric(area_threshold_island) || area_threshold_island < 0){
+      stop("'area_threshold_island' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
-    stop("'area_threshold_mainland' is a surface in km^2 indicating from which
+    }
+    
+    if(!is.numeric(area_threshold_mainland) || area_threshold_mainland < 0){
+      stop(
+        "'area_threshold_mainland' is a surface in km^2 indicating from which
     surface the smallest overlapping polygon is kept.")
-  }
-  
-  if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
-     overlap_threshold > 1){
-    stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
+    }
+    
+    if(!is.numeric(overlap_threshold) || overlap_threshold < 0 ||
+       overlap_threshold > 1){
+      stop("'overlap_threshold' is a number ranging from 0 to 1, indicating at
     what percentage of overlap, partially overlapping polygons should be
          kept.")
-  }
-  
-  if(!is.null(geoentities_overlap) && !is.data.frame(geoentities_overlap) &&
-     ncol(geoentities_overlap) != 7 &&
-     colnames(geoentities_overlap) != c("entity1", "entity2", "overlap12",
-                                        "overlap21", "area1", "area2",
-                                        "entity_class2")){
-    stop("'geoentities_overlap' is a table coming from GIFT indicating the
+    }
+    
+    if(!is.null(geoentities_overlap) && !is.data.frame(geoentities_overlap) &&
+       ncol(geoentities_overlap) != 7 &&
+       colnames(geoentities_overlap) != c("entity1", "entity2", "overlap12",
+                                          "overlap21", "area1", "area2",
+                                          "entity_class2")){
+      stop("'geoentities_overlap' is a table coming from GIFT indicating the
          overlap in km^2 between pairs of polygons. It is automatically
          retrieved when 'geoentities_overlap' = NULL (default value of the
          function).")
-  }
-  
-  check_api(api)
-  GIFT_version <- check_gift_version_simple(GIFT_version)
-  
-  # 2. Function ----
-  if(is.null(geoentities_overlap)){
-    geoentities_overlap <- jsonlite::read_json(
-      paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
-             ".php?query=overlap"), simplifyVector = TRUE)
-  }
-  
-  # Convert columns as numeric
-  geoentities_overlap <- 
-    dplyr::mutate_at(geoentities_overlap, c("entity1", "entity2", "overlap12",
-                                            "overlap21","area1","area2"),
-                     as.numeric)
-  
-  geoentities_overlap <- geoentities_overlap[
-    which(geoentities_overlap$entity1 %in% entity_IDs &
-            geoentities_overlap$entity2 %in% entity_IDs), ]
-  
-  geoentities_overlap <- geoentities_overlap[
-    which(geoentities_overlap$overlap12 > overlap_threshold |
-            geoentities_overlap$overlap21 > overlap_threshold), ]
-  
-  # geoentities_overlap <- geoentities_overlap[order(geoentities_overlap$area1,
-  #                                                  decreasing = TRUE), ]
-  
-  entity_IDs_tocheck <- unique(geoentities_overlap$entity1)
-  
-  # Take the smaller entity if larger than threshold
-  if(length(entity_IDs_tocheck)> 0){
-    for(i in seq_along(entity_IDs_tocheck)){
-      th <- ifelse(geoentities_overlap$entity_class2[
-        which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
-          c("Mainland", "Island/Mainland"), area_threshold_mainland,
-        area_threshold_island)
-      
-      subset.tocheck <- geoentities_overlap[
-        which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]), ]
-      
-      subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in%
-                                    c("Mainland", "Island/Mainland"),
-                                  area_threshold_mainland,
-                                  area_threshold_island)
-      
-      if(length(which(subset.tocheck$area1 > subset.tocheck$area2 &
-                      subset.tocheck$area2 > subset.tocheck$th)) > 0 |
-         length(which(subset.tocheck$area1 < subset.tocheck$area2 &
-                      subset.tocheck$area1<th)) > 0) {
-        entity_IDs <- entity_IDs[which(entity_IDs != entity_IDs_tocheck[i])]
+    }
+    
+    GIFT_version <- check_gift_version_simple(GIFT_version)
+    
+    # 2. Function ----
+    if(is.null(geoentities_overlap)){
+      geoentities_overlap <- jsonlite::read_json(
+        paste0(api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+               ".php?query=overlap"), simplifyVector = TRUE)
+    }
+    
+    # Convert columns as numeric
+    geoentities_overlap <- 
+      dplyr::mutate_at(geoentities_overlap,
+                       c("entity1", "entity2", "overlap12", "overlap21",
+                         "area1", "area2"),
+                       as.numeric)
+    
+    geoentities_overlap <- geoentities_overlap[
+      which(geoentities_overlap$entity1 %in% entity_IDs &
+              geoentities_overlap$entity2 %in% entity_IDs), ]
+    
+    geoentities_overlap <- geoentities_overlap[
+      which(geoentities_overlap$overlap12 > overlap_threshold |
+              geoentities_overlap$overlap21 > overlap_threshold), ]
+    
+    # geoentities_overlap <- geoentities_overlap[order(geoentities_overlap$area1,
+    #                                                  decreasing = TRUE), ]
+    
+    entity_IDs_tocheck <- unique(geoentities_overlap$entity1)
+    
+    # Take the smaller entity if larger than threshold
+    if(length(entity_IDs_tocheck)> 0){
+      for(i in seq_along(entity_IDs_tocheck)){
+        th <- ifelse(geoentities_overlap$entity_class2[
+          which(geoentities_overlap$entity2 == entity_IDs_tocheck[i])][1] %in%
+            c("Mainland", "Island/Mainland"), area_threshold_mainland,
+          area_threshold_island)
+        
+        subset.tocheck <- geoentities_overlap[
+          which(geoentities_overlap$entity1 == entity_IDs_tocheck[i]), ]
+        
+        subset.tocheck$th <- ifelse(subset.tocheck$entity_class2 %in%
+                                      c("Mainland", "Island/Mainland"),
+                                    area_threshold_mainland,
+                                    area_threshold_island)
+        
+        if(length(which(subset.tocheck$area1 > subset.tocheck$area2 &
+                        subset.tocheck$area2 > subset.tocheck$th)) > 0 |
+           length(which(subset.tocheck$area1 < subset.tocheck$area2 &
+                        subset.tocheck$area1<th)) > 0) {
+          entity_IDs <- entity_IDs[which(entity_IDs != entity_IDs_tocheck[i])]
+        }
       }
     }
+    
+    geoentities_overlap <- geoentities_overlap[
+      which(geoentities_overlap$entity1 %in% entity_IDs &
+              geoentities_overlap$entity2 %in% entity_IDs), ]
+    
+    return(entity_IDs)
   }
-  
-  geoentities_overlap <- geoentities_overlap[
-    which(geoentities_overlap$entity1 %in% entity_IDs &
-            geoentities_overlap$entity2 %in% entity_IDs), ]
-  
-  return(entity_IDs)
 }
