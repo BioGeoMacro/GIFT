@@ -9,7 +9,7 @@
 [![pkgdown](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/BioGeoMacro/GIFT/actions/workflows/pkgdown.yaml)
 ![](https://www.r-pkg.org/badges/version/GIFT)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/GIFT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8256512.svg)](https://doi.org/10.5281/zenodo.8256512)  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10161624.svg)](https://doi.org/10.5281/zenodo.10161624)  
 <!-- badges: end -->
 
 This **R package** includes several functions to extract data from the
