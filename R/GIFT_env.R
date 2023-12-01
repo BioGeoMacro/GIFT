@@ -97,7 +97,9 @@ GIFT_env <- function(
          length(miscellaneous)){
         message(paste0(
           "The following miscellaneous variable(s) are not available in GIFT: ",
-          miscellaneous[!(miscellaneous %in% gift_env_meta_misc$variable)]))
+          paste0(miscellaneous[!(miscellaneous %in%
+                                   gift_env_meta_misc$variable)],
+                 collapse = ", ")))
         
         miscellaneous <- miscellaneous[(miscellaneous %in%
                                           gift_env_meta_misc$variable)]
@@ -119,7 +121,9 @@ GIFT_env <- function(
          length(rasterlayer)){
         message(paste0(
           "The following raster layer(s) are not available in GIFT: ",
-          rasterlayer[!(rasterlayer %in% gift_env_meta_raster$layer_name)]))
+          paste0(rasterlayer[!(rasterlayer %in%
+                                 gift_env_meta_raster$layer_name)],
+                 collapse = ", ")))
         
         rasterlayer <- rasterlayer[(rasterlayer %in%
                                       gift_env_meta_raster$layer_name)]
