@@ -25,8 +25,7 @@
 #' 
 #' @param taxonomy `NULL` by default. If not, it has to be the taxonomy table
 #' (see [GIFT::GIFT_taxonomy()]). Used internally in [GIFT::GIFT_checklists()]
-#' to avoid downloading the taxonomy table many times.
-#' 
+#' to avoid downloading the taxonomy table many times.#' 
 #' 
 #' 
 #' @template GIFT_version_api
@@ -70,6 +69,11 @@
 #' \emph{cons_status} - Conservation status of the species
 #' 
 #' @references
+#'      Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to
+#'      access the Global Inventory of Floras and Traits. Methods in Ecology
+#'      and Evolution, 14, 2738-2748.
+#'      https://doi.org/10.1111/2041-210X.14213
+#' 
 #'      Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
 #'      Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
 #'      https://doi.org/10.1111/jbi.13623

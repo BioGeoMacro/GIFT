@@ -40,7 +40,7 @@ avoid downloading the table of lists many times.}
 
 \item{taxonomy}{\code{NULL} by default. If not, it has to be the taxonomy table
 (see \code{\link[=GIFT_taxonomy]{GIFT_taxonomy()}}). Used internally in \code{\link[=GIFT_checklists]{GIFT_checklists()}}
-to avoid downloading the taxonomy table many times.}
+to avoid downloading the taxonomy table many times.#'}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the \code{latest} stable
@@ -99,7 +99,12 @@ ex <- GIFT_checklists_raw(list_ID = c(1,5))
 
 }
 \references{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to
+ access the Global Inventory of Floras and Traits. Methods in Ecology
+ and Evolution, 14, 2738-2748.
+ https://doi.org/10.1111/2041-210X.14213
+
+ Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
  Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
  https://doi.org/10.1111/jbi.13623
 }\if{html}{\out{</div>}}
