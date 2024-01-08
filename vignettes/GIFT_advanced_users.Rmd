@@ -489,7 +489,7 @@ different polygons, we provide a function `GIFT_overlap()` than can look at the
 spatial overlap between GIFT polygons and polygons coming from other databases.
 <br>
 So far, only two resources are available: `glonaf` and `gmba`.
-`glonaf` stands for [Global Naturalized Alien Flora](https://glonaf.org/) and
+`glonaf` stands for [Global Naturalized Alien Flora](https://glonaf.org/index.php/a-brief-history-of-glonaf/) and
 `gmba` for
 [Global Mountain Biodiversity Assessment](https://www.gmba.unibe.ch/).
 
