@@ -1,5 +1,11 @@
 # GIFT
 
+# GIFT 1.3.1
+## Minor changes
+
+* Better message in GIFT_env with missing raster/misc
+* Citation updated in all functions and Readme
+
 # GIFT 1.3.0
 
 * Better handling of functions when the Internet or the GIFT server are down
