@@ -16,7 +16,9 @@
 #' `extent_intersect` means that every polygon from GIFT for which the extent
 #' intersects the provided shape/coordinates will be retrieved.
 #' 
-#' @param entity_ID List of entity_ID to retrieve.
+#' @param entity_ID Constrain the list of regions to be received by a
+#' predefined set of entity_IDs. E.g. this list could come from
+#' GIFT_checklists_conditional().
 #' 
 #' @template GIFT_version_api
 #' 

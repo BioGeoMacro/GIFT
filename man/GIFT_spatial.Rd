@@ -28,7 +28,9 @@ retrieve checklists. Available options are \code{centroid_inside},
 \code{extent_intersect} means that every polygon from GIFT for which the extent
 intersects the provided shape/coordinates will be retrieved.}
 
-\item{entity_ID}{List of entity_ID to retrieve.}
+\item{entity_ID}{Constrain the list of regions to be received by a
+predefined set of entity_IDs. E.g. this list could come from
+GIFT_checklists_conditional().}
 
 \item{GIFT_version}{character string defining the version of the GIFT
 database to use. The function retrieves by default the \code{latest} stable
