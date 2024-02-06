@@ -35,6 +35,7 @@ suppressPackageStartupMessages({
     library("rnaturalearthdata")
     library("tidyr")
     library("ape")
+    library("patchwork")
   })
 })
 
@@ -69,11 +70,14 @@ The following R packages are required to build this vignette:
 ```{r, echo=TRUE, eval=FALSE}
 library("GIFT")
 library("dplyr")
+library("knitr")
+library("kableExtra")
 library("ggplot2")
 library("sf")
 library("rnaturalearth")
 library("rnaturalearthdata")
 library("tidyr")
+library("ape")
 library("patchwork")
 ```
 
@@ -529,7 +533,8 @@ more details.
 
 ```{r}
 anemone_distr <- GIFT_species_distribution(
-  genus = "Anemone", epithet = "nemorosa", aggregation = TRUE)
+  genus = "Anemone", epithet = "nemorosa", aggregation = TRUE,
+  GIFT_version = "2.2")
 
 anemone_statuses <- anemone_distr %>%
   mutate(native = ifelse(native == 1, "native", "non-native"),
