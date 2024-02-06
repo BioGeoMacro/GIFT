@@ -124,11 +124,14 @@ it</li>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/BioGeoMacro/GIFT" class="external-link">"GIFT"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">"kableExtra"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/" class="external-link">"sf"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">"rnaturalearth"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ropenscilabs/rnaturalearthdata" class="external-link">"rnaturalearthdata"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://ape-package.ird.fr/" class="external-link">"ape"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com" class="external-link">"patchwork"</a></span><span class="op">)</span></span></code></pre></div>
 <p><br><br></p>
 <p><strong>Side-note</strong><br>
@@ -503,8 +506,8 @@ anemone <em>Anemone nemorosa</em>. <br></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">anemone_lookup</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">anemone_lookup</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:right;">
@@ -643,7 +646,8 @@ only one floristic status per polygon. See the function’s help page for
 more details. <br></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_distr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution</a></span><span class="op">(</span></span>
-<span>  genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  GIFT_version <span class="op">=</span> <span class="st">"2.2"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">anemone_statuses</span> <span class="op">&lt;-</span> <span class="va">anemone_distr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>native <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">native</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"native"</span>, <span class="st">"non-native"</span><span class="op">)</span>,</span>
@@ -656,7 +660,7 @@ more details. <br></p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">endemic_list</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## non-endemic_list </span></span>
-<span><span class="co">##                7</span></span></code></pre>
+<span><span class="co">##               53</span></span></code></pre>
 <p>This species is not listed as endemic in any of the GIFT polygons.
 Let’s check the places where it is listed as native or naturalized.
 <br></p>
@@ -664,10 +668,12 @@ Let’s check the places where it is listed as native or naturalized.
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">native</span>, <span class="va">anemone_statuses</span><span class="op">$</span><span class="va">naturalized</span>,</span>
 <span>            sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##                  NA_NA              native_NA native_non-naturalized </span></span>
-<span><span class="co">##                      7                      6                     16 </span></span>
-<span><span class="co">##          non-native_NA non-native_naturalized </span></span>
-<span><span class="co">##                      3                      1</span></span></code></pre>
+<span><span class="co">##                      NA_NA                  native_NA </span></span>
+<span><span class="co">##                         13                         17 </span></span>
+<span><span class="co">##     native_non-naturalized              non-native_NA </span></span>
+<span><span class="co">##                        113                          3 </span></span>
+<span><span class="co">##     non-native_naturalized non-native_non-naturalized </span></span>
+<span><span class="co">##                          5                          2</span></span></code></pre>
 <p>Looking at the different combinations of statuses, we can distinguish
 several situations: in 13 polygons, there is no status available. The
 species is listed as native and non-naturalized (or naturalized status

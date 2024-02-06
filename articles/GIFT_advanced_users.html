@@ -118,8 +118,8 @@ Version Log tab.</p>
 following function:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">versions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_versions.html">GIFT_versions</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">versions</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">versions</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -335,8 +335,8 @@ column.</p>
 <span>           <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ref_ID"</span>, <span class="st">"ref_long"</span>, <span class="st">"geo_entity_ref"</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># 3 first rows of that table</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">ref</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">ref</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -354,22 +354,22 @@ geo_entity_ref
 <tbody>
 <tr>
 <td style="text-align:left;">
-68
+22
 </td>
 <td style="text-align:right;">
-10649
+22
 </td>
 <td style="text-align:left;">
-Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
-Kazakhstan.
+Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
+Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
 </td>
 <td style="text-align:left;">
-Kazakhstan
+La Réunion
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-243
+667
 </td>
 <td style="text-align:right;">
 10333
@@ -384,17 +384,17 @@ Easter Island
 </tr>
 <tr>
 <td style="text-align:left;">
-839
+880
 </td>
 <td style="text-align:right;">
-22
+10649
 </td>
 <td style="text-align:left;">
-Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
-Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
+Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
+Kazakhstan.
 </td>
 <td style="text-align:left;">
-La Réunion
+Kazakhstan
 </td>
 </tr>
 </tbody>
@@ -416,8 +416,8 @@ islands.</p>
 <span><span class="va">can_ref</span> <span class="op">&lt;-</span> <span class="va">gift_lists</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">gift_lists</span><span class="op">$</span><span class="va">entity_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">can</span><span class="op">)</span><span class="op">)</span>, <span class="st">"ref_ID"</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># What sources</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">ref</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">ref</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">can_ref</span><span class="op">)</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">ref</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">ref</span><span class="op">$</span><span class="va">ref_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">can_ref</span><span class="op">)</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:right;">
@@ -739,8 +739,8 @@ resource.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gmba_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_overlap.html">GIFT_overlap</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"gmba"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">gmba_overlap</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:right;">
