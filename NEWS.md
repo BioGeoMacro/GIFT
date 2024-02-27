@@ -7,6 +7,8 @@
 * Example added in GIFT_spatial
 * Main vignette: detail added regarding the version of GIFT used for the
 species distribution, packages edited in the beginning
+* Function check_query() added in the check_functions and implemented in
+GITT_env_meta_raster() and GIFT_env_meta_misc()
 
 # GIFT 1.3.1
 ## Minor changes
