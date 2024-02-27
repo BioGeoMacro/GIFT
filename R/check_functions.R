@@ -474,6 +474,53 @@ check_overlap_threshold <- function(overlap_threshold) {
   }
 }
 
+# Checking manual queries
+#
+# Authors: Pierre Denelle
+#
+# Stop if api argument does not have the right format
+#
+# Args:
+#   api a character
+#
+# Returns:
+#   nothing, shows an error message
+
+# Run the API and see if we get 'no query selected'
+check_query <- function(api) {
+  if(length(api) != 1 || !is.character(api)){
+    stop("api must be a character string indicating which API to use.")
+  }
+  
+  # First check: internet connection
+  if(!curl::has_internet()) {
+    message("No internet connection found.")
+    return(NULL)
+  }
+  
+  # Second check: web API available
+  req <- httr2::request(api)
+  resp <- httr2::req_error(req, is_error = function(resp) FALSE)
+  
+  # test for non-existing APIs
+  tryCatch(expr = httr2::req_perform(resp),
+           error = function(expr) {
+             message(
+               "Either the API is wrongly specified or the server is down.")
+             return(NULL)
+           })
+  
+  # If the server was found, check for status
+  resp_status <- httr2::resp_status_desc(httr2::req_perform(resp))
+  if(resp_status == "Unauthorized"){
+    message("A password is needed for this restricted API.")
+    return(NULL)
+  } else if(resp_status != "OK"){
+    message("Either the API is wrongly specified or the server is down.")
+    return(NULL)
+  }
+}
+
 # Checking ref_excluded argument
 #
 # Authors: Pierre Denelle
