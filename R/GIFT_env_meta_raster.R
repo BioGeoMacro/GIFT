@@ -53,6 +53,9 @@ GIFT_env_meta_raster <- function(
     GIFT_version <- check_gift_version(GIFT_version)
     
     # Return the raster environmental information
+    check_query(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=env_raster"))
     tmp <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=env_raster"), simplifyVector = TRUE)
@@ -61,6 +64,9 @@ GIFT_env_meta_raster <- function(
     tmp$citavi_ID <- gsub("^.*\\#", "", tmp$citavi_ID)
     tmp$citavi_ID <- substr(tmp$citavi_ID, 1, (nchar(tmp$citavi_ID)-1))
     
+    check_query(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=references_citavi"))
     refs <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=references_citavi"), simplifyVector = TRUE)

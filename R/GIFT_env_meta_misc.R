@@ -49,6 +49,9 @@ GIFT_env_meta_misc <- function(
     GIFT_version <- check_gift_version(GIFT_version)
     
     # Return the miscellaneous environmental information as a data frame
+    check_query(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=env_misc"))
     tmp <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=env_misc"), simplifyVector = TRUE)
@@ -58,6 +61,9 @@ GIFT_env_meta_misc <- function(
     tmp$citavi_ID <- substr(tmp$citavi_ID, 1, (nchar(tmp$citavi_ID)-1))
     
     # Merging complete reference names
+    check_query(paste0(
+      api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
+      ".php?query=references_citavi"))
     refs <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=references_citavi"), simplifyVector = TRUE)
