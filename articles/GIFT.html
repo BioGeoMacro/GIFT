@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2024-02-27</h4>
+            <h4 data-toc-skip class="date">2024-04-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/HEAD/vignettes/GIFT.Rmd" class="external-link"><code>vignettes/GIFT.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT.Rmd</code></div>
@@ -502,9 +502,10 @@ most commonly used backbone is the <a href="https://powo.science.kew.org/" class
 (WCVP)</a>. <br> Both original and harmonized names are stored in the
 database and you can use the <code><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup()</a></code> function
 to look up the differences for particular species. For example, the wood
-anemone <em>Anemone nemorosa</em>. <br></p>
+anemone <em>Anemonoides nemorosa</em>. <br></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">anemone_lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">anemone_lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_lookup.html">GIFT_species_lookup</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="st">"Anemonoides"</span>,</span>
+<span>                                      epithet <span class="op">=</span> <span class="st">"nemorosa"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">anemone_lookup</span>, <span class="st">"html"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
@@ -568,9 +569,10 @@ work_species
 work_author
 </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td style="text-align:right;">
-3718
+3719
 </td>
 <td style="text-align:left;">
 Anemone
@@ -580,53 +582,172 @@ nemorosa
 </td>
 <td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-TNRS_wfo
-</td>
-<td style="text-align:right;">
-2293
-</td>
-<td style="text-align:right;">
-1303
-</td>
-<td style="text-align:left;">
-Anemone
-</td>
-<td style="text-align:left;">
-nemorosa
-</td>
-<td style="text-align:left;">
-Anemone nemorosa
 </td>
 <td style="text-align:left;">
 L.
 </td>
-</tr></tbody>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+GIFT_wcvp
+</td>
+<td style="text-align:right;">
+438440
+</td>
+<td style="text-align:right;">
+15034
+</td>
+<td style="text-align:left;">
+Anemonoides
+</td>
+<td style="text-align:left;">
+nemorosa
+</td>
+<td style="text-align:left;">
+Anemonoides nemorosa
+</td>
+<td style="text-align:left;">
+(L.) Holub
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+526917
+</td>
+<td style="text-align:left;">
+Anemonoides
+</td>
+<td style="text-align:left;">
+nemorosa
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+(L.) Holub
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+GIFT_wcvp
+</td>
+<td style="text-align:right;">
+438440
+</td>
+<td style="text-align:right;">
+15034
+</td>
+<td style="text-align:left;">
+Anemonoides
+</td>
+<td style="text-align:left;">
+nemorosa
+</td>
+<td style="text-align:left;">
+Anemonoides nemorosa
+</td>
+<td style="text-align:left;">
+(L.) Holub
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+772823
+</td>
+<td style="text-align:left;">
+Anemonoides
+</td>
+<td style="text-align:left;">
+nemorosa
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.645
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+GIFT_wcvp
+</td>
+<td style="text-align:right;">
+438440
+</td>
+<td style="text-align:right;">
+15034
+</td>
+<td style="text-align:left;">
+Anemonoides
+</td>
+<td style="text-align:left;">
+nemorosa
+</td>
+<td style="text-align:left;">
+Anemonoides nemorosa
+</td>
+<td style="text-align:left;">
+(L.) Holub
+</td>
+</tr>
+</tbody>
 </table>
 <p>Looking at the output table, you can see the original species names
 and their identification numbers (<code>name_ID</code>)
@@ -646,8 +767,7 @@ only one floristic status per polygon. See the function’s help page for
 more details. <br></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anemone_distr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_species_distribution.html">GIFT_species_distribution</a></span><span class="op">(</span></span>
-<span>  genus <span class="op">=</span> <span class="st">"Anemone"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  GIFT_version <span class="op">=</span> <span class="st">"2.2"</span><span class="op">)</span></span>
+<span>  genus <span class="op">=</span> <span class="st">"Anemonoides"</span>, epithet <span class="op">=</span> <span class="st">"nemorosa"</span>, aggregation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">anemone_statuses</span> <span class="op">&lt;-</span> <span class="va">anemone_distr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>native <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">native</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"native"</span>, <span class="st">"non-native"</span><span class="op">)</span>,</span>
@@ -660,7 +780,7 @@ more details. <br></p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">anemone_statuses</span><span class="op">$</span><span class="va">endemic_list</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## non-endemic_list </span></span>
-<span><span class="co">##               53</span></span></code></pre>
+<span><span class="co">##               46</span></span></code></pre>
 <p>This species is not listed as endemic in any of the GIFT polygons.
 Let’s check the places where it is listed as native or naturalized.
 <br></p>
@@ -669,17 +789,17 @@ Let’s check the places where it is listed as native or naturalized.
 <span>            sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##                      NA_NA                  native_NA </span></span>
-<span><span class="co">##                         13                         17 </span></span>
+<span><span class="co">##                          6                         12 </span></span>
 <span><span class="co">##     native_non-naturalized              non-native_NA </span></span>
-<span><span class="co">##                        113                          3 </span></span>
+<span><span class="co">##                         99                          1 </span></span>
 <span><span class="co">##     non-native_naturalized non-native_non-naturalized </span></span>
-<span><span class="co">##                          5                          2</span></span></code></pre>
+<span><span class="co">##                          4                          2</span></span></code></pre>
 <p>Looking at the different combinations of statuses, we can distinguish
 several situations: in 13 polygons, there is no status available. The
 species is listed as native and non-naturalized (or naturalized status
-is missing) in 113+17=130 polygons. It is naturalized and non native in
-5 polygons. <br> More surprising are the cases where the species is
-non-native and non-naturalized, which happens in 3+2=5 polygons. This
+is missing) in 99+12=111 polygons. It is naturalized and non native in 5
+polygons. <br> More surprising are the cases where the species is
+non-native and non-naturalized, which happens in 2 polygons. This
 particular combination can occur in unstable cases where the species is
 in the process of becoming naturalized. <br></p>
 <p>Now that we know in which polygons the species occurs and with what
@@ -709,7 +829,7 @@ earlier with <code><a href="../reference/GIFT_shapes.html">GIFT_shapes()</a></co
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">anemone_map</span>, color <span class="op">=</span> <span class="st">"black"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">Status</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span><span class="st">"Status"</span>, palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Distribution map of "</span>,</span>
-<span>                                <span class="fu">italic</span><span class="op">(</span><span class="st">"Anemone nemorosa"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                                <span class="fu">italic</span><span class="op">(</span><span class="st">"Anemonoides nemorosa"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Unprojected (GCS: WGS84)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">65</span>, <span class="fl">170</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">45</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -737,7 +857,7 @@ Fancier code
 <span>                               <span class="st">"non-native"</span> <span class="op">=</span> <span class="st">"#fdae61"</span>,</span>
 <span>                               <span class="st">"unknown"</span> <span class="op">=</span> <span class="st">"#abd9e9"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"b) Distribution map of "</span>,</span>
-<span>                                <span class="fu">italic</span><span class="op">(</span><span class="st">"Anemone nemorosa"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                                <span class="fu">italic</span><span class="op">(</span><span class="st">"Anemonoides nemorosa"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>        axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -749,7 +869,7 @@ Fancier code
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
 <span>  <span class="op">|</span></span>
 <span>    <span class="va">anemone_map_plot_bg_parts</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">165</span>, <span class="fl">178</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">47</span>, <span class="op">-</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># new zealand</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">165</span>, <span class="fl">178</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">47</span>, <span class="op">-</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># New Zealand</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
