@@ -1,5 +1,10 @@
 # GIFT
 
+# GIFT 1.3.3
+## Minor changes
+
+* *Anemonoides nemorosa* instead of *Anemone nemorosa* in the vignette
+
 # GIFT 1.3.2
 ## Minor changes
 

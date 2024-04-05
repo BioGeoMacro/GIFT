@@ -504,11 +504,12 @@ backbone is the
 <br>
 Both original and harmonized names are stored in the database and you can use
 the `GIFT_species_lookup()` function to look up the differences for particular
-species. For example, the wood anemone *Anemone nemorosa*.
+species. For example, the wood anemone *Anemonoides nemorosa*.
 <br>
 
 ```{r anemone_lookup}
-anemone_lookup <- GIFT_species_lookup(genus = "Anemone", epithet = "nemorosa")
+anemone_lookup <- GIFT_species_lookup(genus = "Anemonoides",
+                                      epithet = "nemorosa")
 
 kable(anemone_lookup, "html") %>%
   kable_styling(full_width = FALSE)
@@ -533,8 +534,7 @@ more details.
 
 ```{r}
 anemone_distr <- GIFT_species_distribution(
-  genus = "Anemone", epithet = "nemorosa", aggregation = TRUE,
-  GIFT_version = "2.2")
+  genus = "Anemonoides", epithet = "nemorosa", aggregation = TRUE)
 
 anemone_statuses <- anemone_distr %>%
   mutate(native = ifelse(native == 1, "native", "non-native"),
@@ -558,11 +558,11 @@ table(paste(anemone_statuses$native, anemone_statuses$naturalized,
 
 Looking at the different combinations of statuses, we can distinguish several
 situations: in 13 polygons, there is no status available. The species is listed
-as native and non-naturalized (or naturalized status is missing) in 113+17=130
+as native and non-naturalized (or naturalized status is missing) in 99+12=111
 polygons. It is naturalized and non native in 5 polygons.
 <br>
 More surprising are the cases where the species is non-native and
-non-naturalized, which happens in 3+2=5 polygons. This particular combination
+non-naturalized, which happens in 2 polygons. This particular combination
 can occur in unstable cases where the species is in the process of becoming
 naturalized.
 <br>
@@ -595,7 +595,7 @@ ggplot(world) +
   geom_sf(data = anemone_map, color = "black", aes(fill = as.factor(Status))) +
   scale_fill_brewer("Status", palette = "Set2") +
   labs(title = expression(paste("Distribution map of ",
-                                italic("Anemone nemorosa"))),
+                                italic("Anemonoides nemorosa"))),
        subtitle = "Unprojected (GCS: WGS84)") +
   lims(x = c(-65, 170), y = c(-45, 70)) +
   theme_void()
@@ -633,7 +633,7 @@ anemone_map_plot_bg_parts <-
                                "non-native" = "#fdae61",
                                "unknown" = "#abd9e9")) +
   labs(title = expression(paste("b) Distribution map of ",
-                                italic("Anemone nemorosa")))) +
+                                italic("Anemonoides nemorosa")))) +
   theme_void() +
   theme(axis.title = element_blank(),
         axis.text = element_blank(),
@@ -645,7 +645,7 @@ anemone_map_plot_bg_parts <-
     theme(legend.position = "bottom")
   |
     anemone_map_plot_bg_parts +
-    lims(x = c(165, 178), y = c(-47, -35)) + # new zealand
+    lims(x = c(165, 178), y = c(-47, -35)) + # New Zealand
     labs(title = "") +
     guides(fill = "none") +
     theme(panel.border = element_rect(fill = NA, linewidth = 1)))
