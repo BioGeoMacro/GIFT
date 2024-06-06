@@ -1,11 +1,11 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  GIFT: GIFT.html
-  GIFT_API: GIFT_API.html
   GIFT_advanced_users: GIFT_advanced_users.html
-last_built: 2024-04-05T12:34Z
+  GIFT_API: GIFT_API.html
+  GIFT: GIFT.html
+last_built: 2024-06-06T08:54Z
 urls:
   reference: https://biogeomacro.github.io/GIFT/reference
   article: https://biogeomacro.github.io/GIFT/articles
