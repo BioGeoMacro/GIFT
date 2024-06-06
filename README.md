@@ -12,14 +12,15 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10161624.svg)](https://doi.org/10.5281/zenodo.10161624)  
 <!-- badges: end -->
 
-This **R package** includes several functions to extract data from the
-Global Inventory of Floras and Traits (**GIFT**) database. <br> **GIFT**
-is a global database of plant checklists, covering several taxonomic
-groups and providing information on the floristic status and functional
-traits of plants as well as environmental information for each
-checklist. <br> More details on the contents of this database can be
-found in the publication by [Weigelt et al.,
-(2020)](https://doi.org/10.1111/jbi.13623).
+This **R package** includes several functions for extracting data from
+the Global Inventory of Floras and Traits (**GIFT**) database. <br>
+**GIFT** is a global database of plant checklists, covering several
+taxonomic groups and providing information on the floristic status and
+functional traits of plants as well as environmental information for
+each checklist. <br> More details on the contents of this database can
+be found in the publications by [Weigelt et al.,
+(2020)](https://doi.org/10.1111/jbi.13623) and [Denelle et al.,
+(2023)](https://doi.org/10.1111/2041-210X.14213).
 
 <img src="man/figures/rich_map_plot_islands.png" width="70%" style="display: block; margin: auto;" />
 
