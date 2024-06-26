@@ -57,10 +57,11 @@ suit_geo should be considered (see details).}
 
 \item{shp}{Shapefile provided by the user.}
 
-\item{coordinates}{Custom set of coordinates. The format is a two columns,
-the first one being longitudes and the second being latitudes. If 4
-coordinates are given, the function assumes that these are the four corners
-of a bounding box.}
+\item{coordinates}{Custom set of coordinates. The format is a two columns
+data.frame, the first one being longitudes and the second being latitudes
+of the vertices of a polygon. If the data.frame only includes two rows,
+the function assumes that the values are the four limits (min and max.
+longitude and latitude) of a bounding box.}
 
 \item{overlap}{A character string defining the criteria to use in order to
 retrieve checklists. Available options are \code{centroid_inside},

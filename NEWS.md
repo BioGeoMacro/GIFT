@@ -4,6 +4,8 @@
 ## Minor changes
 
 * *Anemonoides nemorosa* instead of *Anemone nemorosa* in the vignette
+* Better explanation for the parameter *coordinates* in functions
+GIFT_spatial and GIFT_checklists
 
 # GIFT 1.3.2
 ## Minor changes

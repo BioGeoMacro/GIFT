@@ -31,10 +31,11 @@
 #' 
 #' @param shp Shapefile provided by the user.
 #'
-#' @param coordinates Custom set of coordinates. The format is a two columns,
-#' the first one being longitudes and the second being latitudes. If 4
-#' coordinates are given, the function assumes that these are the four corners
-#' of a bounding box.
+#' @param coordinates Custom set of coordinates. The format is a two columns
+#' data.frame, the first one being longitudes and the second being latitudes
+#' of the vertices of a polygon. If the data.frame only includes two rows,
+#' the function assumes that the values are the four limits (min and max.
+#' longitude and latitude) of a bounding box.
 #' 
 #' @param overlap A character string defining the criteria to use in order to
 #' retrieve checklists. Available options are `centroid_inside`,
