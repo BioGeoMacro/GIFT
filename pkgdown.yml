@@ -5,7 +5,8 @@ articles:
   GIFT_advanced_users: GIFT_advanced_users.html
   GIFT_API: GIFT_API.html
   GIFT: GIFT.html
-last_built: 2024-07-11T13:04Z
+  Publication_records: Publication_records.html
+last_built: 2024-08-28T08:06Z
 urls:
   reference: https://biogeomacro.github.io/GIFT/reference
   article: https://biogeomacro.github.io/GIFT/articles
