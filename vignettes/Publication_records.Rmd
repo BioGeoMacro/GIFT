@@ -1,0 +1,83 @@
+---
+title: "Publication records"
+author: "Pierre Denelle"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+ %\VignetteIndexEntry{Queries in the API}
+ %\VignetteEncoding{UTF-8} 
+ %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+ chunk_output_type: console
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 8, fig.height = 8)
+# Packages --------------------------------------------------------------------
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library("GIFT")
+    library("knitr")
+    library("kableExtra")
+  })
+})
+
+options(tinytex.verbose = TRUE)
+```
+
+```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
+knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../man/figures/GIFT.png")
+```
+
+<br>
+
+This vignette contains a list of publications that cite or use the `GIFT` R
+package. It may be useful if you are looking for case studies or examples of
+specific functionality.
+<br>
+
+# Research articles
+<br>
+Cai, Lirong, Holger Kreft, Amanda Taylor, Julian Schrader, Wayne Dawson, Franz Essl, Mark van Kleunen, Jan Pergl, Petr Pyšek, and Marten Winter. “Climatic Stability and Geological History Shape Global Centers of Neo-and Paleoendemism in Seed Plants.” Proceedings of the National Academy of Sciences 120, no. 30 (2023): e2300981120.
+[https://doi.org/10.1073/pnas.2300981120](https://doi.org/10.1073/pnas.2300981120)  
+
+<br><br>
+
+Eva Benavides Rios, Jonathan Sadler, Laura Graham, Thomas J. Matthews, Species distribution models and island biogeography: Challenges and prospects, Global Ecology and Conservation, Volume 51, 2024, e02943, ISSN 2351-9894,
+[https://doi.org/10.1016/j.gecco.2024.e02943](https://doi.org/10.1016/j.gecco.2024.e02943)  
+
+<br><br>
+
+Fan, Sy., Yang, Q., Li, Sp. et al. A latitudinal gradient in Darwin’s naturalization conundrum at the global scale for flowering plants. Nat Commun 14, 6244 (2023). [https://doi.org/10.1038/s41467-023-41607-w](https://doi.org/10.1038/s41467-023-41607-w)
+
+<br><br>
+
+Roeble, L., van Benthem, K.J., Weigelt, P. et al. Island biogeography of the megadiverse plant family Asteraceae. Nat Commun 15, 7276 (2024). [https://doi.org/10.1038/s41467-024-51556-7](https://doi.org/10.1038/s41467-024-51556-7)
+
+<br><br>
+
+Delavaux, C.S., Crowther, T.W., Bever, J.D. et al. Mutualisms weaken the latitudinal diversity gradient among oceanic islands. Nature 627, 335–339 (2024). [https://doi.org/10.1038/s41586-024-07110-y](https://doi.org/10.1038/s41586-024-07110-y)
+
+Avery L. Russell, Stephen L. Buchmann, John S. Ascher, Zhiheng Wang, Ricardo Kriebel, Diana D. Jolles, Michael C. Orr, Alice C. Hughes, Global patterns and drivers of buzzing bees and poricidal plants, Current Biology, Volume 34, Issue 14, 2024, Pages 3055-3063.e5, ISSN 0960-9822, [https://doi.org/10.1016/j.cub.2024.05.065](https://doi.org/10.1016/j.cub.2024.05.065)
+
+<br><br>
+
+Chumová, Z., Havlíčková, E., Zeisek, V., Šemberová, K., Mandáková, T., Euston-Brown, D. and Trávníček, P. (2024), Deciphering Pteronia's evolution in the Cape Floristic Region: A comprehensive study disputes polyploid deficiency and affirms diploid radiation. Plant J, 119: 2236-2254. [https://doi.org/10.1111/tpj.16914](https://doi.org/10.1111/tpj.16914)
+
+<br><br>
+
+Using natural language processing to extract plant functional traits from unstructured text
+Viktor Domazetoski, Holger Kreft, Helena Bestova, Philipp Wieder, Radoslav Koynov, Alireza Zarei, Patrick Weigelt
+[https://doi.org/10.1101/2023.11.06.565787](https://doi.org/10.1101/2023.11.06.565787) 
+
+<br><br>
