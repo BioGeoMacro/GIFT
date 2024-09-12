@@ -68,7 +68,7 @@
                         <h4 data-toc-skip class="author">Pierre Denelle
 &amp; Patrick Weigelt</h4>
             
-            <h4 data-toc-skip class="date">2024-08-28</h4>
+            <h4 data-toc-skip class="date">2024-09-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BioGeoMacro/GIFT/blob/master/vignettes/GIFT_advanced_users.Rmd" class="external-link"><code>vignettes/GIFT_advanced_users.Rmd</code></a></small>
       <div class="d-none name"><code>GIFT_advanced_users.Rmd</code></div>
@@ -362,22 +362,22 @@ geo_entity_ref
 <tbody>
 <tr>
 <td style="text-align:left;">
-22
+70
 </td>
 <td style="text-align:right;">
-22
+10649
 </td>
 <td style="text-align:left;">
-Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
-Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
+Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
+Kazakhstan.
 </td>
 <td style="text-align:left;">
-La Réunion
+Kazakhstan
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-667
+245
 </td>
 <td style="text-align:right;">
 10333
@@ -392,17 +392,17 @@ Easter Island
 </tr>
 <tr>
 <td style="text-align:left;">
-880
+841
 </td>
 <td style="text-align:right;">
-10649
+22
 </td>
 <td style="text-align:left;">
-Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata,
-Kazakhstan.
+Kirchner, Picot, Merceron &amp; Gigot (2010) Flore vasculaire de La
+Réunion. Conservatoire Botanique National de Mascarin, Réunion; France.
 </td>
 <td style="text-align:left;">
-Kazakhstan
+La Réunion
 </td>
 </tr>
 </tbody>
@@ -857,6 +857,39 @@ GIFT region and encompasses it as we can see on this plot (the dark
 polygon is the GIFT region):</p>
 <p><img src="../reference/figures/Aisen_Chile_GMBA_overlap.png" width="50%" style="display: block; margin: auto;"></p>
 <p><br></p>
+</div>
+<div class="section level2">
+<h2 id="plotting-phylogeny-for-a-specific-region">9. Plotting phylogeny for a specific region<a class="anchor" aria-label="anchor" href="#plotting-phylogeny-for-a-specific-region"></a>
+</h2>
+<p>We here want to plot the phylogenetic tree of native plant species
+occurring in Tenerife island.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List table</span></span>
+<span><span class="va">gift_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_lists.html">GIFT_lists</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># Tenerife data for the following list_IDs: 150, 14110, 14228</span></span>
+<span></span>
+<span><span class="co"># Retrieve the lists</span></span>
+<span><span class="va">tenerife</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_checklists_raw.html">GIFT_checklists_raw</a></span><span class="op">(</span>list_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">150</span>, <span class="fl">14110</span>, <span class="fl">14228</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Extract unique native species only</span></span>
+<span><span class="va">tenerife_sp</span> <span class="op">&lt;-</span> <span class="va">tenerife</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">tenerife</span><span class="op">$</span><span class="va">native</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">work_species</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">distinct</span><span class="op">(</span>.keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Harmonizing species names between the species table and the phylogeny</span></span>
+<span><span class="va">tenerife_sp</span><span class="op">$</span><span class="va">work_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"_"</span>, <span class="va">tenerife_sp</span><span class="op">$</span><span class="va">work_species</span>,</span>
+<span>                                 fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Phylogeny</span></span>
+<span><span class="va">phy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GIFT_phylogeny.html">GIFT_phylogeny</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Dropping tips</span></span>
+<span><span class="va">tenerife_phy</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/drop.tip.html" class="external-link">keep.tip</a></span><span class="op">(</span></span>
+<span>  <span class="va">phy</span>,</span>
+<span>  tip <span class="op">=</span> <span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span><span class="op">[</span><span class="op">(</span><span class="va">phy</span><span class="op">$</span><span class="va">tip.label</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">tenerife_sp</span><span class="op">$</span><span class="va">work_species</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tenerife_phy</span>, type <span class="op">=</span> <span class="st">"fan"</span>, cex <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../reference/figures/tenerife_phylogeny.png" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="references-1">References<a class="anchor" aria-label="anchor" href="#references-1"></a>
