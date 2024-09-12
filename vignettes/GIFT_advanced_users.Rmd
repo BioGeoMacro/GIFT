@@ -530,6 +530,43 @@ knitr::include_graphics("../man/figures/Aisen_Chile_GMBA_overlap.png")
 
 <br>
 
+# 9. Plotting phylogeny for a specific region
+
+We here want to plot the phylogenetic tree of native plant species occurring
+in Tenerife island.
+
+```{r, eval = FALSE, echo = TRUE}
+# List table
+gift_list <- GIFT_lists()
+# Tenerife data for the following list_IDs: 150, 14110, 14228
+
+# Retrieve the lists
+tenerife <- GIFT_checklists_raw(list_ID = c(150, 14110, 14228))
+
+# Extract unique native species only
+tenerife_sp <- tenerife[which(tenerife$native == 1), ] %>% 
+  dplyr::select(work_species) %>% 
+  distinct(.keep_all = TRUE)
+
+# Harmonizing species names between the species table and the phylogeny
+tenerife_sp$work_species <- gsub(" ", "_", tenerife_sp$work_species,
+                                 fixed = TRUE)
+
+# Phylogeny
+phy <- GIFT_phylogeny()
+
+# Dropping tips
+tenerife_phy <- ape::keep.tip(
+  phy,
+  tip = phy$tip.label[(phy$tip.label %in% tenerife_sp$work_species)]) 
+
+plot(tenerife_phy, type = "fan", cex = 0.2)
+```
+
+```{r, fig.cap = "", out.width = "50%",echo = FALSE}
+knitr::include_graphics("../man/figures/tenerife_phylogeny.png")
+```
+
 # References
 
 Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to access the
