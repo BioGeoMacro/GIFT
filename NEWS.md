@@ -7,6 +7,7 @@
 * Better explanation for the parameter *coordinates* in functions
 GIFT_spatial and GIFT_checklists
 * Publication records section added on the Website/Vignettes
+* Section added for specific region's phylogeny
 
 # GIFT 1.3.2
 ## Minor changes
