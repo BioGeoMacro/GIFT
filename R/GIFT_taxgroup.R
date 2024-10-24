@@ -71,7 +71,7 @@ GIFT_taxgroup <- function(work_ID = NULL,
        !(taxon_lvl %in% c("family","order","higher_lvl"))){
       stop(c("'taxon_lvl' must be a character string stating what taxonomic
            level you want to retrieve. Available options are 'family',
-           'genus' and 'higher_lvl'."))
+           'order' and 'higher_lvl'."))
     }
     
     if(length(return_ID) != 1 || !is.logical(return_ID)){
