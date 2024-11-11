@@ -88,3 +88,7 @@ Viktor Domazetoski, Holger Kreft, Helena Bestova, Philipp Wieder, Radoslav Koyno
 <br>
 
 10\. Schrader, J., Weigelt, P., Cai, L., Westoby, M., Fernández-Palacios, J.-M., Cabezas, F., Plunkett, G., Ranker, T., Triantis, K., Trigas, P., Kubota, Y. & Kreft, H. (2024)  Islands are key for protecting the world’s plant endemism. Nature. [https://doi.org/10.1038/s41586-024-08036-1](https://doi.org/10.1038/s41586-024-08036-1) 
+
+<br>
+
+11\. Barrasso, C., Krüger, R., Eltner, A., Cord, A. (2024) Mapping indicator species of segetal flora for result-based payments in arable land using UAV imagery and deep learning. Ecological Indicators. [https://doi.org/10.1016/j.ecolind.2024.112780](https://doi.org/10.1016/j.ecolind.2024.112780)
