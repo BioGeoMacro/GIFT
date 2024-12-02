@@ -92,3 +92,6 @@ Viktor Domazetoski, Holger Kreft, Helena Bestova, Philipp Wieder, Radoslav Koyno
 <br>
 
 11\. Barrasso, C., Krüger, R., Eltner, A., Cord, A. (2024) Mapping indicator species of segetal flora for result-based payments in arable land using UAV imagery and deep learning. Ecological Indicators. [https://doi.org/10.1016/j.ecolind.2024.112780](https://doi.org/10.1016/j.ecolind.2024.112780)
+<br>
+
+12\. Cai, L., Kreft, H., Denelle, H., Taylor, A., Craven, D., Dawson, W., Essl, F., van Kleunen, M., Pergl, J., Pyšek, P., Winter, M., Cabezas, F., Wagner, V., Pelser, P., Wieringa, J. & Weigelt, P. (2024) Environmental filtering, not dispersal history, explains global patterns of phylogenetic turnover in seed plants at deep evolutionary timescales. Nature in Ecology and Evolution. [https://doi.org/10.1038/s41559-024-02599-y](https://doi.org/10.1038/s41559-024-02599-y)
