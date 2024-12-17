@@ -43,8 +43,8 @@ options(tinytex.verbose = TRUE)
 ```
 
 ```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
-knitr::include_graphics("../../man/figures/biodiv_gottingen_logo.png")
-knitr::include_graphics("../../man/figures/GIFT.png")
+knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../man/figures/GIFT.png")
 ```
 
 <br>
@@ -154,7 +154,7 @@ Figure 1 illustrates the principle.
 <br><br>
 
 ```{r, fig.cap = "Figure 1. Principle of the complete_taxon argument", out.width = "50%",echo = FALSE}
-knitr::include_graphics("../../man/figures/GIFT_complete_taxon.svg")
+knitr::include_graphics("../man/figures/GIFT_complete_taxon.svg")
 ```
 <br>
 In Figure 1, we want to retrieve checklists of Angiosperms. In the first
@@ -181,7 +181,7 @@ argument shown above
 
 <br>
 ```{r, fig.cap = "Figure 2. Principle of the complete_floristic argument", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../../man/figures/GIFT_complete_floristic.svg")
+knitr::include_graphics("../man/figures/GIFT_complete_floristic.svg")
 ```
 <br>
 
@@ -195,7 +195,7 @@ of which produces different result, as shown in Figure 3.
 <br>
 
 ```{r, fig.cap = "Figure 3. Principle of GIFT_spatial()", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../../man/figures/GIFT_spatial.svg")
+knitr::include_graphics("../man/figures/GIFT_spatial.svg")
 ```
 <br>
 
@@ -218,7 +218,7 @@ the `area_threshold_mainland` argument as shown in Figure 4.
 <br>
 
 ```{r, fig.cap = "Figure 4. Removing overlapping polygons with remove_overlap argument", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../../man/figures/GIFT_no_overlap.svg")
+knitr::include_graphics("../man/figures/GIFT_no_overlap.svg")
 ```
 <br>
 
@@ -237,7 +237,7 @@ certain percentage of overlap. This percentage can be modified using the
 <br>
 
 ```{r, fig.cap = "Figure 5. Principle of the overlap_th argument", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../../man/figures/GIFT_overlap_th.svg")
+knitr::include_graphics("../man/figures/GIFT_overlap_th.svg")
 ```
 <br>
 
@@ -370,14 +370,14 @@ ggplot(world) +
 ```
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/angio_rich_map.png")
+knitr::include_graphics("../man/figures/angio_rich_map.png")
 ```
 
 <br>
 By customizing the code above, you can also produce a nicer map:
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/angio_rich_map2.png")
+knitr::include_graphics("../man/figures/angio_rich_map2.png")
 ```
 
 <br>
@@ -469,7 +469,7 @@ ggplot(world) +
 ```
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/angio_medit.png")
+knitr::include_graphics("../man/figures/angio_medit.png")
 ```
 
 <br><br>
@@ -602,14 +602,14 @@ ggplot(world) +
 ```
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/anemone_map.png")
+knitr::include_graphics("../man/figures/anemone_map.png")
 ```
 
 <br>
 By customizing the code above, you can also produce a nicer map:
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/anemone_map2.png")
+knitr::include_graphics("../man/figures/anemone_map2.png")
 ```
 
 <br>
@@ -789,14 +789,14 @@ ggplot(world) +
 ```
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/angio_height_plot.png")
+knitr::include_graphics("../man/figures/angio_height_plot.png")
 ```
 
 <br>
 By customizing the code above, you can also produce a nicer map:
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/angio_height_plot2.png")
+knitr::include_graphics("../man/figures/angio_height_plot2.png")
 ```
 
 <br>
@@ -918,14 +918,14 @@ ggplot(world) +
 ```
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/temp_plot.png")
+knitr::include_graphics("../man/figures/temp_plot.png")
 ```
 
 <br>
 By customizing the code above, you can also produce a nicer map:
 
 ```{r, fig.cap = "", out.width = "90%",echo = FALSE}
-knitr::include_graphics("../../man/figures/temp_plot2.png")
+knitr::include_graphics("../man/figures/temp_plot2.png")
 ```
 
 <br>
@@ -1125,7 +1125,7 @@ ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
 ```
 
 ```{r, fig.cap = "", out.width = "100%",echo = FALSE}
-knitr::include_graphics("../../man/figures/phy_tree_plot.png")
+knitr::include_graphics("../man/figures/phy_tree_plot.png")
 ```
 
 <br><br>
