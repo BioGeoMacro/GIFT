@@ -37,8 +37,8 @@ options(tinytex.verbose = TRUE)
 ```
 
 ```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
-knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
-knitr::include_graphics("../man/figures/GIFT.png")
+knitr::include_graphics("../../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../../man/figures/GIFT.png")
 ```
 
 <br>
@@ -181,7 +181,7 @@ how this argument works:
 
 <br>
 ```{r, fig.cap = "Figure 1. GIFT spatial", out.width = "50%", echo = FALSE}
-knitr::include_graphics("../man/figures/GIFT_spatial.svg")
+knitr::include_graphics("../../man/figures/GIFT_spatial.svg")
 ```
 <br>
 
@@ -272,7 +272,7 @@ par(par_overlap)
 ```
 
 ```{r, fig.cap = "", out.width = "100%",echo = FALSE}
-knitr::include_graphics("../man/figures/advanced_overlap.png")
+knitr::include_graphics("../../man/figures/advanced_overlap.png")
 ```
 
 <br>
@@ -525,7 +525,7 @@ region and encompasses it as we can see on this plot (the dark polygon is the
 GIFT region):  
 
 ```{r, fig.cap = "", out.width = "50%",echo = FALSE}
-knitr::include_graphics("../man/figures/Aisen_Chile_GMBA_overlap.png")
+knitr::include_graphics("../../man/figures/Aisen_Chile_GMBA_overlap.png")
 ```
 
 <br>
@@ -564,7 +564,7 @@ plot(tenerife_phy, type = "fan", cex = 0.2)
 ```
 
 ```{r, fig.cap = "", out.width = "50%",echo = FALSE}
-knitr::include_graphics("../man/figures/tenerife_phylogeny.png")
+knitr::include_graphics("../../man/figures/tenerife_phylogeny.png")
 ```
 
 # References

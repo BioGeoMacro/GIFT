@@ -35,8 +35,8 @@ options(tinytex.verbose = TRUE)
 ```
 
 ```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
-knitr::include_graphics("../man/figures/biodiv_gottingen_logo.png")
-knitr::include_graphics("../man/figures/GIFT.png")
+knitr::include_graphics("../../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../../man/figures/GIFT.png")
 ```
 
 <br>
