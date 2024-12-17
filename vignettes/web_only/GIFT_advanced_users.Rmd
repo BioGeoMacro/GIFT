@@ -309,7 +309,7 @@ GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
 ```
 
 
-```{r, eval=FALSE, echo = TRUE}
+```{r chunk_number, eval=FALSE, echo = TRUE}
 # Example of two overlapping polygons: Spain mainland and Andalusia
 overlap_shape <- GIFT_shapes(entity_ID = c(10071, 12078))
 ```
