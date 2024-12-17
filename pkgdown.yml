@@ -4,9 +4,9 @@ pkgdown_sha: ~
 articles:
   web_only/GIFT_advanced_users: web_only/GIFT_advanced_users.html
   web_only/GIFT_API: web_only/GIFT_API.html
-  web_only/GIFT: web_only/GIFT.html
+  GIFT: GIFT.html
   web_only/Publication_records: web_only/Publication_records.html
-last_built: 2024-12-17T10:33Z
+last_built: 2024-12-17T12:47Z
 urls:
   reference: https://biogeomacro.github.io/GIFT/reference
   article: https://biogeomacro.github.io/GIFT/articles
