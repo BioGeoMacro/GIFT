@@ -1,6 +1,8 @@
 # GIFT
 
 # GIFT 1.3.3
+* Vignettes are not built on CRAN anymore, they remain acessible on the website
+
 ## Minor changes
 
 * *Anemonoides nemorosa* instead of *Anemone nemorosa* in the vignette
