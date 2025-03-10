@@ -103,3 +103,9 @@ functionality and biodiversity conservation. Urban Ecosystems. [https://doi.org/
 
 14\. Dugerdil, L., Peyron, O., Violle, C., Joannin, S., Ménot, G., Denelle, P., Bruelheide, H., Chytrý, M., Field, R., Hatim, M. Z., Gholizadeh, H., Dolezal, J., Pillar, V. D., Shaltout, K. H., Schrodt, F., & Garnier, E. (2025) Functional Signatures of Surface Pollen and Vegetation Are Broadly Similar: Good News for Past Reconstructions of Vegetation. Journal of Biogeography. [https://doi.org/10.1111/jbi.15100](https://doi.org/10.1111/jbi.15100)
 <br>
+
+15\. Wunderlich, R.F., Jamoneau, A., Boutry, S., Hosni, M., & Bertrin, V.. (2025) Model-based management of macrophytes in shallow lakes under warming. Journal of Environmental Management. [https://doi.org/10.1016/j.jenvman.2025.124543](https://doi.org/10.1016/j.jenvman.2025.124543)
+<br>
+
+16\. Guerrero, P., Contador, T., Díaz, A., Escobar, C., Orlando, J., Marín, C., & Medina, P. (2025) Southern Islands Vascular Flora (SIVFLORA) dataset: A global plant database from Southern Ocean islands. Scientific Data. [https://doi.org/10.1038/s41597-025-04702-9](https://doi.org/10.1038/s41597-025-04702-9)
+<br>
