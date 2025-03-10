@@ -46,78 +46,80 @@ package, as of 10 of March 2025. It may be useful if you are looking for case
 studies or examples of specific functionality.
 <br>
 
-# Research articles
-1\. Cai, Lirong, Holger Kreft, Amanda Taylor, Julian Schrader, Wayne Dawson, Franz Essl, Mark van Kleunen, Jan Pergl, Petr Pyšek, and Marten Winter. “Climatic Stability and Geological History Shape Global Centers of Neo-and Paleoendemism in Seed Plants.” Proceedings of the National Academy of Sciences 120, no. 30 (2023): e2300981120.<br>
-[https://doi.org/10.1073/pnas.2300981120](https://doi.org/10.1073/pnas.2300981120)
-
+# Peer-reviewed research articles
+## 2025
+15\. Guerrero, P., Contador, T., Díaz, A., Escobar, C., Orlando, J., Marín, C., & Medina, P. (2025) Southern Islands Vascular Flora (SIVFLORA) dataset: A global plant database from Southern Ocean islands. *Scientific Data*.<br>
+[https://doi.org/10.1038/s41597-025-04702-9](https://doi.org/10.1038/s41597-025-04702-9)
 <br>
 
-2\. Eva Benavides Rios, Jonathan Sadler, Laura Graham, Thomas J. Matthews, Species distribution models and island biogeography: Challenges and prospects, Global Ecology and Conservation, Volume 51, 2024, e02943, ISSN 2351-9894<br>
-[https://doi.org/10.1016/j.gecco.2024.e02943](https://doi.org/10.1016/j.gecco.2024.e02943)
-
+14\. Wunderlich, R.F., Jamoneau, A., Boutry, S., Hosni, M., & Bertrin, V.. (2025) Model-based management of macrophytes in shallow lakes under warming. *Journal of Environmental Management*.<br>
+[https://doi.org/10.1016/j.jenvman.2025.124543](https://doi.org/10.1016/j.jenvman.2025.124543)
 <br>
 
-3\. Fan, Sy., Yang, Q., Li, Sp., Fristoe, T., Cadotte, M.W., Essl, F., Kreft, H., Pergl, J., Pyšek, P., Weigelt, P., Kartesz, J., Nishino, M., Wieringa, J., & van Kleunen, M. A latitudinal gradient in Darwin’s naturalization conundrum at the global scale for flowering plants. Nat Commun 14, 6244 (2023).<br>
-[https://doi.org/10.1038/s41467-023-41607-w](https://doi.org/10.1038/s41467-023-41607-w)
-
+13\. Dugerdil, L., Peyron, O., Violle, C., Joannin, S., Ménot, G., Denelle, P., Bruelheide, H., Chytrý, M., Field, R., Hatim, M. Z., Gholizadeh, H., Dolezal, J., Pillar, V. D., Shaltout, K. H., Schrodt, F., & Garnier, E. (2025) Functional Signatures of Surface Pollen and Vegetation Are Broadly Similar: Good News for Past Reconstructions of Vegetation. *Journal of Biogeography*.<br>
+[https://doi.org/10.1111/jbi.15100](https://doi.org/10.1111/jbi.15100)
 <br>
 
-4\. Roeble, L., van Benthem, K.J., Weigelt, P., Kreft, H., Knope, M., Mandel, J., Vargas, P., Etienne, R., & Valente, L. Island biogeography of the megadiverse plant family Asteraceae. Nat Commun 15, 7276 (2024).<br>
-[https://doi.org/10.1038/s41467-024-51556-7](https://doi.org/10.1038/s41467-024-51556-7)
-
+12\. Frisk, C., & Hanslin, M. (2025) Optimizing plant species composition of green roofs for ecological
+functionality and biodiversity conservation. *Urban Ecosystems*.<br>
+[https://doi.org/10.1007/s11252-024-01657-4](https://doi.org/10.1007/s11252-024-01657-4)
 <br>
 
-5\. Delavaux, C.S., Crowther, T.W., Bever, J.D., Weigelt, P., & Gora, E. Mutualisms weaken the latitudinal diversity gradient among oceanic islands. Nature 627, 335–339 (2024).<br>
-[https://doi.org/10.1038/s41586-024-07110-y](https://doi.org/10.1038/s41586-024-07110-y)
-
+## 2024
+11\. Cai, L., Kreft, H., Denelle, H., Taylor, A., Craven, D., Dawson, W., Essl, F., van Kleunen, M., Pergl, J., Pyšek, P., Winter, M., Cabezas, F., Wagner, V., Pelser, P., Wieringa, J. & Weigelt, P. (2024) Environmental filtering, not dispersal history, explains global patterns of phylogenetic turnover in seed plants at deep evolutionary timescales. *Nature in Ecology and Evolution*.<br>
+[https://doi.org/10.1038/s41559-024-02599-y](https://doi.org/10.1038/s41559-024-02599-y)
 <br>
 
-6\. Avery L. Russell, Stephen L. Buchmann, John S. Ascher, Zhiheng Wang, Ricardo Kriebel, Diana D. Jolles, Michael C. Orr, Alice C. Hughes, Global patterns and drivers of buzzing bees and poricidal plants, Current Biology, Volume 34, Issue 14, 2024, Pages 3055-3063.e5, ISSN 0960-9822<br>
-[https://doi.org/10.1016/j.cub.2024.05.065](https://doi.org/10.1016/j.cub.2024.05.065)
-
+10\. Barrasso, C., Krüger, R., Eltner, A., Cord, A. (2024) Mapping indicator species of segetal flora for result-based payments in arable land using UAV imagery and deep learning. *Ecological Indicators*.<br>
+[https://doi.org/10.1016/j.ecolind.2024.112780](https://doi.org/10.1016/j.ecolind.2024.112780)
 <br>
 
-7\. Chumová, Z., Havlíčková, E., Zeisek, V., Šemberová, K., Mandáková, T., Euston-Brown, D. and Trávníček, P. (2024), Deciphering Pteronia's evolution in the Cape Floristic Region: A comprehensive study disputes polyploid deficiency and affirms diploid radiation. Plant J, 119: 2236-2254.<br>
-[https://doi.org/10.1111/tpj.16914](https://doi.org/10.1111/tpj.16914)
-
-<br>
-
-8\. Domazetoski, V., Kreft, H., Bestova, H., Wieder, P., Koynov, R., Zarei, A., & Weigelt, P. (2024) Using natural language processing to extract plant functional traits from unstructured text. BioRXiv<br>
-[https://doi.org/10.1101/2023.11.06.565787](https://doi.org/10.1101/2023.11.06.565787) 
-
-<br>
-
-9\. Aros-Mualin, D. Kessler, M. Untangling poikilohydry and desiccation tolerance: evolutionary and macroecological drivers in ferns Annals of Botany mcae167.<br>
-[https://doi.org/10.1093/aob/mcae167](https://doi.org/10.1093/aob/mcae167) 
-
-<br>
-
-10\. Schrader, J., Weigelt, P., Cai, L., Westoby, M., Fernández-Palacios, J.-M., Cabezas, F., Plunkett, G., Ranker, T., Triantis, K., Trigas, P., Kubota, Y. & Kreft, H. (2024)  Islands are key for protecting the world’s plant endemism. Nature.<br>
+9\. Schrader, J., Weigelt, P., Cai, L., Westoby, M., Fernández-Palacios, J.-M., Cabezas, F., Plunkett, G., Ranker, T., Triantis, K., Trigas, P., Kubota, Y. & Kreft, H. (2024)  Islands are key for protecting the world’s plant endemism. *Nature*.<br>
 [https://doi.org/10.1038/s41586-024-08036-1](https://doi.org/10.1038/s41586-024-08036-1) 
 
 <br>
 
-11\. Barrasso, C., Krüger, R., Eltner, A., Cord, A. (2024) Mapping indicator species of segetal flora for result-based payments in arable land using UAV imagery and deep learning. Ecological Indicators.<br>
-[https://doi.org/10.1016/j.ecolind.2024.112780](https://doi.org/10.1016/j.ecolind.2024.112780)
+8\. Aros-Mualin, D. Kessler, M. Untangling poikilohydry and desiccation tolerance: evolutionary and macroecological drivers in ferns. *Annals of Botany* mcae167.<br>
+[https://doi.org/10.1093/aob/mcae167](https://doi.org/10.1093/aob/mcae167) 
+
 <br>
 
-12\. Cai, L., Kreft, H., Denelle, H., Taylor, A., Craven, D., Dawson, W., Essl, F., van Kleunen, M., Pergl, J., Pyšek, P., Winter, M., Cabezas, F., Wagner, V., Pelser, P., Wieringa, J. & Weigelt, P. (2024) Environmental filtering, not dispersal history, explains global patterns of phylogenetic turnover in seed plants at deep evolutionary timescales. Nature in Ecology and Evolution.<br>
-[https://doi.org/10.1038/s41559-024-02599-y](https://doi.org/10.1038/s41559-024-02599-y)
+7\. Chumová, Z., Havlíčková, E., Zeisek, V., Šemberová, K., Mandáková, T., Euston-Brown, D. and Trávníček, P. (2024), Deciphering Pteronia's evolution in the Cape Floristic Region: A comprehensive study disputes polyploid deficiency and affirms diploid radiation. *Plant J*, 119: 2236-2254.<br>
+[https://doi.org/10.1111/tpj.16914](https://doi.org/10.1111/tpj.16914)
+
 <br>
 
-13\. Frisk, C., & Hanslin, M. (2025) Optimizing plant species composition of green roofs for ecological
-functionality and biodiversity conservation. Urban Ecosystems.<br>
-[https://doi.org/10.1007/s11252-024-01657-4](https://doi.org/10.1007/s11252-024-01657-4)
+6\. Avery L. Russell, Stephen L. Buchmann, John S. Ascher, Zhiheng Wang, Ricardo Kriebel, Diana D. Jolles, Michael C. Orr, Alice C. Hughes, Global patterns and drivers of buzzing bees and poricidal plants, *Current Biology*, Volume 34, Issue 14, 2024, Pages 3055-3063.e5, ISSN 0960-9822<br>
+[https://doi.org/10.1016/j.cub.2024.05.065](https://doi.org/10.1016/j.cub.2024.05.065)
+
 <br>
 
-14\. Dugerdil, L., Peyron, O., Violle, C., Joannin, S., Ménot, G., Denelle, P., Bruelheide, H., Chytrý, M., Field, R., Hatim, M. Z., Gholizadeh, H., Dolezal, J., Pillar, V. D., Shaltout, K. H., Schrodt, F., & Garnier, E. (2025) Functional Signatures of Surface Pollen and Vegetation Are Broadly Similar: Good News for Past Reconstructions of Vegetation. Journal of Biogeography.<br>
-[https://doi.org/10.1111/jbi.15100](https://doi.org/10.1111/jbi.15100)
+5\. Delavaux, C.S., Crowther, T.W., Bever, J.D., Weigelt, P., & Gora, E. Mutualisms weaken the latitudinal diversity gradient among oceanic islands. *Nature* 627, 335–339 (2024).<br>
+[https://doi.org/10.1038/s41586-024-07110-y](https://doi.org/10.1038/s41586-024-07110-y)
+
+<br>
+4\. Roeble, L., van Benthem, K.J., Weigelt, P., Kreft, H., Knope, M., Mandel, J., Vargas, P., Etienne, R., & Valente, L. Island biogeography of the megadiverse plant family Asteraceae. *Nat Commun* 15, 7276 (2024).<br>
+[https://doi.org/10.1038/s41467-024-51556-7](https://doi.org/10.1038/s41467-024-51556-7)
+
 <br>
 
-15\. Wunderlich, R.F., Jamoneau, A., Boutry, S., Hosni, M., & Bertrin, V.. (2025) Model-based management of macrophytes in shallow lakes under warming. Journal of Environmental Management.<br>
-[https://doi.org/10.1016/j.jenvman.2025.124543](https://doi.org/10.1016/j.jenvman.2025.124543)
+3\. Fan, Sy., Yang, Q., Li, Sp., Fristoe, T., Cadotte, M.W., Essl, F., Kreft, H., Pergl, J., Pyšek, P., Weigelt, P., Kartesz, J., Nishino, M., Wieringa, J., & van Kleunen, M. A latitudinal gradient in Darwin’s naturalization conundrum at the global scale for flowering plants. *Nat Commun* 14, 6244 (2023).<br>
+[https://doi.org/10.1038/s41467-023-41607-w](https://doi.org/10.1038/s41467-023-41607-w)
+
 <br>
 
-16\. Guerrero, P., Contador, T., Díaz, A., Escobar, C., Orlando, J., Marín, C., & Medina, P. (2025) Southern Islands Vascular Flora (SIVFLORA) dataset: A global plant database from Southern Ocean islands. Scientific Data.<br>
-[https://doi.org/10.1038/s41597-025-04702-9](https://doi.org/10.1038/s41597-025-04702-9)
+2\. Eva Benavides Rios, Jonathan Sadler, Laura Graham, Thomas J. Matthews, Species distribution models and island biogeography: Challenges and prospects, *Global Ecology and Conservation*, Volume 51, (2024), e02943, ISSN 2351-9894<br>
+[https://doi.org/10.1016/j.gecco.2024.e02943](https://doi.org/10.1016/j.gecco.2024.e02943)
+
+<br>
+## 2023
+1\. Cai, Lirong, Holger Kreft, Amanda Taylor, Julian Schrader, Wayne Dawson, Franz Essl, Mark van Kleunen, Jan Pergl, Petr Pyšek, and Marten Winter. “Climatic Stability and Geological History Shape Global Centers of Neo-and Paleoendemism in Seed Plants.” *Proceedings of the National Academy of Sciences* 120, no. 30 (2023): e2300981120.<br>
+[https://doi.org/10.1073/pnas.2300981120](https://doi.org/10.1073/pnas.2300981120)
+
+<br>
+
+# Preprint
+1\. Domazetoski, V., Kreft, H., Bestova, H., Wieder, P., Koynov, R., Zarei, A., & Weigelt, P. (2024) Using natural language processing to extract plant functional traits from unstructured text. *BioRXiv*<br>
+[https://doi.org/10.1101/2023.11.06.565787](https://doi.org/10.1101/2023.11.06.565787) 
+
 <br>
