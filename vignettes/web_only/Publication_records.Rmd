@@ -48,6 +48,10 @@ studies or examples of specific functionality.
 
 # Peer-reviewed research articles
 ## 2025
+16\. Quan, Y., Hederström, V., Ekroos, J., Menubarbe, P., Krausl, T., & Clough, Y. (2025) Landscape composition influences invertebrate herbivory on flowering forbs in semi-natural grasslands. *Basic and Applied Ecology*.<br>
+[https://doi.org/10.1016/j.baae.2025.03.006](https://doi.org/10.1016/j.baae.2025.03.006)
+<br>
+
 15\. Guerrero, P., Contador, T., Díaz, A., Escobar, C., Orlando, J., Marín, C., & Medina, P. (2025) Southern Islands Vascular Flora (SIVFLORA) dataset: A global plant database from Southern Ocean islands. *Scientific Data*.<br>
 [https://doi.org/10.1038/s41597-025-04702-9](https://doi.org/10.1038/s41597-025-04702-9)
 <br>
