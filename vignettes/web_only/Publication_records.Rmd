@@ -42,12 +42,16 @@ knitr::include_graphics("../../man/figures/GIFT.png")
 <br>
 
 This vignette contains a list of publications that cite or use the `GIFT` R
-package, as of 10 of March 2025. It may be useful if you are looking for case
+package, as of 9 of April 2025. It may be useful if you are looking for case
 studies or examples of specific functionality.
 <br>
 
 # Peer-reviewed research articles
 ## 2025
+17\. Coleman, D., Westoby, M., & Schrader, J. (2025) Island Plant Species Distributions Contracted at the Cooler Edge Compared to Mainland. *Ecology Letters*.<br>
+[https://doi.org/10.1111/ele.70099](https://doi.org/10.1111/ele.70099)
+<br>
+
 16\. Quan, Y., Hederström, V., Ekroos, J., Menubarbe, P., Krausl, T., & Clough, Y. (2025) Landscape composition influences invertebrate herbivory on flowering forbs in semi-natural grasslands. *Basic and Applied Ecology*.<br>
 [https://doi.org/10.1016/j.baae.2025.03.006](https://doi.org/10.1016/j.baae.2025.03.006)
 <br>
@@ -116,6 +120,7 @@ functionality and biodiversity conservation. *Urban Ecosystems*.<br>
 [https://doi.org/10.1016/j.gecco.2024.e02943](https://doi.org/10.1016/j.gecco.2024.e02943)
 
 <br>
+
 ## 2023
 1\. Cai, Lirong, Holger Kreft, Amanda Taylor, Julian Schrader, Wayne Dawson, Franz Essl, Mark van Kleunen, Jan Pergl, Petr Pyšek, and Marten Winter. “Climatic Stability and Geological History Shape Global Centers of Neo-and Paleoendemism in Seed Plants.” *Proceedings of the National Academy of Sciences* 120, no. 30 (2023): e2300981120.<br>
 [https://doi.org/10.1073/pnas.2300981120](https://doi.org/10.1073/pnas.2300981120)
