@@ -48,6 +48,14 @@ studies or examples of specific functionality.
 
 # Peer-reviewed research articles
 ## 2025
+19\. Domazetoski, V., Kreft, H., Bestova, H., Wieder, P., Koynov, R., Zarei, A., & Weigelt, P. (2025) Using large language models to extract plant functional traits from unstructured text. *Applications in Plant Sciences*<br>
+[https://doi.org/10.1002/aps3.70011](https://doi.org/10.1002/aps3.70011) 
+<br>
+
+18\. Mesaglio, T., Kar, F., Sauquet, H., & Cornwell, W.K. (2025) _infinitylists_: A Shiny application and R package for rapid generation of place-based species checklists. *Applications in Plant Sciences*.<br>
+[https://doi.org/10.1002/aps3.70012](https://doi.org/10.1002/aps3.70012)
+<br>
+
 17\. Coleman, D., Westoby, M., & Schrader, J. (2025) Island Plant Species Distributions Contracted at the Cooler Edge Compared to Mainland. *Ecology Letters*.<br>
 [https://doi.org/10.1111/ele.70099](https://doi.org/10.1111/ele.70099)
 <br>
@@ -128,7 +136,7 @@ functionality and biodiversity conservation. *Urban Ecosystems*.<br>
 <br>
 
 # Preprint
-1\. Domazetoski, V., Kreft, H., Bestova, H., Wieder, P., Koynov, R., Zarei, A., & Weigelt, P. (2024) Using natural language processing to extract plant functional traits from unstructured text. *BioRXiv*<br>
-[https://doi.org/10.1101/2023.11.06.565787](https://doi.org/10.1101/2023.11.06.565787) 
+1\. Mellado-Mansilla, D., Weigand, A., Weigelt, P., Kreft, H., & Kessler, M.(2025) Paleogene mass extinction and ongoing Neogene recolonization shape the tropical African flora. *bioRxiv*.<br>
+[https://doi.org/10.1101/2025.04.01.646671](https://doi.org/10.1101/2025.04.01.646671)
 
 <br>
