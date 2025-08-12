@@ -1,5 +1,7 @@
 # GIFT
 
+* Typo in the documentation of GIFT_taxonomy()
+
 # GIFT 1.3.3
 * Vignettes are not built on CRAN anymore, they remain acessible on the website
 

@@ -10,7 +10,7 @@
 #' 
 #' \emph{taxon_ID} - the identification number of each taxonomic entry.\cr
 #' \emph{taxon_name} - names describing taxa.\cr
-#' \emph{taxon_name} - author name for a given taxon.\cr
+#' \emph{taxon_author} - author name for a given taxon.\cr
 #' \emph{taxon_lvl} - splits every taxon in genus, family, order or
 #' superior orders. Taxonomy is a linear sequence of left and right borders
 #' for each taxon. This is nested, for example left and right borders of a
