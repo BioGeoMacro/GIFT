@@ -42,12 +42,20 @@ knitr::include_graphics("../../man/figures/GIFT.png")
 <br>
 
 This vignette contains a list of publications that cite or use the `GIFT` R
-package, as of 9 of April 2025. It may be useful if you are looking for case
+package, as of September 2025. It may be useful if you are looking for case
 studies or examples of specific functionality.
 <br>
 
 # Peer-reviewed research articles
 ## 2025
+21\. Liu, R., van Kleunen, M., Pierce, S., Chytrý, M., Guo, P., Pyšek, P. & Guo, W. (2025) Grime's CSR theory revisited: A whole-plant view of vascular plant functioning across contrasting environments. *Journal of Ecology*<br>
+[https://doi.org/10.1111/1365-2745.70146](https://doi.org/10.1111/1365-2745.70146) 
+<br>
+
+20\. Siddiqui, S. (2025) Global patterns and drivers of species and genera richness of Fabaceae. *Frontiers in Plant Sciences*<br>
+[https://doi.org/10.3389/fpls.2025.1581814](https://doi.org/10.3389/fpls.2025.1581814) 
+<br>
+
 19\. Domazetoski, V., Kreft, H., Bestova, H., Wieder, P., Koynov, R., Zarei, A., & Weigelt, P. (2025) Using large language models to extract plant functional traits from unstructured text. *Applications in Plant Sciences*<br>
 [https://doi.org/10.1002/aps3.70011](https://doi.org/10.1002/aps3.70011) 
 <br>
