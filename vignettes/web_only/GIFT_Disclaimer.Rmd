@@ -1,0 +1,93 @@
+---
+title: "Disclaimer"
+author: "Pierre Denelle, Patrick Weigelt, Holger Kreft & Anke Stein"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+ %\VignetteIndexEntry{Disclaimer}
+ %\VignetteEncoding{UTF-8} 
+ %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+ chunk_output_type: console
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 8, fig.height = 8)
+# Packages --------------------------------------------------------------------
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library("GIFT")
+    library("knitr")
+    library("kableExtra")
+  })
+})
+
+options(tinytex.verbose = TRUE)
+```
+
+```{r gottingen_logo, fig.show = 'hold', out.width = "20%", echo = FALSE}
+knitr::include_graphics("../../man/figures/biodiv_gottingen_logo.png")
+knitr::include_graphics("../../man/figures/GIFT.png")
+```
+
+<br>
+
+# Disclaimer on data quality, limitations, and responsible use of the Global Inventory of Floras and Traits (GIFT)
+
+<br>
+
+The GIFT database and R package provide harmonized data on plant distributions, functional traits, and environmental variables worldwide. GIFT is a dynamic resource: new versions are periodically released, and older versions are maintained for reproducibility. While we strive for high quality and transparency, users must be aware of the following limitations and responsibilities.
+
+While the data in GIFT are based on curated floras and checklists, errors, omissions, and inconsistencies inherent in the original sources or introduced during digitisation or processing are inevitable. Algorithms to detect and flag potentially incorrect and suspicious information are currently being developed. If you notice any issues, please report them to gift@uni-goettingen.de, and we will work to resolve them as soon as possible. In addition, users should consider potential discrepancies or information loss due to standardisation and data aggregation described in the GIFT literature and in the following.  
+
+## 1. Taxonomic Standardisation and Floristic Status
+
+Plant names from the original sources are stored in GIFT as they are, but also standardised to global taxonomic backbones (WCVP, WFO, TPL, etc., depending on the database version). During harmonisation, some taxa (such as subspecies, varieties, synonyms, or names with spelling inconsistencies) may be merged or re‑classified.  
+<br>
+Species lists as reported in original sources may thus differ after harmonisation; some taxa may be counted under different names or not matched at all. Native, endemic, and naturalised statuses refer to the original taxon names in the source references and may be invalid for the standardised name. Some regions may have conflicting floristic‑status information, and harmonisation may obscure nuances in native status or endemism (e.g., when subspecies are merged to species). Treat floristic status with care, check the matching scores, consult original taxon names and verify against the literature for detailed analyses.
+<br>
+
+## 2. Trait Aggregation
+
+Trait values are sometimes logically or taxonomically inferred and are often aggregated from multiple sources. Categorical traits are assigned the most frequent value among different sources; continuous traits are summarized using mean, min, or max. Trait derivation may introduce bias in the prevalence of certain traits as indicated in the database.  
+<br>
+Users are encouraged to check agreement scores indicating consistency among sources, the raw trait values before trait aggregation (function `GIFT_traits_raw()` in the R package), and to consult the filtering options in the R package.
+<br>
+
+## 3. Spatial Data
+
+GIFT may contain multiple, sometimes overlapping, polygons per region (countries, islands, protected areas, etc.). The functions `GIFT_checklists()` and `GIFT_spatial()` from the R package allow users to handle spatial overlap, as documented in the package tutorial.
+
+The settings you choose can substantially impact your analysis. Be deliberate in your selection of regions and overlap settings and document your spatial settings for reproducibility.
+<br>
+
+## 4. Geographic and Taxonomic Coverage Gaps
+
+GIFT’s global coverage is extensive but not uniform. Some geographic regions and plant groups are under‑represented or pending inclusion. Some checklists are incomplete or cover only certain groups (e.g., trees, ferns, endemics). We encourage you to use the provided R functions to assess coverage and completeness for your analyses and to treat results for under‑represented regions or taxa cautiously.
+<br>
+
+## User Responsibilities
+Carefully read the documentation and vignettes for function‑specific options and caveats.  
+Always consider data harmonisation, coverage, overlap, and aggregation settings as well as their potential implications in your analyses. Document any user‑defined choices.  
+For high‑precision research, corroborate results with raw data, agreement and matching scores, and primary sources as appropriate.  
+Cite the GIFT database version and the GIFT R package, if applicable. Also acknowledge all primary sources used in your study, providing proper credit to the original authors and contributors.  
+
+  Example citation:
+      We used regional species composition data for native seed plants from the Global Inventory of Floras and Traits (GIFT v.3.0: https://gift.uni-goettingen.de)^1^ retrieved via the GIFT R‑package^2,3^ on 1 October 2023.
+
+  1. Weigelt, P., König, C., & Kreft, H. (2020). GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47(1), 16–43. https://doi.org/10.1111/jbi.13623
+  2. Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to access the Global Inventory of Floras and Traits. Methods in Ecology and Evolution, 14(11), 2738–2748. https://doi.org/10.1111/2041-210X.14213
+  3. Denelle P, Weigelt P (2023). GIFT: Access to the Global Inventory of Floras and Traits (GIFT). R package version 1.2.0, https://CRAN.R-project.org/package=GIFT. 
+<br>
+For questions, problems, or to report issues, contact the GIFT team via gift@uni-goettingen.de.
+<br>
+By accessing and using GIFT and its R package, you acknowledge these limitations and accept responsibility for careful and critical usage of the data and methods.
