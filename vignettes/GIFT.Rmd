@@ -704,7 +704,7 @@ values can then vary.
 Second, `GIFT_traits()` returns an aggregated trait value at the species level.
 The aggregation simply takes the mean for continuous traits or the most
 frequent entry for categorical traits. However, for some specific cases, the
-aggregation takes either the minimum or the maximum, as for the trait we chose.
+aggregation takes either the minimum (e.g. Plant_height_min, Shoot_length_min, DBH_min, Seed_length_min, ... )or the maximum (Plant_height_max, ...).
 <br>
 Let's retrieve the raw and aggregated values for the maximum vegetative height
 of plants (trait_ID 1.6.2).
