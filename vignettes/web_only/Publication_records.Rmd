@@ -48,6 +48,10 @@ studies or examples of specific functionality.
 
 # Peer-reviewed research articles
 ## 2025
+22\. Grenié, M., Bruelheide, H., Dawson, W., Essl, F., van Kleunen, M., Kühn, I., Kreft, H., Pyšek, P., Weigelt, P. & Winter, M. (2025) Gaps in Global Alien Plant Trait Data and How to Fill Them. *Global Ecology and Biogeography*<br>
+[https://doi.org/10.1111/geb.70131](https://doi.org/10.1111/geb.70131) 
+<br>
+
 21\. Liu, R., van Kleunen, M., Pierce, S., Chytrý, M., Guo, P., Pyšek, P. & Guo, W. (2025) Grime's CSR theory revisited: A whole-plant view of vascular plant functioning across contrasting environments. *Journal of Ecology*<br>
 [https://doi.org/10.1111/1365-2745.70146](https://doi.org/10.1111/1365-2745.70146) 
 <br>
