@@ -1,0 +1,189 @@
+# GIFT
+
+This **R package** includes several functions for extracting data from
+the Global Inventory of Floras and Traits (**GIFT**) database.  
+**GIFT** is a global database of plant checklists, covering several
+taxonomic groups and providing information on the floristic status and
+functional traits of plants as well as environmental information for
+each checklist.  
+More details on the contents of this database can be found in the
+publications by [Weigelt et al.,
+(2020)](https://doi.org/10.1111/jbi.13623) and [Denelle et al.,
+(2023)](https://doi.org/10.1111/2041-210X.14213).
+
+![](reference/figures/rich_map_plot_islands.png)
+
+# ⏬ Installation
+
+The package is available on CRAN, you can install and load it using the
+following commands:
+
+``` r
+install.packages("GIFT")
+library("GIFT")
+```
+
+GIFT is still under active development. You can install the development
+version from the GitHub repository using the following commands:
+
+``` r
+# install.packages("devtools")
+remotes::install_github("https://github.com/BioGeoMacro/GIFT",
+dependencies = TRUE)
+library("GIFT")
+```
+
+# 📜 Vignettes
+
+We have written several vignettes to help you use the **GIFT R
+package**. Three vignettes are available:  
+
+- **[Main
+  tutorial](https://biogeomacro.github.io/GIFT/articles/GIFT.html)**  
+- **[For advanced
+  users](https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html)**  
+- **[API](https://biogeomacro.github.io/GIFT/articles/GIFT_API.html)**
+
+Alternatively, if you prefer to view the vignettes in R, you can install
+the package with `build_vignettes = TRUE`.
+
+``` r
+remotes::install_github("https://github.com/BioGeoMacro/GIFT", 
+                        dependencies = TRUE, upgrade = "ask", 
+                        build_vignettes = TRUE)
+
+vignette("GIFT")
+```
+
+# 🖥️ Functions
+
+An overview of all functions and data is given
+**[here](https://biogeomacro.github.io/GIFT/reference/index.html)**.
+
+# 🐛 Find a bug?
+
+Thank you for finding it. Head over to the GitHub Issues tab and let us
+know about it. Alternatively, you can also send us an email. We will try
+to get to it as soon as possible!
+
+# References and dependencies
+
+`GIFT` depends on `ape`, `dplyr`, `jsonlite`, `phytools`, `purrr`, `sf`,
+`stats`, `tidyr` and `utils`.
+
+Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to
+access the Global Inventory of Floras and Traits. *Methods in Ecology
+and Evolution*, 14, 2738-2748.
+<https://doi.org/10.1111/2041-210X.14213>.
+
+Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of
+Floras and Traits for macroecology and biogeography. *Journal of
+Biogeography*, <https://doi.org/10.1111/jbi.13623>.
+
+# Package index
+
+## Checklists
+
+### Main function
+
+- [`GIFT_checklists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.md)
+  : GIFT checklists
+
+### Alternative functions
+
+- [`GIFT_checklists_conditional()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists_conditional.md)
+  : GIFT checklists meta data
+- [`GIFT_checklists_raw()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists_raw.md)
+  : GIFT checklists
+- [`GIFT_lists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_lists.md)
+  : Metadata for checklists available in GIFT
+- [`GIFT_references()`](https://biogeomacro.github.io/GIFT/reference/GIFT_references.md)
+  : Metadata for references available in GIFT
+- [`GIFT_richness()`](https://biogeomacro.github.io/GIFT/reference/GIFT_richness.md)
+  : Species richness per geographic region and taxonomic group in GIFT
+
+## Species’ distribution
+
+### Main function
+
+- [`GIFT_species_distribution()`](https://biogeomacro.github.io/GIFT/reference/GIFT_species_distribution.md)
+  : GIFT species distribution
+
+### Alternative functions
+
+- [`GIFT_species_lookup()`](https://biogeomacro.github.io/GIFT/reference/GIFT_species_lookup.md)
+  : Species list in GIFT
+- [`GIFT_species()`](https://biogeomacro.github.io/GIFT/reference/GIFT_species.md)
+  : Species list in GIFT
+
+## Taxonomy and phylogeny
+
+- [`GIFT_taxonomy()`](https://biogeomacro.github.io/GIFT/reference/GIFT_taxonomy.md)
+  : Taxonomy of GIFT
+- [`GIFT_taxgroup()`](https://biogeomacro.github.io/GIFT/reference/GIFT_taxgroup.md)
+  : Taxonomic group of species
+- [`GIFT_phylogeny()`](https://biogeomacro.github.io/GIFT/reference/GIFT_phylogeny.md)
+  : Phylogeny of the species in GIFT
+
+## Traits
+
+### Main functions
+
+- [`GIFT_traits()`](https://biogeomacro.github.io/GIFT/reference/GIFT_traits.md)
+  : Trait values at the species level
+- [`GIFT_traits_meta()`](https://biogeomacro.github.io/GIFT/reference/GIFT_traits_meta.md)
+  : Trait metadata
+- [`GIFT_traits_raw()`](https://biogeomacro.github.io/GIFT/reference/GIFT_traits_raw.md)
+  : Raw trait values
+- [`GIFT_traits_tax()`](https://biogeomacro.github.io/GIFT/reference/GIFT_traits_tax.md)
+  : Traits at the taxonomic level
+
+### Alternative functions
+
+- [`GIFT_coverage()`](https://biogeomacro.github.io/GIFT/reference/GIFT_coverage.md)
+  : Taxonomic and trait coverage per geographic region and taxonomic
+  group in GIFT
+
+## Spatial data
+
+### Environmental data
+
+- [`GIFT_env()`](https://biogeomacro.github.io/GIFT/reference/GIFT_env.md)
+  : Environmental data for GIFT checklists
+- [`GIFT_env_meta_misc()`](https://biogeomacro.github.io/GIFT/reference/GIFT_env_meta_misc.md)
+  : Metadata for the environmental miscellaneous variables in GIFT
+- [`GIFT_env_meta_raster()`](https://biogeomacro.github.io/GIFT/reference/GIFT_env_meta_raster.md)
+  : Metadata for the environmental rasters in GIFT
+- [`GIFT_spatial()`](https://biogeomacro.github.io/GIFT/reference/GIFT_spatial.md)
+  : Spatial selection of GIFT checklists
+
+### Regions and shapes
+
+- [`GIFT_regions()`](https://biogeomacro.github.io/GIFT/reference/GIFT_regions.md)
+  : Metadata for GIFT regions
+- [`GIFT_shapes()`](https://biogeomacro.github.io/GIFT/reference/GIFT_shapes.md)
+  : Shape files of GIFT regions
+- [`GIFT_overlap()`](https://biogeomacro.github.io/GIFT/reference/GIFT_overlap.md)
+  : Spatial overlap between GIFT polygons and external polygons
+- [`GIFT_no_overlap()`](https://biogeomacro.github.io/GIFT/reference/GIFT_no_overlap.md)
+  : Select non-overlapping regions
+
+## Utils
+
+- [`GIFT_versions()`](https://biogeomacro.github.io/GIFT/reference/GIFT_versions.md)
+  : Versions of GIFT available
+- [`western_mediterranean`](https://biogeomacro.github.io/GIFT/reference/western_mediterranean.md)
+  : Shape file of the western Mediterranean basin
+
+# Articles
+
+### All vignettes
+
+- [GIFT tutorial for advanced
+  users](https://biogeomacro.github.io/GIFT/articles/web_only/GIFT_advanced_users.md):
+- [Queries in the
+  API](https://biogeomacro.github.io/GIFT/articles/web_only/GIFT_API.md):
+- [Disclaimer](https://biogeomacro.github.io/GIFT/articles/web_only/GIFT_Disclaimer.md):
+- [GIFT tutorial](https://biogeomacro.github.io/GIFT/articles/GIFT.md):
+- [Publication
+  records](https://biogeomacro.github.io/GIFT/articles/web_only/Publication_records.md):

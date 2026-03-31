@@ -1,0 +1,92 @@
+# Select non-overlapping regions
+
+Identify overlapping regions in a set of GIFT regions and choose only
+non-overlapping regions based on size and overlap criteria
+
+## Usage
+
+``` r
+GIFT_no_overlap(
+  entity_IDs = NULL,
+  area_threshold_island = 0,
+  area_threshold_mainland = 100,
+  overlap_threshold = 0.1,
+  geoentities_overlap = NULL,
+  api = "https://gift.uni-goettingen.de/api/extended/",
+  GIFT_version = "latest"
+)
+```
+
+## Arguments
+
+- entity_IDs:
+
+  A vector of IDs of the regions for which we want to check overlap
+
+- area_threshold_island:
+
+  A number stating from which surface the smallest overlapping polygon
+  is kept. By default set to 0 square kilometer (meaning that by default
+  the smallest islands will be conserved).
+
+- area_threshold_mainland:
+
+  When two polygons overlap, the smallest or the biggest one can be
+  kept. When the surface of the smallest polygon exceeds this number,
+  the smallest polygon is kept. Otherwise, we keep the bigger one. Set
+  by default 100 square-kilometers.
+
+- overlap_threshold:
+
+  A number ranging from 0 to 1, indicating at what percentage of
+  overlap, partially overlapping polygons should be kept.
+
+- geoentities_overlap:
+
+  A table coming from GIFT indicating the overlap in km^2 between pairs
+  of polygons.
+
+- api:
+
+  character string defining from which API the data will be retrieved.
+
+- GIFT_version:
+
+  character string defining the version of the GIFT database to use. The
+  function retrieves by default the `latest` stable version. If set to
+  `beta`, the most up-to-date version which is still subject to changes
+  and edits is used.
+
+## Value
+
+A vector of entity_IDs (identification numbers of polygons)
+non-overlapping.
+
+## References
+
+     Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to
+     access the Global Inventory of Floras and Traits. Methods in Ecology
+     and Evolution, 14, 2738-2748.
+     https://doi.org/10.1111/2041-210X.14213
+
+     Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+     https://doi.org/10.1111/jbi.13623
+
+## See also
+
+[`GIFT_checklists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.md)
+
+## Examples
+
+``` r
+# \donttest{
+ex <- GIFT_no_overlap(entity_IDs = c(10071, 12078)) # Andalusia and Spain. 
+#> You are asking for the latest stable version of GIFT which is 3.2.
+# We get Andalusia because it is smaller than Spain and larger than 100 km²
+ex2 <- GIFT_no_overlap(entity_IDs = c(10071, 12078), 
+area_threshold_mainland = 100000) # since Andalusia is smaller than
+#> You are asking for the latest stable version of GIFT which is 3.2.
+# 100,000 km² large, the larger entity (Spain) is chosen here.
+# }
+```

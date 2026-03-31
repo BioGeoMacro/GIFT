@@ -1,0 +1,145 @@
+# GIFT checklists
+
+Raw checklists, to combine with other functions.
+
+## Usage
+
+``` r
+GIFT_checklists_raw(
+  ref_ID = NULL,
+  list_ID = NULL,
+  namesmatched = FALSE,
+  taxon_name = "Tracheophyta",
+  floristic_group = "all",
+  list_set = NULL,
+  taxonomy = NULL,
+  GIFT_version = "latest",
+  api = "https://gift.uni-goettingen.de/api/extended/"
+)
+```
+
+## Arguments
+
+- ref_ID:
+
+  A vector defining the IDs of the references to retrieve. `NULL` by
+  default.
+
+- list_ID:
+
+  A vector defining the IDs of the lists to retrieve. `NULL` by default.
+  These lists are retrieved in addition to the lists contained in the
+  references in `ref_ID`.
+
+- namesmatched:
+
+  Logical. `FALSE` by default, set to `TRUE` if you want the original
+  species name as they came in the references as well as details on the
+  taxonomic harmonization.
+
+- taxon_name:
+
+  Character string corresponding to the taxonomic group of interest.
+
+- floristic_group:
+
+  Character string among these options: `all`, `native`, `naturalized`,
+  `endemic_list`, `endemic_ref`.
+
+- list_set:
+
+  `NULL` by default. If not, it has to be the list table (see
+  [`GIFT_lists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_lists.md)).
+  Used internally in
+  [`GIFT_checklists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.md)
+  to avoid downloading the table of lists many times.
+
+- taxonomy:
+
+  `NULL` by default. If not, it has to be the taxonomy table (see
+  [`GIFT_taxonomy()`](https://biogeomacro.github.io/GIFT/reference/GIFT_taxonomy.md)).
+  Used internally in
+  [`GIFT_checklists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.md)
+  to avoid downloading the taxonomy table many times.#'
+
+- GIFT_version:
+
+  character string defining the version of the GIFT database to use. The
+  function retrieves by default the `latest` stable version. If set to
+  `beta`, the most up-to-date version which is still subject to changes
+  and edits is used.
+
+- api:
+
+  character string defining from which API the data will be retrieved.
+
+## Value
+
+A data frame with 15 or 29 columns (depending on namesmatched). This
+data frame contains the species checklist for a given reference/list.
+
+## Details
+
+Here is what each column refers to:
+
+*ref_ID* - Identification number of each reference  
+*list_ID* - Identification number of each list  
+*orig_ID* - Identification number of each species name, unchanged from
+the sources  
+*name_ID* - Identification number of each reference  
+*genus* - Genus of each species  
+*species_epithet* - Epithet of each species  
+*subtaxon* - If needed, subtaxon of the species  
+*author* - Name of the author who described the species  
+*matched* - Whether a match was found when using a taxonomic backbone  
+*epithetscore* - Matching score for the epithet  
+*overallscore* - Matching score for the overall species name  
+*resolved* - Whether the species name was resolved  
+*service* - Service used for the taxonomic harmonization  
+*work_ID* - Identification number of each species name, after taxonomic
+harmonization  
+*genus_ID* - Identification number of each genus, after taxonomic
+harmonization  
+*species* - Species name, after taxonomic harmonization  
+*questionable* - Whether the species occurrence is questionable  
+*native* - Whether the species is native  
+*quest_native* - Whether the native information is questionable  
+*naturalized* - Whether the species is naturalized  
+*endemic_ref* - Whether the species is endemic within the reference  
+*quest_end_ref* - Whether the endemic_ref information is questionable  
+*endemic_list*- Whether the species is endemic within the list  
+*quest_end_list* - Whether the endemic_list information is
+questionable  
+*cons_status* - Conservation status of the species
+
+## References
+
+     Denelle, P., Weigelt, P., & Kreft, H. (2023). GIFT—An R package to
+     access the Global Inventory of Floras and Traits. Methods in Ecology
+     and Evolution, 14, 2738-2748.
+     https://doi.org/10.1111/2041-210X.14213
+
+     Weigelt, P, König, C, Kreft, H. GIFT – A Global Inventory of Floras and
+     Traits for macroecology and biogeography. J Biogeogr. 2020; 47: 16– 43.
+     https://doi.org/10.1111/jbi.13623
+
+## See also
+
+[`GIFT_checklists()`](https://biogeomacro.github.io/GIFT/reference/GIFT_checklists.md)
+
+## Examples
+
+``` r
+# \donttest{
+ex <- GIFT_checklists_raw(list_ID = c(1,5))
+#> You are asking for the latest stable version of GIFT which is 3.2.
+#> ================================================================================
+#> 
+#> Be cautious, species indicated as endemic were stated like this in the
+#>   source reference/checklist. It can be that these species appear in other
+#>   checklists.
+#> The taxonomic status corresponds to the original taxon names (including
+#>   subspecies and synonyms) and may not be valid for the taxonomically
+#>   standardized species names (column 'work_species').
+# }
+```
