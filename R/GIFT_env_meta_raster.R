@@ -61,8 +61,10 @@ GIFT_env_meta_raster <- function(
       ".php?query=env_raster"), simplifyVector = TRUE)
     
     # Extract Citavi number from each list element
-    tmp$citavi_ID <- gsub("^.*\\#", "", tmp$citavi_ID)
-    tmp$citavi_ID <- substr(tmp$citavi_ID, 1, (nchar(tmp$citavi_ID)-1))
+    tmp$citavi_seq_no <- gsub("^.*\\#", "", tmp$citavi_ID)
+    tmp$citavi_seq_no <-
+      substr(tmp$citavi_seq_no, 1, (nchar(tmp$citavi_seq_no)-1))
+    tmp$citavi_seq_no <- as.numeric(tmp$citavi_seq_no)
     
     check_query(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
@@ -70,9 +72,11 @@ GIFT_env_meta_raster <- function(
     refs <- jsonlite::read_json(paste0(
       api, "index", ifelse(GIFT_version == "beta", "", GIFT_version),
       ".php?query=references_citavi"), simplifyVector = TRUE)
+    refs$citavi_seq_no <- as.numeric(refs$citavi_seq_no)
     
-    tmp <- dplyr::left_join(tmp,refs, by=c("citavi_ID" = "citavi_seq_no"))
+    tmp <- dplyr::left_join(tmp, refs, by = "citavi_seq_no")
     tmp$citavi_ID <- NULL
+    tmp$citavi_seq_no <- NULL
     
     return(tmp)
   }
