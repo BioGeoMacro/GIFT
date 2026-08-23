@@ -23,20 +23,21 @@ To access all the available versions of the database, you can run the
 following function:
 
 ``` r
+
 versions <- GIFT_versions()
 kable(versions, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
-| ID  | version | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | taxonomy                                                                             | phylogeny                                                                                                                                                                      | overlap                                                                                                                                      |
-|:----|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | 1.0     | 2018-08-08: Data included in and workflows used to assemble GIFT 1.0 are described in detail in: Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47, 16-43. doi: 10.1111/jbi.13623                                                                                                                                                                                           | The Plant List 1.1 and resources used by TNRS at the time                            | NA                                                                                                                                                                             | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames)   |
-| 2   | 2.0     | 2019-09-01: New checklist and trait data included for Europe, the Mediterranean, temperate Asia, Panama, Japan, Java, New Zealand, Easter Island and the Torres Strait Islands. Updated workflows to document biases in the distribution of trait data; Updated taxonomic trait derivation; Final trait values and agreement scores for trait values from several resources are now calculated separately including and excluding restricted resources.                           | The Plant List 1.1 and resources used by TNRS at the time                            | NA                                                                                                                                                                             | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames)   |
-| 3   | 2.1     | 2021-05-21: New checklists and traits included for the Americas, Crimea, Madagascar, Arabian peninsula, Laos, Bhutan, India, China, Sunda-Sahul shelf, Tonga, Canary Islands, West Africa and for ferns and palms globally. Large categorical trait data included from Try.                                                                                                                                                                                                       | The Plant List 1.1 and resources used by TNRS at the time                            | NA                                                                                                                                                                             | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames)   |
-| 4   | 2.2     | 2022-05-30: New checklists (with a focus on endemic species) and traits for various oceanic archipelagos (Cook Islands, Madeira, Arctic Islands, Cayman Islands, Comores, Juan Fernandez, Palau, Galapagos, Frisian Islands, Antilles, Japan, Mayotte, Fiji, Taiwan, etc.) and various mainland regions (Equatorial Guinea and the entire former USSR in sub-regions).                                                                                                            | The Plant List 1.1 and resources used by TNRS at the time                            | NA                                                                                                                                                                             | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames)   |
-| 5   | 3.0     | 2023-06-30: New data and updated workflows as described in: Denelle, P., Weigelt, P. & Kreft, H. (2023) GIFT - an R package to access the Global Inventory of Floras and Traits. BioRxiv, doi: 10.1101/2023.06.27.546704. Updated workflows include: (1) New taxonomic name standardization based on WCVP; (2) More statistics on species level trait aggregation; (3) Updated extraction of raster layer values per GIFT region and new raster resources; (4) Updated phylogeny. | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 1.2, ID_column: rownames)   |
-| 6   | 3.1     | 2023-11-11: New checklist data for Mongolia and Farasan Archipelago and correction of seed traits for Hawaii (ref 16; units).                                                                                                                                                                                                                                                                                                                                                     | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 2.0, ID_column: GMBA_V2_ID) |
-| 7   | 3.2     | 2024-06-13: New oceanic archipelago trait data and global parasitism information                                                                                                                                                                                                                                                                                                                                                                                                  | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 2.0, ID_column: GMBA_V2_ID) |
+| ID | version | description | taxonomy | phylogeny | overlap |
+|:---|:---|:---|:---|:---|:---|
+| 1 | 1.0 | 2018-08-08: Data included in and workflows used to assemble GIFT 1.0 are described in detail in: Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47, 16-43. doi: 10.1111/jbi.13623 | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
+| 2 | 2.0 | 2019-09-01: New checklist and trait data included for Europe, the Mediterranean, temperate Asia, Panama, Japan, Java, New Zealand, Easter Island and the Torres Strait Islands. Updated workflows to document biases in the distribution of trait data; Updated taxonomic trait derivation; Final trait values and agreement scores for trait values from several resources are now calculated separately including and excluding restricted resources. | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
+| 3 | 2.1 | 2021-05-21: New checklists and traits included for the Americas, Crimea, Madagascar, Arabian peninsula, Laos, Bhutan, India, China, Sunda-Sahul shelf, Tonga, Canary Islands, West Africa and for ferns and palms globally. Large categorical trait data included from Try. | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
+| 4 | 2.2 | 2022-05-30: New checklists (with a focus on endemic species) and traits for various oceanic archipelagos (Cook Islands, Madeira, Arctic Islands, Cayman Islands, Comores, Juan Fernandez, Palau, Galapagos, Frisian Islands, Antilles, Japan, Mayotte, Fiji, Taiwan, etc.) and various mainland regions (Equatorial Guinea and the entire former USSR in sub-regions). | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
+| 5 | 3.0 | 2023-06-30: New data and updated workflows as described in: Denelle, P., Weigelt, P. & Kreft, H. (2023) GIFT - an R package to access the Global Inventory of Floras and Traits. BioRxiv, doi: 10.1101/2023.06.27.546704. Updated workflows include: (1) New taxonomic name standardization based on WCVP; (2) More statistics on species level trait aggregation; (3) Updated extraction of raster layer values per GIFT region and new raster resources; (4) Updated phylogeny. | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 1.2, ID_column: rownames) |
+| 6 | 3.1 | 2023-11-11: New checklist data for Mongolia and Farasan Archipelago and correction of seed traits for Hawaii (ref 16; units). | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 2.0, ID_column: GMBA_V2_ID) |
+| 7 | 3.2 | 2024-06-13: New oceanic archipelago trait data and global parasitism information | World Checklist of Vascular Plants (WCVP, v9) and resources used by TNRS at the time | Phylogeny built using U.PhyloMaker R-package (Jin & Qian, 2022) based on the GBOTB megatree from Smith & Brown (2018) and Zanne et al. (2014), standardized according to WCVP. | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2021-07-02; ID_column: OBJIDsic); gmba (version: 2.0, ID_column: GMBA_V2_ID) |
 
 The `version` column of this table is the one to use if you want to
 retrieve past versions of the GIFT database. By default, the argument
@@ -50,6 +51,7 @@ the next chunk, we call it with different values for the `GIFT_version`
 argument.
 
 ``` r
+
 list_latest <- GIFT_lists(GIFT_version = "latest") # default value
 list_1 <- GIFT_lists(GIFT_version = "1.0")
 ```
@@ -67,6 +69,7 @@ following function retrieves the reference for each checklist, as well
 as some metadata. References are documented in the `ref_long` column.
 
 ``` r
+
 ref <- GIFT_references()
 ref <- ref[which(ref$ref_ID %in% c(22, 10333, 10649)),
            c("ref_ID", "ref_long", "geo_entity_ref")]
@@ -76,11 +79,11 @@ kable(ref, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
-|     | ref_ID | ref_long                                                                                                                                | geo_entity_ref |
-|:----|-------:|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|
-| 22  |     22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion     |
-| 667 |  10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108.                                               | Easter Island  |
-| 880 |  10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan.                                                       | Kazakhstan     |
+|  | ref_ID | ref_long | geo_entity_ref |
+|:---|---:|:---|:---|
+| 22 | 22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion |
+| 667 | 10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108. | Easter Island |
+| 880 | 10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan. | Kazakhstan |
 
   
 
@@ -88,6 +91,7 @@ The next chunk describes the steps to retrieve the publication sources
 when you start from specific regions, let’s say the Canary islands.
 
 ``` r
+
 # List of all regions
 regions <- GIFT_regions()
 
@@ -131,6 +135,7 @@ additional columns informing about the taxonomic harmonization that was
 performed when the list was uploaded to the GIFT database.
 
 ``` r
+
 listID_1 <- GIFT_checklists_raw(list_ID = c(11926))
 listID_1_tax <- GIFT_checklists_raw(list_ID = c(11926), namesmatched = TRUE)
 
@@ -160,6 +165,7 @@ shapefile, using the western Mediterranean basin provided with the GIFT
 R package.
 
 ``` r
+
 data("western_mediterranean")
 ```
 
@@ -180,6 +186,7 @@ We now illustrate this by retrieving checklists falling in the western
 Mediterranean basin using the four options available.
 
 ``` r
+
 med_centroid_inside  <- GIFT_spatial(shp = western_mediterranean,
                                      overlap = "centroid_inside")
 med_extent_intersect <- GIFT_spatial(shp = western_mediterranean,
@@ -191,6 +198,7 @@ med_shape_inside <- GIFT_spatial(shp = western_mediterranean,
 ```
 
 ``` r
+
 length(unique(med_extent_intersect$entity_ID))
 length(unique(med_shape_intersect$entity_ID))
 length(unique(med_centroid_inside$entity_ID))
@@ -209,6 +217,7 @@ and calling it for the entity_IDs retrieved in each instance, we can
 download the shape files for each region.
 
 ``` r
+
 geodata_extent_intersect <- GIFT_shapes(med_extent_intersect$entity_ID)
 
 geodata_shape_inside <-
@@ -225,6 +234,7 @@ geodata_shape_intersect <-
 And then make a map.
 
 ``` r
+
 par_overlap <- par(mfrow = c(2, 2), mai = c(0, 0, 0.5, 0))
 plot(sf::st_geometry(geodata_shape_inside),
      col = geodata_shape_inside$entity_ID,
@@ -270,12 +280,14 @@ vignette](https://biogeomacro.github.io/GIFT/articles/GIFT.html). We
 here provide further details:
 
 ``` r
+
 length(med_shape_inside$entity_ID)
 ```
 
     ## [1] 72
 
 ``` r
+
 length(GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
                        area_threshold_mainland = 100, overlap_threshold = 0.1))
 ```
@@ -283,6 +295,7 @@ length(GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
     ## [1] 53
 
 ``` r
+
 # The following polygons are overlapping:
 GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
                 area_threshold_mainland = 100, overlap_threshold = 0.1)
@@ -295,11 +308,13 @@ GIFT_no_overlap(med_shape_inside$entity_ID, area_threshold_island = 0,
     ## [49] 12233 12632 12633 12634 12635
 
 ``` r
+
 # Example of two overlapping polygons: Spain mainland and Andalusia
 overlap_shape <- GIFT_shapes(entity_ID = c(10071, 12078))
 ```
 
 ``` r
+
 par_overlap_shp <- par(mfrow = c(1, 1))
 plot(sf::st_geometry(overlap_shape),
      col = c(rgb(red = 1, green = 0, blue = 0, alpha = 0.5),
@@ -311,6 +326,7 @@ plot(sf::st_geometry(overlap_shape),
 ![](GIFT_advanced_users_files/figure-html/unnamed-chunk-17-1.png)
 
 ``` r
+
 par(par_overlap_shp)
 
 GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
@@ -320,6 +336,7 @@ GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
     ## [1] 12078
 
 ``` r
+
 GIFT_no_overlap(c(10071, 12078), area_threshold_island = 0,
                 area_threshold_mainland = 100000, overlap_threshold = 0.1)
 ```
@@ -338,6 +355,7 @@ they belong to the same reference (i.e. same `ref_ID`).
 We show how this works with the following example:
 
 ``` r
+
 ex <- GIFT_checklists(taxon_name = "Tracheophyta", by_ref_ID = FALSE,
                       list_set_only = TRUE, GIFT_version = "3.0")
 ex2 <- GIFT_checklists(taxon_name = "Tracheophyta",
@@ -361,6 +379,7 @@ Let’s look at the checklists that are present in the second example but
 not in the third.
 
 ``` r
+
 unique(ex2$lists$ref_ID)[!(unique(ex2$lists$ref_ID) %in%
                              unique(ex3$lists$ref_ID))] # 28 references
 ```
@@ -374,11 +393,13 @@ regions can overlap with it.
   
 
 ``` r
+
 # Pilbara region Australy and overlapping shapes
 pilbara <- GIFT_shapes(entity_ID = c(10043, 12172, 11398, 11391, 10918))
 ```
 
 ``` r
+
 ggplot(pilbara) +
   geom_sf(aes(fill = as.factor(entity_ID)), alpha = 0.5) +
   scale_fill_brewer("entity_ID", palette = "Set1")
@@ -396,6 +417,7 @@ using
 [`GIFT_species()`](https://biogeomacro.github.io/GIFT/reference/GIFT_species.md).
 
 ``` r
+
 species <- GIFT_species()
 ```
 
@@ -403,6 +425,7 @@ To add additional information, like their order or family, we can call
 [`GIFT_taxgroup()`](https://biogeomacro.github.io/GIFT/reference/GIFT_taxgroup.md).
 
 ``` r
+
 # Add Family
 species$Family <- GIFT_taxgroup(
   as.numeric(species$work_ID), taxon_lvl = "family", return_ID = FALSE, 
@@ -412,6 +435,7 @@ species$Family <- GIFT_taxgroup(
 Order or higher levels can also be retrieved.
 
 ``` r
+
 GIFT_taxgroup(as.numeric(species$work_ID[1:5]), taxon_lvl = "order",
               return_ID = FALSE)
 GIFT_taxgroup(as.numeric(species$work_ID[1:5]),
@@ -429,6 +453,7 @@ different steps of taxonomic harmonization is possible with the
 function.
 
 ``` r
+
 Fagus <- GIFT_species_lookup(genus = "Fagus", epithet = "sylvatica",
                              namesmatched = TRUE)
 ```
@@ -441,6 +466,7 @@ later changed to the accepted name *Fagus sylvatica*.
 ### 6.2. Retrieve work_IDs for external species list
 
 ``` r
+
 sp_list <- c("Anemone nemorosa", "Fagus sylvatica")
 
 gift_sp <- GIFT_species()
@@ -472,6 +498,7 @@ The taxonomy used in GIFT database can be downloaded using
 [`GIFT_taxonomy()`](https://biogeomacro.github.io/GIFT/reference/GIFT_taxonomy.md).
 
 ``` r
+
 taxo <- GIFT_taxonomy()
 ```
 
@@ -497,6 +524,7 @@ polygons between GIFT and the other resource.
 Let’s illustrate this with the GMBA shapefile.
 
 ``` r
+
 gmba_overlap <- GIFT_overlap(resource = "gmba")
 
 kable(gmba_overlap[1:5, ], "html") %>%
@@ -519,6 +547,7 @@ resource and the GIFT region.
 For example, if we look at the polygon 11861 of GIFT:
 
 ``` r
+
 gmba_overlap[which(gmba_overlap$entity_ID == 11861 &
                      gmba_overlap$gmba_ID == 731), ]
 ```
@@ -544,6 +573,7 @@ We here want to plot the phylogenetic tree of native plant species
 occurring in Tenerife island.
 
 ``` r
+
 # List table
 gift_list <- GIFT_lists()
 # Tenerife data for the following list_IDs: 150, 14110, 14228

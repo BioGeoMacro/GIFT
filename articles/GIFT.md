@@ -24,6 +24,7 @@ detailed examples.
 The following R packages are required to build this vignette:
 
 ``` r
+
 library("GIFT")
 library("dplyr")
 library("knitr")
@@ -46,6 +47,7 @@ Increasing the timeout makes it easier to complete larger downloads.
 This can be done as follows:
 
 ``` r
+
 options(timeout = max(1000, getOption("timeout")))
 ```
 
@@ -66,6 +68,7 @@ We do provide a shape file of this region in the `GIFT` R package, which
 you can access using the `data("western_mediterranean")` command.
 
 ``` r
+
 data("western_mediterranean")
 
 world <- ne_coastline(scale = "medium", returnclass = "sf")
@@ -195,12 +198,12 @@ Figure 4. Removing overlapping polygons with remove_overlap argument
 
   
 
-`area_threshold_mainland` takes a value in $km^{2}$. If the area of the
+`area_threshold_mainland` takes a value in $`km^2`$. If the area of the
 smaller polygon is less than the threshold, then the larger overlapping
 polygon is retrieved (lower left part in Figure 4). If the smaller
 polygon exceeds the threshold, then it is retrieved (lower right part of
 Figure 4). There is a similar argument for islands,
-`area_threshold_island`, which is set to 0 $km^{2}$ by default. This way
+`area_threshold_island`, which is set to 0 $`km^2`$ by default. This way
 the smaller islands are always retrieved by default.  
   
 Note also that polygons are considered to overlap if they exceed a
@@ -229,6 +232,7 @@ If you only want to retrieve the metadata, you can set the
 `list_set_only` argument to `TRUE`.  
 
 ``` r
+
 ex_meta <- GIFT_checklists(taxon_name = "Angiospermae",
                            shp = western_mediterranean,
                            overlap = "centroid_inside",
@@ -239,6 +243,7 @@ ex_meta <- GIFT_checklists(taxon_name = "Angiospermae",
 And to retrieve the species composition:  
 
 ``` r
+
 medit <- GIFT_checklists(taxon_name = "Angiospermae",
                          complete_taxon = TRUE,
                          floristic_group = "native",
@@ -258,6 +263,7 @@ Angiosperm species in the western part of the Mediterranean basin, as
 well as of the number of species.  
 
 ``` r
+
 # Number of references covered
 length(unique(medit[[2]]$ref_ID))
 #   22 references
@@ -278,6 +284,7 @@ stricter on some criteria. For example, when removing overlapping
 regions:  
 
 ``` r
+
 medit_no_overlap <- GIFT_checklists(shp = western_mediterranean,
                                     overlap = "centroid_inside",
                                     taxon_name = "Angiospermae",
@@ -294,6 +301,7 @@ to retrieve GIFT checklists that intersect the coordinates of
 Göttingen.  
 
 ``` r
+
 custom_point <- cbind(9.9, 51) # coordinates of Göttingen
 
 got <- GIFT_checklists(coordinates = custom_point,
@@ -326,10 +334,12 @@ The next two chunks illustrate this for the Angiosperms in the World and
 in the Western part of the Mediterranean basin.  
 
 ``` r
+
 gift_shapes <- GIFT_shapes() # retrieves all shapefiles by default
 ```
 
 ``` r
+
 angio_rich <- GIFT_richness(taxon_name = "Angiospermae")
 
 rich_map <- dplyr::left_join(gift_shapes, angio_rich, by = "entity_ID") %>%
@@ -358,6 +368,7 @@ Below is the `R` code to produce the above map if interested.
 Fancier code
 
 ``` r
+
 # Background box
 xmin <- st_bbox(world)[["xmin"]]; xmax <- st_bbox(world)[["xmax"]]
 ymin <- st_bbox(world)[["ymin"]]; ymax <- st_bbox(world)[["ymax"]]
@@ -421,6 +432,7 @@ code and the map of Angiosperms in the Western Mediterranean basin.
   
 
 ``` r
+
 med_shape <- gift_shapes[which(gift_shapes$entity_ID %in% 
                                  unique(medit[[2]]$entity_ID)), ]
 
@@ -457,6 +469,7 @@ To know what plant species are available, you can first run the function
 [`GIFT_species()`](https://biogeomacro.github.io/GIFT/reference/GIFT_species.md).
 
 ``` r
+
 all_sp <- GIFT_species()
 ```
 
@@ -479,6 +492,7 @@ function to look up the differences for particular species. For example,
 the wood anemone *Anemonoides nemorosa*.  
 
 ``` r
+
 anemone_lookup <- GIFT_species_lookup(genus = "Anemonoides",
                                       epithet = "nemorosa")
 
@@ -486,11 +500,11 @@ kable(anemone_lookup, "html") %>%
   kable_styling(full_width = FALSE)
 ```
 
-| name_ID | genus       | species_epithet | subtaxon | author     | matched | epithetscore | overallscore | resolved | synonym | matched_subtaxon | accepted | service   | work_ID | taxon_ID | work_genus  | work_species_epithet | work_species         | work_author |
-|--------:|:------------|:----------------|:---------|:-----------|--------:|-------------:|-------------:|---------:|--------:|-----------------:|---------:|:----------|--------:|---------:|:------------|:---------------------|:---------------------|:------------|
-|    3719 | Anemone     | nemorosa        | NA       | L.         |       1 |            1 |        1.000 |        1 |       1 |                0 |        1 | GIFT_wcvp |  438440 |    15034 | Anemonoides | nemorosa             | Anemonoides nemorosa | (L.) Holub  |
-|  526917 | Anemonoides | nemorosa        | NA       | (L.) Holub |       1 |            1 |        1.000 |        1 |       0 |                0 |        1 | GIFT_wcvp |  438440 |    15034 | Anemonoides | nemorosa             | Anemonoides nemorosa | (L.) Holub  |
-|  772823 | Anemonoides | nemorosa        | NA       | NA         |       1 |            1 |        0.645 |        1 |       0 |                0 |        1 | GIFT_wcvp |  438440 |    15034 | Anemonoides | nemorosa             | Anemonoides nemorosa | (L.) Holub  |
+| name_ID | genus | species_epithet | subtaxon | author | matched | epithetscore | overallscore | resolved | synonym | matched_subtaxon | accepted | service | work_ID | taxon_ID | work_genus | work_species_epithet | work_species | work_author |
+|---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|:---|---:|---:|:---|:---|:---|:---|
+| 3719 | Anemone | nemorosa | NA | L. | 1 | 1 | 1.000 | 1 | 1 | 0 | 1 | GIFT_wcvp | 438440 | 15034 | Anemonoides | nemorosa | Anemonoides nemorosa | (L.) Holub |
+| 526917 | Anemonoides | nemorosa | NA | (L.) Holub | 1 | 1 | 1.000 | 1 | 0 | 0 | 1 | GIFT_wcvp | 438440 | 15034 | Anemonoides | nemorosa | Anemonoides nemorosa | (L.) Holub |
+| 772823 | Anemonoides | nemorosa | NA | NA | 1 | 1 | 0.645 | 1 | 0 | 0 | 1 | GIFT_wcvp | 438440 | 15034 | Anemonoides | nemorosa | Anemonoides nemorosa | (L.) Holub |
 
 Looking at the output table, you can see the original species names and
 their identification numbers (`name_ID`) **before** taxonomic
@@ -523,6 +537,7 @@ have only one floristic status per polygon. See the function’s help page
 for more details.  
 
 ``` r
+
 anemone_distr <- GIFT_species_distribution(
   genus = "Anemonoides", epithet = "nemorosa", aggregation = TRUE)
 
@@ -545,6 +560,7 @@ This species is not listed as endemic in any of the GIFT polygons. Let’s
 check the places where it is listed as native or naturalized.  
 
 ``` r
+
 table(paste(anemone_statuses$native, anemone_statuses$naturalized,
             sep = "_"))
 ```
@@ -573,6 +589,7 @@ earlier with
 [`GIFT_shapes()`](https://biogeomacro.github.io/GIFT/reference/GIFT_shapes.md).
 
 ``` r
+
 # We rename the statuses based on the distinct combinations
 anemone_statuses <- anemone_statuses %>%
   mutate(Status = case_when(
@@ -615,6 +632,7 @@ Below is the `R` code to produce the above map if interested.
 Fancier code
 
 ``` r
+
 anemone_map_plot_bg_parts <-
   ggplot(world) +
   geom_sf(data = bb, fill = "aliceblue", color = NA) +
@@ -674,6 +692,7 @@ For example, let’s say we want to retrieve the maximum vegetative
 heights of plant species.  
 
 ``` r
+
 trait_meta <- GIFT_traits_meta()
 trait_meta[which(trait_meta$Trait2 == "Plant_height_max"), ]
 ```
@@ -711,6 +730,7 @@ Let’s retrieve the raw and aggregated values for the maximum vegetative
 height of plants (trait_ID 1.6.2).  
 
 ``` r
+
 height <- GIFT_traits(trait_IDs = c("1.6.2"), agreement = 0.66,
                       bias_ref = FALSE, bias_deriv = FALSE)
 
@@ -731,6 +751,7 @@ And if you want to look up the references that led to the aggregated
 trait value, you can run this chunk:
 
 ``` r
+
 references <- GIFT_references(GIFT_version = "beta")
 
 unique(unlist(strsplit(height$references_1.6.2, ",")))
@@ -753,6 +774,7 @@ growth form (`trait_ID = "1.2.1"`) and whether the plant is a climber
 (`trait_ID = "1.4.1"`).
 
 ``` r
+
 trait_tax <- GIFT_traits_tax(trait_IDs = c("1.1.1", "1.2.1", "1.4.1"),
                              bias_ref = FALSE, bias_deriv = FALSE)
 
@@ -774,6 +796,7 @@ In combination with the previously loaded shapes, we can also map the
 trait coverage.  
 
 ``` r
+
 angio_height <- GIFT_coverage(what = "trait_coverage",
                               taxon_name = "Angiospermae",
                               trait_ID = "1.6.2")
@@ -810,6 +833,7 @@ Below is the `R` code to produce the above map if interested.
 Fancier code
 
 ``` r
+
 ggplot(world) +
   geom_sf(data = bb, fill = "aliceblue") +
   geom_sf(data = equator, color = "gray50", linetype = "dashed",
@@ -872,6 +896,7 @@ available through these functions (column `ref_long` of the outputs).
   
 
 ``` r
+
 misc_env <- GIFT_env_meta_misc()
 raster_env <- GIFT_env_meta_raster()
 ```
@@ -891,6 +916,7 @@ to see them all. Let’s get the mean and median of the elevation and the
 maximal value of the average temperature.  
 
 ``` r
+
 med_env <- GIFT_env(entity_ID = unique(medit[[2]]$entity_ID),
                     miscellaneous = c("perimeter", "biome"),
                     rasterlayer = c("mn30_grd", "wc2.0_bio_30s_01"),
@@ -911,6 +937,7 @@ Using the previously loaded shapes, we can also map a specific
 environmental variable for all GIFT polygons.
 
 ``` r
+
 world_temp <- GIFT_env(entity_ID = unique(angio_rich$entity_ID),
                        rasterlayer = c("wc2.0_bio_30s_01"),
                        sumstat = c("mean"))
@@ -943,6 +970,7 @@ Below is the `R` code to produce the above map if interested.
 Fancier code
 
 ``` r
+
 ggplot(world) +
   geom_sf(data = bb, fill = "aliceblue") +
   geom_sf(data = equator, color = "gray50", linetype = "dashed",
@@ -993,6 +1021,7 @@ pteridophytes in [Zanne et
 al. (2014)](https://www.nature.com/articles/nature12872).
 
 ``` r
+
 # Retrieving phylogeny, taxonomy and species from GIFT
 phy <- GIFT_phylogeny(clade = "Tracheophyta", GIFT_version = "beta")
 tax <- GIFT_taxonomy(GIFT_version = "beta")
@@ -1003,11 +1032,13 @@ gf <- GIFT_traits(trait_IDs = "1.2.1", agreement = 0.66, bias_ref = FALSE,
 ```
 
 ``` r
+
 # Replacing space with _ for the species names
 gf$work_species <- gsub(" ", "_", gf$work_species, fixed = TRUE)
 ```
 
 ``` r
+
 # Retrieving family of each species
 sp_fam <- GIFT_taxgroup(work_ID = unique(gift_sp$work_ID),
                         taxon_lvl = "family", GIFT_version = "beta")
@@ -1036,6 +1067,7 @@ In the next chunk, we calculate the trait coverage (for growth form) at
 the genus and family level.
 
 ``` r
+
 sp_genus_fam <- left_join(sp_genus_fam,
                           gf[, c("work_ID", "trait_value_1.2.1")],
                           by = "work_ID")
@@ -1093,6 +1125,7 @@ colnames(one_sp_per_gen)[colnames(one_sp_per_gen) == "prop_gf"] <-
 We now prune the tree at the genus level.
 
 ``` r
+
 phy_gen <- ape::keep.tip(
   phy = phy,
   tip = one_sp_per_gen[complete.cases(one_sp_per_gen$species), "species"])
@@ -1106,6 +1139,7 @@ To get the following plot, you need to install/load the following
 packages:
 
 ``` r
+
 library("BiocManager")
 install("ggtree")
 library("ggtree")
@@ -1117,6 +1151,7 @@ library("ggtreeExtra")
   
 
 ``` r
+
 ggtree(phy_gen, color = "grey70", layout = "circular") %<+% one_sp_per_gen +
   geom_fruit(geom = geom_tile,
              mapping = aes(fill = prop_gf_gen),

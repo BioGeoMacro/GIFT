@@ -38,37 +38,38 @@ GIFT R functions in which they are called. There is no rate-limitation
 for any of these queries except for *species* and *phylogeny*, which
 retrieves the data in chunks.
 
-| Query                  | Arguments                                        | R_function                                                                                                                 |
-|:-----------------------|:-------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
-| checklists             | listid (integer) , taxonid, namesmatched, filter | GIFT_checklists_raw()                                                                                                      |
-| env_misc               |                                                  | GIFT_env_meta_misc()                                                                                                       |
-| env_raster             |                                                  | GIFT_env_meta_raster()                                                                                                     |
-| geoentities_env_misc   | envvar                                           | GIFT_env()                                                                                                                 |
-| geoentities_env_raster | layername, sumstat                               | GIFT_env()                                                                                                                 |
-| lists                  |                                                  | GIFT_lists(), GIFT_checklists_conditional(), GIFT_checklists()                                                             |
-| names_matched          | genus, epithet                                   | GIFT_species_lookup()                                                                                                      |
-| names_matched_unique   | genus, epithet                                   | GIFT_species_lookup()                                                                                                      |
-| overlap                | taxon, startat                                   | GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklists()                                                          |
-| overlap_misc           | layer                                            | GIFT_overlap()                                                                                                             |
-| phylogeny              | taxon, startat, limit                            | GIFT_phylogeny()                                                                                                           |
-| references_citavi      |                                                  | GIFT_env_meta_raster(), GIFT_env_meta_misc()                                                                               |
-| references             |                                                  | GIFT_references()                                                                                                          |
-| reference_traits       |                                                  | GIFT_traits_raw()                                                                                                          |
-| regions                |                                                  | GIFT_regions()                                                                                                             |
-| species                | startat, limit                                   | GIFT_species()                                                                                                             |
-| species_distr          | nameid                                           | GIFT_species_distribution()                                                                                                |
-| species_num            | taxonid                                          | GIFT_richness()                                                                                                            |
-| taxonomy               |                                                  | GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(), GIFT_checklists_raw(), GIFT_checklists(), GIFT_checklists_conditional() |
-| traits                 | traitid, biasref, biasderiv, startat, limit      | GIFT_traits()                                                                                                              |
-| traits_cov             | traitid, taxonid                                 | GIFT_richness()                                                                                                            |
-| traits_meta            |                                                  | GIFT_traits_meta()                                                                                                         |
-| traits_raw             | traitid, deriv, biasderiv, refid                 | GIFT_traits_raw()                                                                                                          |
-| versions               |                                                  | All GIFT functions                                                                                                         |
+| Query | Arguments | R_function |
+|:---|:---|:---|
+| checklists | listid (integer) , taxonid, namesmatched, filter | GIFT_checklists_raw() |
+| env_misc |  | GIFT_env_meta_misc() |
+| env_raster |  | GIFT_env_meta_raster() |
+| geoentities_env_misc | envvar | GIFT_env() |
+| geoentities_env_raster | layername, sumstat | GIFT_env() |
+| lists |  | GIFT_lists(), GIFT_checklists_conditional(), GIFT_checklists() |
+| names_matched | genus, epithet | GIFT_species_lookup() |
+| names_matched_unique | genus, epithet | GIFT_species_lookup() |
+| overlap | taxon, startat | GIFT_species_distribution(), GIFT_no_overlap(), GIFT_checklists() |
+| overlap_misc | layer | GIFT_overlap() |
+| phylogeny | taxon, startat, limit | GIFT_phylogeny() |
+| references_citavi |  | GIFT_env_meta_raster(), GIFT_env_meta_misc() |
+| references |  | GIFT_references() |
+| reference_traits |  | GIFT_traits_raw() |
+| regions |  | GIFT_regions() |
+| species | startat, limit | GIFT_species() |
+| species_distr | nameid | GIFT_species_distribution() |
+| species_num | taxonid | GIFT_richness() |
+| taxonomy |  | GIFT_taxonomy(), GIFT_taxgroup(), GIFT_richness(), GIFT_checklists_raw(), GIFT_checklists(), GIFT_checklists_conditional() |
+| traits | traitid, biasref, biasderiv, startat, limit | GIFT_traits() |
+| traits_cov | traitid, taxonid | GIFT_richness() |
+| traits_meta |  | GIFT_traits_meta() |
+| traits_raw | traitid, deriv, biasderiv, refid | GIFT_traits_raw() |
+| versions |  | All GIFT functions |
 
   
 Some more details:
 
 ``` r
+
 # Query for trait and chunks
 # Default value for end is 10000
 # https://gift.uni-goettingen.de/api/extended/index.php?query=traits&

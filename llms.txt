@@ -19,6 +19,7 @@ The package is available on CRAN, you can install and load it using the
 following commands:
 
 ``` r
+
 install.packages("GIFT")
 library("GIFT")
 ```
@@ -27,6 +28,7 @@ GIFT is still under active development. You can install the development
 version from the GitHub repository using the following commands:
 
 ``` r
+
 # install.packages("devtools")
 remotes::install_github("https://github.com/BioGeoMacro/GIFT",
 dependencies = TRUE)
@@ -48,6 +50,7 @@ Alternatively, if you prefer to view the vignettes in R, you can install
 the package with `build_vignettes = TRUE`.
 
 ``` r
+
 remotes::install_github("https://github.com/BioGeoMacro/GIFT", 
                         dependencies = TRUE, upgrade = "ask", 
                         build_vignettes = TRUE)
