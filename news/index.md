@@ -1,5 +1,9 @@
 # Changelog
 
+## GIFT 1.3.4
+
+- Fix in GIFT_env_meta_misc and GIFT_env_meta_raster
+
 ## GIFT 1.3.3
 
 CRAN release: 2024-12-19

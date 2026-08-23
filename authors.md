@@ -13,13 +13,13 @@ Source:
 [`DESCRIPTION`](https://github.com/BioGeoMacro/GIFT/blob/master/DESCRIPTION)
 
 Denelle P, Weigelt P (2026). *GIFT: Access to the Global Inventory of
-Floras and Traits (GIFT)*. R package version 1.3.3,
+Floras and Traits (GIFT)*. R package version 1.3.4,
 <https://github.com/BioGeoMacro/GIFT>.
 
     @Manual{,
       title = {GIFT: Access to the Global Inventory of Floras and Traits (GIFT)},
       author = {Pierre Denelle and Patrick Weigelt},
       year = {2026},
-      note = {R package version 1.3.3},
+      note = {R package version 1.3.4},
       url = {https://github.com/BioGeoMacro/GIFT},
     }

@@ -81,9 +81,9 @@ kable(ref, "html") %>%
 
 |  | ref_ID | ref_long | geo_entity_ref |
 |:---|---:|:---|:---|
-| 22 | 22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion |
-| 667 | 10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108. | Easter Island |
-| 880 | 10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan. | Kazakhstan |
+| 70 | 10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan. | Kazakhstan |
+| 245 | 10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108. | Easter Island |
+| 841 | 22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion |
 
   
 
