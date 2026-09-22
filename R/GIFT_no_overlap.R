@@ -87,15 +87,16 @@ GIFT_no_overlap <- function(
          kept.")
     }
     
-    if(!is.null(geoentities_overlap) && !is.data.frame(geoentities_overlap) &&
-       ncol(geoentities_overlap) != 7 &&
-       colnames(geoentities_overlap) != c("entity1", "entity2", "overlap12",
-                                          "overlap21", "area1", "area2",
-                                          "entity_class2")){
-      stop("'geoentities_overlap' is a table coming from GIFT indicating the
+    if(!is.null(geoentities_overlap)){
+      if(!is.data.frame(geoentities_overlap) ||
+         !(all(c("entity1", "entity2", "overlap12", "overlap21", "area1",
+                 "area2", "entity_class2") %in%
+               colnames(geoentities_overlap)))){
+        stop("'geoentities_overlap' is a table coming from GIFT indicating the
          overlap in km^2 between pairs of polygons. It is automatically
          retrieved when 'geoentities_overlap' = NULL (default value of the
          function).")
+      }
     }
     
     GIFT_version <- check_gift_version_simple(GIFT_version)

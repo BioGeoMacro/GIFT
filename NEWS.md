@@ -2,6 +2,12 @@
 
 * Typo in the documentation of GIFT_taxonomy()
 * Disclaimer added to the vignettes
+* check_api() and check_query() now return NULL with an informative message
+when the server cannot be reached, instead of raising an uncaught error;
+they also perform a single request instead of up to three
+* Fixed the validation of the geoentities_overlap argument in
+GIFT_no_overlap(): a malformed table is now rejected with the intended
+error message instead of failing later with an obscure one
 
 # GIFT 1.3.4
 * Fix in GIFT_env_meta_misc and GIFT_env_meta_raster
