@@ -30,7 +30,7 @@ kable(versions, "html") %>%
 ```
 
 | ID | version | description | taxonomy | phylogeny | overlap |
-|:---|:---|:---|:---|:---|:---|
+|---:|:---|:---|:---|:---|:---|
 | 1 | 1.0 | 2018-08-08: Data included in and workflows used to assemble GIFT 1.0 are described in detail in: Weigelt, P., König, C. & Kreft, H. (2020) GIFT – A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47, 16-43. doi: 10.1111/jbi.13623 | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
 | 2 | 2.0 | 2019-09-01: New checklist and trait data included for Europe, the Mediterranean, temperate Asia, Panama, Japan, Java, New Zealand, Easter Island and the Torres Strait Islands. Updated workflows to document biases in the distribution of trait data; Updated taxonomic trait derivation; Final trait values and agreement scores for trait values from several resources are now calculated separately including and excluding restricted resources. | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
 | 3 | 2.1 | 2021-05-21: New checklists and traits included for the Americas, Crimea, Madagascar, Arabian peninsula, Laos, Bhutan, India, China, Sunda-Sahul shelf, Tonga, Canary Islands, West Africa and for ferns and palms globally. Large categorical trait data included from Try. | The Plant List 1.1 and resources used by TNRS at the time | NA | gaptani (version: okt2005, ID_column: UNITID); glonaf (version: 2017-06-12; ID_column: OBJIDsic); gmba (version: 1.0, ID_column: rownames) |
@@ -81,9 +81,9 @@ kable(ref, "html") %>%
 
 |  | ref_ID | ref_long | geo_entity_ref |
 |:---|---:|:---|:---|
-| 70 | 10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan. | Kazakhstan |
-| 245 | 10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108. | Easter Island |
-| 841 | 22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion |
+| 22 | 22 | Kirchner, Picot, Merceron & Gigot (2010) Flore vasculaire de La Réunion. Conservatoire Botanique National de Mascarin, Réunion; France. | La Réunion |
+| 667 | 10333 | Zizka (1991) Flowering plants of Easter Island. Palmarum hortus francofurtensis 3, 3-108. | Easter Island |
+| 880 | 10649 | Pavlov (1954-1966) Flora Kazakhstana. Nauka Kazakhskoy SSR, Alma-Ata, Kazakhstan. | Kazakhstan |
 
   
 

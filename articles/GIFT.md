@@ -90,7 +90,7 @@ ggplot(world) +
   theme_void()
 ```
 
-![](GIFT_files/figure-html/unnamed-chunk-3-1.png)
+![](../reference/figures/plot_world_mediterranean.png)
 
   
 *Please note that shapes used in GIFT are unprojected (Geographic
