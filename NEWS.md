@@ -1,7 +1,9 @@
 # GIFT
 
-* Typo in the documentation of GIFT_taxonomy()
 * Disclaimer added to the vignettes
+
+# GIFT 1.3.5
+* Fix in main vignette, to avoid relying on Internet.
 
 # GIFT 1.3.4
 * Fix in GIFT_env_meta_misc and GIFT_env_meta_raster
