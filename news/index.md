@@ -1,5 +1,9 @@
 # Changelog
 
+## GIFT 1.3.5
+
+- Fix in main vignette, to avoid relying on Internet.
+
 ## GIFT 1.3.4
 
 CRAN release: 2026-08-24
