@@ -103,7 +103,7 @@ function.
 We do provide a shape file of this region in the `GIFT` R package, which you
 can access using the `data("western_mediterranean")` command.
 
-```{r, fig.width = 3, fig.height = 3}
+```{r, echo = TRUE, eval = FALSE}
 data("western_mediterranean")
 
 world <- ne_coastline(scale = "medium", returnclass = "sf")
@@ -123,6 +123,10 @@ ggplot(world) +
   labs(title = "Western Mediterranean basin") +
   lims(x = c(-20, 20), y = c(24, 48)) +
   theme_void()
+```
+
+```{r, fig.cap = "", out.width = "90%", echo = FALSE, fig.width = 3, fig.height = 3}
+knitr::include_graphics("../man/figures/plot_world_mediterranean.png")
 ```
 
 <br>
