@@ -45,4 +45,12 @@ test_that("invalid inputs", {
 of GIFT you want to use. Available options are 'latest', 'beta' and the 
 different named stable versions of GIFT.",
     fixed = TRUE)
+
+  expect_error(
+    GIFT_no_overlap(entity_IDs = c(1, 2),
+                    geoentities_overlap = data.frame(foo = 1, bar = 2)),
+    "'geoentities_overlap' is a table coming from GIFT indicating the
+         overlap in km^2 between pairs of polygons. It is automatically
+         retrieved when 'geoentities_overlap' = NULL (default value of the
+         function).", fixed = TRUE)
 })

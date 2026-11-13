@@ -1,6 +1,12 @@
 # GIFT
 
 * Disclaimer added to the vignettes
+* check_api() and check_query() now return NULL with an informative message
+when the server cannot be reached, instead of raising an uncaught error;
+they also perform a single request instead of up to three
+* Fixed the validation of the geoentities_overlap argument in
+GIFT_no_overlap(): a malformed table is now rejected with the intended
+error message instead of failing later with an obscure one
 
 # GIFT 1.3.5
 * Fix in main vignette, to avoid relying on Internet.
